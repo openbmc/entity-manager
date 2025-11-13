@@ -1,0 +1,254 @@
+{
+    "Exposes": [
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "PDB_L FRU",
+            "Type": "EEPROM"
+        },
+        {
+            "Address": "0x2b",
+            "Bus": "$bus",
+            "Connector": {
+                "Name": "FAN0_TACH_IL",
+                "Pwm": 4,
+                "PwmName": "FAN4_PWM_PCT",
+                "Tachs": [
+                    0
+                ]
+            },
+            "Index": 0,
+            "Name": "FAN0_TACH_IL_SPEED_RPM",
+            "PowerState": "Always",
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2b",
+            "Bus": "$bus",
+            "Connector": {
+                "Name": "FAN0_TACH_OL",
+                "Pwm": 0,
+                "PwmName": "FAN0_PWM_PCT",
+                "Tachs": [
+                    1
+                ]
+            },
+            "Index": 1,
+            "Name": "FAN0_TACH_OL_SPEED_RPM",
+            "PowerState": "Always",
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2b",
+            "Bus": "$bus",
+            "Connector": {
+                "Name": "FAN1_TACH_IL",
+                "Pwm": 1,
+                "PwmName": "FAN1_PWM_PCT",
+                "Tachs": [
+                    2
+                ]
+            },
+            "Index": 2,
+            "Name": "FAN1_TACH_IL_SPEED_RPM",
+            "PowerState": "Always",
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2b",
+            "Bus": "$bus",
+            "Connector": {
+                "Name": "FAN1_TACH_OL",
+                "Pwm": 1,
+                "PwmName": "FAN1_PWM_PCT",
+                "Tachs": [
+                    3
+                ]
+            },
+            "Index": 3,
+            "Name": "FAN1_TACH_OL_SPEED_RPM",
+            "PowerState": "Always",
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2b",
+            "Bus": "$bus",
+            "Connector": {
+                "Name": "FAN2_TACH_IL",
+                "Pwm": 2,
+                "PwmName": "FAN2_PWM_PCT",
+                "Tachs": [
+                    4
+                ]
+            },
+            "Index": 4,
+            "Name": "FAN2_TACH_IL_SPEED_RPM",
+            "PowerState": "Always",
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2b",
+            "Bus": "$bus",
+            "Connector": {
+                "Name": "FAN2_TACH_OL",
+                "Pwm": 2,
+                "PwmName": "FAN2_PWM_PCT",
+                "Tachs": [
+                    5
+                ]
+            },
+            "Index": 5,
+            "Name": "FAN2_TACH_OL_SPEED_RPM",
+            "PowerState": "Always",
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2b",
+            "Bus": "$bus",
+            "Connector": {
+                "Name": "FAN3_TACH_OL",
+                "Pwm": 3,
+                "PwmName": "FAN3_PWM_PCT",
+                "Tachs": [
+                    11
+                ]
+            },
+            "Index": 11,
+            "Name": "FAN3_TACH_OL_SPEED_RPM",
+            "PowerState": "Always",
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2f",
+            "Bus": "$bus",
+            "Connector": {
+                "Name": "FAN3_TACH_IL",
+                "Pwm": 3,
+                "PwmName": "FAN3_PWM_PCT",
+                "Tachs": [
+                    2
+                ]
+            },
+            "Index": 2,
+            "Name": "FAN3_TACH_IL_SPEED_RPM",
+            "PowerState": "Always",
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2f",
+            "Bus": "$bus",
+            "Connector": {
+                "Name": "FAN4_TACH_IL",
+                "Pwm": 4,
+                "PwmName": "FAN4_PWM_PCT",
+                "Tachs": [
+                    0
+                ]
+            },
+            "Index": 0,
+            "Name": "FAN4_TACH_IL_SPEED_RPM",
+            "PowerState": "Always",
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2f",
+            "Bus": "$bus",
+            "Connector": {
+                "Name": "FAN4_TACH_OL",
+                "Pwm": 4,
+                "PwmName": "FAN4_PWM_PCT",
+                "Tachs": [
+                    1
+                ]
+            },
+            "Index": 1,
+            "Name": "FAN4_TACH_OL_SPEED_RPM",
+            "PowerState": "Always",
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x44",
+            "Bus": "$bus",
+            "Labels": [
+                "iout1",
+                "pin",
+                "temp1",
+                "vin",
+                "vout1"
+            ],
+            "Name": "PDB_L_P50V_HSC0",
+            "Type": "LTC4287",
+            "iout1_Name": "PDB_L_P50V_HSC0_CURR_A",
+            "pin_Name": "PDB_L_P50V_HSC0_PWR_W",
+            "temp1_Name": "PDB_L_P50V_HSC0_TEMP_C",
+            "vin_Name": "PDB_L_P50V_HSC0_VIN_VOLT_V",
+            "vout1_Name": "PDB_L_P50V_HSC0_VOUT_VOLT_V"
+        },
+        {
+            "Address": "0x41",
+            "Bus": "$bus",
+            "Labels": [
+                "iout1",
+                "pin",
+                "temp1",
+                "vin",
+                "vout1"
+            ],
+            "Name": "PDB_L_P50V_HSC1",
+            "Type": "LTC4287",
+            "iout1_Name": "PDB_L_P50V_HSC1_CURR_A",
+            "pin_Name": "PDB_L_P50V_HSC1_PWR_W",
+            "temp1_Name": "PDB_L_P50V_HSC1_TEMP_C",
+            "vin_Name": "PDB_L_P50V_HSC1_VIN_VOLT_V",
+            "vout1_Name": "PDB_L_P50V_HSC1_VOUT_VOLT_V"
+        },
+        {
+            "Address": "0x45",
+            "Bus": "$bus",
+            "Labels": [
+                "iout1",
+                "pin",
+                "temp1",
+                "vin",
+                "vout1"
+            ],
+            "Name": "PDB_L_P50V_HSC5",
+            "Type": "LTC4287",
+            "iout1_Name": "PDB_L_P50V_HSC5_CURR_A",
+            "pin_Name": "PDB_L_P50V_HSC5_PWR_W",
+            "temp1_Name": "PDB_L_P50V_HSC5_TEMP_C",
+            "vin_Name": "PDB_L_P50V_HSC5_VIN_VOLT_V",
+            "vout1_Name": "PDB_L_P50V_HSC5_VOUT_VOLT_V"
+        },
+        {
+            "Address": "0x4c",
+            "Bus": "$bus",
+            "Name": "PDB_L_2_TEMP_C",
+            "Name1": "PDB_L_2_TEMP2_C",
+            "Type": "TMP432"
+        },
+        {
+            "Address": "0x48",
+            "Bus": "$bus",
+            "Name": "PDB_L_1_TEMP_C",
+            "Type": "TMP75"
+        }
+    ],
+    "Name": "PDB_L",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Anacapa.* LPDB', 'BOARD_MANUFACTURER': 'Inventec'})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$BOARD_MANUFACTURE_DATE",
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER",
+        "SparePartNumber": "$BOARD_INFO_AM1"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Revision": {
+        "Version": "$PRODUCT_VERSION"
+    }
+}
