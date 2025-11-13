@@ -1,0 +1,34 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "PCIESWFirmware": {
+            "description": "The schema definition for PCIE switch firmware upgrade",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Address": {
+                    "$ref": "legacy.json#/$defs/Types/Address"
+                },
+                "Bus": {
+                    "$ref": "legacy.json#/$defs/Types/Bus"
+                },
+                "FirmwareInfo": {
+                    "$ref": "firmware.json#/$defs/FirmwareInfoDef"
+                },
+
+                "Name": {
+                    "description": "Full name of device",
+                    "type": "string"
+                },
+                "Type": {
+                    "description": "Supported PCIE switch devices, <vendor name><chip name>Firmware",
+                    "enum": ["BRCM_PEX90080Firmware"]
+                },
+                "MuxOutputs": {
+                    "$ref": "firmware.json#/$defs/MuxOutputs"
+                }
+            },
+            "required": ["Address", "Bus", "FirmwareInfo", "Name", "Type"]
+        }
+    }
+}

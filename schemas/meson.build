@@ -14,6 +14,7 @@ schemas = [
     'modbus.json',
     'nvidia.json',
     'openbmc-dbus.json',
+    'pcie_switch.json',
     'pid.json',
     'pid_zone.json',
     'satellite_controller.json',
