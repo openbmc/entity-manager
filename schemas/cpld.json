@@ -15,9 +15,20 @@
                 "FirmwareInfo": {
                     "$ref": "firmware.json#/$defs/FirmwareInfoDef"
                 },
+                "JtagIndex": {
+                    "description": "The index of Jtag device",
+                    "type": "string"
+                },
                 "Name": {
                     "description": "Full name of device",
                     "type": "string"
+                },
+                "Protocol": {
+                    "description": "Protocol used for firmware upgrade",
+                    "enum": [
+                        "JTAG",
+                        "I2C"
+                    ]
                 },
                 "Type": {
                     "description": "Supported CPLD devices, <vendor name><chip name>Firmware",
@@ -27,6 +38,7 @@
                         "LatticeLCMXO3D_9400Firmware",
                         "LatticeLCMXO3LF_2100CFirmware",
                         "LatticeLCMXO3LF_4300CFirmware",
+                        "LatticeLFMXO5_15DFirmware",
                         "LatticeLFMXO5_25Firmware"
                     ]
                 },
