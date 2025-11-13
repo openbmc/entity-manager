@@ -1,6 +1,7 @@
 #include "configuration.hpp"
 
 #include "perform_probe.hpp"
+#include "probe_type.hpp"
 #include "utils.hpp"
 
 #include <nlohmann/json.hpp>
