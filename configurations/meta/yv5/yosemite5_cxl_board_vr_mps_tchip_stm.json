@@ -302,6 +302,36 @@
                 }
             ],
             "Type": "LM75A"
+        },
+        {
+            "Address": "0x61",
+            "Bus": 35,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Yosemite5.VR.MP2929_p1v2_vdd_ddr_ch02",
+                "VendorIANA": 40981
+            },
+            "Name": "Yosemite5_CXL_VR_P1V2_VDD_DDR_CH02",
+            "Type": "MP292XFirmware"
+        },
+        {
+            "Address": "0x63",
+            "Bus": 35,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Yosemite5.VR.MP2929_pvdd_core",
+                "VendorIANA": 40981
+            },
+            "Name": "Yosemite5_CXL_VR_PVDD_CORE",
+            "Type": "MP292XFirmware"
+        },
+        {
+            "Address": "0x72",
+            "Bus": 35,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Yosemite5.VR.MP2929_p1v2_vdd_ddr_ch13",
+                "VendorIANA": 40981
+            },
+            "Name": "Yosemite5_CXL_VR_P1V2_VDD_DDR_CH13",
+            "Type": "MP292XFirmware"
         }
     ],
     "Name": "Yosemite5 CXL Board",
