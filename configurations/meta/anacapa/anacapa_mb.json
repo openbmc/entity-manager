@@ -1,0 +1,332 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x1f",
+            "Bus": 55,
+            "Labels": [
+                "in0",
+                "in1",
+                "in2",
+                "in3",
+                "in4",
+                "in5",
+                "in6",
+                "in7"
+            ],
+            "Name": "MB_ADC0",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.9
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.98
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.62
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.1
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.9
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in3",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in3",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.9
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in4",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.6
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in4",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in5",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 5.5
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in5",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 4.5
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in6",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.6
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in6",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in7",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.21
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in7",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.99
+                }
+            ],
+            "Type": "ADC128D818",
+            "in0_Name": "MB_P12V_STBY_VOLT_V",
+            "in0_Scale": 83,
+            "in1_Name": "MB_P1V8_STBY_VOLT_V",
+            "in1_Scale": 1000,
+            "in2_Name": "MB_P1V0_STBY_VOLT_V",
+            "in2_Scale": 1000,
+            "in3_Name": "MB_P12V_VOLT_V",
+            "in3_PowerState": "On",
+            "in3_Scale": 83,
+            "in4_Name": "MB_P3V3_VOLT_V",
+            "in4_PowerState": "On",
+            "in4_Scale": 312,
+            "in5_Name": "MB_P5V_STBY_VOLT_V",
+            "in5_Scale": 199,
+            "in6_Name": "MB_P3V3_STBY_VOLT_V",
+            "in6_Scale": 312,
+            "in7_Name": "MB_P1V1_STBY_VOLT_V",
+            "in7_Scale": 1000
+        },
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "MB FRU",
+            "Type": "EEPROM"
+        },
+        {
+            "Address": "0x40",
+            "Bus": 58,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "MB_PMON_DIMM_0",
+            "Type": "INA230",
+            "curr1_Name": "MB_PMON_DIMM_0_P12V_CURR_A",
+            "in1_Name": "MB_PMON_DIMM_0_P12V_VOLT_V",
+            "power1_Name": "MB_PMON_DIMM_0_P12V_PWR_W"
+        },
+        {
+            "Address": "0x41",
+            "Bus": 58,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "MB_PMON_DIMM_1",
+            "Type": "INA230",
+            "curr1_Name": "MB_PMON_DIMM_1_P12V_CURR_A",
+            "in1_Name": "MB_PMON_DIMM_1_P12V_VOLT_V",
+            "power1_Name": "MB_PMON_DIMM_1_P12V_PWR_W"
+        },
+        {
+            "Address": "0x47",
+            "Bus": 58,
+            "Labels": [
+                "in1",
+                "curr1",
+                "temp1"
+            ],
+            "Name": "MB_VR_CPU_PVDD18",
+            "Type": "MPQ8785",
+            "curr1_Name": "MB_VR_CPU_PVDD18_CURR_A",
+            "in1_Name": "MB_VR_CPU_PVDD18_VOLT_V",
+            "temp1_Name": "MB_VR_CPU_PVDD18_TEMP_C"
+        },
+        {
+            "Address": "0x6a",
+            "Bus": 24,
+            "Name": "MB_E1S0_TEMP_C",
+            "PowerState": "On",
+            "Type": "NVME1000"
+        },
+        {
+            "Address": "0x6a",
+            "Bus": 25,
+            "Name": "MB_E1S1_TEMP_C",
+            "PowerState": "On",
+            "Type": "NVME1000"
+        },
+        {
+            "Address": "0x6a",
+            "Bus": 26,
+            "Name": "MB_E1S2_TEMP_C",
+            "PowerState": "On",
+            "Type": "NVME1000"
+        },
+        {
+            "Address": "0x6a",
+            "Bus": 27,
+            "Name": "MB_E1S3_TEMP_C",
+            "PowerState": "On",
+            "Type": "NVME1000"
+        },
+        {
+            "Address": "0x6a",
+            "Bus": 28,
+            "Name": "MB_E1S4_TEMP_C",
+            "PowerState": "On",
+            "Type": "NVME1000"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 52,
+            "Name": "MB_INLET_TEMP_C",
+            "Type": "TMP75"
+        },
+        {
+            "Address": "0x4a",
+            "Bus": 52,
+            "Name": "MB_OUTLET_L_TEMP_C",
+            "Type": "TMP75"
+        },
+        {
+            "Address": "0x4b",
+            "Bus": 52,
+            "Name": "MB_OUTLET_R_TEMP_C",
+            "Type": "TMP75"
+        },
+        {
+            "Address": "0x4d",
+            "Bus": 52,
+            "Name": "MB_CPU_REAR_TEMP_C",
+            "Type": "TMP75"
+        },
+        {
+            "Address": "0x60",
+            "Bus": 58,
+            "Labels": [
+                "in1",
+                "curr1",
+                "temp1"
+            ],
+            "Name": "MB_VR_PVDDCR_CPU0",
+            "Type": "pmbus",
+            "curr1_Name": "MB_VR_PVDDCR_CPU0_CURR_A",
+            "in1_Name": "MB_VR_PVDDCR_CPU0_VOLT_V",
+            "temp1_Name": "MB_VR_PVDDCR_CPU0_TEMP_C"
+        },
+        {
+            "Address": "0x62",
+            "Bus": 58,
+            "Labels": [
+                "in1",
+                "curr1",
+                "temp1"
+            ],
+            "Name": "MB_VR_PVDDCR_CPU1",
+            "Type": "pmbus",
+            "curr1_Name": "MB_VR_PVDDCR_CPU1_CURR_A",
+            "in1_Name": "MB_VR_PVDDCR_CPU1_VOLT_V",
+            "temp1_Name": "MB_VR_PVDDCR_CPU1_TEMP_C"
+        },
+        {
+            "Address": "0x64",
+            "Bus": 58,
+            "Labels": [
+                "in1",
+                "curr1",
+                "temp1"
+            ],
+            "Name": "MB_VR_VDDIO",
+            "Type": "pmbus",
+            "curr1_Name": "MB_VR_VDDIO_CURR_A",
+            "in1_Name": "MB_VR_VDDIO_VOLT_V",
+            "temp1_Name": "MB_VR_VDDIO_TEMP_C"
+        },
+        {
+            "Address": "0x46",
+            "Bus": 58,
+            "Labels": [
+                "in1",
+                "curr1",
+                "temp1"
+            ],
+            "Name": "MB_VR_CPU_PVDD33",
+            "Type": "pmbus",
+            "curr1_Name": "MB_VR_CPU_PVDD33_CURR_A",
+            "in1_Name": "MB_VR_CPU_PVDD33_VOLT_V",
+            "temp1_Name": "MB_VR_CPU_PVDD33_TEMP_C"
+        }
+    ],
+    "Name": "MB",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Anacapa.* MB', 'BOARD_MANUFACTURER': 'Inventec'})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$BOARD_MANUFACTURE_DATE",
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER",
+        "SparePartNumber": "$BOARD_INFO_AM1"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Revision": {
+        "Version": "$PRODUCT_VERSION"
+    }
+}

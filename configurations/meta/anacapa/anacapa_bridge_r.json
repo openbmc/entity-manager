@@ -1,0 +1,55 @@
+{
+    "Exposes": [
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "BRIDGE_R FRU",
+            "Type": "EEPROM"
+        },
+        {
+            "Address": "0x4c",
+            "Bus": "$bus",
+            "Name": "BRIDGE_R_PCIE_SW_TEMP_C",
+            "Name1": "BRIDGE_R_OUTLET_TEMP_C",
+            "Type": "TMP432"
+        },
+        {
+            "Address": "0x4c",
+            "Bus": "$bus + 1",
+            "Name": "BRIDGE_R_BE_TEMP_C",
+            "Name1": "BRIDGE_R_FE_TEMP_C",
+            "Type": "TMP432"
+        },
+        {
+            "Address": "0x60",
+            "Bus": "$bus",
+            "Labels": [
+                "in1",
+                "curr1",
+                "temp1"
+            ],
+            "Name": "BRIDGE_R_VR",
+            "Type": "pmbus",
+            "curr1_Name": "BRIDGE_R_VR_CURR_A",
+            "in1_Name": "BRIDGE_R_VR_VOLT_V",
+            "temp1_Name": "BRIDGE_R_VR_TEMP_C"
+        }
+    ],
+    "Name": "Bridge_R",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Anacapa.* RBB', 'BOARD_MANUFACTURER': 'Inventec'})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$BOARD_MANUFACTURE_DATE",
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER",
+        "SparePartNumber": "$BOARD_INFO_AM1"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Revision": {
+        "Version": "$PRODUCT_VERSION"
+    }
+}
