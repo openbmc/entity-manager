@@ -22,6 +22,30 @@
       },
       "revId": "6fa11ada4b8431749b9c2a5b46e1119df7119107",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f1b21f6_38970c5f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2025-11-13T02:41:01Z",
+      "side": 1,
+      "message": "Both `nvidia_gb200` and `nvidia_gb300` config files represent the HPM definitions, and I suppose these can also be considered as motherboards?\n\nI am adding this was for the `fb-ipmi-oem` function that retrieves the motherboard inventory object path, which is required for displaying motherboard information on the debug card.",
+      "parentUuid": "a52e263d_4fbc2d47",
+      "range": {
+        "startLine": 10,
+        "startChar": 41,
+        "endLine": 11,
+        "endChar": 31
+      },
+      "revId": "6fa11ada4b8431749b9c2a5b46e1119df7119107",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
