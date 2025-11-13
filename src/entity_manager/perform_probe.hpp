@@ -26,13 +26,13 @@ using FoundProbeTypeT = std::optional<probe_type_codes>;
 FoundProbeTypeT findProbeType(const std::string& probe);
 
 // this class finds the needed dbus fields and on destruction runs the probe
-struct PerformProbe
+struct PerformProbe final
 {
     PerformProbe(nlohmann::json& recordRef,
                  const std::vector<std::string>& probeCommand,
                  std::string probeName,
                  std::shared_ptr<scan::PerformScan>& scanPtr);
-    virtual ~PerformProbe();
+    ~PerformProbe();
 
   private:
     nlohmann::json& recordRef;
