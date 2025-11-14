@@ -677,6 +677,30 @@
       },
       "revId": "48242d52e5416ebbee9e85bc30242cbfb9e23546",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4a7459b_81e05214",
+        "filename": "schemas/pcie_switch.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1002744
+      },
+      "writtenOn": "2025-11-14T08:53:47Z",
+      "side": 1,
+      "message": "The SPI flash is connected behind the FT4222, which is a USB-to-SPI bridge IC.\nTherefore, the BMC communicates with the FT4222 using the vendor’s libraries (libft4222 and libftd2xx) to write to the SPI flash.\n\nBMC → USB hub → USB hub → FT4222 → SPI flash",
+      "parentUuid": "073b2995_fcbf1400",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 18
+      },
+      "revId": "48242d52e5416ebbee9e85bc30242cbfb9e23546",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
