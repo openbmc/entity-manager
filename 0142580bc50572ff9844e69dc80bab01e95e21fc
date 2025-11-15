@@ -145,6 +145,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "68a099d5_60c59021",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 811,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-15T13:01:20Z",
+      "side": 1,
+      "message": "\u003e Then why did you suggest this\n\nThere is a difference in the type of change. I was suggesting that later removal, renaming and restructuring of properties in config schemas might not get accepted.\n\nMeanwhile adding new (optional) properties to an existing schema is not as much of a problem.\n\n\u003e You are asking to make a change as well but of different data type?\n\nYes. This way we avoid `patternProperties` and the problems that it causes.",
+      "parentUuid": "52a9c655_8fdf0126",
+      "revId": "0142580bc50572ff9844e69dc80bab01e95e21fc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9397195f_1394a329",
         "filename": "schemas/legacy.json",
         "patchSetId": 3
