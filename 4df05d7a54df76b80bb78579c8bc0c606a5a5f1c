@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0a80c27_748c9705",
+        "filename": "test/entity_manager/entity_manager_class.cpp",
+        "patchSetId": 39
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-17T11:34:27Z",
+      "side": 1,
+      "message": "Makes sense, done 👍",
+      "parentUuid": "476b427d_6147216b",
+      "revId": "4df05d7a54df76b80bb78579c8bc0c606a5a5f1c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fcdb6e1d_4d187f5a",
@@ -31,6 +49,30 @@
       "writtenOn": "2025-11-13T19:45:00Z",
       "side": 1,
       "message": "And delete it in the destructor?",
+      "range": {
+        "startLine": 61,
+        "startChar": 8,
+        "endLine": 61,
+        "endChar": 51
+      },
+      "revId": "4df05d7a54df76b80bb78579c8bc0c606a5a5f1c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ed86570_63e114c7",
+        "filename": "test/entity_manager/test_em.hpp",
+        "patchSetId": 39
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-17T11:34:27Z",
+      "side": 1,
+      "message": "I was initially concerned about debugging / failed unit test workflow, but yeah, the code can be changed in that workflow to inspect the files.\n\nAdded the destructor to delete our temporary directory 👍",
+      "parentUuid": "fcdb6e1d_4d187f5a",
       "range": {
         "startLine": 61,
         "startChar": 8,
