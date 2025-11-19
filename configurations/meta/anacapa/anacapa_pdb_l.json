@@ -119,54 +119,6 @@
             "Type": "I2CFan"
         },
         {
-            "Address": "0x2f",
-            "Bus": "$bus",
-            "Connector": {
-                "Name": "FAN3_TACH_IL",
-                "Pwm": 3,
-                "PwmName": "FAN3_PWM_PCT",
-                "Tachs": [
-                    2
-                ]
-            },
-            "Index": 2,
-            "Name": "FAN3_TACH_IL_SPEED_RPM",
-            "PowerState": "Always",
-            "Type": "I2CFan"
-        },
-        {
-            "Address": "0x2f",
-            "Bus": "$bus",
-            "Connector": {
-                "Name": "FAN4_TACH_IL",
-                "Pwm": 4,
-                "PwmName": "FAN4_PWM_PCT",
-                "Tachs": [
-                    0
-                ]
-            },
-            "Index": 0,
-            "Name": "FAN4_TACH_IL_SPEED_RPM",
-            "PowerState": "Always",
-            "Type": "I2CFan"
-        },
-        {
-            "Address": "0x2f",
-            "Bus": "$bus",
-            "Connector": {
-                "Name": "FAN4_TACH_OL",
-                "Pwm": 4,
-                "PwmName": "FAN4_PWM_PCT",
-                "Tachs": [
-                    1
-                ]
-            },
-            "Index": 1,
-            "Name": "FAN4_TACH_OL_SPEED_RPM",
-            "PowerState": "Always",
-            "Type": "I2CFan"
-        },
-        {
             "Address": "0x44",
             "Bus": "$bus",
             "Labels": [
