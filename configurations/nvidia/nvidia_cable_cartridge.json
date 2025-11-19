@@ -3,11 +3,11 @@
         {
             "Address": "$address",
             "Bus": "$bus",
-            "Name": "NVIDIA CBC FRU $bus % 2 * 2 + $address % 2",
+            "Name": "NVIDIA CBC FRU $bus + 1 % 2 * 2 + $address % 2",
             "Type": "EEPROM"
         }
     ],
-    "Name": "NVIDIA Cable Cartridge $bus % 2 * 2 + $address % 2",
+    "Name": "NVIDIA Cable Cartridge $bus + 1 % 2 * 2 + $address % 2",
     "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': '18x1RU CBL Cartridge', 'BOARD_MANUFACTURER': 'Nvidia'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
