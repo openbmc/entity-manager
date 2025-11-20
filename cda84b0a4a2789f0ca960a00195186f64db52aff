@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "477ef61b_c63ad656",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-20T13:23:09Z",
+      "side": 1,
+      "message": "I assume you need those 2 properties here for some actual config.\n\nPlease stack that patch on top so reviewers can see that the properties are needed in some board.\n\nI\u0027m making this comment because it can be quite hard to remove properties from a schema once they have been added.",
+      "range": {
+        "startLine": 492,
+        "startChar": 16,
+        "endLine": 497,
+        "endChar": 18
+      },
+      "revId": "cda84b0a4a2789f0ca960a00195186f64db52aff",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e2e2478_28d10428",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-20T13:23:09Z",
+      "side": 1,
+      "message": "To me it looks like `MinValue` and `MaxValue` are actually required by the implementation and the sensor will not init otherwise.\n\nDoes it make sense to put that into a separate patch?",
+      "range": {
+        "startLine": 509,
+        "startChar": 50,
+        "endLine": 509,
+        "endChar": 72
+      },
+      "revId": "cda84b0a4a2789f0ca960a00195186f64db52aff",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
