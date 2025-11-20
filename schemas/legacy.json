@@ -489,6 +489,12 @@
                 "MinValue": {
                     "$ref": "#/$defs/Types/MinValue"
                 },
+                "PowerState": {
+                    "$ref": "#/$defs/Types/PowerState"
+                },
+                "Thresholds": {
+                    "$ref": "#/$defs/Types/Thresholds"
+                },
                 "EntityId": {
                     "$ref": "#/$defs/Types/EntityId"
                 },
@@ -500,7 +506,7 @@
                     "const": "ExternalSensor"
                 }
             },
-            "required": ["Name", "Type", "Units", "EntityId", "EntityInstance"],
+            "required": ["Name", "Type", "Units", "MinValue", "MaxValue"],
             "type": "object"
         },
         "PSUPresence": {
