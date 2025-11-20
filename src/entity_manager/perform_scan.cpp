@@ -432,7 +432,7 @@ static void applyTemplateAndExposeActions(
 {
     nlohmann::json::object_t* exposeObj =
         value.get_ptr<nlohmann::json::object_t*>();
-    if (exposeObj != nullptr)
+    if (exposeObj == nullptr)
     {
         return;
     }
@@ -535,6 +535,8 @@ void scan::PerformScan::updateSystemConfiguration(
 
         std::string deviceName = generateDeviceName(
             usedNames, dbusObject, foundDeviceIdx, *name, replaceStr);
+
+        record["Name"] = deviceName;
 
         usedNames.insert(deviceName);
 
