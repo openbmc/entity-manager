@@ -134,6 +134,29 @@
             "Type": "EEPROM"
         },
         {
+            "MaxValue": 105.0,
+            "MinValue": 0.0,
+            "Name": "SWB_PCIe_Switch_Die_Temp_C",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100.0
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.0
+                }
+            ],
+            "Timeout": 30.0,
+            "Type": "ExternalSensor",
+            "Units": "xyz.openbmc_project.Sensor.Value.Unit.DegreesC"
+        },
+        {
             "Address": "0x40",
             "Bus": 34,
             "Labels": [
