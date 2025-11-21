@@ -19,8 +19,10 @@ const std::regex illegalDbusMemberRegex("[^A-Za-z0-9_]");
 
 EMDBusInterface::EMDBusInterface(boost::asio::io_context& io,
                                  sdbusplus::asio::object_server& objServer,
-                                 const std::filesystem::path& schemaDirectory) :
-    io(io), objServer(objServer), schemaDirectory(schemaDirectory)
+                                 const std::filesystem::path& schemaDirectory,
+                                 Configuration& configuration) :
+    io(io), objServer(objServer), schemaDirectory(schemaDirectory),
+    configuration(configuration)
 {}
 
 void tryIfaceInitialize(std::shared_ptr<sdbusplus::asio::dbus_interface>& iface)
@@ -89,7 +91,7 @@ void EMDBusInterface::createDeleteObjectMethod(
                 objServer.remove_interface(dbusInterface);
             });
 
-            if (!writeJsonFiles(systemConfiguration))
+            if (!configuration.writeJsonFiles(systemConfiguration))
             {
                 lg2::error("error setting json file");
                 throw DBusInternalError();
@@ -143,7 +145,7 @@ static nlohmann::json::value_t getDBusType(
     return type;
 }
 
-static void populateInterfacePropertyFromJson(
+void EMDBusInterface::populateInterfacePropertyFromJson(
     nlohmann::json& systemConfiguration, const std::string& path,
     const std::string& key, const nlohmann::json& value,
     nlohmann::json::value_t type,
@@ -157,31 +159,32 @@ static void populateInterfacePropertyFromJson(
         case (nlohmann::json::value_t::boolean):
         {
             addValueToDBus<bool>(key, value, *iface, permission,
-                                 systemConfiguration, path);
+                                 systemConfiguration, path, configuration);
             break;
         }
         case (nlohmann::json::value_t::number_integer):
         {
             addValueToDBus<int64_t>(key, value, *iface, permission,
-                                    systemConfiguration, path);
+                                    systemConfiguration, path, configuration);
             break;
         }
         case (nlohmann::json::value_t::number_unsigned):
         {
             addValueToDBus<uint64_t>(key, value, *iface, permission,
-                                     systemConfiguration, path);
+                                     systemConfiguration, path, configuration);
             break;
         }
         case (nlohmann::json::value_t::number_float):
         {
             addValueToDBus<double>(key, value, *iface, permission,
-                                   systemConfiguration, path);
+                                   systemConfiguration, path, configuration);
             break;
         }
         case (nlohmann::json::value_t::string):
         {
             addValueToDBus<std::string>(key, value, *iface, permission,
-                                        systemConfiguration, path);
+                                        systemConfiguration, path,
+                                        configuration);
             break;
         }
         default:
@@ -351,7 +354,7 @@ void EMDBusInterface::addObjectJson(
     {
         findExposes->push_back(newData);
     }
-    if (!writeJsonFiles(systemConfiguration))
+    if (!configuration.writeJsonFiles(systemConfiguration))
     {
         lg2::error("Error writing json files");
     }
