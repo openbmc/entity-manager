@@ -5,18 +5,26 @@
 #include <unordered_set>
 #include <vector>
 
-constexpr const char* currentConfiguration = "/var/configuration/system.json";
-
 class Configuration
 {
   public:
     explicit Configuration(
         const std::vector<std::filesystem::path>& configurationDirectories,
-        const std::filesystem::path& schemaDirectory);
+        const std::filesystem::path& schemaDirectory,
+        const std::filesystem::path& configurationOutDir);
     std::unordered_set<std::string> probeInterfaces;
     std::vector<nlohmann::json> configurations;
 
     const std::filesystem::path schemaDirectory;
+    const std::filesystem::path lastConfiguration;
+
+    const std::filesystem::path configurationOutDir;
+
+    bool writeJsonFiles(const nlohmann::json& systemConfiguration);
+
+    void removeCurrentConfiguration();
+    bool currentConfigurationExists();
+    void backupOldConfiguration();
 
   protected:
     void loadConfigurations();
@@ -24,9 +32,9 @@ class Configuration
 
   private:
     std::vector<std::filesystem::path> configurationDirectories;
-};
 
-bool writeJsonFiles(const nlohmann::json& systemConfiguration);
+    const std::filesystem::path currentConfiguration;
+};
 
 template <typename JsonType>
 bool setJsonFromPointer(const std::string& ptrStr, const JsonType& value,

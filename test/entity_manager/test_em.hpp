@@ -31,7 +31,8 @@ class TestEM : public UniqueSuffix, public EntityManager
   public:
     TestEM(std::shared_ptr<sdbusplus::asio::connection>& systemBus,
            boost::asio::io_context& io) :
-        EntityManager(systemBus, io, {getTestConfigDir()}, getTestConfigDir())
+        EntityManager(systemBus, io, {getTestConfigDir()}, getTestConfigDir(),
+                      getTestConfigDir())
     {
         busName = getRandomBusName();
         systemBus->request_name(busName.c_str());
