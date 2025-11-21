@@ -19,7 +19,7 @@ constexpr const char* interface = "org.freedesktop.DBus.Properties";
 constexpr const char* get = "Get";
 } // namespace properties
 
-bool fwVersionIsSame();
+bool fwVersionIsSame(const std::filesystem::path& configurationOutDir);
 
 void handleLeftOverTemplateVars(nlohmann::json& value);
 
