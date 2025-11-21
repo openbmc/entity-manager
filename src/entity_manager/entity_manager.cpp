@@ -55,7 +55,8 @@ EntityManager::EntityManager(
     const std::vector<std::filesystem::path>& configurationDirectories,
     const std::filesystem::path& schemaDirectory,
     const bool queryInitialPowerState,
-    const std::filesystem::path& configurationOutDir) :
+    const std::filesystem::path& configurationOutDir,
+    const std::chrono::milliseconds propertiesChangedTimeoutMillis) :
     systemBus(systemBus),
     objServer(sdbusplus::asio::object_server(systemBus, /*skipManager=*/true)),
     configuration(configurationDirectories, schemaDirectory),
@@ -63,7 +64,8 @@ EntityManager::EntityManager(
     lastJson(nlohmann::json::object()),
     systemConfiguration(nlohmann::json::object()), io(io),
     dbus_interface(io, objServer, schemaDirectory, configCache),
-    powerStatus(*systemBus, queryInitialPowerState), propertiesChangedTimer(io)
+    powerStatus(*systemBus, queryInitialPowerState), propertiesChangedTimer(io),
+    propertiesChangedTimeoutMillis(propertiesChangedTimeoutMillis)
 {
     // All other objects that EntityManager currently support are under the
     // inventory subtree.
@@ -514,7 +516,8 @@ void EntityManager::propertiesChangedCallback()
     propertiesChangedInstance++;
     size_t count = propertiesChangedInstance;
 
-    propertiesChangedTimer.expires_after(std::chrono::milliseconds(500));
+    propertiesChangedTimer.expires_after(
+        std::chrono::milliseconds(propertiesChangedTimeoutMillis));
 
     // setup an async wait as we normally get flooded with new requests
     propertiesChangedTimer.async_wait(
