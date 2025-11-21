@@ -101,8 +101,10 @@ void Configuration::loadConfigurations()
                               std::chrono::steady_clock::now() - start)
                               .count();
 
-    lg2::debug("Finished loading json configuration in {MILLIS}ms", "MILLIS",
-               duration);
+    lg2::debug(
+        "Finished loading {NCONFIGS} json configuration(s) from {NFILES} file(s) in {MILLIS}ms",
+        "NCONFIGS", configurations.size(), "NFILES", jsonPaths.size(), "MILLIS",
+        duration);
 }
 
 // Iterate over new configuration and erase items from old configuration.
