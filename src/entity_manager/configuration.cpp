@@ -17,9 +17,13 @@
 
 Configuration::Configuration(
     const std::vector<std::filesystem::path>& configurationDirectories,
-    const std::filesystem::path& schemaDirectory) :
-    schemaDirectory(schemaDirectory),
-    configurationDirectories(configurationDirectories)
+    const std::filesystem::path& schemaDirectory,
+    const std::filesystem::path& configurationOutDir) :
+    schemaDirectory(schemaDirectory), tempConfigDir("/tmp/configuration"),
+    lastConfiguration(tempConfigDir / "last.json"),
+    configurationOutDir(configurationOutDir),
+    configurationDirectories(configurationDirectories),
+    currentConfiguration(configurationOutDir / "system.json")
 {
     loadConfigurations();
     filterProbeInterfaces();
@@ -181,12 +185,15 @@ void Configuration::filterProbeInterfaces()
     }
 }
 
-bool writeJsonFiles(const nlohmann::json& systemConfiguration)
+bool Configuration::writeJsonFiles(const nlohmann::json& systemConfiguration)
 {
     if (!EM_CACHE_CONFIGURATION)
     {
         return true;
     }
+
+    lg2::debug("Writing current configuration to {PATH}", "PATH",
+               currentConfiguration);
 
     std::error_code ec;
     std::filesystem::create_directory(configurationOutDir, ec);
@@ -202,4 +209,29 @@ bool writeJsonFiles(const nlohmann::json& systemConfiguration)
     output << systemConfiguration.dump(4);
     output.close();
     return true;
+}
+
+void Configuration::removeCurrentConfiguration()
+{
+    // not an error, just logging at this level to make it in the journal
+    lg2::error("Clearing previous configuration at {PATH}", "PATH",
+               currentConfiguration);
+    std::error_code ec;
+    std::filesystem::remove(currentConfiguration, ec);
+}
+
+bool Configuration::currentConfigurationExists()
+{
+    return std::filesystem::is_regular_file(currentConfiguration);
+}
+
+void Configuration::backupOldConfiguration()
+{
+    lg2::debug("Backing up old configuration to {PATH}", "PATH",
+               lastConfiguration);
+
+    // this file could just be deleted, but it's nice for debug
+    std::filesystem::create_directory(tempConfigDir);
+    std::filesystem::remove(lastConfiguration);
+    std::filesystem::copy(currentConfiguration, lastConfiguration);
 }

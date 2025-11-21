@@ -4,6 +4,7 @@
 #include <nlohmann/json.hpp>
 #include <sdbusplus/asio/connection.hpp>
 
+#include <filesystem>
 #include <flat_map>
 
 using DBusValueVariant =
@@ -12,8 +13,6 @@ using DBusValueVariant =
 using DBusInterface = std::flat_map<std::string, DBusValueVariant, std::less<>>;
 using DBusObject = std::flat_map<std::string, DBusInterface, std::less<>>;
 
-constexpr const char* configurationOutDir = "/var/configuration/";
-constexpr const char* versionHashFile = "/var/configuration/version";
 constexpr const char* versionFile = "/etc/os-release";
 
 namespace em_utils
@@ -25,7 +24,7 @@ constexpr const char* interface = "org.freedesktop.DBus.Properties";
 constexpr const char* get = "Get";
 } // namespace properties
 
-bool fwVersionIsSame();
+bool fwVersionIsSame(const std::filesystem::path& configurationOutDir);
 
 void handleLeftOverTemplateVars(nlohmann::json& value);
 
