@@ -17,7 +17,7 @@ namespace em_utils
 
 constexpr const char* templateChar = "$";
 
-bool fwVersionIsSame()
+bool fwVersionIsSame(const std::filesystem::path& configurationOutDir)
 {
     std::ifstream version(versionFile);
     if (!version.good())
@@ -45,6 +45,9 @@ bool fwVersionIsSame()
                    configurationOutDir);
         return false;
     }
+
+    const std::filesystem::path versionHashFile(
+        configurationOutDir / "version");
 
     std::ifstream hashFile(versionHashFile);
     if (hashFile.good())
