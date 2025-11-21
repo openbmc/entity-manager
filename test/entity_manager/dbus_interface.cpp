@@ -22,7 +22,7 @@ TEST_F(DBusTest, createInterface)
         EXPECT_EQ(value.size(), 0);
     };
 
-    postAssertHandler(handler, path, configInterface);
+    postAssertHandler(handler, em.busName, path, configInterface);
 }
 
 TEST_F(DBusTest, populateInterfaceFromJson_Simple)
@@ -62,7 +62,7 @@ TEST_F(DBusTest, populateInterfaceFromJson_Simple)
 
         EXPECT_EQ(value.find("Y"), value.end());
     };
-    postAssertHandler(handler, objPath, configInterface);
+    postAssertHandler(handler, em.busName, objPath, configInterface);
 }
 
 TEST_F(DBusTest, populateInterfaceFromJson_Arrays_Int)
@@ -89,7 +89,7 @@ TEST_F(DBusTest, populateInterfaceFromJson_Arrays_Int)
         EXPECT_EQ(x.size(), 3);
         EXPECT_EQ(x[1], 2);
     };
-    postAssertHandler(handler, objPath, configInterface);
+    postAssertHandler(handler, em.busName, objPath, configInterface);
 }
 
 TEST_F(DBusTest, populateInterfaceFromJson_Arrays_Double)
@@ -124,7 +124,7 @@ TEST_F(DBusTest, populateInterfaceFromJson_Arrays_Double)
         EXPECT_EQ(b.size(), 3);
         EXPECT_EQ(b[1], 1.6);
     };
-    postAssertHandler(handler, objPath, configInterface);
+    postAssertHandler(handler, em.busName, objPath, configInterface);
 }
 
 TEST_F(DBusTest, populateInterfaceFromJson_Arrays_String)
@@ -151,5 +151,5 @@ TEST_F(DBusTest, populateInterfaceFromJson_Arrays_String)
         EXPECT_EQ(vectorStrings.size(), 4);
         EXPECT_EQ(vectorStrings[1], "many");
     };
-    postAssertHandler(handler, objPath, configInterface);
+    postAssertHandler(handler, em.busName, objPath, configInterface);
 }
