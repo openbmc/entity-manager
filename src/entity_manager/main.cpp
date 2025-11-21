@@ -8,6 +8,8 @@
 #include <nlohmann/json.hpp>
 #include <sdbusplus/asio/connection.hpp>
 
+#include <chrono>
+
 int main()
 {
     const std::vector<std::filesystem::path> configurationDirectories = {
@@ -17,11 +19,13 @@ int main()
 
     const std::filesystem::path configurationOutDir("/var/configuration");
 
+    const std::chrono::milliseconds propertiesChangedTimeoutMilliseconds(500);
+
     boost::asio::io_context io;
     auto systemBus = std::make_shared<sdbusplus::asio::connection>(io);
     systemBus->request_name("xyz.openbmc_project.EntityManager");
     EntityManager em(systemBus, io, configurationDirectories, schemaDirectory,
-                     configurationOutDir);
+                     configurationOutDir, propertiesChangedTimeoutMilliseconds);
 
     em.powerStatus.getInitialPowerStatus(*systemBus);
 
