@@ -45,21 +45,26 @@ void Configuration::loadConfigurations()
         return;
     }
 
-    std::ifstream schemaStream(schemaDirectory / "global.json");
-    if (!schemaStream.good())
+    nlohmann::json schema;
+
+    if constexpr (ENABLE_RUNTIME_VALIDATE_JSON)
     {
-        lg2::error("Cannot open schema file,  cannot validate JSON, exiting");
-        std::exit(EXIT_FAILURE);
-        return;
-    }
-    nlohmann::json schema =
-        nlohmann::json::parse(schemaStream, nullptr, false, true);
-    if (schema.is_discarded())
-    {
-        lg2::error(
-            "Illegal schema file detected, cannot validate JSON, exiting");
-        std::exit(EXIT_FAILURE);
-        return;
+        std::ifstream schemaStream(schemaDirectory / "global.json");
+        if (!schemaStream.good())
+        {
+            lg2::error(
+                "Cannot open schema file,  cannot validate JSON, exiting");
+            std::exit(EXIT_FAILURE);
+            return;
+        }
+        schema = nlohmann::json::parse(schemaStream, nullptr, false, true);
+        if (schema.is_discarded())
+        {
+            lg2::error(
+                "Illegal schema file detected, cannot validate JSON, exiting");
+            std::exit(EXIT_FAILURE);
+            return;
+        }
     }
 
     for (auto& jsonPath : jsonPaths)
