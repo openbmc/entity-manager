@@ -1,5 +1,6 @@
 #pragma once
 
+#include "config_cache.hpp"
 #include "configuration.hpp"
 
 #include <boost/asio/io_context.hpp>
@@ -24,7 +25,8 @@ class EMDBusInterface
   public:
     EMDBusInterface(boost::asio::io_context& io,
                     sdbusplus::asio::object_server& objServer,
-                    const std::filesystem::path& schemaDirectory);
+                    const std::filesystem::path& schemaDirectory,
+                    const std::shared_ptr<ConfigCache>& configCache);
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> createInterface(
         const std::string& path, const std::string& interface,
@@ -44,6 +46,13 @@ class EMDBusInterface
         nlohmann::json& dict,
         sdbusplus::asio::PropertyPermission permission =
             sdbusplus::asio::PropertyPermission::readOnly);
+
+    void populateInterfacePropertyFromJson(
+        nlohmann::json& systemConfiguration, const std::string& path,
+        const std::string& key, const nlohmann::json& value,
+        nlohmann::json::value_t type,
+        std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
+        sdbusplus::asio::PropertyPermission permission);
 
     void createDeleteObjectMethod(
         const std::string& jsonPointerPath,
@@ -71,6 +80,10 @@ class EMDBusInterface
         inventory;
 
     const std::filesystem::path schemaDirectory;
+
+    // some DBus methods have effects on our configuration,
+    // store a shared_ptr here to avoid passing it around everywhere
+    std::shared_ptr<ConfigCache> configCache;
 };
 
 void tryIfaceInitialize(
@@ -81,7 +94,8 @@ void addArrayToDbus(const std::string& name, const nlohmann::json& array,
                     sdbusplus::asio::dbus_interface* iface,
                     sdbusplus::asio::PropertyPermission permission,
                     nlohmann::json& systemConfiguration,
-                    const std::string& jsonPointerString)
+                    const std::string& jsonPointerString,
+                    std::shared_ptr<ConfigCache> configCache)
 {
     std::vector<PropertyType> values;
     for (const auto& property : array)
@@ -101,7 +115,7 @@ void addArrayToDbus(const std::string& name, const nlohmann::json& array,
     {
         iface->register_property(
             name, values,
-            [&systemConfiguration,
+            [&systemConfiguration, &configCache,
              jsonPointerString{std::string(jsonPointerString)}](
                 const std::vector<PropertyType>& newVal,
                 std::vector<PropertyType>& val) {
@@ -112,7 +126,7 @@ void addArrayToDbus(const std::string& name, const nlohmann::json& array,
                     lg2::error("error setting json field");
                     return -1;
                 }
-                if (!writeJsonFiles(systemConfiguration))
+                if (!configCache->writeJsonFiles(systemConfiguration))
                 {
                     lg2::error("error setting json file");
                     return -1;
@@ -127,7 +141,8 @@ void addProperty(const std::string& name, const PropertyType& value,
                  sdbusplus::asio::dbus_interface* iface,
                  nlohmann::json& systemConfiguration,
                  const std::string& jsonPointerString,
-                 sdbusplus::asio::PropertyPermission permission)
+                 sdbusplus::asio::PropertyPermission permission,
+                 std::shared_ptr<ConfigCache> configCache)
 {
     if (permission == sdbusplus::asio::PropertyPermission::readOnly)
     {
@@ -136,7 +151,7 @@ void addProperty(const std::string& name, const PropertyType& value,
     }
     iface->register_property(
         name, value,
-        [&systemConfiguration,
+        [&systemConfiguration, &configCache,
          jsonPointerString{std::string(jsonPointerString)}](
             const PropertyType& newVal, PropertyType& val) {
             val = newVal;
@@ -146,7 +161,7 @@ void addProperty(const std::string& name, const PropertyType& value,
                 lg2::error("error setting json field");
                 return -1;
             }
-            if (!writeJsonFiles(systemConfiguration))
+            if (!configCache->writeJsonFiles(systemConfiguration))
             {
                 lg2::error("error setting json file");
                 return -1;
@@ -160,17 +175,19 @@ void addValueToDBus(const std::string& key, const nlohmann::json& value,
                     sdbusplus::asio::dbus_interface& iface,
                     sdbusplus::asio::PropertyPermission permission,
                     nlohmann::json& systemConfiguration,
-                    const std::string& path)
+                    const std::string& path,
+                    const std::shared_ptr<ConfigCache>& configCache)
 {
     if (value.is_array())
     {
         addArrayToDbus<PropertyType>(key, value, &iface, permission,
-                                     systemConfiguration, path);
+                                     systemConfiguration, path, configCache);
     }
     else
     {
         addProperty(key, value.get<PropertyType>(), &iface, systemConfiguration,
-                    path, sdbusplus::asio::PropertyPermission::readOnly);
+                    path, sdbusplus::asio::PropertyPermission::readOnly,
+                    configCache);
     }
 }
 
