@@ -6,6 +6,7 @@
 #include <phosphor-logging/lg2.hpp>
 
 #include <chrono>
+#include <fstream>
 #include <string>
 
 using namespace std::string_literals;
@@ -19,25 +20,56 @@ static int randomSuffix()
     return random();
 }
 
+class TestConfigDir
+{
+  public:
+    TestConfigDir();
+    explicit TestConfigDir(nlohmann::json& testConfig) :
+        uniqueSuffix(randomSuffix())
+    {
+        const std::filesystem::path configDir = getTestConfigDir();
+
+        const std::filesystem::path configPath =
+            configDir / "example_board.json";
+
+        lg2::debug("writing test configuration file to {PATH}", "PATH",
+                   configPath);
+
+        std::ofstream configFile(configPath);
+        configFile << testConfig.dump();
+        configFile.close();
+    }
+
+    std::filesystem::path getTestConfigDir()
+    {
+        std::filesystem::path dir(std::format("/tmp/test_em_{}", uniqueSuffix));
+        std::error_code ec;
+        std::filesystem::create_directory(dir, ec);
+        return dir;
+    }
+
+    const int uniqueSuffix;
+
+    ~TestConfigDir()
+    {
+        std::filesystem::remove_all(getTestConfigDir());
+    }
+};
+
 // Helper class to access the protected members of the class we are testing
-class TestEM
+class TestEM : public TestConfigDir
 {
   public:
     TestEM(std::shared_ptr<sdbusplus::asio::connection>& systemBus,
-           boost::asio::io_context& io) :
-        io(io), uniqueSuffix(randomSuffix()),
-        em(systemBus, io, {getTestConfigDir()}, getTestConfigDir(),
-           getTestConfigDir(), std::chrono::milliseconds(1)),
+           boost::asio::io_context& io, nlohmann::json testConfig = {}) :
+        TestConfigDir(testConfig), io(io),
+        em(systemBus, io, {getTestConfigDir()}, "schemas/", getTestConfigDir(),
+           std::chrono::milliseconds(1)),
         busName(getRandomBusName())
     {
         systemBus->request_name(busName.c_str());
         lg2::debug("requesting bus name {NAME}", "NAME", busName);
     };
-
-    ~TestEM()
-    {
-        std::filesystem::remove_all(getTestConfigDir());
-    }
 
     void runStop()
     {
@@ -55,16 +87,7 @@ class TestEM
                std::to_string(uniqueSuffix);
     }
 
-    std::filesystem::path getTestConfigDir()
-    {
-        std::filesystem::path dir(std::format("/tmp/test_em_{}", uniqueSuffix));
-        std::error_code ec;
-        std::filesystem::create_directory(dir, ec);
-        return dir;
-    }
-
     boost::asio::io_context& io;
-    const int uniqueSuffix;
     EntityManager em;
 
     const std::string busName;
