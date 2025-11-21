@@ -5,6 +5,7 @@
 #include <nlohmann/json.hpp>
 #include <phosphor-logging/lg2.hpp>
 
+#include <chrono>
 #include <string>
 
 using namespace std::string_literals;
@@ -32,7 +33,7 @@ class TestEM : public UniqueSuffix, public EntityManager
     TestEM(std::shared_ptr<sdbusplus::asio::connection>& systemBus,
            boost::asio::io_context& io) :
         EntityManager(systemBus, io, {getTestConfigDir()}, getTestConfigDir(),
-                      false, getTestConfigDir()),
+                      false, getTestConfigDir(), std::chrono::milliseconds(1)),
         busName(getRandomBusName())
     {
         systemBus->request_name(busName.c_str());
