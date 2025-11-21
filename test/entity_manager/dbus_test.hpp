@@ -16,13 +16,13 @@ class DBusTest : public testing::Test
   protected:
     DBusTest() :
         systemBus(std::make_shared<sdbusplus::asio::connection>(io)),
-        em(systemBus, io)
+        test(systemBus, io)
     {}
     ~DBusTest() noexcept override = default;
 
     boost::asio::io_context io;
     std::shared_ptr<sdbusplus::asio::connection> systemBus;
-    TestEM em;
+    TestEM test;
 
   public:
     DBusTest(const DBusTest&) = delete;
@@ -74,7 +74,7 @@ class DBusTest : public testing::Test
             h3 = std::bind_front(&DBusTest::postAssertHandlerCallback, this,
                                  handler, stopOnError);
 
-        systemBus->async_method_call(h3, em.busName, path,
+        systemBus->async_method_call(h3, test.busName, path,
                                      "org.freedesktop.DBus.Properties",
                                      "GetAll", interface);
 

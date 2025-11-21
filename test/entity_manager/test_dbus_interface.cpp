@@ -19,7 +19,8 @@ TEST_F(DBusTest, createInterface)
 {
     const std::string path = "/xyz/openbmc_project/inventory/mypath";
     std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
-        em.em.dbus_interface.createInterface(path, configInterface, "myboard");
+        test.em.dbus_interface.createInterface(path, configInterface,
+                                               "myboard");
 
     dbus_interface::tryIfaceInitialize(iface);
 
@@ -43,11 +44,11 @@ TEST_F(DBusTest, populateInterfaceFromJson_Int)
     )");
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
-        em.em.dbus_interface.createInterface(objPath, configInterface,
-                                             "myboard");
+        test.em.dbus_interface.createInterface(objPath, configInterface,
+                                               "myboard");
 
     nlohmann::json systemConfiguration = "{}";
-    em.em.dbus_interface.populateInterfaceFromJson(
+    test.em.dbus_interface.populateInterfaceFromJson(
         systemConfiguration, jsonPointerPath, iface, dict);
 
     auto handler = [](const DBusInterface& value) {
@@ -78,11 +79,11 @@ TEST_F(DBusTest, populateInterfaceFromJson_Double)
     )");
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
-        em.em.dbus_interface.createInterface(objPath, configInterface,
-                                             "myboard");
+        test.em.dbus_interface.createInterface(objPath, configInterface,
+                                               "myboard");
 
     nlohmann::json systemConfiguration = "{}";
-    em.em.dbus_interface.populateInterfaceFromJson(
+    test.em.dbus_interface.populateInterfaceFromJson(
         systemConfiguration, jsonPointerPath, iface, dict);
 
     auto handler = [](const DBusInterface& value) {
@@ -105,11 +106,11 @@ TEST_F(DBusTest, populateInterfaceFromJson_Bool)
     )");
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
-        em.em.dbus_interface.createInterface(objPath, configInterface,
-                                             "myboard");
+        test.em.dbus_interface.createInterface(objPath, configInterface,
+                                               "myboard");
 
     nlohmann::json systemConfiguration = "{}";
-    em.em.dbus_interface.populateInterfaceFromJson(
+    test.em.dbus_interface.populateInterfaceFromJson(
         systemConfiguration, jsonPointerPath, iface, dict);
 
     auto handler = [](const DBusInterface& value) {
@@ -132,11 +133,11 @@ TEST_F(DBusTest, populateInterfaceFromJson_Arrays_Int)
 )");
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
-        em.em.dbus_interface.createInterface(objPath, configInterface,
-                                             "myboard");
+        test.em.dbus_interface.createInterface(objPath, configInterface,
+                                               "myboard");
 
     nlohmann::json systemConfiguration = "{}";
-    em.em.dbus_interface.populateInterfaceFromJson(
+    test.em.dbus_interface.populateInterfaceFromJson(
         systemConfiguration, jsonPointerPath, iface, dict);
 
     auto handler = [](const DBusInterface& value) {
@@ -161,11 +162,11 @@ TEST_F(DBusTest, populateInterfaceFromJson_Arrays_Double)
 )");
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
-        em.em.dbus_interface.createInterface(objPath, configInterface,
-                                             "myboard");
+        test.em.dbus_interface.createInterface(objPath, configInterface,
+                                               "myboard");
 
     nlohmann::json systemConfiguration = "{}";
-    em.em.dbus_interface.populateInterfaceFromJson(
+    test.em.dbus_interface.populateInterfaceFromJson(
         systemConfiguration, jsonPointerPath, iface, dict);
 
     auto handler = [](const DBusInterface& value) {
@@ -198,11 +199,11 @@ TEST_F(DBusTest, populateInterfaceFromJson_Arrays_String)
 )");
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
-        em.em.dbus_interface.createInterface(objPath, configInterface,
-                                             "myboard");
+        test.em.dbus_interface.createInterface(objPath, configInterface,
+                                               "myboard");
 
     nlohmann::json systemConfiguration = "{}";
-    em.em.dbus_interface.populateInterfaceFromJson(
+    test.em.dbus_interface.populateInterfaceFromJson(
         systemConfiguration, jsonPointerPath, iface, dict);
 
     auto handler = [](const DBusInterface& value) {

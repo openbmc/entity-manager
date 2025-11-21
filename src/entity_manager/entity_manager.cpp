@@ -5,6 +5,7 @@
 
 #include "../utils.hpp"
 #include "../variant_visitors.hpp"
+#include "config_cache.hpp"
 #include "configuration.hpp"
 #include "dbus_interface.hpp"
 #include "log_device_inventory.hpp"
@@ -33,8 +34,6 @@
 #include <functional>
 #include <map>
 #include <regex>
-constexpr const char* tempConfigDir = "/tmp/configuration/";
-constexpr const char* lastConfiguration = "/tmp/configuration/last.json";
 
 static constexpr std::array<const char*, 6> settableInterfaces = {
     "FanProfile", "Pid", "Pid.Zone", "Stepwise", "Thresholds", "Polling"};
@@ -54,14 +53,16 @@ EntityManager::EntityManager(
     std::shared_ptr<sdbusplus::asio::connection>& systemBus,
     boost::asio::io_context& io,
     const std::vector<std::filesystem::path>& configurationDirectories,
-    const std::filesystem::path& schemaDirectory) :
+    const std::filesystem::path& schemaDirectory,
+    const std::filesystem::path& configurationOutDir) :
     systemBus(systemBus),
     objServer(sdbusplus::asio::object_server(systemBus, /*skipManager=*/true)),
     configuration(configurationDirectories, schemaDirectory),
+    configCache(std::make_shared<ConfigCache>(configurationOutDir)),
     lastJson(nlohmann::json::object()),
     systemConfiguration(nlohmann::json::object()), io(io),
-    dbus_interface(io, objServer, schemaDirectory), powerStatus(*systemBus),
-    propertiesChangedTimer(io)
+    dbus_interface(io, objServer, schemaDirectory, configCache),
+    powerStatus(*systemBus), propertiesChangedTimer(io)
 {
     // All other objects that EntityManager currently support are under the
     // inventory subtree.
@@ -493,7 +494,7 @@ void EntityManager::publishNewConfiguration(
     loadOverlays(newConfiguration, io);
 
     boost::asio::post(io, [this]() {
-        if (!writeJsonFiles(systemConfiguration))
+        if (!configCache->writeJsonFiles(systemConfiguration))
         {
             lg2::error("Error writing json files");
         }
@@ -604,24 +605,23 @@ static bool irContainsProbeInterface(
 
 void EntityManager::handleCurrentConfigurationJson()
 {
-    if (EM_CACHE_CONFIGURATION && em_utils::fwVersionIsSame())
+    if (EM_CACHE_CONFIGURATION &&
+        em_utils::fwVersionIsSame(configCache->configurationOutDir))
     {
-        if (std::filesystem::is_regular_file(currentConfiguration))
+        if (configCache->currentConfigurationExists())
         {
-            // this file could just be deleted, but it's nice for debug
-            std::filesystem::create_directory(tempConfigDir);
-            std::filesystem::remove(lastConfiguration);
-            std::filesystem::copy(currentConfiguration, lastConfiguration);
-            std::filesystem::remove(currentConfiguration);
+            configCache->backupOldConfiguration();
 
-            std::ifstream jsonStream(lastConfiguration);
+            configCache->removeCurrentConfiguration();
+
+            std::ifstream jsonStream(configCache->lastConfiguration);
             if (jsonStream.good())
             {
                 auto data = nlohmann::json::parse(jsonStream, nullptr, false);
                 if (data.is_discarded())
                 {
                     lg2::error("syntax error in {PATH}", "PATH",
-                               lastConfiguration);
+                               configCache->lastConfiguration);
                 }
                 else
                 {
@@ -630,16 +630,14 @@ void EntityManager::handleCurrentConfigurationJson()
             }
             else
             {
-                lg2::error("unable to open {PATH}", "PATH", lastConfiguration);
+                lg2::error("unable to open {PATH}", "PATH",
+                           configCache->lastConfiguration);
             }
         }
     }
     else
     {
-        // not an error, just logging at this level to make it in the journal
-        std::error_code ec;
-        lg2::error("Clearing previous configuration");
-        std::filesystem::remove(currentConfiguration, ec);
+        configCache->removeCurrentConfiguration();
     }
 }
 bool EntityManager::isPropertiesChangedInProgress() const
