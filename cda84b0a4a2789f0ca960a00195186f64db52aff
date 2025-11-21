@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "c0a81f72_7cf46020",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1002581
+      },
+      "writtenOn": "2025-11-21T08:44:49Z",
+      "side": 1,
+      "message": "I based the schema on https://github.com/openbmc/docs/blob/master/designs/external-sensor.md, which lists Thresholds and PowerState as optional fields.\n\nIn my configuration patch (https://gerrit.openbmc.org/c/openbmc/entity-manager/+/85437), I\u0027m reading the PCIe switch die temperature, so I think I might need Thresholds.\n\nAlso found an issue with Units in ExternalSensor.cpp: https://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/85461",
+      "parentUuid": "477ef61b_c63ad656",
+      "range": {
+        "startLine": 492,
+        "startChar": 16,
+        "endLine": 497,
+        "endChar": 18
+      },
+      "revId": "cda84b0a4a2789f0ca960a00195186f64db52aff",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "4e2e2478_28d10428",
         "filename": "schemas/legacy.json",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2025-11-20T13:23:09Z",
       "side": 1,
       "message": "To me it looks like `MinValue` and `MaxValue` are actually required by the implementation and the sensor will not init otherwise.\n\nDoes it make sense to put that into a separate patch?",
+      "range": {
+        "startLine": 509,
+        "startChar": 50,
+        "endLine": 509,
+        "endChar": 72
+      },
+      "revId": "cda84b0a4a2789f0ca960a00195186f64db52aff",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a950e47_b89daf88",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1002581
+      },
+      "writtenOn": "2025-11-21T08:44:49Z",
+      "side": 1,
+      "message": "Agreed, I\u0027ll separate this into a dedicated patch.",
+      "parentUuid": "4e2e2478_28d10428",
       "range": {
         "startLine": 509,
         "startChar": 50,
