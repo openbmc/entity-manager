@@ -2,6 +2,7 @@
 
 #include "test_em.hpp"
 
+#include <boost/asio/steady_timer.hpp>
 #include <nlohmann/json.hpp>
 
 #include <string>
@@ -50,10 +51,27 @@ class DBusTest : public testing::Test
 
     void postAssertHandler(
         const std::function<void(const DBusPropertiesMap& value)>& handler,
-        std::string& path, std::string& interface, bool stopOnError = true)
+        const std::string& busName, const sdbusplus::message::object_path& path,
+        const std::string& interface, bool stopOnError = true,
+        const size_t timeoutMs = 1)
     {
-        auto h3 = [this, handler, stopOnError](boost::system::error_code ec,
-                                               const DBusPropertiesMap& value) {
+        staticPostAssertHandler(io, systemBus, handler, busName, path,
+                                interface, timeoutMs, stopOnError);
+    }
+
+    static void staticPostAssertHandler(
+        boost::asio::io_context& io,
+        const std::shared_ptr<sdbusplus::asio::connection>& systemBus,
+        const std::function<void(const DBusPropertiesMap& value)>& handler,
+        const std::string& busName, const sdbusplus::message::object_path& path,
+        const std::string& interface, const size_t timeoutMs,
+        bool stopOnError = true)
+    {
+        lg2::debug("test: running assertion handler or {BUS} {PATH} {INTF}",
+                   "BUS", busName, "PATH", path, "INTF", interface);
+
+        auto h3 = [&io, handler, stopOnError](boost::system::error_code ec,
+                                              const DBusPropertiesMap& value) {
             EXPECT_FALSE(ec);
             if (ec)
             {
@@ -71,11 +89,13 @@ class DBusTest : public testing::Test
 
             try
             {
+                lg2::debug("test: running assertion handler");
                 handler(value);
                 io.stop();
             }
             catch (std::exception& e)
             {
+                lg2::error("caught exception: {ERR}", "ERR", e);
                 if (stopOnError)
                 {
                     io.stop();
@@ -83,10 +103,26 @@ class DBusTest : public testing::Test
             }
         };
 
-        boost::asio::post(io, [this, path, interface, h3]() {
-            systemBus->async_method_call(h3, em.busName, path,
-                                         "org.freedesktop.DBus.Properties",
-                                         "GetAll", interface);
+        boost::asio::steady_timer timer(io);
+        // we have to wait until properties changed is done
+
+        lg2::debug("setting timer to {VALUE} ms", "VALUE", timeoutMs);
+        timer.expires_after(std::chrono::milliseconds(timeoutMs));
+
+        boost::asio::post(io, [systemBus, busName, path, interface, &h3,
+                               &timer]() {
+            timer.async_wait([&h3, busName, path, interface,
+                              systemBus](const boost::system::error_code& ec) {
+                lg2::debug("timer expired");
+                if (ec)
+                {
+                    lg2::error("timer error");
+                    return;
+                }
+                systemBus->async_method_call(h3, busName, path,
+                                             "org.freedesktop.DBus.Properties",
+                                             "GetAll", interface);
+            });
         });
 
         io.run();
