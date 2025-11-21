@@ -5,6 +5,7 @@
 
 #include <nlohmann/json.hpp>
 
+#include <fstream>
 #include <string>
 
 using namespace std::string_literals;
@@ -25,24 +26,53 @@ class UniqueSuffix
     int uniqueSuffix;
 };
 
+class TestConfigDir : public UniqueSuffix
+{
+  public:
+    TestConfigDir();
+    explicit TestConfigDir(nlohmann::json& testConfig)
+    {
+        const std::filesystem::path configDir = getTestConfigDir();
+
+        const std::filesystem::path configPath =
+            configDir / "example_board.json";
+
+        lg2::debug("writing test configuration file to {PATH}", "PATH",
+                   configPath);
+
+        std::ofstream configFile(configPath);
+        configFile << testConfig.dump();
+        configFile.close();
+    }
+
+    std::filesystem::path getTestConfigDir()
+    {
+        std::filesystem::path dir(std::format("/tmp/test_em_{}", uniqueSuffix));
+        std::error_code ec;
+        std::filesystem::create_directory(dir, ec);
+        return dir;
+    }
+
+    ~TestConfigDir()
+    {
+        std::filesystem::remove_all(getTestConfigDir());
+    }
+};
+
 // Helper class to access the protected members of the class we are testing
-class TestEM : public UniqueSuffix, public EntityManager
+class TestEM : public TestConfigDir, public EntityManager
 {
   public:
     TestEM(std::shared_ptr<sdbusplus::asio::connection>& systemBus,
-           boost::asio::io_context& io) :
-        EntityManager(systemBus, io, {getTestConfigDir()}, getTestConfigDir(),
+           boost::asio::io_context& io, nlohmann::json testConfig = {}) :
+        TestConfigDir(testConfig),
+        EntityManager(systemBus, io, {getTestConfigDir()}, "schemas/",
                       getTestConfigDir(), 1)
     {
         busName = getRandomBusName();
         systemBus->request_name(busName.c_str());
         lg2::debug("requesting bus name {NAME}", "NAME", busName);
     };
-
-    ~TestEM()
-    {
-        std::filesystem::remove_all(getTestConfigDir());
-    }
 
     void runStop()
     {
@@ -58,14 +88,6 @@ class TestEM : public UniqueSuffix, public EntityManager
     {
         return "xyz.openbmc_project.EntityManager" +
                std::to_string(uniqueSuffix);
-    }
-
-    std::filesystem::path getTestConfigDir()
-    {
-        std::filesystem::path dir(std::format("/tmp/test_em_{}", uniqueSuffix));
-        std::error_code ec;
-        std::filesystem::create_directory(dir, ec);
-        return dir;
     }
 
     std::string busName;
