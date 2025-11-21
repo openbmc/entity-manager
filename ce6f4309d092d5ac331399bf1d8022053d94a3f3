@@ -16,6 +16,23 @@
       "message": "I probably wrote this bug.  I will regroup and figure out why it didn\u0027t show up in my testing.",
       "revId": "ce6f4309d092d5ac331399bf1d8022053d94a3f3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "222fdfe9_8baf30af",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2025-11-21T11:23:51Z",
+      "side": 1,
+      "message": "It appears the bug started occurring after [81357] was merged. I tested with this patch included, and the issue has been fixed.\n\n[81357]: https://gerrit.openbmc.org/c/openbmc/entity-manager/+/81357",
+      "revId": "ce6f4309d092d5ac331399bf1d8022053d94a3f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
