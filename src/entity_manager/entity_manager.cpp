@@ -509,6 +509,7 @@ void EntityManager::publishNewConfiguration(
 // main properties changed entry
 void EntityManager::propertiesChangedCallback()
 {
+    lg2::debug("properties changed callback");
     propertiesChangedInstance++;
     size_t count = propertiesChangedInstance;
 
@@ -517,6 +518,7 @@ void EntityManager::propertiesChangedCallback()
     // setup an async wait as we normally get flooded with new requests
     propertiesChangedTimer.async_wait(
         [this, count](const boost::system::error_code& ec) {
+            lg2::debug("properties changed callback timer expired");
             if (ec == boost::asio::error::operation_aborted)
             {
                 // we were cancelled
@@ -534,6 +536,8 @@ void EntityManager::propertiesChangedCallback()
                 return;
             }
             propertiesChangedInProgress = true;
+
+            lg2::debug("properties changed callback in progress");
 
             nlohmann::json oldConfiguration = systemConfiguration;
             auto missingConfigurations = std::make_shared<nlohmann::json>();
