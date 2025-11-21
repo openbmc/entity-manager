@@ -189,30 +189,3 @@ void Configuration::filterProbeInterfaces()
         it++;
     }
 }
-
-bool writeJsonFiles(const nlohmann::json& systemConfiguration)
-{
-    if (!EM_CACHE_CONFIGURATION)
-    {
-        return true;
-    }
-
-    std::error_code ec;
-    std::filesystem::create_directory(configurationOutDir, ec);
-    if (ec)
-    {
-        return false;
-    }
-
-    lg2::debug("writing system configuration to {PATH}", "PATH",
-               currentConfiguration);
-
-    std::ofstream output(currentConfiguration);
-    if (!output.good())
-    {
-        return false;
-    }
-    output << systemConfiguration.dump(4);
-    output.close();
-    return true;
-}

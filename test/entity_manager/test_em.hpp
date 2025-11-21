@@ -24,7 +24,8 @@ class TestEM
     TestEM(std::shared_ptr<sdbusplus::asio::connection>& systemBus,
            boost::asio::io_context& io) :
         io(io), uniqueSuffix(randomSuffix()),
-        em(systemBus, io, {getTestConfigDir()}, getTestConfigDir()),
+        em(systemBus, io, {getTestConfigDir()}, getTestConfigDir(),
+           getTestConfigDir()),
         busName(getRandomBusName())
     {
         systemBus->request_name(busName.c_str());
