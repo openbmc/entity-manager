@@ -23,7 +23,8 @@ class EntityManager
         boost::asio::io_context& io,
         const std::vector<std::filesystem::path>& configurationDirectories,
         const std::filesystem::path& schemaDirectory,
-        bool queryInitialPowerState);
+        bool queryInitialPowerState,
+        const std::filesystem::path& configurationOutDir);
 
     // disable copy
     EntityManager(const EntityManager&) = delete;
@@ -39,6 +40,7 @@ class EntityManager
     sdbusplus::asio::object_server objServer;
     std::shared_ptr<sdbusplus::asio::dbus_interface> entityIface;
     Configuration configuration;
+    std::shared_ptr<ConfigCache> configCache;
     nlohmann::json lastJson;
     nlohmann::json systemConfiguration;
     Topology topology;
