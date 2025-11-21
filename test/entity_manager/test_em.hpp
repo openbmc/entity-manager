@@ -5,6 +5,7 @@
 #include <nlohmann/json.hpp>
 #include <phosphor-logging/lg2.hpp>
 
+#include <chrono>
 #include <string>
 
 using namespace std::string_literals;
@@ -26,7 +27,7 @@ class TestEM
            boost::asio::io_context& io) :
         io(io), uniqueSuffix(randomSuffix()),
         em(systemBus, io, {getTestConfigDir()}, getTestConfigDir(), false,
-           getTestConfigDir()),
+           getTestConfigDir(), std::chrono::milliseconds(1)),
         busName(getRandomBusName())
     {
         systemBus->request_name(busName.c_str());

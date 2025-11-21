@@ -12,6 +12,7 @@
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
 
+#include <chrono>
 #include <flat_map>
 #include <string>
 
@@ -24,7 +25,8 @@ class EntityManager
         const std::vector<std::filesystem::path>& configurationDirectories,
         const std::filesystem::path& schemaDirectory,
         bool queryInitialPowerState,
-        const std::filesystem::path& configurationOutDir);
+        const std::filesystem::path& configurationOutDir,
+        std::chrono::milliseconds propertiesChangedTimeoutMillis);
 
     // disable copy
     EntityManager(const EntityManager&) = delete;
@@ -90,6 +92,7 @@ class EntityManager
 
     bool propertiesChangedInProgress = false;
     boost::asio::steady_timer propertiesChangedTimer;
+    const std::chrono::milliseconds propertiesChangedTimeoutMillis;
     size_t propertiesChangedInstance = 0;
 
     std::flat_map<std::string, sdbusplus::bus::match_t, std::less<>>
