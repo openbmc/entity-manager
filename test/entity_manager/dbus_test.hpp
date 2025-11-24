@@ -12,9 +12,10 @@
 using namespace std::string_literals;
 
 using DBusPropertiesMap = boost::container::flat_map<
-    std::string, std::variant<std::string, int64_t, uint64_t, double, bool,
-                              std::vector<int64_t>, std::vector<uint64_t>,
-                              std::vector<double>, std::vector<std::string>>>;
+    std::string,
+    std::variant<std::string, int64_t, uint64_t, int32_t, uint32_t, double,
+                 bool, std::vector<int64_t>, std::vector<uint64_t>,
+                 std::vector<double>, std::vector<std::string>>>;
 
 class DBusTest : public testing::Test
 {
