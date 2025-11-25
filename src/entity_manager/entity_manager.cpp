@@ -54,7 +54,11 @@ EntityManager::EntityManager(
     const std::filesystem::path& schemaDirectory,
     const bool queryInitialPowerState,
     const std::filesystem::path& configurationOutDir,
-    const std::chrono::milliseconds propertiesChangedTimeoutMillis) :
+    const std::chrono::milliseconds propertiesChangedTimeoutMillis,
+    const std::chrono::milliseconds buildDeviceTimeoutMillis,
+    const std::chrono::milliseconds startRemovedTimeoutMillis,
+    const std::chrono::milliseconds getInterfacesTimeoutMillis,
+    const std::chrono::milliseconds findDBusObjectsTimeoutMillis) :
     systemBus(systemBus),
     objServer(sdbusplus::asio::object_server(systemBus, /*skipManager=*/true)),
     configuration(configurationDirectories, schemaDirectory),
@@ -63,7 +67,11 @@ EntityManager::EntityManager(
     systemConfiguration(nlohmann::json::object()), io(io),
     dbus_interface(io, objServer, schemaDirectory, configCache),
     powerStatus(*systemBus), propertiesChangedTimer(io),
-    propertiesChangedTimeoutMillis(propertiesChangedTimeoutMillis)
+    propertiesChangedTimeoutMillis(propertiesChangedTimeoutMillis),
+    buildDeviceTimeoutMillis(buildDeviceTimeoutMillis),
+    startRemovedTimeoutMillis(startRemovedTimeoutMillis),
+    getInterfacesTimeoutMillis(getInterfacesTimeoutMillis),
+    findDBusObjectsTimeoutMillis(findDBusObjectsTimeoutMillis)
 {
     if (queryInitialPowerState)
     {
@@ -434,7 +442,7 @@ void EntityManager::startRemovedTimer(boost::asio::steady_timer& timer,
         return;
     }
 
-    timer.expires_after(std::chrono::seconds(10));
+    timer.expires_after(std::chrono::milliseconds(startRemovedTimeoutMillis));
     timer.async_wait(
         [&systemConfiguration, this](const boost::system::error_code& ec) {
             if (ec == boost::asio::error::operation_aborted)
@@ -493,7 +501,7 @@ void EntityManager::publishNewConfiguration(
     // NOLINTNEXTLINE(performance-unnecessary-value-param)
     const nlohmann::json newConfiguration)
 {
-    loadOverlays(newConfiguration, io);
+    loadOverlays(newConfiguration, io, buildDeviceTimeoutMillis);
 
     boost::asio::post(io, [this]() {
         if (!configCache->writeJsonFiles(systemConfiguration))
@@ -551,6 +559,7 @@ void EntityManager::propertiesChangedCallback()
 
             auto perfScan = std::make_shared<scan::PerformScan>(
                 *this, *missingConfigurations, configuration.configurations, io,
+                getInterfacesTimeoutMillis, findDBusObjectsTimeoutMillis,
                 [this, count, oldConfiguration, missingConfigurations]() {
                     // this is something that since ac has been applied to the
                     // bmc we saw, and we no longer see it
