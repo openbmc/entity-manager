@@ -64,7 +64,9 @@ class TestEM : public TestConfigDir
            boost::asio::io_context& io, nlohmann::json testConfig = {}) :
         TestConfigDir(testConfig), io(io),
         em(systemBus, io, {getTestConfigDir()}, "schemas/", false,
-           getTestConfigDir(), std::chrono::milliseconds(1)),
+           getTestConfigDir(), std::chrono::milliseconds(1),
+           std::chrono::milliseconds(1), std::chrono::milliseconds(1),
+           std::chrono::milliseconds(1), std::chrono::milliseconds(1)),
         busName(getRandomBusName())
     {
         systemBus->request_name(busName.c_str());
