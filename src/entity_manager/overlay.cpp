@@ -152,6 +152,7 @@ static int buildDevice(
     std::string_view constructor, std::string_view destructor,
     const devices::createsHWMon hasHWMonDir,
     std::vector<std::string> channelNames, boost::asio::io_context& io,
+    const std::chrono::milliseconds buildDeviceTimeoutMillis,
     const size_t retries = 5)
 {
     if (retries == 0U)
@@ -172,12 +173,14 @@ static int buildDevice(
 
             std::shared_ptr<boost::asio::steady_timer> createTimer =
                 std::make_shared<boost::asio::steady_timer>(io);
-            createTimer->expires_after(std::chrono::milliseconds(500));
+            createTimer->expires_after(
+                std::chrono::milliseconds(buildDeviceTimeoutMillis));
             createTimer->async_wait(
                 [createTimer, name, busPath, parameters, bus, address,
                  constructor, destructor, hasHWMonDir,
-                 channelNames(std::move(channelNames)), retries,
-                 &io](const boost::system::error_code& ec) mutable {
+                 channelNames(std::move(channelNames)), retries, &io,
+                 buildDeviceTimeoutMillis](
+                    const boost::system::error_code& ec) mutable {
                     if (ec)
                     {
                         lg2::error("Timer error: {ERR}", "ERR", ec.message());
@@ -186,7 +189,7 @@ static int buildDevice(
                     return buildDevice(name, busPath, parameters, bus, address,
                                        constructor, destructor, hasHWMonDir,
                                        std::move(channelNames), io,
-                                       retries - 1);
+                                       buildDeviceTimeoutMillis, retries - 1);
                 });
             return -1;
         }
@@ -203,7 +206,8 @@ static int buildDevice(
 
 void exportDevice(const devices::ExportTemplate& exportTemplate,
                   const nlohmann::json& configuration,
-                  boost::asio::io_context& io)
+                  boost::asio::io_context& io,
+                  const std::chrono::milliseconds buildDeviceTimeoutMillis)
 {
     std::string_view type = exportTemplate.type;
     std::string parameters(exportTemplate.parameters);
@@ -256,11 +260,13 @@ void exportDevice(const devices::ExportTemplate& exportTemplate,
     }
 
     buildDevice(name, busPath, parameters, *bus, *address, constructor,
-                destructor, hasHWMonDir, std::move(channels), io);
+                destructor, hasHWMonDir, std::move(channels), io,
+                buildDeviceTimeoutMillis);
 }
 
 bool loadOverlays(const nlohmann::json& systemConfiguration,
-                  boost::asio::io_context& io)
+                  boost::asio::io_context& io,
+                  std::chrono::milliseconds buildDeviceTimeoutMillis)
 {
     std::filesystem::create_directory(outputDir);
     for (auto entity = systemConfiguration.begin();
@@ -293,7 +299,8 @@ bool loadOverlays(const nlohmann::json& systemConfiguration,
                 [&type](const auto& tmp) { return tmp.type == type; });
             if (device != devices::exportTemplates.end())
             {
-                exportDevice(*device, configuration, io);
+                exportDevice(*device, configuration, io,
+                             buildDeviceTimeoutMillis);
                 continue;
             }
 
