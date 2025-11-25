@@ -26,7 +26,11 @@ class EntityManager
         const std::filesystem::path& schemaDirectory,
         bool queryInitialPowerState,
         const std::filesystem::path& configurationOutDir,
-        std::chrono::milliseconds propertiesChangedTimeoutMillis);
+        std::chrono::milliseconds propertiesChangedTimeoutMillis,
+        std::chrono::milliseconds buildDeviceTimeoutMillis,
+        std::chrono::milliseconds startRemovedTimeoutMillis,
+        std::chrono::milliseconds getInterfacesTimeoutMillis,
+        std::chrono::milliseconds findDBusObjectsTimeoutMillis);
 
     // disable copy
     EntityManager(const EntityManager&) = delete;
@@ -90,6 +94,12 @@ class EntityManager
     boost::asio::steady_timer propertiesChangedTimer;
     const std::chrono::milliseconds propertiesChangedTimeoutMillis;
     size_t propertiesChangedInstance = 0;
+
+    const std::chrono::milliseconds buildDeviceTimeoutMillis;
+    const std::chrono::milliseconds startRemovedTimeoutMillis;
+
+    const std::chrono::milliseconds getInterfacesTimeoutMillis;
+    const std::chrono::milliseconds findDBusObjectsTimeoutMillis;
 
     std::flat_map<std::string, sdbusplus::bus::match_t, std::less<>>
         dbusMatches;

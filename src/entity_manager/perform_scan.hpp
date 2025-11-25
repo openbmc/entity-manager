@@ -27,7 +27,10 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
 {
     PerformScan(EntityManager& em, nlohmann::json& missingConfigurations,
                 std::vector<nlohmann::json>& configurations,
-                boost::asio::io_context& io, std::function<void()>&& callback);
+                boost::asio::io_context& io,
+                std::chrono::milliseconds getInterfacesTimeoutMillis,
+                std::chrono::milliseconds findDBusObjectsTimeoutMillis,
+                std::function<void()>&& callback);
 
     void updateSystemConfiguration(const nlohmann::json& recordRef,
                                    const std::string& probeName,
@@ -45,6 +48,9 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
     bool _passed = false;
 
     boost::asio::io_context& io;
+
+    const std::chrono::milliseconds getInterfacesTimeoutMillis;
+    const std::chrono::milliseconds findDBusObjectsTimeoutMillis;
 };
 
 } // namespace scan
