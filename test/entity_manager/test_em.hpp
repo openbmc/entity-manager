@@ -67,8 +67,11 @@ class TestEM : public TestConfigDir, public EntityManager
     TestEM(std::shared_ptr<sdbusplus::asio::connection>& systemBus,
            boost::asio::io_context& io, nlohmann::json testConfig = {}) :
         TestConfigDir(testConfig),
-        EntityManager(systemBus, io, {getTestConfigDir()}, "schemas/", false,
-                      getTestConfigDir(), std::chrono::milliseconds(1)),
+        EntityManager(
+            systemBus, io, {getTestConfigDir()}, "schemas/", false,
+            getTestConfigDir(), std::chrono::milliseconds(1),
+            std::chrono::milliseconds(1), std::chrono::milliseconds(1),
+            std::chrono::milliseconds(1), std::chrono::milliseconds(1)),
         busName(getRandomBusName())
     {
         systemBus->request_name(busName.c_str());
