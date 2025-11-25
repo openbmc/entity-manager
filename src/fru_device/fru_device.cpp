@@ -368,7 +368,7 @@ static std::vector<uint8_t> processEeprom(int bus, int address)
     return pair.first;
 }
 
-std::set<size_t> findI2CEeproms(int i2cBus,
+std::set<size_t> findI2CEeproms(int i2cBus, size_t first, size_t last,
                                 const std::shared_ptr<DeviceMap>& devices)
 {
     std::set<size_t> foundList;
@@ -408,6 +408,11 @@ std::set<size_t> findI2CEeproms(int i2cBus,
         size_t address = 0;
         std::from_chars(addressStringView.begin(), addressStringView.end(),
                         address, 16);
+
+        if (address < first || address > last)
+        {
+            continue;
+        }
 
         const std::string eeprom = node + "/eeprom";
 
@@ -453,7 +458,7 @@ int getBusFRUs(int file, int first, int last, int bus,
         // hexdumps of the eeprom later were successful.
 
         // Scan for i2c eeproms loaded on this bus.
-        std::set<size_t> skipList = findI2CEeproms(bus, devices);
+        std::set<size_t> skipList = findI2CEeproms(bus, first, last, devices);
         std::flat_set<size_t>& failedItems = failedAddresses[bus];
         std::flat_set<size_t>& foundItems = fruAddresses[bus];
         foundItems.clear();
