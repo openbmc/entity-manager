@@ -6,8 +6,22 @@ values are on dbus, they can be read via IPMI or Redfish (doing so is beyond the
 scope of this guide).
 
 For the sake of this example, let's pretend there is a PCIe card that exposes an
-24c02 eeprom and a tmp441 sensor. The PCIe slots are behind an smbus mux on the
+24c02 eeprom,tmp441 sensor and a ina219 sensor. The PCIe slots are behind an smbus mux (PCA9548) on the
 motherboard and are in a device-tree such as this:
+
+```text
+Ex : i2c1 (Master) --> Mux (PCA9548) --> channel-0 (24c02)
+                                     --> channel-1 (tmp441)
+                                     --> channel-2 (ina219)
+```
+
+```text
+i2c-1------- |--------------------|
+             | PCA9548         ch0|----24c02 eeprom
+             |                 ch1|----tmp441 temp
+             |                 ch2|----ina219 adc
+reset_pin----|--------------------|
+```
 
 ```dts
 aliases {
@@ -32,16 +46,31 @@ aliases {
             #address-cells = <1>;
             #size-cells = <0>;
             reg = <0>;
+
+            eeprom@<slave address> {
+                compatible = "atmel,24c02";
+                reg = <0x<slave address>>;
+            };
         };
         i2c_pe1: i2c@1 {
             #address-cells = <1>;
             #size-cells = <0>;
             reg = <1>;
+
+            tmp421@<slave adddress> {
+                compatible = "ti,tmp421";
+                reg = <0x<slave address>>;
+            };
         };
         i2c_pe2: i2c@2 {
             #address-cells = <1>;
             #size-cells = <0>;
             reg = <2>;
+
+            adc@<slave address> {
+                compatible = "ti,ina219";
+                reg = <0x<slave address>>;
+            };
         };
         i2c_pe3: i2c@3 {
             #address-cells = <1>;
@@ -112,14 +141,15 @@ xyz.openbmc_project.FruDevice       interface -         -                       
 .PRODUCT_VERSION                    property  s         "0A"                        emits-change
 ```
 
-Ok, now you can find the cards, but what about the temperature sensors on each
+Ok, now you can find the cards, but what about the temperature sensor and adc on each
 of them? Entity-Manager provides a very powerful mechanism for querying various
 information, but our goal is simple. If we find the card, we want to add the
-device to the system and tell dbus-sensors that there is a hwmon temperature
-sensor available.
+device to the system and tell dbus-sensors that there is a hwmon temperature and adc
+sensors available.
 
 We start with a simple hardware profile. We know that if the card's bus is
-identified we know the address of the temperature sensor is 0x4c.
+identified we know the address of the temperature sensor is 0x4c and address of
+adc sensor is 0x2a.
 
 ```json
 {
@@ -131,11 +161,16 @@ identified we know the address of the temperature sensor is 0x4c.
       "Type": "EEPROM_24C02"
     },
     {
-      "Address": "0x4c",
-      "Bus": "$bus",
+      "Address": "0x4c>",
+      "Bus": "$bus+1",
       "Name": "$bus great local",
-      "Name1": "$bus great ext",
       "Type": "TMP441"
+    },
+    {
+      "Address": "0x2a",
+      "Bus": "$bus+2",
+      "Name": "$bus great local1",
+      "Type": "ADC"
     }
   ],
   "Name": "$bus Great Card",
@@ -156,7 +191,7 @@ This lists the entities that are added when this hardware profile is loaded. The
 field is optional and there is a wide variety of entities that can be added this
 way.
 
-In our example we only care about the eeprom and the temperature sensor. The
+In our example we only care about the eeprom,temperature and adc sensor. The
 `Type` field is checked against a device export map and if it matches a known
 device, it'll attempt to install the device. Be noticed that dbus only allows an
 interface name as an dot delimited string with each truncated substring starting
@@ -169,6 +204,7 @@ For the card found on bus 18:
 ```sh
 echo "24c02 0x50" > /sys/bus/i2c/devices/i2c-18/new_device
 echo "tmp441 0x4c" > /sys/bus/i2c/devices/i2c-18/new_device
+echo "ina219 0x2a" > /sys/bus/i2c/devices/i2c-18/new_device
 ```
 
 Beyond this, it also publishes to dbus a configuration:
@@ -183,8 +219,10 @@ Beyond this, it also publishes to dbus a configuration:
         `-/xyz/openbmc_project/inventory/system/board
           |-/xyz/openbmc_project/inventory/system/board/18_Great_Card
           | |-/xyz/openbmc_project/inventory/system/board/18_Great_Card/18_great_local
+          | |-/xyz/openbmc_project/inventory/system/board/18_Great_Card/18_great_local1
           |-/xyz/openbmc_project/inventory/system/board/19_Great_Card
           | |-/xyz/openbmc_project/inventory/system/board/19_Great_Card/19_great_local
+          | |-/xyz/openbmc_project/inventory/system/board/19_Great_Card/19_great_local1
 
 ~# busctl introspect --no-pager xyz.openbmc_project.EntityManager \
  /xyz/openbmc_project/inventory/system/board/18_Great_Card/18_great_local
@@ -249,7 +287,7 @@ xyz.openbmc_project.Sensor.Value    interface -         -                       
 
 ```
 
-There you are! You now have the two sensors from the two card instances on dbus.
+There you are! You now have the three sensors from the two card instances on dbus.
 
 This can be more complex, for instance if your card has a mux you can add it to
 the configuration, which will trigger FruDevice to scan those new buses for more
