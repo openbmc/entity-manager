@@ -30,6 +30,7 @@ void getInterfaces(
     const DBusInterfaceInstance& instance,
     const std::vector<std::shared_ptr<probe::PerformProbe>>& probeVector,
     const std::shared_ptr<scan::PerformScan>& scan, boost::asio::io_context& io,
+    const std::chrono::milliseconds getInterfacesTimeoutMillis,
     size_t retries = 5)
 {
     if (retries == 0U)
@@ -41,9 +42,9 @@ void getInterfaces(
     }
 
     scan->_em.systemBus->async_method_call(
-        [instance, scan, probeVector, retries,
-         &io](boost::system::error_code& errc,
-              const DBusInterface& resp) mutable {
+        [instance, scan, probeVector, retries, &io,
+         getInterfacesTimeoutMillis](boost::system::error_code& errc,
+                                     const DBusInterface& resp) mutable {
             if (errc)
             {
                 lg2::error("error calling getall on {BUSNAME} {PATH} {INTF}",
@@ -51,11 +52,14 @@ void getInterfaces(
                            "INTF", instance.interface);
 
                 auto timer = std::make_shared<boost::asio::steady_timer>(io);
-                timer->expires_after(std::chrono::seconds(2));
+                timer->expires_after(
+                    std::chrono::milliseconds(getInterfacesTimeoutMillis));
 
                 timer->async_wait([timer, instance, scan, probeVector, retries,
-                                   &io](const boost::system::error_code&) {
-                    getInterfaces(instance, probeVector, scan, io, retries - 1);
+                                   &io, getInterfacesTimeoutMillis](
+                                      const boost::system::error_code&) {
+                    getInterfaces(instance, probeVector, scan, io,
+                                  getInterfacesTimeoutMillis, retries - 1);
                 });
                 return;
             }
@@ -70,7 +74,8 @@ void getInterfaces(
 static void processDbusObjects(
     std::vector<std::shared_ptr<probe::PerformProbe>>& probeVector,
     const std::shared_ptr<scan::PerformScan>& scan,
-    const GetSubTreeType& interfaceSubtree, boost::asio::io_context& io)
+    const GetSubTreeType& interfaceSubtree, boost::asio::io_context& io,
+    const std::chrono::milliseconds getInterfacesTimeoutMillis)
 {
     for (const auto& [path, object] : interfaceSubtree)
     {
@@ -87,8 +92,8 @@ static void processDbusObjects(
                 // with the GetAll call to save some cycles.
                 if (!iface.starts_with("org.freedesktop"))
                 {
-                    getInterfaces({busname, path, iface}, probeVector, scan,
-                                  io);
+                    getInterfaces({busname, path, iface}, probeVector, scan, io,
+                                  getInterfacesTimeoutMillis);
                 }
             }
         }
@@ -101,6 +106,8 @@ void findDbusObjects(
     std::vector<std::shared_ptr<probe::PerformProbe>>&& probeVector,
     std::flat_set<std::string, std::less<>>&& interfaces,
     const std::shared_ptr<scan::PerformScan>& scan, boost::asio::io_context& io,
+    const std::chrono::milliseconds getInterfacesTimeoutMillis,
+    const std::chrono::milliseconds findDBusObjectsTimeoutMillis,
     size_t retries = 5)
 {
     // Filter out interfaces already obtained.
@@ -118,9 +125,10 @@ void findDbusObjects(
 
     // find all connections in the mapper that expose a specific type
     scan->_em.systemBus->async_method_call(
-        [interfaces, probeVector{std::move(probeVector)}, scan, retries,
-         &io](boost::system::error_code& ec,
-              const GetSubTreeType& interfaceSubtree) mutable {
+        [interfaces, probeVector{std::move(probeVector)}, scan, retries, &io,
+         getInterfacesTimeoutMillis, findDBusObjectsTimeoutMillis](
+            boost::system::error_code& ec,
+            const GetSubTreeType& interfaceSubtree) mutable {
             if (ec)
             {
                 if (ec.value() == ENOENT)
@@ -137,20 +145,24 @@ void findDbusObjects(
                 }
 
                 auto timer = std::make_shared<boost::asio::steady_timer>(io);
-                timer->expires_after(std::chrono::seconds(10));
+                timer->expires_after(
+                    std::chrono::milliseconds(findDBusObjectsTimeoutMillis));
 
                 timer->async_wait(
                     [timer, interfaces{std::move(interfaces)}, scan,
-                     probeVector{std::move(probeVector)}, retries,
-                     &io](const boost::system::error_code&) mutable {
-                        findDbusObjects(std::move(probeVector),
-                                        std::move(interfaces), scan, io,
-                                        retries - 1);
+                     probeVector{std::move(probeVector)}, retries, &io,
+                     getInterfacesTimeoutMillis, findDBusObjectsTimeoutMillis](
+                        const boost::system::error_code&) mutable {
+                        findDbusObjects(
+                            std::move(probeVector), std::move(interfaces), scan,
+                            io, getInterfacesTimeoutMillis,
+                            findDBusObjectsTimeoutMillis, retries - 1);
                     });
                 return;
             }
 
-            processDbusObjects(probeVector, scan, interfaceSubtree, io);
+            processDbusObjects(probeVector, scan, interfaceSubtree, io,
+                               getInterfacesTimeoutMillis);
         },
         "xyz.openbmc_project.ObjectMapper",
         "/xyz/openbmc_project/object_mapper",
@@ -185,9 +197,14 @@ static std::string getRecordName(const DBusInterface& probe,
 scan::PerformScan::PerformScan(
     EntityManager& em, nlohmann::json& missingConfigurations,
     std::vector<nlohmann::json>& configurations, boost::asio::io_context& io,
+    std::chrono::milliseconds getInterfacesTimeoutMillis,
+    std::chrono::milliseconds findDBusObjectsTimeoutMillis,
     std::function<void()>&& callback) :
     _em(em), _missingConfigurations(missingConfigurations),
-    _configurations(configurations), _callback(std::move(callback)), io(io)
+    _configurations(configurations), _callback(std::move(callback)), io(io),
+    getInterfacesTimeoutMillis(getInterfacesTimeoutMillis),
+    findDBusObjectsTimeoutMillis(findDBusObjectsTimeoutMillis)
+
 {}
 
 static void pruneRecordExposes(nlohmann::json& record)
@@ -697,7 +714,8 @@ void scan::PerformScan::run()
     // probe vector stores a shared_ptr to each PerformProbe that cares
     // about a dbus interface
     findDbusObjects(std::move(dbusProbePointers),
-                    std::move(dbusProbeInterfaces), shared_from_this(), io);
+                    std::move(dbusProbeInterfaces), shared_from_this(), io,
+                    getInterfacesTimeoutMillis, findDBusObjectsTimeoutMillis);
 }
 
 scan::PerformScan::~PerformScan()
@@ -706,6 +724,7 @@ scan::PerformScan::~PerformScan()
     {
         auto nextScan = std::make_shared<PerformScan>(
             _em, _missingConfigurations, _configurations, io,
+            getInterfacesTimeoutMillis, findDBusObjectsTimeoutMillis,
             std::move(_callback));
         nextScan->passedProbes = std::move(passedProbes);
         nextScan->dbusProbeObjects = std::move(dbusProbeObjects);
