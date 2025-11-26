@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "91805899_b5b0f5f4",
+        "filename": "configurations/ibm_huygens_spdm_responder.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1001384
+      },
+      "writtenOn": "2025-11-26T18:39:10Z",
+      "side": 1,
+      "message": "/xyz/openbmc_project/inventory/system/board/Huygens_Bmc_Peer/SpdmTcpResponder_1\n/xyz/openbmc_project/inventory/system/board/Huygens_Bmc_Peer/SpdmTcpResponder_2",
+      "parentUuid": "9bfd5cea_c9377610",
+      "revId": "6448e0e77f06912f35e61073f0f3139a05576cc7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "037cff19_70398068",
@@ -54,6 +72,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cbb8beff_451a55c4",
+        "filename": "configurations/ibm_huygens_spdm_responder.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1001384
+      },
+      "writtenOn": "2025-11-26T18:39:10Z",
+      "side": 1,
+      "message": "\"Name\" property is used to create the object path for the exposes record.\n\nBased on this configuration EM hosts below object path\n/xyz/openbmc_project/inventory/system/board/Huygens_Bmc_Peer/SpdmTcpResponder_1",
+      "parentUuid": "037cff19_70398068",
+      "revId": "6448e0e77f06912f35e61073f0f3139a05576cc7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "13f0a16c_ec6996a1",
         "filename": "configurations/ibm_huygens_spdm_responder.json",
         "patchSetId": 2
@@ -65,6 +101,30 @@
       "writtenOn": "2025-10-09T15:37:33Z",
       "side": 1,
       "message": "as we discussed offline, this isn\u0027t the right card or probe for this system.",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 55
+      },
+      "revId": "6448e0e77f06912f35e61073f0f3139a05576cc7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "002c3b3d_405fdd36",
+        "filename": "configurations/ibm_huygens_spdm_responder.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001384
+      },
+      "writtenOn": "2025-11-26T18:39:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13f0a16c_ec6996a1",
       "range": {
         "startLine": 12,
         "startChar": 0,
