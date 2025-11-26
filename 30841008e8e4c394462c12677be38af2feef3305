@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33cce98f_759c12c5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-26T11:41:58Z",
+      "side": 1,
+      "message": "nit: It would be nice to have some debug logs here from the application before/after the change.",
+      "revId": "30841008e8e4c394462c12677be38af2feef3305",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee06127c_e259e28d",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-26T11:41:58Z",
+      "side": 1,
+      "message": "nit, can we make the parameters const since we do not assign to them.\n\n```suggestion\nstd::set\u003csize_t\u003e findI2CEeproms(int i2cBus, const size_t first, const size_t last,\n                                const std::shared_ptr\u003cDeviceMap\u003e\u0026 devices)\n```",
+      "range": {
+        "startLine": 371,
+        "startChar": 0,
+        "endLine": 372,
+        "endChar": 74
+      },
+      "revId": "30841008e8e4c394462c12677be38af2feef3305",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
