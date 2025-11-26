@@ -127,6 +127,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0c9d7272_96b17150",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-26T15:13:45Z",
+      "side": 1,
+      "message": "@ed@tanous.net - I don’t understand your claim here. We can never do refactoring because it might make other people who have downstream, uncontributed, changes do work?  When has this ever been a consideration??!\n\nThe existing entity-manager implementation violates dbus expectations all the time and Alexander is trying to improve that. Why would we turn that down?\n\nIf we’re saying we can never fix entity-manager and dbus-sensors to actually conform to modern dbus expectations because… “poor code already exists”, then frankly it’s time to fork those two repositories. I’m getting really frustrated with it being a fight for every improvement we want to do in these two repositories.",
+      "parentUuid": "8d58a910_cc3781a8",
+      "revId": "c22fc3b2a404086a51cdc79860be2ce02ca75ea0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "38fb428c_a8c56a74",
         "filename": "schemas/legacy.json",
         "patchSetId": 1
