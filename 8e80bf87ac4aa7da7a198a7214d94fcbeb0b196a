@@ -34,6 +34,24 @@
       "parentUuid": "7aa490e8_3cb7a170",
       "revId": "8e80bf87ac4aa7da7a198a7214d94fcbeb0b196a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e6980d3_11c4c1f8",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 823,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-26T14:51:32Z",
+      "side": 1,
+      "message": "### separate refactorings were unsuccessful\n\n\u003e Shouldn\u0027t this be handled as a separate refactoring? \n\nIf that were possible, i would be in favor of doing that separately.\n\nUnfortunately the schemas are stable and apparently it\u0027s not acceptable to remove properties at a later point even if all upstream configs and reactors are migrated.\n\nRefer to the feedback i got on\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/84024\n\nwhere i tried to do such a refactoring.\n\n### the technical debt\n\n\u003e I don\u0027t think it is fair to single out this change that is just continuing the same existing pattern.\n\nI\u0027m fine with adding technical debt as long as we already know that it\u0027s okay to refactor that later / separately. Currently that\u0027s not the case.\n\n### the existing pattern\n\n\u003e I don\u0027t think it is fair to single out this change that is just continuing the same existing pattern.\n\n`patternProperties` is only used as part of 2 schemas currently, both of which are part of `legacy.json`. \n\nAnd it\u0027s an existing pattern only within the `PSUSensor` schema. The overall pattern is to not use `patternProperties` which is what most of the schemas are doing.\n\n### many simple options to move forward\n\nI proposed a simple way to solve this issue with a concrete suggestion.\nI was not looking for any large or unreasonable amount of work.",
+      "parentUuid": "dead03a0_e181adba",
+      "revId": "8e80bf87ac4aa7da7a198a7214d94fcbeb0b196a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
