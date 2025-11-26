@@ -6,8 +6,8 @@ values are on dbus, they can be read via IPMI or Redfish (doing so is beyond the
 scope of this guide).
 
 For the sake of this example, let's pretend there is a PCIe card that exposes an
-24c02 eeprom,tmp441 sensor and a ina219 sensor. The PCIe slots are behind an smbus mux (PCA9548) on the
-motherboard and are in a device-tree such as this:
+24c02 eeprom,tmp441 sensor and a ina219 sensor. The PCIe slots are behind an
+smbus mux (PCA9548) on the motherboard and are in a device-tree such as this:
 
 ```text
 Ex : i2c1 (Master) --> Mux (PCA9548) --> channel-0 (24c02)
@@ -141,11 +141,11 @@ xyz.openbmc_project.FruDevice       interface -         -                       
 .PRODUCT_VERSION                    property  s         "0A"                        emits-change
 ```
 
-Ok, now you can find the cards, but what about the temperature sensor and adc on each
-of them? Entity-Manager provides a very powerful mechanism for querying various
-information, but our goal is simple. If we find the card, we want to add the
-device to the system and tell dbus-sensors that there is a hwmon temperature and adc
-sensors available.
+Ok, now you can find the cards, but what about the temperature sensor and adc on
+each of them? Entity-Manager provides a very powerful mechanism for querying
+various information, but our goal is simple. If we find the card, we want to add
+the device to the system and tell dbus-sensors that there is a hwmon temperature
+and adc sensors available.
 
 We start with a simple hardware profile. We know that if the card's bus is
 identified we know the address of the temperature sensor is 0x4c and address of
@@ -287,7 +287,8 @@ xyz.openbmc_project.Sensor.Value    interface -         -                       
 
 ```
 
-There you are! You now have the three sensors from the two card instances on dbus.
+There you are! You now have the three sensors from the two card instances on
+dbus.
 
 This can be more complex, for instance if your card has a mux you can add it to
 the configuration, which will trigger FruDevice to scan those new buses for more
