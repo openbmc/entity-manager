@@ -225,6 +225,7 @@ configs = [
     'meta/yv5/yosemite5_1kw_paddle_board.json',
     'meta/yv5/yosemite5_cxl_board_vr_mps_tchip_stm.json',
     'meta/yv5/yosemite5_cxl_board_vr_raa_tchip_tic.json',
+    'meta/yv5/yosemite5_cxl_ddr5_board_vr_raa_tchip_tic.json',
     'meta/yv5/yosemite5_e1s_expansion_board_adc_qns_pmon_sgy.json',
     'meta/yv5/yosemite5_e1s_expansion_board_adc_tic_pmon_tic.json',
     'meta/yv5/yosemite5_mb_vr_mps_pvdd18vr_mps_adc_tic_i3chub_rtt.json',
