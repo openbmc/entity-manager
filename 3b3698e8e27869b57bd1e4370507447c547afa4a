@@ -24,6 +24,86 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bea0da06_5cc452c4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-02T23:07:01Z",
+      "side": 1,
+      "message": "partial review.",
+      "revId": "3b3698e8e27869b57bd1e4370507447c547afa4a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f33ad20d_104e1945",
+        "filename": "src/entity_manager/configuration.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-02T23:07:01Z",
+      "side": 1,
+      "message": "We already have a configuration class here, we should probably do at least some naming conventions to make sure that \"Configuration\" and \"SystemConfiguration\" aren\u0027t mistaken for one another, and the classes are clear.\n\nAlternatively, I suspect these should just be the same object?",
+      "revId": "3b3698e8e27869b57bd1e4370507447c547afa4a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f50b60d_277d4521",
+        "filename": "src/entity_manager/dbus_interface.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-02T23:07:01Z",
+      "side": 1,
+      "message": "I\u0027m a little confused here, why does the DBUS interface need to know about filesystem directories?  that seems like a strange encapsulation of concerns?",
+      "range": {
+        "startLine": 25,
+        "startChar": 34,
+        "endLine": 25,
+        "endChar": 49
+      },
+      "revId": "3b3698e8e27869b57bd1e4370507447c547afa4a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b90cb80_a4970eff",
+        "filename": "src/entity_manager/dbus_interface.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-02T23:07:01Z",
+      "side": 1,
+      "message": "Just pass this by const reference if you\u0027re going to immediately make a ref-copy.",
+      "range": {
+        "startLine": 26,
+        "startChar": 16,
+        "endLine": 26,
+        "endChar": 25
+      },
+      "revId": "3b3698e8e27869b57bd1e4370507447c547afa4a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "11e5d605_c4cf545b",
