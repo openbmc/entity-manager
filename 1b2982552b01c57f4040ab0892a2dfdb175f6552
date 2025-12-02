@@ -1,0 +1,153 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "586b8a6c_482874da",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-02T23:16:05Z",
+      "side": 1,
+      "message": "nit, this is great, but if we\u0027re skipping the probes, it\u0027s not really \"end to end\"",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 71
+      },
+      "revId": "1b2982552b01c57f4040ab0892a2dfdb175f6552",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9f459a3_648e03e7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-02T23:16:05Z",
+      "side": 1,
+      "message": "partial review as this is WIP",
+      "revId": "1b2982552b01c57f4040ab0892a2dfdb175f6552",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edcf2777_b35b70a5",
+        "filename": "test/entity_manager/assert_has_property.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-02T23:16:05Z",
+      "side": 1,
+      "message": "This looks like of like you\u0027ve reinvented gmock Variant and UnorderedElementsAre functions here.  Should we just use those?",
+      "revId": "1b2982552b01c57f4040ab0892a2dfdb175f6552",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a15cfc0_75e5bd81",
+        "filename": "test/entity_manager/end_to_end_probe_true.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-02T23:16:05Z",
+      "side": 1,
+      "message": "Please don\u0027t use auto if the other side doesn\u0027t have the type information either.",
+      "range": {
+        "startLine": 458,
+        "startChar": 10,
+        "endLine": 458,
+        "endChar": 14
+      },
+      "revId": "1b2982552b01c57f4040ab0892a2dfdb175f6552",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e1e5e44_6e745f20",
+        "filename": "test/entity_manager/end_to_end_probe_true.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-02T23:16:05Z",
+      "side": 1,
+      "message": "having json strings inline in code like this is a mess to read.  I\u0027m open to suggestions on how it could be made more readable.  I would personally just write the nlohmann code\n\nnlohmann::json foo;\nfoo[\"Exposes\"] \u003d ....;\n\nbut I\u0027m open to other suggestions.",
+      "range": {
+        "startLine": 457,
+        "startChar": 0,
+        "endLine": 480,
+        "endChar": 4
+      },
+      "revId": "1b2982552b01c57f4040ab0892a2dfdb175f6552",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c3294cb_a179954b",
+        "filename": "test/entity_manager/end_to_end_probe_true.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-02T23:16:05Z",
+      "side": 1,
+      "message": "Just make this a normal method.  lambdas without a capture should be only done inline.",
+      "range": {
+        "startLine": 484,
+        "startChar": 0,
+        "endLine": 489,
+        "endChar": 6
+      },
+      "revId": "1b2982552b01c57f4040ab0892a2dfdb175f6552",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5595462_6522e3ad",
+        "filename": "test/entity_manager/meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-02T23:16:05Z",
+      "side": 1,
+      "message": "As you\u0027re adding these tests, do they all require all of these dependencies?  Can we deduplicate the lists please?",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 21
+      },
+      "revId": "1b2982552b01c57f4040ab0892a2dfdb175f6552",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
