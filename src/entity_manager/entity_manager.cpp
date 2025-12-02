@@ -74,6 +74,9 @@ EntityManager::EntityManager(
     entityIface->register_method("ReScan", [this]() {
         propertiesChangedCallback();
     });
+    entityIface->register_method("ReloadJsonFiles", [this]() {
+        reloadJsonFiles();
+    });
     dbus_interface::tryIfaceInitialize(entityIface);
 
     initFilters(configuration.probeInterfaces);
@@ -637,6 +640,37 @@ void EntityManager::handleCurrentConfigurationJson()
         lg2::error("Clearing previous configuration");
         std::filesystem::remove(currentConfiguration, ec);
     }
+}
+
+void EntityManager::reloadJsonFiles()
+{
+    // Remove current cached configuration file
+    std::error_code ec;
+    std::filesystem::remove(currentConfiguration, ec);
+
+    // Reload JSON configuration files from disk
+    configuration.reload();
+
+    // Remove all existing devices from DBus and systemConfiguration
+    nlohmann::json current = systemConfiguration;
+    for (const auto& [name, device] : current.items())
+    {
+        pruneConfiguration(false, name, device);
+    }
+
+    systemConfiguration = nlohmann::json::object();
+    lastJson = nlohmann::json::object();
+    scannedPowerOn = false;
+    scannedPowerOff = false;
+
+    // Rebuild DBus filters and rescan
+    initFilters(configuration.probeInterfaces);
+
+    propertiesChangedTimer.cancel();
+    propertiesChangedInstance = 0;
+    propertiesChangedInProgress = false;
+
+    propertiesChangedCallback();
 }
 
 void EntityManager::registerCallback(const std::string& path)

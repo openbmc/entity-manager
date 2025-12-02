@@ -25,6 +25,15 @@ Configuration::Configuration(
     filterProbeInterfaces();
 }
 
+void Configuration::reload()
+{
+    configurations.clear();
+    probeInterfaces.clear();
+
+    loadConfigurations();
+    filterProbeInterfaces();
+}
+
 void Configuration::loadConfigurations()
 {
     const auto start = std::chrono::steady_clock::now();

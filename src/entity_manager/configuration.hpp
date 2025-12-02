@@ -17,6 +17,7 @@ class Configuration
     std::vector<nlohmann::json> configurations;
 
     const std::filesystem::path schemaDirectory;
+    void reload();
 
   protected:
     void loadConfigurations();
