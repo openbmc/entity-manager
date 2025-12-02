@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97506ae3_c7e368bb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-02T23:19:04Z",
+      "side": 1,
+      "message": "I\u0027m confused, why do these all need to be parameterized?  The timers should basically never run in a unit test (ie all timeouts should be infinity, and unit test should call timeout functions directly).  Even so, I\u0027m not sure why making every one of these timeouts different helps unit tests.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 54
+      },
+      "revId": "c75ba12c256646fa813309b18d1f27933609613c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46b2e1f4_a2f39034",
+        "filename": "src/entity_manager/entity_manager.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-02T23:19:04Z",
+      "side": 1,
+      "message": "1. This needs some kind of object to hold them.  We\u0027re at the \"too many constructor arguments\" phase, certainly if all the types are the same.\n2. If we\u0027re needing all these timeouts in unit tests, I worry that we\u0027re not writing the \"unit\" part of the unit tests, and this class is doing too much.  We should be able to trigger each of these manually without needing to rely on the timeout itself, right?",
+      "revId": "c75ba12c256646fa813309b18d1f27933609613c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
