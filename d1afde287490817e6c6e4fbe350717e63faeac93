@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4759e53_8277bdbc",
+        "filename": "test/entity_manager/end_to_end_probe_intf.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-02T23:20:36Z",
+      "side": 1,
+      "message": "This isn\u0027t a mock.  A mock would mock out the actual service at an API level, this is ACTUALLY constructing a fru service.",
+      "range": {
+        "startLine": 14,
+        "startChar": 12,
+        "endLine": 14,
+        "endChar": 25
+      },
+      "revId": "d1afde287490817e6c6e4fbe350717e63faeac93",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "568fa003_42527843",
+        "filename": "test/entity_manager/end_to_end_probe_intf.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-02T23:20:36Z",
+      "side": 1,
+      "message": "same as in other patches, reading inline json in c code is a mess.",
+      "revId": "d1afde287490817e6c6e4fbe350717e63faeac93",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02de40b6_dcd55ffc",
+        "filename": "test/entity_manager/end_to_end_probe_intf.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-02T23:20:36Z",
+      "side": 1,
+      "message": "no need for a lambda here.  just use normal functions.",
+      "revId": "d1afde287490817e6c6e4fbe350717e63faeac93",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
