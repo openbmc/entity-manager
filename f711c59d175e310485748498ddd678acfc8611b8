@@ -16,6 +16,24 @@
       "message": "So now we\u0027re not passing the error out?  Not sure what that has to do with adding a unit test?  Probably deserves its own commit and message.",
       "revId": "f711c59d175e310485748498ddd678acfc8611b8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "127538b4_c1d00e6e",
+        "filename": "src/entity_manager/power_status_monitor.cpp",
+        "patchSetId": 46
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-12-03T15:34:06Z",
+      "side": 1,
+      "message": "Changed it to pass a separate parameter to the constructor which decides if we wan to query the initial state.",
+      "parentUuid": "3dff2dbc_583a35f7",
+      "revId": "f711c59d175e310485748498ddd678acfc8611b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

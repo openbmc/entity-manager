@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af6fe925_6a4971be",
+        "filename": "src/entity_manager/power_status_monitor.cpp",
+        "patchSetId": 40
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-12-03T15:34:06Z",
+      "side": 1,
+      "message": "Added a separate parameter to the constructor which decides if we want to query the initial power state. So the behavior will be as before in the regular control flow.",
+      "parentUuid": "d9dc1b91_e324805d",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 73
+      },
+      "revId": "cd614ec55eeb05d335db7326f98a838ee65efeb3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5ddfe42e_3c0b5cb3",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-12-02T22:54:56Z",
       "side": 1,
       "message": "This isn\u0027t a pattern that we\u0027d generally recommend.  If these are public (ie used in a unit test), make them public.",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 40
+      },
+      "revId": "cd614ec55eeb05d335db7326f98a838ee65efeb3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af72535e_20a89ebd",
+        "filename": "test/entity_manager/test_em.hpp",
+        "patchSetId": 40
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-12-03T15:34:06Z",
+      "side": 1,
+      "message": "public / private is declaring some *intention* for the rest of `src/`.\n\nI don\u0027t believe we can just make everything public just because there is some unit test somewhere.\n\n`public` / `private` is not super useful in a testing context because they prevent us from asserting things we may want to know, without necessarily exposing them to actual API users.\n\nWhich is why i use `protected`/`public` and then promote that `protected` to `public` with that neat trick there.\n\n\n\u003e If these are public (ie used in a unit test), make them public.\n\nA unit test is not a regular API consumer, it\u0027s like a second class citizen. I try to avoid messing up things in `src/` for the sake of `test/` if i can avoid it.",
+      "parentUuid": "5ddfe42e_3c0b5cb3",
       "range": {
         "startLine": 70,
         "startChar": 0,
