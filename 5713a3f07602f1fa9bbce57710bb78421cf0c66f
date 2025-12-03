@@ -22,6 +22,30 @@
       },
       "revId": "5713a3f07602f1fa9bbce57710bb78421cf0c66f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e38af9a_0cb17bb5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001843
+      },
+      "writtenOn": "2025-12-03T04:29:16Z",
+      "side": 1,
+      "message": "Thanks for the feedback.\n\nMy original motivation was the following: when entity-manager works together with phosphor-pid-control.service, updating the entire fan table at runtime currently requires:\n\n1. Modifying the fan-related JSON files inside entity-manager\n\n2. Deleting /var/configuration/system.json\n\n3. Restarting the entity-manager service\n\n4. Restarting entity-manager may affect other services that depend on it, causing unnecessary coupling across packages.\n\nThat’s why I initially considered adding a method to reload the JSON configuration without restarting the service. The intention was to make fan table updates more isolated and reduce the impact on other components.",
+      "parentUuid": "d73bcb70_d5cebc62",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 48
+      },
+      "revId": "5713a3f07602f1fa9bbce57710bb78421cf0c66f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
