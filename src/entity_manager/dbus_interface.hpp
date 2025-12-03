@@ -2,7 +2,7 @@
 
 #include "configuration.hpp"
 
-#include <boost/container/flat_map.hpp>
+#include <boost/asio/io_context.hpp>
 #include <nlohmann/json.hpp>
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/asio/connection.hpp>
@@ -65,9 +65,9 @@ class EMDBusInterface
     boost::asio::io_context& io;
     sdbusplus::asio::object_server& objServer;
 
-    boost::container::flat_map<
-        std::string,
-        std::vector<std::weak_ptr<sdbusplus::asio::dbus_interface>>>
+    std::flat_map<std::string,
+                  std::vector<std::weak_ptr<sdbusplus::asio::dbus_interface>>,
+                  std::less<>>
         inventory;
 
     const std::filesystem::path schemaDirectory;
