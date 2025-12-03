@@ -22,6 +22,30 @@
       },
       "revId": "680231eb3a3621df04faf2056fb036463212c4ad",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f7b8424_f7b86493",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-12-03T11:32:30Z",
+      "side": 1,
+      "message": "Why are we limited to unit tests? Don\u0027t we want to write integration tests as well?\n\n\u003e They can just directly call the \"timer is done\" method.\n\nWhy would we deviate from the control flow we are testing, unless necessary ?",
+      "parentUuid": "4fcae491_6363c209",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 40
+      },
+      "revId": "680231eb3a3621df04faf2056fb036463212c4ad",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
