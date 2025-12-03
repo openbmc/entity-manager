@@ -1025,7 +1025,39 @@
             "Address": "0x3c",
             "Bus": 3,
             "Labels": [
-                "power1"
+                "power1",
+                "power2",
+                "power3",
+                "power4",
+                "power5",
+                "power6",
+                "power7",
+                "power8",
+                "power9",
+                "power10",
+                "power11",
+                "power12",
+                "power13",
+                "power14",
+                "power15",
+                "power16",
+                "power17",
+                "temp1",
+                "temp2",
+                "temp3",
+                "temp4",
+                "temp5",
+                "temp6",
+                "temp7",
+                "temp8",
+                "temp9",
+                "temp10",
+                "temp11",
+                "temp12",
+                "temp13",
+                "temp14",
+                "temp15",
+                "temp16"
             ],
             "Name": "SBRMI",
             "PowerState": "BiosPost",
@@ -1037,10 +1069,298 @@
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 525
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.28,
+                    "Label": "power2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 14.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.28,
+                    "Label": "power3",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 14.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.28,
+                    "Label": "power4",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 14.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.28,
+                    "Label": "power5",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 14.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.28,
+                    "Label": "power6",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 14.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.28,
+                    "Label": "power7",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 14.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.28,
+                    "Label": "power8",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 14.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.28,
+                    "Label": "power9",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 14.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.28,
+                    "Label": "power10",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 14.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.28,
+                    "Label": "power11",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 14.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.28,
+                    "Label": "power12",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 14.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.28,
+                    "Label": "power13",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 14.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.28,
+                    "Label": "power14",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 14.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.28,
+                    "Label": "power15",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 14.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.28,
+                    "Label": "power16",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 14.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.28,
+                    "Label": "power17",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 14.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7,
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 82.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7,
+                    "Label": "temp2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 82.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7,
+                    "Label": "temp3",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 82.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7,
+                    "Label": "temp4",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 82.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7,
+                    "Label": "temp5",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 82.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7,
+                    "Label": "temp6",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 82.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7,
+                    "Label": "temp7",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 82.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7,
+                    "Label": "temp8",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 82.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7,
+                    "Label": "temp9",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 82.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7,
+                    "Label": "temp10",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 82.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7,
+                    "Label": "temp11",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 82.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7,
+                    "Label": "temp12",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 82.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7,
+                    "Label": "temp13",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 82.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7,
+                    "Label": "temp14",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 82.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7,
+                    "Label": "temp15",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 82.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7,
+                    "Label": "temp16",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 82.0
                 }
             ],
             "Type": "SBRMI",
-            "power1_Name": "MB_CPU_PKG_PWR_W"
+            "power10_Name": "MB_CPU_DIMM_A8_PWR_W",
+            "power11_Name": "MB_CPU_DIMM_A9_PWR_W",
+            "power12_Name": "MB_CPU_DIMM_A10_PWR_W",
+            "power13_Name": "MB_CPU_DIMM_A11_PWR_W",
+            "power14_Name": "MB_CPU_DIMM_A12_PWR_W",
+            "power15_Name": "MB_CPU_DIMM_A13_PWR_W",
+            "power16_Name": "MB_CPU_DIMM_A14_PWR_W",
+            "power17_Name": "MB_CPU_DIMM_A15_PWR_W",
+            "power1_Name": "MB_CPU_PKG_PWR_W",
+            "power2_Name": "MB_CPU_DIMM_A0_PWR_W",
+            "power3_Name": "MB_CPU_DIMM_A1_PWR_W",
+            "power4_Name": "MB_CPU_DIMM_A2_PWR_W",
+            "power5_Name": "MB_CPU_DIMM_A3_PWR_W",
+            "power6_Name": "MB_CPU_DIMM_A4_PWR_W",
+            "power7_Name": "MB_CPU_DIMM_A5_PWR_W",
+            "power8_Name": "MB_CPU_DIMM_A6_PWR_W",
+            "power9_Name": "MB_CPU_DIMM_A7_PWR_W",
+            "temp10_Name": "MB_CPU_DIMM_A9_TEMP_C",
+            "temp11_Name": "MB_CPU_DIMM_A10_TEMP_C",
+            "temp12_Name": "MB_CPU_DIMM_A11_TEMP_C",
+            "temp13_Name": "MB_CPU_DIMM_A12_TEMP_C",
+            "temp14_Name": "MB_CPU_DIMM_A13_TEMP_C",
+            "temp15_Name": "MB_CPU_DIMM_A14_TEMP_C",
+            "temp16_Name": "MB_CPU_DIMM_A15_TEMP_C",
+            "temp1_Name": "MB_CPU_DIMM_A0_TEMP_C",
+            "temp2_Name": "MB_CPU_DIMM_A1_TEMP_C",
+            "temp3_Name": "MB_CPU_DIMM_A2_TEMP_C",
+            "temp4_Name": "MB_CPU_DIMM_A3_TEMP_C",
+            "temp5_Name": "MB_CPU_DIMM_A4_TEMP_C",
+            "temp6_Name": "MB_CPU_DIMM_A5_TEMP_C",
+            "temp7_Name": "MB_CPU_DIMM_A6_TEMP_C",
+            "temp8_Name": "MB_CPU_DIMM_A7_TEMP_C",
+            "temp9_Name": "MB_CPU_DIMM_A8_TEMP_C"
         },
         {
             "Address": "0x4c",
