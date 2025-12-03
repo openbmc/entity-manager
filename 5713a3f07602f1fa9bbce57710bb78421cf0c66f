@@ -46,6 +46,30 @@
       },
       "revId": "5713a3f07602f1fa9bbce57710bb78421cf0c66f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e77279c_92305567",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001843
+      },
+      "writtenOn": "2025-12-03T04:57:55Z",
+      "side": 1,
+      "message": "Currently, there are two practical ways to update PID-related settings without rebooting the BMC:\n\n1. Using D-Bus Set-property\nThis works for small or incremental changes, but it is not suitable when the configuration needs to be updated extensively.\n\n2. Removing the cached JSON configuration and restarting the entity-manager service\nThis reliably reloads the full configuration, but restarting the service can have side effects on other components that depend on it.\n\nMy motivation for proposing a reload method was to provide an option that allows large configuration updates without requiring a service restart, and that could be useful for future use cases or for other packages that may need to update entity-manager configurations at runtime.\n\nI’m open to alternative approaches if there is a preferred upstream way to handle this scenario.",
+      "parentUuid": "8e38af9a_0cb17bb5",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 48
+      },
+      "revId": "5713a3f07602f1fa9bbce57710bb78421cf0c66f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
