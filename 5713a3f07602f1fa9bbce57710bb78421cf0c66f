@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d73bcb70_d5cebc62",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-12-03T03:39:07Z",
+      "side": 1,
+      "message": "I do not think we should add a dbus interface for this.\n\n1. entity-manager could use inotify to identify changes in the directories it is watching.  There is really no need for anyone to explicitly tell it to reload the JSON.\n\n2. If we didn\u0027t want to use inotify, we can support `systemctl reload` which is the standard way of telling a daemon to reload its configuration.\n\nI don\u0027t really want new undocumented human-only dbus interfaces, especially when there are more standard ways to express the same behavior.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 48
+      },
+      "revId": "5713a3f07602f1fa9bbce57710bb78421cf0c66f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
