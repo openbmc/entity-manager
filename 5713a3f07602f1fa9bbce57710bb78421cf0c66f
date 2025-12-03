@@ -70,6 +70,23 @@
       },
       "revId": "5713a3f07602f1fa9bbce57710bb78421cf0c66f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20c714bc_f2f4e1a6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-03T21:11:19Z",
+      "side": 1,
+      "message": "Overall, the move from platform.json to dbus was to avoid doing complete system reloads on a single property change.  Everything you\u0027re trying to accomplished can be done externally, without being directly on the box using Redfish OEM Manager schemas.\n\nIn a development environment where you are testing EM changes, I believe just restarting the service fulfills this use case.  I\u0027m very much NOT interested in supporting writing config files from other sources outside of the service and having some kind of reload mechanisms.  The existing DBus API is already fit for that purpose, and gives some level of error handling and feedback when sets are done incorrectly.  If you MUST load these things at runtime, that\u0027s what the AddObject API (Widely disliked, but very flexible) is for.",
+      "revId": "5713a3f07602f1fa9bbce57710bb78421cf0c66f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
