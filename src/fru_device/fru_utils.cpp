@@ -1672,8 +1672,8 @@ std::optional<std::string> getProductName(
         !productNameFind->second.empty())
     {
         productName = productNameFind->second;
-        productName = std::regex_replace(
-            productName, dbus_regex::illegalDbusMemberRegex, "_");
+
+        dbus_regex::sanitizeMemberInPlace(productName);
     }
     else
     {
