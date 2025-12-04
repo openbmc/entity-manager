@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bcbe830_fd8b59e0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-04T20:31:28Z",
+      "side": 1,
+      "message": "I can\u0027t imaging anyone is worried about logging statements.  Moving forward.",
+      "revId": "4e476dddbc2c8ece3fc4ed24e892a4560d71f3cc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31d3d07e_9219d2e2",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-04T20:31:28Z",
+      "side": 1,
+      "message": "FYI, this lambda is too long, and if this were more than a trivial logging statement, I\u0027d ask for this to be broken out into a method.  It\u0027s fine for now, but just FYI.",
+      "revId": "4e476dddbc2c8ece3fc4ed24e892a4560d71f3cc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
