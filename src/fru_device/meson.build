@@ -13,6 +13,7 @@ executable(
     'fru-device',
     'fru_device.cpp',
     '../utils.cpp',
+    '../dbus_regex.cpp',
     'fru_reader.cpp',
     'fru_utils.cpp',
     'gzip_utils.cpp',
