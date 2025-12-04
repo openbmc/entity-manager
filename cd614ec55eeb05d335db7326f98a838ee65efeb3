@@ -93,6 +93,30 @@
       },
       "revId": "cd614ec55eeb05d335db7326f98a838ee65efeb3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb62603e_727d1acb",
+        "filename": "test/entity_manager/test_em.hpp",
+        "patchSetId": 40
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-04T20:44:59Z",
+      "side": 1,
+      "message": "\u003e public / private is declaring some *intention* for the rest of `src/`.\n\u003e \n\u003e I don\u0027t believe we can just make everything public just because there is some unit test somewhere.\n\nWe disagree, and that\u0027s fine.  I find this form hard to reason about, because I have to look at two different files to trace a unit test.\n\n\u003e \n\u003e `public` / `private` is not super useful in a testing context because they prevent us from asserting things we may want to know, without necessarily exposing them to actual API users.\n\u003e \n\u003e Which is why i use `protected`/`public` and then promote that `protected` to `public` with that neat trick there.\n\nRight, and \"neat trick\" is something that\u0027s in conflict with keeping code clear and concise, which is the #1 rule in the coding standard.\n\nThis specific pattern is covered pretty clearly in cpp core guidelines under the title \"Avoid protected data\" so I don\u0027t think I\u0027m off base here.  https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#rh-protected\n\n\u003e \n\u003e \n\u003e \u003e If these are public (ie used in a unit test), make them public.\n\u003e \n\u003e A unit test is not a regular API consumer, it\u0027s like a second class citizen. I try to avoid messing up things in `src/` for the sake of `test/` if i can avoid it.\n\nI think this statement is disputed better by cpp core guidelines than I can do, so please read it, and if you disagree with the advice, or think it doesn\u0027t apply, we can continue this conversation.",
+      "parentUuid": "af72535e_20a89ebd",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 40
+      },
+      "revId": "cd614ec55eeb05d335db7326f98a838ee65efeb3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
