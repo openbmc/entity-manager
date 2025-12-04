@@ -78,6 +78,17 @@ test(
 )
 
 test(
+    'test_dbus_regex',
+    executable(
+        'test_dbus_regex',
+        'test_dbus_regex.cpp',
+        '../src/dbus_regex.cpp',
+        include_directories: test_include_dir,
+        dependencies: [gtest],
+    ),
+)
+
+test(
     'test_gpio_presence_state',
     executable(
         'test_gpio_presence_state',
