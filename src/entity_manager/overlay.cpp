@@ -3,6 +3,7 @@
 
 #include "overlay.hpp"
 
+#include "../dbus_regex.hpp"
 #include "../utils.hpp"
 #include "devices.hpp"
 #include "utils.hpp"
@@ -24,8 +25,6 @@ constexpr const char* outputDir = "/tmp/overlays";
 constexpr const char* templateChar = "$";
 constexpr const char* i2CDevsDir = "/sys/bus/i2c/devices";
 constexpr const char* muxSymlinkDir = "/dev/i2c-mux";
-
-const std::regex illegalNameRegex("[^A-Za-z0-9_]");
 
 // helper function to make json types into string
 std::string jsonToString(const nlohmann::json& in)
@@ -228,8 +227,9 @@ void exportDevice(const devices::ExportTemplate& exportTemplate,
         if (keyPair.key() == "Name" &&
             keyPair.value().type() == nlohmann::json::value_t::string)
         {
-            subsituteString = std::regex_replace(
-                keyPair.value().get<std::string>(), illegalNameRegex, "_");
+            subsituteString =
+                std::regex_replace(keyPair.value().get<std::string>(),
+                                   dbus_regex::illegalDbusMemberRegex, "_");
             name = subsituteString;
         }
         else
