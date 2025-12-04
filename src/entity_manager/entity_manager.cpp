@@ -148,9 +148,8 @@ void EntityManager::postBoardToDBus(
         findBoardType->type() == nlohmann::json::value_t::string)
     {
         boardType = findBoardType->get<std::string>();
-        std::regex_replace(boardType.begin(), boardType.begin(),
-                           boardType.end(), dbus_regex::illegalDbusMemberRegex,
-                           "_");
+
+        dbus_regex::sanitizeMemberInPlace(boardType);
     }
     else
     {
@@ -248,16 +247,16 @@ void EntityManager::postExposesRecordsToDBus(
     if (findType != item.end())
     {
         itemType = findType->get<std::string>();
-        std::regex_replace(itemType.begin(), itemType.begin(), itemType.end(),
-                           dbus_regex::illegalDbusPathRegex, "_");
+        dbus_regex::sanitizePathInPlace(itemType);
     }
     else
     {
         itemType = "unknown";
     }
     std::string itemName = findName->get<std::string>();
-    std::regex_replace(itemName.begin(), itemName.begin(), itemName.end(),
-                       dbus_regex::illegalDbusMemberRegex, "_");
+
+    dbus_regex::sanitizeMemberInPlace(itemName);
+
     std::string ifacePath = boardPath;
     ifacePath += "/";
     ifacePath += itemName;
