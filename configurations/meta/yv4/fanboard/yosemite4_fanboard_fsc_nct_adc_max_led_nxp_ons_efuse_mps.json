@@ -673,11 +673,11 @@
     ],
     "Name": "Yosemite 4 Fan Board $bus % 30",
     "Probe": [
-        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Fan Board FSC-NCT ADC-MAX LED-ONS EFUSE-MPS', 'PRODUCT_PRODUCT_NAME': 'Yosemite V4'})",
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Fan Board FSC-NCT ADC-MAX LED-ONS EFUSE-MPS', 'PRODUCT_PRODUCT_NAME': 'Yosemite V4', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)'})",
         "OR",
-        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Fan Board FSC-NCT ADC-MAX LED-NXP EFUSE-MPS', 'PRODUCT_PRODUCT_NAME': 'Yosemite V4'})",
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Fan Board FSC-NCT ADC-MAX LED-NXP EFUSE-MPS', 'PRODUCT_PRODUCT_NAME': 'Yosemite V4', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)'})",
         "OR",
-        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Fan Board FSC-NCT ADC-MAX EFUSE-MPS', 'PRODUCT_PRODUCT_NAME': 'Yosemite V4'})"
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Fan Board FSC-NCT ADC-MAX EFUSE-MPS', 'PRODUCT_PRODUCT_NAME': 'Yosemite V4', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)'})"
     ],
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
