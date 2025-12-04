@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "427a841d_a4f78368",
+        "filename": "src/entity_manager/power_status_monitor.cpp",
+        "patchSetId": 48
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-04T20:48:54Z",
+      "side": 1,
+      "message": "Rather than making this a bool, should we just make the one place where this is constructed just call getInitialPowerStatus() after it\u0027s constructed?  Passing in a bool that UT sets one way and normal path sets another way seems like we\u0027ll just be missing coverage.",
+      "range": {
+        "startLine": 31,
+        "startChar": 1,
+        "endLine": 32,
+        "endChar": 17
+      },
+      "revId": "b2bd21db374a141a10ca3ea0278bc240403a6a54",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d7e09d9_2d0cd1d0",
+        "filename": "test/entity_manager/test_em.hpp",
+        "patchSetId": 48
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-04T20:48:54Z",
+      "side": 1,
+      "message": "Would really prefer we don\u0027t do multiple inheritance here.  Tracking this stuff is a mess, and functionally UniqueSuffix only calls one method.  Just call the method in the class in an override, and do composition rather than inheritence.",
+      "range": {
+        "startLine": 29,
+        "startChar": 15,
+        "endLine": 29,
+        "endChar": 56
+      },
+      "revId": "b2bd21db374a141a10ca3ea0278bc240403a6a54",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
