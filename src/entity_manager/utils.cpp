@@ -315,8 +315,8 @@ std::string buildInventorySystemPath(std::string& boardName,
 {
     std::string path = "/xyz/openbmc_project/inventory/system/";
     std::string boardTypeLower = toLowerCopy(boardType);
-    std::regex_replace(boardName.begin(), boardName.begin(), boardName.end(),
-                       dbus_regex::illegalDbusMemberRegex, "_");
+
+    boardName = dbus_regex::sanitizeForDBusMember(boardName);
 
     return std::format("{}{}/{}", path, boardTypeLower, boardName);
 }

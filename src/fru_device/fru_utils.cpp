@@ -1671,9 +1671,8 @@ std::optional<std::string> getProductName(
     if (productNameFind != formattedFRU.end() &&
         !productNameFind->second.empty())
     {
-        productName = productNameFind->second;
-        productName = std::regex_replace(
-            productName, dbus_regex::illegalDbusMemberRegex, "_");
+        productName =
+            dbus_regex::sanitizeForDBusMember(productNameFind->second);
     }
     else
     {
