@@ -18,6 +18,7 @@ entity_manager_lib = static_library(
     'config_cache.cpp',
     'expression.cpp',
     'dbus_interface.cpp',
+    '../dbus_regex.cpp',
     'perform_scan.cpp',
     'perform_probe.cpp',
     'power_status_monitor.cpp',
