@@ -102,6 +102,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "259e5625_34f8e1d2",
+        "filename": "test/entity_manager/dbus_test.hpp",
+        "patchSetId": 30
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-04T20:51:34Z",
+      "side": 1,
+      "message": "\u003e does not have every type in there which i need.\n\nSo, add the types?  FWIW, keeping a single variable with \"all possible\" unpack types is what bmcweb transitioned to a few years ago, and it simplified a lot of APIs, and dropped the compile times a bunch.  method_call templates are very heavy to compile, and having multiple \"property\" types causes a lot of duplicated code in the binary.",
+      "parentUuid": "6886f987_e9b025a0",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 53
+      },
+      "revId": "045cdc5e547b369fc1331adf9d974b9ece76f185",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d901afed_3cc1fde1",
         "filename": "test/entity_manager/dbus_test.hpp",
         "patchSetId": 30
@@ -178,6 +202,24 @@
       "side": 1,
       "message": "Fixed it 👍",
       "parentUuid": "2d207dbe_e95d96a3",
+      "revId": "045cdc5e547b369fc1331adf9d974b9ece76f185",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e89f655c_8aea6b6c",
+        "filename": "test/entity_manager/dbus_test.hpp",
+        "patchSetId": 30
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-04T20:51:34Z",
+      "side": 1,
+      "message": "Thank you, appreciate it.",
+      "parentUuid": "d1a82cc6_b8e201fd",
       "revId": "045cdc5e547b369fc1331adf9d974b9ece76f185",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
