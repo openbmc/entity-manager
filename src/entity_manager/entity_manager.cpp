@@ -3,6 +3,7 @@
 
 #include "entity_manager.hpp"
 
+#include "../dbus_regex.hpp"
 #include "../utils.hpp"
 #include "../variant_visitors.hpp"
 #include "config_cache.hpp"
@@ -37,9 +38,6 @@
 
 static constexpr std::array<const char*, 6> settableInterfaces = {
     "FanProfile", "Pid", "Pid.Zone", "Stepwise", "Thresholds", "Polling"};
-
-const std::regex illegalDbusPathRegex("[^A-Za-z0-9_.]");
-const std::regex illegalDbusMemberRegex("[^A-Za-z0-9_]");
 
 sdbusplus::asio::PropertyPermission getPermission(const std::string& interface)
 {
@@ -150,7 +148,8 @@ void EntityManager::postBoardToDBus(
     {
         boardType = findBoardType->get<std::string>();
         std::regex_replace(boardType.begin(), boardType.begin(),
-                           boardType.end(), illegalDbusMemberRegex, "_");
+                           boardType.end(), dbus_regex::illegalDbusMemberRegex,
+                           "_");
     }
     else
     {
@@ -249,7 +248,7 @@ void EntityManager::postExposesRecordsToDBus(
     {
         itemType = findType->get<std::string>();
         std::regex_replace(itemType.begin(), itemType.begin(), itemType.end(),
-                           illegalDbusPathRegex, "_");
+                           dbus_regex::illegalDbusPathRegex, "_");
     }
     else
     {
@@ -257,7 +256,7 @@ void EntityManager::postExposesRecordsToDBus(
     }
     std::string itemName = findName->get<std::string>();
     std::regex_replace(itemName.begin(), itemName.begin(), itemName.end(),
-                       illegalDbusMemberRegex, "_");
+                       dbus_regex::illegalDbusMemberRegex, "_");
     std::string ifacePath = boardPath;
     ifacePath += "/";
     ifacePath += itemName;
