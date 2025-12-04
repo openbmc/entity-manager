@@ -8,7 +8,6 @@
 
 #include <flat_map>
 #include <fstream>
-#include <regex>
 #include <string>
 #include <vector>
 
@@ -355,8 +354,7 @@ void EMDBusInterface::addObjectJson(
     }
     std::string dbusName = *name;
 
-    std::regex_replace(dbusName.begin(), dbusName.begin(), dbusName.end(),
-                       dbus_regex::illegalDbusMemberRegex, "_");
+    dbus_regex::sanitizeMember(dbusName);
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> interface =
         createInterface(path + "/" + dbusName,
