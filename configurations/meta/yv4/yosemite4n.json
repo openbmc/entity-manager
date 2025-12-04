@@ -785,7 +785,7 @@
         }
     ],
     "Name": "Yosemite 4 Management Board",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Management Board wN-BMC', 'PRODUCT_PRODUCT_NAME': 'Yosemite V4'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Management Board wN-BMC', 'PRODUCT_PRODUCT_NAME': 'Yosemite V4', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
