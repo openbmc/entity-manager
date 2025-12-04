@@ -1,11 +1,11 @@
 #pragma once
 
-#include <regex>
+#include <string>
 
 namespace dbus_regex
 {
 
-extern const std::regex illegalDbusPathRegex;
-extern const std::regex illegalDbusMemberRegex;
+std::string sanitizeMember(const std::string& str);
+std::string sanitizePath(const std::string& str);
 
 } // namespace dbus_regex
