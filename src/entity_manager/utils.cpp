@@ -1,5 +1,6 @@
 #include "utils.hpp"
 
+#include "../dbus_regex.hpp"
 #include "../utils.hpp"
 #include "../variant_visitors.hpp"
 #include "expression.hpp"
@@ -9,8 +10,6 @@
 
 #include <fstream>
 #include <regex>
-
-const std::regex illegalDbusMemberRegex("[^A-Za-z0-9_]");
 
 namespace em_utils
 {
@@ -320,7 +319,7 @@ std::string buildInventorySystemPath(std::string& boardName,
     std::string path = "/xyz/openbmc_project/inventory/system/";
     std::string boardTypeLower = toLowerCopy(boardType);
     std::regex_replace(boardName.begin(), boardName.begin(), boardName.end(),
-                       illegalDbusMemberRegex, "_");
+                       dbus_regex::illegalDbusMemberRegex, "_");
 
     return std::format("{}{}/{}", path, boardTypeLower, boardName);
 }
