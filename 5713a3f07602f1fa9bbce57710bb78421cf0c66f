@@ -114,6 +114,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f6cf025e_43b2d809",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001843
+      },
+      "writtenOn": "2025-12-04T11:48:04Z",
+      "side": 1,
+      "message": "Thank you for the review.\n\nRegarding the need to frequently adjust the fan table:\nOur thermal engineers often require a try-and-error process to fine-tune and calibrate the PID coefficients.\nBecause of this workflow, being able to reload the updated table without performing a full EntityManager service restart was helpful during development.\n\nAs for evb-ast2600.json, that file is from my local meta-evb testing environment, which is why it does not exist in the upstream repository.",
+      "parentUuid": "6799ae15_4391dd8c",
+      "range": {
+        "startLine": 30,
+        "startChar": 27,
+        "endLine": 30,
+        "endChar": 44
+      },
+      "revId": "5713a3f07602f1fa9bbce57710bb78421cf0c66f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "20c714bc_f2f4e1a6",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
