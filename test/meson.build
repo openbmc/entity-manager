@@ -37,6 +37,7 @@ test(
             sdbusplus,
             zlib_dep,
         ],
+        link_with: utils_lib,
         include_directories: test_include_dir,
     ),
 )

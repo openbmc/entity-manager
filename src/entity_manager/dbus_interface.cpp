@@ -1,5 +1,6 @@
 #include "dbus_interface.hpp"
 
+#include "../dbus_regex.hpp"
 #include "perform_probe.hpp"
 #include "utils.hpp"
 
@@ -13,9 +14,6 @@
 
 namespace dbus_interface
 {
-
-const std::regex illegalDbusPathRegex("[^A-Za-z0-9_.]");
-const std::regex illegalDbusMemberRegex("[^A-Za-z0-9_]");
 
 EMDBusInterface::EMDBusInterface(boost::asio::io_context& io,
                                  sdbusplus::asio::object_server& objServer,
@@ -358,7 +356,7 @@ void EMDBusInterface::addObjectJson(
     std::string dbusName = *name;
 
     std::regex_replace(dbusName.begin(), dbusName.begin(), dbusName.end(),
-                       illegalDbusMemberRegex, "_");
+                       dbus_regex::illegalDbusMemberRegex, "_");
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> interface =
         createInterface(path + "/" + dbusName,
