@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa8989f2_c3628c21",
+        "filename": "test/entity_manager/dbus_interface.cpp",
+        "patchSetId": 30
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-12-04T09:37:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c090f315_3862151b",
+      "revId": "045cdc5e547b369fc1331adf9d974b9ece76f185",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d2ab67b8_afe75234",
@@ -48,6 +66,30 @@
       "writtenOn": "2025-12-02T23:02:22Z",
       "side": 1,
       "message": "1. we\u0027re trying to reduce the use of boost flat map and replace with std\n2. You didn\u0027t include the boost flat map header here.\n3. This isn\u0027t really a \"test\" type.  Ideally for dbus types we should be parsing using the same methods in tests and functional code.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 53
+      },
+      "revId": "045cdc5e547b369fc1331adf9d974b9ece76f185",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6886f987_e9b025a0",
+        "filename": "test/entity_manager/dbus_test.hpp",
+        "patchSetId": 30
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-12-04T09:37:46Z",
+      "side": 1,
+      "message": "Fixed 1,2, and added another patch to the series to remove the last usage of the boost flat map.\n\nFor 3, EM does not query it\u0027s own DBus interface, so it does not have such a type.\n\nIt has `DBusInterface` and `DBusValue` types declared in `src/utils.hpp` but that does not have every type in there which i need.\n\nSo rather than risking to break some code by messing with that variant, i declare one here for local use.",
+      "parentUuid": "d2ab67b8_afe75234",
       "range": {
         "startLine": 13,
         "startChar": 0,
@@ -81,6 +123,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "04342d11_ffb3498d",
+        "filename": "test/entity_manager/dbus_test.hpp",
+        "patchSetId": 30
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-12-04T09:37:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d901afed_3cc1fde1",
+      "range": {
+        "startLine": 43,
+        "startChar": 47,
+        "endLine": 43,
+        "endChar": 72
+      },
+      "revId": "045cdc5e547b369fc1331adf9d974b9ece76f185",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2d207dbe_e95d96a3",
@@ -98,6 +164,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1a82cc6_b8e201fd",
+        "filename": "test/entity_manager/dbus_test.hpp",
+        "patchSetId": 30
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-12-04T09:37:46Z",
+      "side": 1,
+      "message": "Fixed it 👍",
+      "parentUuid": "2d207dbe_e95d96a3",
+      "revId": "045cdc5e547b369fc1331adf9d974b9ece76f185",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b518c8d7_5cb6b850",
@@ -111,6 +195,30 @@
       "writtenOn": "2025-12-02T23:02:22Z",
       "side": 1,
       "message": "Why post here?",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 61
+      },
+      "revId": "045cdc5e547b369fc1331adf9d974b9ece76f185",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81e07254_7b6180d6",
+        "filename": "test/entity_manager/dbus_test.hpp",
+        "patchSetId": 30
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-12-04T09:37:46Z",
+      "side": 1,
+      "message": "I can\u0027t remember exactly why i did that. Maybe it\u0027s required for a patch further up. Removed it here for now.",
+      "parentUuid": "b518c8d7_5cb6b850",
       "range": {
         "startLine": 74,
         "startChar": 0,
