@@ -18,7 +18,6 @@
 #include <flat_map>
 #include <fstream>
 #include <iomanip>
-#include <regex>
 #include <string>
 
 constexpr const char* outputDir = "/tmp/overlays";
@@ -228,8 +227,7 @@ void exportDevice(const devices::ExportTemplate& exportTemplate,
             keyPair.value().type() == nlohmann::json::value_t::string)
         {
             subsituteString =
-                std::regex_replace(keyPair.value().get<std::string>(),
-                                   dbus_regex::illegalDbusMemberRegex, "_");
+                dbus_regex::sanitizeMember(keyPair.value().get<std::string>());
             name = subsituteString;
         }
         else
