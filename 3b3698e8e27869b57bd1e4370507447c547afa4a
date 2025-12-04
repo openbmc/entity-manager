@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "c9af682b_b16d18e8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-12-04T11:40:33Z",
+      "side": 1,
+      "message": "For integration tests we want to cover a large amount of code.\n\nFor proper testing, we need both the unit test (single component)\nand integration test (everything working together).\n\nIntegration tests are very useful to prevent regressions and it\u0027s beneficial to run them close to the code path which would be run on a real system.\n\nIMO it would make sense to make this change anyways, independent of any tests, but it\u0027s required for integration testing so i am doing it as part of this series.",
+      "parentUuid": "e9b422df_f419df34",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 32
+      },
+      "revId": "3b3698e8e27869b57bd1e4370507447c547afa4a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "bea0da06_5cc452c4",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 6
@@ -58,6 +82,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cff4e8c2_57a17cf4",
+        "filename": "src/entity_manager/configuration.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-12-04T11:40:33Z",
+      "side": 1,
+      "message": "\u003e Alternatively, I suspect these should just be the same object?\n\nThe main difference between `Configuration` class and `SystemConfiguration` class\nis that `Configuration` class represents the configuration as it was loaded and \n\n`SystemConfiguration` represents whatever caching EM wants to persist for later use.\n\n### separate purpose\n\nSo in terms of SRP principle ❤️ `Configuration` has responsibility to load the configuration (which does not change) and `SystemConfiguration` is for persistence of files representing current system state which does change.\n\n### separate filesystems\n\n`class Configuration` works on  `/usr/share/`\nhttps://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch04s11.html\n\nand `class SystemConfiguration` works on `/var/`\nhttps://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch05.html\n\nwhich can be neatly separated.\n\nThe 2 classes do not need to share information, they have no overlap, and they do not have pointers to each other. I\u0027m 95% sure they cannot even reach each over via any of their member functions.\n\nSo i would prefer to keep them separate.\n\n\u003e we should probably do at least some naming conventions to make sure that \"Configuration\" and \"SystemConfiguration\" aren\u0027t mistaken for one another, and the classes are clear.\n\n100% agree. I renamed to it to `class ConfigCache` to clarify the purpose and align with the variable name used for the instance throughout the patch.\n\nLet me know if you find a better name 👍",
+      "parentUuid": "f33ad20d_104e1945",
+      "revId": "3b3698e8e27869b57bd1e4370507447c547afa4a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f50b60d_277d4521",
@@ -71,6 +113,30 @@
       "writtenOn": "2025-12-02T23:07:01Z",
       "side": 1,
       "message": "I\u0027m a little confused here, why does the DBUS interface need to know about filesystem directories?  that seems like a strange encapsulation of concerns?",
+      "range": {
+        "startLine": 25,
+        "startChar": 34,
+        "endLine": 25,
+        "endChar": 49
+      },
+      "revId": "3b3698e8e27869b57bd1e4370507447c547afa4a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25e13254_545ed627",
+        "filename": "src/entity_manager/dbus_interface.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-12-04T11:40:33Z",
+      "side": 1,
+      "message": "configuration changes are persisted to file when `AddObject` API is used which is part of EMDBusInterface class. That\u0027s why it needs a pointer to `SystemConfiguration`",
+      "parentUuid": "2f50b60d_277d4521",
       "range": {
         "startLine": 25,
         "startChar": 34,
@@ -104,6 +170,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ce6d2f7_b7248382",
+        "filename": "src/entity_manager/dbus_interface.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-12-04T11:40:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b90cb80_a4970eff",
+      "range": {
+        "startLine": 26,
+        "startChar": 16,
+        "endLine": 26,
+        "endChar": 25
+      },
+      "revId": "3b3698e8e27869b57bd1e4370507447c547afa4a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "11e5d605_c4cf545b",
@@ -117,6 +207,30 @@
       "writtenOn": "2025-12-02T22:37:29Z",
       "side": 1,
       "message": "\u003e to make it in the journal\n\nWas this comment here when you started the refactor?  Think it still holds and this can\u0027t just be info?",
+      "range": {
+        "startLine": 47,
+        "startChar": 48,
+        "endLine": 47,
+        "endChar": 73
+      },
+      "revId": "3b3698e8e27869b57bd1e4370507447c547afa4a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90c4da61_4557e511",
+        "filename": "src/entity_manager/system_configuration.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-12-04T11:40:33Z",
+      "side": 1,
+      "message": "It\u0027s an old comment which was there before.\n\nIf it will be stored and persisted in journal depends on journal policy so if someone made it error before maybe for them `info` level is not stored / persisted?\n\nAnyways, logging it as an error is misrepresenting it since it\u0027s not an error.\nAnd it\u0027s not in line with other similar logs.\n\nAdjusted it to be `info` level, thanks for pointing it out 👍",
+      "parentUuid": "11e5d605_c4cf545b",
       "range": {
         "startLine": 47,
         "startChar": 48,
