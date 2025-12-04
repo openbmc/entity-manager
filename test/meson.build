@@ -24,6 +24,7 @@ test(
         'test_fru_utils',
         'test_fru-utils.cpp',
         'test_gzip-utils.cpp',
+        '../src/dbus_regex.cpp',
         '../src/fru_device/fru_utils.cpp',
         '../src/fru_device/fru_reader.cpp',
         '../src/fru_device/gzip_utils.cpp',
