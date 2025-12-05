@@ -209,14 +209,15 @@
         {
             "Address": "0x4c",
             "Bus": "$bus",
-            "Name": "PDB_R_2_TEMP_C",
-            "Name1": "PDB_R_2_TEMP2_C",
+            "Name": "PDB_R_P12V_MB VRM_TEMP_C",
+            "Name1": "PDB_R_BUSBAR_TEMP_C",
+            "Name2": "PDB_R_EAM2_TEMP_C",
             "Type": "TMP432"
         },
         {
             "Address": "0x48",
             "Bus": "$bus",
-            "Name": "PDB_R_1_TEMP_C",
+            "Name": "PDB_R_OUTLET_TEMP_C",
             "Type": "TMP75"
         }
     ],
