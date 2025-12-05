@@ -186,7 +186,7 @@
             "in5_Scale": 500,
             "in6_Name": "CXL_ADC_P2V5_VPP_CH02_VOLT_V",
             "in6_Scale": 500,
-            "in7_Name": "CXL_ADC_P1V2_VDD_HA"
+            "in7_Name": "CXL_ADC_P1V2_VDD_HA_VOLT_V"
         },
         {
             "Address": "0x4d",
@@ -426,14 +426,14 @@
                 }
             ],
             "Type": "RAA228228",
-            "iout1_Name": "CXL_PVDD_CORE_CURR_A",
-            "iout2_Name": "CXL_P0V75_VDD_DIG_CURR_A",
-            "pout1_Name": "CXL_PVDD_CORE_PWR_W",
-            "pout2_Name": "CXL_P0V75_VDD_DIG_PWR_W",
-            "temp1_Name": "CXL_PVDD_CORE_TEMP_C",
-            "temp2_Name": "CXL_P0V75_VDD_DIG_TEMP_C",
-            "vout1_Name": "CXL_PVDD_CORE_VOLT_V",
-            "vout2_Name": "CXL_P0V75_VDD_DIG_VOLT_V"
+            "iout1_Name": "CXL_VR_PVDD_CORE_CURR_A",
+            "iout2_Name": "CXL_VR_P0V75_VDD_DIG_DDR_CURR_A",
+            "pout1_Name": "CXL_VR_PVDD_CORE_PWR_W",
+            "pout2_Name": "CXL_VR_P0V75_VDD_DIG_DDR_PWR_W",
+            "temp1_Name": "CXL_VR_PVDD_CORE_TEMP_C",
+            "temp2_Name": "CXL_VR_P0V75_VDD_DIG_DDR_TEMP_C",
+            "vout1_Name": "CXL_VR_PVDD_CORE_VOLT_V",
+            "vout2_Name": "CXL_VR_P0V75_VDD_DIG_DDR_VOLT_V"
         },
         {
             "Address": "0x61",
@@ -513,10 +513,10 @@
                 }
             ],
             "Type": "RAA228228",
-            "iout1_Name": "CXL_P1V2_VDD_DDR02_CURR_A",
-            "pout1_Name": "CXL_P1V2_VDD_DDR02_PWR_W",
-            "temp1_Name": "CXL_P1V2_VDD_DDR02_TEMP_C",
-            "vout1_Name": "CXL_P1V2_VDD_DDR02_VOLT_V"
+            "iout1_Name": "CXL_VR_P1V2_VDD_DDR02_CURR_A",
+            "pout1_Name": "CXL_VR_P1V2_VDD_DDR02_PWR_W",
+            "temp1_Name": "CXL_VR_P1V2_VDD_DDR02_TEMP_C",
+            "vout1_Name": "CXL_VR_P1V2_VDD_DDR02_VOLT_V"
         },
         {
             "Address": "0x72",
@@ -596,10 +596,10 @@
                 }
             ],
             "Type": "RAA228228",
-            "iout1_Name": "CXL_P1V2_VDD_DDR13_CURR_A",
-            "pout1_Name": "CXL_P1V2_VDD_DDR13_PWR_W",
-            "temp1_Name": "CXL_P1V2_VDD_DDR13_TEMP_C",
-            "vout1_Name": "CXL_P1V2_VDD_DDR13_VOLT_V"
+            "iout1_Name": "CXL_VR_P1V2_VDD_DDR13_CURR_A",
+            "pout1_Name": "CXL_VR_P1V2_VDD_DDR13_PWR_W",
+            "temp1_Name": "CXL_VR_P1V2_VDD_DDR13_TEMP_C",
+            "vout1_Name": "CXL_VR_P1V2_VDD_DDR13_VOLT_V"
         },
         {
             "Address": "0x61",
