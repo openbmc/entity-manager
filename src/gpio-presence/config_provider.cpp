@@ -4,22 +4,17 @@
  */
 #include "config_provider.hpp"
 
+#include "../utils.hpp"
+
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/async/match.hpp>
 #include <sdbusplus/bus/match.hpp>
 #include <xyz/openbmc_project/ObjectMapper/client.hpp>
 
-#include <flat_map>
 #include <ranges>
 #include <string>
 
 PHOSPHOR_LOG2_USING;
-
-using VariantType =
-    std::variant<std::vector<std::string>, std::string, int64_t, uint64_t,
-                 double, int32_t, uint32_t, int16_t, uint16_t, uint8_t, bool>;
-using ConfigMap = std::flat_map<std::string, VariantType>;
-using ConfigData = std::flat_map<std::string, ConfigMap>;
 
 namespace gpio_presence
 {
@@ -99,7 +94,7 @@ auto ConfigProvider::handleInterfacesAdded(AddedCallback addConfig)
     while (!ctx.stop_requested())
     {
         auto tmp = co_await addedMatch
-                       .next<sdbusplus::message::object_path, ConfigData>();
+                       .next<sdbusplus::message::object_path, DBusObject>();
 
         auto [objPath, intfMap] = std::move(tmp);
 
