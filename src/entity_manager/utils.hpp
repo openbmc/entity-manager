@@ -1,16 +1,10 @@
 #pragma once
 
+#include "../utils.hpp"
+
 #include <boost/asio/io_context.hpp>
 #include <nlohmann/json.hpp>
 #include <sdbusplus/asio/connection.hpp>
-
-#include <flat_map>
-
-using DBusValueVariant =
-    std::variant<std::string, int64_t, uint64_t, double, int32_t, uint32_t,
-                 int16_t, uint16_t, uint8_t, bool, std::vector<uint8_t>>;
-using DBusInterface = std::flat_map<std::string, DBusValueVariant, std::less<>>;
-using DBusObject = std::flat_map<std::string, DBusInterface, std::less<>>;
 
 constexpr const char* configurationOutDir = "/var/configuration/";
 constexpr const char* versionHashFile = "/var/configuration/version";
