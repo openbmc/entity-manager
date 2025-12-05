@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c96b05a6_d80b205b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-05T16:02:17Z",
+      "side": 1,
+      "message": "Which patch is \"next patch\"?  https://gerrit.openbmc.org/c/openbmc/entity-manager/+/85557\n\ndoesn\u0027t appear to use these.",
+      "parentUuid": "398cc141_ee029cae",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 54
+      },
+      "revId": "c75ba12c256646fa813309b18d1f27933609613c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "46b2e1f4_a2f39034",
         "filename": "src/entity_manager/entity_manager.hpp",
         "patchSetId": 4
@@ -79,6 +103,24 @@
       "side": 1,
       "message": "\u003e This needs some kind of object to hold them. We\u0027re at the \"too many constructor arguments\" phase, certainly if all the types are the same.\n\nSure, i can try to come up with a class to hold these parameters.\n\n\u003e We should be able to trigger each of these manually without needing to rely on the timeout itself, right?\n\nHow? It\u0027s various calls buried in EM code. We would need to restructure all of that to callbacks or something for the test to be able to intervene.\n\nThat sounds like it would complicate the EM code further.",
       "parentUuid": "46b2e1f4_a2f39034",
+      "revId": "c75ba12c256646fa813309b18d1f27933609613c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f44e334d_3b9de5b0",
+        "filename": "src/entity_manager/entity_manager.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-05T16:02:17Z",
+      "side": 1,
+      "message": "\u003e \u003e This needs some kind of object to hold them. We\u0027re at the \"too many constructor arguments\" phase, certainly if all the types are the same.\n\u003e \n\u003e Sure, i can try to come up with a class to hold these parameters.\n\u003e \n\u003e \u003e We should be able to trigger each of these manually without needing to rely on the timeout itself, right?\n\u003e \n\u003e How? It\u0027s various calls buried in EM code. We would need to restructure all of that to callbacks or something for the test to be able to intervene.\n\nYes, exactly this.\n\n\u003e \n\u003e That sounds like it would complicate the EM code further.\n\nI don\u0027t agree that abstracting code to make smaller functions complicates things further.  Maybe it\u0027s \"more code\", but it should be simpler (and now unit tested) code.",
+      "parentUuid": "750398a0_21c1ee09",
       "revId": "c75ba12c256646fa813309b18d1f27933609613c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
