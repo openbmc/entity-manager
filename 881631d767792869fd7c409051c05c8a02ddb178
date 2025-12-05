@@ -140,6 +140,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "acfd4c83_58e06b4b",
+        "filename": "docs/sensor_mux.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-05T16:22:48Z",
+      "side": 1,
+      "message": "Best practice is not to name based on $bus.  Some companies choose that, but in general we should be picking names that are useful to the user.",
+      "range": {
+        "startLine": 105,
+        "startChar": 15,
+        "endLine": 105,
+        "endChar": 19
+      },
+      "revId": "881631d767792869fd7c409051c05c8a02ddb178",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1a923bc0_d47f912d",
         "filename": "docs/sensor_mux.md",
         "patchSetId": 13
@@ -151,6 +174,46 @@
       "writtenOn": "2025-12-05T16:21:05Z",
       "side": 1,
       "message": "I don\u0027t see the mux listed above?",
+      "revId": "881631d767792869fd7c409051c05c8a02ddb178",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79ff78ca_2ace2be0",
+        "filename": "docs/sensor_mux.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-05T16:22:48Z",
+      "side": 1,
+      "message": "Example from above.  \"18\" and \"19\" don\u0027t mean anything here.",
+      "revId": "881631d767792869fd7c409051c05c8a02ddb178",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7706f41_400f9148",
+        "filename": "docs/sensor_mux.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-05T16:22:48Z",
+      "side": 1,
+      "message": "Remove the full output here.  It\u0027s difficult to read (longer than 80 char lines) and Doesn\u0027t convey what\u0027s going on.  You can keep the commands, just remove output.",
+      "range": {
+        "startLine": 134,
+        "startChar": 0,
+        "endLine": 166,
+        "endChar": 3
+      },
       "revId": "881631d767792869fd7c409051c05c8a02ddb178",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
