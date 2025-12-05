@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "78591d05_f88376ea",
+        "filename": "src/entity_manager/power_status_monitor.cpp",
+        "patchSetId": 40
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-05T16:07:40Z",
+      "side": 1,
+      "message": "I think I commented this somewhere else, but would prefer if we just query it in a separate call.",
+      "parentUuid": "af6fe925_6a4971be",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 73
+      },
+      "revId": "cd614ec55eeb05d335db7326f98a838ee65efeb3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5ddfe42e_3c0b5cb3",
         "filename": "test/entity_manager/test_em.hpp",
         "patchSetId": 40
@@ -133,6 +157,30 @@
       "side": 1,
       "message": "I don\u0027t care as much. I don\u0027t think the core guidelines apply much to tests in that specific case since tests should not run into this problem of deep class hierarchies and complicated code.\n\nChanged it to use composition and not use \u0027protected\u0027 anymore. Added a few getter functions to `EntityManager` to be able to read what we need for testing.",
       "parentUuid": "cb62603e_727d1acb",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 40
+      },
+      "revId": "cd614ec55eeb05d335db7326f98a838ee65efeb3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "007450e7_c02caedf",
+        "filename": "test/entity_manager/test_em.hpp",
+        "patchSetId": 40
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-05T16:07:40Z",
+      "side": 1,
+      "message": "\u003e I don\u0027t think the core guidelines apply\n\nIf this is what you want to do, please make that argument at project level, and we\u0027ll see if we can get consensus on \"don\u0027t use cpp core guidelines for tests\". Right now there\u0027s no distinction made on test code.\n\nI\u0027m not comfortable with accepting clear violations to cpp core guidelines in this specific case.\n\n\u003e Changed it\n\nThank you.  Will readd to the review queue.",
+      "parentUuid": "c8ea4150_a1394484",
       "range": {
         "startLine": 70,
         "startChar": 0,
