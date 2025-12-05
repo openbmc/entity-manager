@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "898c8849_322f9ad6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-12-05T16:14:45Z",
+      "side": 1,
+      "message": "Changed the wording there. 👍",
+      "parentUuid": "586b8a6c_482874da",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 71
+      },
+      "revId": "1b2982552b01c57f4040ab0892a2dfdb175f6552",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "d9f459a3_648e03e7",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 6
@@ -58,6 +82,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "008d0cc3_d8681d14",
+        "filename": "test/entity_manager/assert_has_property.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-12-05T16:14:45Z",
+      "side": 1,
+      "message": "Yes, very much so 😄\n\nChanged it to a one-liner with the gtest matchers.\n\nI\u0027m still intending to keep the function itself since i find it cleaner than duplicating the complicated matcher.\n\nLet me know if you want it inlined into each test file making use of it.\n\nI kept it as separate file for now since there\u0027s 2 users.",
+      "parentUuid": "edcf2777_b35b70a5",
+      "revId": "1b2982552b01c57f4040ab0892a2dfdb175f6552",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a15cfc0_75e5bd81",
@@ -71,6 +113,30 @@
       "writtenOn": "2025-12-02T23:16:05Z",
       "side": 1,
       "message": "Please don\u0027t use auto if the other side doesn\u0027t have the type information either.",
+      "range": {
+        "startLine": 458,
+        "startChar": 10,
+        "endLine": 458,
+        "endChar": 14
+      },
+      "revId": "1b2982552b01c57f4040ab0892a2dfdb175f6552",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ea80c24_e49bad68",
+        "filename": "test/entity_manager/end_to_end_probe_true.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-12-05T16:14:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a15cfc0_75e5bd81",
       "range": {
         "startLine": 458,
         "startChar": 10,
@@ -104,6 +170,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "40ea93d7_be7ddc59",
+        "filename": "test/entity_manager/end_to_end_probe_true.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-12-05T16:14:45Z",
+      "side": 1,
+      "message": "I went with this initially since it looks most similar to plain EM configs which folks are already familiar with.\n\nAgree that the raw string literal messes up the formatting here and we\u0027re adding the parsing overhead.\n\nChanged it to build up the json object step by step as per your idea.",
+      "parentUuid": "1e1e5e44_6e745f20",
+      "range": {
+        "startLine": 457,
+        "startChar": 0,
+        "endLine": 480,
+        "endChar": 4
+      },
+      "revId": "1b2982552b01c57f4040ab0892a2dfdb175f6552",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c3294cb_a179954b",
@@ -127,6 +217,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "41770778_3dcb285e",
+        "filename": "test/entity_manager/end_to_end_probe_true.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-12-05T16:14:45Z",
+      "side": 1,
+      "message": "Changed it to define an extra function there for each test 👍\n\nThe tradeoff is that it\u0027s now in scope for the other test cases, but it should not be too big of an issue if we stick to some naming scheme.",
+      "parentUuid": "3c3294cb_a179954b",
+      "range": {
+        "startLine": 484,
+        "startChar": 0,
+        "endLine": 489,
+        "endChar": 6
+      },
+      "revId": "1b2982552b01c57f4040ab0892a2dfdb175f6552",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f5595462_6522e3ad",
@@ -140,6 +254,30 @@
       "writtenOn": "2025-12-02T23:16:05Z",
       "side": 1,
       "message": "As you\u0027re adding these tests, do they all require all of these dependencies?  Can we deduplicate the lists please?",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 21
+      },
+      "revId": "1b2982552b01c57f4040ab0892a2dfdb175f6552",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eca21e92_caa84d83",
+        "filename": "test/entity_manager/meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-12-05T16:14:45Z",
+      "side": 1,
+      "message": "I guess this one does require all of them.",
+      "parentUuid": "f5595462_6522e3ad",
       "range": {
         "startLine": 84,
         "startChar": 0,
