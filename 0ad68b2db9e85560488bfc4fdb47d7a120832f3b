@@ -50,6 +50,23 @@
       "message": "@ed@tanous.net, @vernon.mauery@gmail.com could you please review the PR.Thanks",
       "revId": "0ad68b2db9e85560488bfc4fdb47d7a120832f3b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea2d3467_cba0a054",
+        "filename": "src/entity_manager/perform_probe.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-08T23:42:41Z",
+      "side": 1,
+      "message": "I\u0027m not a huge fan of using regex here.  std::regex is insanely slow, we\u0027re making a string copy to use it;  We don\u0027t really expect anything other than space here, so I suspect we can just check for that?\n\nThis fix also looks incorrect for things that aren\u0027t conjunctions.  \"FALSE\" is a complete statement, and doesn\u0027t require a word boundary.\n\nLong term, I would like to see a real parser integrated, like:\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/36517 so that we\u0027re operating on an AST and tokens, not string parsing.\n\nShort term, would simply changing the regex match for \"AND\" and \"OR\" to \" AND \" and \" OR \" fix this without needing regex, while still keeping the unary functions working?",
+      "revId": "0ad68b2db9e85560488bfc4fdb47d7a120832f3b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
