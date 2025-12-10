@@ -11,9 +11,28 @@
                     "description": "The bus index to which the device is attached",
                     "type": "string"
                 },
+                "Inventory": {
+                    "description": "The inventory name associated with this device",
+                    "type": "string"
+                },
                 "Name": {
                     "description": "A recognisable name for the device",
                     "type": "string"
+                },
+                "PLDMSensors": {
+                    "items": {
+                        "properties": {
+                            "ID": {
+                                "type": "integer"
+                            },
+                            "Name": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["ID", "Name"],
+                        "type": "object"
+                    },
+                    "type": "array"
                 },
                 "Type": {
                     "type": "string",
@@ -33,9 +52,28 @@
                     "description": "The bus index to which the device is attached",
                     "type": "string"
                 },
+                "Inventory": {
+                    "description": "The inventory name associated with this device",
+                    "type": "string"
+                },
                 "Name": {
                     "description": "A recognisable name for the device",
                     "type": "string"
+                },
+                "PLDMSensors": {
+                    "items": {
+                        "properties": {
+                            "ID": {
+                                "type": "integer"
+                            },
+                            "Name": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["ID", "Name"],
+                        "type": "object"
+                    },
+                    "type": "array"
                 },
                 "Type": {
                     "type": "string",
