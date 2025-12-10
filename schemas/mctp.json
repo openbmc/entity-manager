@@ -9,40 +9,99 @@
                 },
                 "Bus": {
                     "description": "The bus index to which the device is attached",
-                    "type": ["string", "number"]
+                    "type": [
+                        "string",
+                        "number"
+                    ]
                 },
                 "Name": {
                     "description": "A recognisable name for the device",
                     "type": "string"
                 },
+                "PLDMSensors": {
+                    "items": {
+                        "properties": {
+                            "ID": {
+                                "type": "integer"
+                            },
+                            "Name": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "ID",
+                            "Name"
+                        ],
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
                 "Type": {
                     "type": "string",
-                    "enum": ["MCTPI2CTarget"]
+                    "enum": [
+                        "MCTPI2CTarget"
+                    ]
                 }
             },
-            "required": ["Address", "Bus", "Name", "Type"],
+            "required": [
+                "Address",
+                "Bus",
+                "Name",
+                "Type"
+            ],
             "type": "object"
         },
         "MCTPI3CTarget": {
             "properties": {
                 "Address": {
                     "description": "The 6-byte PID for the device on the I3C bus",
-                    "type": ["string", "array"]
+                    "type": [
+                        "string",
+                        "array"
+                    ]
                 },
                 "Bus": {
                     "description": "The bus index to which the device is attached",
-                    "type": ["string", "number"]
+                    "type": [
+                        "string",
+                        "number"
+                    ]
                 },
                 "Name": {
                     "description": "A recognisable name for the device",
                     "type": "string"
                 },
+                "PLDMSensors": {
+                    "items": {
+                        "properties": {
+                            "ID": {
+                                "type": "integer"
+                            },
+                            "Name": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "ID",
+                            "Name"
+                        ],
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
                 "Type": {
                     "type": "string",
-                    "enum": ["MCTPI3CTarget"]
+                    "enum": [
+                        "MCTPI3CTarget"
+                    ]
                 }
             },
-            "required": ["Address", "Bus", "Name", "Type"],
+            "required": [
+                "Address",
+                "Bus",
+                "Name",
+                "Type"
+            ],
             "type": "object"
         }
     }
