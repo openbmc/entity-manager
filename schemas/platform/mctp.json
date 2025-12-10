@@ -53,6 +53,24 @@
                     "description": "Name of this device. It must match the PlatformConfigName of the MCTP VDM configuration the device's board exposes for it, which is how the two are paired up.",
                     "type": "string"
                 },
+                "PLDMSensors": {
+                    "description": "The list of PLDM sensors associated with the target device",
+                    "items": {
+                        "properties": {
+                            "Name": {
+                                "description": "A recognisable name for the sensor",
+                                "type": "string"
+                            },
+                            "SensorID": {
+                                "description": "The PLDM sensor ID as specified in DSP0248",
+                                "type": "integer"
+                            }
+                        },
+                        "required": ["Name", "SensorID"],
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
                 "Type": {
                     "type": "string",
                     "enum": ["MCTPUSBDevice"]
