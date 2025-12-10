@@ -11,16 +11,35 @@
                     "description": "The bus index to which the device is attached",
                     "type": "string"
                 },
+                "Inventory": {
+                    "description": "The inventory name associated with this device",
+                    "type": "string"
+                },
                 "Name": {
                     "description": "A recognisable name for the device",
                     "type": "string"
+                },
+                "PLDMSensors": {
+                    "items": {
+                        "properties": {
+                            "ID": {
+                                "type": "integer"
+                            },
+                            "Name": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["ID", "Name"],
+                        "type": "object"
+                    },
+                    "type": "array"
                 },
                 "Type": {
                     "type": "string",
                     "enum": ["MCTPI2CTarget"]
                 }
             },
-            "required": ["Address", "Bus", "Name", "Type"],
+            "required": ["Address", "Bus", "Inventory", "Name", "Type"],
             "type": "object"
         },
         "MCTPI3CTarget": {
@@ -33,16 +52,35 @@
                     "description": "The bus index to which the device is attached",
                     "type": "string"
                 },
+                "Inventory": {
+                    "description": "The inventory name associated with this device",
+                    "type": "string"
+                },
                 "Name": {
                     "description": "A recognisable name for the device",
                     "type": "string"
+                },
+                "PLDMSensors": {
+                    "items": {
+                        "properties": {
+                            "ID": {
+                                "type": "integer"
+                            },
+                            "Name": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["ID", "Name"],
+                        "type": "object"
+                    },
+                    "type": "array"
                 },
                 "Type": {
                     "type": "string",
                     "enum": ["MCTPI3CTarget"]
                 }
             },
-            "required": ["Address", "Bus", "Name", "Type"],
+            "required": ["Address", "Bus", "Inventory", "Name", "Type"],
             "type": "object"
         }
     }
