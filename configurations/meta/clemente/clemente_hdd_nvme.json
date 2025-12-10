@@ -10,8 +10,8 @@
             {
                 "Address": "0x6a",
                 "Bus": "$bus",
-                "EnablePEC": true,
                 "Name": "HDDBOARD0 SSD$bus - 48 / 2 TEMP_C",
+                "PEC": "Required",
                 "PowerState": "On",
                 "Thresholds": [
                     {
@@ -73,8 +73,8 @@
             {
                 "Address": "0x6a",
                 "Bus": "$bus",
-                "EnablePEC": true,
                 "Name": "HDDBOARD1 SSD$bus - 52 / 2 TEMP_C",
+                "PEC": "Required",
                 "PowerState": "On",
                 "Thresholds": [
                     {
@@ -136,8 +136,8 @@
             {
                 "Address": "0x6a",
                 "Bus": "45",
-                "EnablePEC": true,
                 "Name": "BOOTDRIVE_TEMP_C",
+                "PEC": "Required",
                 "PowerState": "On",
                 "Thresholds": [
                     {
