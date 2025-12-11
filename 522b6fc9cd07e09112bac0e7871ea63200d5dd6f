@@ -22,6 +22,30 @@
       },
       "revId": "522b6fc9cd07e09112bac0e7871ea63200d5dd6f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6be3147_a9857675",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-12-11T15:20:59Z",
+      "side": 1,
+      "message": "\u003e Can you elaborate on what this means? I put had them put it on the Chassis before because that was \"the whole thing encompassing a blade/host\".\n\nThis is fair to say, in that case you refer to a ComputerSystem being both, the board and the blade chassis containing it. I did not view it as such until now because we use two distinct configurations for board and blade chassis that result in two inventory objects being created. Also, I was under the impression that the Redfish defined ComputerSystem does not include physical containers as part of the components list, that a ComputerSystem can consist of.\n\nIf the above doesn\u0027t matter, I am also fine with referring to both the board and the blade chassis as one ComputerSystem. \nTo which Chassis would you link the ComputerSystem resource then? To the blade chassis (which is equivalent to linking it to itself in Redfish), or to the enclosure chassis? \n\nIt should be said, the Redfish specification allows for different resources to share the same identifier, as long as the resulting URIs are unique, which they are. So we aren\u0027t violating anything here I believe. But the self linking portion of this seems a bit odd from a Redfish view, if we decide to link to the blade chassis.  \n\n\u003e If we start to move this onto one particular board contained inside the chassis, it\u0027s not clear to me how we handle a storage-expansion device which takes up 2 slots and has 2 boards, but has a single piece of sheet-metal (the chassis) tying them together.\n\nFrom my understanding this depends on how you want to refer to this setup via Redfish, as the ManagedHost interface is solely used for the purpose of it. \n\nIf you want to say, each board is a separate ComputerSystem, the boards should implement the ManagedHost interface, to end up with a Systems collection consisting of two ComputerSystem resources. Both these resources then link to the same chassis, that ties them together. We make two Redfish requests to power each board.\n\nIf the complete setup should be referred to as a single ComputerSystem, then the Chassis might implement the ManagedHost interface. In that case I would assume that you power both boards with one Redfish request. But again, I am not sure if Redfish would want to refer to this setup as one ComputerSystem. \n\nAlso, I believe that might have some new implications too. I.e, would we still be able to index each ComputerSystem correctly and consistent across reboots using the logic we are currently using through `$bus % N`?",
+      "parentUuid": "4acc2ab7_b0183c7e",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 44
+      },
+      "revId": "522b6fc9cd07e09112bac0e7871ea63200d5dd6f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
