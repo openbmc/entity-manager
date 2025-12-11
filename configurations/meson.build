@@ -30,6 +30,7 @@ configs = [
     'asrock/nf5280m7_baseboard.json',
     'broadcomm/brcm_100g_1p_ocp_mezz.json',
     'broadcomm/brcm_200g_1p_ocp_mezz.json',
+    'broadcomm/brcm_400g_1p_ocp3.json',
     'compuware/compuware_cdr_9011_3m1_psu.json',
     'delta/delta_awf2dc3200w_psu.json',
     'delta/delta_dps-1600ab_psu.json',
