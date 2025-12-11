@@ -11,5 +11,6 @@ else
     cd "$(dirname "${BASH_SOURCE[0]}")"
 fi
 python3 scripts/autojson.py configurations
+python3 scripts/autojson.py platform_configurations
 scripts/generate_config_list.sh
 scripts/generate_schema_list.sh
