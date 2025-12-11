@@ -99,6 +99,20 @@ foreach c : configs
     filepaths += [file]
 endforeach
 
+# Platform-specific configurations
+platform_configs = ['nvidia/mgx_connectx8_supernic_switch_server.json']
+
+foreach c : platform_configs
+    file = join_paths('platform_configurations', c)
+    install_data(
+        file,
+        install_dir: join_paths(
+            package_configdir,
+            fs.parent(fs.relative_to(file, 'platform_configurations')),
+        ),
+    )
+endforeach
+
 if get_option('validate-json')
     validate_script = files('scripts/validate_configs.py')
     autojson = custom_target(
