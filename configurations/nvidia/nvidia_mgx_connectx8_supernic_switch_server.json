@@ -1,0 +1,91 @@
+{
+    "Exposes": [
+        {
+            "Configuration": "1",
+            "InterfaceNum": "0",
+            "Name": "MCTP USB Device 0",
+            "Port": "1.2.1",
+            "RootHubPath": "/sys/devices/platform/ahb/1e6a3000.usb",
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Configuration": "1",
+            "InterfaceNum": "0",
+            "Name": "MCTP USB Device 1",
+            "Port": "1.4.1",
+            "RootHubPath": "/sys/devices/platform/ahb/1e6a3000.usb",
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Configuration": "1",
+            "InterfaceNum": "0",
+            "Name": "MCTP USB Device 2",
+            "Port": "1.1.2.1",
+            "RootHubPath": "/sys/devices/platform/ahb/1e6a3000.usb",
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Configuration": "1",
+            "InterfaceNum": "0",
+            "Name": "MCTP USB Device 3",
+            "Port": "1.1.4.1",
+            "RootHubPath": "/sys/devices/platform/ahb/1e6a3000.usb",
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Configuration": "1",
+            "InterfaceNum": "0",
+            "Name": "MCTP USB Device 4",
+            "Port": "1.2.2",
+            "RootHubPath": "/sys/devices/platform/ahb/1e6a3000.usb",
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Configuration": "1",
+            "InterfaceNum": "0",
+            "Name": "MCTP USB Device 5",
+            "Port": "1.4.2",
+            "RootHubPath": "/sys/devices/platform/ahb/1e6a3000.usb",
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Configuration": "1",
+            "InterfaceNum": "0",
+            "Name": "MCTP USB Device 6",
+            "Port": "1.1.2.2",
+            "RootHubPath": "/sys/devices/platform/ahb/1e6a3000.usb",
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Configuration": "1",
+            "InterfaceNum": "0",
+            "Name": "MCTP USB Device 7",
+            "Port": "1.1.4.2",
+            "RootHubPath": "/sys/devices/platform/ahb/1e6a3000.usb",
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Configuration": "1",
+            "InterfaceNum": "0",
+            "Name": "MCTP USB Device 8",
+            "Port": "1.2.3",
+            "RootHubPath": "/sys/devices/platform/ahb/1e6a3000.usb",
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Configuration": "1",
+            "InterfaceNum": "0",
+            "Name": "MCTP USB Device 9",
+            "Port": "1.1.2.3",
+            "RootHubPath": "/sys/devices/platform/ahb/1e6a3000.usb",
+            "Type": "MCTPUSBDevice"
+        }
+    ],
+    "Name": "Nvidia MGX ConnectX8 SuperNIC Server",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'ConnectX-8 Alon', 'BOARD_MANUFACTURER': 'Nvidia', 'PRODUCT_PRODUCT_NAME': 'ConnectX-8 Alon'})",
+        "AND",
+        "FOUND('Nvidia Alon8 HPM')"
+    ],
+    "Type": "Chassis"
+}
