@@ -1,0 +1,91 @@
+{
+    "Exposes": [
+        {
+            "Configuration": "1",
+            "Interface": "0",
+            "Name": "SMA 0",
+            "Port": [1, 2, 1],
+            "RootHubPosition": "0",
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Configuration": "1",
+            "Interface": "0",
+            "Name": "SMA 1",
+            "Port": [1, 4, 1],
+            "RootHubPosition": "0",
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Configuration": "1",
+            "Interface": "0",
+            "Name": "SMA 2",
+            "Port": [1, 1, 2, 1],
+            "RootHubPosition": "0",
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Configuration": "1",
+            "Interface": "0",
+            "Name": "SMA 3",
+            "Port": [1, 1, 4, 1],
+            "RootHubPosition": "0",
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Configuration": "1",
+            "Interface": "0",
+            "Name": "SMA 4",
+            "Port": [1, 2, 2],
+            "RootHubPosition": "0",
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Configuration": "1",
+            "Interface": "0",
+            "Name": "SMA 5",
+            "Port": [1, 4, 2],
+            "RootHubPosition": "0",
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Configuration": "1",
+            "Interface": "0",
+            "Name": "SMA 6",
+            "Port": [1, 1, 2, 2],
+            "RootHubPosition": "0",
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Configuration": "1",
+            "Interface": "0",
+            "Name": "SMA 7",
+            "Port": [1, 1, 4, 2],
+            "RootHubPosition": "0",
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Configuration": "1",
+            "Interface": "0",
+            "Name": "SMA 8",
+            "Port": [1, 2, 3],
+            "RootHubPosition": "0",
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Configuration": "1",
+            "Interface": "0",
+            "Name": "SMA 9",
+            "Port": [1, 1, 2, 3],
+            "RootHubPosition": "0",
+            "Type": "MCTPUSBDevice"
+        }
+    ],
+    "Name": "Nvidia MGX ConnectX8 SuperNIC Server",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'ConnectX-8 Alon', 'BOARD_MANUFACTURER': 'Nvidia', 'PRODUCT_PRODUCT_NAME': 'ConnectX-8 Alon'})",
+        "AND",
+        "FOUND('Nvidia Alon8 HPM')"
+    ],
+    "Type": "Platform"
+}
