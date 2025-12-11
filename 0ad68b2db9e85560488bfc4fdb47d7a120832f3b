@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "37dd15e1_d9169a0d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002762
+      },
+      "writtenOn": "2025-12-11T09:15:41Z",
+      "side": 1,
+      "message": "Before: \"ERROR\" was treated as a valid probe token, causing false positives.\nAfter: \"ERROR\" is no longer matched; only defined tokens are recognized. No standard D-Bus property uses \"ERROR\"—it’s a message type, so treating it as a probe token was incorrect.",
+      "parentUuid": "86910989_354a4a26",
+      "range": {
+        "startLine": 11,
+        "startChar": 1,
+        "endLine": 11,
+        "endChar": 6
+      },
+      "revId": "0ad68b2db9e85560488bfc4fdb47d7a120832f3b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "bb3cdbe1_aaac7af1",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -88,6 +112,24 @@
       "writtenOn": "2025-12-08T23:42:41Z",
       "side": 1,
       "message": "I\u0027m not a huge fan of using regex here.  std::regex is insanely slow, we\u0027re making a string copy to use it;  We don\u0027t really expect anything other than space here, so I suspect we can just check for that?\n\nThis fix also looks incorrect for things that aren\u0027t conjunctions.  \"FALSE\" is a complete statement, and doesn\u0027t require a word boundary.\n\nLong term, I would like to see a real parser integrated, like:\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/36517 so that we\u0027re operating on an AST and tokens, not string parsing.\n\nShort term, would simply changing the regex match for \"AND\" and \"OR\" to \" AND \" and \" OR \" fix this without needing regex, while still keeping the unary functions working?",
+      "revId": "0ad68b2db9e85560488bfc4fdb47d7a120832f3b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a95ef24_3ee81bac",
+        "filename": "src/entity_manager/perform_probe.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1002762
+      },
+      "writtenOn": "2025-12-11T09:15:41Z",
+      "side": 1,
+      "message": "To fix this kind of issues added the logic:\nFor instance: probe \u003d xyz.openbmc_project.UsbDevice({\u0027VENDOR_ID\u0027: \u00272frrr3\u0027}) would fail to be probed and would be considered as a conjunction statement - since it has OR at 36th index (in vendOR_id)\nNote: please Suggest the any testcases want to test.",
+      "parentUuid": "ea2d3467_cba0a054",
       "revId": "0ad68b2db9e85560488bfc4fdb47d7a120832f3b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
