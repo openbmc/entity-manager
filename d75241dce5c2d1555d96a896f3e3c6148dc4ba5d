@@ -1,0 +1,153 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccf73bcd_995f3d97",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-12T23:20:01Z",
+      "side": 1,
+      "message": "nit, there\u0027s no requirement you post the log output, so no need to apologize for not posting it 😊",
+      "range": {
+        "startLine": 28,
+        "startChar": 30,
+        "endLine": 28,
+        "endChar": 68
+      },
+      "revId": "d75241dce5c2d1555d96a896f3e3c6148dc4ba5d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c48fa4a_e521fa50",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-12T23:20:01Z",
+      "side": 1,
+      "message": "minor cleanup, then should be fine",
+      "revId": "d75241dce5c2d1555d96a896f3e3c6148dc4ba5d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecfe1cc9_adf01939",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-12T23:20:01Z",
+      "side": 1,
+      "message": "I don\u0027t see std::list used?",
+      "revId": "d75241dce5c2d1555d96a896f3e3c6148dc4ba5d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e04745c_b363bedb",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-12T23:20:01Z",
+      "side": 1,
+      "message": "Just do auto here.  No need to convert the type on the bind_front call (which produces an implementation defined object, so auto is acceptable).",
+      "range": {
+        "startLine": 152,
+        "startChar": 15,
+        "endLine": 152,
+        "endChar": 23
+      },
+      "revId": "d75241dce5c2d1555d96a896f3e3c6148dc4ba5d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "544783ab_1affbdca",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-12T23:20:01Z",
+      "side": 1,
+      "message": "Capturing by \"this\" isn\u0027t safe in this instance.  Old code captured \u0026io, which is also unsafe, but can be reasonably assumed to outlive the boost asio connection (and therefore any callback).  PerformScan have no lifetime promises at this level.  This is where we generally do the weak_from_this() trick to handle if the object has been destroyed before the callback is complete",
+      "range": {
+        "startLine": 153,
+        "startChar": 68,
+        "endLine": 153,
+        "endChar": 72
+      },
+      "revId": "d75241dce5c2d1555d96a896f3e3c6148dc4ba5d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da3cf3d6_8510deae",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-12T23:20:01Z",
+      "side": 1,
+      "message": "std::move",
+      "range": {
+        "startLine": 158,
+        "startChar": 8,
+        "endLine": 158,
+        "endChar": 10
+      },
+      "revId": "d75241dce5c2d1555d96a896f3e3c6148dc4ba5d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcf41528_fce81bc5",
+        "filename": "src/entity_manager/perform_scan.hpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-12T23:20:01Z",
+      "side": 1,
+      "message": "nit: Would prefer to see this default arg just inlined into the first call.",
+      "range": {
+        "startLine": 54,
+        "startChar": 70,
+        "endLine": 54,
+        "endChar": 74
+      },
+      "revId": "d75241dce5c2d1555d96a896f3e3c6148dc4ba5d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
