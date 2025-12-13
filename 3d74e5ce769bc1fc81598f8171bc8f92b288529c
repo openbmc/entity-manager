@@ -110,6 +110,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f94fc154_475496c2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 38
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-13T00:48:01Z",
+      "side": 1,
+      "message": "\u003e  In such a layer it makes sense to have such an option since we know all system configurations we are building the image for.\n\nSorry, missed this response.  All of that is great, but what I don\u0027t understand is why we\u0027re checking things in upstream to support your downstream?  I\u0027m open to it, but removing all the configs except for the ones you \"vet\" is a trivial change to make in a meta layer with an RM call and adding back the files you care about.  There\u0027s no need for anything in the repo itself to accomplish this.  If meta layer owners want to do that, that\u0027s fine, and FWIW, my employer does it every day (in our downstream) for every EM enabled platform they use without needing anything upstream.\n\nI understand that static use cases are a thing, and EM is here to support if we can, but I don\u0027t want to take ownership of everyones static config, because I don\u0027t think it\u0027s maintainable across industry (hence why we built EM in the first place).\n\n\n\u003e To provide the optimal solution we aim to deploy all configurations which could ever be useful for the boards supported by the BMC fw image, and none of the configurations which we are certain will never be used.\n\nThis kind of statement I can get behind, but that\u0027s not what this patch does.  It segments by company/arbitrary guidelines, not something like \"This includes PCIe, so include all the PCIe devices\" or \"This includes CRPS connectors, so include CRPS PSUs\".  Keep in mind that a number of configurations are possible through expanders, switches, and port changers that make this list essentially infinite except for the baseboard case you mentioned.  If we want to solve the \"I don\u0027t want to carry other baseboards on my baseboard\" problem here, I\u0027m open to it.  For pretty much everything else, if there\u0027s a way to wire that component up, EM needs to support it by default, and I don\u0027t want to maintain a list of \"Alexander (and presumably 9elements) has vetted this config\" here.  That\u0027s something to do in meta-9elements.",
+      "parentUuid": "e0c2ed5c_2134f096",
+      "revId": "3d74e5ce769bc1fc81598f8171bc8f92b288529c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1fec691e_00b9deb5",
         "filename": "configurations/tyan/tyan_s8030_baseboard.json",
         "patchSetId": 38
