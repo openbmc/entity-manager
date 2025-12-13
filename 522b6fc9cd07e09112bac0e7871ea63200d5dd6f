@@ -46,6 +46,30 @@
       },
       "revId": "522b6fc9cd07e09112bac0e7871ea63200d5dd6f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4011c4be_1c347b19",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-12-13T17:09:07Z",
+      "side": 1,
+      "message": "It should also be said, in the future the idea is to solve this via associations, rather then with the ManagedHost interface and the HostIndex it provides.\nI suspect at that point the discussion will revolve around where to place the Item.System interface. Currently we also place that one on the board config. [1]\n\n[1] https://gerrit.openbmc.org/c/openbmc/entity-manager/+/85875",
+      "parentUuid": "e6be3147_a9857675",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 44
+      },
+      "revId": "522b6fc9cd07e09112bac0e7871ea63200d5dd6f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
