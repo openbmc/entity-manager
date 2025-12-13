@@ -52,6 +52,24 @@
       "parentUuid": "dead03a0_e181adba",
       "revId": "8e80bf87ac4aa7da7a198a7214d94fcbeb0b196a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "426abad2_5a6baafa",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 823,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-13T01:18:31Z",
+      "side": 1,
+      "message": "\u003e change is incompatible with https://dbus.freedesktop.org/doc/dbus-api-design.html\n\nYou can\u0027t throw a spec link like this and use it as justification to block a patch making a trivial extension to something that exists.  Yes, the DBus design of EM sucks, and is hard to use with PDI.  This change existing doesn\u0027t make it any harder to use, and is in line with the APIs that currently exist.  Refactorings being unsuccessful aren\u0027t relevant on whether we should accept this patch.",
+      "parentUuid": "0e6980d3_11c4c1f8",
+      "revId": "8e80bf87ac4aa7da7a198a7214d94fcbeb0b196a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
