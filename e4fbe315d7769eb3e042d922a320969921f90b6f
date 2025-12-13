@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8021f2f4_96a7af96",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-13T01:04:10Z",
+      "side": 1,
+      "message": "Something seems odd here, it\u0027s not clear to me how this could work to have a chassis have a \"mode\" it seems like we\u0027re putting build-time or platform-specific configs in per hardware configs.",
+      "revId": "e4fbe315d7769eb3e042d922a320969921f90b6f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61377e8b_8359e7ac",
+        "filename": "configurations/ibm/blueridge_4u_chassis.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-13T01:04:10Z",
+      "side": 1,
+      "message": "Is this chassis more than just sheet metal if it\u0027s able to have power configurations in it??",
+      "revId": "e4fbe315d7769eb3e042d922a320969921f90b6f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "509c849e_acebccd8",
+        "filename": "schemas/ibm.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-13T01:04:10Z",
+      "side": 1,
+      "message": "How does the \"CustomerMode\" relate to a piece of hardware?  Isn\u0027t this a mode that is a software thing?\n\nThis seems like it\u0027s doing the same thing that thermal profiles are doing?\n\nI\u0027m pretty sure this needs to end up in code, not in a chassis config.",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 34
+      },
+      "revId": "e4fbe315d7769eb3e042d922a320969921f90b6f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3986fcb_a4ade286",
+        "filename": "schemas/ibm.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-13T01:04:10Z",
+      "side": 1,
+      "message": "?",
+      "revId": "e4fbe315d7769eb3e042d922a320969921f90b6f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
