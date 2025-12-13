@@ -34,6 +34,24 @@
       "parentUuid": "757c5a5e_9783aeb1",
       "revId": "3a3bdab7b249ad463dbc08fa0cb1bce16141f076",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6844bd87_0f05e312",
+        "filename": "configurations/spdm_tcp_responder.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-13T01:29:09Z",
+      "side": 1,
+      "message": "This doesn\u0027t look done \"huygens_spdm_responder.json\" is the current name, and that\u0027s not an \"entity\".  SPDM is one property of many of an entity, the entity (card, board, whatever) needs a name that\u0027s distinct from the protocols it supports.",
+      "parentUuid": "0f07ae41_efb22ca1",
+      "revId": "3a3bdab7b249ad463dbc08fa0cb1bce16141f076",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

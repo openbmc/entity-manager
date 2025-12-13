@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c06caa2a_45f9e604",
+        "filename": "configurations/ibm/huygens_spdm_responder.json",
+        "patchSetId": 15
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-13T01:29:09Z",
+      "side": 1,
+      "message": "The name is not the type.  The name should describe WHAT in the system is responding.",
+      "range": {
+        "startLine": 5,
+        "startChar": 21,
+        "endLine": 5,
+        "endChar": 37
+      },
+      "revId": "59e967528a781ca4e1dd19552294f88370e3a6db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "207352a1_c0147970",
+        "filename": "configurations/ibm/huygens_spdm_responder.json",
+        "patchSetId": 15
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-13T01:29:09Z",
+      "side": 1,
+      "message": "This scares me a bit.  Do we really want LLDP in this probe?  This seems like something we could just encapsulate entirely within the application?",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 132
+      },
+      "revId": "59e967528a781ca4e1dd19552294f88370e3a6db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
