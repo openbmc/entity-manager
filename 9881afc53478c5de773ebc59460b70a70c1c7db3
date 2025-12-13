@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a37ebec8_af57c678",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-13T00:49:46Z",
+      "side": 1,
+      "message": "Sorry, for whatever reason this got lost in the fray.  Change doesn\u0027t look correct to me, so if this is still desired, lets discuss.",
+      "revId": "9881afc53478c5de773ebc59460b70a70c1c7db3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ece6f3d7_a249ab20",
+        "filename": "configurations/nvidia_gb300.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-13T00:49:46Z",
+      "side": 1,
+      "message": "This doesn\u0027t look correct?  There\u0027s no way to know the \"slot\" based on the base bus index.  That ends up being a per-system configuration.",
+      "range": {
+        "startLine": 326,
+        "startChar": 0,
+        "endLine": 328,
+        "endChar": 5
+      },
+      "revId": "9881afc53478c5de773ebc59460b70a70c1c7db3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
