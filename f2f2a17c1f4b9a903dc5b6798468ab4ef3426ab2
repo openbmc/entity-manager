@@ -74,6 +74,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "95581547_875656a3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-13T00:28:38Z",
+      "side": 1,
+      "message": "\u003e Do you have any input on the sensor names?\n\nOriginal intent of EM was that it follow the naming convention put in this patch.\n\n\"NIC 1 Temperature\" which is what humans read.  Since then lots of companies have used EM files as their canvas for applying naming conventions, in some extremes even modifying the EM code (downstream) to allow applying naming conventions that weren\u0027t even supported and would cause backward compatibility issues.\n \nI\u0027m not in love with trying to prescribe any one companies naming convention in these files, but unfortunately they do define the external (redfish/IPMI) API names currently.  I\u0027d much prefer that we have one consistent human facing way of representing the files, and intelligent conversion functions if we need to apply \"Meta naming\" or \"Nvidia naming\" conventions to things that differs.\n\nBut how much that matters?  I\u0027m not willing to spend effort on it, so I\u0027ll accept whatever naming everyone can agree on.  I will say I\u0027m not a fan of the \"whomever checked it in first wins\" approach and would like to see some consistency here, but consistency is hard.",
+      "parentUuid": "c79c9663_e639e326",
+      "revId": "f2f2a17c1f4b9a903dc5b6798468ab4ef3426ab2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c8c9efd_13cfcba9",
+        "filename": "configurations/brcm_200g_1p_ocp_mezz.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-13T00:28:38Z",
+      "side": 1,
+      "message": "Names shouldn\u0027t include underscores.",
+      "range": {
+        "startLine": 15,
+        "startChar": 28,
+        "endLine": 15,
+        "endChar": 29
+      },
+      "revId": "f2f2a17c1f4b9a903dc5b6798468ab4ef3426ab2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a04511ee_a0ad7429",
         "filename": "configurations/cx7_ocp.json",
         "patchSetId": 2
