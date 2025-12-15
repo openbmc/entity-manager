@@ -6,6 +6,9 @@ set -e
 # root so npm/git run in the right place.
 if [ -n "$1" ]; then
     cd "$1"
+else
+    # This script is in the root of the repo so we can use it to find the root.
+    cd "$(dirname "${BASH_SOURCE[0]}")"
 fi
 python3 scripts/autojson.py configurations
 scripts/generate_config_list.sh
