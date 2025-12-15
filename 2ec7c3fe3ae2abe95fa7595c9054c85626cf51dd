@@ -16,6 +16,46 @@
       "message": "CI fails without my change as well; looks like an issue with entity-manager.",
       "revId": "2ec7c3fe3ae2abe95fa7595c9054c85626cf51dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcc63928_433f7a1f",
+        "filename": "configurations/nvidia/nvidia_mgx_connectx8_supernic_switch_server.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-15T19:38:08Z",
+      "side": 1,
+      "message": "nit, remove \"server\" from the name.  This is a switchboard.",
+      "revId": "2ec7c3fe3ae2abe95fa7595c9054c85626cf51dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9712f5eb_3dc317cf",
+        "filename": "configurations/nvidia/nvidia_mgx_connectx8_supernic_switch_server.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-15T19:38:08Z",
+      "side": 1,
+      "message": "Remove.  The hardware itself does not have anything to do with /sys.  Find a way to represent the switch, and look these things up where appropraite.",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 68
+      },
+      "revId": "2ec7c3fe3ae2abe95fa7595c9054c85626cf51dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
