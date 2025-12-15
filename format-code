@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -e
 
 # When called from openbmc-build-scripts, the `pwd` could be anywhere, but
@@ -9,3 +8,5 @@ if [ -n "$1" ]; then
     cd "$1"
 fi
 python3 scripts/autojson.py configurations
+scripts/generate_config_list.sh
+scripts/generate_schema_list.sh
