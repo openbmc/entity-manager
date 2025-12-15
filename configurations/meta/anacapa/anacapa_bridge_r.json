@@ -3,21 +3,23 @@
         {
             "Address": "$address",
             "Bus": "$bus",
-            "Name": "BRIDGE_R FRU",
+            "Name": "BRB_R FRU",
             "Type": "EEPROM"
         },
         {
             "Address": "0x4c",
             "Bus": "$bus",
-            "Name": "BRIDGE_R_PCIE_SW_TEMP_C",
-            "Name1": "BRIDGE_R_OUTLET_TEMP_C",
+            "Name": "BRB_R_OUTLET0_TEMP_C",
+            "Name1": "BRB_R_PCIE_SW_TEMP_C",
+            "Name2": "BRB_R_OUTLET1_TEMP_C",
             "Type": "TMP432"
         },
         {
             "Address": "0x4c",
             "Bus": "$bus + 1",
-            "Name": "BRIDGE_R_BE_TEMP_C",
-            "Name1": "BRIDGE_R_FE_TEMP_C",
+            "Name": "BRB_R_INLET_TEMP_C",
+            "Name1": "BRB_R_BE_TEMP_C",
+            "Name2": "BRB_R_FE_TEMP_C",
             "Type": "TMP432"
         },
         {
@@ -28,14 +30,14 @@
                 "curr1",
                 "temp1"
             ],
-            "Name": "BRIDGE_R_VR",
+            "Name": "BRB_R_VR",
             "Type": "pmbus",
-            "curr1_Name": "BRIDGE_R_VR_CURR_A",
-            "in1_Name": "BRIDGE_R_VR_VOLT_V",
-            "temp1_Name": "BRIDGE_R_VR_TEMP_C"
+            "curr1_Name": "BRB_R_VR_CURR_A",
+            "in1_Name": "BRB_R_VR_VOLT_V",
+            "temp1_Name": "BRB_R_VR_TEMP_C"
         }
     ],
-    "Name": "Bridge_R",
+    "Name": "BRB_R",
     "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Anacapa.* RBB', 'BOARD_MANUFACTURER': 'Inventec'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
