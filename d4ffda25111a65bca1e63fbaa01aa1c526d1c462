@@ -182,6 +182,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d0ed7cc3_7df62084",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-12-15T18:07:00Z",
+      "side": 1,
+      "message": "This could work if the USB topology is contained in the same entity or we\u0027re able to identify a platform (by combining lookup of multiple entities; see next commit). I could test this on an upstream nvidia pltform - see https://gerrit.openbmc.org/q/topic:%22mctp-usb-config%22",
+      "parentUuid": "3b3a9e7e_e598672c",
+      "revId": "d4ffda25111a65bca1e63fbaa01aa1c526d1c462",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "56bc368e_2e1f03a3",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 13
@@ -234,6 +252,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e50fb382_addceb49",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-12-15T18:07:00Z",
+      "side": 1,
+      "message": "Will make this change.",
+      "parentUuid": "8e9f8b82_29c4b5ac",
+      "revId": "d4ffda25111a65bca1e63fbaa01aa1c526d1c462",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ae123b80_8e34bcb6",
         "filename": "schemas/mctp.json",
         "patchSetId": 13
@@ -257,6 +293,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "73512d60_e8773f0e",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-12-15T18:07:00Z",
+      "side": 1,
+      "message": "It could be one or many (see my previous response about the usability of this in a single entity config (no hubs) vs on a platform which could involve multiple hubs.",
+      "parentUuid": "ae123b80_8e34bcb6",
+      "range": {
+        "startLine": 54,
+        "startChar": 16,
+        "endLine": 57,
+        "endChar": 18
+      },
+      "revId": "d4ffda25111a65bca1e63fbaa01aa1c526d1c462",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f91d8af3_cca94517",
         "filename": "schemas/mctp.json",
         "patchSetId": 13
@@ -268,6 +328,30 @@
       "writtenOn": "2025-09-03T00:59:40Z",
       "side": 1,
       "message": "The MCTP endpoints maps to a USB interface. \n\nSo the configuration should be the property of its parent (as part of a USB configuration descriptor)?",
+      "range": {
+        "startLine": 58,
+        "startChar": 17,
+        "endLine": 58,
+        "endChar": 30
+      },
+      "revId": "d4ffda25111a65bca1e63fbaa01aa1c526d1c462",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8bbc385_f00ce0ff",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-12-15T18:07:00Z",
+      "side": 1,
+      "message": "I see what you mean, but at the moment this is only defining config for an MCTP USB endpoint.",
+      "parentUuid": "f91d8af3_cca94517",
       "range": {
         "startLine": 58,
         "startChar": 17,
@@ -315,6 +399,30 @@
       "side": 1,
       "message": "I would suggest to provide both. The `InterfaceNum` is useful for multi-interfaces architecture and the latter is useful for single interface re-configuration.",
       "parentUuid": "a1a2a319_65d16b70",
+      "range": {
+        "startLine": 62,
+        "startChar": 16,
+        "endLine": 62,
+        "endChar": 30
+      },
+      "revId": "d4ffda25111a65bca1e63fbaa01aa1c526d1c462",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2aa4675_4b152a60",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-12-15T18:07:00Z",
+      "side": 1,
+      "message": "I\u0027ll attempt to use Interface.",
+      "parentUuid": "c856d6a2_eb091fb8",
       "range": {
         "startLine": 62,
         "startChar": 16,
