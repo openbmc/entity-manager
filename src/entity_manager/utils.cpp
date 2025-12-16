@@ -54,8 +54,14 @@ bool fwVersionIsSame()
 
         if (expectedHash == hashString)
         {
+            lg2::debug(
+                "The firmware version is unchanged since the last boot, hash value of versionFile is: {HASH}",
+                "HASH", hashString);
             return true;
         }
+         lg2::debug(
+            "The firmware version has changed since the last boot, hash value of current versionFile is: {EXPECTED_HASH}, hash value of versionFile of last boot is: {LAST_HASH}",
+            "EXPECTED_HASH", expectedHash, "LAST_HASH", hashString);
         hashFile.close();
     }
 
