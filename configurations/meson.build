@@ -144,6 +144,7 @@ configs = [
     'meta/harma/harma_bsm.json',
     'meta/harma/harma_fanboard.json',
     'meta/harma/harma_mb.json',
+    'meta/harma/harma_mb_misc_boards.json',
     'meta/harma/harma_mb_vr_infineon.json',
     'meta/harma/harma_scm.json',
     'meta/minerva/minerva_aegis.json',
