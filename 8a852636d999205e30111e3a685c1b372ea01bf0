@@ -16,6 +16,23 @@
       "message": "@spinler@us.ibm.com @ed@tanous.net @vernon.mauery@gmail.com @christopher.sides@hpe.com @alexander.hansen@9elements.com could you please verify the Doc once.",
       "revId": "8a852636d999205e30111e3a685c1b372ea01bf0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3dcd03c3_943cfe0b",
+        "filename": "docs/sensor_mux.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-16T23:57:56Z",
+      "side": 1,
+      "message": "Remove this and just point to an example from the repository.  \"ADC\" for example doesn\u0027t accept a BUS argument, because it represents a direct ADC to the BMC, not an i2c mux attached ADC, so I\u0027m assuming this wasn\u0027t tested?\n\nThe type should\u0027ve been ina219",
+      "revId": "8a852636d999205e30111e3a685c1b372ea01bf0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
