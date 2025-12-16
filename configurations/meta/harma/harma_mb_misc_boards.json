@@ -1,0 +1,19 @@
+[
+    {
+        "Exposes": [],
+        "Name": "$Name",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'E1s0'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'E1s1'})"
+        ],
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "Unknown",
+            "Model": "Unknown",
+            "PartNumber": "Unknown",
+            "SerialNumber": "Unknown",
+            "SparePartNumber": "Unknow"
+        }
+    }
+]
