@@ -1,0 +1,32 @@
+[
+    {
+        "Exposes": [],
+        "Name": "Harma $Name",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'MB E1S0', 'Compatible': 'com.meta.Hardware.Harma.MB'})"
+        ],
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "Unknown",
+            "Model": "Unknown",
+            "PartNumber": "Unknown",
+            "SerialNumber": "Unknown",
+            "SparePartNumber": "22-100301"
+        }
+    },
+    {
+        "Exposes": [],
+        "Name": "Harma $Name",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'MB E1S1', 'Compatible': 'com.meta.Hardware.Harma.MB'})"
+        ],
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "Samsung",
+            "Model": "Unknown",
+            "PartNumber": "Unknown",
+            "SerialNumber": "Unknown",
+            "SparePartNumber": "22-100651"
+        }
+    }
+]
