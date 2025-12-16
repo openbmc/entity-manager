@@ -33,6 +33,24 @@
       "message": "Do we want to push/pop here?  Other branch uses CI, so I guess it\u0027s not a big deal for this patch.",
       "revId": "8755400c720386a887c5a83d98b61301d2cd7aa0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee8cbf57_6dcf9383",
+        "filename": "format-code",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-12-16T16:17:24Z",
+      "side": 1,
+      "message": "\u003e Do we want to push/pop here?\n\nI\u0027m not following why that would be necessary?  Since this is run as a sub-process, we don\u0027t need to restore the `pwd` when we\u0027re all done.  I\u0027m trying to get into the repo-root so that we know 13-15 are run correctly.  (ie. if someone were to be in the scripts directory and then run `../format-code` they\u0027ll get wrong results before this change).",
+      "parentUuid": "c8ade736_8a222db4",
+      "revId": "8755400c720386a887c5a83d98b61301d2cd7aa0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
