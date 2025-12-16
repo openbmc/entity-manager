@@ -185,18 +185,88 @@
             "power1_Name": "MB_PMON_DIMM_1_P12V_PWR_W"
         },
         {
+            "Address": "0x60",
+            "Bus": 58,
+            "Labels": [
+                "iout1",
+                "iout2",
+                "pout1",
+                "pout2",
+                "temp1",
+                "temp2",
+                "vout1",
+                "vout2"
+            ],
+            "Name": "MB_VR_CPU_PVDDIO_MEM_S3_P0",
+            "PowerState": "On",
+            "Type": "MP2869",
+            "iout1_Name": "MB_VR_CPU_PVDDCR_CPU0_P0_CURR_A",
+            "iout2_Name": "MB_VR_CPU_PVDDIO_MEM_S3_P0_CURR_A",
+            "pout1_Name": "MB_VR_CPU_PVDDCR_CPU0_P0_PWR_W",
+            "pout2_Name": "MB_VR_CPU_PVDDIO_MEM_S3_P0_PWR_W",
+            "temp1_Name": "MB_VR_CPU_PVDDCR_CPU0_P0_TEMP_C",
+            "temp2_Name": "MB_VR_CPU_PVDDIO_MEM_S3_P0_TEMP_C",
+            "vout1_Name": "MB_VR_CPU_PVDDCR_CPU0_P0_VOLT_V",
+            "vout2_Name": "MB_VR_CPU_PVDDIO_MEM_S3_P0_VOLT_V"
+        },
+        {
+            "Address": "0x62",
+            "Bus": 58,
+            "Labels": [
+                "iout1",
+                "pout1",
+                "temp1",
+                "vout1"
+            ],
+            "Name": "MB_VR_CPU_PVDDCR_CPU1_P0",
+            "PowerState": "On",
+            "Type": "MP29612",
+            "iout1_Name": "MB_VR_CPU_PVDDCR_CPU1_P0_CURR_A",
+            "pout1_Name": "MB_VR_CPU_PVDDCR_CPU1_P0_PWR_W",
+            "temp1_Name": "MB_VR_CPU_PVDDCR_CPU1_P0_TEMP_C",
+            "vout1_Name": "MB_VR_CPU_PVDDCR_CPU1_P0_VOLT_V"
+        },
+        {
+            "Address": "0x64",
+            "Bus": 58,
+            "Labels": [
+                "iout1",
+                "iout2",
+                "pout1",
+                "pout2",
+                "temp1",
+                "temp2",
+                "vout1",
+                "vout2"
+            ],
+            "Name": "MB_VR_CPU_PVDDCR_SOC_P0",
+            "Name1": "MB_VR_CPU_PVDDIO_P0",
+            "PowerState": "On",
+            "Type": "MP29612",
+            "iout1_Name": "MB_VR_CPU_PVDDCR_SOC_P0_CURR_A",
+            "iout2_Name": "MB_VR_CPU_PVDDIO_P0_CURR_A",
+            "pout1_Name": "MB_VR_CPU_PVDDCR_SOC_P0_PWR_W",
+            "pout2_Name": "MB_VR_CPU_PVDDIO_P0_PWR_W",
+            "temp1_Name": "MB_VR_CPU_PVDDCR_SOC_P0_TEMP_C",
+            "temp2_Name": "MB_VR_CPU_PVDDIO_P0_TEMP_C",
+            "vout1_Name": "MB_VR_CPU_PVDDCR_SOC_P0_VOLT_V",
+            "vout2_Name": "MB_VR_CPU_PVDDIO_P0_VOLT_V"
+        },
+        {
             "Address": "0x47",
             "Bus": 58,
             "Labels": [
-                "in1",
-                "curr1",
-                "temp1"
+                "iout1",
+                "temp1",
+                "vin",
+                "vout1"
             ],
-            "Name": "MB_VR_CPU_PVDD18",
+            "Name": "MB_VR_CPU_PVDD18_S5_P0",
             "Type": "MPQ8785",
-            "curr1_Name": "MB_VR_CPU_PVDD18_CURR_A",
-            "in1_Name": "MB_VR_CPU_PVDD18_VOLT_V",
-            "temp1_Name": "MB_VR_CPU_PVDD18_TEMP_C"
+            "iout1_Name": "MB_VR_CPU_PVDD18_S5_P0_CURR_A",
+            "temp1_Name": "MB_VR_CPU_PVDD18_S5_P0_TEMP_C",
+            "vin_Name": "MB_VR_CPU_PVDD18_S5_P0_VIN_VOLT_V",
+            "vout1_Name": "MB_VR_CPU_PVDD18_S5_P0_VOUT_VOLT_V"
         },
         {
             "Address": "0x6a",
@@ -338,48 +408,6 @@
             "Bus": 52,
             "Name": "MB_CPU_REAR_TEMP_C",
             "Type": "TMP75"
-        },
-        {
-            "Address": "0x60",
-            "Bus": 58,
-            "Labels": [
-                "in1",
-                "curr1",
-                "temp1"
-            ],
-            "Name": "MB_VR_PVDDCR_CPU0",
-            "Type": "pmbus",
-            "curr1_Name": "MB_VR_PVDDCR_CPU0_CURR_A",
-            "in1_Name": "MB_VR_PVDDCR_CPU0_VOLT_V",
-            "temp1_Name": "MB_VR_PVDDCR_CPU0_TEMP_C"
-        },
-        {
-            "Address": "0x62",
-            "Bus": 58,
-            "Labels": [
-                "in1",
-                "curr1",
-                "temp1"
-            ],
-            "Name": "MB_VR_PVDDCR_CPU1",
-            "Type": "pmbus",
-            "curr1_Name": "MB_VR_PVDDCR_CPU1_CURR_A",
-            "in1_Name": "MB_VR_PVDDCR_CPU1_VOLT_V",
-            "temp1_Name": "MB_VR_PVDDCR_CPU1_TEMP_C"
-        },
-        {
-            "Address": "0x64",
-            "Bus": 58,
-            "Labels": [
-                "in1",
-                "curr1",
-                "temp1"
-            ],
-            "Name": "MB_VR_VDDIO",
-            "Type": "pmbus",
-            "curr1_Name": "MB_VR_VDDIO_CURR_A",
-            "in1_Name": "MB_VR_VDDIO_VOLT_V",
-            "temp1_Name": "MB_VR_VDDIO_TEMP_C"
         },
         {
             "Address": "0x46",
