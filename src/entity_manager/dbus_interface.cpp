@@ -48,7 +48,7 @@ std::shared_ptr<sdbusplus::asio::dbus_interface>
     // a constant delete/add will not create a memory leak
 
     auto ptr = objServer.add_interface(path, interface);
-    auto& dataVector = inventory[parent];
+    auto& dataVector = inventory[std::string(parent)];
     if (checkNull)
     {
         auto it = std::find_if(dataVector.begin(), dataVector.end(),
