@@ -54,8 +54,16 @@ bool fwVersionIsSame()
 
         if (expectedHash == hashString)
         {
+            std::cout << "The firmware version is similiar as the last boot, "
+                         "hash value of versionFile is:"
+                      << hashString.c_str() << "\n";
             return true;
         }
+        std::cout << "The firmware version is changed since the last boot, hash "
+                     "value of current versionFile is:"
+                  << expectedHash.c_str()
+                  << ", hash value of versionFile of last boot is:"
+                  << hashString.c_str() << "\n";
         hashFile.close();
     }
 
