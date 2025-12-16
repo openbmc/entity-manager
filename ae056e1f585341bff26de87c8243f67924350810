@@ -1,6 +1,97 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed3cc9c9_11027353",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-16T18:22:38Z",
+      "side": 1,
+      "message": "nit, rephrase here.  The result of a probe is a bool, whether or not this device was detected.",
+      "range": {
+        "startLine": 9,
+        "startChar": 50,
+        "endLine": 9,
+        "endChar": 56
+      },
+      "revId": "ae056e1f585341bff26de87c8243f67924350810",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9aa7265_02b334ce",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-16T18:22:38Z",
+      "side": 1,
+      "message": "NVMe Volumes represent software resources.  Why would we detect a physical component using what\u0027s essentially a modifiable software resource?",
+      "revId": "ae056e1f585341bff26de87c8243f67924350810",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a2683c1_b508b2d6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-16T18:22:38Z",
+      "side": 1,
+      "message": "Can we get a real example for where this should be used?  This nvme case is where where we should be using model information from the FRU, not things in the Inventory Namespace.",
+      "revId": "ae056e1f585341bff26de87c8243f67924350810",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7e9b986_db7cf005",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-16T18:22:38Z",
+      "side": 1,
+      "message": "I\u0027m not sure I understand the above.  Can you please clarify the commit message?",
+      "revId": "ae056e1f585341bff26de87c8243f67924350810",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e1e6cfe_ddb1bc4b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-16T18:22:38Z",
+      "side": 1,
+      "message": "Tested?",
+      "revId": "ae056e1f585341bff26de87c8243f67924350810",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "8be9291f_f05c41a2",
@@ -14,6 +105,23 @@
       "writtenOn": "2025-09-09T09:12:02Z",
       "side": 1,
       "message": "Looks like a useful feature to me 👍",
+      "revId": "ae056e1f585341bff26de87c8243f67924350810",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e37cde2e_823e96b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-16T18:22:38Z",
+      "side": 1,
+      "message": "Overall, I\u0027m in support of new operators if they\u0027re needed, but given the explanation here and lack of docs, it\u0027s not immediately clear where this would be used.  The example given in the commit message isn\u0027t complete for an NVMe drive.\n\nLooking forward to getting those things rectified.",
       "revId": "ae056e1f585341bff26de87c8243f67924350810",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -49,6 +157,24 @@
       "side": 1,
       "message": "Will do. Thanks for the advise.",
       "parentUuid": "e1b98fe0_f202a468",
+      "revId": "ae056e1f585341bff26de87c8243f67924350810",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24e915cb_7b6e23a3",
+        "filename": "src/entity_manager/perform_probe.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-16T18:22:38Z",
+      "side": 1,
+      "message": "+1;  As written I\u0027m not sure I understand the semantics compared to AND.\n\nPlease also get at least one example of using this into review so you can test.",
+      "parentUuid": "7219a4c0_752b7694",
       "revId": "ae056e1f585341bff26de87c8243f67924350810",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
