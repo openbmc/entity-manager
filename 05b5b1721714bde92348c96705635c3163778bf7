@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a344b5c_e65b5659",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-16T18:12:01Z",
+      "side": 1,
+      "message": "This is a little confusing, as I don\u0027t see any rvalues in the patch.  const key_type would be a reference.",
+      "range": {
+        "startLine": 7,
+        "startChar": 30,
+        "endLine": 7,
+        "endChar": 36
+      },
+      "revId": "05b5b1721714bde92348c96705635c3163778bf7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aadf07d3_bab59c9e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-16T18:12:01Z",
+      "side": 1,
+      "message": "In the patch you\u0027ve proposed, parent is still a const reference, not a key_type\u0026\u0026.\n\nIs there any forwarding going on here?",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 41
+      },
+      "revId": "05b5b1721714bde92348c96705635c3163778bf7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc298453_a506376b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-16T18:12:01Z",
+      "side": 1,
+      "message": "I did a little hunting, as trivial stuff like this should\u0027ve been caught in CI.\n\nhttps://patchwork.sourceware.org/project/gcc/patch/20251201212002.1632199-1-ppalka@redhat.com/\n\nLooks like it might apply?  and looks like there might be a bug in gcc that got fixed in 15.2, whereas yocto is on 15.1.\n\nI don\u0027t love the complexity of try_emplace when we don\u0027t need it, but it is what it is, and we can clean it up once gcc gets updated.\n\nMerging quickly to fix the build.  Left my inline comments so that there\u0027s some tracing that the commit message doesn\u0027t make sense.",
+      "revId": "05b5b1721714bde92348c96705635c3163778bf7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
