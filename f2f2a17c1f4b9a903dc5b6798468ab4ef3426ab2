@@ -92,6 +92,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6e3d1c6c_9f3efe7a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-12-17T13:53:10Z",
+      "side": 1,
+      "message": "\u003e \"NIC 1 Temperature\" which is what humans read. \n\nWe (Meta) don\u0027t have humans.  😊\n\nEverything goes through automation and unfortunately our internal team has a \"sensor schema we want to see\".  This is easy for content under `configurations/meta` but is obviously less easy for stuff outside there.\n\n\u003e I will say I\u0027m not a fan of the \"whomever checked it in first wins\" approach and would like to see some consistency here, but consistency is hard.\n\nI agree with the sentiment and would like to see consistency.  I think there is some value in \"first mover gets preference\" though when we\u0027re the ones putting in the effort to do everything upstream.  We\u0027ve even contributed most of the configs for Nvidia hardware.\n\nI brought up @alexander.hansen@9elements.com \u0027s work because Meta has been contracting with 9E to improve the situation here with this exact problem in mind.  There has been work in this direction but I don\u0027t think the [upstream] reception has been great.\n\nI\u0027m fine with holding downstream patches for stuff that is in common use (like Nvidia parts) but I don\u0027t think we should need to hold downstream patches when we seem to be the only one using the config (as is the case of the Broadcomm ones) and we\u0027re the ones expending the effort on both ends of this problem: contributing the hardware configs and trying to enhance EM to have vendor/platform-specific tweaks.\n\nAs soon as Alexander\u0027s work is in an acceptable state, I\u0027m good with us refactoring every sensor to be a \"human-oriented name\" if that\u0027s what you want and then the Meta-schema can be handled with his work.",
+      "parentUuid": "95581547_875656a3",
+      "revId": "f2f2a17c1f4b9a903dc5b6798468ab4ef3426ab2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1c8c9efd_13cfcba9",
         "filename": "configurations/brcm_200g_1p_ocp_mezz.json",
         "patchSetId": 2
@@ -103,6 +121,30 @@
       "writtenOn": "2025-12-13T00:28:38Z",
       "side": 1,
       "message": "Names shouldn\u0027t include underscores.",
+      "range": {
+        "startLine": 15,
+        "startChar": 28,
+        "endLine": 15,
+        "endChar": 29
+      },
+      "revId": "f2f2a17c1f4b9a903dc5b6798468ab4ef3426ab2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8adf34f_d01b809d",
+        "filename": "configurations/brcm_200g_1p_ocp_mezz.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-12-17T13:53:10Z",
+      "side": 1,
+      "message": "We\u0027ve named all of our sensors this way.",
+      "parentUuid": "1c8c9efd_13cfcba9",
       "range": {
         "startLine": 15,
         "startChar": 28,
