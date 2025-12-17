@@ -1032,6 +1032,52 @@
             "Type": "NVME1000"
         },
         {
+            "Class": "fan",
+            "FailSafePercent": 100.0,
+            "Inputs": [
+                "MB_FAN0_TACH_OL_SPEED_RPM",
+                "MB_FAN0_TACH_IL_SPEED_RPM",
+                "MB_FAN1_TACH_OL_SPEED_RPM",
+                "MB_FAN1_TACH_IL_SPEED_RPM",
+                "MB_FAN2_TACH_OL_SPEED_RPM",
+                "MB_FAN2_TACH_IL_SPEED_RPM",
+                "MB_FAN3_TACH_OL_SPEED_RPM",
+                "MB_FAN3_TACH_IL_SPEED_RPM",
+                "PDB2_FAN4_TACH_OL_SPEED_RPM",
+                "PDB2_FAN4_TACH_IL_SPEED_RPM",
+                "PDB2_FAN5_TACH_OL_SPEED_RPM",
+                "PDB2_FAN5_TACH_IL_SPEED_RPM",
+                "PDB2_FAN6_TACH_OL_SPEED_RPM",
+                "PDB2_FAN6_TACH_IL_SPEED_RPM",
+                "PDB2_FAN7_TACH_OL_SPEED_RPM",
+                "PDB2_FAN7_TACH_IL_SPEED_RPM"
+            ],
+            "Name": "All Fan",
+            "OutLimitMax": 100.0,
+            "OutLimitMin": 0.0,
+            "Outputs": [
+                "MB_FAN_PWM_PCT",
+                "PDB2_FAN4_PWM_PCT",
+                "PDB2_FAN5_PWM_PCT",
+                "PDB2_FAN6_PWM_PCT",
+                "PDB2_FAN7_PWM_PCT"
+            ],
+            "Type": "Pid",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "AccumulateSetPoint": false,
+            "CycleIntervalTimeMS": 1000,
+            "FailSafePercent": 100.0,
+            "MinThermalOutput": 15.0,
+            "Name": "Zone 0",
+            "Type": "Pid.Zone",
+            "UpdateThermalsTimeMS": 1000,
+            "ZoneIndex": 0
+        },
+        {
             "Address": "0x3c",
             "Bus": 3,
             "Labels": [
@@ -1394,6 +1440,55 @@
                 }
             ],
             "Type": "SBTSI"
+        },
+        {
+            "Class": "temp",
+            "Inputs": [
+                "FIOBOARD_REMOTE_INLET_TEMP_C"
+            ],
+            "Name": "Stepwise_FIOBOARD_IL",
+            "NegativeHysteresis": 2.0,
+            "Output": [
+                75.0,
+                77.0,
+                79.0,
+                81.0,
+                83.0,
+                85.0,
+                87.0,
+                89.0,
+                91.0,
+                93.0,
+                95.0,
+                97.0,
+                97.0,
+                97.0,
+                97.0,
+                100.0
+            ],
+            "PositiveHysteresis": 0.0,
+            "Reading": [
+                20.0,
+                21.0,
+                22.0,
+                23.0,
+                24.0,
+                25.0,
+                26.0,
+                27.0,
+                28.0,
+                29.0,
+                30.0,
+                31.0,
+                32.0,
+                33.0,
+                34.0,
+                35.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 0"
+            ]
         },
         {
             "Address": "0x4c",
