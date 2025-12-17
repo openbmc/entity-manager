@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "139bdf56_3eb49c1c",
+        "filename": "configurations/ibm/huygens_spdm_responder.json",
+        "patchSetId": 15
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-17T00:03:51Z",
+      "side": 1,
+      "message": "Right, so pick a name for what it is in THIS system.",
+      "parentUuid": "f35fc76c_ee3a4b92",
+      "range": {
+        "startLine": 5,
+        "startChar": 21,
+        "endLine": 5,
+        "endChar": 37
+      },
+      "revId": "59e967528a781ca4e1dd19552294f88370e3a6db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "207352a1_c0147970",
         "filename": "configurations/ibm/huygens_spdm_responder.json",
         "patchSetId": 15
@@ -109,6 +133,30 @@
       "side": 1,
       "message": "As per the design document https://github.com/openbmc/docs/blob/master/designs/redfish-spdm-attestation.md,\n`For SPDM-over-TCP, SPDM daemon can query entity-manager for information about remote TCP endpoints, including the hostname / ip-address \u0026 port details from the SpdmTcpResponder interface `.\n\nIBM Huygens is the system with redundant BMC support. The peer BMC is discovered via ethernet protocol LLDP. The SPDM daemon uses the SPDM TCP Responder configuration interface to identify SPDM-capable devices and perform attestation.",
       "parentUuid": "207352a1_c0147970",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 132
+      },
+      "revId": "59e967528a781ca4e1dd19552294f88370e3a6db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6d113cc_0bad4d6f",
+        "filename": "configurations/ibm/huygens_spdm_responder.json",
+        "patchSetId": 15
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-17T00:03:51Z",
+      "side": 1,
+      "message": "That quoted statement mentions nothing about the probe.  I was assuming we\u0027d use the normal probe statements and not add an arbitrary network protocol here, same as we did for sattelite.  Is this really the only way on a Huygens system to know if there\u0027s a BMC?  BMC has no fru and is only detectable based on LLDP being up and working?",
+      "parentUuid": "f452f975_094bca71",
       "range": {
         "startLine": 13,
         "startChar": 0,

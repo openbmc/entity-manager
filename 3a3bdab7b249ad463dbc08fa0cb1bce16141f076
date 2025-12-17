@@ -70,6 +70,24 @@
       "parentUuid": "6844bd87_0f05e312",
       "revId": "3a3bdab7b249ad463dbc08fa0cb1bce16141f076",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f9e09c2_573d52f9",
+        "filename": "configurations/spdm_tcp_responder.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-12-17T00:03:51Z",
+      "side": 1,
+      "message": "huygens_attestable_peer_bmc still isn\u0027t a name.  what is it you\u0027re talking to?  Is it a board with only a BMC on it?  \"atttestable\" is a property of the device (ie an exposes record) not the name of the device itself.\n\nMaybe Huygens_bmc.json is what you want?",
+      "parentUuid": "a47d2ca1_7685034f",
+      "revId": "3a3bdab7b249ad463dbc08fa0cb1bce16141f076",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
