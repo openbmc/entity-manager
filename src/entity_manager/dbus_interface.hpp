@@ -7,12 +7,29 @@
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
+#include <sdbusplus/bus.hpp>
 
 #include <flat_map>
+#include <iostream>
+#include <map>
+#include <string>
+#include <variant>
 #include <vector>
+
+inline constexpr const char* fruConn = "xyz.openbmc_project.FruDevice";
+inline constexpr const char* fruIntf = "xyz.openbmc_project.FruDevice";
 
 namespace dbus_interface
 {
+
+using FoundProbeData = std::map<std::string, std::string>;
+using FoundProbeMap  = std::map<std::string, FoundProbeData>;
+
+/*
+ * Shared cache for DBus helper logic (e.g. AssetTag persistence).
+ * Declared here to avoid global variables and API changes.
+ */
+FoundProbeMap& getFoundProbeData();
 
 using JsonVariantType =
     std::variant<std::vector<std::string>, std::vector<double>, std::string,
@@ -123,6 +140,71 @@ void addArrayToDbus(const std::string& name, const nlohmann::json& array,
 }
 
 template <typename PropertyType>
+bool persistAssetTag(const PropertyType& newVal,
+                     const std::string& jsonPointerString)
+{
+    /*Strip last component (e.g., "/AssetTag") */
+    std::size_t found = jsonPointerString.find_last_of('/');
+    std::string mapKey = (found != std::string::npos)
+                             ? jsonPointerString.substr(0, found)
+                             : jsonPointerString;
+
+    /* Get FRU path dynamically from mapFoundData */
+    std::string fruObjPath;
+    auto& mapFoundData = getFoundProbeData();
+    auto it = mapFoundData.find(mapKey);
+    if (it != mapFoundData.end())
+    {
+        auto foundIt = it->second.find("foundPath");
+        if (foundIt != it->second.end())
+        {
+            fruObjPath = foundIt->second;
+            lg2::info("Resolved FRU path from mapFoundData: {P}", "P",
+                      fruObjPath);
+        }
+        else
+        {
+            lg2::error("No 'foundPath' entry in mapFoundData for key={K}", "K",
+                       mapKey);
+            return false; // Cannot proceed without dynamic FRU path
+        }
+    }
+    else
+    {
+        lg2::error("mapFoundData key not found: {K}", "K", mapKey);
+        return false; // Cannot proceed without dynamic FRU path
+    }
+
+    /* Call D-Bus FRU UpdateFruField */
+    try
+    {
+        auto bus = sdbusplus::bus::new_system();
+        auto method = bus.new_method_call(
+            "xyz.openbmc_project.FruDevice", fruObjPath.c_str(),
+            "xyz.openbmc_project.FruDevice", "UpdateFruField");
+
+        method.append(std::string("BOARD_INFO_AM1"),
+                      std::string(newVal).substr(0, 16));
+
+        auto reply = bus.call(method);
+        bool success = false;
+        reply.read(success);
+
+        if (!success)
+        {
+            lg2::warning("FRU does not support updating AssetTag ");
+        }
+    }
+    catch (const sdbusplus::exception::SdBusError& e)
+    {
+        lg2::warning("FRU update skipped err={E}", "E", e.what());
+    }
+
+    lg2::info("persistAssetTag SUCCESS value={V}", "V", newVal);
+    return true;
+}
+
+template <typename PropertyType>
 void addProperty(const std::string& name, const PropertyType& value,
                  sdbusplus::asio::dbus_interface* iface,
                  nlohmann::json& systemConfiguration,
@@ -134,23 +216,38 @@ void addProperty(const std::string& name, const PropertyType& value,
         iface->register_property(name, value);
         return;
     }
+
     iface->register_property(
         name, value,
-        [&systemConfiguration,
-         jsonPointerString{std::string(jsonPointerString)}](
-            const PropertyType& newVal, PropertyType& val) {
+        [name, &systemConfiguration, jsonPointerString](
+            const PropertyType& newVal, PropertyType& val) -> int {
+            if constexpr (std::is_same_v<PropertyType, std::string>)
+            {
+                if (name == "AssetTag")
+                {
+                    if (!persistAssetTag(newVal, jsonPointerString))
+                    {
+                        lg2::error("persistAssetTag FAILED");
+                        return -1;
+                    }
+                }
+            }
+
             val = newVal;
+
             if (!setJsonFromPointer(jsonPointerString, val,
                                     systemConfiguration))
             {
-                lg2::error("error setting json field");
+                lg2::error("setJsonFromPointer FAILED");
                 return -1;
             }
+
             if (!writeJsonFiles(systemConfiguration))
             {
-                lg2::error("error setting json file");
+                lg2::error("writeJsonFiles FAILED");
                 return -1;
             }
+
             return 1;
         });
 }
@@ -170,7 +267,7 @@ void addValueToDBus(const std::string& key, const nlohmann::json& value,
     else
     {
         addProperty(key, value.get<PropertyType>(), &iface, systemConfiguration,
-                    path, sdbusplus::asio::PropertyPermission::readOnly);
+                    path, permission);
     }
 }
 
