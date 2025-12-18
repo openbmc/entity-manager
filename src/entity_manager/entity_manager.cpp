@@ -42,6 +42,17 @@ static constexpr std::array<const char*, 6> settableInterfaces = {
 const std::regex illegalDbusPathRegex("[^A-Za-z0-9_.]");
 const std::regex illegalDbusMemberRegex("[^A-Za-z0-9_]");
 
+namespace dbus_interface
+{
+
+FoundProbeMap& getFoundProbeData()
+{
+    static FoundProbeMap foundProbeData;
+    return foundProbeData;
+}
+
+} // namespace dbus_interface
+
 sdbusplus::asio::PropertyPermission getPermission(const std::string& interface)
 {
     return std::find(settableInterfaces.begin(), settableInterfaces.end(),
@@ -127,6 +138,7 @@ void EntityManager::postBoardToDBus(
         lg2::error("Unable to find name for {BOARD}", "BOARD", boardId);
         return;
     }
+
     const std::string* boardNamePtr =
         boardNameIt->second.get_ptr<const std::string*>();
     if (boardNamePtr == nullptr)
@@ -134,12 +146,14 @@ void EntityManager::postBoardToDBus(
         lg2::error("Name for {BOARD} was not a string", "BOARD", boardId);
         return;
     }
+
     std::string boardName = *boardNamePtr;
     std::string boardNameOrig = *boardNamePtr;
+
     std::string jsonPointerPath = "/" + boardId;
-    // loop through newConfiguration, but use values from system
-    // configuration to be able to modify via dbus later
+
     auto boardValues = systemConfiguration[boardId];
+
     auto findBoardType = boardValues.find("Type");
     std::string boardType;
     if (findBoardType != boardValues.end() &&
@@ -178,38 +192,56 @@ void EntityManager::postBoardToDBus(
 
     dbus_interface.populateInterfaceFromJson(
         systemConfiguration, jsonPointerPath, boardIface, boardValues);
+
     jsonPointerPath += "/";
-    // iterate through board properties
+
+    std::string foundPath;
+
     for (const auto& [propName, propValue] : boardValues.items())
     {
+        if (propName == "FoundProbePath")
+        {
+            if (propValue.is_string())
+            {
+                foundPath = propValue.get<std::string>();
+            }
+        }
+
         if (propValue.type() == nlohmann::json::value_t::object)
         {
             std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
                 dbus_interface.createInterface(boardPath, propName,
                                                boardNameOrig);
 
+            auto perm = sdbusplus::asio::PropertyPermission::readOnly;
+
+            if (propName == "xyz.openbmc_project.Inventory.Decorator.AssetTag")
+            {
+                perm = sdbusplus::asio::PropertyPermission::readWrite;
+
+                std::string mapKey = jsonPointerPath + propName;
+		 dbus_interface::getFoundProbeData()[mapKey]["foundPath"] =
+                 foundPath;
+            }
+
             dbus_interface.populateInterfaceFromJson(
                 systemConfiguration, jsonPointerPath + propName, iface,
-                propValue);
+                propValue, perm);
         }
     }
 
     nlohmann::json::iterator exposes = boardValues.find("Exposes");
-    if (exposes == boardValues.end())
+    if (exposes != boardValues.end())
     {
-        return;
-    }
-    // iterate through exposes
-    jsonPointerPath += "Exposes/";
+        const std::string& jsonPointerPathBoard = jsonPointerPath;
+        size_t exposesIndex = -1;
 
-    // store the board level pointer so we can modify it on the way down
-    std::string jsonPointerPathBoard = jsonPointerPath;
-    size_t exposesIndex = -1;
-    for (nlohmann::json& item : *exposes)
-    {
-        postExposesRecordsToDBus(item, exposesIndex, boardNameOrig,
-                                 jsonPointerPath, jsonPointerPathBoard,
-                                 boardPath, boardType);
+        for (nlohmann::json& item : *exposes)
+        {
+            postExposesRecordsToDBus(item, exposesIndex, boardNameOrig,
+                                     jsonPointerPath, jsonPointerPathBoard,
+                                     boardPath, boardType);
+        }
     }
 
     newBoards.emplace(boardPath, boardNameOrig);
