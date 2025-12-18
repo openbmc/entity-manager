@@ -7,6 +7,31 @@
             "Type": "EEPROM"
         },
         {
+            "Address": "0x60",
+            "Bus": "$bus + 2",
+            "Labels": [
+                "iout1",
+                "iout2",
+                "pout1",
+                "pout2",
+                "temp1",
+                "temp2",
+                "vout1",
+                "vout2"
+            ],
+            "Name": "BRB_R_VR_P0V85_VDD",
+            "Name1": "BRB_R_VR_P0V8_VDDA",
+            "Type": "MP2993",
+            "iout1_Name": "BRB_R_VR_P0V85_VDD_CURR_A",
+            "iout2_Name": "BRB_R_VR_P0V8_VDDA_CURR_A",
+            "pout1_Name": "BRB_R_VR_P0V85_VDD_PWR_W",
+            "pout2_Name": "BRB_R_VR_P0V8_VDDA_PWR_W",
+            "temp1_Name": "BRB_R_VR_P0V85_VDD_TEMP_C",
+            "temp2_Name": "BRB_R_VR_P0V8_VDDA_TEMP_C",
+            "vout1_Name": "BRB_R_VR_P0V85_VDD_VOLT_V",
+            "vout2_Name": "BRB_R_VR_P0V8_VDDA_VOLT_V"
+        },
+        {
             "Address": "0x4c",
             "Bus": "$bus",
             "Name": "BRB_R_OUTLET0_TEMP_C",
@@ -21,20 +46,6 @@
             "Name1": "BRB_R_BE_TEMP_C",
             "Name2": "BRB_R_FE_TEMP_C",
             "Type": "TMP432"
-        },
-        {
-            "Address": "0x60",
-            "Bus": "$bus",
-            "Labels": [
-                "in1",
-                "curr1",
-                "temp1"
-            ],
-            "Name": "BRB_R_VR",
-            "Type": "pmbus",
-            "curr1_Name": "BRB_R_VR_CURR_A",
-            "in1_Name": "BRB_R_VR_VOLT_V",
-            "temp1_Name": "BRB_R_VR_TEMP_C"
         }
     ],
     "Name": "BRB_R",
