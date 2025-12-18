@@ -540,6 +540,8 @@ void scan::PerformScan::updateSystemConfiguration(
 
         usedNames.insert(deviceName);
 
+        record["FoundProbePath"] = path;
+
         for (auto& keyPair : record)
         {
             if (keyPair.first != "Name")
