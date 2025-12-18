@@ -500,7 +500,7 @@
                     "const": "ExternalSensor"
                 }
             },
-            "required": ["Name", "Type", "Units", "EntityId", "EntityInstance"],
+            "required": ["Name", "Type", "Units", "MinValue", "MaxValue"],
             "type": "object"
         },
         "PSUPresence": {
