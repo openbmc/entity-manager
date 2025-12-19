@@ -233,6 +233,8 @@ configs = [
     'meta/yv5/yosemite5_cxl_ddr5_board_vr_raa_tchip_tic.json',
     'meta/yv5/yosemite5_e1s_expansion_board_adc_qns_pmon_sgy.json',
     'meta/yv5/yosemite5_e1s_expansion_board_adc_tic_pmon_tic.json',
+    'meta/yv5/yosemite5_e1s_x4_expansion_board_adc_ons_pmon_rtk.json',
+    'meta/yv5/yosemite5_e1s_x4_expansion_board_adc_tic_pmon_tic.json',
     'meta/yv5/yosemite5_mb_vr_mps_pvdd18vr_mps_adc_tic_i3chub_rtt.json',
     'meta/yv5/yosemite5_mb_vr_rtt_pvdd18vr_mps_adc_tic_i3chub_rtt.json',
     'meta/yv5/yosemite5_mb_vr_sni_pvdd18vr_sni_adc_tic_i3chub_rtt.json',
