@@ -1,0 +1,730 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x48",
+            "Bus": 10,
+            "Labels": [
+                "in0",
+                "in1",
+                "in2",
+                "in3",
+                "in4",
+                "in5",
+                "in6",
+                "in7"
+            ],
+            "Name": "E1S_ADC_0",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.216,
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.264,
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0627,
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.135
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0693,
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.465
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.064,
+                    "Label": "in2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.201
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.068,
+                    "Label": "in2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.399
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.2232,
+                    "Label": "in3",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.16
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.2568,
+                    "Label": "in3",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 12.84
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.2232,
+                    "Label": "in4",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.16
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.2568,
+                    "Label": "in4",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 12.84
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.064,
+                    "Label": "in5",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.201
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.068,
+                    "Label": "in5",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.399
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.2232,
+                    "Label": "in6",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.16
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.2568,
+                    "Label": "in6",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 12.84
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.2232,
+                    "Label": "in7",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.16
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.2568,
+                    "Label": "in7",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 12.84
+                }
+            ],
+            "Type": "ADS7830",
+            "in0_Name": "E1S_EB_ADC_P12V_STBY_VOLT_V",
+            "in0_Scale": 151.515,
+            "in1_Name": "E1S_EB_ADC_P3V3_AUX_VOLT_V",
+            "in1_Scale": 500,
+            "in2_Name": "E1S_EB_ADC_P3V3_E1S_0_VOLT_V",
+            "in2_PowerState": "On",
+            "in2_Scale": 500,
+            "in3_Name": "E1S_EB_ADC_P12V_E1S_0_VOLT_V",
+            "in3_PowerState": "On",
+            "in3_Scale": 151.515,
+            "in4_Name": "E1S_EB_ADC_P12V_E1S_0_R_VOLT_V",
+            "in4_PowerState": "On",
+            "in4_Scale": 151.515,
+            "in5_Name": "E1S_EB_ADC_P3V3_E1S_1_VOLT_V",
+            "in5_PowerState": "On",
+            "in5_Scale": 500,
+            "in6_Name": "E1S_EB_ADC_P12V_E1S_1_VOLT_V",
+            "in6_PowerState": "On",
+            "in6_Scale": 151.515,
+            "in7_Name": "E1S_EB_ADC_P12V_E1S_1_R_VOLT_V",
+            "in7_PowerState": "On",
+            "in7_Scale": 151.515
+        },
+        {
+            "Address": "0x4B",
+            "Bus": 10,
+            "Labels": [
+                "in0",
+                "in1",
+                "in2",
+                "in3",
+                "in4",
+                "in5"
+            ],
+            "Name": "E1S_ADC_1",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.216,
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.264,
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0627,
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.135
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0693,
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.465
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.064,
+                    "Label": "in2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.201
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.068,
+                    "Label": "in2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.399
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.2232,
+                    "Label": "in3",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.16
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.2568,
+                    "Label": "in3",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 12.84
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.2232,
+                    "Label": "in4",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.16
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.2568,
+                    "Label": "in4",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 12.84
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.064,
+                    "Label": "in5",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.201
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.068,
+                    "Label": "in5",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.399
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.2232,
+                    "Label": "in6",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.16
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.2568,
+                    "Label": "in6",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 12.84
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.2232,
+                    "Label": "in7",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.16
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.2568,
+                    "Label": "in7",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 12.84
+                }
+            ],
+            "Type": "ADS7830",
+            "in0_Name": "E1S_EB_ADC_P3V3_E1S_2_VOLT_V",
+            "in0_PowerState": "On",
+            "in0_Scale": 500,
+            "in1_Name": "E1S_EB_ADC_P12V_E1S_2_VOLT_V",
+            "in1_PowerState": "On",
+            "in1_Scale": 151.515,
+            "in2_Name": "E1S_EB_ADC_P12V_E1S_2_R_VOLT_V",
+            "in2_PowerState": "On",
+            "in2_Scale": 151.515,
+            "in3_Name": "E1S_EB_ADC_P3V3_E1S_3_VOLT_V",
+            "in3_PowerState": "On",
+            "in3_Scale": 500,
+            "in4_Name": "E1S_EB_ADC_P12V_E1S_3_VOLT_V",
+            "in4_PowerState": "On",
+            "in4_Scale": 151.515,
+            "in5_Name": "E1S_EB_ADC_P12V_E1S_3_R_VOLT_V",
+            "in5_PowerState": "On",
+            "in5_Scale": 151.515
+        },
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "Yosemite5 E1S x4 Expansion Board FRU",
+            "Type": "EEPROM"
+        },
+        {
+            "Address": "0x40",
+            "Bus": 10,
+            "Labels": [
+                "iout1",
+                "vin",
+                "pout1"
+            ],
+            "Name": "E1S_EB_PMON_E1S1",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.044,
+                    "Label": "in_current3",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 2.2
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0367,
+                    "Label": "in_current3",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.837
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.264,
+                    "Label": "in_voltage1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.216,
+                    "Label": "in_voltage1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.5,
+                    "Label": "in_power2",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 25
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.412,
+                    "Label": "in_power2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 20.6
+                }
+            ],
+            "Type": "INA233",
+            "iout1_Name": "E1S_EB_PMON_E1S1_P12V_CURR_A",
+            "pout1_Name": "E1S_EB_PMON_E1S1_P12V_PWR_W",
+            "vin_Name": "E1S_EB_PMON_E1S1_P12V_VOLT_V"
+        },
+        {
+            "Address": "0x41",
+            "Bus": 10,
+            "Labels": [
+                "iout1",
+                "vin",
+                "pout1"
+            ],
+            "Name": "E1S_EB_PMON_E1S2",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.044,
+                    "Label": "in_current3",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 2.2
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0367,
+                    "Label": "in_current3",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.837
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.264,
+                    "Label": "in_voltage1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.216,
+                    "Label": "in_voltage1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.5,
+                    "Label": "in_power2",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 25
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.412,
+                    "Label": "in_power2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 20.6
+                }
+            ],
+            "Type": "INA233",
+            "iout1_Name": "E1S_EB_PMON_E1S2_P12V_CURR_A",
+            "pout1_Name": "E1S_EB_PMON_E1S2_P12V_PWR_W",
+            "vin_Name": "E1S_EB_PMON_E1S2_P12V_VOLT_V"
+        },
+        {
+            "Address": "0x44",
+            "Bus": 10,
+            "Labels": [
+                "iout1",
+                "vin",
+                "pout1"
+            ],
+            "Name": "E1S_EB_PMON_E1S3",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.044,
+                    "Label": "in_current3",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 2.2
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0367,
+                    "Label": "in_current3",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.837
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.264,
+                    "Label": "in_voltage1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.216,
+                    "Label": "in_voltage1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.5,
+                    "Label": "in_power2",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 25
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.412,
+                    "Label": "in_power2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 20.6
+                }
+            ],
+            "Type": "INA233",
+            "iout1_Name": "E1S_EB_PMON_E1S3_P12V_CURR_A",
+            "pout1_Name": "E1S_EB_PMON_E1S3_P12V_PWR_W",
+            "vin_Name": "E1S_EB_PMON_E1S3_P12V_VOLT_V"
+        },
+        {
+            "Address": "0x45",
+            "Bus": 10,
+            "Labels": [
+                "iout1",
+                "vin",
+                "pout1"
+            ],
+            "Name": "E1S_EB_PMON_E1S0",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.044,
+                    "Label": "in_current3",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 2.2
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0367,
+                    "Label": "in_current3",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.837
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.264,
+                    "Label": "in_voltage1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.216,
+                    "Label": "in_voltage1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.5,
+                    "Label": "in_power2",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 25
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.412,
+                    "Label": "in_power2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 20.6
+                }
+            ],
+            "Type": "INA233",
+            "iout1_Name": "E1S_EB_PMON_E1S0_P12V_CURR_A",
+            "pout1_Name": "E1S_EB_PMON_E1S0_P12V_PWR_W",
+            "vin_Name": "E1S_EB_PMON_E1S0_P12V_VOLT_V"
+        },
+        {
+            "Address": "0x6a",
+            "Bus": 20,
+            "Name": "E1S_EB_E1S3_TEMP_C",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.4,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 70.0
+                }
+            ],
+            "Type": "NVME1000"
+        },
+        {
+            "Address": "0x6a",
+            "Bus": 21,
+            "Name": "E1S_EB_E1S2_TEMP_C",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.4,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 70.0
+                }
+            ],
+            "Type": "NVME1000"
+        },
+        {
+            "Address": "0x6a",
+            "Bus": 36,
+            "Name": "E1S_EB_E1S0_TEMP_C",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.4,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 70.0
+                }
+            ],
+            "Type": "NVME1000"
+        },
+        {
+            "Address": "0x6a",
+            "Bus": 37,
+            "Name": "E1S_EB_E1S1_TEMP_C",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.4,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 70.0
+                }
+            ],
+            "Type": "NVME1000"
+        },
+        {
+            "Address": "0x49",
+            "Bus": 10,
+            "Name": "E1S_EB_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.9,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 45
+                }
+            ],
+            "Type": "TMP75"
+        }
+    ],
+    "Name": "Yosemite5 E1S x4 Expansion Board",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 .*', 'BOARD_PRODUCT_NAME': 'E1.S x4 Expansion Board', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)', 'BOARD_INFO_AM4': 'ADC-TIC PMON-TIC'})"
+    ],
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$BOARD_MANUFACTURE_DATE",
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER",
+        "SparePartNumber": "$BOARD_INFO_AM1"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    }
+}
