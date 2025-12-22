@@ -171,6 +171,23 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef413663_a99c9b4d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002762
+      },
+      "writtenOn": "2025-12-22T04:40:43Z",
+      "side": 1,
+      "message": "@ed@tanous.net,\nCould you please check this,\n\nI didn’t add ERROR anywhere — the bug was found during testing on our board.\nReference(https://github.com/openbmc/entity-manager/issues/24)\n\nHow I discovered the issue:\nWhile probing xyz.openbmc_project.UsbDevice({\u0027VENDOR_ID\u0027: \u00272frrr3\u0027}), the probe was incorrectly treated as an OR conjunction because vendOR_id contains the substring \"OR\".\n\nHow I confirmed the logic problem:\nI tried other probe strings like:\n\nvendOR_id → contains \"OR\" → returns probe_type_codes::OR.\n\nTRUEcolor\u003dblue → contains \"TRUE\" → returns probe_type_codes::TRUE_T.\n\ndeviceMATCH_ONEvalue → returns probe_type_codes::MATCH_ONE.\n\nThis showed that the current logic (probe.find(...)) matches substrings, not whole words.\n\nHow I fixed it:\nUpdated the code to use regex with word boundaries\n\nHow I tested:\n\nxyz.openbmc_project.UsbDevice({\u0027VENDOR_ID\u0027: \u00272frrr3\u0027}) → now returns nullopt (correct).\nproperty\u003d\u0027vendOR_id\u0027 → no match (correct).\n\nThis ensures only standalone tokens like OR, AND, TRUE are matched, fixing the false positives",
+      "revId": "0ad68b2db9e85560488bfc4fdb47d7a120832f3b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ea2d3467_cba0a054",
