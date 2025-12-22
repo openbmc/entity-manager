@@ -230,22 +230,6 @@
             "Address": "0x4B",
             "Bus": 9,
             "Name": "SCM_INLET_TEMP_C",
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.1,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5.0
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.9,
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 45.0
-                }
-            ],
             "Type": "TMP75"
         },
         {
