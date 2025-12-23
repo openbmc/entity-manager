@@ -1224,7 +1224,7 @@ void rescanBusses(
     sdbusplus::asio::object_server& objServer)
 {
     static boost::asio::steady_timer timer(io);
-    timer.expires_after(std::chrono::seconds(1));
+    timer.expires_after(std::chrono::seconds(5));
 
     // setup an async wait in case we get flooded with requests
     timer.async_wait([&](const boost::system::error_code& ec) {
@@ -1237,6 +1237,22 @@ void rescanBusses(
         {
             lg2::error("Error in timer: {ERR}", "ERR", ec.message());
             return;
+        }
+
+         const fs::path lockPath = "/tmp/fru_scan.lock";
+        {
+            std::ofstream lockFile(lockPath);
+            if (lockFile.is_open())
+            {
+                lockFile << "fru-scan\n";
+                lockFile.close();
+            }
+            else
+            {
+                std::cerr << "Unable to create FRU scan lock file: PATH="
+                          << lockPath << " errno=" << errno << " ("
+                          << std::strerror(errno) << ")\n";
+            }
         }
 
         auto devDir = fs::path("/dev/");
@@ -1289,6 +1305,20 @@ void rescanBusses(
                                            unknownBusObjectCount, powerIsOn,
                                            addressBlocklist, objServer);
                     }
+                }
+
+                std::error_code remove_file;
+                fs::remove(lockPath, remove_file);
+                if (remove_file)
+                {
+                    std::cerr
+                        << "FRU scan lock removal failed: PATH=" << lockPath
+                        << ", ERROR=" << remove_file.message() << "\n";
+                }
+                else
+                {
+                    std::cerr
+                        << "FRU scan lock removed: PATH=" << lockPath << "\n";
                 }
             });
         scan->run();
