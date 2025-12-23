@@ -23,12 +23,14 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
+                    "Hysteresis": 800,
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 40000
                 },
                 {
                     "Direction": "less than",
+                    "Hysteresis": 20,
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 1000
@@ -53,12 +55,14 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
+                    "Hysteresis": 700,
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 35000
                 },
                 {
                     "Direction": "less than",
+                    "Hysteresis": 20,
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 1000
@@ -83,12 +87,14 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
+                    "Hysteresis": 800,
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 40000
                 },
                 {
                     "Direction": "less than",
+                    "Hysteresis": 20,
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 1000
@@ -113,12 +119,14 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
+                    "Hysteresis": 700,
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 35000
                 },
                 {
                     "Direction": "less than",
+                    "Hysteresis": 20,
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 1000
@@ -143,12 +151,14 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
+                    "Hysteresis": 800,
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 40000
                 },
                 {
                     "Direction": "less than",
+                    "Hysteresis": 20,
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 1000
@@ -173,12 +183,14 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
+                    "Hysteresis": 700,
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 35000
                 },
                 {
                     "Direction": "less than",
+                    "Hysteresis": 20,
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 1000
@@ -203,12 +215,14 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
+                    "Hysteresis": 800,
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 40000
                 },
                 {
                     "Direction": "less than",
+                    "Hysteresis": 20,
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 1000
@@ -233,12 +247,14 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
+                    "Hysteresis": 700,
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 35000
                 },
                 {
                     "Direction": "less than",
+                    "Hysteresis": 20,
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 1000
@@ -258,6 +274,7 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
+                    "Hysteresis": 0.264,
                     "Label": "in1",
                     "Name": "upper critical",
                     "Severity": 1,
@@ -265,6 +282,7 @@
                 },
                 {
                     "Direction": "less than",
+                    "Hysteresis": 0.216,
                     "Label": "in1",
                     "Name": "lower critical",
                     "Severity": 1,
@@ -272,17 +290,19 @@
                 },
                 {
                     "Direction": "greater than",
+                    "Hysteresis": 0.11,
                     "Label": "curr1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 3.6
+                    "Value": 5.5
                 },
                 {
                     "Direction": "greater than",
+                    "Hysteresis": 1.32,
                     "Label": "power1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 43.2
+                    "Value": 66.0
                 }
             ],
             "Type": "INA230",
@@ -302,6 +322,7 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
+                    "Hysteresis": 0.264,
                     "Label": "in1",
                     "Name": "upper critical",
                     "Severity": 1,
@@ -309,6 +330,7 @@
                 },
                 {
                     "Direction": "less than",
+                    "Hysteresis": 0.216,
                     "Label": "in1",
                     "Name": "lower critical",
                     "Severity": 1,
@@ -316,17 +338,19 @@
                 },
                 {
                     "Direction": "greater than",
+                    "Hysteresis": 0.11,
                     "Label": "curr1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 3.6
+                    "Value": 5.5
                 },
                 {
                     "Direction": "greater than",
+                    "Hysteresis": 1.32,
                     "Label": "power1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 43.2
+                    "Value": 66.0
                 }
             ],
             "Type": "INA230",
@@ -346,6 +370,7 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
+                    "Hysteresis": 0.264,
                     "Label": "in1",
                     "Name": "upper critical",
                     "Severity": 1,
@@ -353,6 +378,7 @@
                 },
                 {
                     "Direction": "less than",
+                    "Hysteresis": 0.216,
                     "Label": "in1",
                     "Name": "lower critical",
                     "Severity": 1,
@@ -360,17 +386,19 @@
                 },
                 {
                     "Direction": "greater than",
+                    "Hysteresis": 0.11,
                     "Label": "curr1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 3.6
+                    "Value": 5.5
                 },
                 {
                     "Direction": "greater than",
+                    "Hysteresis": 1.32,
                     "Label": "power1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 43.2
+                    "Value": 66.0
                 }
             ],
             "Type": "INA230",
@@ -390,6 +418,7 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
+                    "Hysteresis": 0.264,
                     "Label": "in1",
                     "Name": "upper critical",
                     "Severity": 1,
@@ -397,6 +426,7 @@
                 },
                 {
                     "Direction": "less than",
+                    "Hysteresis": 0.216,
                     "Label": "in1",
                     "Name": "lower critical",
                     "Severity": 1,
@@ -404,17 +434,19 @@
                 },
                 {
                     "Direction": "greater than",
+                    "Hysteresis": 0.11,
                     "Label": "curr1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 3.6
+                    "Value": 5.5
                 },
                 {
                     "Direction": "greater than",
+                    "Hysteresis": 1.32,
                     "Label": "power1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 43.2
+                    "Value": 66.0
                 }
             ],
             "Type": "INA230",
@@ -439,7 +471,7 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 0.9,
+                    "Hysteresis": 2,
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 100
@@ -461,7 +493,7 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 0.9,
+                    "Hysteresis": 2,
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 100
@@ -489,20 +521,23 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
+                    "Hysteresis": 2.6,
                     "Label": "iout1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 109.78
+                    "Value": 130.0
                 },
                 {
                     "Direction": "greater than",
+                    "Hysteresis": 32.786,
                     "Label": "pout1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 1384.3258
+                    "Value": 1639.3
                 },
                 {
                     "Direction": "greater than",
+                    "Hysteresis": 2,
                     "Label": "temp1",
                     "Name": "upper critical",
                     "Severity": 1,
@@ -510,6 +545,7 @@
                 },
                 {
                     "Direction": "greater than",
+                    "Hysteresis": 0.2522,
                     "Label": "vout1",
                     "Name": "upper critical",
                     "Severity": 1,
@@ -517,6 +553,7 @@
                 },
                 {
                     "Direction": "less than",
+                    "Hysteresis": 0.2278,
                     "Label": "vout1",
                     "Name": "lower critical",
                     "Severity": 1,
@@ -542,20 +579,23 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
+                    "Hysteresis": 2.6,
                     "Label": "iout1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 109.78
+                    "Value": 130.0
                 },
                 {
                     "Direction": "greater than",
+                    "Hysteresis": 32.786,
                     "Label": "pout1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 1384.3258
+                    "Value": 1639.3
                 },
                 {
                     "Direction": "greater than",
+                    "Hysteresis": 2,
                     "Label": "temp1",
                     "Name": "upper critical",
                     "Severity": 1,
@@ -563,6 +603,7 @@
                 },
                 {
                     "Direction": "greater than",
+                    "Hysteresis": 0.2522,
                     "Label": "vout1",
                     "Name": "upper critical",
                     "Severity": 1,
@@ -570,6 +611,7 @@
                 },
                 {
                     "Direction": "less than",
+                    "Hysteresis": 0.2278,
                     "Label": "vout1",
                     "Name": "lower critical",
                     "Severity": 1,
