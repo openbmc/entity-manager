@@ -198,6 +198,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce49cff0_c44cfd7e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-12-23T14:38:23Z",
+      "side": 1,
+      "message": "Resolving this based on the above.",
+      "parentUuid": "d0ed7cc3_7df62084",
+      "revId": "d4ffda25111a65bca1e63fbaa01aa1c526d1c462",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56bc368e_2e1f03a3",
@@ -286,6 +304,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d39f019c_1e3dd7ad",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-12-23T14:38:23Z",
+      "side": 1,
+      "message": "Switched to root hub position (which doesn\u0027t require an SOC specific path to be added to the config).",
+      "parentUuid": "e50fb382_addceb49",
+      "revId": "d4ffda25111a65bca1e63fbaa01aa1c526d1c462",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ae123b80_8e34bcb6",
@@ -333,6 +369,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "90f05692_54b45a41",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-12-23T14:38:23Z",
+      "side": 1,
+      "message": "Changed to a list of integers and updated the dbus-sensors patch.\n\nhttps://gerrit.openbmc.org/q/topic:%22mctp-usb-config%22",
+      "parentUuid": "73512d60_e8773f0e",
+      "range": {
+        "startLine": 54,
+        "startChar": 16,
+        "endLine": 57,
+        "endChar": 18
+      },
+      "revId": "d4ffda25111a65bca1e63fbaa01aa1c526d1c462",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f91d8af3_cca94517",
@@ -370,6 +430,30 @@
       "side": 1,
       "message": "I see what you mean, but at the moment this is only defining config for an MCTP USB endpoint.",
       "parentUuid": "f91d8af3_cca94517",
+      "range": {
+        "startLine": 58,
+        "startChar": 17,
+        "endLine": 58,
+        "endChar": 30
+      },
+      "revId": "d4ffda25111a65bca1e63fbaa01aa1c526d1c462",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f1e08e2_fd9db68e",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-12-23T14:38:23Z",
+      "side": 1,
+      "message": "Resolving based on the above.",
+      "parentUuid": "c8bbc385_f00ce0ff",
       "range": {
         "startLine": 58,
         "startChar": 17,
@@ -441,6 +525,30 @@
       "side": 1,
       "message": "I\u0027ll attempt to use Interface.",
       "parentUuid": "c856d6a2_eb091fb8",
+      "range": {
+        "startLine": 62,
+        "startChar": 16,
+        "endLine": 62,
+        "endChar": 30
+      },
+      "revId": "d4ffda25111a65bca1e63fbaa01aa1c526d1c462",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a45e5fe_de63a23a",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-12-23T14:38:23Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a2aa4675_4b152a60",
       "range": {
         "startLine": 62,
         "startChar": 16,
