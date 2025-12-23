@@ -54,6 +54,32 @@
                 "vout1"
             ],
             "Name": "SITV3_ETH_$bus_VR_P0V75",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.2772,
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.86
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0143,
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.717
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0156,
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 0.782
+                }
+            ],
             "Type": "MPQ8785",
             "iout1_Name": "SITV3_ETH_$bus_VR_P0V75_CURR_A",
             "temp1_Name": "SITV3_ETH_$bus_VR_P0V75_TEMP_C",
@@ -70,6 +96,32 @@
                 "vout1"
             ],
             "Name": "SITV3_ETH_$bus_VR_P0V75SW",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.811,
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 40.55
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0143,
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.717
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0156,
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 0.782
+                }
+            ],
             "Type": "MPQ8785",
             "iout1_Name": "SITV3_ETH_$bus_VR_P0V75SW_CURR_A",
             "temp1_Name": "SITV3_ETH_$bus_VR_P0V75SW_TEMP_C",
@@ -86,6 +138,32 @@
                 "vout1"
             ],
             "Name": "SITV3_ETH_$bus_VR_P0V9",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.6098,
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 30.49
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0173,
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.865
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0187,
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 0.935
+                }
+            ],
             "Type": "MPQ8785",
             "iout1_Name": "SITV3_ETH_$bus_VR_P0V9_CURR_A",
             "temp1_Name": "SITV3_ETH_$bus_VR_P0V9_TEMP_C",
@@ -114,6 +192,32 @@
                 "vout1"
             ],
             "Name": "SITV3_ETH_$bus_BRICK",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.508,
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 25.4
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.228,
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.4
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.252,
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 12.6
+                }
+            ],
             "Type": "pmbus",
             "iout1_Name": "SITV3_ETH_$bus_BRICK_CURR_A",
             "temp1_Name": "SITV3_ETH_$bus_BRICK_TEMP_C",
