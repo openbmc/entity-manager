@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e31a7c3c_75a856e5",
+        "filename": "configurations/nvidia/nvidia_mgx_connectx8_supernic_switch_server.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-12-23T14:39:22Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "fd96c5eb_bc036260",
+      "revId": "2ec7c3fe3ae2abe95fa7595c9054c85626cf51dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bcc63928_433f7a1f",
@@ -48,6 +66,24 @@
       "writtenOn": "2025-12-15T19:38:08Z",
       "side": 1,
       "message": "nit, remove \"server\" from the name.  This is a switchboard.",
+      "revId": "2ec7c3fe3ae2abe95fa7595c9054c85626cf51dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af23990f_e66b3142",
+        "filename": "configurations/nvidia/nvidia_mgx_connectx8_supernic_switch_server.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-12-23T14:39:22Z",
+      "side": 1,
+      "message": "Have turned this into a platform config.",
+      "parentUuid": "bcc63928_433f7a1f",
       "revId": "2ec7c3fe3ae2abe95fa7595c9054c85626cf51dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -75,6 +111,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae0d0d2e_872d4c26",
+        "filename": "configurations/nvidia/nvidia_mgx_connectx8_supernic_switch_server.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-12-23T14:39:22Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9712f5eb_3dc317cf",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 68
+      },
+      "revId": "2ec7c3fe3ae2abe95fa7595c9054c85626cf51dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "54b69391_7d9ffb92",
@@ -88,6 +148,24 @@
       "writtenOn": "2025-12-15T21:29:48Z",
       "side": 1,
       "message": "Won\u0027t this be used in inventory? Can we come up with a better naming scheme here? Some of these are GPU SMAs and some are CX8 SMAs",
+      "revId": "2ec7c3fe3ae2abe95fa7595c9054c85626cf51dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "456f8f22_f0823296",
+        "filename": "configurations/nvidia/nvidia_mgx_connectx8_supernic_switch_server.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-12-23T14:39:22Z",
+      "side": 1,
+      "message": "I\u0027ll have follow up patches for inventory.",
+      "parentUuid": "54b69391_7d9ffb92",
       "revId": "2ec7c3fe3ae2abe95fa7595c9054c85626cf51dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
