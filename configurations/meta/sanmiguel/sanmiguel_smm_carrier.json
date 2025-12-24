@@ -1,0 +1,33 @@
+{
+    "Exposes": [
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "SanMiguel SMM Carrier FRU",
+            "Type": "EEPROM"
+        },
+        {
+            "Address": "0x4e",
+            "Bus": 9,
+            "Name": "SMM_CARR_INLET_TEMP_C",
+            "Type": "TMP1075"
+        }
+    ],
+    "Name": "San Miguel SMM Carrier",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'San Miguel SMM Carrier '})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$BOARD_MANUFACTURE_DATE",
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER",
+        "SparePartNumber": "$BOARD_INFO_AM1"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Revision": {
+        "Version": "$PRODUCT_VERSION"
+    }
+}
