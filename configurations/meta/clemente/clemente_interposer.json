@@ -164,6 +164,16 @@
                 "temp1_Name": "INTERPOSER_P12V_SCM_TEMP_C"
             },
             {
+                "Address": "0x40",
+                "Bus": 14,
+                "FirmwareInfo": {
+                    "CompatibleHardware": "com.meta.Hardware.Clemente.CPLD.LCMXO3LF_4300C_interposer",
+                    "VendorIANA": 40981
+                },
+                "Name": "Clemente_Interposer_CPLD",
+                "Type": "LatticeLCMXO3LF_4300CFirmware"
+            },
+            {
                 "Address": "0x4f",
                 "Bus": 21,
                 "Name": "INTERPOSER_TEMP_C",
@@ -373,6 +383,16 @@
                 "curr1_Min": 0,
                 "curr1_Name": "INTERPOSER_CABLE_TSENSE_POSITIVE_CURR_A",
                 "curr1_Scale": 50000
+            },
+            {
+                "Address": "0x40",
+                "Bus": 14,
+                "FirmwareInfo": {
+                    "CompatibleHardware": "com.meta.Hardware.Clemente.CPLD.LCMXO3LF_4300C_interposer",
+                    "VendorIANA": 40981
+                },
+                "Name": "Clemente_Interposer_CPLD",
+                "Type": "LatticeLCMXO3LF_4300CFirmware"
             }
         ],
         "Name": "Clemente Interposer",
