@@ -5,6 +5,16 @@
             "Bus": "$bus",
             "Name": "Clemente HDD Board $bus - 25 % 11 FRU",
             "Type": "EEPROM"
+        },
+        {
+            "Address": "0x40",
+            "Bus": "$bus",
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Clemente.CPLD.LCMXO2_4000HC_HDD",
+                "VendorIANA": 40981
+            },
+            "Name": "Clemente_HDD_Board_$bus_CPLD",
+            "Type": "LatticeLCMXO2_4000HCFirmware"
         }
     ],
     /* Clemente Hard Disk Drive Carrier Board */
