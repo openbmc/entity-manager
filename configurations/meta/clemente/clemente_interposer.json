@@ -8,6 +8,16 @@
                 "Type": "EEPROM"
             },
             {
+                "Address": "0x40",
+                "Bus": 14,
+                "FirmwareInfo": {
+                    "CompatibleHardware": "com.meta.Hardware.Clemente.CPLD.LCMXO3LF_4300C_interposer",
+                    "VendorIANA": 40981
+                },
+                "Name": "Clemente_Interposer_CPLD",
+                "Type": "LatticeLCMXO3LF_4300CFirmware"
+            },
+            {
                 "Address": "0x41",
                 "Bus": 16,
                 "Labels": [
@@ -195,6 +205,16 @@
                 "Bus": "$bus",
                 "Name": "Clemente Interposer FRU",
                 "Type": "EEPROM"
+            },
+            {
+                "Address": "0x40",
+                "Bus": 14,
+                "FirmwareInfo": {
+                    "CompatibleHardware": "com.meta.Hardware.Clemente.CPLD.LCMXO3LF_4300C_interposer",
+                    "VendorIANA": 40981
+                },
+                "Name": "Clemente_Interposer_CPLD",
+                "Type": "LatticeLCMXO3LF_4300CFirmware"
             },
             {
                 "Address": "0x41",
