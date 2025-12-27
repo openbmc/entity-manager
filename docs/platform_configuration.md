@@ -28,3 +28,12 @@ configurations/platform/<vendor>/
 ## Schemas
 
 Platform config schemas live under `schemas/platform/`:
+
+## Associating a PlatformExposes record with a board
+
+A `PlatformExposes` record (for example an `MCTPUSBDevice`) may carry a `Board`
+property naming the board inventory object it belongs to. Consumers such as
+dbus-sensors use it to locate that board's `NvidiaMctpVdm` configuration and to
+associate the resulting sensors with the correct board/chassis. Because the
+board must already exist for this to resolve, it is expected as a `FOUND(...)`
+precondition in the platform `Probe`.
