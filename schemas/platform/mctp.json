@@ -3,6 +3,10 @@
     "$defs": {
         "MCTPUSBDevice": {
             "properties": {
+                "Board": {
+                    "description": "Name of the board inventory object this device is associated with. Consumers resolve that board's NvidiaMctpVdm configuration and associate the device's sensors with it. The named board must be present, so it is expected as a FOUND precondition in the platform Probe. Optional; if absent, the device's own configuration object is used.",
+                    "type": "string"
+                },
                 "RootHubPosition": {
                     "description": "The position of the root port on the SOC (0 is first).",
                     "type": "number"
