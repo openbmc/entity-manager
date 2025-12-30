@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93d1fe91_a606775d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-12-30T19:25:04Z",
+      "side": 1,
+      "message": "Can you provide a example(s) of configurations using the newly added properties.\n\nSeen your stacked change https://gerrit.openbmc.org/c/openbmc/entity-manager/+/86157/3\n\nbut it does not require `PLDMSensors` property. So i am wondering why we are adding it if there is no config which needs that change.",
+      "revId": "34c12b829b7c409c5c41527ba89532bdf0e58d52",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f832db07_592fb5d9",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-12-30T19:25:04Z",
+      "side": 1,
+      "message": "Let\u0027s make `Inventory` a required property to align with DBus design guidelines.\n\nWe can just leave it empty in case there is no inventory name.",
+      "revId": "34c12b829b7c409c5c41527ba89532bdf0e58d52",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f33c0e5e_442d654e",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-12-30T19:25:04Z",
+      "side": 1,
+      "message": "Let\u0027s make `Inventory` a required property to align with DBus design guidelines.\n\nWe can just leave it empty in case there is no inventory name.",
+      "revId": "34c12b829b7c409c5c41527ba89532bdf0e58d52",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
