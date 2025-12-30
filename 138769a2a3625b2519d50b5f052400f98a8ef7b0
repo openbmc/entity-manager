@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c167c7b_952d48a8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-12-30T19:14:02Z",
+      "side": 1,
+      "message": "nit: i would recommend 2 things\n\n- add the required log messages / facilities to properly observe the race condition.\n\n- fix the race with reference to before/after of the previously added log messages.\n\nIMO that would make the error and fix easier to understand since the sequence of control flow becomes visible.\n\nWhen there is timers and such, just referencing the code may not be enough for me to understand what\u0027s going wrong for you.",
+      "revId": "138769a2a3625b2519d50b5f052400f98a8ef7b0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ad429f0_eee11200",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 1228,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-12-30T19:14:02Z",
+      "side": 1,
+      "message": "IMO things like timeouts should be parameters to the implementation.\n\nWe should not hardcode them since they are arbitrary and may need to be lower in integration test scenario.\n\nLet\u0027s pass the timeout as parameter.",
+      "revId": "138769a2a3625b2519d50b5f052400f98a8ef7b0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f940264b_022a2655",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 1243,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-12-30T19:14:02Z",
+      "side": 1,
+      "message": "How does this (and the other diff below)\nfix the issue? The control flow is still the same as before.\n\nThe file here is not a lock file since the control flow does not change,\nonly the log messages are different.",
+      "revId": "138769a2a3625b2519d50b5f052400f98a8ef7b0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5473278_aed29955",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 1243,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-12-30T19:14:02Z",
+      "side": 1,
+      "message": "Why do we need a file for locking within the same process?",
+      "revId": "138769a2a3625b2519d50b5f052400f98a8ef7b0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03789798_7a45dd2c",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 1253,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-12-30T19:14:02Z",
+      "side": 1,
+      "message": "`lg2::error`",
+      "revId": "138769a2a3625b2519d50b5f052400f98a8ef7b0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
