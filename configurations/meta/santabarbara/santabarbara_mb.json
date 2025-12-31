@@ -1171,9 +1171,20 @@
             "OutLimitMin": 0.0,
             "Outputs": [
                 "MB_FAN_PWM_PCT",
+                "MB_FAN_PWM_PCT",
+                "MB_FAN_PWM_PCT",
+                "MB_FAN_PWM_PCT",
+                "MB_FAN_PWM_PCT",
+                "MB_FAN_PWM_PCT",
+                "MB_FAN_PWM_PCT",
+                "MB_FAN_PWM_PCT",
+                "PDB2_FAN4_PWM_PCT",
                 "PDB2_FAN4_PWM_PCT",
                 "PDB2_FAN5_PWM_PCT",
+                "PDB2_FAN5_PWM_PCT",
                 "PDB2_FAN6_PWM_PCT",
+                "PDB2_FAN6_PWM_PCT",
+                "PDB2_FAN7_PWM_PCT",
                 "PDB2_FAN7_PWM_PCT"
             ],
             "PCoefficient": 0.0,
@@ -1185,7 +1196,7 @@
             ]
         },
         {
-            "AccumulateSetPoint": false,
+            "AccumulateSetPoint": true,
             "CycleIntervalTimeMS": 1000,
             "FailSafePercent": 100.0,
             "MinThermalOutput": 15.0,
