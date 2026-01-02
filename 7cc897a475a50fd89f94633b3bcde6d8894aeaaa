@@ -16,6 +16,29 @@
       "message": "@ed@tanous.net, could you check this once,\nI referred to another example in the repository and updated the sensor type accordingly.",
       "revId": "7cc897a475a50fd89f94633b3bcde6d8894aeaaa",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a6a7023_e92b741e",
+        "filename": "docs/sensor_mux.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2026-01-02T19:51:29Z",
+      "side": 1,
+      "message": "I thought usually for PCIe cards one would have a mux channel for each slot, which is what the sentence on lines 8-9 says, as well as on line 53, but then in this example and in the diagram on lines 23-27 it\u0027s a different channel per device instead?\n\nOr are there multiple muxes, one on the motherboard to get you to the slot and also one on each card?",
+      "range": {
+        "startLine": 8,
+        "startChar": 51,
+        "endLine": 15,
+        "endChar": 80
+      },
+      "revId": "7cc897a475a50fd89f94633b3bcde6d8894aeaaa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
