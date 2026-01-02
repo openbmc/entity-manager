@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4bc002d3_636eab0f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1002762
+      },
+      "writtenOn": "2026-01-02T13:35:00Z",
+      "side": 1,
+      "message": "To reproduce the issue more easily, we run two scripts simultaneously to simulate the scenario described above:\n\n1. One script that execute \u0027ipmi sdr\u0027 every 1 seconds.\n\n2. Another script that issued Fru device rescan via busctl method call every 1 seconds.\n\n1.\n#!/bin/bash\ncycle_count\u003d0\nwhile true; do\n    ((cycle_count++))\n    echo \"[Debug] --- Cycle: $cycle_count | $(date) ---\"\n    echo \"[Debug] $(date): Executing ipmitool sdr...\"\n    echo \"[Debug] --- SDR Information ---\"     \n    ipmitool sdr\n    sleep 1\ndone\n\n2.\n#!/bin/bash\nwhile true; do\necho \"[Debug] Rescan Fru\"\nbusctl call xyz.openbmc_project.FruDevice /xyz/openbmc_project/FruDevice xyz.openbmc_project.FruDeviceManager ReScan;\necho \"[Debug] Sleep 1 sec.\"\nsleep 1\ndone",
+      "parentUuid": "8c167c7b_952d48a8",
+      "revId": "138769a2a3625b2519d50b5f052400f98a8ef7b0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9ad429f0_eee11200",
         "filename": "src/fru_device/fru_device.cpp",
         "patchSetId": 11
@@ -71,6 +89,42 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "33e31520_d30d9071",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 1243,
+      "author": {
+        "id": 1002762
+      },
+      "writtenOn": "2026-01-02T13:35:00Z",
+      "side": 1,
+      "message": "The control flow change is in ipmid: SDR access is now blocked based on\nthis signal, which did not exist before.\nRelated other changes: https://gerrit.openbmc.org/c/openbmc/phosphor-host-ipmid/+/86329",
+      "parentUuid": "f940264b_022a2655",
+      "revId": "138769a2a3625b2519d50b5f052400f98a8ef7b0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85972b21_67c2706c",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 1243,
+      "author": {
+        "id": 1002762
+      },
+      "writtenOn": "2026-01-02T13:35:00Z",
+      "side": 1,
+      "message": "This lock is not used for synchronization within the same process.\nIt serves as a lightweight, cross-service indicator to signal that a\nFRU rescan is in progress. Other services (such as ipmid) check for this\nfile to avoid accessing FRU-related D-Bus objects while they are being\nremoved and recreated.\n\nRelated other changes: https://gerrit.openbmc.org/c/openbmc/phosphor-host-ipmid/+/86329",
+      "parentUuid": "c5473278_aed29955",
+      "revId": "138769a2a3625b2519d50b5f052400f98a8ef7b0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "03789798_7a45dd2c",
         "filename": "src/fru_device/fru_device.cpp",
         "patchSetId": 11
@@ -82,6 +136,24 @@
       "writtenOn": "2025-12-30T19:14:02Z",
       "side": 1,
       "message": "`lg2::error`",
+      "revId": "138769a2a3625b2519d50b5f052400f98a8ef7b0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0f51bcd_64a48883",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 1253,
+      "author": {
+        "id": 1002762
+      },
+      "writtenOn": "2026-01-02T13:35:00Z",
+      "side": 1,
+      "message": "Understood. I will update this to use lg2 logging, with info-level logs\nfor successful lock removal and error-level logs only for failure cases.",
+      "parentUuid": "03789798_7a45dd2c",
       "revId": "138769a2a3625b2519d50b5f052400f98a8ef7b0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
