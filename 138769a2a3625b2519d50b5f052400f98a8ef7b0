@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "79b32e31_8d59edf1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-03T21:23:37Z",
+      "side": 1,
+      "message": "\u003e we run two scripts simultaneously to simulate the scenario described above:\n\nnice, that will already help a lot for others to reproduce the issue 👍\n\nIMO it would be great to get the 2 scripts outputs and both debug log outputs of fru device and ipmid service as part of the commit message.",
+      "parentUuid": "4bc002d3_636eab0f",
+      "revId": "138769a2a3625b2519d50b5f052400f98a8ef7b0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9ad429f0_eee11200",
         "filename": "src/fru_device/fru_device.cpp",
         "patchSetId": 11
@@ -119,6 +137,42 @@
       "side": 1,
       "message": "This lock is not used for synchronization within the same process.\nIt serves as a lightweight, cross-service indicator to signal that a\nFRU rescan is in progress. Other services (such as ipmid) check for this\nfile to avoid accessing FRU-related D-Bus objects while they are being\nremoved and recreated.\n\nRelated other changes: https://gerrit.openbmc.org/c/openbmc/phosphor-host-ipmid/+/86329",
       "parentUuid": "c5473278_aed29955",
+      "revId": "138769a2a3625b2519d50b5f052400f98a8ef7b0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43c7dd06_5e1ca837",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 1243,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-03T21:23:37Z",
+      "side": 1,
+      "message": "\u003e Related other changes\n\nCan you please add the link to that other change to the commit message and set the gerrit topic.\n\n\u003e Other services (such as ipmid) check for this\nfile\n\nI am wondering why we use a file to implement the lock, did you consider implementing it via DBus? From my perspective DBus seems to be the preferred IPC mechanism.\n\nhttps://github.com/openbmc/docs/blob/224f278c74a574962a74a7498a86989a360666ea/CONTRIBUTING.md?plain\u003d1#L24C1-L26C50\n\n\u003e OpenBMC has quite a modular structure, consisting of small daemons with a\nlimited set of responsibilities. These communicate over D-Bus with other\ncomponents, to implement the complete BMC system.",
+      "parentUuid": "85972b21_67c2706c",
+      "revId": "138769a2a3625b2519d50b5f052400f98a8ef7b0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa2e2f67_66f19670",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 1243,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-03T21:23:37Z",
+      "side": 1,
+      "message": "Looking at\n\nhttps://gerrit.openbmc.org/c/openbmc/phosphor-host-ipmid/+/86329/2\n\ni imagine following scenario\n\n- lock file does not exist\n- ipmid looks for lock file, does not find it\n- ipmid proceeds with SDR scan (instruction pointer is around line 2479)\n\n- fru device creates the lock file\n- fru device updates it\u0027s DBus interfaces\n\n- ipmid fails it\u0027s SDR scan\n\n- fru device removes lock file\n\nIs it possible with your changes?",
+      "parentUuid": "33e31520_d30d9071",
       "revId": "138769a2a3625b2519d50b5f052400f98a8ef7b0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
