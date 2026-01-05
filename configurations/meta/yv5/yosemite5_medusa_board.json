@@ -1037,6 +1037,16 @@
             "vout1_Name": "PDB_DISCRETE_VOUT_VOLT_V"
         },
         {
+            "Address": "0x5c",
+            "Bus": 8,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Yosemite5.VR.RAA228006_discrete_vr",
+                "VendorIANA": 40981
+            },
+            "Name": "Yosemite5_PDB_DISCRETE_VR",
+            "Type": "RAA22XGen2Firmware"
+        },
+        {
             "Address": "0x48",
             "Bus": 8,
             "Name": "PDB_R_TEMP_C",
@@ -1171,6 +1181,16 @@
             "temp1_Name": "PDB_HSC_TEMP_C",
             "vin_Name": "PDB_HSC_VIN_VOLT_V",
             "vout1_Name": "PDB_HSC_VOUT_VOLT_V"
+        },
+        {
+            "Address": "0x14",
+            "Bus": 8,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Yosemite5.HSC.XDP71X_p52v_hsc",
+                "VendorIANA": 40981
+            },
+            "Name": "Yosemite5_PDB_P52V_HSC",
+            "Type": "XDP71XFirmware"
         },
         {
             "Address": "0x66",
