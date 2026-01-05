@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d222aa7f_8128eff2",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-05T09:50:21Z",
+      "side": 1,
+      "message": "\u003e If we don’t add it, the system will use the terminus name as the inventory name in PLDMD.\n\nI\u0027m aware that it would work as an optional property.\n\nI\u0027m more concerned about the DBus API. DBus interfaces do not have optional properties. Because EM directly creates DBus interfaces from config json, we cannot have optional properties in configuration schemas (without breaking DBus design intent)\n\n(referring to https://dbus.freedesktop.org/doc/dbus-api-design.html)",
+      "parentUuid": "0a32d5d3_77333582",
+      "revId": "34c12b829b7c409c5c41527ba89532bdf0e58d52",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f33c0e5e_442d654e",
         "filename": "schemas/mctp.json",
         "patchSetId": 2
