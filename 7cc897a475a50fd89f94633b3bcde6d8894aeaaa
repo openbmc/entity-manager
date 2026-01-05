@@ -87,6 +87,30 @@
       },
       "revId": "7cc897a475a50fd89f94633b3bcde6d8894aeaaa",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "888cba03_9bd120a3",
+        "filename": "docs/sensor_mux.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1002762
+      },
+      "writtenOn": "2026-01-05T11:02:26Z",
+      "side": 1,
+      "message": "Thanks for the suggestions. I’ve removed all references to other boards/examples to focus on a single I2C → MUX → device topology.\nFor clarity, I’ve kept a single ASCII diagram showing the master, MUX, and downstream devices, but I’ve intentionally avoided adding PCIe/plug-in card distinctions to keep the example simple and generic.",
+      "parentUuid": "a4c8e6ad_84d5ee6f",
+      "range": {
+        "startLine": 8,
+        "startChar": 51,
+        "endLine": 15,
+        "endChar": 80
+      },
+      "revId": "7cc897a475a50fd89f94633b3bcde6d8894aeaaa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
