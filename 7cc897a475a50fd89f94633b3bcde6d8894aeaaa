@@ -63,6 +63,30 @@
       },
       "revId": "7cc897a475a50fd89f94633b3bcde6d8894aeaaa",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4c8e6ad_84d5ee6f",
+        "filename": "docs/sensor_mux.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-05T09:39:41Z",
+      "side": 1,
+      "message": "To make it crystal clear, i would suggest to draw the plug-in card with a box.\n\nIt will avoid any guessing as to which chips are on the mainboard and which are on the card itself.\n\nSomething like\n\n```\n                                                                                        \n  i2c1 (Master)                                                                         \n                                                                                        \n       │                                                                                \n       ▼                                                                                \n ┌─────────────┐                                         PCIe card                      \n │             │                                   ┌──────────────────────────────────┬ \n │Mux (PCA9548)│                                   │                                  │ \n │             │ ──► channel 0 ──►Connector (J1)───┼┬─\u003e channel-0 (24c02)    at 0x50  │ \n │             │ ──► channel 1                     │├─\u003e channel-1 (tmp441)   at 0x4c  │ \n │             │ ...                               │└─\u003e channel-2 (max31725) at 0x2a  │ \n │             │ ──► channel 7                     │                                  │ \n │             │                                   │                                  │ \n │             │                                   └──────────────────────────────────┴ \n │             │                                                                        \n └─────────────┘                                                                        \n                                                                                        \n                                                                                        \n```\n\ni find ascii diagrams like this easier to look at than text descriptions when it comes to how things are connected to each other.",
+      "parentUuid": "284af88d_2e51e713",
+      "range": {
+        "startLine": 8,
+        "startChar": 51,
+        "endLine": 15,
+        "endChar": 80
+      },
+      "revId": "7cc897a475a50fd89f94633b3bcde6d8894aeaaa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
