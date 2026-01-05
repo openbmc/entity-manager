@@ -39,6 +39,30 @@
       },
       "revId": "7cc897a475a50fd89f94633b3bcde6d8894aeaaa",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "284af88d_2e51e713",
+        "filename": "docs/sensor_mux.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1002762
+      },
+      "writtenOn": "2026-01-05T07:34:33Z",
+      "side": 1,
+      "message": "@spinler@us.ibm.com\n\nThanks for the comment.\n\nIn this example, each device on the PCIe card is intentionally connected to a separate channel of the PCA9548 MUX. This reflects the hardware topology shown in the diagram and configuration, not a slot-level MUX design.\n\nThere is only a single MUX in this example; no additional MUX is assumed on the card. I’ve updated the document to clarify this, as other platforms may instead use one MUX channel per PCIe slot.",
+      "parentUuid": "6a6a7023_e92b741e",
+      "range": {
+        "startLine": 8,
+        "startChar": 51,
+        "endLine": 15,
+        "endChar": 80
+      },
+      "revId": "7cc897a475a50fd89f94633b3bcde6d8894aeaaa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
