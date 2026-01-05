@@ -128,6 +128,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7ce0c3f5_0ab73daf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 38
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-05T11:02:37Z",
+      "side": 1,
+      "message": "\u003e is a trivial change to make in a meta layer with an RM call and adding \nback the files you care about.  There\u0027s no need for anything in the repo\n itself to accomplish this.  If meta layer owners want to do that, \nthat\u0027s fine, and FWIW, my employer does it every day (in our downstream)\n for every EM enabled platform they use without needing anything \nupstream.\n\nI don\u0027t think messing with installed files is a proper usage, neither in meta layers nor in downstream. EM repo already contains the needed files so there is no need to change anything there.\n\nIMO the right solution would be to simply configure the upstream project.\n\n\u003e If we want to solve the \"I don\u0027t want to carry other baseboards on my \nbaseboard\" problem here, I\u0027m open to it.  For pretty much everything \nelse, if there\u0027s a way to wire that component up\n\nThe primary motivation for dropping unused configs is space and runtime savings.\n\nIf we can only drop baseboard configs then the savings will be small and not meaningful / worthwhile.\n\nTherefore it does not make sense for me to continue working on this idea.",
+      "parentUuid": "f94fc154_475496c2",
+      "revId": "3d74e5ce769bc1fc81598f8171bc8f92b288529c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1fec691e_00b9deb5",
         "filename": "configurations/tyan/tyan_s8030_baseboard.json",
         "patchSetId": 38
