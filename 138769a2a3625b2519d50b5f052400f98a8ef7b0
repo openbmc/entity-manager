@@ -56,6 +56,92 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "21562443_5ccbe021",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-01-06T04:08:58Z",
+      "side": 1,
+      "message": "This is reading to me as a failure in ipmid.  Can you please point to the failure you\u0027re seeing in ipmid, and we can suggest a fix?",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 70
+      },
+      "revId": "138769a2a3625b2519d50b5f052400f98a8ef7b0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c251bbb_c7946467",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-01-06T04:08:58Z",
+      "side": 1,
+      "message": "This is expected, and why frudevice has an inotify on i2c devices existing, and a rescan method.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 16
+      },
+      "revId": "138769a2a3625b2519d50b5f052400f98a8ef7b0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f42c59d9_cfd8bd36",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-01-06T04:08:58Z",
+      "side": 1,
+      "message": "1 second delay shouldn\u0027t even be there;  Can you point to the more specific failure mode you\u0027re seeing?",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 25
+      },
+      "revId": "138769a2a3625b2519d50b5f052400f98a8ef7b0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d73ef4a1_16b62e1a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-01-06T04:08:58Z",
+      "side": 1,
+      "message": "Overall this patch is trying to fix bugs in the wrong place.  Please give more detailed failure explanations, and we can suggest a solution.  I very much suspect the fix lies in ipmid retrying an SDR build if the topology changes.",
+      "revId": "138769a2a3625b2519d50b5f052400f98a8ef7b0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9ad429f0_eee11200",
         "filename": "src/fru_device/fru_device.cpp",
         "patchSetId": 11
@@ -67,6 +153,24 @@
       "writtenOn": "2025-12-30T19:14:02Z",
       "side": 1,
       "message": "IMO things like timeouts should be parameters to the implementation.\n\nWe should not hardcode them since they are arbitrary and may need to be lower in integration test scenario.\n\nLet\u0027s pass the timeout as parameter.",
+      "revId": "138769a2a3625b2519d50b5f052400f98a8ef7b0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73963f34_4ca46a52",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 1228,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-01-06T04:08:58Z",
+      "side": 1,
+      "message": "\u003e IMO things like timeouts should be parameters to the implementation.\n\nDisagree here.  This timeout should ideally just not exist.  I\u0027d rather fix it than promote to make it seem like it\u0027s anything more than a hack to work around a bug.\n\n\u003e \n\u003e We should not hardcode them since they are arbitrary and may need to be lower in integration test scenario.\n\u003e \n\u003e Let\u0027s pass the timeout as parameter.\n\nNope, Code is fine as is.",
+      "parentUuid": "9ad429f0_eee11200",
       "revId": "138769a2a3625b2519d50b5f052400f98a8ef7b0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -179,6 +283,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ec9dc8a0_44e0683f",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 1243,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-01-06T04:08:58Z",
+      "side": 1,
+      "message": "\u003e Other services (such as ipmid) check for this\nfile to avoid accessing FRU-related D-Bus objects while they are being\nremoved and recreated.\n\n\nThis isn\u0027t a solution.  DBus objects are supposed to be created and destroyed atomically.  If ipmid isn\u0027t handling that, or fru device isn\u0027t correctly creating thing atomically, that\u0027s the thing to fix.  Adding another IPC is not something I want to support.",
+      "parentUuid": "43c7dd06_5e1ca837",
+      "revId": "138769a2a3625b2519d50b5f052400f98a8ef7b0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "03789798_7a45dd2c",
         "filename": "src/fru_device/fru_device.cpp",
         "patchSetId": 11
@@ -225,6 +347,23 @@
       "writtenOn": "2026-01-06T03:56:27Z",
       "side": 1,
       "message": "please update lg2 here aswell",
+      "revId": "138769a2a3625b2519d50b5f052400f98a8ef7b0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0259ae2_3ab595e9",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 1323,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-01-06T04:08:58Z",
+      "side": 1,
+      "message": "as implemented this code doesn\u0027t handle all errors, and the file could be created and deadlock.",
       "revId": "138769a2a3625b2519d50b5f052400f98a8ef7b0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
