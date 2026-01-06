@@ -16,6 +16,24 @@
       "message": "If you look in this function, there\u0027s some scary code.  It wouldn\u0027t surprise me if destructor order changed something.  I\u0027m not comfortable with inspection here, even if this looks trivial.\n\nThe test is pretty simple, boot entity manager and watch it not crash.  Could be done in qemu or once at the end of the series.  If you can\u0027t do it, let me know and I can run run it in qemu.",
       "revId": "7b43543c5a44414f1d66a932b4ad2e4b9affe879",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0722ca86_d9e3499e",
+        "filename": "src/entity_manager/perform_scan.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-06T15:44:38Z",
+      "side": 1,
+      "message": "There is testing as part of https://gerrit.openbmc.org/c/openbmc/entity-manager/+/83648\n\nwhich is ordered just after this patch.",
+      "parentUuid": "0c9d460b_c5f8f0c6",
+      "revId": "7b43543c5a44414f1d66a932b4ad2e4b9affe879",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
