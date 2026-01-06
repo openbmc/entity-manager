@@ -251,6 +251,23 @@ def validator_from_file(schema_file):
     return validator
 
 
+def validate_em_config_records(filename, records):
+
+    names = set()
+    res = True
+    for record in records:
+        if "Name" in record:
+            name = record["Name"]
+            if name in names:
+                print("\nValidation Error in " + filename)
+                print(
+                    "Validation Error: duplicate record name: '" + name + "'"
+                )
+                res = False
+            names = names.union(set({name}))
+    return res
+
+
 def validate_single_config(
     args, filename, config, expected_fails, schema_file
 ):
@@ -269,6 +286,14 @@ def validate_single_config(
             is_invalid = True
             if args.verbose:
                 print(f"Validation Error for {filename}: {e}")
+
+    if "Exposes" in config:
+        if not validate_em_config_records(filename, config["Exposes"]):
+            is_invalid = True
+    else:
+        for emConfig in config:
+            if not validate_em_config_records(filename, emConfig["Exposes"]):
+                is_invalid = True
 
     return (is_invalid, is_unexpected_pass)
 
