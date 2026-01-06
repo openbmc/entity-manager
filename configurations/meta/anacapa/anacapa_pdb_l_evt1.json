@@ -11,8 +11,8 @@
             "Bus": "$bus",
             "Connector": {
                 "Name": "FAN0_TACH_IL",
-                "Pwm": 0,
-                "PwmName": "FAN0_PWM_PCT",
+                "Pwm": 4,
+                "PwmName": "FAN4_PWM_PCT",
                 "Tachs": [
                     0
                 ]
@@ -106,22 +106,6 @@
             "Address": "0x2b",
             "Bus": "$bus",
             "Connector": {
-                "Name": "FAN3_TACH_IL",
-                "Pwm": 3,
-                "PwmName": "FAN3_PWM_PCT",
-                "Tachs": [
-                    10
-                ]
-            },
-            "Index": 10,
-            "Name": "FAN3_TACH_IL_SPEED_RPM",
-            "PowerState": "Always",
-            "Type": "I2CFan"
-        },
-        {
-            "Address": "0x2b",
-            "Bus": "$bus",
-            "Connector": {
                 "Name": "FAN3_TACH_OL",
                 "Pwm": 3,
                 "PwmName": "FAN3_PWM_PCT",
@@ -131,38 +115,6 @@
             },
             "Index": 11,
             "Name": "FAN3_TACH_OL_SPEED_RPM",
-            "PowerState": "Always",
-            "Type": "I2CFan"
-        },
-        {
-            "Address": "0x2f",
-            "Bus": "$bus",
-            "Connector": {
-                "Name": "FAN4_TACH_IL",
-                "Pwm": 0,
-                "PwmName": "FAN4_PWM_PCT",
-                "Tachs": [
-                    0
-                ]
-            },
-            "Index": 0,
-            "Name": "FAN4_TACH_IL_SPEED_RPM",
-            "PowerState": "Always",
-            "Type": "I2CFan"
-        },
-        {
-            "Address": "0x2f",
-            "Bus": "$bus",
-            "Connector": {
-                "Name": "FAN4_TACH_OL",
-                "Pwm": 0,
-                "PwmName": "FAN4_PWM_PCT",
-                "Tachs": [
-                    1
-                ]
-            },
-            "Index": 1,
-            "Name": "FAN4_TACH_OL_SPEED_RPM",
             "PowerState": "Always",
             "Type": "I2CFan"
         },
@@ -236,7 +188,7 @@
         }
     ],
     "Name": "PDB_L",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': '^(?!.*EVT1)Anacapa.*LPDB.*', 'BOARD_MANUFACTURER': 'Inventec'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Anacapa.*EVT1.*LPDB', 'BOARD_MANUFACTURER': 'Inventec'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
