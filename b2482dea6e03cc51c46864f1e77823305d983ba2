@@ -16,6 +16,24 @@
       "message": "Looks like a lot if not all of these are fan control related, so it is strange that the config owners never noticed this while doing fan testing.\n\nI believe the nice thing to do is to find owners for these files and have them provide a new name or maybe OK the current drop of the entry.",
       "revId": "b2482dea6e03cc51c46864f1e77823305d983ba2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4065bc8e_499aeb4f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-01-06T22:43:47Z",
+      "side": 1,
+      "message": "\u003e Looks like a lot if not all of these are fan control related, so it is strange that the config owners never noticed this while doing fan testing.\n\nYeah, I\u0027m guessing it\u0027s not actually problematic that they are duplicate names.  If I look at the `fbtp.json` as an example, there are two blobs with the same name, but they are different types: one is the Fan, the other is the PID Config for that Fan.  Not sure why this is necessarily \"bad\".",
+      "parentUuid": "9e66f49f_56017610",
+      "revId": "b2482dea6e03cc51c46864f1e77823305d983ba2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
