@@ -1,0 +1,125 @@
+[
+    {
+        "Exposes": [
+            {
+                "Address": "0x1d",
+                "Bus": "$bus",
+                "Labels": [
+                    "in0",
+                    "in1",
+                    "in2",
+                    "in3",
+                    "in4",
+                    "in5",
+                    "in6",
+                    "in7"
+                ],
+                "Name": "FAN_ADC",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 0.272,
+                        "Label": "in0",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 13.6
+                    },
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 0.21,
+                        "Label": "in0",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 10.5
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 0.272,
+                        "Label": "in2",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 13.6
+                    },
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 0.21,
+                        "Label": "in2",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 10.5
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 0.272,
+                        "Label": "in4",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 13.6
+                    },
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 0.21,
+                        "Label": "in4",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 10.5
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 0.272,
+                        "Label": "in6",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 13.6
+                    },
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 0.21,
+                        "Label": "in6",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 10.5
+                    }
+                ],
+                "Type": "ADC128D818",
+                "in0_Max": 18,
+                "in0_Name": "FCB_0_FAN_0_VOLT_V",
+                "in0_Scale": 133.262,
+                "in1_Name": "FCB_0_FAN_0_IMON_VOLT_V",
+                "in1_Scale": 0.2,
+                "in2_Max": 18,
+                "in2_Name": "FCB_0_FAN_1_VOLT_V",
+                "in2_Scale": 133.262,
+                "in3_Name": "FCB_0_FAN_1_IMON_VOLT_V",
+                "in3_Scale": 0.2,
+                "in4_Max": 18,
+                "in4_Name": "FCB_0_FAN_2_VOLT_V",
+                "in4_Scale": 133.262,
+                "in5_Name": "FCB_0_FAN_2_IMON_VOLT_V",
+                "in5_Scale": 0.2,
+                "in6_Max": 18,
+                "in6_Name": "FCB_0_FAN_3_VOLT_V",
+                "in6_Scale": 133.262,
+                "in7_Name": "FCB_0_FAN_3_IMON_VOLT_V",
+                "in7_Scale": 0.2
+            }
+        ],
+        "Name": "Ventura2 Fan Board",
+        "Probe": "xyz.openbmc_project.FruDevice({'BOARD_MANUFACTURER': 'Quanta', 'BOARD_PRODUCT_NAME': 'Ventura2 FAN', 'BOARD_INFO_AM4': 'adc-tic'})",
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "BuildDate": "$BOARD_MANUFACTURE_DATE",
+            "Manufacturer": "$BOARD_MANUFACTURER",
+            "Model": "$BOARD_PRODUCT_NAME",
+            "PartNumber": "$BOARD_PART_NUMBER",
+            "SerialNumber": "$BOARD_SERIAL_NUMBER",
+            "SparePartNumber": "$BOARD_INFO_AM1"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+            "AssetTag": "$PRODUCT_ASSET_TAG"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.Revision": {
+            "Version": "$PRODUCT_VERSION"
+        }
+    }
+]

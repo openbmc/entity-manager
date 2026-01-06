@@ -1,0 +1,642 @@
+[
+    {
+        "Exposes": [
+            {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "Ventura2 MB FRU",
+                "Type": "EEPROM"
+            },
+            {
+                "Address": "0x20",
+                "Bus": 23,
+                "Connector": {
+                    "Name": "FCB_0_FAN0_TACH_OL",
+                    "Pwm": 0,
+                    "PwmName": "FCB_0_FAN0_PWM_PCT",
+                    "Tachs": [
+                        1
+                    ]
+                },
+                "Index": 1,
+                "Name": "FCB_0_FAN0_TACH_OL_SPEED_RPM",
+                "PowerState": "Always",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 660.0,
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 32000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 39.2,
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1800
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x20",
+                "Bus": 23,
+                "Connector": {
+                    "Name": "FCB_0_FAN0_TACH_IL",
+                    "Pwm": 0,
+                    "PwmName": "FCB_0_FAN0_PWM_PCT",
+                    "Tachs": [
+                        0
+                    ]
+                },
+                "Index": 0,
+                "Name": "FCB_0_FAN0_TACH_IL_SPEED_RPM",
+                "PowerState": "Always",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 726.0,
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 35500
+                    },
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 51,
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 2450
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x20",
+                "Bus": 23,
+                "Connector": {
+                    "Name": "FCB_0_FAN1_TACH_OL",
+                    "Pwm": 2,
+                    "PwmName": "FCB_0_FAN1_PWM_PCT",
+                    "Tachs": [
+                        2
+                    ]
+                },
+                "Index": 2,
+                "Name": "FCB_0_FAN1_TACH_OL_SPEED_RPM",
+                "PowerState": "Always",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 660.0,
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 32000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 39.2,
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1800
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x20",
+                "Bus": 23,
+                "Connector": {
+                    "Name": "FCB_0_FAN1_TACH_IL",
+                    "Pwm": 2,
+                    "PwmName": "FCB_0_FAN1_PWM_PCT",
+                    "Tachs": [
+                        7
+                    ]
+                },
+                "Index": 7,
+                "Name": "FCB_0_FAN1_TACH_IL_SPEED_RPM",
+                "PowerState": "Always",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 726.0,
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 35500
+                    },
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 51,
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 2450
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x20",
+                "Bus": 23,
+                "Connector": {
+                    "Name": "FCB_0_FAN2_TACH_OL",
+                    "Pwm": 3,
+                    "PwmName": "FCB_0_FAN2_PWM_PCT",
+                    "Tachs": [
+                        4
+                    ]
+                },
+                "Index": 4,
+                "Name": "FCB_0_FAN2_TACH_OL_SPEED_RPM",
+                "PowerState": "Always",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 660.0,
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 32000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 39.2,
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1800
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x20",
+                "Bus": 23,
+                "Connector": {
+                    "Name": "FCB_0_FAN2_TACH_IL",
+                    "Pwm": 3,
+                    "PwmName": "FCB_0_FAN2_PWM_PCT",
+                    "Tachs": [
+                        3
+                    ]
+                },
+                "Index": 3,
+                "Name": "FCB_0_FAN2_TACH_IL_SPEED_RPM",
+                "PowerState": "Always",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 726.0,
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 35500
+                    },
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 51.0,
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 2450
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x20",
+                "Bus": 23,
+                "Connector": {
+                    "Name": "FCB_0_FAN3_TACH_OL",
+                    "Pwm": 5,
+                    "PwmName": "FCB_0_FAN3_PWM_PCT",
+                    "Tachs": [
+                        5
+                    ]
+                },
+                "Index": 5,
+                "Name": "FCB_0_FAN3_TACH_OL_SPEED_RPM",
+                "PowerState": "Always",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 660.0,
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 32000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 39.2,
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1800
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x20",
+                "Bus": 23,
+                "Connector": {
+                    "Name": "FCB_0_FAN3_TACH_IL",
+                    "Pwm": 5,
+                    "PwmName": "FCB_0_FAN3_PWM_PCT",
+                    "Tachs": [
+                        10
+                    ]
+                },
+                "Index": 10,
+                "Name": "FCB_0_FAN3_TACH_IL_SPEED_RPM",
+                "PowerState": "Always",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 726.0,
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 35500
+                    },
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 51.0,
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 2450
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x40",
+                "Bus": 10,
+                "Labels": [
+                    "in1",
+                    "curr1",
+                    "power1"
+                ],
+                "Name": "RMC_M12_P24V_1",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 0.504,
+                        "Label": "in1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 25.2
+                    },
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 0.456,
+                        "Label": "in1",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 22.8
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 2.88,
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 144
+                    }
+                ],
+                "Type": "INA230",
+                "curr1_Name": "RMC_M12_P24V_1_CURR_A",
+                "curr1_Offset": 0.0008,
+                "curr1_Scale": 99.3147283742,
+                "in1_Max": 36,
+                "in1_Name": "RMC_M12_P24V_1_VOLT_V",
+                "power1_Name": "RMC_M12_P24V_1_PWR_W",
+                "power1_Offset": 0.0007,
+                "power1_Scale": 298089.247920828
+            },
+            {
+                "Address": "0x45",
+                "Bus": 10,
+                "Labels": [
+                    "in1",
+                    "curr1",
+                    "power1"
+                ],
+                "Name": "RMC_M12_P24V_2",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 0.504,
+                        "Label": "in1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 25.2
+                    },
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 0.456,
+                        "Label": "in1",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 22.8
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 5.28,
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 105.6
+                    }
+                ],
+                "Type": "INA230",
+                "curr1_Name": "RMC_M12_P24V_2_CURR_A",
+                "curr1_Offset": 0.0008,
+                "curr1_Scale": 99.3147283742,
+                "in1_Max": 36,
+                "in1_Name": "RMC_M12_P24V_2_VOLT_V",
+                "power1_Name": "RMC_M12_P24V_2_PWR_W",
+                "power1_Offset": 0.0007,
+                "power1_Scale": 298089.247920828
+            },
+            {
+                "Address": "0x41",
+                "Bus": 10,
+                "Labels": [
+                    "in0"
+                ],
+                "Name": "RMC_MEDUSA_RETURN",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 4.0,
+                        "Label": "in0",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 200
+                    }
+                ],
+                "Type": "INA238",
+                "in0_Max": 1,
+                "in0_Min": -1,
+                "in0_Name": "RMC_MEDUSA_RETURN_VDROP_VOLT_V",
+                "in0_Scale": 953.0162965787
+            },
+            {
+                "Address": "0x42",
+                "Bus": 10,
+                "Labels": [
+                    "curr1"
+                ],
+                "Name": "RMC_CABLE_TSENSE_POSITIVE_INA",
+                "Type": "INA238",
+                "curr1_Max": 0.1,
+                "curr1_Min": 0,
+                "curr1_Name": "RMC_CABLE_TSENSE_POSITIVE_INA_CURR_A",
+                "curr1_Scale": 50000
+            },
+            {
+                "Address": "0x43",
+                "Bus": 10,
+                "Labels": [
+                    "in0"
+                ],
+                "Name": "RMC_MEDUSA_POSITIVE",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 4.0,
+                        "Label": "in0",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 200
+                    }
+                ],
+                "Type": "INA238",
+                "in0_Max": 1,
+                "in0_Min": -1,
+                "in0_Name": "RMC_MEDUSA_POSITIVE_VDROP_VOLT_V",
+                "in0_Scale": 936.1542782251
+            },
+            {
+                "Address": "0x46",
+                "Bus": 10,
+                "Labels": [
+                    "curr1"
+                ],
+                "Name": "RMC_CABLE_TSENSE_NEGATIVE_INA",
+                "Type": "INA238",
+                "curr1_Max": 0.1,
+                "curr1_Min": 0,
+                "curr1_Name": "RMC_CABLE_TSENSE_NEGATIVE_INA_CURR_A",
+                "curr1_Scale": 50000
+            },
+            {
+                "Address": "0x44",
+                "Bus": 10,
+                "Labels": [
+                    "iout1",
+                    "pin",
+                    "temp1",
+                    "vin",
+                    "vout1"
+                ],
+                "Name": "RMC_HSC",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 2.0,
+                        "Label": "temp1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 100
+                    },
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 2.0,
+                        "Label": "temp1",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 5
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 1.12,
+                        "Label": "vin",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 56
+                    },
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 0.92,
+                        "Label": "vin",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 46
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 1.12,
+                        "Label": "vout1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 56
+                    },
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 0.92,
+                        "Label": "vout1",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 46
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 11.6,
+                        "Label": "pin",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 580
+                    }
+                ],
+                "Type": "LTC4287",
+                "iout1_Name": "RMC_HSC_CURR_A",
+                "iout1_Offset": -0.16125,
+                "iout1_Scale": 3327.366,
+                "pin_Name": "RMC_HSC_PWR_W",
+                "pin_Offset": -0.16125,
+                "pin_Scale": 3327366.257,
+                "temp1_Name": "RMC_HSC_TEMP_C",
+                "vin_Max": 76,
+                "vin_Name": "RMC_HSC_VIN_VOLT_V",
+                "vout1_Max": 18,
+                "vout1_Name": "RMC_HSC_VOUT_VOLT_V"
+            },
+            {
+                "Address": "0x4f",
+                "Bus": 5,
+                "Name": "RMC_TEMP_1_C",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 1.0,
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 50
+                    },
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 1.0,
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 5
+                    }
+                ],
+                "Type": "TMP75"
+            },
+            {
+                "Address": "0x4c",
+                "Bus": 10,
+                "Name": "RMC_TEMP_2_C",
+                "Type": "TMP75"
+            },
+            {
+                "Address": "0x4d",
+                "Bus": 10,
+                "Name": "RMC_TEMP_3_C",
+                "Type": "TMP75"
+            },
+            {
+                "Address": "0x4e",
+                "Bus": 10,
+                "Name": "RMC_TEMP_4_C",
+                "Type": "TMP75"
+            },
+            {
+                "Address": "0x69",
+                "Bus": 10,
+                "Labels": [
+                    "iout1",
+                    "temp1",
+                    "vin",
+                    "vout1"
+                ],
+                "Name": "RMC_BRICK",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 2.1,
+                        "Label": "temp1",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 5
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 2.1,
+                        "Label": "temp1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 105
+                    },
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 0.92,
+                        "Label": "vin",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 46
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 1.12,
+                        "Label": "vin",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 56
+                    },
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 0.21,
+                        "Label": "vout1",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 10.5
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 0.272,
+                        "Label": "vout1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 13.6
+                    }
+                ],
+                "Type": "pmbus",
+                "iout1_Name": "RMC_BRICK_CURR_A",
+                "temp1_Name": "RMC_BRICK_TEMP_C",
+                "vin_Max": 76,
+                "vin_Name": "RMC_BRICK_INPUT_VOLT_V",
+                "vout1_Max": 18,
+                "vout1_Name": "RMC_BRICK_OUTPUT_VOLT_V"
+            }
+        ],
+        "Name": "Ventura2 RMC",
+        "Probe": [
+            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Ventura2 RMC'})",
+            "AND",
+            "xyz.openbmc_project.FruDevice({'BOARD_INFO_AM4': 'hsc-ltc fsc-max p24vsen-ina gndsen-ina p12vbrick-delta'})"
+        ],
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "BuildDate": "$BOARD_MANUFACTURE_DATE",
+            "Manufacturer": "$BOARD_MANUFACTURER",
+            "Model": "$BOARD_PRODUCT_NAME",
+            "PartNumber": "$BOARD_PART_NUMBER",
+            "SerialNumber": "$BOARD_SERIAL_NUMBER",
+            "SparePartNumber": "$BOARD_INFO_AM1"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+            "AssetTag": "$PRODUCT_ASSET_TAG"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.Revision": {
+            "Version": "$PRODUCT_VERSION"
+        },
+        "xyz.openbmc_project.Inventory.Item.Board.Motherboard": {}
+    }
+]
