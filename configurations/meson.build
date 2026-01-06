@@ -108,6 +108,7 @@ configs = [
     'meta/anacapa/anacapa_bridge_r.json',
     'meta/anacapa/anacapa_mb.json',
     'meta/anacapa/anacapa_pdb_l.json',
+    'meta/anacapa/anacapa_pdb_l_evt1.json',
     'meta/anacapa/anacapa_pdb_r.json',
     'meta/anacapa/anacapa_scm.json',
     'meta/bletchley/bletchley_baseboard.json',
