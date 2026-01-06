@@ -251,6 +251,35 @@ def validator_from_file(schema_file):
     return validator
 
 
+def validate_em_config_records(filename, records):
+
+    types = dict()
+    res = True
+    for record in records:
+        if "Name" in record and "Type" in record:
+            name = record["Name"]
+            typeName = record["Type"]
+
+            if name in types.keys() and typeName in types[name]:
+                print("Validation Error in " + filename)
+                print(
+                    "  duplicate record name: '"
+                    + name
+                    + "' of type: "
+                    + typeName
+                )
+                res = False
+
+            if name in types.keys():
+                print("Validation Warning in " + filename)
+                print("  duplicate record name: '" + name + "'")
+            else:
+                types[name] = set()
+
+            types[name].add(typeName)
+    return res
+
+
 def validate_single_config(
     args, filename, config, expected_fails, schema_file
 ):
@@ -269,6 +298,14 @@ def validate_single_config(
             is_invalid = True
             if args.verbose:
                 print(f"Validation Error for {filename}: {e}")
+
+    if "Exposes" in config:
+        if not validate_em_config_records(filename, config["Exposes"]):
+            is_invalid = True
+    else:
+        for emConfig in config:
+            if not validate_em_config_records(filename, emConfig["Exposes"]):
+                is_invalid = True
 
     return (is_invalid, is_unexpected_pass)
 
