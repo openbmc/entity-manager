@@ -72,6 +72,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "809922e7_972dfb54",
+        "filename": "src/entity_manager/power_status_monitor.cpp",
+        "patchSetId": 40
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-06T17:01:14Z",
+      "side": 1,
+      "message": "i moved the call to the main function to keep it out of the test flow 👍",
+      "parentUuid": "78591d05_f88376ea",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 73
+      },
+      "revId": "cd614ec55eeb05d335db7326f98a838ee65efeb3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5ddfe42e_3c0b5cb3",
@@ -181,6 +205,30 @@
       "side": 1,
       "message": "\u003e I don\u0027t think the core guidelines apply\n\nIf this is what you want to do, please make that argument at project level, and we\u0027ll see if we can get consensus on \"don\u0027t use cpp core guidelines for tests\". Right now there\u0027s no distinction made on test code.\n\nI\u0027m not comfortable with accepting clear violations to cpp core guidelines in this specific case.\n\n\u003e Changed it\n\nThank you.  Will readd to the review queue.",
       "parentUuid": "c8ea4150_a1394484",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 40
+      },
+      "revId": "cd614ec55eeb05d335db7326f98a838ee65efeb3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c250b4ac_a9f06c16",
+        "filename": "test/entity_manager/test_em.hpp",
+        "patchSetId": 40
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-06T17:01:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "007450e7_c02caedf",
       "range": {
         "startLine": 70,
         "startChar": 0,
