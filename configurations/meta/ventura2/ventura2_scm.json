@@ -1,0 +1,551 @@
+{
+    "Exposes": [
+        {
+            "Index": 0,
+            "Name": "SCM_P12V_VOLT_V",
+            "ScaleFactor": 0.112359551,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 1,
+            "Name": "SCM_P5V_VOLT_V",
+            "ScaleFactor": 0.27173913,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 5.25
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 4.75
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 2,
+            "Name": "SCM_P3V3_VOLT_V",
+            "ScaleFactor": 0.410677618,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.465
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.135
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 3,
+            "Name": "SCM_P2V5_VOLT_V",
+            "ScaleFactor": 0.54200542,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.625
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.375
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 4,
+            "Name": "SCM_P1V8_VOLT_V",
+            "ScaleFactor": 0.750469043,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.89
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.71
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 5,
+            "Name": "SCM_PGPPA_VOLT_V",
+            "ScaleFactor": 0.410677618,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.89
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.71
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 6,
+            "Name": "SCM_P1V2_VOLT_V",
+            "ScaleFactor": 1,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.26
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.14
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "BridgeGpio": [
+                {
+                    "Name": "BATTERY_DETECT",
+                    "Polarity": "High",
+                    "SetupTime": 1
+                }
+            ],
+            "Index": 7,
+            "Name": "SCM_P3V_BAT_VOLT_V",
+            "PollRate": 86400,
+            "ScaleFactor": 0.333333333,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.4
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.6
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 8,
+            "Name": "SCM_P1V0_VOLT_V",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.05
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.95
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Name": "BMC",
+            "Type": "BMC"
+        },
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "Ventura2 SCM FRU",
+            "Type": "EEPROM"
+        },
+        {
+            "Name": "RackDripTrayLeak1Port",
+            "PresencePinNames": [
+                "PRSNT_LEAK0_SENSOR_R_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RackDripTrayLeak2Port",
+            "PresencePinNames": [
+                "PRSNT_LEAK1_SENSOR_R_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RackLeakSpare1Port",
+            "PresencePinNames": [
+                "PRSNT_LEAK2_SENSOR_R_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RackLeakSpare2Port",
+            "PresencePinNames": [
+                "PRSNT_LEAK3_SENSOR_R_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RackLeakSpare3Port",
+            "PresencePinNames": [
+                "PRSNT_LEAK4_SENSOR_R_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RackFloorLeakPort",
+            "PresencePinNames": [
+                "PRSNT_LEAK5_SENSOR_R_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RackFloorLeakSpare1Port",
+            "PresencePinNames": [
+                "PRSNT_LEAK6_SENSOR_R_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RackFloorLeakSpare2Port",
+            "PresencePinNames": [
+                "PRSNT_LEAK7_SENSOR_R_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RackVerticalColdManifoldLeakPort",
+            "PresencePinNames": [
+                "PRSNT_LEAK8_SENSOR_R_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RackVerticalHotManifoldLeakPort",
+            "PresencePinNames": [
+                "PRSNT_LEAK9_SENSOR_R_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RackHorizontalColdManifoldLeakPort",
+            "PresencePinNames": [
+                "PRSNT_LEAK10_SENSOR_R_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RackHorizontalHotManifoldLeakPort",
+            "PresencePinNames": [
+                "PRSNT_LEAK11_SENSOR_R_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Level": "Critical",
+            "Name": "RackDripTrayLeak1",
+            "PinName": "CHASSIS0_LEAK_Q_N_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "RackDripTrayLeak2",
+            "PinName": "CHASSIS1_LEAK_Q_N_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "RackLeakSpare1",
+            "PinName": "CHASSIS2_LEAK_Q_N_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "RackLeakSpare2",
+            "PinName": "CHASSIS3_LEAK_Q_N_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "RackLeakSpare3",
+            "PinName": "CHASSIS4_LEAK_Q_N_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "RackFloorLeak",
+            "PinName": "CHASSIS5_LEAK_Q_N_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "RackFloorLeakSpare1",
+            "PinName": "CHASSIS6_LEAK_Q_N_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "RackFloorLeakSpare2",
+            "PinName": "CHASSIS7_LEAK_Q_N_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "RackVerticalColdManifoldLeak",
+            "PinName": "CHASSIS8_LEAK_Q_N_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "RackVerticalHotManifoldLeak",
+            "PinName": "CHASSIS9_LEAK_Q_N_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "RackHorizontalColdManifoldLeak",
+            "PinName": "CHASSIS10_LEAK_Q_N_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "RackHorizontalHotManifoldLeak",
+            "PinName": "CHASSIS11_LEAK_Q_N_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Name": "RPU1LeakPort1",
+            "PresencePinNames": [
+                "IT_GEAR_RPU_LINK_PRSNT_N_R"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RPU1LeakPort2",
+            "PresencePinNames": [
+                "IT_GEAR_RPU_LINK_PRSNT_SPARE_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RPU2LeakPort1",
+            "PresencePinNames": [
+                "IT_GEAR_RPU_2_LINK_PRSNT_N_R"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RPU2LeakPort2",
+            "PresencePinNames": [
+                "IT_GEAR_RPU_2_LINK_PRSNT_SPARE"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "ReturnValve_1",
+            "PresencePinNames": [
+                "PRSNT1_RETURN_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "SupplyValve_1",
+            "PresencePinNames": [
+                "PRSNT1_SUPPLY_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "ReturnValve_2",
+            "PresencePinNames": [
+                "PRSNT2_RETURN_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "SupplyValve_2",
+            "PresencePinNames": [
+                "PRSNT2_SUPPLY_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "ReturnValve_3",
+            "PresencePinNames": [
+                "PRSNT3_RETURN_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "SupplyValve_3",
+            "PresencePinNames": [
+                "PRSNT3_SUPPLY_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Address": "0x4b",
+            "Bus": 9,
+            "Name": "SCM_INLET_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 40
+                }
+            ],
+            "Type": "TMP75"
+        }
+    ],
+    "Name": "Ventura2 SCM",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_MANUFACTURER': 'Quanta', 'BOARD_PRODUCT_NAME': 'Ventura2 SCM'})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$BOARD_MANUFACTURE_DATE",
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER",
+        "SparePartNumber": "$BOARD_INFO_AM1"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Revision": {
+        "Version": "$PRODUCT_VERSION"
+    },
+    "xyz.openbmc_project.Inventory.Item.NetworkInterface": {
+        "MACAddress": "$CHASSIS_INFO_AM2"
+    }
+}
