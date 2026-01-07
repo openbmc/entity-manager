@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3175634_4ff4d522",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-01-07T14:43:57Z",
+      "side": 1,
+      "message": "CI is failing as follows:\n\n```\n-: UC3 Signed-off-by user has too few words; likely user id instead of legal name?: \"Signed-off-by: DirkChen0105 \u003cdirkchen@amd.com\u003e\"\n-: UC4 Author user has too few words; likely user id instead of legal name?: \"DirkChen0105\"\n```\n\n@dirkchen@amd.com - Please update your .gitconfig to have a name similar or matching the one in the AMD CLA and then amend the commit to fix these two issues.",
+      "revId": "ee5e5897e26a71b52a62629e2c8e4cea49eb0341",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
