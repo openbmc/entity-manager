@@ -366,6 +366,30 @@
             "Type": "LatticeLCMXO3D_9400Firmware"
         },
         {
+            "Address": "0x62",
+            "Bus": "94",
+            "Name": "SWB_PEX",
+            "PLDMSensors": [
+                {
+                    "ID": 1,
+                    "Name": "TEMP_C"
+                }
+            ],
+            "Type": "MCTPI2CTarget"
+        },
+        {
+            "Address": "0x62",
+            "Bus": "102",
+            "Name": "SWB_PEX",
+            "PLDMSensors": [
+                {
+                    "ID": 1,
+                    "Name": "TEMP_C"
+                }
+            ],
+            "Type": "MCTPI2CTarget"
+        },
+        {
             "Address": "0x42",
             "Bus": "33",
             "Labels": [
