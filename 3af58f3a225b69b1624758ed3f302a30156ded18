@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ce0b7b0_527b3a29",
+        "filename": "configurations/meta/ventura2/ventura2_aalc.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-01-07T21:40:00Z",
+      "side": 1,
+      "message": "Please add manufacturer(s) on all Probe statements (through the entire commit).",
+      "revId": "3af58f3a225b69b1624758ed3f302a30156ded18",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9a4c897_6309858f",
+        "filename": "configurations/meta/ventura2/ventura2_mgmt_rackmon.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-01-07T21:40:00Z",
+      "side": 1,
+      "message": "What is this FRU?  Can we come up with a better name than including \"rackmon\" here?  rackmon is a downstream implementation of phosphor-modbus.",
+      "range": {
+        "startLine": 6,
+        "startChar": 30,
+        "endLine": 6,
+        "endChar": 46
+      },
+      "revId": "3af58f3a225b69b1624758ed3f302a30156ded18",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d83b062_2e2dfff0",
+        "filename": "configurations/meta/ventura2/ventura2_rmcv2_mb.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 623,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-01-07T21:40:00Z",
+      "side": 1,
+      "message": "No need for \"AND\" here.  Use a single probe.",
+      "range": {
+        "startLine": 621,
+        "startChar": 0,
+        "endLine": 623,
+        "endChar": 121
+      },
+      "revId": "3af58f3a225b69b1624758ed3f302a30156ded18",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
