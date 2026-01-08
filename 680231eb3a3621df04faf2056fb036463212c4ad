@@ -70,6 +70,30 @@
       },
       "revId": "680231eb3a3621df04faf2056fb036463212c4ad",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6c622c0_cc5fc6cb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-01-08T19:09:45Z",
+      "side": 1,
+      "message": "\u003e Don\u0027t we want to write integration tests as well?\n\nPeoples definition of unit/integration tests differ here, so lets just keep this targetted to the code itself.  Do you have an example of the test you\u0027re trying to run?\n\n\n\u003e your version of an integration test\n\nSure, I can look at this.  As a goal, we shouldn\u0027t ever be calling sleep or a timer in a unit test.  Integration tests should run the full application ideally.  Maybe you\u0027re talking about something in the middle?",
+      "parentUuid": "a06347d0_78332a54",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 40
+      },
+      "revId": "680231eb3a3621df04faf2056fb036463212c4ad",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
