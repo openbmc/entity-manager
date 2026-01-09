@@ -338,6 +338,41 @@ std::optional<std::string> templateCharReplace(
     return ret;
 }
 
+std::optional<std::string> templateCharReplace(
+    std::string& value, const DBusObject& object, size_t index,
+    const std::optional<std::string>& replaceStr, bool handleLeftOver)
+{
+    nlohmann::json json = value;
+    auto res =
+        templateCharReplace(json, object, index, replaceStr, handleLeftOver);
+    if (json.type() == nlohmann::json::value_t::string)
+    {
+        const auto* ptr = json.get_ptr<const std::string*>();
+        if (ptr != nullptr)
+        {
+            value = *ptr;
+        }
+    }
+    return res;
+}
+
+std::optional<std::string> templateCharReplace(
+    std::string& value, const DBusInterface& interface, size_t index,
+    const std::optional<std::string>& replaceStr)
+{
+    nlohmann::json json = value;
+    auto res = templateCharReplace(json, interface, index, replaceStr);
+    if (json.type() == nlohmann::json::value_t::string)
+    {
+        const auto* ptr = json.get_ptr<const std::string*>();
+        if (ptr != nullptr)
+        {
+            value = *ptr;
+        }
+    }
+    return res;
+}
+
 std::string buildInventorySystemPath(std::string& boardName,
                                      const std::string& boardType)
 {
