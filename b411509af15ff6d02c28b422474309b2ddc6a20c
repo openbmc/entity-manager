@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "97bad58a_cd68045f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-09T07:09:16Z",
+      "side": 1,
+      "message": "Thanks for your review 👍",
+      "revId": "b411509af15ff6d02c28b422474309b2ddc6a20c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "22b55f14_1c9d45d1",
@@ -14,6 +31,30 @@
       "writtenOn": "2026-01-08T21:06:46Z",
       "side": 1,
       "message": "I could have this wrong, but doesn\u0027t passing the fruDevice shared_ptr as a reference defeat the purpose of it being a shared_ptr?  Or was this case not the case you were concerned about...",
+      "range": {
+        "startLine": 1362,
+        "startChar": 38,
+        "endLine": 1362,
+        "endChar": 39
+      },
+      "revId": "b411509af15ff6d02c28b422474309b2ddc6a20c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "655adfc0_250e6a95",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 1362,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-09T07:09:16Z",
+      "side": 1,
+      "message": "Initially it was not a shared pointer, i made it a shared pointer based on feedback\n\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/84123/comment/702f91e9_fb2b3786/\n\nFrom what i remember the concern there was local reasoning. If we pass in a reference to FruDevice into some function, the lifetime is not known when looking only at that one function. So if we want to use that reference later as part of a callback or something then it would have to be passed in as shared_ptr.\n\nSo even if we know (from global reasoning) about the lifetime of FruDevice instance, we cannot use that information since it is preferred to be able to understand/review a single function separately.\n\nEven though the inline lambda for `ReScan` is technically a separate function, the reader is still inside `main` function. So we can use local reasoning and see that the FruDevice instance is in scope from line 1328 until the end of `main` function.\n\nSo from my perspective it is fine to leave it like this for now, unless someone has a strong opinion here. Do you think it should be changed?",
+      "parentUuid": "22b55f14_1c9d45d1",
       "range": {
         "startLine": 1362,
         "startChar": 38,
