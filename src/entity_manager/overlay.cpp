@@ -237,15 +237,24 @@ void exportDevice(const devices::ExportTemplate& exportTemplate,
             subsituteString = jsonToString(keyPair.value());
         }
 
-        if (keyPair.key() == "Bus")
+        if (keyPair.key() == "Bus" &&
+            (keyPair.value().type() ==
+                 nlohmann::json::value_t::number_integer ||
+             keyPair.value().type() ==
+                 nlohmann::json::value_t::number_unsigned))
         {
             bus = keyPair.value().get<uint64_t>();
         }
-        else if (keyPair.key() == "Address")
+        else if (keyPair.key() == "Address" &&
+                 (keyPair.value().type() ==
+                      nlohmann::json::value_t::number_integer ||
+                  keyPair.value().type() ==
+                      nlohmann::json::value_t::number_unsigned))
         {
             address = keyPair.value().get<uint64_t>();
         }
-        else if (keyPair.key() == "ChannelNames" && type.ends_with("Mux"))
+        else if (keyPair.key() == "ChannelNames" && type.ends_with("Mux") &&
+                 (keyPair.value().type() == nlohmann::json::value_t::array))
         {
             channels = keyPair.value().get<std::vector<std::string>>();
         }

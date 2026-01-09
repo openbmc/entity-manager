@@ -54,23 +54,6 @@ struct DBusInternalError final : public sdbusplus::exception_t
     }
 };
 
-inline bool deviceHasLogging(const nlohmann::json& json)
-{
-    auto logging = json.find("Logging");
-    if (logging != json.end())
-    {
-        const auto* ptr = logging->get_ptr<const std::string*>();
-        if (ptr != nullptr)
-        {
-            if (*ptr == "Off")
-            {
-                return false;
-            }
-        }
-    }
-    return true;
-}
-
 /// \brief Match a Dbus property against a probe statement.
 /// \param probe the probe statement to match against.
 /// \param dbusValue the property value being matched to a probe.
