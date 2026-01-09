@@ -331,7 +331,7 @@ static std::optional<uint64_t> parseAsNumber(std::string_view strView)
     return std::nullopt;
 }
 
-static std::optional<std::string> templateCharReplaceStr(
+std::optional<std::string> templateCharReplaceStr(
     std::string& str, const DBusInterface& interface, const size_t index,
     const std::optional<std::string>& replaceStr)
 {
@@ -394,6 +394,29 @@ std::optional<std::string> templateCharReplace(
     }
 
     return ret;
+}
+
+std::optional<std::string> templateCharReplaceStr(
+    std::string& value, const DBusObject& object, size_t index,
+    const std::optional<std::string>& replaceStr, bool handleLeftOver)
+{
+    for (const auto& [_, interface] : object)
+    {
+        auto ret = templateCharReplaceStr(value, interface, index, replaceStr);
+        if (ret)
+        {
+            if (handleLeftOver)
+            {
+                handleLeftOverTemplateVars(value);
+            }
+            return ret;
+        }
+    }
+    if (handleLeftOver)
+    {
+        handleLeftOverTemplateVars(value);
+    }
+    return std::nullopt;
 }
 
 sdbusplus::object_path buildInventorySystemPath(std::string& boardName,
