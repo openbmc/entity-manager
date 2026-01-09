@@ -35,6 +35,16 @@ std::optional<std::string> templateCharReplace(
     nlohmann::json& value, const DBusInterface& interface, size_t index,
     const std::optional<std::string>& replaceStr = std::nullopt);
 
+// replacement functions which do not need json inputs
+std::optional<std::string> templateCharReplace(
+    std::string& value, const DBusObject& object, size_t index,
+    const std::optional<std::string>& replaceStr = std::nullopt,
+    bool handleLeftOver = true);
+
+std::optional<std::string> templateCharReplace(
+    std::string& value, const DBusInterface& interface, size_t index,
+    const std::optional<std::string>& replaceStr = std::nullopt);
+
 std::string buildInventorySystemPath(std::string& boardName,
                                      const std::string& boardType);
 
