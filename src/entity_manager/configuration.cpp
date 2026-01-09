@@ -1,5 +1,6 @@
 #include "configuration.hpp"
 
+#include "em_config.hpp"
 #include "perform_probe.hpp"
 #include "utils.hpp"
 
@@ -88,12 +89,12 @@ void Configuration::loadConfigurations()
         {
             for (auto& d : data)
             {
-                configurations.emplace_back(d);
+                configurations.emplace_back(EMConfig::fromJson(d));
             }
         }
         else
         {
-            configurations.emplace_back(data);
+            configurations.emplace_back(EMConfig::fromJson(data));
         }
     }
 
@@ -111,6 +112,8 @@ void Configuration::loadConfigurations()
 void deriveNewConfiguration(const nlohmann::json& oldConfiguration,
                             nlohmann::json& newConfiguration)
 {
+    lg2::debug("deriving new configuration");
+
     for (auto it = newConfiguration.begin(); it != newConfiguration.end();)
     {
         auto findKey = oldConfiguration.find(it.key());
@@ -142,50 +145,33 @@ void Configuration::filterProbeInterfaces()
 {
     for (auto it = configurations.begin(); it != configurations.end();)
     {
-        auto findProbe = it->find("Probe");
-        if (findProbe == it->end())
+        for (const std::string& probe : it->probeStmt)
         {
-            lg2::error("configuration file missing probe: {PROBE}", "PROBE",
-                       *it);
-            it++;
-            continue;
-        }
-
-        nlohmann::json probeCommand;
-        if ((*findProbe).type() != nlohmann::json::value_t::array)
-        {
-            probeCommand = nlohmann::json::array();
-            probeCommand.push_back(*findProbe);
-        }
-        else
-        {
-            probeCommand = *findProbe;
-        }
-
-        for (const nlohmann::json& probeJson : probeCommand)
-        {
-            const std::string* probe = probeJson.get_ptr<const std::string*>();
-            if (probe == nullptr)
-            {
-                lg2::error("Probe statement wasn't a string, can't parse");
-                continue;
-            }
             // Skip it if the probe cmd doesn't contain an interface.
-            if (probe::findProbeType(*probe))
+            if (probe::findProbeType(probe))
             {
                 continue;
             }
 
             // syntax requires probe before first open brace
-            auto findStart = probe->find('(');
+            auto findStart = probe.find('(');
             if (findStart != std::string::npos)
             {
-                std::string interface = probe->substr(0, findStart);
-                probeInterfaces.emplace(interface);
+                std::string interface = probe.substr(0, findStart);
+
+                const auto [_, didEmplace] = probeInterfaces.emplace(interface);
+
+                if (didEmplace)
+                {
+                    lg2::debug("found probe interface: {INTF}", "INTF",
+                               interface);
+                }
             }
         }
         it++;
     }
+
+    lg2::debug("Done filtering probe interfaces from configurations");
 }
 
 bool writeJsonFiles(const nlohmann::json& systemConfiguration)
@@ -201,6 +187,10 @@ bool writeJsonFiles(const nlohmann::json& systemConfiguration)
     {
         return false;
     }
+
+    lg2::debug("writing system configuration to {PATH}", "PATH",
+               currentConfiguration);
+
     std::ofstream output(currentConfiguration);
     if (!output.good())
     {

@@ -160,6 +160,9 @@ static int buildDevice(
         return -1;
     }
 
+    lg2::debug("try to build device {NAME} at bus={BUS}, address={ADDR}",
+               "NAME", name, "BUS", bus, "ADDR", address);
+
     // If it's already instantiated, we don't need to create it again.
     if (!deviceIsCreated(busPath, bus, address, hasHWMonDir))
     {
@@ -234,15 +237,24 @@ void exportDevice(const devices::ExportTemplate& exportTemplate,
             subsituteString = jsonToString(keyPair.value());
         }
 
-        if (keyPair.key() == "Bus")
+        if (keyPair.key() == "Bus" &&
+            (keyPair.value().type() ==
+                 nlohmann::json::value_t::number_integer ||
+             keyPair.value().type() ==
+                 nlohmann::json::value_t::number_unsigned))
         {
             bus = keyPair.value().get<uint64_t>();
         }
-        else if (keyPair.key() == "Address")
+        else if (keyPair.key() == "Address" &&
+                 (keyPair.value().type() ==
+                      nlohmann::json::value_t::number_integer ||
+                  keyPair.value().type() ==
+                      nlohmann::json::value_t::number_unsigned))
         {
             address = keyPair.value().get<uint64_t>();
         }
-        else if (keyPair.key() == "ChannelNames" && type.ends_with("Mux"))
+        else if (keyPair.key() == "ChannelNames" && type.ends_with("Mux") &&
+                 (keyPair.value().type() == nlohmann::json::value_t::array))
         {
             channels = keyPair.value().get<std::vector<std::string>>();
         }
@@ -263,6 +275,8 @@ void exportDevice(const devices::ExportTemplate& exportTemplate,
 bool loadOverlays(const nlohmann::json& systemConfiguration,
                   boost::asio::io_context& io)
 {
+    lg2::debug("start loading device overlays");
+
     std::filesystem::create_directory(outputDir);
     for (auto entity = systemConfiguration.begin();
          entity != systemConfiguration.end(); entity++)
@@ -306,6 +320,8 @@ bool loadOverlays(const nlohmann::json& systemConfiguration,
                        "TYPE", type);
         }
     }
+
+    lg2::debug("finish loading device overlays");
 
     return true;
 }

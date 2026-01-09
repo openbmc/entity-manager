@@ -70,20 +70,14 @@ void handleLeftOverTemplateVars(nlohmann::json& value)
         value.get_ptr<nlohmann::json::object_t*>();
     if (objPtr != nullptr)
     {
-        for (auto& nextLayer : *objPtr)
-        {
-            handleLeftOverTemplateVars(nextLayer.second);
-        }
+        handleLeftOverTemplateVars(*objPtr);
         return;
     }
 
     nlohmann::json::array_t* arrPtr = value.get_ptr<nlohmann::json::array_t*>();
     if (arrPtr != nullptr)
     {
-        for (auto& nextLayer : *arrPtr)
-        {
-            handleLeftOverTemplateVars(nextLayer);
-        }
+        handleLeftOverTemplateVars(*arrPtr);
         return;
     }
 
@@ -92,6 +86,28 @@ void handleLeftOverTemplateVars(nlohmann::json& value)
     {
         return;
     }
+    handleLeftOverTemplateVars(*strPtr);
+}
+
+void handleLeftOverTemplateVars(nlohmann::json::object_t& value)
+{
+    for (auto& nextLayer : value)
+    {
+        handleLeftOverTemplateVars(nextLayer.second);
+    }
+}
+
+void handleLeftOverTemplateVars(nlohmann::json::array_t& value)
+{
+    for (auto& nextLayer : value)
+    {
+        handleLeftOverTemplateVars(nextLayer);
+    }
+}
+
+void handleLeftOverTemplateVars(std::string& value)
+{
+    std::string* strPtr = &value;
 
     // Walking through the string to find $<templateVar>
     while (true)
@@ -156,6 +172,30 @@ std::optional<std::string> templateCharReplace(
     }
     return std::nullopt;
 }
+
+/*
+std::optional<nlohmann::json> templateCharReplace(
+    nlohmann::json& value, const DBusObject& object, size_t index,
+    const std::optional<std::string>& replaceStr)
+{
+    for (auto& v : value)
+    {
+        templateCharReplace(v, object, index, replaceStr);
+    }
+    return value;
+}
+
+std::optional<nlohmann::json> templateCharReplace(
+    nlohmann::json::object_t& value, const DBusObject& object, size_t index,
+    const std::optional<std::string>& replaceStr){
+
+    for (auto& [k,v] : value)
+    {
+        templateCharReplace(v, object, index, replaceStr);
+    }
+    return value;
+}
+*/
 
 // finds the template character (currently set to $) and replaces the value with
 // the field found in a dbus object i.e. $ADDRESS would get populated with the
@@ -309,6 +349,41 @@ std::optional<std::string> templateCharReplace(
     }
 
     return ret;
+}
+
+std::optional<std::string> templateCharReplace(
+    std::string& value, const DBusObject& object, size_t index,
+    const std::optional<std::string>& replaceStr, bool handleLeftOver)
+{
+    nlohmann::json json = value;
+    auto res =
+        templateCharReplace(json, object, index, replaceStr, handleLeftOver);
+    if (json.type() == nlohmann::json::value_t::string)
+    {
+        const auto* ptr = json.get_ptr<const std::string*>();
+        if (ptr != nullptr)
+        {
+            value = *ptr;
+        }
+    }
+    return res;
+}
+
+std::optional<std::string> templateCharReplace(
+    std::string& value, const DBusInterface& interface, size_t index,
+    const std::optional<std::string>& replaceStr)
+{
+    nlohmann::json json = value;
+    auto res = templateCharReplace(json, interface, index, replaceStr);
+    if (json.type() == nlohmann::json::value_t::string)
+    {
+        const auto* ptr = json.get_ptr<const std::string*>();
+        if (ptr != nullptr)
+        {
+            value = *ptr;
+        }
+    }
+    return res;
 }
 
 std::string buildInventorySystemPath(std::string& boardName,

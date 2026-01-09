@@ -1,5 +1,7 @@
 #pragma once
 
+#include "em_config.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <unordered_set>
@@ -14,7 +16,7 @@ class Configuration
         const std::vector<std::filesystem::path>& configurationDirectories,
         const std::filesystem::path& schemaDirectory);
     std::unordered_set<std::string> probeInterfaces;
-    std::vector<nlohmann::json> configurations;
+    std::vector<EMConfig> configurations;
 
     const std::filesystem::path schemaDirectory;
 
