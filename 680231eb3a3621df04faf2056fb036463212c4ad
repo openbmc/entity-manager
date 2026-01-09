@@ -94,6 +94,30 @@
       },
       "revId": "680231eb3a3621df04faf2056fb036463212c4ad",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67bcab4c_09d1797c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-09T07:39:02Z",
+      "side": 1,
+      "message": "\u003e Do you have an example of the test you\u0027re trying to run?\n\n- https://gerrit.openbmc.org/c/openbmc/entity-manager/+/85478 and\n- https://gerrit.openbmc.org/c/openbmc/entity-manager/+/85557\n\n\u003e As a goal, we shouldn\u0027t ever be calling sleep or a timer in a unit test.  \n\nTo avoid race conditions? I would rather debug race conditions appearing in a testcase, than on a BMC. Wondering why you consider it an antipattern.\n\n\u003e Integration tests should run the full application ideally\n\nI don\u0027t see that in the near future, there is the filesystem dependency, mapper dependency, large timeouts, loading 200+ json files, reserving a unique bus name (test cannot run in parallel), ...\n\n\u003e Maybe you\u0027re talking about something in the middle?\n\nPrecisely. I do not see the value in waiting for some timeouts to complete.\nIf i remember right, in our CI the tests are run multiple times.\n\nSo any timeouts would just accumulate and delay results for everyone, i would suggest to avoid running the full application in a testcase.",
+      "parentUuid": "f6c622c0_cc5fc6cb",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 40
+      },
+      "revId": "680231eb3a3621df04faf2056fb036463212c4ad",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
