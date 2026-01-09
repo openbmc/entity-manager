@@ -35,3 +35,21 @@ test(
         include_directories: test_include_dir,
     ),
 )
+
+test(
+    'test_em_config',
+    executable(
+        'test_em_config',
+        'test_em_config.cpp',
+        cpp_args: test_boost_args,
+        dependencies: [
+            boost,
+            gtest,
+            nlohmann_json_dep,
+            phosphor_logging_dep,
+            sdbusplus,
+        ],
+        link_with: entity_manager_lib,
+        include_directories: test_include_dir,
+    ),
+)

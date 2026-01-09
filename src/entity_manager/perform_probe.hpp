@@ -13,14 +13,14 @@ namespace probe
 // this class finds the needed dbus fields and on destruction runs the probe
 struct PerformProbe final
 {
-    PerformProbe(nlohmann::json& recordRef,
+    PerformProbe(EMConfig& recordRef,
                  const std::vector<std::string>& probeCommand,
                  std::string probeName,
                  std::shared_ptr<scan::PerformScan>& scanPtr);
     ~PerformProbe();
 
   private:
-    nlohmann::json& recordRef;
+    EMConfig& recordRef;
     std::vector<std::string> _probeCommand;
     std::string probeName;
     std::shared_ptr<scan::PerformScan> scan;
