@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../utils.hpp"
+#include "em_config.hpp"
 #include "entity_manager.hpp"
 
 #include <systemd/sd-journal.h>
@@ -27,10 +28,10 @@ using FoundDevices = std::vector<DBusDeviceDescriptor>;
 struct PerformScan final : std::enable_shared_from_this<PerformScan>
 {
     PerformScan(EntityManager& em, nlohmann::json& missingConfigurations,
-                std::vector<nlohmann::json>& configurations,
+                std::vector<EMConfig>& configurations,
                 boost::asio::io_context& io, std::function<void()>&& callback);
 
-    void updateSystemConfiguration(const nlohmann::json& recordRef,
+    void updateSystemConfiguration(const EMConfig& recordRef,
                                    const std::string& probeName,
                                    FoundDevices& foundDevices);
     void run();
@@ -45,19 +46,11 @@ struct PerformScan final : std::enable_shared_from_this<PerformScan>
         std::set<nlohmann::json>& usedNames, std::list<size_t>& indexes);
 
     nlohmann::json& _missingConfigurations;
-    std::vector<nlohmann::json> _configurations;
+    std::vector<EMConfig> _configurations;
     std::function<void()> _callback;
     bool _passed = false;
 
     boost::asio::io_context& io;
 };
-
-namespace detail
-{
-// Parse a config "Probe" field (an array of statements, or a single statement
-// string) into a list of probe statements. Returns an empty vector on error (a
-// non-string statement); a valid probe is never empty.
-std::vector<std::string> parseProbeCommand(const nlohmann::json& probeField);
-} // namespace detail
 
 } // namespace scan

@@ -262,6 +262,72 @@ TEST(TemplateCharReplace, leftOverTemplateVars)
     EXPECT_EQ(expected, j["foo"]);
 }
 
+TEST(TemplateCharReplaceStr, replace)
+{
+    std::string value = "$bus";
+    DBusObject obj;
+    DBusInterface intf;
+    intf["bus"] = 3;
+    obj["xyz.openbmc_project.FruDevice"] = intf;
+
+    em_utils::templateCharReplaceStr(value, obj, 0, std::nullopt, true);
+
+    EXPECT_EQ(value, "3");
+}
+
+TEST(TemplateCharReplaceStr, index)
+{
+    std::string value = "$index";
+    DBusObject obj;
+    DBusInterface intf;
+    intf["bus"] = 3;
+    obj["xyz.openbmc_project.FruDevice"] = intf;
+
+    em_utils::templateCharReplaceStr(value, obj, 2, std::nullopt, true);
+
+    EXPECT_EQ(value, "2");
+}
+
+TEST(TemplateCharReplaceStr, replaceAndExpression)
+{
+    std::string value = "$bus % 10 + $address";
+    DBusObject obj;
+    DBusInterface intf;
+    intf["address"] = 12;
+    intf["bus"] = 2;
+    obj["xyz.openbmc_project.FruDevice"] = intf;
+
+    em_utils::templateCharReplaceStr(value, obj, 0, std::nullopt, true);
+
+    EXPECT_EQ(value, "14");
+}
+
+TEST(TemplateCharReplaceStr, leftoversTrue)
+{
+    std::string value = "$bus $leftover";
+    DBusObject obj;
+    DBusInterface intf;
+    intf["bus"] = 2;
+    obj["xyz.openbmc_project.FruDevice"] = intf;
+
+    em_utils::templateCharReplaceStr(value, obj, 0, std::nullopt, true);
+
+    EXPECT_EQ(value, "2 ");
+}
+
+TEST(TemplateCharReplaceStr, leftoversFalse)
+{
+    std::string value = "$bus $leftover";
+    DBusObject obj;
+    DBusInterface intf;
+    intf["bus"] = 2;
+    obj["xyz.openbmc_project.FruDevice"] = intf;
+
+    em_utils::templateCharReplaceStr(value, obj, 0, std::nullopt, false);
+
+    EXPECT_EQ(value, "2 $leftover");
+}
+
 TEST(HandleLeftOverTemplateVars, replaceLeftOverTemplateVar)
 {
     nlohmann::json j = {{"foo", "the Test $TEST is $TESTED"}};
