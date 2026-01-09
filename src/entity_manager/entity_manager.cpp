@@ -163,7 +163,7 @@ void EntityManager::postBoardToDBus(
         dbus_interface.createInterface(
             boardPath,
             sdbusplus::common::xyz::openbmc_project::inventory::Item::interface,
-            boardName);
+            boardNameOrig);
 
     const std::string invItemIntf = std::format(
         "{}.{}",
