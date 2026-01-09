@@ -829,7 +829,7 @@
                 "power(1[0-7]|[1-9])?_Max$": {
                     "$ref": "#/$defs/Types/MinMaxType"
                 },
-                "(power|curr|iout|pout|pin)(1[0-7]|[1-9])?_Offset$": {
+                "(power|curr|iout|iin|pout|pin)(1[0-7]|[1-9])?_Offset$": {
                     "$ref": "#/$defs/Types/OffsetType"
                 }
             },
@@ -851,6 +851,9 @@
                 },
                 "fan1_Name": {
                     "$ref": "#/$defs/Types/Name"
+                },
+                "iin_Scale": {
+                    "$ref": "#/$defs/Types/ScaleValue"
                 },
                 "pin_Scale": {
                     "$ref": "#/$defs/Types/ScaleValue"
