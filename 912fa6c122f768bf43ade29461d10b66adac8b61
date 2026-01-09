@@ -22,6 +22,30 @@
       },
       "revId": "912fa6c122f768bf43ade29461d10b66adac8b61",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1ecd61a_28a93bbc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001906
+      },
+      "writtenOn": "2026-01-09T06:58:03Z",
+      "side": 1,
+      "message": "Some devices do not support auxiliary names such as OCP NIC. In this case, Pldmd will use the combination of terminus number and sensor ID as the sensor name. Currently, we can use the target name as an auxiliary name, but there is no support to replace the sensor ID with a name.\n\nWe want to rename the sensors as follows:\n\nFrom Terminus_1_Sensor_300 to NIC_TEMPERATURE1\nFrom Terminus_1_Sensor_500 to NIC_TEMPERATURE2",
+      "parentUuid": "74cf4f9c_810cc84a",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 9
+      },
+      "revId": "912fa6c122f768bf43ade29461d10b66adac8b61",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
