@@ -156,6 +156,9 @@ void EntityManager::postBoardToDBus(
         boardType = "Chassis";
     }
 
+    lg2::debug("post {TYPE} '{NAME}' to DBus", "TYPE", boardType, "NAME",
+               boardName);
+
     const std::string boardPath =
         em_utils::buildInventorySystemPath(boardName, boardType);
 
@@ -454,6 +457,8 @@ void EntityManager::startRemovedTimer(boost::asio::steady_timer& timer,
 void EntityManager::pruneConfiguration(bool powerOff, const std::string& name,
                                        const nlohmann::json& device)
 {
+    lg2::debug("pruning configuration");
+
     if (powerOff && deviceRequiresPowerOn(device))
     {
         // power not on yet, don't know if it's there or not
