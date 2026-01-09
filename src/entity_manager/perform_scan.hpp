@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../utils.hpp"
+#include "em_config.hpp"
 #include "entity_manager.hpp"
 #include "probe_lexer.hpp"
 
@@ -36,10 +37,10 @@ using FoundDevices = std::vector<DBusDeviceDescriptor>;
 struct PerformScan final : std::enable_shared_from_this<PerformScan>
 {
     PerformScan(EntityManager& em, nlohmann::json& missingConfigurations,
-                std::vector<nlohmann::json>& configurations,
+                std::vector<EMConfig>& configurations,
                 boost::asio::io_context& io, std::function<void()>&& callback);
 
-    void updateSystemConfiguration(const nlohmann::json& recordRef,
+    void updateSystemConfiguration(const EMConfig& recordRef,
                                    const std::string& probeName,
                                    FoundDevices& foundDevices);
     void run();
@@ -54,7 +55,7 @@ struct PerformScan final : std::enable_shared_from_this<PerformScan>
         std::set<nlohmann::json>& usedNames, std::list<size_t>& indexes);
 
     void updateSystemConfigurationForDevice(
-        const nlohmann::json& recordRef, const std::string& probeName,
+        const EMConfig& recordRef, const std::string& probeName,
         const DBusDeviceDescriptor& device, std::set<nlohmann::json>& usedNames,
         std::list<size_t>& indexes, std::optional<std::string>& replaceStr);
 
@@ -68,7 +69,7 @@ struct PerformScan final : std::enable_shared_from_this<PerformScan>
         std::vector<std::shared_ptr<probe::PerformProbe>>& dbusProbePointers);
 
     nlohmann::json& _missingConfigurations;
-    std::vector<nlohmann::json> _configurations;
+    std::vector<EMConfig> _configurations;
     std::function<void()> _callback;
     bool _passed = false;
 
@@ -81,7 +82,8 @@ namespace detail
 // string) into a token stream. The statements are joined with single spaces
 // and lexed. Returns an empty vector on error (a non-string statement or a
 // lexing error); a valid probe is never empty.
-std::vector<probe::Token> parseProbeCommand(const nlohmann::json& probeField);
+std::vector<probe::Token> parseProbeCommand(
+    const std::vector<std::string>& probeField);
 
 // Collect the "Name" of every entry in systemConfiguration, i.e. the names of
 // the already-applied configs.

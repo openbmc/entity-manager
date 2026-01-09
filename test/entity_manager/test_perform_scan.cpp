@@ -15,7 +15,7 @@ using probe::TokenType;
 // parseProbeCommand joins the array statements and lexes them into tokens.
 TEST(ParseProbeCommand, ParsesArrayOfStrings)
 {
-    json probe = json::array({"FOUND('A')", "FOUND('B')"});
+    auto probe = std::vector<std::string>{"FOUND('A')", "FOUND('B')"};
     EXPECT_EQ(
         scan::detail::parseProbeCommand(probe),
         (std::vector<Token>{{TokenType::found, "A"}, {TokenType::found, "B"}}));
@@ -24,17 +24,9 @@ TEST(ParseProbeCommand, ParsesArrayOfStrings)
 // A single-string "Probe" field is lexed directly.
 TEST(ParseProbeCommand, ParsesSingleString)
 {
-    json probe = "TRUE";
+    auto probe = std::vector<std::string>{"TRUE"};
     EXPECT_EQ(scan::detail::parseProbeCommand(probe),
               (std::vector<Token>{{TokenType::boolTrue, ""}}));
-}
-
-// A non-string statement in the array yields an empty vector (the error / not
-// a valid probe condition).
-TEST(ParseProbeCommand, ReturnsEmptyOnNonStringElement)
-{
-    json probe = json::array({"FOUND('A')", 42});
-    EXPECT_TRUE(scan::detail::parseProbeCommand(probe).empty());
 }
 
 // systemConfiguration / missingConfigurations are keyed by a numeric record
