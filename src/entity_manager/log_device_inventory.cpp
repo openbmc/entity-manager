@@ -1,6 +1,7 @@
 #include "log_device_inventory.hpp"
 
 #include "../utils.hpp"
+#include "em_config.hpp"
 
 #include <systemd/sd-journal.h>
 
@@ -58,6 +59,15 @@ void logDeviceAdded(const nlohmann::json& record)
         return;
     }
 
+    // TODO: avoid re-parsing here
+    std::optional<EMConfig> optConfig = EMConfig::fromJson(
+        *(record.get_ptr<const nlohmann::json::object_t*>()));
+
+    if (!optConfig.has_value() || !optConfig.value().deviceHasLogging)
+    {
+        return;
+    }
+
     const InvAddRemoveInfo info = queryInvInfo(record);
 
     sd_journal_send(
@@ -69,6 +79,15 @@ void logDeviceAdded(const nlohmann::json& record)
 
 void logDeviceRemoved(const nlohmann::json& record)
 {
+    // TODO: avoid re-parsing here
+    std::optional<EMConfig> optConfig = EMConfig::fromJson(
+        *(record.get_ptr<const nlohmann::json::object_t*>()));
+
+    if (!optConfig.has_value() || !optConfig.value().deviceHasLogging)
+    {
+        return;
+    }
+
     const InvAddRemoveInfo info = queryInvInfo(record);
 
     sd_journal_send(
