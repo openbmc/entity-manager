@@ -1,5 +1,6 @@
 #include "configuration.hpp"
 
+#include "em_config.hpp"
 #include "perform_probe.hpp"
 #include "probe_lexer.hpp"
 #include "utils.hpp"
@@ -52,12 +53,20 @@ void Configuration::loadSingleConfigFile(const std::filesystem::path& jsonPath,
     {
         for (auto& d : data)
         {
-            configurations.emplace_back(d);
+            auto optConfig = EMConfig::fromJson(d);
+            if (optConfig.has_value())
+            {
+                configurations.emplace_back(optConfig.value());
+            }
         }
     }
     else
     {
-        configurations.emplace_back(data);
+        auto optConfig = EMConfig::fromJson(data);
+        if (optConfig.has_value())
+        {
+            configurations.emplace_back(optConfig.value());
+        }
     }
 }
 
@@ -151,17 +160,16 @@ void Configuration::filterProbeInterfaces()
 {
     for (auto it = configurations.begin(); it != configurations.end();)
     {
-        auto findProbe = it->find("Probe");
-        if (findProbe == it->end())
+        if (it->probeStmt.empty())
         {
             lg2::error("configuration file missing probe: {PROBE}", "PROBE",
-                       *it);
+                       it->toJson());
             it++;
             continue;
         }
 
         std::vector<probe::Token> probeCommand =
-            scan::detail::parseProbeCommand(*findProbe);
+            scan::detail::parseProbeCommand(it->probeStmt);
         for (const probe::Token& token : probeCommand)
         {
             // Only D-Bus probes name an interface to collect.
@@ -178,6 +186,9 @@ void Configuration::filterProbeInterfaces()
         }
         it++;
     }
+
+    lg2::debug("Done filtering {N} probe interfaces from configurations", "N",
+               probeInterfaces.size());
 }
 
 bool writeJsonFiles(const nlohmann::json& systemConfiguration)
