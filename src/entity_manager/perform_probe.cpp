@@ -201,7 +201,7 @@ bool doProbe(const std::vector<std::string>& probeCommand,
 namespace probe
 {
 
-PerformProbe::PerformProbe(nlohmann::json& recordRef,
+PerformProbe::PerformProbe(EMConfig& recordRef,
                            const std::vector<std::string>& probeCommand,
                            std::string probeName,
                            std::shared_ptr<scan::PerformScan>& scanPtr) :
