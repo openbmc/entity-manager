@@ -5,7 +5,6 @@
             "Bus": 34,
             "Labels": [
                 "in3",
-                "in4",
                 "in5",
                 "in6"
             ],
@@ -23,22 +22,6 @@
                     "Direction": "greater than",
                     "Hysteresis": 0.0378,
                     "Label": "in3",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1.89
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.0342,
-                    "Label": "in4",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 1.71
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.0378,
-                    "Label": "in4",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 1.89
@@ -79,7 +62,6 @@
             "Type": "ADC128D818",
             "in3_Name": "CXL_ADC_P1V8_VDD_IO_VOLT_V",
             "in3_PowerState": "On",
-            "in4_Name": "CXL_ADC_P1V8_STBY_VOLT_V",
             "in5_Name": "CXL_ADC_P3V3_STBY_VOLT_V",
             "in5_Scale": 500,
             "in6_Name": "CXL_ADC_P5V_STBY_VOLT_V",
@@ -809,36 +791,11 @@
             "Zones": [
                 "Zone 1"
             ]
-        },
-        {
-            "Address": "0x4c",
-            "Bus": 34,
-            "Name": "CXL_EXT_CHIP_TEMP_C",
-            "PowerState": "On",
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.1,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5.0
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 2.5,
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 125.0
-                }
-            ],
-            "Type": "TMP432"
         }
     ],
-    "Name": "Yosemite5 CXL Board",
+    "Name": "Yosemite5 DDR4 CXL Board VR-RAA",
     "Probe": [
-        "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 .*', 'BOARD_PRODUCT_NAME': 'Maple Falls', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)'})",
-        "AND",
-        "xyz.openbmc_project.FruDevice({'BOARD_INFO_AM4': 'VR-RAA Tchip-TIC'})"
+        "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 .*', 'BOARD_PRODUCT_NAME': 'Maple Falls', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)', 'BOARD_INFO_AM4': 'VR-RAA'})"
     ],
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
