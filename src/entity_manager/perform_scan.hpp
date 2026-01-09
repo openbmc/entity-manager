@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../utils.hpp"
+#include "em_config.hpp"
 #include "entity_manager.hpp"
 #include "probe_lexer.hpp"
 
@@ -36,10 +37,10 @@ using FoundDevices = std::vector<DBusDeviceDescriptor>;
 struct PerformScan final : std::enable_shared_from_this<PerformScan>
 {
     PerformScan(EntityManager& em, nlohmann::json& missingConfigurations,
-                std::vector<nlohmann::json>& configurations,
+                std::vector<EMConfig>& configurations,
                 boost::asio::io_context& io, std::function<void()>&& callback);
 
-    void updateSystemConfiguration(const nlohmann::json& recordRef,
+    void updateSystemConfiguration(const EMConfig& recordRef,
                                    const std::string& probeName,
                                    FoundDevices& foundDevices);
     void run();
@@ -50,7 +51,7 @@ struct PerformScan final : std::enable_shared_from_this<PerformScan>
 
   private:
     void updateSystemConfigurationForDevice(
-        const nlohmann::json& recordRef, const std::string& probeName,
+        const EMConfig& recordRef, const std::string& probeName,
         const DBusDeviceDescriptor& device, std::set<nlohmann::json>& usedNames,
         std::list<size_t>& indexes, std::optional<std::string>& replaceStr);
 
@@ -64,7 +65,7 @@ struct PerformScan final : std::enable_shared_from_this<PerformScan>
         std::vector<std::shared_ptr<probe::PerformProbe>>& dbusProbePointers);
 
     nlohmann::json& _missingConfigurations;
-    std::vector<nlohmann::json> _configurations;
+    std::vector<EMConfig> _configurations;
     std::function<void()> _callback;
     bool _passed = false;
 
@@ -73,11 +74,20 @@ struct PerformScan final : std::enable_shared_from_this<PerformScan>
 
 namespace detail
 {
-// Parse a config "Probe" field (an array of statements, or a single statement
-// string) into a token stream. The statements are joined with single spaces
-// and lexed. Returns an empty vector on error (a non-string statement or a
-// lexing error); a valid probe is never empty.
-std::vector<probe::Token> parseProbeCommand(const nlohmann::json& probeField);
+// Resolve configuration templates and apply expose actions. The configuration
+// is published temporarily for same-configuration references; callers must
+// publish the final record after applying actions.
+void applyTemplatesAndExposeActions(
+    const std::string& recordName, EMConfig& record,
+    const DBusObject& dbusObject, size_t foundDeviceIdx,
+    std::optional<std::string>& replaceStr,
+    nlohmann::json& systemConfiguration);
+
+// Parse validated probe statements into a token stream. The statements are
+// joined with single spaces and lexed. Returns an empty vector on a lexing
+// error; a valid probe is never empty.
+std::vector<probe::Token> parseProbeCommand(
+    const std::vector<std::string>& probeField);
 std::string getRecordName(const DBusInterface& probe,
                           const std::string& probeName);
 void restorePersistedConfigurations(

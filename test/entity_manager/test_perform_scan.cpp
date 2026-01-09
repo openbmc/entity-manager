@@ -14,10 +14,63 @@ using json = nlohmann::json;
 using probe::Token;
 using probe::TokenType;
 
+static json resolveExposes(EMConfig record)
+{
+    DBusObject dbusObject = {{"", {}}};
+    json configuration = json::object();
+    std::optional<std::string> replaceStr;
+
+    scan::detail::applyTemplatesAndExposeActions(
+        record.name, record, dbusObject, 1, replaceStr, configuration);
+    return record.toJson();
+}
+
+static EMConfig bindingConfig()
+{
+    EMConfig record;
+    record.name = "Test Board";
+    record.type = "Board";
+    record.probeStmt = {"TRUE"};
+    record.exposesRecords = {
+        {{"Name", "Fan $index"},
+         {"Type", "AspeedFan"},
+         {"BindConnector", "Connector $index"}},
+        {{"Name", "Connector $index"},
+         {"Type", "IntelFanConnector"},
+         {"Status", "disabled"},
+         {"Pwm", 0},
+         {"Tachs", json::array({0})},
+         {"PwmName", "PWM $index"}}};
+    return record;
+}
+
+TEST(ExposeActions, BindsTemplatedNameWithinSameConfiguration)
+{
+    const json resolved = resolveExposes(bindingConfig());
+    const auto& fan = resolved.at("Exposes").at(0);
+
+    ASSERT_TRUE(fan.contains("Connector"));
+    EXPECT_EQ(fan.at("Connector").at("Name"), "Connector 1");
+    EXPECT_EQ(fan.at("Connector").at("PwmName"), "PWM 1");
+}
+
+TEST(ExposeActions, ResolvesPropertiesInsertedByBind)
+{
+    EMConfig record = bindingConfig();
+    record.exposesRecords.at(0)["BindConnector"] = "Connector";
+    record.exposesRecords.at(1)["Name"] = "Connector";
+    record.exposesRecords.at(1)["PwmName"] = "PWM $index $unresolved";
+    const json resolved = resolveExposes(record);
+    const auto& fan = resolved.at("Exposes").at(0);
+
+    ASSERT_TRUE(fan.contains("Connector"));
+    EXPECT_EQ(fan.at("Connector").at("PwmName"), "PWM 1 ");
+}
+
 // parseProbeCommand joins the array statements and lexes them into tokens.
 TEST(ParseProbeCommand, ParsesArrayOfStrings)
 {
-    json probe = json::array({"FOUND('A')", "FOUND('B')"});
+    auto probe = std::vector<std::string>{"FOUND('A')", "FOUND('B')"};
     EXPECT_EQ(
         scan::detail::parseProbeCommand(probe),
         (std::vector<Token>{{TokenType::found, "A"}, {TokenType::found, "B"}}));
@@ -26,17 +79,9 @@ TEST(ParseProbeCommand, ParsesArrayOfStrings)
 // A single-string "Probe" field is lexed directly.
 TEST(ParseProbeCommand, ParsesSingleString)
 {
-    json probe = "TRUE";
+    auto probe = std::vector<std::string>{"TRUE"};
     EXPECT_EQ(scan::detail::parseProbeCommand(probe),
               (std::vector<Token>{{TokenType::boolTrue, ""}}));
-}
-
-// A non-string statement in the array yields an empty vector (the error / not
-// a valid probe condition).
-TEST(ParseProbeCommand, ReturnsEmptyOnNonStringElement)
-{
-    json probe = json::array({"FOUND('A')", 42});
-    EXPECT_TRUE(scan::detail::parseProbeCommand(probe).empty());
 }
 
 TEST(RestorePersistedConfigurations, RegistersResolvedNameAndPreservesIndex)
