@@ -1,6 +1,7 @@
 #include "log_device_inventory.hpp"
 
 #include "../utils.hpp"
+#include "em_config.hpp"
 
 #include <systemd/sd-journal.h>
 
