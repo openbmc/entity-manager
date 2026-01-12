@@ -7,9 +7,6 @@
             "additionalProperties": false,
             "type": "object",
             "properties": {
-                "Bus": {
-                    "type": "string"
-                },
                 "Exposes": {
                     "description": "The schema for the exposes property. The exposes property must be an array where elements are of type EMExposesElement.  The exposes property is the heterogeneous configuration data exported to DBus upon a probe match.",
                     "type": "array",
