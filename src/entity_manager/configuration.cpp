@@ -111,6 +111,8 @@ void Configuration::loadConfigurations()
 void deriveNewConfiguration(const nlohmann::json& oldConfiguration,
                             nlohmann::json& newConfiguration)
 {
+    lg2::debug("deriving new configuration");
+
     for (auto it = newConfiguration.begin(); it != newConfiguration.end();)
     {
         auto findKey = oldConfiguration.find(it.key());
@@ -201,6 +203,10 @@ bool writeJsonFiles(const nlohmann::json& systemConfiguration)
     {
         return false;
     }
+
+    lg2::debug("writing system configuration to {PATH}", "PATH",
+               currentConfiguration);
+
     std::ofstream output(currentConfiguration);
     if (!output.good())
     {
