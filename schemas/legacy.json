@@ -1070,8 +1070,12 @@
                 },
                 "Type": {
                     "const": "BMC"
+                },
+                "FirmwareInfo": {
+                    "$ref": "firmware.json#/$defs/FirmwareInfoDef"
                 }
-            }
+            },
+            "required": ["Name", "Type"]
         },
         "UCD90XXX": {
             "description": "used in https://github.com/openbmc/phosphor-power",
