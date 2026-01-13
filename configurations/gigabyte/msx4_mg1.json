@@ -1,6 +1,14 @@
 {
     "Exposes": [
         {
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.nvidia.Hardware.BMC.Alon8",
+                "VendorIANA": 27390
+            },
+            "Name": "Alon8_BMC_Firmware",
+            "Type": "BMC"
+        },
+        {
             "Address": "$address",
             "Bus": "$bus",
             "Name": "Nvidia Alon8 HPM FRU",
@@ -17,6 +25,7 @@
         "PartNumber": "$BOARD_PART_NUMBER",
         "SerialNumber": "$BOARD_SERIAL_NUMBER"
     },
+    "xyz.openbmc_project.Inventory.Item.Bmc": {},
     "xyz.openbmc_project.Inventory.Item.NetworkInterface": {
         "MACAddress": "$MAC_BOARD_INFO_AM2"
     }
