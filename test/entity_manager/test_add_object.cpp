@@ -60,7 +60,7 @@ class AddObjectTest : public ::testing::Test
 
 TEST_F(AddObjectTest, AddObject)
 {
-    nlohmann::json sysConfig;
+    SystemConfiguration sysConfig;
     sysConfig[kBoardId] = {{"Name", kBoardId},
                            {"Type", "Baseboard"},
                            {"Exposes", nlohmann::json::array()}};
@@ -91,7 +91,7 @@ TEST_F(AddObjectTest, AddObject)
 class AddObjectExposesTest : public AddObjectTest
 {
   protected:
-    nlohmann::json sysConfig;
+    SystemConfiguration sysConfig;
     std::string boardName{"TestBoard"};
     const sdbusplus::object_path boardPath =
         em_utils::buildInventorySystemPath(boardName, "Board");
