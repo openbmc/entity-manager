@@ -1,5 +1,6 @@
 #include "dbus_interface.hpp"
 
+#include "config_pointer.hpp"
 #include "perform_probe.hpp"
 #include "utils.hpp"
 
@@ -64,42 +65,54 @@ std::shared_ptr<sdbusplus::asio::dbus_interface>
 }
 
 void EMDBusInterface::createDeleteObjectMethod(
-    const std::string& jsonPointerPath,
+    const ConfigPointer& configPtr,
     const std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
-    nlohmann::json& systemConfiguration)
+    SystemConfiguration& systemConfiguration)
 {
     std::weak_ptr<sdbusplus::asio::dbus_interface> interface = iface;
-    iface->register_method(
-        "Delete", [this, &systemConfiguration, interface,
-                   jsonPointerPath{std::string(jsonPointerPath)}]() {
-            std::shared_ptr<sdbusplus::asio::dbus_interface> dbusInterface =
-                interface.lock();
-            if (!dbusInterface)
-            {
-                // this technically can't happen as the pointer is pointing to
-                // us
-                throw DBusInternalError();
-            }
-            nlohmann::json::json_pointer ptr(jsonPointerPath);
-            systemConfiguration[ptr] = nullptr;
+    iface->register_method("Delete", [this, &systemConfiguration, interface,
+                                      configPtr]() {
+        std::shared_ptr<sdbusplus::asio::dbus_interface> dbusInterface =
+            interface.lock();
+        if (!dbusInterface)
+        {
+            // this technically can't happen as the pointer is pointing to
+            // us
+            throw DBusInternalError();
+        }
 
-            // todo(james): dig through sdbusplus to find out why we can't
-            // delete it in a method call
-            boost::asio::post(io, [dbusInterface, this]() mutable {
-                objServer.remove_interface(dbusInterface);
-            });
+        nlohmann::json::object_t& boardJson =
+            systemConfiguration.at(configPtr.boardId);
 
-            if (!writeJsonFiles(systemConfiguration))
-            {
-                lg2::error("error setting json file");
-                throw DBusInternalError();
-            }
+        if (configPtr.exposesIndex.has_value())
+        {
+            nlohmann::json& exposes = boardJson["Exposes"];
+            exposes.erase(configPtr.exposesIndex.value());
+        }
+        else if (configPtr.propertyName.has_value() &&
+                 boardJson.contains(configPtr.propertyName.value()))
+        {
+            boardJson.erase(configPtr.propertyName.value());
+        }
+
+        // todo(james): dig through sdbusplus to find out why we can't
+        // delete it in a method call
+        boost::asio::post(io, [dbusInterface, this]() mutable {
+            objServer.remove_interface(dbusInterface);
         });
+
+        if (!writeJsonFiles(systemConfiguration))
+        {
+            lg2::error("error setting json file");
+            throw DBusInternalError();
+        }
+    });
 }
 
-static bool checkArrayElementsSameType(nlohmann::json& value)
+static bool checkArrayElementsSameType(const nlohmann::json& value)
 {
-    nlohmann::json::array_t* arr = value.get_ptr<nlohmann::json::array_t*>();
+    const nlohmann::json::array_t* arr =
+        value.get_ptr<const nlohmann::json::array_t*>();
     if (arr == nullptr)
     {
         return false;
@@ -144,7 +157,7 @@ static nlohmann::json::value_t getDBusType(
 }
 
 static void populateInterfacePropertyFromJson(
-    nlohmann::json& systemConfiguration, const std::string& path,
+    SystemConfiguration& systemConfiguration, const ConfigPointer& path,
     const std::string& key, const nlohmann::json& value,
     nlohmann::json::value_t type,
     std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
@@ -196,11 +209,12 @@ static void populateInterfacePropertyFromJson(
 
 // adds simple json types to interface's properties
 void EMDBusInterface::populateInterfaceFromJson(
-    nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,
+    SystemConfiguration& systemConfiguration, const ConfigPointer& configPtr,
     std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
-    nlohmann::json& dict, sdbusplus::asio::PropertyPermission permission)
+    const nlohmann::json::object_t& dict,
+    sdbusplus::asio::PropertyPermission permission)
 {
-    for (const auto& [key, value] : dict.items())
+    for (const auto& [key, value] : dict)
     {
         auto type = value.type();
         if (value.type() == nlohmann::json::value_t::array)
@@ -221,15 +235,12 @@ void EMDBusInterface::populateInterfaceFromJson(
             continue; // handled elsewhere
         }
 
-        std::string path = jsonPointerPath;
-        path.append("/").append(key);
-
-        populateInterfacePropertyFromJson(systemConfiguration, path, key, value,
-                                          type, iface, permission);
+        populateInterfacePropertyFromJson(systemConfiguration, configPtr, key,
+                                          value, type, iface, permission);
     }
     if (permission == sdbusplus::asio::PropertyPermission::readWrite)
     {
-        createDeleteObjectMethod(jsonPointerPath, iface, systemConfiguration);
+        createDeleteObjectMethod(configPtr, iface, systemConfiguration);
     }
     tryIfaceInitialize(iface);
 }
@@ -269,11 +280,10 @@ static void addObjectRuntimeValidateJson(
 
 void EMDBusInterface::addObject(
     const std::flat_map<std::string, JsonVariantType, std::less<>>& data,
-    nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,
+    SystemConfiguration& systemConfiguration, const std::string& boardId,
     const std::string& path, const std::string& board)
 {
-    nlohmann::json::json_pointer ptr(jsonPointerPath);
-    nlohmann::json& base = systemConfiguration[ptr];
+    nlohmann::json::object_t& base = systemConfiguration.at(boardId);
     auto findExposes = base.find("Exposes");
 
     if (findExposes == base.end())
@@ -282,7 +292,7 @@ void EMDBusInterface::addObject(
     }
 
     // this will throw invalid-argument to sdbusplus if invalid json
-    nlohmann::json newData{};
+    nlohmann::json::object_t newData{};
     for (const auto& item : data)
     {
         nlohmann::json& newJson = newData[item.first];
@@ -293,25 +303,21 @@ void EMDBusInterface::addObject(
             item.second);
     }
 
-    addObjectJson(newData, systemConfiguration, jsonPointerPath, path, board);
+    addObjectJson(newData, systemConfiguration, boardId, path, board);
 }
 
 void EMDBusInterface::addObjectJson(
-    nlohmann::json& newData, nlohmann::json& systemConfiguration,
-    const std::string& jsonPointerPath, const std::string& path,
+    nlohmann::json::object_t& newData, SystemConfiguration& systemConfiguration,
+    const std::string& boardId, const std::string& path,
     const std::string& board)
 {
-    nlohmann::json::json_pointer ptr(jsonPointerPath);
-    nlohmann::json& base = systemConfiguration[ptr];
-    auto findExposes = base.find("Exposes");
-    auto findName = newData.find("Name");
-    auto findType = newData.find("Type");
-    if (findName == newData.end() || findType == newData.end())
+    nlohmann::json::object_t& base = systemConfiguration.at(boardId);
+    if (!newData.contains("Name") || !newData.contains("Type"))
     {
         throw std::invalid_argument("AddObject missing Name or Type");
     }
-    const std::string* type = findType->get_ptr<const std::string*>();
-    const std::string* name = findName->get_ptr<const std::string*>();
+    const std::string* type = newData["Name"].get_ptr<const std::string*>();
+    const std::string* name = newData["Type"].get_ptr<const std::string*>();
     if (type == nullptr || name == nullptr)
     {
         throw std::invalid_argument("Type and Name must be a string.");
@@ -320,7 +326,7 @@ void EMDBusInterface::addObjectJson(
     bool foundNull = false;
     size_t lastIndex = 0;
     // we add in the "exposes"
-    for (const auto& expose : *findExposes)
+    for (const auto& expose : base["Exposes"])
     {
         if (expose.is_null())
         {
@@ -343,14 +349,8 @@ void EMDBusInterface::addObjectJson(
 
     addObjectRuntimeValidateJson(newData, type, schemaDirectory);
 
-    if (foundNull)
-    {
-        findExposes->at(lastIndex) = newData;
-    }
-    else
-    {
-        findExposes->push_back(newData);
-    }
+    base["Exposes"].push_back(newData);
+
     if (!writeJsonFiles(systemConfiguration))
     {
         lg2::error("Error writing json files");
@@ -367,25 +367,24 @@ void EMDBusInterface::addObjectJson(
     // permission is read-write, as since we just created it, must be
     // runtime modifiable
     populateInterfaceFromJson(
-        systemConfiguration,
-        jsonPointerPath + "/Exposes/" + std::to_string(lastIndex), interface,
+        systemConfiguration, ConfigPointer(boardId, lastIndex), interface,
         newData, sdbusplus::asio::PropertyPermission::readWrite);
 }
 
 void EMDBusInterface::createAddObjectMethod(
-    const std::string& jsonPointerPath, const std::string& path,
-    nlohmann::json& systemConfiguration, const std::string& board)
+    const std::string& boardId, const std::string& path,
+    SystemConfiguration& systemConfiguration, const std::string& board)
 {
     std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
         createInterface(path, "xyz.openbmc_project.AddObject", board);
 
     iface->register_method(
         "AddObject",
-        [&systemConfiguration, jsonPointerPath{std::string(jsonPointerPath)},
-         path{std::string(path)}, board{std::string(board)},
+        [&systemConfiguration, boardId, path{std::string(path)},
+         board{std::string(board)},
          this](const std::flat_map<std::string, JsonVariantType, std::less<>>&
                    data) {
-            addObject(data, systemConfiguration, jsonPointerPath, path, board);
+            addObject(data, systemConfiguration, boardId, path, board);
         });
     tryIfaceInitialize(iface);
 }
