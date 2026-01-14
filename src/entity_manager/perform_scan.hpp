@@ -4,13 +4,13 @@
 #include "em_config.hpp"
 #include "entity_manager.hpp"
 #include "probe_lexer.hpp"
+#include "system_configuration.hpp"
 
 #include <systemd/sd-journal.h>
 
 #include <nlohmann/json.hpp>
 #include <sdbusplus/asio/object_server.hpp>
 
-#include <flat_map>
 #include <flat_set>
 #include <functional>
 #include <list>
@@ -36,7 +36,7 @@ using FoundDevices = std::vector<DBusDeviceDescriptor>;
 
 struct PerformScan final : std::enable_shared_from_this<PerformScan>
 {
-    PerformScan(EntityManager& em, nlohmann::json& missingConfigurations,
+    PerformScan(EntityManager& em, SystemConfiguration& missingConfigurations,
                 std::vector<EMConfig>& configurations,
                 boost::asio::io_context& io, std::function<void()>&& callback);
 
@@ -68,7 +68,7 @@ struct PerformScan final : std::enable_shared_from_this<PerformScan>
         std::flat_set<std::string, std::less<>>& dbusProbeInterfaces,
         std::vector<std::shared_ptr<probe::PerformProbe>>& dbusProbePointers);
 
-    nlohmann::json& _missingConfigurations;
+    SystemConfiguration& _missingConfigurations;
     std::vector<EMConfig> _configurations;
     std::function<void()> _callback;
     bool _passed = false;
@@ -90,7 +90,7 @@ std::vector<probe::Token> parseProbeCommand(
 std::vector<std::string> collectConfiguredNames(
     const nlohmann::json& systemConfiguration);
 
-void pruneMissingByName(nlohmann::json& missingConfigurations,
+void pruneMissingByName(SystemConfiguration& missingConfigurations,
                         const std::vector<std::string>& names);
 } // namespace detail
 
