@@ -3,13 +3,13 @@
 #include "../utils.hpp"
 #include "em_config.hpp"
 #include "entity_manager.hpp"
+#include "system_configuration.hpp"
 
 #include <systemd/sd-journal.h>
 
 #include <nlohmann/json.hpp>
 #include <sdbusplus/asio/object_server.hpp>
 
-#include <flat_map>
 #include <functional>
 #include <list>
 #include <vector>
@@ -26,7 +26,7 @@ using FoundDevices = std::vector<DBusDeviceDescriptor>;
 
 struct PerformScan final : std::enable_shared_from_this<PerformScan>
 {
-    PerformScan(EntityManager& em, nlohmann::json& missingConfigurations,
+    PerformScan(EntityManager& em, SystemConfiguration& missingConfigurations,
                 std::vector<EMConfig>& configurations,
                 boost::asio::io_context& io, std::function<void()>&& callback);
 
@@ -40,7 +40,7 @@ struct PerformScan final : std::enable_shared_from_this<PerformScan>
     std::vector<std::string> passedProbes;
 
   private:
-    nlohmann::json& _missingConfigurations;
+    SystemConfiguration& _missingConfigurations;
     std::vector<EMConfig> _configurations;
     std::function<void()> _callback;
     bool _passed = false;
