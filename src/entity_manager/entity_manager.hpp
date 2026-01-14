@@ -6,6 +6,7 @@
 #include "configuration.hpp"
 #include "dbus_interface.hpp"
 #include "power_status_monitor.hpp"
+#include "system_configuration.hpp"
 #include "topology.hpp"
 
 #include <nlohmann/json.hpp>
@@ -38,8 +39,11 @@ class EntityManager
     sdbusplus::asio::object_server objServer;
     std::shared_ptr<sdbusplus::asio::dbus_interface> entityIface;
     Configuration configuration;
-    nlohmann::json lastJson;
-    nlohmann::json systemConfiguration;
+    SystemConfiguration lastJson;
+
+    // map of board id -> EM config (with template vars replaced)
+    SystemConfiguration systemConfiguration;
+
     Topology topology;
     boost::asio::io_context& io;
 
@@ -54,13 +58,13 @@ class EntityManager
     void registerCallback(const sdbusplus::object_path& path);
     void publishNewConfiguration(const size_t& instance, size_t count,
                                  boost::asio::steady_timer& timer,
-                                 nlohmann::json newConfiguration);
-    void postToDbus(const nlohmann::json& newConfiguration);
+                                 SystemConfiguration newConfiguration);
+    void postToDbus(const SystemConfiguration& newConfiguration);
     void postBoardToDBus(
         const std::string& boardId, const nlohmann::json::object_t& boardConfig,
         std::map<sdbusplus::object_path, std::string>& newBoards);
     void postExposesRecordsToDBus(
-        nlohmann::json& item, size_t& exposesIndex,
+        nlohmann::json::object_t& item, size_t& exposesIndex,
         const std::string& boardNameOrig, const std::string& boardId,
         const sdbusplus::object_path& boardPath, const std::string& boardType);
 
@@ -71,7 +75,7 @@ class EntityManager
         const ConfigPointer& configPtr,
         const sdbusplus::object_path& ifacePath);
 
-    void pruneConfiguration(bool powerOff, const std::string& name,
+    void pruneConfiguration(bool powerOff, const std::string& boardId,
                             const nlohmann::json& device);
 
     void handleCurrentConfigurationJson();
