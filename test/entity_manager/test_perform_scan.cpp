@@ -17,7 +17,7 @@ using probe::TokenType;
 static json resolveExposes(EMConfig record)
 {
     DBusObject dbusObject = {{"", {}}};
-    json configuration = json::object();
+    SystemConfiguration configuration;
     std::optional<std::string> replaceStr;
 
     scan::detail::applyTemplatesAndExposeActions(
@@ -91,11 +91,11 @@ TEST(RestorePersistedConfigurations, RegistersResolvedNameAndPreservesIndex)
                                 {"ADDRESS", uint64_t{80}}};
     const std::string recordId =
         scan::detail::getRecordName(properties, probeName);
-    json configuration = {
+    SystemConfiguration configuration = {
         {recordId, {{"Name", "Nvidia RTX PRO 6000 Blackwell 2"}}}};
-    const json original = configuration;
-    json cached = json::object();
-    json missing = configuration;
+    const SystemConfiguration original = configuration;
+    SystemConfiguration cached;
+    SystemConfiguration missing = configuration;
     scan::FoundDevices devices = {{properties, "/fru/blackwell"}};
     std::vector<std::string> passed;
     std::set<json> usedNames;
@@ -120,11 +120,11 @@ TEST(RestorePersistedConfigurations, MissingDeviceDoesNotRegisterHistoricalName)
     DBusInterface properties = {{"BUS", uint64_t{10}}};
     const std::string recordId =
         scan::detail::getRecordName(properties, probeName);
-    json configuration = {
+    SystemConfiguration configuration = {
         {recordId, {{"Name", "Nvidia RTX PRO 6000 Blackwell 1"}}}};
-    json cached = configuration;
-    json missing = configuration;
-    const json original = missing;
+    SystemConfiguration cached = configuration;
+    SystemConfiguration missing = configuration;
+    const SystemConfiguration original = missing;
     scan::FoundDevices devices;
     std::vector<std::string> passed;
     std::set<json> usedNames;
@@ -147,11 +147,11 @@ TEST(RestorePersistedConfigurations, KeepsUnmatchedInstanceMissing)
     DBusInterface second = {{"ADDRESS", uint64_t{81}}};
     const std::string firstId = scan::detail::getRecordName(first, probeName);
     const std::string secondId = scan::detail::getRecordName(second, probeName);
-    json configuration = {
+    SystemConfiguration configuration = {
         {firstId, {{"Name", "Nvidia RTX PRO 6000 Blackwell 1"}}},
         {secondId, {{"Name", "Nvidia RTX PRO 6000 Blackwell 2"}}}};
-    json cached = json::object();
-    json missing = configuration;
+    SystemConfiguration cached;
+    SystemConfiguration missing = configuration;
     scan::FoundDevices devices = {{second, "/fru/blackwell_1"}};
     std::vector<std::string> passed;
     std::set<json> usedNames;
@@ -162,7 +162,8 @@ TEST(RestorePersistedConfigurations, KeepsUnmatchedInstanceMissing)
         indexes);
 
     EXPECT_EQ(missing,
-              (json{{firstId, {{"Name", "Nvidia RTX PRO 6000 Blackwell 1"}}}}));
+              (SystemConfiguration{
+                  {firstId, {{"Name", "Nvidia RTX PRO 6000 Blackwell 1"}}}}));
     EXPECT_EQ(passed,
               (std::vector<std::string>{"Nvidia RTX PRO 6000 Blackwell 2"}));
     EXPECT_EQ(configuration[secondId]["Name"],
@@ -175,12 +176,12 @@ TEST(RestorePersistedConfigurations, RestoresCachedMatchedInstance)
     DBusInterface properties = {{"BUS", uint64_t{10}}};
     const std::string recordId =
         scan::detail::getRecordName(properties, probeName);
-    json configuration = json::object();
-    json cached = {
+    SystemConfiguration configuration;
+    SystemConfiguration cached = {
         {recordId,
          {{"Name", "Nvidia RTX PRO 6000 Blackwell 2"},
           {"Exposes", json::array({nullptr, {{"Name", "Sensor"}}})}}}};
-    json missing = json::object();
+    SystemConfiguration missing;
     scan::FoundDevices devices = {{properties, "/fru/blackwell"}};
     std::vector<std::string> passed;
     std::set<json> usedNames;
