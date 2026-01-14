@@ -1,5 +1,7 @@
 #pragma once
 
+#include "system_configuration.hpp"
+
 #include <nlohmann/json.hpp>
 #include <phosphor-logging/lg2.hpp>
 
@@ -43,7 +45,8 @@ struct ConfigPointer
     // @brief writes configuration at the pointed-to location
     // @returns false on error
     template <typename JsonType>
-    bool write(const JsonType& value, nlohmann::json& systemConfiguration) const
+    bool write(const JsonType& value,
+               SystemConfiguration& systemConfiguration) const
     {
         lg2::debug("config ptr: writing value: {VALUE}", "VALUE",
                    nlohmann::json(value));
@@ -54,7 +57,7 @@ struct ConfigPointer
                        boardId);
             return false;
         }
-        nlohmann::json& ref = systemConfiguration.at(boardId);
+        nlohmann::json::object_t& ref = systemConfiguration.at(boardId);
         if (!exposesIndex.has_value())
         {
             if (!propertyName.has_value())
