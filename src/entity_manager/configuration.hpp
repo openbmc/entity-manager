@@ -1,6 +1,7 @@
 #pragma once
 
 #include "em_config.hpp"
+#include "system_configuration.hpp"
 
 #include <nlohmann/json.hpp>
 
@@ -28,16 +29,17 @@ class Configuration
     std::vector<std::filesystem::path> configurationDirectories;
 };
 
-bool writeJsonFiles(const nlohmann::json& systemConfiguration);
+bool writeJsonFiles(const SystemConfiguration& systemConfiguration);
 
 template <typename JsonType>
-bool setJsonFromPointer(const std::string& ptrStr, const JsonType& value,
-                        nlohmann::json& systemConfiguration)
+bool setJsonFromPointer(const uint64_t boardId, const uint64_t exposesIndex,
+                        const std::string& name, const JsonType& value,
+                        SystemConfiguration& systemConfiguration)
 {
     try
     {
-        nlohmann::json::json_pointer ptr(ptrStr);
-        nlohmann::json& ref = systemConfiguration[ptr];
+        nlohmann::json& ref =
+            systemConfiguration[boardId]["Exposes"][exposesIndex][name];
         ref = value;
         return true;
     }
@@ -47,8 +49,8 @@ bool setJsonFromPointer(const std::string& ptrStr, const JsonType& value,
     }
 }
 
-void deriveNewConfiguration(const nlohmann::json& oldConfiguration,
-                            nlohmann::json& newConfiguration);
+void deriveNewConfiguration(const SystemConfiguration& oldConfiguration,
+                            SystemConfiguration& newConfiguration);
 
 bool validateJson(const nlohmann::json& schemaFile,
                   const nlohmann::json& input);

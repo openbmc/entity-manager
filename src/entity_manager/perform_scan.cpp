@@ -158,12 +158,12 @@ void findDbusObjects(
         interfaces);
 }
 
-static std::string getRecordName(const DBusInterface& probe,
-                                 const std::string& probeName)
+static uint64_t getRecordName(const DBusInterface& probe,
+                              const std::string& probeName)
 {
     if (probe.empty())
     {
-        return probeName;
+        return std::hash<std::string>{}(probeName);
     }
 
     // use an array so alphabetical order from the flat_map is maintained
@@ -179,35 +179,16 @@ static std::string getRecordName(const DBusInterface& probe,
     // debug
     // return probeName + device.dump();
 
-    return std::to_string(std::hash<std::string>{}(probeName + device.dump()));
+    return std::hash<std::string>{}(probeName + device.dump());
 }
 
 scan::PerformScan::PerformScan(
-    EntityManager& em, nlohmann::json& missingConfigurations,
+    EntityManager& em, SystemConfiguration& missingConfigurations,
     std::vector<EMConfig>& configurations, boost::asio::io_context& io,
     std::function<void()>&& callback) :
     _em(em), _missingConfigurations(missingConfigurations),
     _configurations(configurations), _callback(std::move(callback)), io(io)
 {}
-
-static void pruneRecordExposes(nlohmann::json& record)
-{
-    auto findExposes = record.find("Exposes");
-    if (findExposes == record.end())
-    {
-        return;
-    }
-
-    auto copy = nlohmann::json::array();
-    for (auto& expose : *findExposes)
-    {
-        if (!expose.is_null())
-        {
-            copy.emplace_back(expose);
-        }
-    }
-    *findExposes = copy;
-}
 
 static void recordDiscoveredIdentifiers(
     std::set<nlohmann::json>& usedNames, std::list<size_t>& indexes,
@@ -317,9 +298,14 @@ static void applyDisableExposeAction(nlohmann::json::object_t& exposedObject,
 
 static void applyConfigExposeActions(
     std::vector<std::string>& matches, nlohmann::json::object_t& expose,
-    const std::string& propertyName, nlohmann::json::array_t& configExposes)
+    const std::string& propertyName, nlohmann::json::object_t& config)
 {
-    for (auto& exposedObject : configExposes)
+    if (!config.contains("Exposes"))
+    {
+        return;
+    }
+
+    for (auto& exposedObject : config["Exposes"])
     {
         auto match = findExposeActionRecord(matches, exposedObject);
         if (match)
@@ -341,7 +327,7 @@ static void applyConfigExposeActions(
 }
 
 static void applyExposeActions(
-    nlohmann::json& systemConfiguration, const std::string& recordName,
+    SystemConfiguration& systemConfiguration, const uint64_t recordName,
     nlohmann::json::object_t& expose, const std::string& exposeKey,
     nlohmann::json::object_t& exposeValue)
 {
@@ -362,7 +348,7 @@ static void applyExposeActions(
         return;
     }
 
-    for (const auto& [configId, config] : systemConfiguration.items())
+    for (const auto& [configId, config] : systemConfiguration)
     {
         // don't disable ourselves
         if (isDisable && configId == recordName)
@@ -370,19 +356,7 @@ static void applyExposeActions(
             continue;
         }
 
-        auto configListFind = config.find("Exposes");
-        if (configListFind == config.end())
-        {
-            continue;
-        }
-
-        nlohmann::json::array_t* configList =
-            configListFind->get_ptr<nlohmann::json::array_t*>();
-        if (configList == nullptr)
-        {
-            continue;
-        }
-        applyConfigExposeActions(matches, expose, exposeKey, *configList);
+        applyConfigExposeActions(matches, expose, exposeKey, config);
     }
 
     if (!matches.empty())
@@ -427,9 +401,9 @@ static std::string generateDeviceName(
     return *ret;
 }
 static void applyTemplateAndExposeActions(
-    const std::string& recordName, const DBusObject& dbusObject,
+    const uint64_t recordName, const DBusObject& dbusObject,
     size_t foundDeviceIdx, const std::optional<std::string>& replaceStr,
-    nlohmann::json::object_t& value, nlohmann::json& systemConfiguration)
+    nlohmann::json::object_t& value, SystemConfiguration& systemConfiguration)
 {
     // we need to convert into this type to avoid ambiguous overloads
     // with templateCharReplace.
@@ -464,7 +438,7 @@ void scan::PerformScan::updateSystemConfiguration(const EMConfig& recordRef,
     // indexes that are already used
     for (auto itr = foundDevices.begin(); itr != foundDevices.end();)
     {
-        std::string recordName = getRecordName(itr->interface, probeName);
+        uint64_t recordName = getRecordName(itr->interface, probeName);
 
         auto record = _em.systemConfiguration.find(recordName);
         if (record == _em.systemConfiguration.end())
@@ -475,10 +449,6 @@ void scan::PerformScan::updateSystemConfiguration(const EMConfig& recordRef,
                 itr++;
                 continue;
             }
-
-            pruneRecordExposes(*record);
-
-            _em.systemConfiguration[recordName] = *record;
         }
         _missingConfigurations.erase(recordName);
 
@@ -510,7 +480,7 @@ void scan::PerformScan::updateSystemConfiguration(const EMConfig& recordRef,
         // we make a copy here to modify
         EMConfig record = recordRef;
 
-        std::string recordName = getRecordName(foundDevice, probeName);
+        uint64_t recordName = getRecordName(foundDevice, probeName);
         size_t foundDeviceIdx = indexes.front();
         indexes.pop_front();
 
@@ -533,7 +503,7 @@ void scan::PerformScan::updateSystemConfiguration(const EMConfig& recordRef,
         // insert into configuration temporarily to be able to
         // reference ourselves
 
-        _em.systemConfiguration[recordName] = record.toJson();
+        _em.systemConfiguration[recordName] = record.toJsonObject();
 
         for (auto& value : record.exposesRecords)
         {
@@ -560,7 +530,7 @@ void scan::PerformScan::updateSystemConfiguration(const EMConfig& recordRef,
         }
 
         // overwrite ourselves with cleaned up version
-        _em.systemConfiguration[recordName] = record.toJson();
+        _em.systemConfiguration[recordName] = record.toJsonObject();
         _missingConfigurations.erase(recordName);
     }
 }

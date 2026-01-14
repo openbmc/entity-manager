@@ -14,6 +14,7 @@ class EMConfig
     static std::optional<EMConfig> fromJson(const nlohmann::json& config);
 
     nlohmann::json toJson();
+    nlohmann::json::object_t toJsonObject();
 
     std::string name;
     std::string type;

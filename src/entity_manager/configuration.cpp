@@ -117,22 +117,23 @@ void Configuration::loadConfigurations()
 }
 
 // Iterate over new configuration and erase items from old configuration.
-void deriveNewConfiguration(const nlohmann::json& oldConfiguration,
-                            nlohmann::json& newConfiguration)
+void deriveNewConfiguration(const SystemConfiguration& oldConfiguration,
+                            SystemConfiguration& newConfiguration)
 {
     lg2::debug("deriving new configuration");
 
-    for (auto it = newConfiguration.begin(); it != newConfiguration.end();)
+    std::set<uint64_t> deletion;
+    for (auto [k, v] : newConfiguration)
     {
-        auto findKey = oldConfiguration.find(it.key());
-        if (findKey != oldConfiguration.end())
+        if (oldConfiguration.contains(k))
         {
-            it = newConfiguration.erase(it);
+            deletion.insert(k);
         }
-        else
-        {
-            it++;
-        }
+    }
+
+    for (const auto& k : deletion)
+    {
+        newConfiguration.erase(k);
     }
 }
 
@@ -182,11 +183,17 @@ void Configuration::filterProbeInterfaces()
     lg2::debug("Done filtering probe interfaces from configurations");
 }
 
-bool writeJsonFiles(const nlohmann::json& systemConfiguration)
+bool writeJsonFiles(const SystemConfiguration& systemConfigurationIn)
 {
     if (!EM_CACHE_CONFIGURATION)
     {
         return true;
+    }
+
+    nlohmann::json out;
+    for (const auto& [k, v] : systemConfigurationIn)
+    {
+        out[std::to_string(k)] = v;
     }
 
     std::error_code ec;
@@ -204,7 +211,7 @@ bool writeJsonFiles(const nlohmann::json& systemConfiguration)
     {
         return false;
     }
-    output << systemConfiguration.dump(4);
+    output << out.dump(4);
     output.close();
     return true;
 }

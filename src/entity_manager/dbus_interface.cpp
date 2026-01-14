@@ -64,37 +64,37 @@ std::shared_ptr<sdbusplus::asio::dbus_interface>
 }
 
 void EMDBusInterface::createDeleteObjectMethod(
-    const std::string& jsonPointerPath,
+    const uint64_t boardId, const uint64_t exposesIndex,
     const std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
-    nlohmann::json& systemConfiguration)
+    SystemConfiguration& systemConfiguration)
 {
     std::weak_ptr<sdbusplus::asio::dbus_interface> interface = iface;
-    iface->register_method(
-        "Delete", [this, &systemConfiguration, interface,
-                   jsonPointerPath{std::string(jsonPointerPath)}]() {
-            std::shared_ptr<sdbusplus::asio::dbus_interface> dbusInterface =
-                interface.lock();
-            if (!dbusInterface)
-            {
-                // this technically can't happen as the pointer is pointing to
-                // us
-                throw DBusInternalError();
-            }
-            nlohmann::json::json_pointer ptr(jsonPointerPath);
-            systemConfiguration[ptr] = nullptr;
+    iface->register_method("Delete", [this, &systemConfiguration, interface,
+                                      boardId, exposesIndex]() {
+        std::shared_ptr<sdbusplus::asio::dbus_interface> dbusInterface =
+            interface.lock();
+        if (!dbusInterface)
+        {
+            // this technically can't happen as the pointer is pointing to
+            // us
+            throw DBusInternalError();
+        }
 
-            // todo(james): dig through sdbusplus to find out why we can't
-            // delete it in a method call
-            boost::asio::post(io, [dbusInterface, this]() mutable {
-                objServer.remove_interface(dbusInterface);
-            });
+        // delete exposes record at [boardId][exposesIndex]
+        systemConfiguration[boardId]["Exposes"][exposesIndex] = nullptr;
 
-            if (!writeJsonFiles(systemConfiguration))
-            {
-                lg2::error("error setting json file");
-                throw DBusInternalError();
-            }
+        // todo(james): dig through sdbusplus to find out why we can't
+        // delete it in a method call
+        boost::asio::post(io, [dbusInterface, this]() mutable {
+            objServer.remove_interface(dbusInterface);
         });
+
+        if (!writeJsonFiles(systemConfiguration))
+        {
+            lg2::error("error setting json file");
+            throw DBusInternalError();
+        }
+    });
 }
 
 static bool checkArrayElementsSameType(nlohmann::json& value)
@@ -144,7 +144,7 @@ static nlohmann::json::value_t getDBusType(
 }
 
 static void populateInterfacePropertyFromJson(
-    nlohmann::json& systemConfiguration, const std::string& path,
+    SystemConfiguration& systemConfiguration, const ConfigPointer& ptr,
     const std::string& key, const nlohmann::json& value,
     nlohmann::json::value_t type,
     std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
@@ -152,36 +152,47 @@ static void populateInterfacePropertyFromJson(
 {
     const auto modifiedType = getDBusType(value, type, permission);
 
+    if (!ptr.exposesIndex.has_value())
+    {
+        lg2::error("no exposes index on config pointer");
+        return;
+    }
+
+    const uint64_t boardId = ptr.boardId;
+    const uint64_t exposesIndex = *ptr.exposesIndex;
+
     switch (modifiedType)
     {
         case (nlohmann::json::value_t::boolean):
         {
             addValueToDBus<bool>(key, value, *iface, permission,
-                                 systemConfiguration, path);
+                                 systemConfiguration, boardId, exposesIndex);
             break;
         }
         case (nlohmann::json::value_t::number_integer):
         {
             addValueToDBus<int64_t>(key, value, *iface, permission,
-                                    systemConfiguration, path);
+                                    systemConfiguration, boardId, exposesIndex);
             break;
         }
         case (nlohmann::json::value_t::number_unsigned):
         {
             addValueToDBus<uint64_t>(key, value, *iface, permission,
-                                     systemConfiguration, path);
+                                     systemConfiguration, boardId,
+                                     exposesIndex);
             break;
         }
         case (nlohmann::json::value_t::number_float):
         {
             addValueToDBus<double>(key, value, *iface, permission,
-                                   systemConfiguration, path);
+                                   systemConfiguration, boardId, exposesIndex);
             break;
         }
         case (nlohmann::json::value_t::string):
         {
             addValueToDBus<std::string>(key, value, *iface, permission,
-                                        systemConfiguration, path);
+                                        systemConfiguration, boardId,
+                                        exposesIndex);
             break;
         }
         default:
@@ -196,7 +207,7 @@ static void populateInterfacePropertyFromJson(
 
 // adds simple json types to interface's properties
 void EMDBusInterface::populateInterfaceFromJson(
-    nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,
+    SystemConfiguration& systemConfiguration, const ConfigPointer& configPtr,
     std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
     nlohmann::json& dict, sdbusplus::asio::PropertyPermission permission)
 {
@@ -221,15 +232,18 @@ void EMDBusInterface::populateInterfaceFromJson(
             continue; // handled elsewhere
         }
 
-        std::string path = jsonPointerPath;
-        path.append("/").append(key);
-
-        populateInterfacePropertyFromJson(systemConfiguration, path, key, value,
-                                          type, iface, permission);
+        populateInterfacePropertyFromJson(systemConfiguration, configPtr, key,
+                                          value, type, iface, permission);
     }
     if (permission == sdbusplus::asio::PropertyPermission::readWrite)
     {
-        createDeleteObjectMethod(jsonPointerPath, iface, systemConfiguration);
+        if (!configPtr.exposesIndex.has_value())
+        {
+            return;
+        }
+
+        createDeleteObjectMethod(configPtr.boardId, *configPtr.exposesIndex,
+                                 iface, systemConfiguration);
     }
     tryIfaceInitialize(iface);
 }
@@ -269,11 +283,10 @@ static void addObjectRuntimeValidateJson(
 
 void EMDBusInterface::addObject(
     const std::flat_map<std::string, JsonVariantType, std::less<>>& data,
-    nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,
+    SystemConfiguration& systemConfiguration, const uint64_t boardId,
     const std::string& path, const std::string& board)
 {
-    nlohmann::json::json_pointer ptr(jsonPointerPath);
-    nlohmann::json& base = systemConfiguration[ptr];
+    nlohmann::json::object_t& base = systemConfiguration[boardId];
     auto findExposes = base.find("Exposes");
 
     if (findExposes == base.end())
@@ -293,17 +306,14 @@ void EMDBusInterface::addObject(
             item.second);
     }
 
-    addObjectJson(newData, systemConfiguration, jsonPointerPath, path, board);
+    addObjectJson(newData, systemConfiguration, boardId, path, board);
 }
 
 void EMDBusInterface::addObjectJson(
-    nlohmann::json& newData, nlohmann::json& systemConfiguration,
-    const std::string& jsonPointerPath, const std::string& path,
-    const std::string& board)
+    nlohmann::json& newData, SystemConfiguration& systemConfiguration,
+    uint64_t boardId, const std::string& path, const std::string& board)
 {
-    nlohmann::json::json_pointer ptr(jsonPointerPath);
-    nlohmann::json& base = systemConfiguration[ptr];
-    auto findExposes = base.find("Exposes");
+    nlohmann::json::object_t& base = systemConfiguration[boardId];
     auto findName = newData.find("Name");
     auto findType = newData.find("Type");
     if (findName == newData.end() || findType == newData.end())
@@ -320,7 +330,7 @@ void EMDBusInterface::addObjectJson(
     bool foundNull = false;
     size_t lastIndex = 0;
     // we add in the "exposes"
-    for (const auto& expose : *findExposes)
+    for (const auto& expose : base["Exposes"])
     {
         if (expose.is_null())
         {
@@ -343,14 +353,8 @@ void EMDBusInterface::addObjectJson(
 
     addObjectRuntimeValidateJson(newData, type, schemaDirectory);
 
-    if (foundNull)
-    {
-        findExposes->at(lastIndex) = newData;
-    }
-    else
-    {
-        findExposes->push_back(newData);
-    }
+    base["Exposes"].push_back(newData);
+
     if (!writeJsonFiles(systemConfiguration))
     {
         lg2::error("Error writing json files");
@@ -367,25 +371,24 @@ void EMDBusInterface::addObjectJson(
     // permission is read-write, as since we just created it, must be
     // runtime modifiable
     populateInterfaceFromJson(
-        systemConfiguration,
-        jsonPointerPath + "/Exposes/" + std::to_string(lastIndex), interface,
+        systemConfiguration, ConfigPointer(boardId, lastIndex), interface,
         newData, sdbusplus::asio::PropertyPermission::readWrite);
 }
 
 void EMDBusInterface::createAddObjectMethod(
-    const std::string& jsonPointerPath, const std::string& path,
-    nlohmann::json& systemConfiguration, const std::string& board)
+    const uint64_t boardId, const std::string& path,
+    SystemConfiguration& systemConfiguration, const std::string& board)
 {
     std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
         createInterface(path, "xyz.openbmc_project.AddObject", board);
 
     iface->register_method(
         "AddObject",
-        [&systemConfiguration, jsonPointerPath{std::string(jsonPointerPath)},
-         path{std::string(path)}, board{std::string(board)},
+        [&systemConfiguration, boardId, path{std::string(path)},
+         board{std::string(board)},
          this](const std::flat_map<std::string, JsonVariantType, std::less<>>&
                    data) {
-            addObject(data, systemConfiguration, jsonPointerPath, path, board);
+            addObject(data, systemConfiguration, boardId, path, board);
         });
     tryIfaceInitialize(iface);
 }

@@ -6,6 +6,7 @@
 #include "configuration.hpp"
 #include "dbus_interface.hpp"
 #include "power_status_monitor.hpp"
+#include "system_configuration.hpp"
 #include "topology.hpp"
 
 #include <nlohmann/json.hpp>
@@ -38,8 +39,11 @@ class EntityManager
     sdbusplus::asio::object_server objServer;
     std::shared_ptr<sdbusplus::asio::dbus_interface> entityIface;
     Configuration configuration;
-    nlohmann::json lastJson;
-    nlohmann::json systemConfiguration;
+    SystemConfiguration lastJson;
+
+    // map of board id -> EM config (with template vars replaced)
+    SystemConfiguration systemConfiguration;
+
     Topology topology;
     boost::asio::io_context& io;
 
@@ -51,24 +55,23 @@ class EntityManager
     void registerCallback(const std::string& path);
     void publishNewConfiguration(const size_t& instance, size_t count,
                                  boost::asio::steady_timer& timer,
-                                 nlohmann::json newConfiguration);
-    void postToDbus(const nlohmann::json& newConfiguration);
-    void postBoardToDBus(const std::string& boardId,
+                                 SystemConfiguration newConfiguration);
+    void postToDbus(const SystemConfiguration& newConfiguration);
+    void postBoardToDBus(uint64_t boardId,
                          const nlohmann::json::object_t& boardConfig,
                          std::map<std::string, std::string>& newBoards);
     void postExposesRecordsToDBus(
         nlohmann::json& item, size_t& exposesIndex,
-        const std::string& boardNameOrig, std::string jsonPointerPath,
-        const std::string& jsonPointerPathBoard, const std::string& boardPath,
-        const std::string& boardType);
+        const std::string& boardNameOrig, uint64_t boardId,
+        const std::string& boardPath, const std::string& boardType);
 
     // @returns false on error
     bool postConfigurationRecord(
         const std::string& name, nlohmann::json& config,
         const std::string& boardNameOrig, const std::string& itemType,
-        const std::string& jsonPointerPath, const std::string& ifacePath);
+        uint64_t boardId, uint64_t exposesIndex, const std::string& ifacePath);
 
-    void pruneConfiguration(bool powerOff, const std::string& name,
+    void pruneConfiguration(bool powerOff, uint64_t boardId,
                             const nlohmann::json& device);
 
     void handleCurrentConfigurationJson();
@@ -89,6 +92,6 @@ class EntityManager
         dbusMatches;
 
     void startRemovedTimer(boost::asio::steady_timer& timer,
-                           nlohmann::json& systemConfiguration);
+                           SystemConfiguration& systemConfiguration);
     void initFilters(const std::unordered_set<std::string>& probeInterfaces);
 };

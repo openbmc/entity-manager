@@ -16,6 +16,7 @@ entity_manager_lib = static_library(
     'entity_manager.cpp',
     'configuration.cpp',
     'em_config.cpp',
+    'system_configuration.cpp',
     'expression.cpp',
     'dbus_interface.cpp',
     'perform_scan.cpp',

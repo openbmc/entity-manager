@@ -166,7 +166,12 @@ EMConfig::EMConfig(const nlohmann::json::object_t& config) :
 
 nlohmann::json EMConfig::toJson()
 {
-    nlohmann::json res;
+    return toJsonObject();
+}
+
+nlohmann::json::object_t EMConfig::toJsonObject()
+{
+    nlohmann::json::object_t res;
 
     res["Name"] = name;
     res["Type"] = type;
