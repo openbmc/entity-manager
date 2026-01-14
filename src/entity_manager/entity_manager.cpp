@@ -6,6 +6,7 @@
 #include "../dbus_util.hpp"
 #include "../utils.hpp"
 #include "../variant_visitors.hpp"
+#include "config_pointer.hpp"
 #include "configuration.hpp"
 #include "dbus_interface.hpp"
 #include "log_device_inventory.hpp"
@@ -55,9 +56,8 @@ EntityManager::EntityManager(
     const std::filesystem::path& schemaDirectory) :
     systemBus(systemBus),
     objServer(sdbusplus::asio::object_server(systemBus, /*skipManager=*/true)),
-    configuration(configurationDirectories, schemaDirectory),
-    lastJson(nlohmann::json::object()),
-    systemConfiguration(nlohmann::json::object()), io(io),
+    configuration(configurationDirectories, schemaDirectory), lastJson(),
+    systemConfiguration(), io(io),
     dbus_interface(io, objServer, schemaDirectory), powerStatus(*systemBus),
     propertiesChangedTimer(io)
 {
@@ -76,22 +76,14 @@ EntityManager::EntityManager(
     initFilters(configuration.probeInterfaces);
 }
 
-void EntityManager::postToDbus(const nlohmann::json& newConfiguration)
+void EntityManager::postToDbus(const SystemConfiguration& newConfiguration)
 {
     std::map<sdbusplus::object_path, std::string> newObjects; // path -> name
 
-    // iterate through configurations
-    for (const auto& [configId, configObject] : newConfiguration.items())
+    // iterate through boards
+    for (const auto& [boardId, boardConfig] : newConfiguration)
     {
-        const nlohmann::json::object_t* configObjectPtr =
-            configObject.get_ptr<const nlohmann::json::object_t*>();
-        if (configObjectPtr == nullptr)
-        {
-            lg2::error("configObject for {CONFIG} was not an object", "CONFIG",
-                       configId);
-            continue;
-        }
-        postBoardToDBus(configId, *configObjectPtr, newObjects);
+        postBoardToDBus(boardId, boardConfig, newObjects);
     }
 
     for (const auto& [assocPath, assocPropValue] :
@@ -166,10 +158,10 @@ void EntityManager::postBoardToDBus(
     auto findConfigType = configValues.find("Type");
     std::string configType;
     if (findConfigType != configValues.end() &&
-        findConfigType->type() == nlohmann::json::value_t::string)
+        findConfigType->second.type() == nlohmann::json::value_t::string)
     {
         configType = dbus_util::sanitizeForDBusPathSegment(
-            findConfigType->get<std::string>());
+            findConfigType->second.get<std::string>());
     }
     else
     {
@@ -225,7 +217,7 @@ void EntityManager::postBoardToDBus(
     }
 
     // iterate through configuration properties
-    for (const auto& [propName, propValue] : configValues.items())
+    for (const auto& [propName, propValue] : configValues)
     {
         if (propValue.type() == nlohmann::json::value_t::object)
         {
@@ -237,9 +229,12 @@ void EntityManager::postBoardToDBus(
                 typeIface = iface;
             }
 
+            const auto* propValueObj =
+                propValue.get_ptr<const nlohmann::json::object_t*>();
+
             dbus_interface.populateInterfaceFromJson(
                 systemConfiguration, ConfigPointer(configId, propName), iface,
-                propValue);
+                *propValueObj);
         }
     }
 
@@ -252,24 +247,31 @@ void EntityManager::postBoardToDBus(
         dbus_interface::tryIfaceInitialize(typeIface);
     }
 
-    nlohmann::json::iterator exposes = configValues.find("Exposes");
-    if (exposes == configValues.end())
+    if (!configValues.contains("Exposes"))
     {
         return;
     }
 
     size_t exposesIndex = -1;
-    for (nlohmann::json& item : *exposes)
+    for (nlohmann::json& item : configValues["Exposes"])
     {
-        postExposesRecordsToDBus(item, exposesIndex, configNameOrig, configId,
-                                 objectPath, configType);
+        nlohmann::json::object_t* itemObj =
+            item.get_ptr<nlohmann::json::object_t*>();
+
+        if (itemObj == nullptr)
+        {
+            lg2::error("Exposes record was not an object");
+            continue;
+        }
+        postExposesRecordsToDBus(*itemObj, exposesIndex, configNameOrig,
+                                 configId, objectPath, configType);
     }
 
     newObjects.emplace(objectPath, configNameOrig);
 }
 
 void EntityManager::postExposesRecordsToDBus(
-    nlohmann::json& item, size_t& exposesIndex,
+    nlohmann::json::object_t& item, size_t& exposesIndex,
     const std::string& configNameOrig, const std::string& boardId,
     const sdbusplus::object_path& objectPath, const std::string& configType)
 {
@@ -279,14 +281,15 @@ void EntityManager::postExposesRecordsToDBus(
     auto findName = item.find("Name");
     if (findName == item.end())
     {
-        lg2::error("cannot find name in field {ITEM}", "ITEM", item);
+        lg2::error("cannot find name in field {ITEM}", "ITEM",
+                   nlohmann::json(item));
         return;
     }
     auto findStatus = item.find("Status");
     // if status is not found it is assumed to be status = 'okay'
     if (findStatus != item.end())
     {
-        if (*findStatus == "disabled")
+        if (item["Status"] == "disabled")
         {
             return;
         }
@@ -295,7 +298,7 @@ void EntityManager::postExposesRecordsToDBus(
     std::string itemType = "unknown";
     if (findType != item.end())
     {
-        itemType = findType->get<std::string>();
+        itemType = item["Type"].get<std::string>();
     }
 
     if (!dbus_util::validateDBusInterfaceSegments(itemType))
@@ -305,9 +308,8 @@ void EntityManager::postExposesRecordsToDBus(
             "TYPE", itemType);
         return;
     }
-
     const std::string itemName =
-        dbus_util::sanitizeForDBusPathSegment(findName->get<std::string>());
+        dbus_util::sanitizeForDBusPathSegment(item["Name"].get<std::string>());
 
     const sdbusplus::object_path ifacePath = objectPath / itemName;
 
@@ -336,7 +338,7 @@ void EntityManager::postExposesRecordsToDBus(
             getPermission(itemType));
     }
 
-    for (const auto& [name, config] : item.items())
+    for (auto& [name, config] : item)
     {
         if (!postConfigurationRecord(
                 name, config, configNameOrig, itemType,
@@ -373,8 +375,10 @@ bool EntityManager::postConfigurationRecord(
             dbus_interface.createInterface(ifacePath, ifaceName,
                                            configNameOrig);
 
+        auto* configObj = config.get_ptr<nlohmann::json::object_t*>();
+
         dbus_interface.populateInterfaceFromJson(
-            systemConfiguration, configPtr, objectIface, config,
+            systemConfiguration, configPtr, objectIface, *configObj,
             getPermission(name));
     }
     else if (config.type() == nlohmann::json::value_t::array)
@@ -408,6 +412,15 @@ bool EntityManager::postConfigurationRecord(
 
         for (auto& arrayItem : config)
         {
+            const nlohmann::json::object_t* arrayItemObj =
+                arrayItem.get_ptr<const nlohmann::json::object_t*>();
+
+            if (arrayItemObj == nullptr)
+            {
+                lg2::error("array item was not an object");
+                continue;
+            }
+
             std::string ifaceName = "xyz.openbmc_project.Configuration.";
             ifaceName.append(itemType).append(".").append(name);
             ifaceName.append(std::to_string(index));
@@ -418,7 +431,7 @@ bool EntityManager::postConfigurationRecord(
 
             dbus_interface.populateInterfaceFromJson(
                 systemConfiguration, configPtr.withArrayIndex(index),
-                objectIface, arrayItem, getPermission(name));
+                objectIface, *arrayItemObj, getPermission(name));
             index++;
         }
     }
@@ -443,7 +456,7 @@ static bool deviceRequiresPowerOn(const nlohmann::json& entity)
     return *ptr == "On" || *ptr == "BiosPost";
 }
 
-static void pruneDevice(const nlohmann::json& systemConfiguration,
+static void pruneDevice(const SystemConfiguration& systemConfiguration,
                         const bool powerOff, const bool scannedPowerOff,
                         const std::string& name, const nlohmann::json& device)
 {
@@ -484,7 +497,7 @@ void EntityManager::startRemovedTimer(boost::asio::steady_timer& timer)
         }
 
         bool powerOff = !powerStatus.isPowerOn();
-        for (const auto& [name, device] : lastJson.items())
+        for (const auto& [name, device] : lastJson)
         {
             pruneDevice(systemConfiguration, powerOff, scannedPowerOff, name,
                         device);
@@ -498,8 +511,8 @@ void EntityManager::startRemovedTimer(boost::asio::steady_timer& timer)
     });
 }
 
-void EntityManager::pruneConfiguration(bool powerOff, const std::string& name,
-                                       const nlohmann::json& device)
+void EntityManager::pruneConfiguration(
+    bool powerOff, const std::string& boardId, const nlohmann::json& device)
 {
     lg2::debug("pruning configuration");
 
@@ -520,7 +533,7 @@ void EntityManager::pruneConfiguration(bool powerOff, const std::string& name,
     }
 
     ifaces.clear();
-    systemConfiguration.erase(name);
+    systemConfiguration.erase(boardId);
     topology.remove(device["Name"].get<std::string>());
     logDeviceRemoved(device);
 }
@@ -534,7 +547,7 @@ void EntityManager::publishNewConfiguration(
     // https://discord.com/channels/775381525260664832/867820390406422538/958048437729910854
     //
     // NOLINTNEXTLINE(performance-unnecessary-value-param)
-    const nlohmann::json newConfiguration)
+    const SystemConfiguration newConfiguration)
 {
     loadOverlays(newConfiguration, io);
 
@@ -578,8 +591,8 @@ void EntityManager::propertiesChangedCallbackDebounced(
 
     lg2::debug("properties changed callback in progress");
 
-    nlohmann::json oldConfiguration = systemConfiguration;
-    auto missingConfigurations = std::make_shared<nlohmann::json>();
+    SystemConfiguration oldConfiguration = systemConfiguration;
+    auto missingConfigurations = std::make_shared<SystemConfiguration>();
     *missingConfigurations = systemConfiguration;
 
     auto perfScan = std::make_shared<scan::PerformScan>(
@@ -588,15 +601,15 @@ void EntityManager::propertiesChangedCallbackDebounced(
             // this is something that since ac has been applied to the
             // bmc we saw, and we no longer see it
             bool powerOff = !powerStatus.isPowerOn();
-            for (const auto& [name, device] : missingConfigurations->items())
+            for (const auto& [name, device] : *missingConfigurations)
             {
                 pruneConfiguration(powerOff, name, device);
             }
-            nlohmann::json newConfiguration = systemConfiguration;
+            SystemConfiguration newConfiguration = systemConfiguration;
 
             deriveNewConfiguration(oldConfiguration, newConfiguration);
 
-            for (const auto& [_, device] : newConfiguration.items())
+            for (const auto& [_, device] : newConfiguration)
             {
                 logDeviceAdded(device);
             }
@@ -674,7 +687,17 @@ void EntityManager::handleCurrentConfigurationJson()
                 }
                 else
                 {
-                    lastJson = std::move(data);
+                    std::optional<SystemConfiguration> optConfig =
+                        systemConfigurationFromJson(data);
+                    if (optConfig.has_value())
+                    {
+                        lastJson = optConfig.value();
+                    }
+                    else
+                    {
+                        lg2::error("Failed parsing last json at {PATH}", "PATH",
+                                   lastConfiguration);
+                    }
                 }
             }
             else

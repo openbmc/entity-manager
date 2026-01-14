@@ -35,9 +35,9 @@ TEST(ParseProbeCommand, ParsesSingleString)
 // Removes from missingConfigurations any config whose "Name" is in names.
 TEST(PruneMissingByName, RemovesConfigsWhoseNameIsInList)
 {
-    json missing = {{"16888500906263256819", {{"Name", "A"}}},
-                    {"3421789056127653902", {{"Name", "B"}}},
-                    {"9995127843016654321", {{"Name", "C"}}}};
+    SystemConfiguration missing = {{"16888500906263256819", {{"Name", "A"}}},
+                                   {"3421789056127653902", {{"Name", "B"}}},
+                                   {"9995127843016654321", {{"Name", "C"}}}};
     std::vector<std::string> names = {"A", "C"};
     scan::detail::pruneMissingByName(missing, names);
     EXPECT_EQ(missing.size(), 1);
@@ -78,8 +78,9 @@ TEST(SeedAndPrune, RescanKeepsAppliedTemplatedConfig)
 
     // At the start of a rescan everything currently present is provisionally
     // "missing" until re-proven this pass.
-    json missing = {{gpuKey, {{"Name", "Nvidia RTX PRO 6000 Blackwell 1"}}},
-                    {otherKey, {{"Name", "Some Other Board"}}}};
+    SystemConfiguration missing = {
+        {gpuKey, {{"Name", "Nvidia RTX PRO 6000 Blackwell 1"}}},
+        {otherKey, {{"Name", "Some Other Board"}}}};
 
     std::vector<std::string> passedProbes =
         scan::detail::collectConfiguredNames(systemConfiguration);
