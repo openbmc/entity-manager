@@ -22,6 +22,9 @@ constexpr const char* get = "Get";
 bool fwVersionIsSame();
 
 void handleLeftOverTemplateVars(nlohmann::json& value);
+void handleLeftOverTemplateVars(nlohmann::json::object_t& value);
+void handleLeftOverTemplateVars(nlohmann::json::array_t& value);
+void handleLeftOverTemplateVars(std::string& value);
 
 std::optional<std::string> templateCharReplace(
     nlohmann::json& value, const DBusObject& object, size_t index,
