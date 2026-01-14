@@ -2,6 +2,7 @@
 
 #include "config_pointer.hpp"
 #include "configuration.hpp"
+#include "system_configuration.hpp"
 
 #include <boost/asio/io_context.hpp>
 #include <nlohmann/json.hpp>
@@ -36,30 +37,31 @@ class EMDBusInterface
 
     void createAddObjectMethod(const std::string& boardId,
                                const std::string& path,
-                               nlohmann::json& systemConfiguration,
+                               SystemConfiguration& systemConfiguration,
                                const std::string& board);
 
     void populateInterfaceFromJson(
-        nlohmann::json& systemConfiguration, const ConfigPointer& configPtr,
+        SystemConfiguration& systemConfiguration,
+        const ConfigPointer& configPtr,
         std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
-        nlohmann::json& dict,
+        const nlohmann::json::object_t& dict,
         sdbusplus::asio::PropertyPermission permission =
             sdbusplus::asio::PropertyPermission::readOnly);
 
     void createDeleteObjectMethod(
         const ConfigPointer& configPtr,
         const std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
-        nlohmann::json& systemConfiguration);
+        SystemConfiguration& systemConfiguration);
 
   private:
     void addObject(
         const std::flat_map<std::string, JsonVariantType, std::less<>>& data,
-        nlohmann::json& systemConfiguration, const std::string& boardId,
+        SystemConfiguration& systemConfiguration, const std::string& boardId,
         const std::string& path, const std::string& board);
 
     // @brief: same as 'addObject', but operates on json
-    void addObjectJson(nlohmann::json& newData,
-                       nlohmann::json& systemConfiguration,
+    void addObjectJson(nlohmann::json::object_t& newData,
+                       SystemConfiguration& systemConfiguration,
                        const std::string& boardId, const std::string& path,
                        const std::string& board);
 
@@ -81,7 +83,7 @@ template <typename PropertyType>
 void addArrayToDbus(const std::string& name, const nlohmann::json& array,
                     sdbusplus::asio::dbus_interface* iface,
                     sdbusplus::asio::PropertyPermission permission,
-                    nlohmann::json& systemConfiguration,
+                    SystemConfiguration& systemConfiguration,
                     const ConfigPointer& configPtr)
 {
     std::vector<PropertyType> values;
@@ -102,9 +104,9 @@ void addArrayToDbus(const std::string& name, const nlohmann::json& array,
     {
         iface->register_property(
             name, values,
-            [&systemConfiguration, name,
-             configPtr](const std::vector<PropertyType>& newVal,
-                        std::vector<PropertyType>& val) {
+            [&systemConfiguration, configPtr,
+             name](const std::vector<PropertyType>& newVal,
+                   std::vector<PropertyType>& val) {
                 val = newVal;
                 if (!setJsonFromPointer(configPtr.withName(name), val,
                                         systemConfiguration))
@@ -125,7 +127,7 @@ void addArrayToDbus(const std::string& name, const nlohmann::json& array,
 template <typename PropertyType>
 void addProperty(const std::string& name, const PropertyType& value,
                  sdbusplus::asio::dbus_interface* iface,
-                 nlohmann::json& systemConfiguration,
+                 SystemConfiguration& systemConfiguration,
                  const ConfigPointer& configPtr,
                  sdbusplus::asio::PropertyPermission permission)
 {
@@ -158,7 +160,7 @@ template <typename PropertyType>
 void addValueToDBus(const std::string& key, const nlohmann::json& value,
                     sdbusplus::asio::dbus_interface& iface,
                     sdbusplus::asio::PropertyPermission permission,
-                    nlohmann::json& systemConfiguration,
+                    SystemConfiguration& systemConfiguration,
                     const ConfigPointer& configPtr)
 {
     if (value.is_array())
