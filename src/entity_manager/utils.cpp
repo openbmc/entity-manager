@@ -172,49 +172,10 @@ std::optional<std::string> templateCharReplace(
     return std::nullopt;
 }
 
-// finds the template character (currently set to $) and replaces the value with
-// the field found in a dbus object i.e. $ADDRESS would get populated with the
-// ADDRESS field from a object on dbus
-std::optional<std::string> templateCharReplace(
-    nlohmann::json& value, const DBusInterface& interface, const size_t index,
-    const std::optional<std::string>& replaceStr)
+static bool templateCharReplaceLoop(
+    std::string* strPtr, const DBusInterface& interface,
+    std::optional<std::string>& ret, nlohmann::json& value)
 {
-    std::optional<std::string> ret = std::nullopt;
-
-    nlohmann::json::object_t* objPtr =
-        value.get_ptr<nlohmann::json::object_t*>();
-    if (objPtr != nullptr)
-    {
-        for (auto& [key, value] : *objPtr)
-        {
-            templateCharReplace(value, interface, index, replaceStr);
-        }
-        return ret;
-    }
-
-    nlohmann::json::array_t* arrPtr = value.get_ptr<nlohmann::json::array_t*>();
-    if (arrPtr != nullptr)
-    {
-        for (auto& value : *arrPtr)
-        {
-            templateCharReplace(value, interface, index, replaceStr);
-        }
-        return ret;
-    }
-
-    std::string* strPtr = value.get_ptr<std::string*>();
-    if (strPtr == nullptr)
-    {
-        return ret;
-    }
-
-    replaceAll(*strPtr, std::string(templateChar) + "index",
-               std::to_string(index));
-    if (replaceStr)
-    {
-        replaceAll(*strPtr, *replaceStr, std::to_string(index));
-    }
-
     for (const auto& [propName, propValue] : interface)
     {
         std::string templateName = templateChar + propName;
@@ -231,7 +192,7 @@ std::optional<std::string> templateCharReplace(
         if ((start == 0U) && find.end() == strPtr->end())
         {
             std::visit([&](auto&& val) { value = val; }, propValue);
-            return ret;
+            return true;
         }
 
         constexpr const std::array<char, 5> mathChars = {'+', '-', '%', '*',
@@ -298,6 +259,57 @@ std::optional<std::string> templateCharReplace(
         {
             break;
         }
+    }
+
+    return false;
+}
+
+// finds the template character (currently set to $) and replaces the value with
+// the field found in a dbus object i.e. $ADDRESS would get populated with the
+// ADDRESS field from a object on dbus
+std::optional<std::string> templateCharReplace(
+    nlohmann::json& value, const DBusInterface& interface, const size_t index,
+    const std::optional<std::string>& replaceStr)
+{
+    std::optional<std::string> ret = std::nullopt;
+
+    nlohmann::json::object_t* objPtr =
+        value.get_ptr<nlohmann::json::object_t*>();
+    if (objPtr != nullptr)
+    {
+        for (auto& [key, value] : *objPtr)
+        {
+            templateCharReplace(value, interface, index, replaceStr);
+        }
+        return ret;
+    }
+
+    nlohmann::json::array_t* arrPtr = value.get_ptr<nlohmann::json::array_t*>();
+    if (arrPtr != nullptr)
+    {
+        for (auto& value : *arrPtr)
+        {
+            templateCharReplace(value, interface, index, replaceStr);
+        }
+        return ret;
+    }
+
+    std::string* strPtr = value.get_ptr<std::string*>();
+    if (strPtr == nullptr)
+    {
+        return ret;
+    }
+
+    replaceAll(*strPtr, std::string(templateChar) + "index",
+               std::to_string(index));
+    if (replaceStr)
+    {
+        replaceAll(*strPtr, *replaceStr, std::to_string(index));
+    }
+
+    if (templateCharReplaceLoop(strPtr, interface, ret, value))
+    {
+        return ret;
     }
 
     strPtr = value.get_ptr<std::string*>();
