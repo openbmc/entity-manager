@@ -250,6 +250,36 @@ TEST(HandleLeftOverTemplateVars, replaceLeftOverTemplateVar)
     EXPECT_EQ(expected, j["foo"]);
 }
 
+TEST(HandleLeftOverTemplateVars, replaceLeftOverTemplateVarObj)
+{
+    nlohmann::json::object_t j = {{"foo", "the Test $TEST is $TESTED"}};
+
+    em_utils::handleLeftOverTemplateVars(j);
+
+    nlohmann::json expected = "the Test  is ";
+    EXPECT_EQ(expected, j["foo"]);
+}
+
+TEST(HandleLeftOverTemplateVars, replaceLeftOverTemplateVarArr)
+{
+    nlohmann::json::array_t j = {{{"foo", "the Test $TEST is $TESTED"}}};
+
+    em_utils::handleLeftOverTemplateVars(j);
+
+    nlohmann::json expected = "the Test  is ";
+    EXPECT_EQ(expected, j[0]["foo"]);
+}
+
+TEST(HandleLeftOverTemplateVars, replaceLeftOverTemplateVarString)
+{
+    std::string s = "the Test $TEST is $TESTED";
+
+    em_utils::handleLeftOverTemplateVars(s);
+
+    nlohmann::json expected = "the Test  is ";
+    EXPECT_EQ(expected, s);
+}
+
 TEST(MatchProbe, stringEqString)
 {
     nlohmann::json j = R"("foo")"_json;

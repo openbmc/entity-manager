@@ -70,20 +70,14 @@ void handleLeftOverTemplateVars(nlohmann::json& value)
         value.get_ptr<nlohmann::json::object_t*>();
     if (objPtr != nullptr)
     {
-        for (auto& nextLayer : *objPtr)
-        {
-            handleLeftOverTemplateVars(nextLayer.second);
-        }
+        handleLeftOverTemplateVars(*objPtr);
         return;
     }
 
     nlohmann::json::array_t* arrPtr = value.get_ptr<nlohmann::json::array_t*>();
     if (arrPtr != nullptr)
     {
-        for (auto& nextLayer : *arrPtr)
-        {
-            handleLeftOverTemplateVars(nextLayer);
-        }
+        handleLeftOverTemplateVars(*arrPtr);
         return;
     }
 
@@ -92,7 +86,28 @@ void handleLeftOverTemplateVars(nlohmann::json& value)
     {
         return;
     }
+    handleLeftOverTemplateVars(*strPtr);
+}
 
+void handleLeftOverTemplateVars(nlohmann::json::object_t& value)
+{
+    for (auto& nextLayer : value)
+    {
+        handleLeftOverTemplateVars(nextLayer.second);
+    }
+}
+
+void handleLeftOverTemplateVars(nlohmann::json::array_t& value)
+{
+    for (auto& nextLayer : value)
+    {
+        handleLeftOverTemplateVars(nextLayer);
+    }
+}
+
+void handleLeftOverTemplateVars(std::string& value)
+{
+    std::string* strPtr = &value;
     // Walking through the string to find $<templateVar>
     while (true)
     {
