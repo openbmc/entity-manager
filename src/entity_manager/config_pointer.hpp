@@ -1,5 +1,7 @@
 #pragma once
 
+#include "system_configuration.hpp"
+
 #include <nlohmann/json.hpp>
 #include <phosphor-logging/lg2.hpp>
 
@@ -38,7 +40,8 @@ struct ConfigPointer
     // @brief writes configuration at the pointed-to location
     // @returns false on error
     template <typename JsonType>
-    bool write(const JsonType& value, nlohmann::json& systemConfiguration) const
+    bool write(const JsonType& value,
+               SystemConfiguration& systemConfiguration) const
     {
         lg2::debug("config ptr: writing value: {VALUE}", "VALUE",
                    nlohmann::json(value));
@@ -50,34 +53,43 @@ struct ConfigPointer
                        boardId);
             return false;
         }
-        nlohmann::json* target = &(*targetIt);
+        nlohmann::json::object_t& board = targetIt->second;
+        nlohmann::json* target = nullptr;
         if (exposesIndex)
         {
-            auto it = target->find("Exposes");
-
-            if (it == target->end() || !(*it).is_array() ||
-                (*it).size() <= *exposesIndex)
+            auto exposes = board.find("Exposes");
+            if (exposes == board.end() || !exposes->second.is_array() ||
+                exposes->second.size() <= *exposesIndex)
             {
                 lg2::error("error: config ptr: invalid exposes index {INDEX}",
                            "INDEX", *exposesIndex);
                 return false;
             }
-            target = &(*it)[*exposesIndex];
+            target = &exposes->second[*exposesIndex];
         }
         if (propertyName)
         {
-            auto it = target->find(*propertyName);
-            if (it == target->end())
+            nlohmann::json::object_t* object =
+                target ? target->get_ptr<nlohmann::json::object_t*>() : &board;
+            if (object == nullptr)
             {
                 lg2::error("error: config ptr: property {NAME} not found",
                            "NAME", *propertyName);
                 return false;
             }
-            target = &(*it);
+            auto it = object->find(*propertyName);
+            if (it == object->end())
+            {
+                lg2::error("error: config ptr: property {NAME} not found",
+                           "NAME", *propertyName);
+                return false;
+            }
+            target = &it->second;
         }
         if (arrayIndex)
         {
-            if (!target->is_array() || target->size() <= *arrayIndex)
+            if (target == nullptr || !target->is_array() ||
+                target->size() <= *arrayIndex)
             {
                 lg2::error("error: config ptr: invalid array index {INDEX}",
                            "INDEX", *arrayIndex);
@@ -87,6 +99,12 @@ struct ConfigPointer
         }
         if (memberName)
         {
+            if (target == nullptr)
+            {
+                lg2::error("error: config ptr: property {NAME} not found",
+                           "NAME", *memberName);
+                return false;
+            }
             auto it = target->find(*memberName);
             if (it == target->end())
             {
@@ -96,7 +114,20 @@ struct ConfigPointer
             }
             target = &(*it);
         }
-        *target = value;
+        if (target != nullptr)
+        {
+            *target = value;
+            return true;
+        }
+        nlohmann::json boardValue = value;
+        const auto* object =
+            boardValue.template get_ptr<const nlohmann::json::object_t*>();
+        if (object == nullptr)
+        {
+            lg2::error("error: config ptr: board value is not an object");
+            return false;
+        }
+        board = *object;
         return true;
     }
 

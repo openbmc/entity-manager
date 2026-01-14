@@ -38,7 +38,7 @@ static nlohmann::json::object_t getSampleConfig()
 
 TEST(ConfigPointer, writeBoard)
 {
-    nlohmann::json systemConfiguration;
+    SystemConfiguration systemConfiguration;
     systemConfiguration["823"] = nlohmann::json::object_t();
 
     ConfigPointer ptr("823");
@@ -53,7 +53,7 @@ TEST(ConfigPointer, writeBoard)
 
 TEST(ConfigPointer, writeExposesRecord)
 {
-    nlohmann::json systemConfiguration;
+    SystemConfiguration systemConfiguration;
     systemConfiguration["823"] = getSampleConfig();
 
     systemConfiguration["823"]["Exposes"].push_back(getSampleConfigRecord());
@@ -80,7 +80,7 @@ TEST(ConfigPointer, writeExposesRecord)
 
 TEST(ConfigPointer, writeConfigProperty)
 {
-    nlohmann::json systemConfiguration;
+    SystemConfiguration systemConfiguration;
     systemConfiguration["823"] = getSampleConfig();
 
     systemConfiguration["823"]["Exposes"].push_back(getSampleConfigRecord());
@@ -102,7 +102,7 @@ TEST(ConfigPointer, writeConfigProperty)
 
 TEST(ConfigPointer, writeConfigArrayProperty)
 {
-    nlohmann::json systemConfiguration;
+    SystemConfiguration systemConfiguration;
     systemConfiguration["823"] = getSampleConfig();
 
     systemConfiguration["823"]["Exposes"].push_back(getSampleConfigRecord());
@@ -135,7 +135,7 @@ TEST(ConfigPointer, writeConfigArrayProperty)
 
 TEST(ConfigPointer, writeNestedInterfaceProperties)
 {
-    nlohmann::json systemConfiguration;
+    SystemConfiguration systemConfiguration;
     systemConfiguration["823"] = getSampleConfig();
     systemConfiguration["823"]
                        ["xyz.openbmc_project.Inventory.Decorator.Asset"] = {
@@ -170,7 +170,7 @@ TEST(ConfigPointer, writeNestedInterfaceProperties)
 
 TEST(ConfigPointer, deleteKeepsExposeIndices)
 {
-    nlohmann::json systemConfiguration;
+    SystemConfiguration systemConfiguration;
     systemConfiguration["823"] = getSampleConfig();
     systemConfiguration["823"]["Exposes"].push_back(getSampleConfigRecord());
     systemConfiguration["823"]["Exposes"].push_back(getSampleConfigRecord());
@@ -192,7 +192,7 @@ TEST(ConfigPointer, deleteKeepsExposeIndices)
 class ConfigPointerFailureTest : public ::testing::Test
 {
   protected:
-    nlohmann::json systemConfiguration;
+    SystemConfiguration systemConfiguration;
 
     void SetUp() override
     {
@@ -204,7 +204,7 @@ class ConfigPointerFailureTest : public ::testing::Test
 
     void expectWriteRejected(const ConfigPointer& ptr)
     {
-        const nlohmann::json before = systemConfiguration;
+        const SystemConfiguration before = systemConfiguration;
 
         EXPECT_FALSE(ptr.write("new", systemConfiguration));
         EXPECT_EQ(systemConfiguration, before);

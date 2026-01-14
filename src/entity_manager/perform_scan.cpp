@@ -224,20 +224,21 @@ std::string scan::detail::getRecordName(const DBusInterface& probe,
 }
 
 scan::PerformScan::PerformScan(
-    EntityManager& em, nlohmann::json& missingConfigurations,
+    EntityManager& em, SystemConfiguration& missingConfigurations,
     std::vector<EMConfig>& configurations, boost::asio::io_context& io,
     std::function<void()>&& callback) :
     _em(em), _missingConfigurations(missingConfigurations),
     _configurations(configurations), _callback(std::move(callback)), io(io)
 {}
 
-static void pruneRecordExposes(nlohmann::json& record)
+static void pruneRecordExposes(nlohmann::json::object_t& record)
 {
-    auto findExposes = record.find("Exposes");
-    if (findExposes == record.end())
+    if (!record.contains("Exposes"))
     {
         return;
     }
+
+    auto* findExposes = record["Exposes"].get_ptr<nlohmann::json::array_t*>();
 
     auto copy = nlohmann::json::array();
     for (auto& expose : *findExposes)
@@ -247,12 +248,12 @@ static void pruneRecordExposes(nlohmann::json& record)
             copy.emplace_back(expose);
         }
     }
-    *findExposes = copy;
+    record["Exposes"] = copy;
 }
 
 static void recordDiscoveredIdentifiers(
     std::set<nlohmann::json>& usedNames, std::list<size_t>& indexes,
-    const std::string& probeName, const nlohmann::json& record)
+    const std::string& probeName, const nlohmann::json::object_t& record)
 {
     size_t indexIdx = probeName.find('$');
     if (indexIdx == std::string::npos)
@@ -268,7 +269,7 @@ static void recordDiscoveredIdentifiers(
     }
 
     int index = 0;
-    auto str = nameIt->get<std::string>().substr(indexIdx);
+    auto str = record.at("Name").get<std::string>().substr(indexIdx);
     // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-pointer-arithmetic)
     const char* endPtr = str.data() + str.size();
     auto [p, ec] = std::from_chars(str.data(), endPtr, index);
@@ -277,7 +278,7 @@ static void recordDiscoveredIdentifiers(
         return; // non-numeric replacement
     }
 
-    usedNames.insert(nameIt.value());
+    usedNames.insert(record.at("Name"));
 
     auto usedIt = std::find(indexes.begin(), indexes.end(), index);
     if (usedIt != indexes.end())
@@ -358,9 +359,14 @@ static void applyDisableExposeAction(nlohmann::json::object_t& exposedObject,
 
 static void applyConfigExposeActions(
     std::vector<std::string>& matches, nlohmann::json::object_t& expose,
-    const std::string& propertyName, nlohmann::json::array_t& configExposes)
+    const std::string& propertyName, nlohmann::json::object_t& config)
 {
-    for (auto& exposedObject : configExposes)
+    if (!config.contains("Exposes"))
+    {
+        return;
+    }
+
+    for (auto& exposedObject : config["Exposes"])
     {
         auto match = findExposeActionRecord(matches, exposedObject);
         if (match)
@@ -382,7 +388,7 @@ static void applyConfigExposeActions(
 }
 
 static void applyExposeActions(
-    nlohmann::json& systemConfiguration, const std::string& recordName,
+    SystemConfiguration& systemConfiguration, const std::string& recordName,
     nlohmann::json::object_t& expose, const std::string& exposeKey,
     nlohmann::json& exposeValue)
 {
@@ -403,7 +409,7 @@ static void applyExposeActions(
         return;
     }
 
-    for (const auto& [configId, config] : systemConfiguration.items())
+    for (const auto& [configId, config] : systemConfiguration)
     {
         // don't disable ourselves
         if (isDisable && configId == recordName)
@@ -411,19 +417,7 @@ static void applyExposeActions(
             continue;
         }
 
-        auto configListFind = config.find("Exposes");
-        if (configListFind == config.end())
-        {
-            continue;
-        }
-
-        nlohmann::json::array_t* configList =
-            configListFind->get_ptr<nlohmann::json::array_t*>();
-        if (configList == nullptr)
-        {
-            continue;
-        }
-        applyConfigExposeActions(matches, expose, exposeKey, *configList);
+        applyConfigExposeActions(matches, expose, exposeKey, config);
     }
 
     if (!matches.empty())
@@ -464,7 +458,7 @@ static std::string generateDeviceName(
 static void applyTemplateAndExposeActions(
     const std::string& recordName, const DBusObject& dbusObject,
     size_t foundDeviceIdx, const std::optional<std::string>& replaceStr,
-    nlohmann::json::object_t& value, nlohmann::json& systemConfiguration)
+    nlohmann::json::object_t& value, SystemConfiguration& systemConfiguration)
 {
     for (auto& [key, valueInner] : value)
     {
@@ -478,8 +472,8 @@ static void applyTemplateAndExposeActions(
 
 void scan::detail::restorePersistedConfigurations(
     FoundDevices& foundDevices, const std::string& probeName,
-    nlohmann::json& systemConfiguration, nlohmann::json& lastJson,
-    nlohmann::json& missingConfigurations,
+    SystemConfiguration& systemConfiguration, SystemConfiguration& lastJson,
+    SystemConfiguration& missingConfigurations,
     std::vector<std::string>& passedProbes, std::set<nlohmann::json>& usedNames,
     std::list<size_t>& indexes)
 {
@@ -489,20 +483,23 @@ void scan::detail::restorePersistedConfigurations(
     {
         std::string recordName = getRecordName(itr->interface, probeName);
 
-        auto record = systemConfiguration.find(recordName);
-        if (record == systemConfiguration.end())
+        nlohmann::json::object_t* record = nullptr;
+        if (!systemConfiguration.contains(recordName))
         {
-            record = lastJson.find(recordName);
-            if (record == lastJson.end())
+            if (!lastJson.contains(recordName))
             {
                 itr++;
                 continue;
             }
-
+            record = &lastJson.at(recordName);
             pruneRecordExposes(*record);
-
-            systemConfiguration[recordName] = *record;
+            systemConfiguration.insert_or_assign(recordName, *record);
         }
+        else
+        {
+            record = &systemConfiguration.at(recordName);
+        }
+
         passedProbes.push_back(record->at("Name").get<std::string>());
         missingConfigurations.erase(recordName);
 
@@ -539,7 +536,7 @@ static void replaceTemplateFields(
 static void applyExposes(const std::string& recordName, EMConfig& record,
                          const DBusObject& dbusObject, size_t foundDeviceIdx,
                          std::optional<std::string>& replaceStr,
-                         nlohmann::json& systemConfiguration)
+                         SystemConfiguration& systemConfiguration)
 {
     for (auto& value : record.exposesRecords)
     {
@@ -558,13 +555,14 @@ static void applyExposes(const std::string& recordName, EMConfig& record,
 void scan::detail::applyTemplatesAndExposeActions(
     const std::string& recordName, EMConfig& record,
     const DBusObject& dbusObject, size_t foundDeviceIdx,
-    std::optional<std::string>& replaceStr, nlohmann::json& systemConfiguration)
+    std::optional<std::string>& replaceStr,
+    SystemConfiguration& systemConfiguration)
 {
     replaceTemplateFields(record, dbusObject, foundDeviceIdx, replaceStr);
 
     // Publish the resolved configuration temporarily so actions can reference
     // other exposes in the same configuration.
-    systemConfiguration[recordName] = record.toJson();
+    systemConfiguration.insert_or_assign(recordName, record.toJsonObject());
 
     applyExposes(recordName, record, dbusObject, foundDeviceIdx, replaceStr,
                  systemConfiguration);
@@ -629,7 +627,7 @@ void scan::PerformScan::updateSystemConfigurationForDevice(
     addRecordProbePath(record, device.path, _em.topology);
 
     // overwrite ourselves with cleaned up version
-    _em.systemConfiguration[recordName] = record.toJson();
+    _em.systemConfiguration.insert_or_assign(recordName, record.toJsonObject());
     _missingConfigurations.erase(recordName);
 }
 
