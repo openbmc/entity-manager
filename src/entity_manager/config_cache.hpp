@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include <nlohmann/json.hpp>
+#include "system_configuration.hpp"
 
 #include <filesystem>
 
@@ -17,7 +17,7 @@ class ConfigCache
     {}
 
     // @returns false on error
-    bool writeJsonFiles(const nlohmann::json& systemConfiguration);
+    bool writeJsonFiles(const SystemConfiguration& systemConfiguration);
 
     const std::filesystem::path configurationOutDir;
     const std::filesystem::path currentConfiguration;
