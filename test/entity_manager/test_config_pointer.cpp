@@ -38,7 +38,7 @@ static nlohmann::json::object_t getSampleConfig()
 
 TEST(ConfigPointer, writeBoard)
 {
-    nlohmann::json systemConfiguration;
+    SystemConfiguration systemConfiguration;
     systemConfiguration["823"] = nlohmann::json::object_t();
 
     ConfigPointer ptr("823");
@@ -53,7 +53,7 @@ TEST(ConfigPointer, writeBoard)
 
 TEST(ConfigPointer, writeExposesRecord)
 {
-    nlohmann::json systemConfiguration;
+    SystemConfiguration systemConfiguration;
     systemConfiguration["823"] = getSampleConfig();
 
     systemConfiguration["823"]["Exposes"].push_back(getSampleConfigRecord());
@@ -80,7 +80,7 @@ TEST(ConfigPointer, writeExposesRecord)
 
 TEST(ConfigPointer, writeConfigProperty)
 {
-    nlohmann::json systemConfiguration;
+    SystemConfiguration systemConfiguration;
     systemConfiguration["823"] = getSampleConfig();
 
     systemConfiguration["823"]["Exposes"].push_back(getSampleConfigRecord());
@@ -102,7 +102,7 @@ TEST(ConfigPointer, writeConfigProperty)
 
 TEST(ConfigPointer, writeConfigArrayProperty)
 {
-    nlohmann::json systemConfiguration;
+    SystemConfiguration systemConfiguration;
     systemConfiguration["823"] = getSampleConfig();
 
     systemConfiguration["823"]["Exposes"].push_back(getSampleConfigRecord());
@@ -116,7 +116,8 @@ TEST(ConfigPointer, writeConfigArrayProperty)
     threshold1["Severity"] = "1";
     threshold1["Value"] = "10";
 
-    std::cout << systemConfiguration.dump(4) << std::endl << std::endl;
+    std::cout << nlohmann::json(systemConfiguration["823"]).dump(4) << std::endl
+              << std::endl;
 
     ptr.write(threshold1, systemConfiguration);
 
@@ -125,7 +126,8 @@ TEST(ConfigPointer, writeConfigArrayProperty)
     ASSERT_TRUE(systemConfiguration["823"].contains("Exposes"));
     ASSERT_EQ(systemConfiguration["823"]["Exposes"].size(), 1);
 
-    std::cout << systemConfiguration.dump(4) << std::endl << std::endl;
+    std::cout << nlohmann::json(systemConfiguration["823"]).dump(4) << std::endl
+              << std::endl;
 
     ASSERT_TRUE(
         systemConfiguration["823"]["Exposes"][0].contains("Thresholds"));

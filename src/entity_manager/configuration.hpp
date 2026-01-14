@@ -2,6 +2,7 @@
 
 #include "config_pointer.hpp"
 #include "em_config.hpp"
+#include "system_configuration.hpp"
 
 #include <nlohmann/json.hpp>
 #include <phosphor-logging/lg2.hpp>
@@ -30,11 +31,11 @@ class Configuration
     std::vector<std::filesystem::path> configurationDirectories;
 };
 
-bool writeJsonFiles(const nlohmann::json& systemConfiguration);
+bool writeJsonFiles(const SystemConfiguration& systemConfiguration);
 
 template <typename JsonType>
 bool setJsonFromPointer(const ConfigPointer& configPtr, const JsonType& value,
-                        nlohmann::json& systemConfiguration)
+                        SystemConfiguration& systemConfiguration)
 {
     try
     {
@@ -46,8 +47,8 @@ bool setJsonFromPointer(const ConfigPointer& configPtr, const JsonType& value,
     }
 }
 
-void deriveNewConfiguration(const nlohmann::json& oldConfiguration,
-                            nlohmann::json& newConfiguration);
+void deriveNewConfiguration(const SystemConfiguration& oldConfiguration,
+                            SystemConfiguration& newConfiguration);
 
 bool validateJson(const nlohmann::json& schemaFile,
                   const nlohmann::json& input);
