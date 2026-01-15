@@ -1,5 +1,6 @@
 #pragma once
 
+#include "config_pointer.hpp"
 #include "configuration.hpp"
 
 #include <boost/asio/io_context.hpp>
@@ -33,33 +34,33 @@ class EMDBusInterface
     std::vector<std::weak_ptr<sdbusplus::asio::dbus_interface>>&
         getDeviceInterfaces(const nlohmann::json& device);
 
-    void createAddObjectMethod(const std::string& jsonPointerPath,
+    void createAddObjectMethod(const std::string& boardId,
                                const sdbusplus::object_path& path,
                                nlohmann::json& systemConfiguration,
                                const std::string& board);
 
     void populateInterfaceFromJson(
-        nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,
+        nlohmann::json& systemConfiguration, const ConfigPointer& configPtr,
         std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
         nlohmann::json& dict,
         sdbusplus::asio::PropertyPermission permission =
             sdbusplus::asio::PropertyPermission::readOnly);
 
     void createDeleteObjectMethod(
-        const std::string& jsonPointerPath,
+        const ConfigPointer& configPtr,
         const std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
         nlohmann::json& systemConfiguration);
 
   private:
     void addObject(
         const std::flat_map<std::string, JsonVariantType, std::less<>>& data,
-        nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,
+        nlohmann::json& systemConfiguration, const std::string& boardId,
         const sdbusplus::object_path& path, const std::string& board);
 
     // @brief: same as 'addObject', but operates on json
     void addObjectJson(nlohmann::json& newData,
                        nlohmann::json& systemConfiguration,
-                       const std::string& jsonPointerPath,
+                       const std::string& boardId,
                        const sdbusplus::object_path& path,
                        const std::string& board);
 
@@ -82,7 +83,7 @@ void addArrayToDbus(const std::string& name, const nlohmann::json& array,
                     sdbusplus::asio::dbus_interface* iface,
                     sdbusplus::asio::PropertyPermission permission,
                     nlohmann::json& systemConfiguration,
-                    const std::string& jsonPointerString)
+                    const ConfigPointer& configPtr)
 {
     std::vector<PropertyType> values;
     for (const auto& property : array)
@@ -102,12 +103,11 @@ void addArrayToDbus(const std::string& name, const nlohmann::json& array,
     {
         iface->register_property(
             name, values,
-            [&systemConfiguration,
-             jsonPointerString{std::string(jsonPointerString)}](
-                const std::vector<PropertyType>& newVal,
-                std::vector<PropertyType>& val) {
+            [&systemConfiguration, name,
+             configPtr](const std::vector<PropertyType>& newVal,
+                        std::vector<PropertyType>& val) {
                 val = newVal;
-                if (!setJsonFromPointer(jsonPointerString, val,
+                if (!setJsonFromPointer(configPtr.withName(name), val,
                                         systemConfiguration))
                 {
                     lg2::error("error setting json field");
@@ -127,7 +127,7 @@ template <typename PropertyType>
 void addProperty(const std::string& name, const PropertyType& value,
                  sdbusplus::asio::dbus_interface* iface,
                  nlohmann::json& systemConfiguration,
-                 const std::string& jsonPointerString,
+                 const ConfigPointer& configPtr,
                  sdbusplus::asio::PropertyPermission permission)
 {
     if (permission == sdbusplus::asio::PropertyPermission::readOnly)
@@ -137,11 +137,10 @@ void addProperty(const std::string& name, const PropertyType& value,
     }
     iface->register_property(
         name, value,
-        [&systemConfiguration,
-         jsonPointerString{std::string(jsonPointerString)}](
-            const PropertyType& newVal, PropertyType& val) {
+        [&systemConfiguration, configPtr,
+         name](const PropertyType& newVal, PropertyType& val) {
             val = newVal;
-            if (!setJsonFromPointer(jsonPointerString, val,
+            if (!setJsonFromPointer(configPtr.withName(name), val,
                                     systemConfiguration))
             {
                 lg2::error("error setting json field");
@@ -161,17 +160,17 @@ void addValueToDBus(const std::string& key, const nlohmann::json& value,
                     sdbusplus::asio::dbus_interface& iface,
                     sdbusplus::asio::PropertyPermission permission,
                     nlohmann::json& systemConfiguration,
-                    const std::string& path)
+                    const ConfigPointer& configPtr)
 {
     if (value.is_array())
     {
         addArrayToDbus<PropertyType>(key, value, &iface, permission,
-                                     systemConfiguration, path);
+                                     systemConfiguration, configPtr);
     }
     else
     {
         addProperty(key, value.get<PropertyType>(), &iface, systemConfiguration,
-                    path, permission);
+                    configPtr, permission);
     }
 }
 
