@@ -74,8 +74,7 @@ TEST_F(AddObjectTest, AddObject)
     iface->addObject(Params{{"Name", std::string{"Sensor1"}},
                             {"Type", std::string{"Temperature"}},
                             {"Address", uint64_t{0x41}}},
-                     sysConfig, "/" + std::string{kBoardId}, boardPath,
-                     kBoardId);
+                     sysConfig, kBoardId, boardPath, kBoardId);
 
     const auto& exposes = sysConfig[kBoardId]["Exposes"];
     ASSERT_FALSE(exposes.empty());
@@ -110,7 +109,7 @@ class AddObjectExposesTest : public AddObjectTest
                           std::less<>>;
         iface->addObject(
             Params{{"Name", name}, {"Type", std::string{"Temperature"}}},
-            sysConfig, "/" + std::string{kBoardId}, boardPath, kBoardId);
+            sysConfig, kBoardId, boardPath, kBoardId);
     }
 
     const nlohmann::json& exposes()
