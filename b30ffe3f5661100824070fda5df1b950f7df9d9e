@@ -43,6 +43,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4f47a73d_5dbf7409",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 711,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-15T23:56:47Z",
+      "side": 1,
+      "message": "Can we remove the match on the path directly or should we check which interface was removed?\n\nIt should work for `xyz.openbmc_project.FruDevice`, but will it still work if there are multiple interfaces.\n\nFor example, probe interfaces are `{I1}` and there are other unrelated interfaces `{I2}`.\n\n`/example/e1` has interfaces `I1` and `I2`\n\n-\u003e properties changed match is created on `/example/e1`\n\n`/example/e1` has interface `I2` removed\n\n-\u003e `/example/e1` has their properties changed match removed.\n\n-\u003e `propertiesChangedCallback` is not triggered since `I2` is not a probe interface\n\n-\u003e `/example/e1` has a property change on `I1`\n\n-\u003e the property change should cause a configuration change, but does not, due to the missing D-Bus match.\n\n\nI was just wondering about this case, maybe someone can tell if it\u0027s a real problem or i got the wrong idea.",
+      "revId": "b30ffe3f5661100824070fda5df1b950f7df9d9e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1f3bc36e_25f10a23",
         "filename": "src/entity_manager/entity_manager.cpp",
         "patchSetId": 2
