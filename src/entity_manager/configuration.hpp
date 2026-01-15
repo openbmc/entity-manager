@@ -1,8 +1,10 @@
 #pragma once
 
+#include "config_pointer.hpp"
 #include "em_config.hpp"
 
 #include <nlohmann/json.hpp>
+#include <phosphor-logging/lg2.hpp>
 
 #include <unordered_set>
 #include <vector>
@@ -31,14 +33,52 @@ class Configuration
 bool writeJsonFiles(const nlohmann::json& systemConfiguration);
 
 template <typename JsonType>
-bool setJsonFromPointer(const std::string& ptrStr, const JsonType& value,
+bool setJsonFromPointer(const ConfigPointer& configPtr, const std::string& name,
+                        const JsonType& value,
                         nlohmann::json& systemConfiguration)
 {
     try
     {
-        nlohmann::json::json_pointer ptr(ptrStr);
-        nlohmann::json& ref = systemConfiguration[ptr];
-        ref = value;
+        if (!systemConfiguration.contains(configPtr.boardId))
+        {
+            return false;
+        }
+        nlohmann::json& ref = systemConfiguration.at(configPtr.boardId);
+        if (!configPtr.exposesIndex.has_value())
+        {
+            ref[name] = value;
+            return true;
+        }
+        const uint64_t exposesIndex = configPtr.exposesIndex.value();
+        if (!ref.contains("Exposes"))
+        {
+            lg2::error("error: config: missing 'Exposes' property");
+            return false;
+        }
+        nlohmann::json& exposesJson = ref["Exposes"];
+        if (!exposesJson.is_array())
+        {
+            lg2::error("error: config: 'Exposes' is not an array");
+            return false;
+        }
+        if (exposesJson.size() <= exposesIndex)
+        {
+            lg2::error("error: config pointer: exposes index out of bounds");
+            return false;
+        }
+        nlohmann::json& record = exposesJson[exposesIndex];
+        if (!configPtr.propertyName.has_value())
+        {
+            record = value;
+            return true;
+        }
+        if (!record.contains(configPtr.propertyName.value()))
+        {
+            lg2::error("error: config ptr: could not set property {NAME}",
+                       "NAME", configPtr.propertyName.value());
+            return false;
+        }
+        record[configPtr.propertyName.value()] = value;
         return true;
     }
     catch (const nlohmann::json::out_of_range&)
