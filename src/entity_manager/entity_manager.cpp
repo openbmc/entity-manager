@@ -590,12 +590,9 @@ static bool iaContainsProbeInterface(
 
 // Check if InterfacesRemoved payload contains an iface that needs probing.
 static bool irContainsProbeInterface(
-    sdbusplus::message_t& msg,
+    const std::vector<std::string>& interfaces,
     const std::unordered_set<std::string>& probeInterfaces)
 {
-    sdbusplus::message::object_path path;
-    std::vector<std::string> interfaces;
-    msg.read(path, interfaces);
     return std::ranges::any_of(interfaces,
                                [&probeInterfaces](const auto& ifaceName) {
                                    return probeInterfaces.contains(ifaceName);
@@ -702,7 +699,19 @@ void EntityManager::initFilters(
         static_cast<sdbusplus::bus_t&>(*systemBus),
         sdbusplus::bus::match::rules::interfacesRemoved(),
         [this, probeInterfaces](sdbusplus::message_t& msg) {
-            if (irContainsProbeInterface(msg, probeInterfaces))
+            sdbusplus::message::object_path path;
+            std::vector<std::string> interfaces;
+            msg.read(path, interfaces);
+            const std::string pathStr = path.str;
+
+            // Clean up match for removed object path to prevent leaks
+            auto it = dbusMatches.find(pathStr);
+            if (it != dbusMatches.end())
+            {
+                dbusMatches.erase(it);
+            }
+
+            if (irContainsProbeInterface(interfaces, probeInterfaces))
             {
                 propertiesChangedCallback();
             }
