@@ -162,7 +162,6 @@ void EntityManager::postBoardToDBus(
     }
     std::string configName = *configNamePtr;
     std::string configNameOrig = *configNamePtr;
-    std::string jsonPointerPath = "/" + configId;
     // loop through newConfiguration, but use values from system
     // configuration to be able to modify via dbus later
     auto configValues = systemConfiguration[configId];
@@ -190,10 +189,8 @@ void EntityManager::postBoardToDBus(
             sdbusplus::common::xyz::openbmc_project::inventory::Item::interface,
             configNameOrig);
 
-    dbus_interface.createAddObjectMethod(jsonPointerPath, objectPath,
+    dbus_interface.createAddObjectMethod(configId, objectPath,
                                          systemConfiguration, configNameOrig);
-
-    jsonPointerPath += '/';
 
     // A configuration type only gets a top-level interface if it is listed
     // here. Adding a type to the schema is therefore not enough to make
@@ -240,7 +237,7 @@ void EntityManager::postBoardToDBus(
             }
 
             dbus_interface.populateInterfaceFromJson(
-                systemConfiguration, jsonPointerPath + propName, iface,
+                systemConfiguration, ConfigPointer(configId, propName), iface,
                 propValue);
         }
     }
@@ -259,16 +256,11 @@ void EntityManager::postBoardToDBus(
     {
         return;
     }
-    // iterate through exposes
-    jsonPointerPath += "Exposes/";
 
-    // store the configuration level pointer so we can modify it on the way down
-    std::string jsonPointerPathConfig = jsonPointerPath;
     size_t exposesIndex = -1;
     for (nlohmann::json& item : *exposes)
     {
-        postExposesRecordsToDBus(item, exposesIndex, configNameOrig,
-                                 jsonPointerPath, jsonPointerPathConfig,
+        postExposesRecordsToDBus(item, exposesIndex, configNameOrig, configId,
                                  objectPath, configType);
     }
 
@@ -277,13 +269,11 @@ void EntityManager::postBoardToDBus(
 
 void EntityManager::postExposesRecordsToDBus(
     nlohmann::json& item, size_t& exposesIndex,
-    const std::string& configNameOrig, std::string jsonPointerPath,
-    const std::string& jsonPointerPathConfig,
+    const std::string& configNameOrig, const std::string& boardId,
     const sdbusplus::object_path& objectPath, const std::string& configType)
 {
     exposesIndex++;
-    jsonPointerPath = jsonPointerPathConfig;
-    jsonPointerPath += std::to_string(exposesIndex);
+    const ConfigPointer configPointerPath(boardId, exposesIndex);
 
     auto findName = item.find("Name");
     if (findName == item.end())
@@ -329,7 +319,7 @@ void EntityManager::postExposesRecordsToDBus(
                     interface,
                 configNameOrig);
         dbus_interface.populateInterfaceFromJson(
-            systemConfiguration, jsonPointerPath, bmcIface, item,
+            systemConfiguration, configPointerPath, bmcIface, item,
             getPermission(itemType));
     }
     else if (itemType == "System")
@@ -341,19 +331,16 @@ void EntityManager::postExposesRecordsToDBus(
                     System::interface,
                 configNameOrig);
         dbus_interface.populateInterfaceFromJson(
-            systemConfiguration, jsonPointerPath, systemIface, item,
+            systemConfiguration, configPointerPath, systemIface, item,
             getPermission(itemType));
     }
 
     for (const auto& [name, config] : item.items())
     {
-        jsonPointerPath = jsonPointerPathConfig;
-        jsonPointerPath.append(std::to_string(exposesIndex))
-            .append("/")
-            .append(name);
-
-        if (!postConfigurationRecord(name, config, configNameOrig, itemType,
-                                     jsonPointerPath, ifacePath))
+        if (!postConfigurationRecord(
+                name, config, configNameOrig, itemType,
+                configPointerPath.withExposesIndexAndName(exposesIndex, name),
+                ifacePath))
         {
             break;
         }
@@ -365,7 +352,7 @@ void EntityManager::postExposesRecordsToDBus(
             configNameOrig);
 
     dbus_interface.populateInterfaceFromJson(
-        systemConfiguration, jsonPointerPath, itemIface, item,
+        systemConfiguration, configPointerPath, itemIface, item,
         getPermission(itemType));
 
     topology.addBoard(objectPath, configType, item);
@@ -374,7 +361,7 @@ void EntityManager::postExposesRecordsToDBus(
 bool EntityManager::postConfigurationRecord(
     const std::string& name, nlohmann::json& config,
     const std::string& configNameOrig, const std::string& itemType,
-    const std::string& jsonPointerPath, const sdbusplus::object_path& ifacePath)
+    const ConfigPointer& configPtr, const sdbusplus::object_path& ifacePath)
 {
     if (config.type() == nlohmann::json::value_t::object)
     {
@@ -386,7 +373,7 @@ bool EntityManager::postConfigurationRecord(
                                            configNameOrig);
 
         dbus_interface.populateInterfaceFromJson(
-            systemConfiguration, jsonPointerPath, objectIface, config,
+            systemConfiguration, configPtr, objectIface, config,
             getPermission(name));
     }
     else if (config.type() == nlohmann::json::value_t::array)
@@ -429,9 +416,8 @@ bool EntityManager::postConfigurationRecord(
                                                configNameOrig);
 
             dbus_interface.populateInterfaceFromJson(
-                systemConfiguration,
-                jsonPointerPath + "/" + std::to_string(index), objectIface,
-                arrayItem, getPermission(name));
+                systemConfiguration, configPtr.withArrayIndex(index),
+                objectIface, arrayItem, getPermission(name));
             index++;
         }
     }
