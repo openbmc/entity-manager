@@ -136,7 +136,6 @@ void EntityManager::postBoardToDBus(
     }
     std::string boardName = *boardNamePtr;
     std::string boardNameOrig = *boardNamePtr;
-    std::string jsonPointerPath = "/" + boardId;
     // loop through newConfiguration, but use values from system
     // configuration to be able to modify via dbus later
     auto boardValues = systemConfiguration[boardId];
@@ -176,12 +175,12 @@ void EntityManager::postBoardToDBus(
     std::shared_ptr<sdbusplus::asio::dbus_interface> boardIface =
         dbus_interface.createInterface(boardPath, invItemIntf, boardNameOrig);
 
-    dbus_interface.createAddObjectMethod(jsonPointerPath, boardPath,
+    dbus_interface.createAddObjectMethod(boardId, boardPath,
                                          systemConfiguration, boardNameOrig);
 
     dbus_interface.populateInterfaceFromJson(
-        systemConfiguration, jsonPointerPath, boardIface, boardValues);
-    jsonPointerPath += "/";
+        systemConfiguration, ConfigPointer(boardId), boardIface, boardValues);
+
     // iterate through board properties
     for (const auto& [propName, propValue] : boardValues.items())
     {
@@ -192,7 +191,7 @@ void EntityManager::postBoardToDBus(
                                                boardNameOrig);
 
             dbus_interface.populateInterfaceFromJson(
-                systemConfiguration, jsonPointerPath + propName, iface,
+                systemConfiguration, ConfigPointer(boardId, propName), iface,
                 propValue);
         }
     }
@@ -202,16 +201,11 @@ void EntityManager::postBoardToDBus(
     {
         return;
     }
-    // iterate through exposes
-    jsonPointerPath += "Exposes/";
 
-    // store the board level pointer so we can modify it on the way down
-    std::string jsonPointerPathBoard = jsonPointerPath;
     size_t exposesIndex = -1;
     for (nlohmann::json& item : *exposes)
     {
-        postExposesRecordsToDBus(item, exposesIndex, boardNameOrig,
-                                 jsonPointerPath, jsonPointerPathBoard,
+        postExposesRecordsToDBus(item, exposesIndex, boardNameOrig, boardId,
                                  boardPath, boardType);
     }
 
@@ -220,13 +214,11 @@ void EntityManager::postBoardToDBus(
 
 void EntityManager::postExposesRecordsToDBus(
     nlohmann::json& item, size_t& exposesIndex,
-    const std::string& boardNameOrig, std::string jsonPointerPath,
-    const std::string& jsonPointerPathBoard, const std::string& boardPath,
-    const std::string& boardType)
+    const std::string& boardNameOrig, const std::string& boardId,
+    const std::string& boardPath, const std::string& boardType)
 {
     exposesIndex++;
-    jsonPointerPath = jsonPointerPathBoard;
-    jsonPointerPath += std::to_string(exposesIndex);
+    const ConfigPointer configPointerPath(boardId, exposesIndex);
 
     auto findName = item.find("Name");
     if (findName == item.end())
@@ -271,7 +263,7 @@ void EntityManager::postExposesRecordsToDBus(
                     interface,
                 boardNameOrig);
         dbus_interface.populateInterfaceFromJson(
-            systemConfiguration, jsonPointerPath, bmcIface, item,
+            systemConfiguration, configPointerPath, bmcIface, item,
             getPermission(itemType));
     }
     else if (itemType == "System")
@@ -283,19 +275,16 @@ void EntityManager::postExposesRecordsToDBus(
                     System::interface,
                 boardNameOrig);
         dbus_interface.populateInterfaceFromJson(
-            systemConfiguration, jsonPointerPath, systemIface, item,
+            systemConfiguration, configPointerPath, systemIface, item,
             getPermission(itemType));
     }
 
     for (const auto& [name, config] : item.items())
     {
-        jsonPointerPath = jsonPointerPathBoard;
-        jsonPointerPath.append(std::to_string(exposesIndex))
-            .append("/")
-            .append(name);
-
-        if (!postConfigurationRecord(name, config, boardNameOrig, itemType,
-                                     jsonPointerPath, ifacePath))
+        if (!postConfigurationRecord(
+                name, config, boardNameOrig, itemType,
+                configPointerPath.withExposesIndexAndName(exposesIndex, name),
+                ifacePath))
         {
             break;
         }
@@ -307,7 +296,7 @@ void EntityManager::postExposesRecordsToDBus(
             boardNameOrig);
 
     dbus_interface.populateInterfaceFromJson(
-        systemConfiguration, jsonPointerPath, itemIface, item,
+        systemConfiguration, configPointerPath, itemIface, item,
         getPermission(itemType));
 
     topology.addBoard(boardPath, boardType, boardNameOrig, item);
@@ -316,7 +305,7 @@ void EntityManager::postExposesRecordsToDBus(
 bool EntityManager::postConfigurationRecord(
     const std::string& name, nlohmann::json& config,
     const std::string& boardNameOrig, const std::string& itemType,
-    const std::string& jsonPointerPath, const std::string& ifacePath)
+    const ConfigPointer& configPtr, const std::string& ifacePath)
 {
     if (config.type() == nlohmann::json::value_t::object)
     {
@@ -327,7 +316,7 @@ bool EntityManager::postConfigurationRecord(
             dbus_interface.createInterface(ifacePath, ifaceName, boardNameOrig);
 
         dbus_interface.populateInterfaceFromJson(
-            systemConfiguration, jsonPointerPath, objectIface, config,
+            systemConfiguration, configPtr, objectIface, config,
             getPermission(name));
     }
     else if (config.type() == nlohmann::json::value_t::array)
@@ -370,9 +359,8 @@ bool EntityManager::postConfigurationRecord(
                                                boardNameOrig);
 
             dbus_interface.populateInterfaceFromJson(
-                systemConfiguration,
-                jsonPointerPath + "/" + std::to_string(index), objectIface,
-                arrayItem, getPermission(name));
+                systemConfiguration, configPtr.withArrayIndex(index),
+                objectIface, arrayItem, getPermission(name));
             index++;
         }
     }
