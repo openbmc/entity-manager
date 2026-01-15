@@ -1,8 +1,10 @@
 #pragma once
 
+#include "config_pointer.hpp"
 #include "em_config.hpp"
 
 #include <nlohmann/json.hpp>
+#include <phosphor-logging/lg2.hpp>
 
 #include <unordered_set>
 #include <vector>
@@ -29,15 +31,12 @@ class Configuration
 };
 
 template <typename JsonType>
-bool setJsonFromPointer(const std::string& ptrStr, const JsonType& value,
+bool setJsonFromPointer(const ConfigPointer& configPtr, const JsonType& value,
                         nlohmann::json& systemConfiguration)
 {
     try
     {
-        nlohmann::json::json_pointer ptr(ptrStr);
-        nlohmann::json& ref = systemConfiguration[ptr];
-        ref = value;
-        return true;
+        return configPtr.write(value, systemConfiguration);
     }
     catch (const nlohmann::json::out_of_range&)
     {
