@@ -33,8 +33,6 @@
 #include <functional>
 #include <map>
 #include <regex>
-constexpr const char* tempConfigDir = "/tmp/configuration/";
-constexpr const char* lastConfiguration = "/tmp/configuration/last.json";
 
 static constexpr std::array<const char*, 6> settableInterfaces = {
     "FanProfile", "Pid", "Pid.Zone", "Stepwise", "Thresholds", "Polling"};
@@ -613,39 +611,36 @@ void EntityManager::handleCurrentConfigurationJson()
     {
         if (std::filesystem::is_regular_file(currentConfiguration))
         {
-            // this file could just be deleted, but it's nice for debug
-            std::filesystem::create_directory(tempConfigDir);
-            std::filesystem::remove(lastConfiguration);
-            std::filesystem::copy(currentConfiguration, lastConfiguration);
-            std::filesystem::remove(currentConfiguration);
-
-            std::ifstream jsonStream(lastConfiguration);
+            std::ifstream jsonStream(currentConfiguration);
             if (jsonStream.good())
             {
                 auto data = nlohmann::json::parse(jsonStream, nullptr, false);
                 if (data.is_discarded())
                 {
                     lg2::error("syntax error in {PATH}", "PATH",
-                               lastConfiguration);
+                               currentConfiguration);
                 }
                 else
                 {
                     lastJson = std::move(data);
+
+                    lg2::debug(
+                        "finished reading last configuration from {PATH}",
+                        "PATH", currentConfiguration);
                 }
             }
             else
             {
-                lg2::error("unable to open {PATH}", "PATH", lastConfiguration);
+                lg2::error("unable to open {PATH}", "PATH",
+                           currentConfiguration);
             }
         }
     }
-    else
-    {
-        // not an error, just logging at this level to make it in the journal
-        std::error_code ec;
-        lg2::error("Clearing previous configuration");
-        std::filesystem::remove(currentConfiguration, ec);
-    }
+
+    // not an error, just logging at this level to make it in the journal
+    std::error_code ec;
+    lg2::info("Clearing previous configuration");
+    std::filesystem::remove(currentConfiguration, ec);
 }
 
 void EntityManager::registerCallback(const std::string& path)
