@@ -414,8 +414,7 @@ static void pruneDevice(const nlohmann::json& systemConfiguration,
     logDeviceRemoved(device);
 }
 
-void EntityManager::startRemovedTimer(boost::asio::steady_timer& timer,
-                                      nlohmann::json& systemConfiguration)
+void EntityManager::startRemovedTimer(boost::asio::steady_timer& timer)
 {
     if (systemConfiguration.empty() || lastJson.empty())
     {
@@ -432,26 +431,25 @@ void EntityManager::startRemovedTimer(boost::asio::steady_timer& timer,
     }
 
     timer.expires_after(std::chrono::seconds(10));
-    timer.async_wait(
-        [&systemConfiguration, this](const boost::system::error_code& ec) {
-            if (ec == boost::asio::error::operation_aborted)
-            {
-                return;
-            }
+    timer.async_wait([this](const boost::system::error_code& ec) {
+        if (ec == boost::asio::error::operation_aborted)
+        {
+            return;
+        }
 
-            bool powerOff = !powerStatus.isPowerOn();
-            for (const auto& [name, device] : lastJson.items())
-            {
-                pruneDevice(systemConfiguration, powerOff, scannedPowerOff,
-                            name, device);
-            }
+        bool powerOff = !powerStatus.isPowerOn();
+        for (const auto& [name, device] : lastJson.items())
+        {
+            pruneDevice(systemConfiguration, powerOff, scannedPowerOff, name,
+                        device);
+        }
 
-            scannedPowerOff = true;
-            if (!powerOff)
-            {
-                scannedPowerOn = true;
-            }
-        });
+        scannedPowerOff = true;
+        if (!powerOff)
+        {
+            scannedPowerOn = true;
+        }
+    });
 }
 
 void EntityManager::pruneConfiguration(bool powerOff, const std::string& name,
@@ -505,7 +503,7 @@ void EntityManager::publishNewConfiguration(
         postToDbus(newConfiguration);
         if (count == instance)
         {
-            startRemovedTimer(timer, systemConfiguration);
+            startRemovedTimer(timer);
         }
     });
 }
