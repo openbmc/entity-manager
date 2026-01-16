@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0a6a82ce_79e5d785",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 642,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-16T21:21:12Z",
+      "side": 1,
+      "message": "Can\u0027t print at error level if it\u0027s the default / happy path, should we make it `lg2::info` ?",
+      "range": {
+        "startLine": 642,
+        "startChar": 0,
+        "endLine": 642,
+        "endChar": 2
+      },
+      "revId": "1e7edc44d7b786ef49946100a13264ecd20e1614",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0b646225_8ab3c056",
         "filename": "src/entity_manager/entity_manager.cpp",
         "patchSetId": 1
@@ -14,6 +37,30 @@
       "writtenOn": "2026-01-16T20:02:43Z",
       "side": 1,
       "message": "This is a different path now that runs every time. How will it have a file to read from last time if it always removes it?",
+      "range": {
+        "startLine": 640,
+        "startChar": 0,
+        "endLine": 643,
+        "endChar": 54
+      },
+      "revId": "1e7edc44d7b786ef49946100a13264ecd20e1614",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b72821c_646d20d4",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 643,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-16T21:21:12Z",
+      "side": 1,
+      "message": "\u003e This is a different path now that runs every time\n\nRemoving `currentConfiguration` is the last file related step in both code path before this change. \n\nSo before this change, on line 620 and line 647 it was removed in both cases.\n\nI am not considering the case where it\u0027s not a regular file because i do not think it will actually happen.\n\nI do not have the exact code path at hand, but when EM derives a new configuration it writes it to file.\n\nFrom the logs in commit message, EM always ends up writing `currentConfiguration` independent of if it finds an existing file.",
+      "parentUuid": "0b646225_8ab3c056",
       "range": {
         "startLine": 640,
         "startChar": 0,
