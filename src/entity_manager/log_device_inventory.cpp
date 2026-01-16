@@ -57,10 +57,6 @@ void logDeviceAdded(const nlohmann::json& record)
     {
         return;
     }
-    if (!deviceHasLogging(record))
-    {
-        return;
-    }
 
     const InvAddRemoveInfo info = queryInvInfo(record);
 
@@ -73,11 +69,6 @@ void logDeviceAdded(const nlohmann::json& record)
 
 void logDeviceRemoved(const nlohmann::json& record)
 {
-    if (!deviceHasLogging(record))
-    {
-        return;
-    }
-
     const InvAddRemoveInfo info = queryInvInfo(record);
 
     sd_journal_send(
