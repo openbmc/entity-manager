@@ -215,16 +215,14 @@
             "Type": "TMP432"
         },
         {
-            "Address": "0x4d",
+            "Address": "0x48",
             "Bus": "$bus",
             "Name": "PDB_R_OUTLET_TEMP_C",
-            "Name1": "PDB_R_P12V_STBY_VRM_AMB_TEMP_C",
-            "Name2": "PDB_R_EAM3_AMB_TEMP_C",
-            "Type": "TMP432"
+            "Type": "TMP75"
         }
     ],
     "Name": "PDB_R",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Anacapa(?!.*EVT1).*RPDB', 'BOARD_MANUFACTURER': 'Inventec'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Anacapa.*EVT1.*RPDB', 'BOARD_MANUFACTURER': 'Inventec'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
