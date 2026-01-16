@@ -510,6 +510,64 @@ void EntityManager::publishNewConfiguration(
     });
 }
 
+void EntityManager::propertiesChangedCallbackDebounced(
+    const size_t count, const boost::system::error_code& ec)
+{
+    lg2::debug("properties changed callback timer expired");
+    if (ec == boost::asio::error::operation_aborted)
+    {
+        // we were cancelled
+        return;
+    }
+    if (ec)
+    {
+        lg2::error("async wait error {ERR}", "ERR", ec.message());
+        return;
+    }
+
+    if (propertiesChangedInProgress)
+    {
+        propertiesChangedCallback();
+        return;
+    }
+    propertiesChangedInProgress = true;
+
+    lg2::debug("properties changed callback in progress");
+
+    nlohmann::json oldConfiguration = systemConfiguration;
+    auto missingConfigurations = std::make_shared<nlohmann::json>();
+    *missingConfigurations = systemConfiguration;
+
+    auto perfScan = std::make_shared<scan::PerformScan>(
+        *this, *missingConfigurations, configuration.configurations, io,
+        [this, count, oldConfiguration, missingConfigurations]() {
+            // this is something that since ac has been applied to the
+            // bmc we saw, and we no longer see it
+            bool powerOff = !powerStatus.isPowerOn();
+            for (const auto& [name, device] : missingConfigurations->items())
+            {
+                pruneConfiguration(powerOff, name, device);
+            }
+            nlohmann::json newConfiguration = systemConfiguration;
+
+            deriveNewConfiguration(oldConfiguration, newConfiguration);
+
+            for (const auto& [_, device] : newConfiguration.items())
+            {
+                logDeviceAdded(device);
+            }
+
+            propertiesChangedInProgress = false;
+
+            boost::asio::post(io, [this, newConfiguration, count] {
+                publishNewConfiguration(std::ref(propertiesChangedInstance),
+                                        count, std::ref(propertiesChangedTimer),
+                                        newConfiguration);
+            });
+        });
+    perfScan->run();
+}
+
 // main properties changed entry
 void EntityManager::propertiesChangedCallback()
 {
@@ -520,63 +578,8 @@ void EntityManager::propertiesChangedCallback()
     propertiesChangedTimer.expires_after(std::chrono::milliseconds(500));
 
     // setup an async wait as we normally get flooded with new requests
-    propertiesChangedTimer.async_wait(
-        [this, count](const boost::system::error_code& ec) {
-            lg2::debug("properties changed callback timer expired");
-            if (ec == boost::asio::error::operation_aborted)
-            {
-                // we were cancelled
-                return;
-            }
-            if (ec)
-            {
-                lg2::error("async wait error {ERR}", "ERR", ec.message());
-                return;
-            }
-
-            if (propertiesChangedInProgress)
-            {
-                propertiesChangedCallback();
-                return;
-            }
-            propertiesChangedInProgress = true;
-
-            lg2::debug("properties changed callback in progress");
-
-            nlohmann::json oldConfiguration = systemConfiguration;
-            auto missingConfigurations = std::make_shared<nlohmann::json>();
-            *missingConfigurations = systemConfiguration;
-
-            auto perfScan = std::make_shared<scan::PerformScan>(
-                *this, *missingConfigurations, configuration.configurations, io,
-                [this, count, oldConfiguration, missingConfigurations]() {
-                    // this is something that since ac has been applied to the
-                    // bmc we saw, and we no longer see it
-                    bool powerOff = !powerStatus.isPowerOn();
-                    for (const auto& [name, device] :
-                         missingConfigurations->items())
-                    {
-                        pruneConfiguration(powerOff, name, device);
-                    }
-                    nlohmann::json newConfiguration = systemConfiguration;
-
-                    deriveNewConfiguration(oldConfiguration, newConfiguration);
-
-                    for (const auto& [_, device] : newConfiguration.items())
-                    {
-                        logDeviceAdded(device);
-                    }
-
-                    propertiesChangedInProgress = false;
-
-                    boost::asio::post(io, [this, newConfiguration, count] {
-                        publishNewConfiguration(
-                            std::ref(propertiesChangedInstance), count,
-                            std::ref(propertiesChangedTimer), newConfiguration);
-                    });
-                });
-            perfScan->run();
-        });
+    propertiesChangedTimer.async_wait(std::bind_front(
+        &EntityManager::propertiesChangedCallbackDebounced, this, count));
 }
 
 // Check if InterfacesAdded payload contains an iface that needs probing.

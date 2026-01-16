@@ -48,6 +48,9 @@ class EntityManager
     power::PowerStatusMonitor powerStatus;
 
     void propertiesChangedCallback();
+    void propertiesChangedCallbackDebounced(
+        size_t count, const boost::system::error_code& ec);
+
     void registerCallback(const std::string& path);
     void publishNewConfiguration(const size_t& instance, size_t count,
                                  boost::asio::steady_timer& timer,
