@@ -263,37 +263,35 @@ void exportDevice(const devices::ExportTemplate& exportTemplate,
                 destructor, hasHWMonDir, std::move(channels), io);
 }
 
-bool loadOverlays(const nlohmann::json& systemConfiguration,
+bool loadOverlays(const SystemConfiguration& systemConfiguration,
                   boost::asio::io_context& io)
 {
     lg2::debug("start loading device overlays");
 
     std::filesystem::create_directory(outputDir);
-    for (auto entity = systemConfiguration.begin();
-         entity != systemConfiguration.end(); entity++)
+    for (const auto& [name, entity] : systemConfiguration)
     {
-        auto findExposes = entity.value().find("Exposes");
-        if (findExposes == entity.value().end() ||
-            findExposes->type() != nlohmann::json::value_t::array)
-        {
-            continue;
-        }
-
-        for (const auto& configuration : *findExposes)
+        for (const auto& configuration : entity.exposesRecords)
         {
             auto findStatus = configuration.find("Status");
             // status missing is assumed to be 'okay'
-            if (findStatus != configuration.end() && *findStatus == "disabled")
+            if (findStatus != configuration.end() &&
+                configuration.at("Status") == "disabled")
             {
                 continue;
             }
-            auto findType = configuration.find("Type");
-            if (findType == configuration.end() ||
-                findType->type() != nlohmann::json::value_t::string)
+            if (!configuration.contains("Type"))
             {
                 continue;
             }
-            const std::string& type = findType.value().get<std::string>();
+            if (configuration.at("Type").type() !=
+                nlohmann::json::value_t::string)
+            {
+                continue;
+            }
+
+            const std::string& type =
+                configuration.at("Type").get<std::string>();
             const auto* device = std::ranges::find_if(
                 devices::exportTemplates,
                 [&type](const auto& tmp) { return tmp.type == type; });
