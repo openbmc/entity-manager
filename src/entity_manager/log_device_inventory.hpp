@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include "em_config.hpp"
+
 #include <nlohmann/json.hpp>
 
 struct InvAddRemoveInfo
@@ -13,8 +15,8 @@ struct InvAddRemoveInfo
     std::string name = "Unknown";
 };
 
-void logDeviceAdded(const nlohmann::json& record);
+void logDeviceAdded(const EMConfig& record);
 
-void logDeviceRemoved(const nlohmann::json& record);
+void logDeviceRemoved(const EMConfig& record);
 
-InvAddRemoveInfo queryInvInfo(const nlohmann::json& record);
+InvAddRemoveInfo queryInvInfo(const EMConfig& record);
