@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include <nlohmann/json.hpp>
+#include "em_config.hpp"
 
 #include <string>
 #include <unordered_set>
@@ -18,11 +18,9 @@ struct LegacyInvInfo
     std::string sn = "Unknown";
 };
 
-void logDeviceAdded(const nlohmann::json& record);
+void logDeviceAdded(const EMConfig& record);
 
-void logDeviceRemoved(const std::string& key, const nlohmann::json& record,
+void logDeviceRemoved(const std::string& key, const EMConfig& record,
                       std::unordered_set<std::string>& cachedBaseline);
 
-std::string queryInvName(const nlohmann::json& record);
-
-LegacyInvInfo queryLegacyInvInfo(const nlohmann::json& record);
+LegacyInvInfo queryLegacyInvInfo(const EMConfig& record);
