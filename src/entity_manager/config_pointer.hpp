@@ -57,7 +57,7 @@ struct ConfigPointer
                        boardId);
             return false;
         }
-        nlohmann::json::object_t& ref = systemConfiguration.at(boardId);
+        EMConfig& ref = systemConfiguration.at(boardId);
         if (!exposesIndex.has_value())
         {
             if (!propertyName.has_value())
@@ -68,35 +68,55 @@ struct ConfigPointer
                     lg2::error("error: config ptr: value is not an object");
                     return false;
                 }
-                ref = *valueJson
-                           .template get_ptr<const nlohmann::json::object_t*>();
+                auto optValue = EMConfig::fromJson(
+                    *valueJson
+                         .template get_ptr<const nlohmann::json::object_t*>());
+
+                if (!optValue.has_value())
+                {
+                    lg2::error("error: config ptr: value is not an EM Config");
+                    return false;
+                }
+
+                ref = optValue.value();
                 return true;
             }
-            ref[propertyName.value()] = value;
-            return true;
+            if (propertyName.value() == "Name")
+            {
+                auto newValue = nlohmann::json(value);
+                ref.name = *newValue.template get_ptr<const std::string*>();
+                return true;
+            }
+            if (propertyName.value() == "Type")
+            {
+                auto newValue = nlohmann::json(value);
+                const auto* newValuePtr =
+                    newValue.template get_ptr<const std::string*>();
+                ref.type = *newValuePtr;
+                return true;
+            }
+            return false;
         }
         const uint64_t exposesIndexValue = exposesIndex.value();
-        if (!ref.contains("Exposes"))
-        {
-            lg2::error("error: config ptr: missing 'Exposes' property");
-            return false;
-        }
-        nlohmann::json& exposesJson = ref["Exposes"];
-        if (!exposesJson.is_array())
-        {
-            lg2::error("error: config ptr: 'Exposes' is not an array");
-            return false;
-        }
-        if (exposesJson.size() <= exposesIndexValue)
+        if (ref.exposesRecords.size() <= exposesIndexValue)
         {
             lg2::error("error: config ptr: exposes index {INDEX} out of bounds",
                        "INDEX", exposesIndexValue);
             return false;
         }
-        nlohmann::json& record = exposesJson[exposesIndexValue];
+        nlohmann::json::object_t& record =
+            ref.exposesRecords[exposesIndexValue];
         if (!propertyName.has_value())
         {
-            record = value;
+            auto newValue = nlohmann::json(value);
+            const auto* valueObj =
+                newValue.template get_ptr<const nlohmann::json::object_t*>();
+            if (valueObj == nullptr)
+            {
+                lg2::error("error: config ptr: value not object");
+                return false;
+            }
+            record = *valueObj;
             return true;
         }
         const std::string& propNameValue = propertyName.value();

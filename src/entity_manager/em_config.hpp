@@ -10,18 +10,19 @@
 class EMConfig
 {
   public:
+    explicit EMConfig() = default;
     explicit EMConfig(const nlohmann::json::object_t& config);
     static std::optional<EMConfig> fromJson(const nlohmann::json& config);
 
-    nlohmann::json toJson();
-    nlohmann::json::object_t toJsonObject();
+    nlohmann::json toJson() const;
+    nlohmann::json::object_t toJsonObject() const;
 
     std::string name;
     std::string type;
     std::vector<std::string> probeStmt;
 
     // "Logging" property
-    bool deviceHasLogging;
+    bool deviceHasLogging = true;
 
     std::vector<nlohmann::json::object_t> exposesRecords;
 

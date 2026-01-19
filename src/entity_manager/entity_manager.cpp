@@ -110,44 +110,16 @@ void EntityManager::postToDbus(const SystemConfiguration& newConfiguration)
 }
 
 void EntityManager::postBoardToDBus(
-    const std::string& boardId, const nlohmann::json::object_t& boardConfig,
+    const std::string& boardId, const EMConfig& boardConfig,
     std::map<std::string, std::string>& newBoards)
 {
-    auto boardNameIt = boardConfig.find("Name");
-    if (boardNameIt == boardConfig.end())
-    {
-        lg2::error("Unable to find name for {BOARD}", "BOARD", boardId);
-        return;
-    }
-    const std::string* boardNamePtr =
-        boardNameIt->second.get_ptr<const std::string*>();
-    if (boardNamePtr == nullptr)
-    {
-        lg2::error("Name for {BOARD} was not a string", "BOARD", boardId);
-        return;
-    }
-    std::string boardName = *boardNamePtr;
-    std::string boardNameOrig = *boardNamePtr;
+    std::string boardName = boardConfig.name;
+    std::string boardNameOrig = boardConfig.name;
     // loop through newConfiguration, but use values from system
     // configuration to be able to modify via dbus later
-    nlohmann::json::object_t boardValues;
-    boardValues = systemConfiguration.at(boardId);
+    EMConfig boardValues = systemConfiguration.at(boardId);
 
-    std::string boardType = "Chassis";
-
-    if (boardValues.contains("Type"))
-    {
-        auto findBoardType = boardValues["Type"];
-        if (findBoardType.type() == nlohmann::json::value_t::string)
-        {
-            boardType = findBoardType.get<std::string>();
-        }
-        else
-        {
-            lg2::error("Unable to find type for {BOARD} reverting to Chassis.",
-                       "BOARD", boardName);
-        }
-    }
+    std::string boardType = boardValues.type;
 
     lg2::debug("post {TYPE} '{NAME}' to DBus", "TYPE", boardType, "NAME",
                boardName);
@@ -172,44 +144,28 @@ void EntityManager::postBoardToDBus(
     dbus_interface.createAddObjectMethod(boardId, boardPath,
                                          systemConfiguration, boardNameOrig);
 
+    nlohmann::json::object_t boardProps;
+    boardProps["Name"] = boardValues.name;
+    boardProps["Type"] = boardValues.type;
+
     dbus_interface.populateInterfaceFromJson(
-        systemConfiguration, ConfigPointer(boardId), boardIface, boardValues);
+        systemConfiguration, ConfigPointer(boardId), boardIface, boardProps);
 
     // iterate through board properties
-    for (const auto& [propName, propValue] : boardValues)
+    for (const auto& [propName, propValue] : boardValues.extraInterfaces)
     {
-        if (propValue.type() == nlohmann::json::value_t::object)
-        {
-            std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
-                dbus_interface.createInterface(boardPath, propName,
-                                               boardNameOrig);
+        std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
+            dbus_interface.createInterface(boardPath, propName, boardNameOrig);
 
-            const auto* propValueObj =
-                propValue.get_ptr<const nlohmann::json::object_t*>();
-
-            dbus_interface.populateInterfaceFromJson(
-                systemConfiguration, ConfigPointer(boardId, propName), iface,
-                *propValueObj);
-        }
-    }
-
-    if (!boardValues.contains("Exposes"))
-    {
-        return;
+        dbus_interface.populateInterfaceFromJson(
+            systemConfiguration, ConfigPointer(boardId, propName), iface,
+            propValue);
     }
 
     size_t exposesIndex = -1;
-    for (nlohmann::json& item : boardValues["Exposes"])
+    for (nlohmann::json::object_t& item : boardValues.exposesRecords)
     {
-        nlohmann::json::object_t* itemObj =
-            item.get_ptr<nlohmann::json::object_t*>();
-
-        if (itemObj == nullptr)
-        {
-            lg2::error("Exposes record was not an object");
-            continue;
-        }
-        postExposesRecordsToDBus(*itemObj, exposesIndex, boardNameOrig, boardId,
+        postExposesRecordsToDBus(item, exposesIndex, boardNameOrig, boardId,
                                  boardPath, boardType);
     }
 
@@ -384,33 +340,16 @@ bool EntityManager::postConfigurationRecord(
     return true;
 }
 
-static bool deviceRequiresPowerOn(const nlohmann::json& entity)
-{
-    auto powerState = entity.find("PowerState");
-    if (powerState == entity.end())
-    {
-        return false;
-    }
-
-    const auto* ptr = powerState->get_ptr<const std::string*>();
-    if (ptr == nullptr)
-    {
-        return false;
-    }
-
-    return *ptr == "On" || *ptr == "BiosPost";
-}
-
 static void pruneDevice(const SystemConfiguration& systemConfiguration,
                         const bool powerOff, const bool scannedPowerOff,
-                        const std::string& name, const nlohmann::json& device)
+                        const std::string& name, const EMConfig& device)
 {
     if (systemConfiguration.contains(name))
     {
         return;
     }
 
-    if (deviceRequiresPowerOn(device) && (powerOff || scannedPowerOff))
+    if (powerOff || scannedPowerOff)
     {
         return;
     }
@@ -459,11 +398,11 @@ void EntityManager::startRemovedTimer(boost::asio::steady_timer& timer,
 }
 
 void EntityManager::pruneConfiguration(
-    bool powerOff, const std::string& boardId, const nlohmann::json& device)
+    bool powerOff, const std::string& boardId, const EMConfig& device)
 {
     lg2::debug("pruning configuration");
 
-    if (powerOff && deviceRequiresPowerOn(device))
+    if (powerOff)
     {
         // power not on yet, don't know if it's there or not
         return;
@@ -481,7 +420,7 @@ void EntityManager::pruneConfiguration(
 
     ifaces.clear();
     systemConfiguration.erase(boardId);
-    topology.remove(device["Name"].get<std::string>());
+    topology.remove(device.name);
     logDeviceRemoved(device);
 }
 

@@ -193,7 +193,7 @@ bool writeJsonFiles(const SystemConfiguration& systemConfigurationIn)
     nlohmann::json::object_t out;
     for (const auto& [k, v] : systemConfigurationIn)
     {
-        out[k] = v;
+        out[k] = v.toJson();
     }
 
     std::error_code ec;

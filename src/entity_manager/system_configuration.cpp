@@ -1,6 +1,7 @@
 #include "system_configuration.hpp"
 
 #include <nlohmann/json.hpp>
+#include <phosphor-logging/lg2.hpp>
 
 #include <optional>
 
@@ -27,7 +28,15 @@ std::optional<SystemConfiguration> systemConfigurationFromJson(
             continue;
         }
 
-        config.insert_or_assign(k, *obj);
+        std::optional<EMConfig> optEMConfig = EMConfig::fromJson(*obj);
+
+        if (!optEMConfig.has_value())
+        {
+            lg2::error("error parsing SystemConfiguration");
+            continue;
+        }
+
+        config.insert_or_assign(k, optEMConfig.value());
     }
 
     return config;

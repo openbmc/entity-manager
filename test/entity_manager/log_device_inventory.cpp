@@ -8,6 +8,8 @@ TEST(LogDevicInventory, QueryInvInfoSuccess)
     nlohmann::json record = nlohmann::json::parse(R"(
 {
     "Name": "Supermicro PWS 920P SQ 0",
+    "Probe": "TRUE",
+    "Exposes": [],
     "Type": "PowerSupply",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "Manufacturer": "Supermicro",
@@ -18,7 +20,7 @@ TEST(LogDevicInventory, QueryInvInfoSuccess)
 }
    )");
 
-    InvAddRemoveInfo info = queryInvInfo(record);
+    InvAddRemoveInfo info = queryInvInfo(EMConfig::fromJson(record).value());
 
     EXPECT_EQ(info.name, "Supermicro PWS 920P SQ 0");
     EXPECT_EQ(info.type, "PowerSupply");
@@ -31,6 +33,8 @@ TEST(LogDevicInventory, QueryInvInfoNoModelFound)
     nlohmann::json record = nlohmann::json::parse(R"(
 {
     "Name": "Supermicro PWS 920P SQ 0",
+    "Probe": "TRUE",
+    "Exposes": [],
     "Type": "PowerSupply",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "Manufacturer": "Supermicro",
@@ -40,7 +44,7 @@ TEST(LogDevicInventory, QueryInvInfoNoModelFound)
 }
     )");
 
-    InvAddRemoveInfo info = queryInvInfo(record);
+    InvAddRemoveInfo info = queryInvInfo(EMConfig::fromJson(record).value());
 
     EXPECT_EQ(info.name, "Supermicro PWS 920P SQ 0");
     EXPECT_EQ(info.type, "PowerSupply");
