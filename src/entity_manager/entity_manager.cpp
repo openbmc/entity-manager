@@ -134,41 +134,16 @@ void EntityManager::postProbeConfig(
 }
 
 void EntityManager::postBoardToDBus(
-    const std::string& configId, const nlohmann::json::object_t& configObject,
+    const std::string& configId, const EMConfig& configObject,
     std::map<sdbusplus::object_path, std::string>& newObjects)
 {
-    auto configNameIt = configObject.find("Name");
-    if (configNameIt == configObject.end())
-    {
-        lg2::error("Unable to find name for {CONFIG}", "CONFIG", configId);
-        return;
-    }
-    const std::string* configNamePtr =
-        configNameIt->second.get_ptr<const std::string*>();
-    if (configNamePtr == nullptr)
-    {
-        lg2::error("Name for {CONFIG} was not a string", "CONFIG", configId);
-        return;
-    }
-    std::string configName = *configNamePtr;
-    std::string configNameOrig = *configNamePtr;
+    std::string configName = configObject.name;
+    std::string configNameOrig = configObject.name;
     // loop through newConfiguration, but use values from system
     // configuration to be able to modify via dbus later
     auto configValues = systemConfiguration[configId];
-    auto findConfigType = configValues.find("Type");
-    std::string configType;
-    if (findConfigType != configValues.end() &&
-        findConfigType->second.type() == nlohmann::json::value_t::string)
-    {
-        configType = dbus_util::sanitizeForDBusPathSegment(
-            findConfigType->second.get<std::string>());
-    }
-    else
-    {
-        lg2::error("Unable to find type for {CONFIG} reverting to Chassis.",
-                   "CONFIG", configName);
-        configType = "Chassis";
-    }
+    std::string configType =
+        dbus_util::sanitizeForDBusPathSegment(configValues.type);
 
     lg2::debug("post {TYPE} '{NAME}' to DBus", "TYPE", configType, "NAME",
                configName);
@@ -210,32 +185,23 @@ void EntityManager::postBoardToDBus(
                                         ? findInterface->second
                                         : std::string{};
 
-    auto findProbe = configValues.find("Probe");
-    if (findProbe != configValues.end())
-    {
-        postProbeConfig(objectPath, configNameOrig, configType, *findProbe);
-    }
+    postProbeConfig(objectPath, configNameOrig, configType,
+                    configValues.probeStmt);
 
     // iterate through configuration properties
-    for (const auto& [propName, propValue] : configValues)
+    for (const auto& [propName, propValue] : configValues.extraInterfaces)
     {
-        if (propValue.type() == nlohmann::json::value_t::object)
+        std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
+            dbus_interface.createInterface(objectPath, propName,
+                                           configNameOrig);
+        if (propName == invItemIntf)
         {
-            std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
-                dbus_interface.createInterface(objectPath, propName,
-                                               configNameOrig);
-            if (propName == invItemIntf)
-            {
-                typeIface = iface;
-            }
-
-            const auto* propValueObj =
-                propValue.get_ptr<const nlohmann::json::object_t*>();
-
-            dbus_interface.populateInterfaceFromJson(
-                systemConfiguration, ConfigPointer(configId, propName), iface,
-                *propValueObj);
+            typeIface = iface;
         }
+
+        dbus_interface.populateInterfaceFromJson(
+            systemConfiguration, ConfigPointer(configId, propName), iface,
+            propValue);
     }
 
     if (typeIface == nullptr && !invItemIntf.empty())
@@ -247,24 +213,11 @@ void EntityManager::postBoardToDBus(
         dbus_interface::tryIfaceInitialize(typeIface);
     }
 
-    if (!configValues.contains("Exposes"))
-    {
-        return;
-    }
-
     size_t exposesIndex = -1;
-    for (nlohmann::json& item : configValues["Exposes"])
+    for (nlohmann::json::object_t& item : configValues.exposesRecords)
     {
-        nlohmann::json::object_t* itemObj =
-            item.get_ptr<nlohmann::json::object_t*>();
-
-        if (itemObj == nullptr)
-        {
-            lg2::error("Exposes record was not an object");
-            continue;
-        }
-        postExposesRecordsToDBus(*itemObj, exposesIndex, configNameOrig,
-                                 configId, objectPath, configType);
+        postExposesRecordsToDBus(item, exposesIndex, configNameOrig, configId,
+                                 objectPath, configType);
     }
 
     newObjects.emplace(objectPath, configNameOrig);
@@ -439,26 +392,14 @@ bool EntityManager::postConfigurationRecord(
     return true;
 }
 
-static bool deviceRequiresPowerOn(const nlohmann::json& entity)
+static bool deviceRequiresPowerOn(const EMConfig& device)
 {
-    auto powerState = entity.find("PowerState");
-    if (powerState == entity.end())
-    {
-        return false;
-    }
-
-    const auto* ptr = powerState->get_ptr<const std::string*>();
-    if (ptr == nullptr)
-    {
-        return false;
-    }
-
-    return *ptr == "On" || *ptr == "BiosPost";
+    return device.powerState == "On" || device.powerState == "BiosPost";
 }
 
 static void pruneDevice(const SystemConfiguration& systemConfiguration,
                         const bool powerOff, const bool scannedPowerOff,
-                        const std::string& name, const nlohmann::json& device)
+                        const std::string& name, const EMConfig& device)
 {
     if (systemConfiguration.contains(name))
     {
@@ -512,7 +453,7 @@ void EntityManager::startRemovedTimer(boost::asio::steady_timer& timer)
 }
 
 void EntityManager::pruneConfiguration(
-    bool powerOff, const std::string& boardId, const nlohmann::json& device)
+    bool powerOff, const std::string& boardId, const EMConfig& device)
 {
     lg2::debug("pruning configuration");
 
@@ -534,7 +475,7 @@ void EntityManager::pruneConfiguration(
 
     ifaces.clear();
     systemConfiguration.erase(boardId);
-    topology.remove(device["Name"].get<std::string>());
+    topology.remove(device.name);
     logDeviceRemoved(device);
 }
 

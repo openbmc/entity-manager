@@ -203,6 +203,17 @@ EMConfig::EMConfig(const nlohmann::json::object_t& config)
         throw std::invalid_argument(result.error());
     }
 
+    // Preserve the optional power-state hint used when pruning boards.
+    auto powerStateIt = config.find("PowerState");
+    if (powerStateIt != config.end())
+    {
+        const auto* state = powerStateIt->second.get_ptr<const std::string*>();
+        if (state != nullptr)
+        {
+            powerState = *state;
+        }
+    }
+
     if (!parseProbe(probeStmt, isArrayProbeStmt, config))
     {
         throw std::invalid_argument("could not parse Probe stmt");
@@ -229,6 +240,10 @@ nlohmann::json::object_t EMConfig::toJsonObject() const
 
     res["Name"] = name;
     res["Type"] = type;
+    if (powerState)
+    {
+        res["PowerState"] = *powerState;
+    }
 
     // probe statement should round-trip unchanged
     if (!isArrayProbeStmt && probeStmt.size() == 1)
