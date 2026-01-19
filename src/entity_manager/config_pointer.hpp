@@ -57,68 +57,129 @@ struct ConfigPointer
                        boardId);
             return false;
         }
-        nlohmann::json::object_t& board = systemConfiguration.at(boardId);
-        nlohmann::json* target = nullptr;
+        EMConfig& board = systemConfiguration.at(boardId);
+        nlohmann::json newValue = value;
+        nlohmann::json::object_t* record = nullptr;
         if (exposesIndex)
         {
-            auto exposes = board.find("Exposes");
-            if (exposes == board.end() || !exposes->second.is_array() ||
-                exposes->second.size() <= *exposesIndex)
+            if (board.exposesRecords.size() <= *exposesIndex)
             {
                 lg2::error("error: config ptr: invalid exposes index {INDEX}",
                            "INDEX", *exposesIndex);
                 return false;
             }
-            target = &exposes->second[*exposesIndex];
+            record = &board.exposesRecords[*exposesIndex];
         }
-        if (propertyName)
+        if (!propertyName)
         {
-            nlohmann::json::object_t* object =
-                target ? target->get_ptr<nlohmann::json::object_t*>() : &board;
-            if (object == nullptr || !object->contains(*propertyName))
+            if (record != nullptr)
             {
-                lg2::error("error: config ptr: property {NAME} not found",
-                           "NAME", *propertyName);
+                if (newValue.is_null())
+                {
+                    // Keep the slot so pointers to later exposes stay valid.
+                    (*record)["Status"] = "disabled";
+                    return true;
+                }
+                const auto* object =
+                    newValue
+                        .template get_ptr<const nlohmann::json::object_t*>();
+                if (object == nullptr)
+                {
+                    return false;
+                }
+                *record = *object;
+                return true;
+            }
+            auto parsed = EMConfig::fromJson(newValue);
+            if (!parsed)
+            {
                 return false;
             }
-            target = &object->at(*propertyName);
+            board = std::move(*parsed);
+            return true;
+        }
+
+        if (record == nullptr && !memberName && !arrayIndex &&
+            (*propertyName == "Name" || *propertyName == "Type"))
+        {
+            const auto* str = newValue.template get_ptr<const std::string*>();
+            if (str == nullptr)
+            {
+                return false;
+            }
+            (*propertyName == "Name" ? board.name : board.type) = *str;
+            return true;
+        }
+
+        if (record == nullptr)
+        {
+            auto it = board.extraInterfaces.find(*propertyName);
+            if (it == board.extraInterfaces.end())
+            {
+                return false;
+            }
+            if (!memberName && !arrayIndex)
+            {
+                if (newValue.is_null())
+                {
+                    board.extraInterfaces.erase(it);
+                    return true;
+                }
+                const auto* object =
+                    newValue
+                        .template get_ptr<const nlohmann::json::object_t*>();
+                if (object == nullptr)
+                {
+                    return false;
+                }
+                it->second = *object;
+                return true;
+            }
+            record = &it->second;
+        }
+
+        if (!record->contains(*propertyName) && exposesIndex)
+        {
+            lg2::error("error: config ptr: property {NAME} not found", "NAME",
+                       *propertyName);
+            return false;
+        }
+        nlohmann::json* target = nullptr;
+        if (exposesIndex)
+        {
+            target = &record->at(*propertyName);
+        }
+        else if (memberName)
+        {
+            if (!record->contains(*memberName))
+            {
+                return false;
+            }
+            target = &record->at(*memberName);
         }
         if (arrayIndex)
         {
             if (target == nullptr || !target->is_array() ||
                 target->size() <= *arrayIndex)
             {
-                lg2::error("error: config ptr: invalid array index {INDEX}",
-                           "INDEX", *arrayIndex);
                 return false;
             }
             target = &(*target)[*arrayIndex];
         }
-        if (memberName)
+        if (memberName && exposesIndex)
         {
             if (target == nullptr || !target->is_object() ||
                 !target->contains(*memberName))
             {
-                lg2::error("error: config ptr: property {NAME} not found",
-                           "NAME", *memberName);
                 return false;
             }
             target = &(*target)[*memberName];
         }
-        if (target != nullptr)
+        if (target == nullptr)
         {
-            *target = value;
-            return true;
-        }
-        nlohmann::json boardValue = value;
-        const auto* object =
-            boardValue.template get_ptr<const nlohmann::json::object_t*>();
-        if (object == nullptr)
-        {
-            lg2::error("error: config ptr: board value is not an object");
             return false;
         }
-        board = *object;
+        *target = std::move(newValue);
         return true;
     }
 
