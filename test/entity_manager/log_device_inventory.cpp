@@ -20,12 +20,19 @@ TEST(LogDevicInventory, QueryInvInfoSuccess)
 }
    )");
 
-    InvAddRemoveInfo info = queryInvInfo(record);
+    const auto optConfig = EMConfig::fromJson(record);
 
-    EXPECT_EQ(info.name, "Supermicro PWS 920P SQ 0");
-    EXPECT_EQ(info.type, "PowerSupply");
-    EXPECT_EQ(info.sn, "43829239");
-    EXPECT_EQ(info.model, "PWS 920P SQ");
+    ASSERT_TRUE(optConfig.has_value());
+
+    if (optConfig.has_value())
+    {
+        InvAddRemoveInfo info = queryInvInfo(optConfig.value());
+
+        EXPECT_EQ(info.name, "Supermicro PWS 920P SQ 0");
+        EXPECT_EQ(info.type, "PowerSupply");
+        EXPECT_EQ(info.sn, "43829239");
+        EXPECT_EQ(info.model, "PWS 920P SQ");
+    }
 }
 
 TEST(LogDevicInventory, QueryInvInfoNoModelFound)
@@ -44,10 +51,17 @@ TEST(LogDevicInventory, QueryInvInfoNoModelFound)
 }
     )");
 
-    InvAddRemoveInfo info = queryInvInfo(record);
+    const auto optConfig = EMConfig::fromJson(record);
 
-    EXPECT_EQ(info.name, "Supermicro PWS 920P SQ 0");
-    EXPECT_EQ(info.type, "PowerSupply");
-    EXPECT_EQ(info.sn, "43829239");
-    EXPECT_EQ(info.model, "Unknown");
+    ASSERT_TRUE(optConfig.has_value());
+
+    if (optConfig.has_value())
+    {
+        InvAddRemoveInfo info = queryInvInfo(optConfig.value());
+
+        EXPECT_EQ(info.name, "Supermicro PWS 920P SQ 0");
+        EXPECT_EQ(info.type, "PowerSupply");
+        EXPECT_EQ(info.sn, "43829239");
+        EXPECT_EQ(info.model, "Unknown");
+    }
 }
