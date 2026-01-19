@@ -61,7 +61,7 @@ class EntityManager
                                  SystemConfiguration newConfiguration);
     void postToDbus(const SystemConfiguration& newConfiguration);
     void postBoardToDBus(
-        const std::string& boardId, const nlohmann::json::object_t& boardConfig,
+        const std::string& boardId, const EMConfig& boardConfig,
         std::map<sdbusplus::object_path, std::string>& newBoards);
     void postExposesRecordsToDBus(
         nlohmann::json::object_t& item, size_t& exposesIndex,
@@ -76,7 +76,7 @@ class EntityManager
         const sdbusplus::object_path& ifacePath);
 
     void pruneConfiguration(bool powerOff, const std::string& boardId,
-                            const nlohmann::json& device);
+                            const EMConfig& device);
 
     void handleCurrentConfigurationJson();
 
