@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include <nlohmann/json.hpp>
+#include "em_config.hpp"
 
 #include <string>
 
@@ -17,10 +17,8 @@ struct LegacyInvInfo
     std::string sn = "Unknown";
 };
 
-void logDeviceAdded(const nlohmann::json& record);
+void logDeviceAdded(const EMConfig& record);
 
-void logDeviceRemoved(const nlohmann::json& record);
+void logDeviceRemoved(const EMConfig& record);
 
-std::string queryInvName(const nlohmann::json& record);
-
-LegacyInvInfo queryLegacyInvInfo(const nlohmann::json& record);
+LegacyInvInfo queryLegacyInvInfo(const EMConfig& record);

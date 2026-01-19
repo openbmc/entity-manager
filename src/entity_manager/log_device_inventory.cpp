@@ -33,59 +33,53 @@ static void setStringIfFound(std::string& value, const std::string& key,
     }
 }
 
-std::string queryInvName(const nlohmann::json& record)
-{
-    std::string name = "Unknown";
-
-    setStringIfFound(name, "Name", record);
-
-    return name;
-}
-
-LegacyInvInfo queryLegacyInvInfo(const nlohmann::json& record)
+LegacyInvInfo queryLegacyInvInfo(const EMConfig& record)
 {
     LegacyInvInfo ret;
 
-    setStringIfFound(ret.type, "Type", record);
+    ret.type = record.type;
 
-    const nlohmann::json::const_iterator findAsset = record.find(
-        sdbusplus::common::xyz::openbmc_project::inventory::decorator::Asset::
-            interface);
+    const std::string key = sdbusplus::common::xyz::openbmc_project::inventory::
+        decorator::Asset::interface;
 
-    if (findAsset != record.end())
+    if (record.extraInterfaces.contains(key))
     {
-        setStringIfFound(ret.model, "Model", *findAsset);
-        setStringIfFound(ret.sn, "SerialNumber", *findAsset, true);
+        const nlohmann::json::object_t& findAsset =
+            record.extraInterfaces.at(key);
+
+        setStringIfFound(ret.model, "Model", findAsset);
+        setStringIfFound(ret.sn, "SerialNumber", findAsset, true);
     }
 
     return ret;
 }
 
 static std::optional<sdbusplus::object_path> inventoryPath(
-    const nlohmann::json& record, const std::string& name)
+    const EMConfig& record)
 {
-    std::optional<std::string> boardType = em_utils::resolveConfigType(record);
+    std::optional<std::string> boardType =
+        em_utils::resolveConfigType(record.type);
     if (!boardType)
     {
         lg2::error(
             "Type for {CONFIG} was missing, not a string, or not a valid "
             "D-Bus path segment, not logging inventory event",
-            "CONFIG", name);
+            "CONFIG", record.name);
         return std::nullopt;
     }
 
-    std::string boardName = name;
+    std::string boardName = record.name;
     return em_utils::buildInventorySystemPath(boardName, *boardType);
 }
 
-void logDeviceAdded(const nlohmann::json& record)
+void logDeviceAdded(const EMConfig& record)
 {
     if (!EM_CACHE_CONFIGURATION)
     {
         return;
     }
 
-    const std::string name = queryInvName(record);
+    const std::string& name = record.name;
 
     // Temporary compatibility shim: bmcweb's default journal-based EventLog
     // backend does not yet understand lg2::commit()'s D-Bus event, so keep
@@ -100,7 +94,7 @@ void logDeviceAdded(const nlohmann::json& record)
     using InventoryAdded =
         sdbusplus::event::xyz::openbmc_project::Inventory::InventoryAdded;
 
-    std::optional<sdbusplus::object_path> path = inventoryPath(record, name);
+    std::optional<sdbusplus::object_path> path = inventoryPath(record);
     if (!path)
     {
         return;
@@ -108,9 +102,9 @@ void logDeviceAdded(const nlohmann::json& record)
     lg2::commit(InventoryAdded("IDENTIFIER_PATH", *path));
 }
 
-void logDeviceRemoved(const nlohmann::json& record)
+void logDeviceRemoved(const EMConfig& record)
 {
-    const std::string name = queryInvName(record);
+    const std::string& name = record.name;
 
     // Temporary compatibility shim: see logDeviceAdded().
     const LegacyInvInfo info = queryLegacyInvInfo(record);
@@ -123,7 +117,7 @@ void logDeviceRemoved(const nlohmann::json& record)
     using InventoryRemoved =
         sdbusplus::event::xyz::openbmc_project::Inventory::InventoryRemoved;
 
-    std::optional<sdbusplus::object_path> path = inventoryPath(record, name);
+    std::optional<sdbusplus::object_path> path = inventoryPath(record);
     if (!path)
     {
         return;

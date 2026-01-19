@@ -1,4 +1,5 @@
 #include "entity_manager/config_pointer.hpp"
+#include "entity_manager/em_config.hpp"
 
 #include <nlohmann/json.hpp>
 
@@ -24,14 +25,11 @@ static nlohmann::json::object_t getSampleConfigRecord()
     return configRecord1;
 }
 
-static nlohmann::json::object_t getSampleConfig()
+static EMConfig getSampleConfig()
 {
-    nlohmann::json::array_t exposesArray;
-
-    nlohmann::json::object_t input;
-    input["Exposes"] = exposesArray;
-    input["Name"] = "Santa Barbara SCM";
-    input["Type"] = "Board";
+    EMConfig input;
+    input.name = "Santa Barbara SCM";
+    input.type = "Board";
 
     return input;
 }
@@ -39,16 +37,13 @@ static nlohmann::json::object_t getSampleConfig()
 TEST(ConfigPointer, writeBoard)
 {
     SystemConfiguration systemConfiguration;
-    systemConfiguration["823"] = nlohmann::json::object_t();
+    systemConfiguration["823"] = EMConfig();
 
     ConfigPointer ptr("823");
 
-    ptr.write(getSampleConfig(), systemConfiguration);
+    ptr.write(getSampleConfig().toJson(), systemConfiguration);
 
     ASSERT_TRUE(systemConfiguration.contains("823"));
-
-    EXPECT_TRUE(systemConfiguration["823"].contains("Name"));
-    EXPECT_TRUE(systemConfiguration["823"].contains("Type"));
 }
 
 TEST(ConfigPointer, writeExposesRecord)
@@ -56,7 +51,8 @@ TEST(ConfigPointer, writeExposesRecord)
     SystemConfiguration systemConfiguration;
     systemConfiguration["823"] = getSampleConfig();
 
-    systemConfiguration["823"]["Exposes"].push_back(getSampleConfigRecord());
+    systemConfiguration["823"].exposesRecords.push_back(
+        getSampleConfigRecord());
 
     ConfigPointer ptr("823", 0);
 
@@ -68,14 +64,14 @@ TEST(ConfigPointer, writeExposesRecord)
 
     ASSERT_TRUE(systemConfiguration.contains("823"));
 
-    ASSERT_TRUE(systemConfiguration["823"].contains("Exposes"));
-    ASSERT_EQ(systemConfiguration["823"]["Exposes"].size(), 1);
+    ASSERT_EQ(systemConfiguration["823"].exposesRecords.size(), 1);
 
-    ASSERT_TRUE(systemConfiguration["823"]["Exposes"][0].contains("Type"));
-    EXPECT_EQ(systemConfiguration["823"]["Exposes"][0]["Type"], "TMP");
+    ASSERT_TRUE(systemConfiguration["823"].exposesRecords[0].contains("Type"));
+    EXPECT_EQ(systemConfiguration["823"].exposesRecords[0]["Type"], "TMP");
 
-    ASSERT_TRUE(systemConfiguration["823"]["Exposes"][0].contains("Name"));
-    EXPECT_EQ(systemConfiguration["823"]["Exposes"][0]["Name"], "SCM_TEMP_2");
+    ASSERT_TRUE(systemConfiguration["823"].exposesRecords[0].contains("Name"));
+    EXPECT_EQ(systemConfiguration["823"].exposesRecords[0]["Name"],
+              "SCM_TEMP_2");
 }
 
 TEST(ConfigPointer, writeConfigProperty)
@@ -83,7 +79,8 @@ TEST(ConfigPointer, writeConfigProperty)
     SystemConfiguration systemConfiguration;
     systemConfiguration["823"] = getSampleConfig();
 
-    systemConfiguration["823"]["Exposes"].push_back(getSampleConfigRecord());
+    systemConfiguration["823"].exposesRecords.push_back(
+        getSampleConfigRecord());
 
     ConfigPointer ptr("823", 0, "Name");
 
@@ -93,11 +90,11 @@ TEST(ConfigPointer, writeConfigProperty)
 
     ASSERT_TRUE(systemConfiguration.contains("823"));
 
-    ASSERT_TRUE(systemConfiguration["823"].contains("Exposes"));
-    ASSERT_EQ(systemConfiguration["823"]["Exposes"].size(), 1);
+    ASSERT_EQ(systemConfiguration["823"].exposesRecords.size(), 1);
 
-    ASSERT_TRUE(systemConfiguration["823"]["Exposes"][0].contains("Name"));
-    EXPECT_EQ(systemConfiguration["823"]["Exposes"][0]["Name"], "OTHER_NAME");
+    ASSERT_TRUE(systemConfiguration["823"].exposesRecords[0].contains("Name"));
+    EXPECT_EQ(systemConfiguration["823"].exposesRecords[0]["Name"],
+              "OTHER_NAME");
 }
 
 TEST(ConfigPointer, writeConfigArrayProperty)
@@ -105,7 +102,8 @@ TEST(ConfigPointer, writeConfigArrayProperty)
     SystemConfiguration systemConfiguration;
     systemConfiguration["823"] = getSampleConfig();
 
-    systemConfiguration["823"]["Exposes"].push_back(getSampleConfigRecord());
+    systemConfiguration["823"].exposesRecords.push_back(
+        getSampleConfigRecord());
 
     ConfigPointer ptr("823", 0, "Thresholds", 0);
 
@@ -120,16 +118,16 @@ TEST(ConfigPointer, writeConfigArrayProperty)
 
     ASSERT_TRUE(systemConfiguration.contains("823"));
 
-    ASSERT_TRUE(systemConfiguration["823"].contains("Exposes"));
-    ASSERT_EQ(systemConfiguration["823"]["Exposes"].size(), 1);
+    ASSERT_EQ(systemConfiguration["823"].exposesRecords.size(), 1);
 
     ASSERT_TRUE(
-        systemConfiguration["823"]["Exposes"][0].contains("Thresholds"));
+        systemConfiguration["823"].exposesRecords[0].contains("Thresholds"));
     ASSERT_TRUE(
-        systemConfiguration["823"]["Exposes"][0]["Thresholds"].is_array());
-    ASSERT_EQ(systemConfiguration["823"]["Exposes"][0]["Thresholds"].size(), 1);
+        systemConfiguration["823"].exposesRecords[0]["Thresholds"].is_array());
+    ASSERT_EQ(systemConfiguration["823"].exposesRecords[0]["Thresholds"].size(),
+              1);
     EXPECT_EQ(
-        systemConfiguration["823"]["Exposes"][0]["Thresholds"][0]["Value"],
+        systemConfiguration["823"].exposesRecords[0]["Thresholds"][0]["Value"],
         "10");
 }
 
@@ -138,10 +136,11 @@ TEST(ConfigPointer, writeNestedInterfaceProperties)
     SystemConfiguration systemConfiguration;
     systemConfiguration["823"] = getSampleConfig();
     systemConfiguration["823"]
-                       ["xyz.openbmc_project.Inventory.Decorator.Asset"] = {
-                           {"Model", "old"}};
-    systemConfiguration["823"]["Exposes"].push_back(getSampleConfigRecord());
-    systemConfiguration["823"]["Exposes"][0]["Polling"] = {{"Interval", 1}};
+        .extraInterfaces["xyz.openbmc_project.Inventory.Decorator.Asset"] = {
+        {"Model", "old"}};
+    systemConfiguration["823"].exposesRecords.push_back(
+        getSampleConfigRecord());
+    systemConfiguration["823"].exposesRecords[0]["Polling"] = {{"Interval", 1}};
 
     EXPECT_TRUE(
         ConfigPointer("823", "xyz.openbmc_project.Inventory.Decorator.Asset")
@@ -154,39 +153,68 @@ TEST(ConfigPointer, writeNestedInterfaceProperties)
                     .withName("Value")
                     .write("15", systemConfiguration));
 
+    EXPECT_EQ(systemConfiguration["823"].extraInterfaces
+                  ["xyz.openbmc_project.Inventory.Decorator.Asset"]["Model"],
+              "new");
     EXPECT_EQ(
-        systemConfiguration["823"]
-                           ["xyz.openbmc_project.Inventory.Decorator.Asset"]
-                           ["Model"],
-        "new");
-    EXPECT_EQ(systemConfiguration["823"]["Exposes"][0]["Polling"]["Interval"],
-              2);
+        systemConfiguration["823"].exposesRecords[0]["Polling"]["Interval"], 2);
     EXPECT_EQ(
-        systemConfiguration["823"]["Exposes"][0]["Thresholds"][0]["Value"],
+        systemConfiguration["823"].exposesRecords[0]["Thresholds"][0]["Value"],
         "15");
-    EXPECT_EQ(systemConfiguration["823"]["Exposes"][0]["Thresholds"][0]["Name"],
-              "upper critical");
+    EXPECT_EQ(
+        systemConfiguration["823"].exposesRecords[0]["Thresholds"][0]["Name"],
+        "upper critical");
 }
 
 TEST(ConfigPointer, deleteKeepsExposeIndices)
 {
     SystemConfiguration systemConfiguration;
     systemConfiguration["823"] = getSampleConfig();
-    systemConfiguration["823"]["Exposes"].push_back(getSampleConfigRecord());
-    systemConfiguration["823"]["Exposes"].push_back(getSampleConfigRecord());
+    systemConfiguration["823"].exposesRecords.push_back(
+        getSampleConfigRecord());
+    systemConfiguration["823"].exposesRecords.push_back(
+        getSampleConfigRecord());
 
     EXPECT_TRUE(ConfigPointer("823", 0).write(nullptr, systemConfiguration));
     EXPECT_TRUE(ConfigPointer("823", 1).withName("Name").write(
         "second", systemConfiguration));
 
-    EXPECT_TRUE(systemConfiguration["823"]["Exposes"][0].is_null());
-    EXPECT_EQ(systemConfiguration["823"]["Exposes"][1]["Name"], "second");
+    EXPECT_EQ(systemConfiguration["823"].exposesRecords[0]["Status"],
+              "disabled");
+    EXPECT_EQ(systemConfiguration["823"].exposesRecords[1]["Name"], "second");
 
     EXPECT_TRUE(ConfigPointer("823", 1, "Thresholds", 0)
                     .write(nullptr, systemConfiguration));
-    EXPECT_TRUE(
-        systemConfiguration["823"]["Exposes"][1]["Thresholds"][0].is_null());
-    EXPECT_EQ(systemConfiguration["823"]["Exposes"][1]["Name"], "second");
+    EXPECT_TRUE(systemConfiguration["823"]
+                    .exposesRecords[1]["Thresholds"][0]
+                    .is_null());
+    EXPECT_EQ(systemConfiguration["823"].exposesRecords[1]["Name"], "second");
+}
+
+TEST(ConfigPointer, reusesDeletedExposeSlot)
+{
+    SystemConfiguration systemConfiguration;
+    EMConfig& board = systemConfiguration["823"];
+    board = getSampleConfig();
+    board.exposesRecords.push_back(getSampleConfigRecord());
+    board.exposesRecords.push_back(getSampleConfigRecord());
+    board.exposesRecords[1]["Name"] = "second";
+    nlohmann::json expected = board.toJson();
+
+    ASSERT_TRUE(ConfigPointer("823", 0).write(nullptr, systemConfiguration));
+
+    expected["Exposes"][0]["Status"] = "disabled";
+    ASSERT_EQ(board.exposesRecords.size(), 2);
+    EXPECT_EQ(board.toJson(), expected);
+
+    const nlohmann::json::object_t replacement = {{"Name", "replacement"},
+                                                  {"Type", "TMP75"}};
+    ASSERT_TRUE(
+        ConfigPointer("823", 0).write(replacement, systemConfiguration));
+
+    expected["Exposes"][0] = replacement;
+    ASSERT_EQ(board.exposesRecords.size(), 2);
+    EXPECT_EQ(board.toJson(), expected);
 }
 
 class ConfigPointerFailureTest : public ::testing::Test
@@ -197,17 +225,28 @@ class ConfigPointerFailureTest : public ::testing::Test
     void SetUp() override
     {
         systemConfiguration["823"] = getSampleConfig();
-        systemConfiguration["823"]["Exposes"].push_back(
+        systemConfiguration["823"].exposesRecords.push_back(
             getSampleConfigRecord());
-        systemConfiguration["823"]["Exposes"][0]["Polling"] = {{"Interval", 1}};
+        systemConfiguration["823"].exposesRecords[0]["Polling"] = {
+            {"Interval", 1}};
+    }
+
+    nlohmann::json snapshotConfiguration() const
+    {
+        nlohmann::json result = nlohmann::json::object();
+        for (const auto& [id, config] : systemConfiguration)
+        {
+            result[id] = config.toJson();
+        }
+        return result;
     }
 
     void expectWriteRejected(const ConfigPointer& ptr)
     {
-        const SystemConfiguration before = systemConfiguration;
+        const nlohmann::json before = snapshotConfiguration();
 
         EXPECT_FALSE(ptr.write("new", systemConfiguration));
-        EXPECT_EQ(systemConfiguration, before);
+        EXPECT_EQ(snapshotConfiguration(), before);
     }
 };
 
@@ -237,13 +276,6 @@ TEST_F(ConfigPointerFailureTest, rejectsOutOfRangeExposeIndex)
 TEST_F(ConfigPointerFailureTest, rejectsOutOfRangeArrayIndex)
 {
     expectWriteRejected(ConfigPointer("823", 0, "Thresholds", 1));
-}
-
-TEST_F(ConfigPointerFailureTest, rejectsTraversalThroughDeletedExpose)
-{
-    ASSERT_TRUE(ConfigPointer("823", 0).write(nullptr, systemConfiguration));
-
-    expectWriteRejected(ConfigPointer("823", 0).withName("Name"));
 }
 
 TEST_F(ConfigPointerFailureTest, rejectsTraversalThroughDeletedProperty)
