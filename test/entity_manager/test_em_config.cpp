@@ -178,3 +178,25 @@ TEST(EMConfig, RoundTrip)
 
     EXPECT_EQ(*outObj, input);
 }
+
+TEST(EMConfig, PreservesPowerState)
+{
+    nlohmann::json::object_t input = getSampleConfig();
+    input["PowerState"] = "BiosPost";
+
+    auto config = EMConfig::fromJson(input);
+    if (!config.has_value())
+    {
+        throw std::invalid_argument("did not parse");
+    }
+    EXPECT_EQ(config.value().powerState, "BiosPost");
+    EXPECT_EQ(config.value().toJson(), nlohmann::json(input));
+
+    input["PowerState"] = 42;
+    config = EMConfig::fromJson(input);
+    if (!config.has_value())
+    {
+        throw std::invalid_argument("did not parse");
+    }
+    EXPECT_FALSE(config.value().powerState.has_value());
+}
