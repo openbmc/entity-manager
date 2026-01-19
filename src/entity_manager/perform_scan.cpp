@@ -230,29 +230,9 @@ scan::PerformScan::PerformScan(
     _configurations(configurations), _callback(std::move(callback)), io(io)
 {}
 
-static void pruneRecordExposes(nlohmann::json::object_t& record)
-{
-    if (!record.contains("Exposes"))
-    {
-        return;
-    }
-
-    auto* findExposes = record["Exposes"].get_ptr<nlohmann::json::array_t*>();
-
-    auto copy = nlohmann::json::array();
-    for (auto& expose : *findExposes)
-    {
-        if (!expose.is_null())
-        {
-            copy.emplace_back(expose);
-        }
-    }
-    record["Exposes"] = copy;
-}
-
 static void recordDiscoveredIdentifiers(
     std::set<nlohmann::json>& usedNames, std::list<size_t>& indexes,
-    const std::string& probeName, const nlohmann::json::object_t& record)
+    const std::string& probeName, const EMConfig& record)
 {
     size_t indexIdx = probeName.find('$');
     if (indexIdx == std::string::npos)
@@ -260,15 +240,8 @@ static void recordDiscoveredIdentifiers(
         return;
     }
 
-    auto nameIt = record.find("Name");
-    if (nameIt == record.end())
-    {
-        lg2::error("Last JSON Illegal");
-        return;
-    }
-
     int index = 0;
-    auto str = record.at("Name").get<std::string>().substr(indexIdx);
+    auto str = record.name.substr(indexIdx);
     // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-pointer-arithmetic)
     const char* endPtr = str.data() + str.size();
     auto [p, ec] = std::from_chars(str.data(), endPtr, index);
@@ -277,7 +250,7 @@ static void recordDiscoveredIdentifiers(
         return; // non-numeric replacement
     }
 
-    usedNames.insert(record.at("Name"));
+    usedNames.insert(record.name);
 
     auto usedIt = std::find(indexes.begin(), indexes.end(), index);
     if (usedIt != indexes.end())
@@ -358,25 +331,21 @@ static void applyDisableExposeAction(nlohmann::json::object_t& exposedObject,
 
 static void applyConfigExposeActions(
     std::vector<std::string>& matches, nlohmann::json::object_t& expose,
-    const std::string& propertyName, nlohmann::json::object_t& config)
+    const std::string& propertyName, EMConfig& config)
 {
-    if (!config.contains("Exposes"))
-    {
-        return;
-    }
-
-    for (auto& exposedObject : config["Exposes"])
+    for (auto& exposedObject : config.exposesRecords)
     {
         auto match = findExposeActionRecord(matches, exposedObject);
         if (match)
         {
             matches.erase(*match);
-            nlohmann::json::object_t* exposedObjectObj =
-                exposedObject.get_ptr<nlohmann::json::object_t*>();
+
+            nlohmann::json::object_t* exposedObjectObj = &exposedObject;
+
             if (exposedObjectObj == nullptr)
             {
                 lg2::error("Exposed object wasn't a object: {JSON}", "JSON",
-                           exposedObject.dump());
+                           nlohmann::json(exposedObject).dump());
                 continue;
             }
 
@@ -490,7 +459,7 @@ void scan::PerformScan::restorePersistedConfigurations(
     {
         std::string recordName = getRecordName(itr->interface, probeName);
 
-        nlohmann::json::object_t* record = nullptr;
+        EMConfig* record = nullptr;
 
         if (!_em.systemConfiguration.contains(recordName))
         {
@@ -499,9 +468,8 @@ void scan::PerformScan::restorePersistedConfigurations(
                 itr++;
                 continue;
             }
-            pruneRecordExposes(*record);
 
-            record = &_em.lastJson[recordName];
+            record = &_em.lastJson.at(recordName);
         }
         else
         {
@@ -602,7 +570,7 @@ void scan::PerformScan::updateSystemConfigurationForDevice(
     // insert into configuration temporarily to be able to
     // reference ourselves
 
-    _em.systemConfiguration.insert_or_assign(recordName, record.toJsonObject());
+    _em.systemConfiguration.insert_or_assign(recordName, record);
 
     applyExposes(recordName, record, dbusObject, foundDeviceIdx, replaceStr,
                  _em.systemConfiguration);
@@ -610,7 +578,7 @@ void scan::PerformScan::updateSystemConfigurationForDevice(
     addRecordProbePath(record, device.path, _em.topology);
 
     // overwrite ourselves with cleaned up version
-    _em.systemConfiguration.insert_or_assign(recordName, record.toJsonObject());
+    _em.systemConfiguration.insert_or_assign(recordName, record);
     _missingConfigurations.erase(recordName);
 }
 
