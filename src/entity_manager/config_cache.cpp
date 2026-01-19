@@ -32,7 +32,7 @@ bool ConfigCache::writeJsonFiles(const SystemConfiguration& systemConfiguration)
     nlohmann::json::object_t out;
     for (const auto& [key, value] : systemConfiguration)
     {
-        out[key] = value;
+        out[key] = value.toJson();
     }
     output << nlohmann::json(out).dump(4);
     output.close();
