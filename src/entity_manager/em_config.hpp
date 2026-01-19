@@ -19,6 +19,7 @@ class EMConfig
 
     std::string name;
     std::string type;
+    std::optional<std::string> powerState;
 
     bool isArrayProbeStmt = true;
     std::vector<std::string> probeStmt;
