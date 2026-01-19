@@ -444,13 +444,18 @@ std::optional<std::string> resolveConfigType(const nlohmann::json& configValues)
     {
         const std::string& rawType =
             findConfigType->get_ref<const std::string&>();
-        if (!rawType.empty() &&
-            dbus_util::sanitizeForDBusPathSegment(rawType) == rawType)
-        {
-            return rawType;
-        }
+        return resolveConfigType(rawType);
     }
 
+    return std::nullopt;
+}
+
+std::optional<std::string> resolveConfigType(const std::string& type)
+{
+    if (!type.empty() && dbus_util::sanitizeForDBusPathSegment(type) == type)
+    {
+        return type;
+    }
     return std::nullopt;
 }
 } // namespace em_utils

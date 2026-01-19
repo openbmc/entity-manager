@@ -54,5 +54,6 @@ sdbusplus::object_path buildInventorySystemPath(std::string& boardName,
 // (not fallback) and log using their own config name/id.
 std::optional<std::string> resolveConfigType(
     const nlohmann::json& configValues);
+std::optional<std::string> resolveConfigType(const std::string& type);
 
 } // namespace em_utils

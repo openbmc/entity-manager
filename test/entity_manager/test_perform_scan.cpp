@@ -35,13 +35,20 @@ TEST(ParseProbeCommand, ParsesSingleString)
 // Removes from missingConfigurations any config whose "Name" is in names.
 TEST(PruneMissingByName, RemovesConfigsWhoseNameIsInList)
 {
-    SystemConfiguration missing = {{"16888500906263256819", {{"Name", "A"}}},
-                                   {"3421789056127653902", {{"Name", "B"}}},
-                                   {"9995127843016654321", {{"Name", "C"}}}};
+    EMConfig c1;
+    c1.name = "A";
+    EMConfig c2;
+    c2.name = "B";
+    EMConfig c3;
+    c3.name = "C";
+
+    SystemConfiguration missing = {{"16888500906263256819", c1},
+                                   {"3421789056127653902", c2},
+                                   {"9995127843016654321", c3}};
     std::vector<std::string> names = {"A", "C"};
     scan::detail::pruneMissingByName(missing, names);
     EXPECT_EQ(missing.size(), 1);
-    EXPECT_EQ(missing["3421789056127653902"]["Name"], "B");
+    EXPECT_EQ(missing["3421789056127653902"].name, "B");
 }
 
 // collectConfiguredNames returns the Name of every systemConfiguration entry
@@ -49,9 +56,13 @@ TEST(PruneMissingByName, RemovesConfigsWhoseNameIsInList)
 // passedProbes).
 TEST(CollectConfiguredNames, ReturnsAllNames)
 {
-    json systemConfiguration = {
-        {"16888500906263256819", {{"Name", "Nvidia RTX PRO 6000 Blackwell 1"}}},
-        {"3421789056127653902", {{"Name", "Nvidia RTX PRO 6000 Blackwell 2"}}}};
+    EMConfig c1;
+    c1.name = "Nvidia RTX PRO 6000 Blackwell 1";
+    EMConfig c2;
+    c2.name = "Nvidia RTX PRO 6000 Blackwell 2";
+
+    SystemConfiguration systemConfiguration = {{"16888500906263256819", c1},
+                                               {"3421789056127653902", c2}};
     std::vector<std::string> names =
         scan::detail::collectConfiguredNames(systemConfiguration);
     EXPECT_EQ(names.size(), 2);
@@ -72,15 +83,17 @@ TEST(SeedAndPrune, RescanKeepsAppliedTemplatedConfig)
     const std::string gpuKey = "16888500906263256819";
     const std::string otherKey = "9995127843016654321";
 
+    EMConfig c1;
+    c1.name = "Nvidia RTX PRO 6000 Blackwell 1";
+    EMConfig c2;
+    c2.name = "Some Other Board";
+
     // "...Blackwell 1" was resolved from a templated Name and is applied.
-    json systemConfiguration = {
-        {gpuKey, {{"Name", "Nvidia RTX PRO 6000 Blackwell 1"}}}};
+    SystemConfiguration systemConfiguration = {{gpuKey, c1}};
 
     // At the start of a rescan everything currently present is provisionally
     // "missing" until re-proven this pass.
-    SystemConfiguration missing = {
-        {gpuKey, {{"Name", "Nvidia RTX PRO 6000 Blackwell 1"}}},
-        {otherKey, {{"Name", "Some Other Board"}}}};
+    SystemConfiguration missing = {{gpuKey, c1}, {otherKey, c2}};
 
     std::vector<std::string> passedProbes =
         scan::detail::collectConfiguredNames(systemConfiguration);
