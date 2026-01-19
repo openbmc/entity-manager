@@ -33,7 +33,7 @@ class EMDBusInterface
         const std::string& parent, bool checkNull = false);
 
     std::vector<std::weak_ptr<sdbusplus::asio::dbus_interface>>&
-        getDeviceInterfaces(const nlohmann::json& device);
+        getDeviceInterfaces(const EMConfig& device);
 
     void createAddObjectMethod(const std::string& boardId,
                                const std::string& path,
