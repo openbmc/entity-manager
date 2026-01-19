@@ -194,7 +194,7 @@ bool writeJsonFiles(const SystemConfiguration& systemConfigurationIn)
     nlohmann::json::object_t out;
     for (const auto& [k, v] : systemConfigurationIn)
     {
-        out[k] = v;
+        out[k] = v.toJson();
     }
 
     std::error_code ec;
@@ -204,8 +204,8 @@ bool writeJsonFiles(const SystemConfiguration& systemConfigurationIn)
         return false;
     }
 
-    lg2::debug("writing system configuration to {PATH}", "PATH",
-               currentConfiguration);
+    lg2::debug("writing system configuration for {N} boards to {PATH}", "N",
+               systemConfigurationIn.size(), "PATH", currentConfiguration);
 
     std::ofstream output(currentConfiguration);
     if (!output.good())
