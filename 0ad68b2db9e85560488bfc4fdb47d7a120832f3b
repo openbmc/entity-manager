@@ -120,6 +120,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "b05f72a6_8420b9ea",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002762
+      },
+      "writtenOn": "2026-01-19T01:59:31Z",
+      "side": 1,
+      "message": "@ed@tanous.net\ncould you please share your specific concerns so I can address them?",
+      "parentUuid": "447721fa_d503c919",
+      "range": {
+        "startLine": 11,
+        "startChar": 1,
+        "endLine": 11,
+        "endChar": 6
+      },
+      "revId": "0ad68b2db9e85560488bfc4fdb47d7a120832f3b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "bb3cdbe1_aaac7af1",
@@ -288,6 +312,24 @@
       "side": 1,
       "message": "To fix this kind of issues added the logic:\nFor instance: probe \u003d xyz.openbmc_project.UsbDevice({\u0027VENDOR_ID\u0027: \u00272frrr3\u0027}) would fail to be probed and would be considered as a conjunction statement - since it has OR at 36th index (in vendOR_id)\nNote: please Suggest the any testcases want to test.",
       "parentUuid": "ea2d3467_cba0a054",
+      "revId": "0ad68b2db9e85560488bfc4fdb47d7a120832f3b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29d82748_5a0904eb",
+        "filename": "src/entity_manager/perform_probe.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1002762
+      },
+      "writtenOn": "2026-01-19T01:59:31Z",
+      "side": 1,
+      "message": "@ed@tanous.net\ncould you please share your specific concerns so I can address them?",
+      "parentUuid": "5a95ef24_3ee81bac",
       "revId": "0ad68b2db9e85560488bfc4fdb47d7a120832f3b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
