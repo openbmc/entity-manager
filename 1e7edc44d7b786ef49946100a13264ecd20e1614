@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "39414fe2_0fe18dce",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 642,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-19T05:38:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a6a82ce_79e5d785",
+      "range": {
+        "startLine": 642,
+        "startChar": 0,
+        "endLine": 642,
+        "endChar": 2
+      },
+      "revId": "1e7edc44d7b786ef49946100a13264ecd20e1614",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0b646225_8ab3c056",
@@ -61,6 +85,30 @@
       "side": 1,
       "message": "\u003e This is a different path now that runs every time\n\nRemoving `currentConfiguration` is the last file related step in both code path before this change. \n\nSo before this change, on line 620 and line 647 it was removed in both cases.\n\nI am not considering the case where it\u0027s not a regular file because i do not think it will actually happen.\n\nI do not have the exact code path at hand, but when EM derives a new configuration it writes it to file.\n\nFrom the logs in commit message, EM always ends up writing `currentConfiguration` independent of if it finds an existing file.",
       "parentUuid": "0b646225_8ab3c056",
+      "range": {
+        "startLine": 640,
+        "startChar": 0,
+        "endLine": 643,
+        "endChar": 54
+      },
+      "revId": "1e7edc44d7b786ef49946100a13264ecd20e1614",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f5d16b4_5bc3a4b7",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 643,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-19T05:38:04Z",
+      "side": 1,
+      "message": "@spinler@us.ibm.com Can you kindly take a look again, are you still convinced the code is different now?\n\nI am convinced the only path where it\u0027s not deleting `currentConfiguration` (in the current code) is if line\n\n`if (std::filesystem::is_regular_file(currentConfiguration))` branches false.\n\nSince `currentConfiguration` is always either not present or a regular file,\n\nit does not make much sense to delete it if it\u0027s not even there, yes.\n\nBut i simplified the code that way since before this patch there was a code path where the  `currentConfiguration` was deleted without any messages.\n\nSo IMO it could be more appropriate to maximally simplify the code path even if there is a redundant log statement and deletion attempt for possibly nonexistent file. \n\nSince the existing code is inconsistent with the log statements we have to make a change. I don\u0027t like one code path deleting the same file with a log message and the other file simply deletes it without any message.",
+      "parentUuid": "1b72821c_646d20d4",
       "range": {
         "startLine": 640,
         "startChar": 0,
