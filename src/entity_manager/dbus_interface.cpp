@@ -273,14 +273,6 @@ void EMDBusInterface::addObject(
     SystemConfiguration& systemConfiguration, const std::string& boardId,
     const sdbusplus::object_path& path, const std::string& board)
 {
-    nlohmann::json::object_t& base = systemConfiguration.at(boardId);
-    auto findExposes = base.find("Exposes");
-
-    if (findExposes == base.end())
-    {
-        throw std::invalid_argument("Entity must have children.");
-    }
-
     // this will throw invalid-argument to sdbusplus if invalid json
     nlohmann::json::object_t newData{};
     for (const auto& item : data)
@@ -299,20 +291,21 @@ void EMDBusInterface::addObject(
 // Reuses the first null slot or appends; returns the index of the inserted
 // entry.
 static size_t insertIntoExposes(
-    nlohmann::json& exposes, const std::string& name, const std::string& type,
-    const nlohmann::json& newData, const std::filesystem::path& schemaDirectory)
+    std::vector<nlohmann::json::object_t>& exposes, const std::string& name,
+    const std::string& type, const nlohmann::json& newData,
+    const std::filesystem::path& schemaDirectory)
 {
     bool foundNull = false;
     size_t lastIndex = 0;
     for (const auto& expose : exposes)
     {
-        if (expose.is_null())
+        if (expose.contains("Status") && expose.at("Status") == "disabled")
         {
             foundNull = true;
             continue;
         }
 
-        if (expose["Name"] == name && expose["Type"] == type)
+        if (expose.at("Name") == name && expose.at("Type") == type)
         {
             throw std::invalid_argument("Field already in JSON, not adding");
         }
@@ -329,11 +322,11 @@ static size_t insertIntoExposes(
 
     if (foundNull)
     {
-        exposes.at(lastIndex) = newData;
+        exposes.at(lastIndex) = newData.get<nlohmann::json::object_t>();
     }
     else
     {
-        exposes.push_back(newData);
+        exposes.push_back(newData.get<nlohmann::json::object_t>());
     }
 
     return lastIndex;
@@ -344,11 +337,8 @@ void EMDBusInterface::addObjectJson(
     const std::string& boardId, const sdbusplus::object_path& path,
     const std::string& board)
 {
-    nlohmann::json::object_t& base = systemConfiguration.at(boardId);
-    if (!newData.contains("Name") || !newData.contains("Type"))
-    {
-        throw std::invalid_argument("AddObject missing Name or Type");
-    }
+    EMConfig& base = systemConfiguration.at(boardId);
+
     const std::string* type = newData["Type"].get_ptr<const std::string*>();
     const std::string* name = newData["Name"].get_ptr<const std::string*>();
     if (type == nullptr || name == nullptr)
@@ -359,8 +349,8 @@ void EMDBusInterface::addObjectJson(
     size_t lastIndex = 0;
     try
     {
-        lastIndex = insertIntoExposes(base.at("Exposes"), *name, *type, newData,
-                                      schemaDirectory);
+        lastIndex = insertIntoExposes(base.exposesRecords, *name, *type,
+                                      newData, schemaDirectory);
     }
     catch (const std::exception& e)
     {
@@ -406,9 +396,9 @@ void EMDBusInterface::createAddObjectMethod(
 }
 
 std::vector<std::weak_ptr<sdbusplus::asio::dbus_interface>>&
-    EMDBusInterface::getDeviceInterfaces(const nlohmann::json& device)
+    EMDBusInterface::getDeviceInterfaces(const EMConfig& device)
 {
-    return inventory[device["Name"].get<std::string>()];
+    return inventory.at(device.name);
 }
 
 } // namespace dbus_interface
