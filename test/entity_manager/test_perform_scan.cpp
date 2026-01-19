@@ -67,6 +67,13 @@ TEST(ExposeActions, ResolvesPropertiesInsertedByBind)
     EXPECT_EQ(fan.at("Connector").at("PwmName"), "PWM 1 ");
 }
 
+static EMConfig namedConfig(const std::string& name)
+{
+    EMConfig config;
+    config.name = name;
+    return config;
+}
+
 // parseProbeCommand joins the array statements and lexes them into tokens.
 TEST(ParseProbeCommand, ParsesArrayOfStrings)
 {
@@ -92,8 +99,8 @@ TEST(RestorePersistedConfigurations, RegistersResolvedNameAndPreservesIndex)
     const std::string recordId =
         scan::detail::getRecordName(properties, probeName);
     SystemConfiguration configuration = {
-        {recordId, {{"Name", "Nvidia RTX PRO 6000 Blackwell 2"}}}};
-    const SystemConfiguration original = configuration;
+        {recordId, namedConfig("Nvidia RTX PRO 6000 Blackwell 2")}};
+    const json original = configuration.at(recordId).toJson();
     SystemConfiguration cached;
     SystemConfiguration missing = configuration;
     scan::FoundDevices devices = {{properties, "/fru/blackwell"}};
@@ -105,7 +112,7 @@ TEST(RestorePersistedConfigurations, RegistersResolvedNameAndPreservesIndex)
         devices, probeName, configuration, cached, missing, passed, usedNames,
         indexes);
 
-    EXPECT_EQ(configuration, original);
+    EXPECT_EQ(configuration.at(recordId).toJson(), original);
     EXPECT_EQ(passed,
               (std::vector<std::string>{"Nvidia RTX PRO 6000 Blackwell 2"}));
     EXPECT_TRUE(missing.empty());
@@ -121,10 +128,10 @@ TEST(RestorePersistedConfigurations, MissingDeviceDoesNotRegisterHistoricalName)
     const std::string recordId =
         scan::detail::getRecordName(properties, probeName);
     SystemConfiguration configuration = {
-        {recordId, {{"Name", "Nvidia RTX PRO 6000 Blackwell 1"}}}};
+        {recordId, namedConfig("Nvidia RTX PRO 6000 Blackwell 1")}};
     SystemConfiguration cached = configuration;
     SystemConfiguration missing = configuration;
-    const SystemConfiguration original = missing;
+    const json original = missing.at(recordId).toJson();
     scan::FoundDevices devices;
     std::vector<std::string> passed;
     std::set<json> usedNames;
@@ -134,7 +141,8 @@ TEST(RestorePersistedConfigurations, MissingDeviceDoesNotRegisterHistoricalName)
         devices, probeName, configuration, cached, missing, passed, usedNames,
         indexes);
 
-    EXPECT_EQ(missing, original);
+    ASSERT_EQ(missing.size(), 1U);
+    EXPECT_EQ(missing.at(recordId).toJson(), original);
     EXPECT_TRUE(passed.empty());
     EXPECT_TRUE(usedNames.empty());
     EXPECT_EQ(indexes, (std::list<size_t>{1}));
@@ -148,8 +156,8 @@ TEST(RestorePersistedConfigurations, KeepsUnmatchedInstanceMissing)
     const std::string firstId = scan::detail::getRecordName(first, probeName);
     const std::string secondId = scan::detail::getRecordName(second, probeName);
     SystemConfiguration configuration = {
-        {firstId, {{"Name", "Nvidia RTX PRO 6000 Blackwell 1"}}},
-        {secondId, {{"Name", "Nvidia RTX PRO 6000 Blackwell 2"}}}};
+        {firstId, namedConfig("Nvidia RTX PRO 6000 Blackwell 1")},
+        {secondId, namedConfig("Nvidia RTX PRO 6000 Blackwell 2")}};
     SystemConfiguration cached;
     SystemConfiguration missing = configuration;
     scan::FoundDevices devices = {{second, "/fru/blackwell_1"}};
@@ -161,12 +169,11 @@ TEST(RestorePersistedConfigurations, KeepsUnmatchedInstanceMissing)
         devices, probeName, configuration, cached, missing, passed, usedNames,
         indexes);
 
-    EXPECT_EQ(missing,
-              (SystemConfiguration{
-                  {firstId, {{"Name", "Nvidia RTX PRO 6000 Blackwell 1"}}}}));
+    ASSERT_EQ(missing.size(), 1U);
+    EXPECT_EQ(missing.at(firstId).name, "Nvidia RTX PRO 6000 Blackwell 1");
     EXPECT_EQ(passed,
               (std::vector<std::string>{"Nvidia RTX PRO 6000 Blackwell 2"}));
-    EXPECT_EQ(configuration[secondId]["Name"],
+    EXPECT_EQ(configuration.at(secondId).name,
               "Nvidia RTX PRO 6000 Blackwell 2");
 }
 
@@ -177,10 +184,9 @@ TEST(RestorePersistedConfigurations, RestoresCachedMatchedInstance)
     const std::string recordId =
         scan::detail::getRecordName(properties, probeName);
     SystemConfiguration configuration;
-    SystemConfiguration cached = {
-        {recordId,
-         {{"Name", "Nvidia RTX PRO 6000 Blackwell 2"},
-          {"Exposes", json::array({nullptr, {{"Name", "Sensor"}}})}}}};
+    EMConfig restored = namedConfig("Nvidia RTX PRO 6000 Blackwell 2");
+    restored.exposesRecords = {{{"Name", "Sensor"}}};
+    SystemConfiguration cached = {{recordId, restored}};
     SystemConfiguration missing;
     scan::FoundDevices devices = {{properties, "/fru/blackwell"}};
     std::vector<std::string> passed;
@@ -191,9 +197,9 @@ TEST(RestorePersistedConfigurations, RestoresCachedMatchedInstance)
         devices, probeName, configuration, cached, missing, passed, usedNames,
         indexes);
 
-    EXPECT_EQ(configuration[recordId]["Name"],
+    EXPECT_EQ(configuration.at(recordId).name,
               "Nvidia RTX PRO 6000 Blackwell 2");
-    EXPECT_EQ(configuration[recordId]["Exposes"],
+    EXPECT_EQ(configuration.at(recordId).toJson().at("Exposes"),
               json::array({{{"Name", "Sensor"}}}));
     EXPECT_EQ(passed,
               (std::vector<std::string>{"Nvidia RTX PRO 6000 Blackwell 2"}));
