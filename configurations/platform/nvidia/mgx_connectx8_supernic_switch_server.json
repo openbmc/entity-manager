@@ -3,6 +3,9 @@
     "PlatformExposes": [
         {
             "Board": "Nvidia RTX PRO 6000 Blackwell 1",
+            "BridgedEndpoints": [
+                "GPU 0"
+            ],
             "Configuration": 1,
             "Interface": 0,
             "Name": "GPU 0 SMA",
@@ -16,6 +19,9 @@
         },
         {
             "Board": "Nvidia RTX PRO 6000 Blackwell 3",
+            "BridgedEndpoints": [
+                "GPU 2"
+            ],
             "Configuration": 1,
             "Interface": 0,
             "Name": "GPU 2 SMA",
@@ -29,6 +35,9 @@
         },
         {
             "Board": "Nvidia RTX PRO 6000 Blackwell 2",
+            "BridgedEndpoints": [
+                "GPU 1"
+            ],
             "Configuration": 1,
             "Interface": 0,
             "Name": "GPU 1 SMA",
@@ -43,6 +52,9 @@
         },
         {
             "Board": "Nvidia RTX PRO 6000 Blackwell 5",
+            "BridgedEndpoints": [
+                "GPU 4"
+            ],
             "Configuration": 1,
             "Interface": 0,
             "Name": "GPU 4 SMA",
@@ -57,6 +69,9 @@
         },
         {
             "Board": "Nvidia RTX PRO 6000 Blackwell 4",
+            "BridgedEndpoints": [
+                "GPU 3"
+            ],
             "Configuration": 1,
             "Interface": 0,
             "Name": "GPU 3 SMA",
@@ -70,6 +85,9 @@
         },
         {
             "Board": "Nvidia RTX PRO 6000 Blackwell 7",
+            "BridgedEndpoints": [
+                "GPU 6"
+            ],
             "Configuration": 1,
             "Interface": 0,
             "Name": "GPU 6 SMA",
@@ -83,6 +101,9 @@
         },
         {
             "Board": "Nvidia RTX PRO 6000 Blackwell 6",
+            "BridgedEndpoints": [
+                "GPU 5"
+            ],
             "Configuration": 1,
             "Interface": 0,
             "Name": "GPU 5 SMA",
@@ -96,7 +117,10 @@
             "Type": "MCTPUSBDevice"
         },
         {
-            "Board": "Nvidia RTX PRO 6000 Blackwell 7",
+            "Board": "Nvidia RTX PRO 6000 Blackwell 8",
+            "BridgedEndpoints": [
+                "GPU 7"
+            ],
             "Configuration": 1,
             "Interface": 0,
             "Name": "GPU 7 SMA",
@@ -111,6 +135,10 @@
         },
         {
             "Board": "Nvidia IMGX ConnectX8 SuperNIC Switch",
+            "BridgedEndpoints": [
+                "CX8 0",
+                "CX8 1"
+            ],
             "Configuration": 1,
             "Interface": 0,
             "Name": "CX8 SMA 0",
@@ -124,6 +152,10 @@
         },
         {
             "Board": "Nvidia IMGX ConnectX8 SuperNIC Switch",
+            "BridgedEndpoints": [
+                "CX8 2",
+                "CX8 3"
+            ],
             "Configuration": 1,
             "Interface": 0,
             "Name": "CX8 SMA 1",
