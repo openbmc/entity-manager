@@ -170,7 +170,7 @@ void addValueToDBus(const std::string& key, const nlohmann::json& value,
     else
     {
         addProperty(key, value.get<PropertyType>(), &iface, systemConfiguration,
-                    path, sdbusplus::asio::PropertyPermission::readOnly);
+                    path, permission);
     }
 }
 
