@@ -46,6 +46,16 @@
             "Name1": "BRB_R_BE_TEMP_C",
             "Name2": "BRB_R_FE_TEMP_C",
             "Type": "TMP432"
+        },
+        {
+            "Address": "0x71",
+            "Bus": 22,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Anacapa.CPLD.LFMXO5_15D_rbb",
+                "VendorIANA": 40981
+            },
+            "Name": "Anacapa_RBB_CPLD",
+            "Type": "LatticeLFMXO5_15DFirmware"
         }
     ],
     "Name": "BRB_R",
