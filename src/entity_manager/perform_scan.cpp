@@ -320,15 +320,6 @@ static void applyBindExposeAction(nlohmann::json::object_t& exposedObject,
     }
 }
 
-static void applyDisableExposeAction(nlohmann::json::object_t& exposedObject,
-                                     const std::string& propertyName)
-{
-    if (propertyName == "DisableNode")
-    {
-        exposedObject["Status"] = "disabled";
-    }
-}
-
 static void applyConfigExposeActions(
     std::vector<std::string>& matches, nlohmann::json::object_t& expose,
     const std::string& propertyName, nlohmann::json::array_t& configExposes)
@@ -349,21 +340,15 @@ static void applyConfigExposeActions(
             }
 
             applyBindExposeAction(*exposedObjectObj, expose, propertyName);
-            applyDisableExposeAction(*exposedObjectObj, propertyName);
         }
     }
 }
 
 static void applyExposeActions(
-    nlohmann::json& systemConfiguration, const std::string& recordName,
-    nlohmann::json::object_t& expose, const std::string& exposeKey,
-    nlohmann::json& exposeValue)
+    nlohmann::json& systemConfiguration, nlohmann::json::object_t& expose,
+    const std::string& exposeKey, nlohmann::json& exposeValue)
 {
-    bool isBind = exposeKey.starts_with("Bind");
-    bool isDisable = exposeKey == "DisableNode";
-    bool isExposeAction = isBind || isDisable;
-
-    if (!isExposeAction)
+    if (!exposeKey.starts_with("Bind"))
     {
         return;
     }
@@ -377,12 +362,6 @@ static void applyExposeActions(
 
     for (const auto& [configId, config] : systemConfiguration.items())
     {
-        // don't disable ourselves
-        if (isDisable && configId == recordName)
-        {
-            continue;
-        }
-
         auto configListFind = config.find("Exposes");
         if (configListFind == config.end())
         {
@@ -441,9 +420,9 @@ static std::string generateDeviceName(
     return *ret;
 }
 static void applyTemplateAndExposeActions(
-    const std::string& recordName, const DBusObject& dbusObject,
-    size_t foundDeviceIdx, const std::optional<std::string>& replaceStr,
-    nlohmann::json& value, nlohmann::json& systemConfiguration)
+    const DBusObject& dbusObject, size_t foundDeviceIdx,
+    const std::optional<std::string>& replaceStr, nlohmann::json& value,
+    nlohmann::json& systemConfiguration)
 {
     nlohmann::json::object_t* exposeObj =
         value.get_ptr<nlohmann::json::object_t*>();
@@ -456,8 +435,7 @@ static void applyTemplateAndExposeActions(
         em_utils::templateCharReplace(value, dbusObject, foundDeviceIdx,
                                       replaceStr);
 
-        applyExposeActions(systemConfiguration, recordName, *exposeObj, key,
-                           value);
+        applyExposeActions(systemConfiguration, *exposeObj, key, value);
     }
 };
 
@@ -586,16 +564,16 @@ void scan::PerformScan::updateSystemConfiguration(
         {
             for (auto& value : *exposeArr)
             {
-                applyTemplateAndExposeActions(recordName, dbusObject,
-                                              foundDeviceIdx, replaceStr, value,
+                applyTemplateAndExposeActions(dbusObject, foundDeviceIdx,
+                                              replaceStr, value,
                                               _em.systemConfiguration);
             }
         }
         else
         {
-            applyTemplateAndExposeActions(
-                recordName, dbusObject, foundDeviceIdx, replaceStr,
-                findExpose->second, _em.systemConfiguration);
+            applyTemplateAndExposeActions(dbusObject, foundDeviceIdx,
+                                          replaceStr, findExpose->second,
+                                          _em.systemConfiguration);
         }
 
         // If we end up here and the path is empty, we have Probe: "True"
