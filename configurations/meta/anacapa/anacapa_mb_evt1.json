@@ -326,7 +326,7 @@
             "Address": "0x71",
             "Bus": 6,
             "FirmwareInfo": {
-                "CompatibleHardware": "com.meta.Hardware.Anacapa.CPLD.LFMXO5_15D_mb_evt2",
+                "CompatibleHardware": "com.meta.Hardware.Anacapa.CPLD.LFMXO5_15D_mb_evt1",
                 "VendorIANA": 40981
             },
             "Name": "Anacapa_MB_CPLD",
@@ -853,7 +853,7 @@
                 "CompatibleHardware": "com.meta.Hardware.Anacapa.VR.MP29612_pvddcr_soc_p0",
                 "VendorIANA": 40981
             },
-            "Name": "Anacapa_MB_VR_pvddcr_soc_p0",
+            "Name": "Anapaca_MB_VR_pvddcr_soc_p0",
             "Type": "MP2X6XXFirmware"
         },
         {
@@ -1143,26 +1143,6 @@
             "temp1_Name": "MB_VR_CPU_PVDD33_S5_P0_TEMP_C",
             "vin_Name": "MB_VR_CPU_PVDD33_S5_P0_VIN_VOLT_V",
             "vout1_Name": "MB_VR_CPU_PVDD33_S5_P0_VOUT_VOLT_V"
-        },
-        {
-            "Address": "0x46",
-            "Bus": 58,
-            "FirmwareInfo": {
-                "CompatibleHardware": "com.meta.Hardware.Anacapa.VR.MPQ8786_pvdd33_s5_p0",
-                "VendorIANA": 40981
-            },
-            "Name": "Anacapa_MB_VR_pvdd33_s5_p0",
-            "Type": "MPQ87XXFirmware"
-        },
-        {
-            "Address": "0x47",
-            "Bus": 58,
-            "FirmwareInfo": {
-                "CompatibleHardware": "com.meta.Hardware.Anacapa.VR.MPQ8785_pvdd18_s5_p0",
-                "VendorIANA": 40981
-            },
-            "Name": "Anacapa_MB_VR_pvdd18_s5_p0",
-            "Type": "MPQ87XXFirmware"
         },
         {
             "Address": "0x6a",
@@ -2016,7 +1996,7 @@
         }
     ],
     "Name": "MB",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Anacapa.* MB EVT2', 'BOARD_MANUFACTURER': 'Inventec'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Anacapa.*EVT1.*MB', 'BOARD_MANUFACTURER': 'Inventec'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
