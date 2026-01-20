@@ -7,6 +7,16 @@
             "Type": "EEPROM"
         },
         {
+            "Address": "0x71",
+            "Bus": 22,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Anacapa.CPLD.LFMXO5_15D_rbb",
+                "VendorIANA": 40981
+            },
+            "Name": "Anacapa_RBB_CPLD",
+            "Type": "LatticeLFMXO5_15DFirmware"
+        },
+        {
             "Address": "0x60",
             "Bus": "$bus + 2",
             "Labels": [
