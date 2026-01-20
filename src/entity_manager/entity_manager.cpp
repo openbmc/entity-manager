@@ -234,15 +234,6 @@ void EntityManager::postExposesRecordsToDBus(
         lg2::error("cannot find name in field {ITEM}", "ITEM", item);
         return;
     }
-    auto findStatus = item.find("Status");
-    // if status is not found it is assumed to be status = 'okay'
-    if (findStatus != item.end())
-    {
-        if (*findStatus == "disabled")
-        {
-            return;
-        }
-    }
     auto findType = item.find("Type");
     std::string itemType;
     if (findType != item.end())

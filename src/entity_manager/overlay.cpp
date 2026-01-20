@@ -281,12 +281,6 @@ bool loadOverlays(const nlohmann::json& systemConfiguration,
 
         for (const auto& configuration : *findExposes)
         {
-            auto findStatus = configuration.find("Status");
-            // status missing is assumed to be 'okay'
-            if (findStatus != configuration.end() && *findStatus == "disabled")
-            {
-                continue;
-            }
             auto findType = configuration.find("Type");
             if (findType == configuration.end() ||
                 findType->type() != nlohmann::json::value_t::string)
