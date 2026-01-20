@@ -10,7 +10,7 @@
             "Address": "0x71",
             "Bus": 18,
             "FirmwareInfo": {
-                "CompatibleHardware": "com.meta.Hardware.Anacapa.CPLD.LFMXO5_15D_t16_bb_evt2",
+                "CompatibleHardware": "com.meta.Hardware.Anacapa.CPLD.LFMXO5_15D_t16_bb_evt1",
                 "VendorIANA": 40981
             },
             "Name": "Anacapa_LBB_CPLD",
@@ -303,7 +303,7 @@
         }
     ],
     "Name": "BRB_L",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Anacapa(?!.*T20).*LBB EVT2', 'BOARD_MANUFACTURER': 'Inventec'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Anacapa.*EVT1.*LBB', 'BOARD_MANUFACTURER': 'Inventec'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
