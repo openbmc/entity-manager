@@ -7,6 +7,7 @@
             "Port": [1, 2, 1],
             "RootHubPosition": "0",
             "Board": "Nvidia RTX PRO 6000 Blackwell 1",
+            "BridgedEndpoints": ["GPU 0"],
             "Type": "MCTPUSBDevice"
         },
         {
@@ -16,6 +17,7 @@
             "Port": [1, 4, 1],
             "RootHubPosition": "0",
             "Board": "Nvidia RTX PRO 6000 Blackwell 3",
+            "BridgedEndpoints": ["GPU 2"],
             "Type": "MCTPUSBDevice"
         },
         {
@@ -25,6 +27,7 @@
             "Port": [1, 1, 2, 1],
             "RootHubPosition": "0",
             "Board": "Nvidia RTX PRO 6000 Blackwell 2",
+            "BridgedEndpoints": ["GPU 1"],
             "Type": "MCTPUSBDevice"
         },
         {
@@ -34,6 +37,7 @@
             "Port": [1, 1, 4, 1],
             "RootHubPosition": "0",
             "Board": "Nvidia RTX PRO 6000 Blackwell 5",
+            "BridgedEndpoints": ["GPU 4"],
             "Type": "MCTPUSBDevice"
         },
         {
@@ -43,6 +47,7 @@
             "Port": [1, 2, 2],
             "RootHubPosition": "0",
             "Board": "Nvidia RTX PRO 6000 Blackwell 4",
+            "BridgedEndpoints": ["GPU 3"],
             "Type": "MCTPUSBDevice"
         },
         {
@@ -52,6 +57,7 @@
             "Port": [1, 4, 2],
             "RootHubPosition": "0",
             "Board": "Nvidia RTX PRO 6000 Blackwell 7",
+            "BridgedEndpoints": ["GPU 6"],
             "Type": "MCTPUSBDevice"
         },
         {
@@ -61,6 +67,7 @@
             "Port": [1, 1, 2, 2],
             "RootHubPosition": "0",
             "Board": "Nvidia RTX PRO 6000 Blackwell 6",
+            "BridgedEndpoints": ["GPU 5"],
             "Type": "MCTPUSBDevice"
         },
         {
@@ -69,7 +76,8 @@
             "Name": "GPU 7 SMA",
             "Port": [1, 1, 4, 2],
             "RootHubPosition": "0",
-            "Board": "Nvidia RTX PRO 6000 Blackwell 7",
+            "Board": "Nvidia RTX PRO 6000 Blackwell 8",
+            "BridgedEndpoints": ["GPU 7"],
             "Type": "MCTPUSBDevice"
         },
         {
@@ -79,6 +87,7 @@
             "Port": [1, 2, 3],
             "RootHubPosition": "0",
             "Board": "Nvidia IMGX ConnectX8 SuperNIC Switch",
+            "BridgedEndpoints": ["CX8 0", "CX8 1"],
             "Type": "MCTPUSBDevice"
         },
         {
@@ -88,6 +97,7 @@
             "Port": [1, 1, 2, 3],
             "RootHubPosition": "0",
             "Board": "Nvidia IMGX ConnectX8 SuperNIC Switch",
+            "BridgedEndpoints": ["CX8 2", "CX8 3"],
             "Type": "MCTPUSBDevice"
         }
     ],
