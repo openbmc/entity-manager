@@ -1,8 +1,31 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$defs": {
+        "MCTPBridgedEndpoint": {
+            "properties": {
+                "Board": {
+                    "description": "Name of the board inventory object this device is on. The named board must be present, so it is expected as a FOUND precondition in the platform Probe. Optional; if absent, the bridge's own board is used.",
+                    "type": "string"
+                },
+                "Name": {
+                    "description": "A recognisable name for the bridged device",
+                    "type": "string"
+                }
+            },
+            "required": ["Name"],
+            "additionalProperties": false,
+            "type": "object"
+        },
         "MCTPUSBDevice": {
             "properties": {
+                "BridgedEndpoints": {
+                    "description": "The devices reachable through this device acting as an MCTP bridge, in EID pool order: the Nth entry is assigned PoolStart + N.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/MCTPBridgedEndpoint"
+                    },
+                    "minItems": 1
+                },
                 "Board": {
                     "description": "Name of the board inventory object this device is on. Consumers resolve that board's NvidiaMctpVdm configuration and associate the device's sensors with it. The named board must be present, so it is expected as a FOUND precondition in the platform Probe. Optional; if absent, the device's own configuration object is used.",
                     "type": "string"

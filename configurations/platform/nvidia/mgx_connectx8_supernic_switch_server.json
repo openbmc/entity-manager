@@ -2,6 +2,12 @@
     "Exposes": [
         {
             "Board": "Nvidia IMGX ConnectX8 SuperNIC Switch",
+            "BridgedEndpoints": [
+                {
+                    "Board": "Nvidia RTX PRO 6000 Blackwell 1",
+                    "Name": "GPU 0"
+                }
+            ],
             "Configuration": 1,
             "Interface": 0,
             "Name": "GPU 0 SMA",
@@ -15,6 +21,12 @@
         },
         {
             "Board": "Nvidia IMGX ConnectX8 SuperNIC Switch",
+            "BridgedEndpoints": [
+                {
+                    "Board": "Nvidia RTX PRO 6000 Blackwell 3",
+                    "Name": "GPU 2"
+                }
+            ],
             "Configuration": 1,
             "Interface": 0,
             "Name": "GPU 2 SMA",
@@ -28,6 +40,12 @@
         },
         {
             "Board": "Nvidia IMGX ConnectX8 SuperNIC Switch",
+            "BridgedEndpoints": [
+                {
+                    "Board": "Nvidia RTX PRO 6000 Blackwell 2",
+                    "Name": "GPU 1"
+                }
+            ],
             "Configuration": 1,
             "Interface": 0,
             "Name": "GPU 1 SMA",
@@ -42,6 +60,12 @@
         },
         {
             "Board": "Nvidia IMGX ConnectX8 SuperNIC Switch",
+            "BridgedEndpoints": [
+                {
+                    "Board": "Nvidia RTX PRO 6000 Blackwell 5",
+                    "Name": "GPU 4"
+                }
+            ],
             "Configuration": 1,
             "Interface": 0,
             "Name": "GPU 4 SMA",
@@ -56,6 +80,12 @@
         },
         {
             "Board": "Nvidia IMGX ConnectX8 SuperNIC Switch",
+            "BridgedEndpoints": [
+                {
+                    "Board": "Nvidia RTX PRO 6000 Blackwell 4",
+                    "Name": "GPU 3"
+                }
+            ],
             "Configuration": 1,
             "Interface": 0,
             "Name": "GPU 3 SMA",
@@ -69,6 +99,12 @@
         },
         {
             "Board": "Nvidia IMGX ConnectX8 SuperNIC Switch",
+            "BridgedEndpoints": [
+                {
+                    "Board": "Nvidia RTX PRO 6000 Blackwell 7",
+                    "Name": "GPU 6"
+                }
+            ],
             "Configuration": 1,
             "Interface": 0,
             "Name": "GPU 6 SMA",
@@ -82,6 +118,12 @@
         },
         {
             "Board": "Nvidia IMGX ConnectX8 SuperNIC Switch",
+            "BridgedEndpoints": [
+                {
+                    "Board": "Nvidia RTX PRO 6000 Blackwell 6",
+                    "Name": "GPU 5"
+                }
+            ],
             "Configuration": 1,
             "Interface": 0,
             "Name": "GPU 5 SMA",
@@ -96,6 +138,12 @@
         },
         {
             "Board": "Nvidia IMGX ConnectX8 SuperNIC Switch",
+            "BridgedEndpoints": [
+                {
+                    "Board": "Nvidia RTX PRO 6000 Blackwell 8",
+                    "Name": "GPU 7"
+                }
+            ],
             "Configuration": 1,
             "Interface": 0,
             "Name": "GPU 7 SMA",
@@ -110,6 +158,16 @@
         },
         {
             "Board": "Nvidia IMGX ConnectX8 SuperNIC Switch",
+            "BridgedEndpoints": [
+                {
+                    "Board": "Nvidia IMGX ConnectX8 SuperNIC Switch",
+                    "Name": "CX8 0"
+                },
+                {
+                    "Board": "Nvidia IMGX ConnectX8 SuperNIC Switch",
+                    "Name": "CX8 1"
+                }
+            ],
             "Configuration": 1,
             "Interface": 0,
             "Name": "CX8 SMA 0",
@@ -123,6 +181,16 @@
         },
         {
             "Board": "Nvidia IMGX ConnectX8 SuperNIC Switch",
+            "BridgedEndpoints": [
+                {
+                    "Board": "Nvidia IMGX ConnectX8 SuperNIC Switch",
+                    "Name": "CX8 2"
+                },
+                {
+                    "Board": "Nvidia IMGX ConnectX8 SuperNIC Switch",
+                    "Name": "CX8 3"
+                }
+            ],
             "Configuration": 1,
             "Interface": 0,
             "Name": "CX8 SMA 1",

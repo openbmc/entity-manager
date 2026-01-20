@@ -38,3 +38,11 @@ such as dbus-sensors use it to locate that board's `NvidiaMctpVdm` configuration
 and to associate the resulting sensors with the correct board/chassis. Because
 the board must already exist for this to resolve, it is expected as a
 `FOUND(...)` precondition in the platform `Probe`.
+
+## Describing the devices behind an MCTP bridge
+
+An `MCTPUSBDevice` that acts as an MCTP bridge lists the devices reachable
+through it in `BridgedEndpoints`. Each entry is a record in its own right, with
+its own `Board`, because a bridge and the devices behind it are not necessarily
+on the same board. The order matters: the Nth entry is assigned the Nth EID of
+the bridge's pool, so entries must be listed in pool order.
