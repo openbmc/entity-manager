@@ -7,6 +7,16 @@
             "Type": "EEPROM"
         },
         {
+            "Address": "0x71",
+            "Bus": 22,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Anacapa.CPLD.LFMXO5_15D_t16_bb_evt2",
+                "VendorIANA": 40981
+            },
+            "Name": "Anacapa_RBB_CPLD",
+            "Type": "LatticeLFMXO5_15DFirmware"
+        },
+        {
             "Address": "0x60",
             "Bus": "$bus + 2",
             "Labels": [
@@ -293,7 +303,7 @@
         }
     ],
     "Name": "BRB_R",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Anacapa(?!.*T20).*RBB', 'BOARD_MANUFACTURER': 'Inventec'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Anacapa(?!.*T20).*RBB EVT2', 'BOARD_MANUFACTURER': 'Inventec'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
