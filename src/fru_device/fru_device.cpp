@@ -880,7 +880,8 @@ void addFruObjectToDbus(
         dbusInterfaceMap,
     uint32_t bus, uint32_t address, size_t& unknownBusObjectCount,
     const bool& powerIsOn, const std::set<size_t>& addressBlocklist,
-    sdbusplus::asio::object_server& objServer)
+    sdbusplus::asio::object_server& objServer,
+    std::flat_map<std::pair<size_t, size_t>, std::string> oldNames = {})
 {
     std::flat_map<std::string, std::string, std::less<>> formattedFRU;
 
@@ -895,16 +896,25 @@ void addFruObjectToDbus(
     std::string productName =
         "/xyz/openbmc_project/FruDevice/" + optionalProductName.value();
 
-    std::optional<int> index = findIndexForFRU(dbusInterfaceMap, productName);
-    if (index.has_value())
+    auto key = std::pair<size_t, size_t>(bus, address);
+    auto oldName = oldNames.find(key);
+    if (oldName != oldNames.end())
     {
-        productName += "_";
-        productName += std::to_string(++(*index));
+        productName = oldName->second;
     }
-
+    else
+    {
+        std::optional<int> index =
+            findIndexForFRU(dbusInterfaceMap, productName);
+        if (index.has_value())
+        {
+            productName += "_";
+            productName += std::to_string(++(*index));
+        }
+    }
     std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
         objServer.add_interface(productName, "xyz.openbmc_project.FruDevice");
-    dbusInterfaceMap[std::pair<size_t, size_t>(bus, address)] = iface;
+    dbusInterfaceMap[key] = iface;
 
     if (ENABLE_FRU_UPDATE_PROPERTY)
     {
@@ -1153,11 +1163,13 @@ void rescanOneBus(
     const std::set<size_t>& addressBlocklist,
     sdbusplus::asio::object_server& objServer)
 {
+    std::flat_map<std::pair<size_t, size_t>, std::string> oldNames;
     for (auto device = foundDevices.begin(); device != foundDevices.end();)
     {
         if (device->first.first == static_cast<size_t>(busNum))
         {
             objServer.remove_interface(device->second);
+            oldNames.emplace(device->first, device->second->get_object_path());
             device = foundDevices.erase(device);
         }
         else
@@ -1184,7 +1196,7 @@ void rescanOneBus(
     auto scan = std::make_shared<FindDevicesWithCallback>(
         i2cBuses, busmap, powerIsOn, objServer, addressBlocklist,
         [busNum, &busmap, &dbusInterfaceMap, &unknownBusObjectCount, &powerIsOn,
-         &objServer, &addressBlocklist]() {
+         &objServer, &addressBlocklist, oldNames{std::move(oldNames)}]() {
             for (auto busIface = dbusInterfaceMap.begin();
                  busIface != dbusInterfaceMap.end();)
             {
@@ -1208,7 +1220,7 @@ void rescanOneBus(
                 addFruObjectToDbus(device.second, dbusInterfaceMap,
                                    static_cast<uint32_t>(busNum), device.first,
                                    unknownBusObjectCount, powerIsOn,
-                                   addressBlocklist, objServer);
+                                   addressBlocklist, objServer, oldNames);
             }
         });
     scan->run();
