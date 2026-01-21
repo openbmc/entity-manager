@@ -163,6 +163,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2bf279a0_2a07db03",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-21T02:39:35Z",
+      "side": 1,
+      "message": "Thanks for taking the time to review 👍\n\n\u003e the internal APIs are never considered stable.\n\nIMO this is also the documented design intent of entity-manager (see `CONFIG_FORMAT.md`, committed in 21608383661285e63e97c0457f55817f6e1d6b92)\n\n```\n+3. Configuration files are not a long-term stable ABI.  Why?\n+    - Configuration files occasionally need to modify their schema in pursuit of\n+      simplicity, or based on a greater understanding of the system level\n+      constraints.\n+    - The repo will ensure that all schema changes are enacted such that the\n+      files in the repo will not be broken as a result of the schema change, and\n+      will be carried forward.  The recommended way to avoid merge problems is\n+      to upstream your configurations.\n+    - Note: This drives the requirement that config files shall not be checked\n+      into OpenBMC meta layers.\n```\n\n\u003e Regardless, in this case, we can provide a transitional period by implementing both approaches in the schema, the dropping patternProperties some time in the future. I use the overlap strategy extensively in libpldm to allow non-breaking progress.\n\nI am wondering how this improves things for downstream users. No one needs \u0027time to migrate\u0027 here, it is a trivial change which is easily automated.\n\nAnyone who wants their configurations taken care of without having to lift a finger can simply upstream them.\n\nMy intent was to make this the least breaking change possible which is why in my corresponding dbus-sensors change (see topic) the reactor still accepts the old-style configuration.\n\n\u003e  I use the overlap strategy extensively in libpldm to allow non-breaking progress.\n\nIMO the progress here is removing a bad example of how not to write a config schema. The new way of using `ExtraNames` is not much better for performance, and it also does not enable any new use-cases or fix any user-visible bugs.\n\nIt is simply an effort to change EM to eventually be compatible with D-Bus and it\u0027s design intent.\n\nIMO this falls under the documented design intent of\n```\n+    - Configuration files occasionally need to modify their schema in pursuit of\n+      simplicity, or based on a greater understanding of the system level\n+      constraints.\n```\nsince our system-level constraint is that we are using D-Bus, so we need to adapt to D-Bus design intent and available tooling.",
+      "parentUuid": "c9a9f95e_5529f523",
+      "revId": "c22fc3b2a404086a51cdc79860be2ce02ca75ea0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "38fb428c_a8c56a74",
         "filename": "schemas/legacy.json",
         "patchSetId": 1
