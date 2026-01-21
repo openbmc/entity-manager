@@ -35,4 +35,18 @@ std::optional<std::string> templateCharReplace(
 std::string buildInventorySystemPath(std::string& boardName,
                                      const std::string& boardType);
 
+/**
+ * @brief API to find and replace @PROPERTYNAME in JSON
+ * This API checks if the replacementTarget string has @patterned value,
+ * something like @PROPERTYNAME. If the find is successful, it replaces
+ * @PROPERTYNAME with the property value.
+ *
+ * @param[in, out] replacementTarget - Target string to find and replace the
+ * @patterned value.
+ * @param[in] propName - Name of the property.
+ * @param[in] propVal - Value of the property.
+ */
+void findAndReplaceAtCommand(std::string& replacementTarget,
+                             const std::string& propName,
+                             const DBusInterface& propVal);
 } // namespace em_utils

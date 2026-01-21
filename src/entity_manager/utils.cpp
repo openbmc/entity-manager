@@ -157,6 +157,42 @@ std::optional<std::string> templateCharReplace(
     return std::nullopt;
 }
 
+void findAndReplaceAtCommand(std::string& replacementTarget,
+                             const std::string& propName,
+                             const DBusInterface& propVal);
+{
+    // Symbol @ is to extract the number from the PROPERTY whose value is an
+    // alphanumeral.
+    constexpr const char* symbolToExtractNum = "@";
+
+    // Format of @ command => @PROPERTYNAME
+    std::string format = symbolToExtractNum + propName;
+
+    boost::iterator_range<std::string::const_iterator> findFormat =
+        boost::ifind_first(*strPtr, format);
+
+    // If configuration json has a pattern "PROPERTY_A": "@PROPERTY_B",
+    // extract the number from PROPERTY_B and replace it in the place of
+    // @PROPERTY_B
+    if (!findFormat.empty())
+    {
+        // get the string value from dbus variant
+        std::string val = std::visit(VariantToStringVisitor(), propValue);
+
+        // extract number from val
+        std::regex number_regex("\\d+");
+        std::smatch match;
+
+        // if no match is found, std::regex_search returns false
+        if (std::regex_search(val, match, number_regex))
+        {
+            // Replace the first matching number in the place of
+            // @PROPERTY_NAME. The replaced number is of type uint64 on d-bus
+            boost::ireplace_all(*strPtr, format, match.str());
+        }
+    }
+}
+
 // finds the template character (currently set to $) and replaces the value with
 // the field found in a dbus object i.e. $ADDRESS would get populated with the
 // ADDRESS field from a object on dbus
@@ -202,6 +238,8 @@ std::optional<std::string> templateCharReplace(
 
     for (const auto& [propName, propValue] : interface)
     {
+        findAndReplaceAtCommand(*strPtr, propName, propValue);
+
         std::string templateName = templateChar + propName;
         std::ranges::subrange<std::string::const_iterator> find =
             iFindFirst(*strPtr, templateName);
