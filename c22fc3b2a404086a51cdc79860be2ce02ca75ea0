@@ -145,6 +145,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c9a9f95e_5529f523",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-01-21T00:06:32Z",
+      "side": 1,
+      "message": "Cherry-picking an example from elsewhere in the open source ecosystem: While Linux\u0027s syscall interface has a no-regressions policy, the internal APIs are never considered stable. There are two motivations for that:\n\n1. Ensuring that upstream developers can refactor the implementation as needs shift over time\n2. To encourage contributions upstream by adding friction to keeping patches out-of-tree\n\nI see parallels here. OpenBMC\u0027s equivalent of Linux\u0027s syscall interface is Redfish and IPMI. Anything else should be fair game, with the same motivations as Linux.\n\nRegardless, in this case, we can provide a transitional period by implementing both approaches in the schema, the dropping `patternProperties` some time in the future. I use the overlap strategy extensively in libpldm to allow non-breaking progress.",
+      "parentUuid": "0c9d7272_96b17150",
+      "revId": "c22fc3b2a404086a51cdc79860be2ce02ca75ea0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "38fb428c_a8c56a74",
         "filename": "schemas/legacy.json",
         "patchSetId": 1
