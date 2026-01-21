@@ -1,0 +1,158 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3be7206c_05f96bac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-21T12:02:13Z",
+      "side": 1,
+      "message": "Can you please push changes to the relation chain / topic showing how it helps upstream configurations.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 15
+      },
+      "revId": "9f8714eb2f47f7c0048b11aae57cc286695d23dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c92c095_c8ab85a0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-21T12:02:13Z",
+      "side": 1,
+      "message": "I would suggest to make a full example using at least a full configuration record with Name, Type, ...",
+      "revId": "9f8714eb2f47f7c0048b11aae57cc286695d23dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "050b28d0_6dac2355",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-21T12:02:13Z",
+      "side": 1,
+      "message": "```suggestion\nEg:\nIf the config json contains:\n\"DeviceName\": \"PCIe SLOT @{SlotNumber}\"\n\"SlotNumber\": \"6\"\n```\n\nReplacing it the other way around would be simpler for the example use-case since there is no need to extract a number.",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 27
+      },
+      "revId": "9f8714eb2f47f7c0048b11aae57cc286695d23dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0057dd6a_33704e8e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-21T12:02:13Z",
+      "side": 1,
+      "message": "When doing any kind of template var, please provide a boundary like `@{DeviceName}`.\n\nThe current template var system like `$bus` has a huge problem because there is no clear end to the template var.",
+      "range": {
+        "startLine": 21,
+        "startChar": 15,
+        "endLine": 21,
+        "endChar": 26
+      },
+      "revId": "9f8714eb2f47f7c0048b11aae57cc286695d23dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a52d7f16_8742457d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-21T12:02:13Z",
+      "side": 1,
+      "message": "I would expect SlotNumber to be \"PCIe SLOT 6\", there is no indication any function is applied to the property value.",
+      "revId": "9f8714eb2f47f7c0048b11aae57cc286695d23dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4eff02c4_0f19a478",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-21T12:02:13Z",
+      "side": 1,
+      "message": "please add unit-tests for the feature",
+      "revId": "9f8714eb2f47f7c0048b11aae57cc286695d23dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ffd4a52_174f6a99",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-21T12:02:13Z",
+      "side": 1,
+      "message": "This is super far away from the code which is using it.\n\nSince there is only one function using this symbol, can it be inlined?",
+      "revId": "9f8714eb2f47f7c0048b11aae57cc286695d23dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e9f7a14_4566bfdd",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-21T12:02:13Z",
+      "side": 1,
+      "message": "Please make a separate function for this, the existing function is already too long (see cpp core guidelines)",
+      "revId": "9f8714eb2f47f7c0048b11aae57cc286695d23dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
