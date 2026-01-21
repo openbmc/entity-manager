@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81133f02_62a6d416",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-21T00:48:42Z",
+      "side": 1,
+      "message": "nice fix",
+      "revId": "fe3011e965385d80839fb2684195ad419972ff72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec2eeab8_428091b7",
+        "filename": "src/entity_manager/dbus_interface.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-21T00:48:42Z",
+      "side": 1,
+      "message": "It would be nice to have some manual tests / inspection done modifying various properties at different levels of the object tree to confirm the code path in `addProperty` is working and the json pointer is correctly set.\n\n- board/chassis interface\n- extra interfaces added in the EM config\n- exposes records\n- nested objects within exposes records\n- association interfaces\n\nIt would also be good to `busctl introspect` the various object paths to check that the writable interfaces (see `getPermission` function) are writable and other properties are not writable.",
+      "revId": "fe3011e965385d80839fb2684195ad419972ff72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58d636d0_6be8d94a",
+        "filename": "src/entity_manager/dbus_interface.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-21T00:48:42Z",
+      "side": 1,
+      "message": "Since with this change various properties now become writable, did you check the callers of this function recursively to see if they are passing the correct permission?\n\nWould be nice to see that in the commit message, since this change could expose bugs in other places.",
+      "revId": "fe3011e965385d80839fb2684195ad419972ff72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
