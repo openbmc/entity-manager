@@ -272,6 +272,11 @@
             "Index": 0,
             "Name": "FAN0_TACH_IL_SPEED_RPM",
             "PowerState": "Always",
+            "Presence": {
+                "MonitorType": "Polling",
+                "PinName": "PRSNT_FAN0",
+                "Polarity": "High"
+            },
             "Thresholds": [
                 {
                     "Direction": "less than",
@@ -311,6 +316,11 @@
             "Index": 1,
             "Name": "FAN0_TACH_OL_SPEED_RPM",
             "PowerState": "Always",
+            "Presence": {
+                "MonitorType": "Polling",
+                "PinName": "PRSNT_FAN0",
+                "Polarity": "High"
+            },
             "Thresholds": [
                 {
                     "Direction": "less than",
@@ -350,6 +360,11 @@
             "Index": 2,
             "Name": "FAN1_TACH_IL_SPEED_RPM",
             "PowerState": "Always",
+            "Presence": {
+                "MonitorType": "Polling",
+                "PinName": "PRSNT_FAN1",
+                "Polarity": "High"
+            },
             "Thresholds": [
                 {
                     "Direction": "less than",
@@ -389,6 +404,11 @@
             "Index": 3,
             "Name": "FAN1_TACH_OL_SPEED_RPM",
             "PowerState": "Always",
+            "Presence": {
+                "MonitorType": "Polling",
+                "PinName": "PRSNT_FAN1",
+                "Polarity": "High"
+            },
             "Thresholds": [
                 {
                     "Direction": "less than",
@@ -428,6 +448,11 @@
             "Index": 4,
             "Name": "FAN2_TACH_IL_SPEED_RPM",
             "PowerState": "Always",
+            "Presence": {
+                "MonitorType": "Polling",
+                "PinName": "PRSNT_FAN2",
+                "Polarity": "High"
+            },
             "Thresholds": [
                 {
                     "Direction": "less than",
@@ -467,6 +492,11 @@
             "Index": 5,
             "Name": "FAN2_TACH_OL_SPEED_RPM",
             "PowerState": "Always",
+            "Presence": {
+                "MonitorType": "Polling",
+                "PinName": "PRSNT_FAN2",
+                "Polarity": "High"
+            },
             "Thresholds": [
                 {
                     "Direction": "less than",
@@ -506,6 +536,11 @@
             "Index": 6,
             "Name": "FAN3_TACH_IL_SPEED_RPM",
             "PowerState": "Always",
+            "Presence": {
+                "MonitorType": "Polling",
+                "PinName": "PRSNT_FAN3",
+                "Polarity": "High"
+            },
             "Thresholds": [
                 {
                     "Direction": "less than",
@@ -545,6 +580,11 @@
             "Index": 7,
             "Name": "FAN3_TACH_OL_SPEED_RPM",
             "PowerState": "Always",
+            "Presence": {
+                "MonitorType": "Polling",
+                "PinName": "PRSNT_FAN3",
+                "Polarity": "High"
+            },
             "Thresholds": [
                 {
                     "Direction": "less than",
