@@ -1,6 +1,4 @@
-test_boost_args = boost_args + ['-DBOOST_ASIO_DISABLE_THREADS'] + [
-    '-DENABLE_FRU_UPDATE_PROPERTY=1',
-]
+test_boost_args = boost_args + ['-DBOOST_ASIO_DISABLE_THREADS']
 gtest = dependency('gtest', main: true, disabler: true, required: false)
 gmock = dependency('gmock', disabler: true, required: false)
 
@@ -30,6 +28,7 @@ test(
         cpp_args: test_boost_args,
         dependencies: [
             boost,
+            fru_device_conf_dep,
             gmock,
             gtest,
             libxml2_dep,
