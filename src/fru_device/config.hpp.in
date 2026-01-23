@@ -1,0 +1,19 @@
+#pragma once
+
+#include <string_view>
+
+// NOLINTBEGIN(readability-identifier-naming)
+
+constexpr bool ENABLE_FRU_AREA_RESIZE = @ENABLE_FRU_AREA_RESIZE@;
+
+constexpr bool ENABLE_FRU_UPDATE_PROPERTY = @ENABLE_FRU_UPDATE_PROPERTY@;
+
+// See docs/address_size_detection_modes.md
+enum class FruDevice16BitDetectMode {
+    MODE_1,
+    MODE_2,
+};
+
+constexpr FruDevice16BitDetectMode FRU_DEVICE_16BITDETECTMODE = FruDevice16BitDetectMode::@FRU_DEVICE_16BITDETECTMODE@;
+
+// NOLINTEND(readability-identifier-naming)

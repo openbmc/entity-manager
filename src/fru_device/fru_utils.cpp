@@ -3,6 +3,7 @@
 
 #include "fru_utils.hpp"
 
+#include "config.hpp"
 #include "gzip_utils.hpp"
 
 #include <phosphor-logging/lg2.hpp>

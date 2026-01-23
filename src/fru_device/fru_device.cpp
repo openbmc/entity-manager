@@ -2,6 +2,7 @@
 // SPDX-FileCopyrightText: Copyright 2018 Intel Corporation
 
 #include "../utils.hpp"
+#include "config.hpp"
 #include "fru_utils.hpp"
 
 #include <fcntl.h>
@@ -56,8 +57,6 @@ const static constexpr char* baseboardFruLocation =
     "/etc/fru/baseboard.fru.bin";
 
 const static constexpr char* i2CDevLocation = "/dev";
-
-constexpr const char* fruDevice16BitDetectMode = FRU_DEVICE_16BITDETECTMODE;
 
 // TODO Refactor these to not be globals
 // NOLINTBEGIN(cppcoreguidelines-avoid-non-const-global-variables)
@@ -332,14 +331,15 @@ static std::optional<bool> isDevice16BitMode2(int file, uint16_t address)
 
 static std::optional<bool> isDevice16Bit(int file, uint16_t address)
 {
-    std::string mode(fruDevice16BitDetectMode);
-
-    if (mode == "MODE_2")
+    switch (FRU_DEVICE_16BITDETECTMODE)
     {
-        return isDevice16BitMode2(file, address);
+        case FruDevice16BitDetectMode::MODE_2:
+            return isDevice16BitMode2(file, address);
+        case FruDevice16BitDetectMode::MODE_1:
+            return isDevice16BitMode1(file);
+        default:
+            return std::nullopt;
     }
-
-    return isDevice16BitMode1(file);
 }
 
 // TODO: This code is very similar to the non-eeprom version and can be merged
