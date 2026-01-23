@@ -16,6 +16,24 @@
       "message": "Should we add support for multiple NvidiaMctpVdm configurations (one for each device) in Entity Configuration. For example separate configuration for SMAs and CXs. We can add a DeviceName property in the Platform config and then match the value of that property in the Entity config to pick the relevant config. We can also introduce separate config type for each device type, NvidiaMctpVdmGpu, NvidiaMctpVdmCx, NvidiaMctpVdmSma, etc. This will help when we have certain configuration properties that are only applicable for a particular device type, number of network ports on CXs for example.",
       "revId": "63a822d5e71d231e8f088d1f8c87bdcfe39c70c7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d50d9259_29b4ba7b",
+        "filename": "configurations/nvidia/imgx_connectx8_supernic_switch.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-01-23T15:50:55Z",
+      "side": 1,
+      "message": "Agreed, but I will do this as we bring in device specific config.",
+      "parentUuid": "51340c81_241987d6",
+      "revId": "63a822d5e71d231e8f088d1f8c87bdcfe39c70c7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
