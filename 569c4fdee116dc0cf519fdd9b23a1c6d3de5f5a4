@@ -104,6 +104,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f3ac454_d3ce600a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 24
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-01-23T19:23:47Z",
+      "side": 1,
+      "message": "@saipavann@ami.com Please review other peoples patches while waiting, rather than pinging maintainers repeatedly.\n\nThe quality of this document is mediocre, and the last round of my comments were mostly closed with zero discussion.  Responding primarily with \"Acknowledged\" doesn\u0027t imply that you actually want a review or discussion.",
+      "parentUuid": "1c10e9a3_bcc1a5e3",
+      "revId": "569c4fdee116dc0cf519fdd9b23a1c6d3de5f5a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "267fdbf1_6ab66cad",
@@ -134,6 +152,23 @@
       "writtenOn": "2026-01-23T16:13:29Z",
       "side": 1,
       "message": "Is this \u0027bus+1\u0027 actually correct?  I thought mux bus numbers are after all the direct hardware ones?",
+      "revId": "569c4fdee116dc0cf519fdd9b23a1c6d3de5f5a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f23b14b6_72e7729f",
+        "filename": "docs/sensor_mux.md",
+        "patchSetId": 24
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-01-23T19:23:47Z",
+      "side": 1,
+      "message": "Please don\u0027t put example json configs in docs.  EVERY EM config is in this same repo.  Just link to one that implements what you are trying to show here.",
       "revId": "569c4fdee116dc0cf519fdd9b23a1c6d3de5f5a4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
