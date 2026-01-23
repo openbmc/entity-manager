@@ -239,28 +239,6 @@
         {
             "Address": "0x4e",
             "Bus": 34,
-            "Name": "CXL_INLET_TEMP_C",
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.1,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5.0
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 1.1,
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 55.0
-                }
-            ],
-            "Type": "LM75A"
-        },
-        {
-            "Address": "0x4a",
-            "Bus": 34,
             "Name": "CXL_OUTLET_TEMP_C",
             "Thresholds": [
                 {
@@ -276,6 +254,28 @@
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 75.0
+                }
+            ],
+            "Type": "LM75A"
+        },
+        {
+            "Address": "0x4a",
+            "Bus": 34,
+            "Name": "CXL_INLET_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.1,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 55.0
                 }
             ],
             "Type": "LM75A"
