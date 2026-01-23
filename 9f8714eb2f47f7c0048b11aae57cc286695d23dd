@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "95fc6be0_5eff3218",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000362
+      },
+      "writtenOn": "2026-01-23T09:54:20Z",
+      "side": 1,
+      "message": "on many server platforms, there can be multiple instances of same fru each are uniquely identified by the instance numbers. To keep the stable instance number that can be reused across all related objects for that FRU, we need to extract numeric token from it\u0027s name.\n\nHaving such a property which tells the instance number/slotnumber, it makes it possible to seamlessly correlate inventory objects with LEDs, sensors, Redfish resources, etc., thus providing consistent dbus object naming.\n\neg:\n    \"Exposes\": [\n        {\n            \"Address\": \"$address\",\n            \"Bus\": \"$bus\",\n            \"Name\": \"PCIe Card 0\",\n            \"Type\": \"EEPROM\",\n            \"InstanceNumber\": \"@Name\" \u003d\u003e Created a new dbus property (InstanceNumber \u003d 0)\n        }\n     ]\n\nThe newly created property can be used to create other related objects for that FRU. eg:\n/xyz/openbmc_project/inventory/system/chassis/assembly/pcie_card3\n  ├─ maps to → /xyz/openbmc_project/led/pcie3\n  ├─ maps to → /xyz/openbmc_project/temp/pcie3\n  ├─ maps to → /redfish/v1/Chassis/HGX_GPU_3",
+      "parentUuid": "f203ca02_354fb33f",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 15
+      },
+      "revId": "9f8714eb2f47f7c0048b11aae57cc286695d23dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1c92c095_c8ab85a0",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -61,6 +85,24 @@
       "writtenOn": "2026-01-21T12:02:13Z",
       "side": 1,
       "message": "I would suggest to make a full example using at least a full configuration record with Name, Type, ...",
+      "revId": "9f8714eb2f47f7c0048b11aae57cc286695d23dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8c34a7b_3830eabf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000362
+      },
+      "writtenOn": "2026-01-23T09:54:20Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "1c92c095_c8ab85a0",
       "revId": "9f8714eb2f47f7c0048b11aae57cc286695d23dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -113,6 +155,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "01fad2a4_6ca21882",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000362
+      },
+      "writtenOn": "2026-01-23T09:54:20Z",
+      "side": 1,
+      "message": "No need to do the other way around as it\u0027s already achieved by using the existing $ symbol.\n\"DeviceName\": \"PCIe SLOT $SlotNumber\" \u003d\u003e will do the same",
+      "parentUuid": "050b28d0_6dac2355",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 27
+      },
+      "revId": "9f8714eb2f47f7c0048b11aae57cc286695d23dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a56f08ba_eb174789",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000362
+      },
+      "writtenOn": "2026-01-23T09:54:20Z",
+      "side": 1,
+      "message": "In entity manager config jsons, the property name is followed in pascal case without any spaces, which itself sets a clear end. so I would suggest to keep it the same way for @ or any other new commands to make it consistent.",
+      "parentUuid": "0057dd6a_33704e8e",
+      "range": {
+        "startLine": 21,
+        "startChar": 15,
+        "endLine": 21,
+        "endChar": 26
+      },
+      "revId": "9f8714eb2f47f7c0048b11aae57cc286695d23dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a52d7f16_8742457d",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -130,6 +220,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "02b84a91_bb248509",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000362
+      },
+      "writtenOn": "2026-01-23T09:54:20Z",
+      "side": 1,
+      "message": "these numbers can be slot numbers/ instance numbers which can be used across other related dbus objects to have consistency in naming the fru\u0027s inv path or led obj path or temp sensor path or even redfish uri path.",
+      "parentUuid": "a52d7f16_8742457d",
+      "revId": "9f8714eb2f47f7c0048b11aae57cc286695d23dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4eff02c4_0f19a478",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -141,6 +249,24 @@
       "writtenOn": "2026-01-21T12:02:13Z",
       "side": 1,
       "message": "please add unit-tests for the feature",
+      "revId": "9f8714eb2f47f7c0048b11aae57cc286695d23dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35d74e99_1fd65911",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000362
+      },
+      "writtenOn": "2026-01-23T09:54:20Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "4eff02c4_0f19a478",
       "revId": "9f8714eb2f47f7c0048b11aae57cc286695d23dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -179,6 +305,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e59a7658_48001ba3",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000362
+      },
+      "writtenOn": "2026-01-23T09:54:20Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9ffd4a52_174f6a99",
+      "revId": "9f8714eb2f47f7c0048b11aae57cc286695d23dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3e9f7a14_4566bfdd",
@@ -192,6 +336,24 @@
       "writtenOn": "2026-01-21T12:02:13Z",
       "side": 1,
       "message": "Please make a separate function for this, the existing function is already too long (see cpp core guidelines)",
+      "revId": "9f8714eb2f47f7c0048b11aae57cc286695d23dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "628f7ce2_1bb6142a",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1000362
+      },
+      "writtenOn": "2026-01-23T09:54:20Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3e9f7a14_4566bfdd",
       "revId": "9f8714eb2f47f7c0048b11aae57cc286695d23dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
