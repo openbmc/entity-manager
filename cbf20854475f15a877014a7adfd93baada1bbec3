@@ -16,6 +16,24 @@
       "message": "This isn\u0027t a very useful trace anymore now that it is done every time.  Maybe if it will still in the !fwVersionSamePath and it was changed to something like \u0027Not reloading previous configuration\u0027?  Or just remove it altogether.",
       "revId": "cbf20854475f15a877014a7adfd93baada1bbec3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38532cac_d94e5a4e",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 642,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-23T01:25:39Z",
+      "side": 1,
+      "message": "\u003e Or just remove it altogether.\n\nChanged it to `lg2::debug` instead to be consistent,\nsince there are other logs for writing and reading the system.json\n\nLet me know if you still want to have it removed 👍",
+      "parentUuid": "866405e1_0cf431bd",
+      "revId": "cbf20854475f15a877014a7adfd93baada1bbec3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
