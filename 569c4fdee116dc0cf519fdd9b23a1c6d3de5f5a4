@@ -102,6 +102,63 @@
       "message": "Aren\u0027t muxes usually to prevent I2C address collisions?\n\nThe example still works though so +1.",
       "revId": "569c4fdee116dc0cf519fdd9b23a1c6d3de5f5a4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87a5c056_306709d1",
+        "filename": "docs/sensor_mux.md",
+        "patchSetId": 24
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-01-23T16:13:29Z",
+      "side": 1,
+      "message": "Is this \u0027bus+1\u0027 actually correct?  I thought mux bus numbers are after all the direct hardware ones?",
+      "revId": "569c4fdee116dc0cf519fdd9b23a1c6d3de5f5a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ecbd4f3_5263d7e4",
+        "filename": "docs/sensor_mux.md",
+        "patchSetId": 24
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-01-23T16:13:29Z",
+      "side": 1,
+      "message": "This is not the path that would come from the above JSON.",
+      "range": {
+        "startLine": 78,
+        "startChar": 42,
+        "endLine": 78,
+        "endChar": 56
+      },
+      "revId": "569c4fdee116dc0cf519fdd9b23a1c6d3de5f5a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22eca72a_8a4cd5cb",
+        "filename": "docs/sensor_mux.md",
+        "patchSetId": 24
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-01-23T16:13:29Z",
+      "side": 1,
+      "message": "I\u0027m pretty sure this whole document was generated with a coding agent.  Why do we want this when there are hallucinations?",
+      "revId": "569c4fdee116dc0cf519fdd9b23a1c6d3de5f5a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
