@@ -871,6 +871,14 @@
                     "Value": 160
                 },
                 {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Label": "temp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                },
+                {
                     "Direction": "greater than",
                     "Hysteresis": 2.5,
                     "Label": "temp1",
@@ -1054,7 +1062,8 @@
                 "MB_VR_CPU_CPU1_TEMP_C",
                 "MB_VR_CPU_MEM_S3_TEMP_C",
                 "MB_VR_CPU_PVDDIO_TEMP_C",
-                "MB_VR_CPU_SOC_TEMP_C"
+                "MB_VR_CPU_SOC_TEMP_C",
+                "MB_VR_PVDD18_S5_TEMP_C"
             ],
             "Name": "PID_MB_VR",
             "NegativeHysteresis": 2.0,
@@ -1483,7 +1492,8 @@
                 "MB_VR_CPU_CPU1_TEMP_C",
                 "MB_VR_CPU_MEM_S3_TEMP_C",
                 "MB_VR_CPU_PVDDIO_TEMP_C",
-                "MB_VR_CPU_SOC_TEMP_C"
+                "MB_VR_CPU_SOC_TEMP_C",
+                "MB_VR_PVDD18_S5_TEMP_C"
             ],
             "Name": "Stepwise_MB_VR",
             "NegativeHysteresis": 2.0,
@@ -1631,6 +1641,32 @@
             ]
         },
         {
+            "Class": "temp",
+            "Inputs": [
+                "MB_INLET_TEMP_C",
+                "MB_OUTLET_TEMP_C",
+                "PDB_L_TEMP_C",
+                "PDB_R_TEMP_C",
+                "E1S_EB_TEMP_C",
+                "CXL_EXT_CHIP_TEMP_C",
+                "CXL_INLET_TEMP_C",
+                "CXL_OUTLET_TEMP_C"
+            ],
+            "Name": "Stepwise_OTHERS",
+            "NegativeHysteresis": 0.0,
+            "Output": [
+                10.0
+            ],
+            "PositiveHysteresis": 0.0,
+            "Reading": [
+                5.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 1"
+            ]
+        },
+        {
             "Address": "0x48",
             "Bus": 8,
             "Name": "PDB_R_TEMP_C",
@@ -1733,6 +1769,14 @@
                     "Name": "upper non recoverable",
                     "Severity": 4,
                     "Value": 160
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Label": "temp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
                 },
                 {
                     "Direction": "greater than",
