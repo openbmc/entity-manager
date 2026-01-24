@@ -1,6 +1,46 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ed0455c_a0065057",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-01-24T00:28:10Z",
+      "side": 1,
+      "message": "?  So the lastJson structure isn\u0027t used anywhere in code?  Please explain more.  \"is not required\" doesn\u0027t really describe why it was there. \n\n(Later comment) did some hunting, see below.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 58
+      },
+      "revId": "44ab9ccc31c61c9d0fb4949818309a221820ef4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8959c03f_cfb7728d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-01-24T00:28:10Z",
+      "side": 1,
+      "message": "I\u0027m not sure what\u0027s going on here, because you KNOW this file is used because you wrote the option to allow it to not be used.\n\nhttps://github.com/openbmc/entity-manager/commit/e665185bc9ea2a453a254756073891c0819f6375\n\nBut you mention none of that here, and you write this commit message as if this isn\u0027t a breaking change.\n\nWe can certainly have a discussion if this feature is useful and possibly should be removed, but what\u0027s written here looks like you were just hoping nobody would notice.  I will assume you had the best of intentions and just missed it, but please recognize that it increases maintainer load when you do that.",
+      "revId": "44ab9ccc31c61c9d0fb4949818309a221820ef4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "c7cbdd34_073f5bc2",
@@ -14,6 +54,46 @@
       "writtenOn": "2026-01-23T22:20:58Z",
       "side": 1,
       "message": "Looks fine to me, probably good for others to review.",
+      "revId": "44ab9ccc31c61c9d0fb4949818309a221820ef4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3b79594_49f20448",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-01-24T00:28:10Z",
+      "side": 1,
+      "message": "Alexander, please do better.  Honestly, if you\u0027d asked me if I thought this should be retained, I probably would\u0027ve agreed with you that this feature wasn\u0027t useful, and could probably be put behind the same option we used elsewhere.  But I don\u0027t want to have to go hunt through the patchset to go figure it out that it broke something, I\u0027d like to be able to take your commit messages as stated, or have them phrased as \"this breaks XYZ, do we care?\".  Not doing that means maintainers can\u0027t review yours and others patchsets as quickly, which is worse for the project overall.",
+      "revId": "44ab9ccc31c61c9d0fb4949818309a221820ef4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "008777ee_7c5d9b6d",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 623,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-01-24T00:28:10Z",
+      "side": 1,
+      "message": "Now that we\u0027re loading current here instead of last, doesn\u0027t this break logging of removed items?\n\nhttps://github.com/openbmc/entity-manager/blob/6c7b88451a771bae297ff6baa11c9072e8fa0ad7/src/entity_manager/entity_manager.cpp#L441",
+      "range": {
+        "startLine": 623,
+        "startChar": 0,
+        "endLine": 623,
+        "endChar": 47
+      },
       "revId": "44ab9ccc31c61c9d0fb4949818309a221820ef4c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
