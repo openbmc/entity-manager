@@ -203,6 +203,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "386c0f25_871bf548",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-26T08:12:54Z",
+      "side": 1,
+      "message": "\u003e to make it consistent.\n\nstep 1: create broken template var system\nstep 2: not merge @chaul@amperecomputing.com \u0027s fix for said template system\nstep 3: re-use the broken idea to create new template var system\n\nYou are choosing the scope of consistency to suit your argument.\n\n\n- inside of entity-manager, your change is consistent\n- inside of openbmc, your change is inconsistent, e.g. `phosphor-logging` uses clear boundary for template var\n- inside of wider cpp community, your change is also inconsistent, considering template systems like `%s`, or `std::format`.\n\nentity-manager is not all stars and rainbows, we sadly cannot always use it\u0027s code as reference for how to write new code.",
+      "parentUuid": "a56f08ba_eb174789",
+      "range": {
+        "startLine": 21,
+        "startChar": 15,
+        "endLine": 21,
+        "endChar": 26
+      },
+      "revId": "9f8714eb2f47f7c0048b11aae57cc286695d23dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a52d7f16_8742457d",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -238,6 +262,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a116d961_5de54be4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-26T08:12:54Z",
+      "side": 1,
+      "message": "I like your base idea of being able to define a template var as part of a config file and then applying it inside the config file for consistency.\n\n\nIf i were to see `@DeviceName` anywhere in the config, i would expect it to be replaced with the exact contents of that property.",
+      "parentUuid": "02b84a91_bb248509",
+      "revId": "9f8714eb2f47f7c0048b11aae57cc286695d23dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4eff02c4_0f19a478",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -267,6 +309,24 @@
       "side": 1,
       "message": "Acknowledged",
       "parentUuid": "4eff02c4_0f19a478",
+      "revId": "9f8714eb2f47f7c0048b11aae57cc286695d23dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb3faea5_6f3b91d2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-26T08:12:54Z",
+      "side": 1,
+      "message": "please add unit-tests for the feature",
+      "parentUuid": "35d74e99_1fd65911",
       "revId": "9f8714eb2f47f7c0048b11aae57cc286695d23dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
