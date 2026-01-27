@@ -178,6 +178,36 @@
             "Type": "EEPROM"
         },
         {
+            "Name": "PRSNT_BOOT_N",
+            "PresencePinNames": [
+                "PRSNT_BOOT_N_FF"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "PRSNT_MCIO1A_N",
+            "PresencePinNames": [
+                "PRSNT_MCIO1A_N_FF"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "NIC_PRSNT_N",
+            "PresencePinNames": [
+                "NIC_PRSNT_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
             "Address": "0x40",
             "Bus": 11,
             "Labels": [
