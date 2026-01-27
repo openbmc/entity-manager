@@ -1,0 +1,61 @@
+{
+    "Exposes": [
+        {
+            "BindConnector": "Sys FAN Connector 3",
+            "Index": 3,
+            "Name": "SYS_FAN_2",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 100
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 200
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 7000
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 9000
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "Name": "GenericContainPort",
+            "PortType": "contained_by",
+            "Type": "Port"
+        },
+        {
+            "Name": "GenericCoolingPort",
+            "PortType": "cooling",
+            "Type": "Port"
+        }
+    ],
+    "Name": "FAN 2",
+    "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': '1.57', 'PRODUCT_MANUFACTURER': 'MBX'})",
+    "Type": "Fan",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "20200304",
+        "Manufacturer": "Nidec",
+        "Model": "V80E12B",
+        "PartNumber": "V80E12BHA5",
+        "SerialNumber": "N118373",
+        "SparePartNumber": "V80E12BHA5",
+        "SubModel": "V80E12BHA5"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.LocationCode": {
+        "LocationCode": "SYS_FAN_2"
+    }
+}
