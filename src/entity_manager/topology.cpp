@@ -4,7 +4,7 @@
 
 const AssocName assocContaining =
     AssocName("containing", "contained_by", {"Chassis"},
-              {"Board", "Chassis", "PowerSupply"});
+              {"Board", "Chassis", "PowerSupply", "Fan"});
 const AssocName assocContainedBy = assocContaining.getReverse();
 
 // Topology tests say that a chassis can be powering another chassis.
@@ -18,11 +18,13 @@ const AssocName assocPoweredBy = assocPowering.getReverse();
 const AssocName assocProbing = AssocName("probing", "probed_by", {}, {});
 const AssocName assocProbedBy = assocProbing.getReverse();
 
+const AssocName assocCooling = AssocName("cooling", "cooled_by", {"Fan"},
+                                         {"Chassis", "PowerSupply", "Board"});
+const AssocName assocCooledBy = assocCooling.getReverse();
+
 const std::vector<AssocName> supportedAssocs = {
-    assocContaining,
-    assocContainedBy,
-    assocPowering,
-    assocPoweredBy,
+    assocContaining, assocContainedBy, assocPowering,
+    assocPoweredBy,  assocCooling,     assocCooledBy,
 };
 
 AssocName::AssocName(const std::string& name, const std::string& reverse,
@@ -114,8 +116,9 @@ void Topology::addConfiguredPort(const Path& path,
     const auto assoc = getAssocByName(portType);
     if (!assoc.has_value())
     {
-        lg2::error("Could not find configured association name {ASSOC}",
+        lg2::error("Could not find configured association name '{ASSOC}'",
                    "ASSOC", portType);
+
         return;
     }
 
