@@ -331,6 +331,17 @@ TEST(Topology, SimilarToTyanS8030)
     const std::string psu1Path =
         "/xyz/openbmc_project/inventory/system/powersupply/PSU1";
 
+    // example 3 fan setup in a 2U chassis
+    const std::string fan1Path =
+        "/xyz/openbmc_project/inventory/system/fan/SYS_FAN_1";
+    const std::string fan2Path =
+        "/xyz/openbmc_project/inventory/system/fan/SYS_FAN_2";
+    const std::string fan3Path =
+        "/xyz/openbmc_project/inventory/system/fan/SYS_FAN_3";
+
+    const std::vector<std::string> fanPaths = {fan1Path, fan2Path, fan3Path};
+    const std::vector<std::string> psuPaths = {psu0Path, psu1Path};
+
     const nlohmann::json chassisContainExposesItem = nlohmann::json::parse(R"(
     {
         "Name": "GenericContainPort",
@@ -359,23 +370,43 @@ TEST(Topology, SimilarToTyanS8030)
         "Type": "Port"
     }
 )");
+    const nlohmann::json coolingExposesItem = nlohmann::json::parse(R"(
+    {
+        "Name": "GenericCoolingPort",
+        "PortType": "cooling",
+        "Type": "Port"
+    }
+)");
+    const nlohmann::json cooledByExposesItem = nlohmann::json::parse(R"(
+    {
+        "Name": "GenericCoolingPort",
+        "PortType": "cooled_by",
+        "Type": "Port"
+    }
+)");
     Topology topo;
     BoardMap boards{
-        {chassisPath, "ChassisA"},
-        {boardPath, "BoardA"},
-        {psu0Path, "PSU0"},
-        {psu1Path, "PSU1"},
+        {chassisPath, "ChassisA"}, {boardPath, "BoardA"},
+        {psu0Path, "PSU0"},        {psu1Path, "PSU1"},
+        {fan1Path, "SYS_FAN_1"},   {fan2Path, "SYS_FAN_2"},
+        {fan3Path, "SYS_FAN_3"},
     };
 
     // configure the chassis to be containing something
     topo.addBoard(chassisPath, "Chassis", "ChassisA",
                   chassisContainExposesItem);
 
+    // configure the chassis to be cooled_by something
+    topo.addBoard(chassisPath, "Chassis", "ChassisA", cooledByExposesItem);
+
     // configure board to be contained by something
     topo.addBoard(boardPath, "Board", "BoardA", containedByExposesItem);
 
     // configure the board to be powered by something
     topo.addBoard(boardPath, "Board", "BoardA", boardPowerExposesItem);
+
+    // configure the board to be cooled_by something
+    topo.addBoard(boardPath, "Board", "BoardA", cooledByExposesItem);
 
     // configure the PSUs to be powering something
     topo.addBoard(psu0Path, "PowerSupply", "PSU0", psuPowerExposesItem);
@@ -385,30 +416,69 @@ TEST(Topology, SimilarToTyanS8030)
     topo.addBoard(psu0Path, "PowerSupply", "PSU0", containedByExposesItem);
     topo.addBoard(psu1Path, "PowerSupply", "PSU1", containedByExposesItem);
 
+    // configure Fans to be contained by something
+    topo.addBoard(fan1Path, "Fan", "SYS_FAN_1", containedByExposesItem);
+    topo.addBoard(fan2Path, "Fan", "SYS_FAN_2", containedByExposesItem);
+    topo.addBoard(fan3Path, "Fan", "SYS_FAN_3", containedByExposesItem);
+
+    // configure Fans to be cooling something
+    topo.addBoard(fan1Path, "Fan", "SYS_FAN_1", coolingExposesItem);
+    topo.addBoard(fan2Path, "Fan", "SYS_FAN_2", coolingExposesItem);
+    topo.addBoard(fan3Path, "Fan", "SYS_FAN_3", coolingExposesItem);
+
     auto assocs = topo.getAssocs(std::views::keys(boards));
 
     EXPECT_TRUE(assocs.contains(boardPath));
     EXPECT_TRUE(assocs.contains(psu0Path));
-    EXPECT_TRUE(assocs.contains(psu0Path));
+    EXPECT_TRUE(assocs.contains(psu1Path));
+    EXPECT_TRUE(assocs.contains(fan1Path));
+    EXPECT_TRUE(assocs.contains(fan2Path));
+    EXPECT_TRUE(assocs.contains(fan3Path));
 
     // expect chassis to contain board
-    EXPECT_EQ(assocs[boardPath].size(), 1);
+    EXPECT_EQ(assocs[boardPath].size(), 4);
     EXPECT_TRUE(assocs[boardPath].contains(
         {"contained_by", "containing", chassisPath}));
 
+    // expect board to be cooled_by all the fans
+    for (const auto& fanPath : fanPaths)
+    {
+        EXPECT_TRUE(
+            assocs[boardPath].contains({"cooled_by", "cooling", fanPath}));
+    }
+
     // expect powering association from each PSU to the board
     // and expect each PSU to be contained by the chassis
-    EXPECT_EQ(assocs[psu0Path].size(), 2);
-    EXPECT_TRUE(
-        assocs[psu0Path].contains({"powering", "powered_by", boardPath}));
-    EXPECT_TRUE(
-        assocs[psu0Path].contains({"contained_by", "containing", chassisPath}));
+    for (const auto& psuPath : psuPaths)
+    {
+        EXPECT_EQ(assocs[psuPath].size(), 2);
+        EXPECT_TRUE(
+            assocs[psuPath].contains({"powering", "powered_by", boardPath}));
+        EXPECT_TRUE(assocs[psuPath].contains(
+            {"contained_by", "containing", chassisPath}));
+    }
 
-    EXPECT_EQ(assocs[psu1Path].size(), 2);
-    EXPECT_TRUE(
-        assocs[psu1Path].contains({"powering", "powered_by", boardPath}));
-    EXPECT_TRUE(
-        assocs[psu1Path].contains({"contained_by", "containing", chassisPath}));
+    // expect chassis to be cooled_by all fans
+    for (const auto& fanPath : fanPaths)
+    {
+        EXPECT_TRUE(
+            assocs[chassisPath].contains({"cooled_by", "cooling", fanPath}));
+    }
+
+    // expectations for fan inventory object's associations
+    for (const auto& fanPath : fanPaths)
+    {
+        EXPECT_EQ(assocs[fanPath].size(), 3);
+        // expect fan to be cooling board
+        EXPECT_TRUE(
+            assocs[fanPath].contains({"cooling", "cooled_by", boardPath}));
+        // expect fan to be cooling chassis
+        EXPECT_TRUE(
+            assocs[fanPath].contains({"cooling", "cooled_by", chassisPath}));
+        // expect fan to be contained_by chassis
+        EXPECT_TRUE(assocs[fanPath].contains(
+            {"contained_by", "containing", chassisPath}));
+    }
 }
 
 static nlohmann::json makeExposesItem(const std::string& name,
