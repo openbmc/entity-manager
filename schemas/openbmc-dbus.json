@@ -21,6 +21,9 @@
                                 "Model": {
                                     "type": "string"
                                 },
+                                "SubModel": {
+                                    "type": "string"
+                                },
                                 "PartNumber": {
                                     "type": "string"
                                 },
@@ -57,6 +60,16 @@
                                 }
                             },
                             "required": ["Names"],
+                            "type": "object"
+                        },
+                        "LocationCode": {
+                            "additionalProperties": false,
+                            "properties": {
+                                "LocationCode": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": ["LocationCode"],
                             "type": "object"
                         },
                         "ManagedHost": {
