@@ -700,19 +700,31 @@ void scan::PerformScan::run()
                     std::move(dbusProbeInterfaces), shared_from_this(), io);
 }
 
-scan::PerformScan::~PerformScan()
+scan::PerformScan::~PerformScan() noexcept
 {
-    if (_passed)
+    try
     {
-        auto nextScan = std::make_shared<PerformScan>(
-            _em, _missingConfigurations, _configurations, io,
-            std::move(_callback));
-        nextScan->passedProbes = std::move(passedProbes);
-        nextScan->dbusProbeObjects = std::move(dbusProbeObjects);
-        boost::asio::post(_em.io, [nextScan]() { nextScan->run(); });
+        if (_passed)
+        {
+            auto nextScan = std::make_shared<PerformScan>(
+                _em, _missingConfigurations, _configurations, io,
+                std::move(_callback));
+            nextScan->passedProbes = std::move(passedProbes);
+            nextScan->dbusProbeObjects = std::move(dbusProbeObjects);
+            boost::asio::post(_em.io, [nextScan]() { nextScan->run(); });
+        }
+        else
+        {
+            _callback();
+        }
     }
-    else
+    catch (const std::exception& e)
     {
-        _callback();
+        std::cerr << "Error in PerformScan destructor. " << e.what()
+                  << std::endl;
+    }
+    catch (...)
+    {
+        std::cerr << "Unknown error in PerformScan destructor. " << std::endl;
     }
 }

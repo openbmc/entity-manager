@@ -209,12 +209,24 @@ PerformProbe::PerformProbe(nlohmann::json& recordRef,
     probeName(std::move(probeName)), scan(scanPtr)
 {}
 
-PerformProbe::~PerformProbe()
+PerformProbe::~PerformProbe() noexcept
 {
-    scan::FoundDevices foundDevs;
-    if (doProbe(_probeCommand, scan, foundDevs))
+    try
     {
-        scan->updateSystemConfiguration(recordRef, probeName, foundDevs);
+        scan::FoundDevices foundDevs;
+        if (doProbe(_probeCommand, scan, foundDevs))
+        {
+            scan->updateSystemConfiguration(recordRef, probeName, foundDevs);
+        }
+    }
+    catch (const std::exception& e)
+    {
+        std::cerr << "Error in PerformProbe destructor. " << e.what()
+                  << std::endl;
+    }
+    catch (...)
+    {
+        std::cerr << "Unknown error in PerformProbe destructor. " << std::endl;
     }
 }
 
