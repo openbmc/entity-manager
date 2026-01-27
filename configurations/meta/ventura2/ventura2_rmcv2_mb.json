@@ -300,13 +300,9 @@
                 ],
                 "Type": "INA230",
                 "curr1_Name": "RMC_M12_P24V_1_CURR_A",
-                "curr1_Offset": 0.0008,
-                "curr1_Scale": 99.3147283742,
                 "in1_Max": 36,
                 "in1_Name": "RMC_M12_P24V_1_VOLT_V",
-                "power1_Name": "RMC_M12_P24V_1_PWR_W",
-                "power1_Offset": 0.0007,
-                "power1_Scale": 298089.247920828
+                "power1_Name": "RMC_M12_P24V_1_PWR_W"
             },
             {
                 "Address": "0x45",
@@ -345,13 +341,9 @@
                 ],
                 "Type": "INA230",
                 "curr1_Name": "RMC_M12_P24V_2_CURR_A",
-                "curr1_Offset": 0.0008,
-                "curr1_Scale": 99.3147283742,
                 "in1_Max": 36,
                 "in1_Name": "RMC_M12_P24V_2_VOLT_V",
-                "power1_Name": "RMC_M12_P24V_2_PWR_W",
-                "power1_Offset": 0.0007,
-                "power1_Scale": 298089.247920828
+                "power1_Name": "RMC_M12_P24V_2_PWR_W"
             },
             {
                 "Address": "0x41",
@@ -374,7 +366,7 @@
                 "in0_Max": 1,
                 "in0_Min": -1,
                 "in0_Name": "RMC_MEDUSA_RETURN_VDROP_VOLT_V",
-                "in0_Scale": 953.0162965787
+                "in0_Scale": 1000
             },
             {
                 "Address": "0x42",
@@ -410,7 +402,7 @@
                 "in0_Max": 1,
                 "in0_Min": -1,
                 "in0_Name": "RMC_MEDUSA_POSITIVE_VDROP_VOLT_V",
-                "in0_Scale": 936.1542782251
+                "in0_Scale": 1000
             },
             {
                 "Address": "0x46",
@@ -496,11 +488,7 @@
                 ],
                 "Type": "LTC4287",
                 "iout1_Name": "RMC_HSC_CURR_A",
-                "iout1_Offset": -0.16125,
-                "iout1_Scale": 3327.366,
                 "pin_Name": "RMC_HSC_PWR_W",
-                "pin_Offset": -0.16125,
-                "pin_Scale": 3327366.257,
                 "temp1_Name": "RMC_HSC_TEMP_C",
                 "vin_Max": 76,
                 "vin_Name": "RMC_HSC_VIN_VOLT_V",
