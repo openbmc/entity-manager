@@ -1,0 +1,92 @@
+[
+    {
+        "Exposes": [],
+        "Name": "BOOT_DRIVE",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'BOOT_DRIVE_PRSNT', 'Compatible': 'com.meta.Hardware.BMC.Model.Yosemite5'})"
+        ],
+        "Type": "NVMe",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "Unknown",
+            "Model": "Unknown",
+            "PartNumber": "Unknown",
+            "SerialNumber": "Unknown",
+            "SparePartNumber": "09-100483"
+        }
+    },
+    {
+        "Exposes": [],
+        "Name": "DATA_DRIVE",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'DATA_DRIVE_PRSNT', 'Compatible': 'com.meta.Hardware.BMC.Model.Yosemite5'})"
+        ],
+        "Type": "NVMe",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "Unknown",
+            "Model": "Unknown",
+            "PartNumber": "Unknown",
+            "SerialNumber": "Unknown",
+            "SparePartNumber": "09-100483"
+        }
+    },
+    {
+        "Exposes": [],
+        "Name": "E1S0_DRIVE",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'E1S0_PRSNT', 'Compatible': 'com.meta.Hardware.BMC.Model.Yosemite5'})"
+        ],
+        "Type": "NVMe",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "Unknown",
+            "Model": "Unknown",
+            "PartNumber": "Unknown",
+            "SerialNumber": "Unknown",
+            "SparePartNumber": "09-100483"
+        }
+    },
+    {
+        "Exposes": [],
+        "Name": "E1S1_DRIVE",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'E1S1_PRSNT', 'Compatible': 'com.meta.Hardware.BMC.Model.Yosemite5'})"
+        ],
+        "Type": "NVMe",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "Unknown",
+            "Model": "Unknown",
+            "PartNumber": "Unknown",
+            "SerialNumber": "Unknown",
+            "SparePartNumber": "09-100483"
+        }
+    },
+    {
+        "Exposes": [],
+        "Name": "E1S2_DRIVE",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'E1S2_PRSNT', 'Compatible': 'com.meta.Hardware.BMC.Model.Yosemite5'})"
+        ],
+        "Type": "NVMe",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "Unknown",
+            "Model": "Unknown",
+            "PartNumber": "Unknown",
+            "SerialNumber": "Unknown",
+            "SparePartNumber": "09-100483"
+        }
+    },
+    {
+        "Exposes": [],
+        "Name": "E1S3_DRIVE",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'E1S3_PRSNT_N', 'Compatible': 'com.meta.Hardware.BMC.Model.Yosemite5'})"
+        ],
+        "Type": "NVMe",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "Unknown",
+            "Model": "Unknown",
+            "PartNumber": "Unknown",
+            "SerialNumber": "Unknown",
+            "SparePartNumber": "09-100483"
+        }
+    }
+]
