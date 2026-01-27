@@ -227,6 +227,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e5b5bd85_061d64f9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000362
+      },
+      "writtenOn": "2026-01-27T09:50:20Z",
+      "side": 1,
+      "message": "Although there is no strict rule for defining template variables and developers are free to establish their own conventions with proper documentation, it is still recommended to follow established best practices. In that regard, I agree with using {} to denote template variables.",
+      "parentUuid": "386c0f25_871bf548",
+      "range": {
+        "startLine": 21,
+        "startChar": 15,
+        "endLine": 21,
+        "endChar": 26
+      },
+      "revId": "9f8714eb2f47f7c0048b11aae57cc286695d23dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a52d7f16_8742457d",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -280,6 +304,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6935c894_08f2818a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000362
+      },
+      "writtenOn": "2026-01-27T09:50:20Z",
+      "side": 1,
+      "message": "| i would expect it to be replaced with the exact contents of that property.\n\nWe have already defined $ to be replaced with exact content. However, this replacement is not required in all scenarios.\n\nIn certain runtime scenarios, we may need to extract numeric values from the string instead of replacing them. These extracted numbers can then be interpreted at runtime as a slot number, instance number, or location code, depending on the context.",
+      "parentUuid": "a116d961_5de54be4",
+      "revId": "9f8714eb2f47f7c0048b11aae57cc286695d23dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4eff02c4_0f19a478",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -327,6 +369,24 @@
       "side": 1,
       "message": "please add unit-tests for the feature",
       "parentUuid": "35d74e99_1fd65911",
+      "revId": "9f8714eb2f47f7c0048b11aae57cc286695d23dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5751418_d33eee99",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000362
+      },
+      "writtenOn": "2026-01-27T09:50:20Z",
+      "side": 1,
+      "message": "I\u0027ve already added the unit test in commit message. Please check if you think anything else could be added.",
+      "parentUuid": "fb3faea5_6f3b91d2",
       "revId": "9f8714eb2f47f7c0048b11aae57cc286695d23dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
