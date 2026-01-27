@@ -266,6 +266,7 @@ configs = [
     'meta/yv5/yosemite5_mb_vr_sni_pvdd18vr_sni_adc_tic_i3chub_rtt.json',
     'meta/yv5/yosemite5_medusa_board_brick.json',
     'meta/yv5/yosemite5_medusa_board_discrete.json',
+    'meta/yv5/yosemite5_misc.json',
     'meta/yv5/yosemite5_scm.json',
     'meta/yv5/yosemite5_scm_2700.json',
     'micron/7450.json',
