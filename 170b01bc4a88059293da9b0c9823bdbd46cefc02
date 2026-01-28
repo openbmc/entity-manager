@@ -70,6 +70,64 @@
       },
       "revId": "170b01bc4a88059293da9b0c9823bdbd46cefc02",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e024fc6_ee4a54d5",
+        "filename": "src/dbus_regex.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-01-28T22:47:41Z",
+      "side": 1,
+      "message": "Why were these two variables swapped?  It\u0027s making this patch kind of hard to review.\n\nNow that these are only used in one place, should we remove them from the namespace and put them in the functions themselves?  We don\u0027t expect anyone to use these directly after this patch.",
+      "parentUuid": "a7c1d30c_dc4e623e",
+      "range": {
+        "startLine": 8,
+        "startChar": 24,
+        "endLine": 8,
+        "endChar": 31
+      },
+      "revId": "170b01bc4a88059293da9b0c9823bdbd46cefc02",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f705a60_2604cd85",
+        "filename": "src/dbus_regex.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-01-28T22:47:41Z",
+      "side": 1,
+      "message": "Not sure we need a function with one line.  Just inline these two calls.  The only thing this is deduplicating is the \"_\". not sure that\u0027s worth it here.",
+      "revId": "170b01bc4a88059293da9b0c9823bdbd46cefc02",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "755b87d4_84d7d6f5",
+        "filename": "src/dbus_regex.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-01-28T22:47:41Z",
+      "side": 1,
+      "message": "In terms of API design, should these be producing a new string?  Functionally they\u0027re producing a new string internally, and I don\u0027t think we want to lose that.",
+      "revId": "170b01bc4a88059293da9b0c9823bdbd46cefc02",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
