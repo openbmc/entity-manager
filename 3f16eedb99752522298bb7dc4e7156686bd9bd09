@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0edf75e6_87be0aa1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-28T01:46:34Z",
+      "side": 1,
+      "message": "Which exceptions are thrown, did you find any results since you added logs?\n\nWhere are these exceptions coming from. It would be interesting to perhaps fix them where they occur instead of simply dropping them in these destructors.",
+      "range": {
+        "startLine": 9,
+        "startChar": 22,
+        "endLine": 9,
+        "endChar": 51
+      },
+      "revId": "3f16eedb99752522298bb7dc4e7156686bd9bd09",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab3107c0_60d3ae2c",
+        "filename": "src/entity_manager/perform_probe.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-28T01:46:34Z",
+      "side": 1,
+      "message": "I\u0027m not sure if it\u0027s  okay to simply continue after receiving some \nunknown exception. At that point it\u0027s probably best to exit the program \nsince it might be in an undefined state.\n\n\nIf you place the try-catch inside both the 2 functions called here and then go from there, at some point we should find the point where the exception is thrown, right? And then we can fix it there.",
+      "revId": "3f16eedb99752522298bb7dc4e7156686bd9bd09",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abbfa133_6514b302",
+        "filename": "src/entity_manager/perform_probe.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-28T01:46:34Z",
+      "side": 1,
+      "message": "`lg2::error`",
+      "revId": "3f16eedb99752522298bb7dc4e7156686bd9bd09",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
