@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2e0be6b8_8030f6fe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-01-28T22:41:06Z",
+      "side": 1,
+      "message": "\u003e to avoid code duplication, see\n\nYou were asked to put it in your commit message.  That\u0027s great you quoted CPP core guidelines, which isn\u0027t really necessary.  The point is that this commit message says \"what\" you did, which I can see from the diff, it doesn\u0027t say why you did it.\n\n\u003e and from what i could gather these do not lead to any regex.\n\nCorrect, they implement a \"correct\" parser not based on a regex.  I didn\u0027t realize these were used in regex_replace, so yes, they wouldn\u0027t be appropriate, but sdbusplus::message::object_path would be the right thing to use here.\n\nhttps://man7.org/linux/man-pages/man3/sd_bus_path_encode.3.html\n\nWould be the \"dry\" version of this if that\u0027s the goal we\u0027re chasing, but at the same time there\u0027s a lot of history here:\nhttps://github.com/openbmc/sdbusplus/issues/60",
+      "parentUuid": "650cde42_f00ea069",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 40
+      },
+      "revId": "972e1ea26acc628ce1d2534f4b4580f54959c230",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "81becd8a_e711a73b",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
