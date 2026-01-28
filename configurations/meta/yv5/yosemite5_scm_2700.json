@@ -51,17 +51,17 @@
             "Thresholds": [
                 {
                     "Direction": "less than",
-                    "Hysteresis": 0.0627,
+                    "Hysteresis": 0.0642,
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 3.135
+                    "Value": 3.21
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 0.0693,
+                    "Hysteresis": 0.0676,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 3.465
+                    "Value": 3.38
                 }
             ],
             "Type": "ADC"
@@ -73,17 +73,17 @@
             "Thresholds": [
                 {
                     "Direction": "less than",
-                    "Hysteresis": 0.0475,
+                    "Hysteresis": 0.046,
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 2.375
+                    "Value": 2.3
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 0.0525,
+                    "Hysteresis": 0.052,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 2.625
+                    "Value": 2.6
                 }
             ],
             "Type": "ADC"
@@ -95,17 +95,17 @@
             "Thresholds": [
                 {
                     "Direction": "less than",
-                    "Hysteresis": 0.0342,
+                    "Hysteresis": 0.035,
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 1.71
+                    "Value": 1.75
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 0.0378,
+                    "Hysteresis": 0.037,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 1.89
+                    "Value": 1.85
                 }
             ],
             "Type": "ADC"
@@ -139,10 +139,10 @@
             "Thresholds": [
                 {
                     "Direction": "less than",
-                    "Hysteresis": 0.0228,
+                    "Hysteresis": 0.0238,
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 1.14
+                    "Value": 1.19
                 },
                 {
                     "Direction": "greater than",
@@ -207,6 +207,72 @@
             "Type": "ADC"
         },
         {
+            "Index": 9,
+            "Name": "SCM_P1V1_VOLT_V",
+            "ScaleFactor": 1,
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0226,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.13
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0234,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.17
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 10,
+            "Name": "SCM_P1V1_DDRVDDQ_VOLT_V",
+            "ScaleFactor": 1,
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0214,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.07
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0234,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.17
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 11,
+            "Name": "SCM_P0V85_VOLT_V",
+            "ScaleFactor": 1,
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0166,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.83
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.018,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 0.9
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
             "Name": "BMC",
             "Type": "BMC"
         },
@@ -242,8 +308,8 @@
             "Type": "TPM2Firmware"
         }
     ],
-    "Name": "Yosemite5 SCM",
-    "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 .*', 'BOARD_PRODUCT_NAME': 'SCM board(?!.*2700).*', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)'})",
+    "Name": "Yosemite5 SCM 2700",
+    "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 .*', 'BOARD_PRODUCT_NAME': 'SCM board 2700', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
