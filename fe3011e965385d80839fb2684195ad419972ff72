@@ -108,6 +108,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "85cdbee9_effcebf1",
+        "filename": "src/entity_manager/dbus_interface.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-28T07:52:53Z",
+      "side": 1,
+      "message": "`busctl introspect --xml-interface` would show the read/write permission like\n```\n \u003cinterface name\u003d\"xyz.openbmc_project.Inventory.Decorator.Asset\"\u003e\n  \u003cproperty name\u003d\"BuildDate\" type\u003d\"t\" access\u003d\"read\"\u003e\n  \u003c/property\u003e\n  \u003cproperty name\u003d\"Manufacturer\" type\u003d\"s\" access\u003d\"read\"\u003e\n  \u003c/property\u003e\n  \u003cproperty name\u003d\"Model\" type\u003d\"s\" access\u003d\"read\"\u003e\n  \u003c/property\u003e\n  \u003cproperty name\u003d\"PartNumber\" type\u003d\"s\" access\u003d\"read\"\u003e\n  \u003c/property\u003e\n  \u003cproperty name\u003d\"SerialNumber\" type\u003d\"s\" access\u003d\"read\"\u003e\n  \u003c/property\u003e\n  \u003cproperty name\u003d\"SparePartNumber\" type\u003d\"s\" access\u003d\"read\"\u003e\n  \u003c/property\u003e\n  \u003cproperty name\u003d\"SubModel\" type\u003d\"s\" access\u003d\"read\"\u003e\n  \u003c/property\u003e\n \u003c/interface\u003e\n```\nI\u0027m not sure if the regular `busctl` without that option can show the permission.\n\n\u003e Kindly Tell me You are Expecting the same or not ?.Thanks\n\nI believe we are on a good track, it looks like you have a board there, what about\nfollowing structure for the commit message (with your board/chassis ofc.)\n\n```\n`- /xyz\n  `- /xyz/openbmc_project\n    |- /xyz/openbmc_project/EntityManager\n           intf X: all properties now read-only (different from before)\n           intf Y: all properties writable besides property Z (same as before)\n    `- /xyz/openbmc_project/inventory\n      `- /xyz/openbmc_project/inventory/system\n        |- /xyz/openbmc_project/inventory/system/board\n        | `- /xyz/openbmc_project/inventory/system/board/Tyan_S8030_Baseboard\n               intf Item.Board : all properties read-only \n        |   |- /xyz/openbmc_project/inventory/system/board/Tyan_S8030_Baseboard/CPU0_Power_Consumption\n```\n\nThat would be a compact way of showing the resulting permissions.\nIt can also be done in a diff, for example using the `busctl introspect --xml-interface` to dump the result with and without this change.\n\nBased on the diff we could see what changes on each object path. The diff would probably be more interesting for maintainers.\n\nI don\u0027t think that EM treats Board/Chassis/PowerSupply much different, so i don\u0027t see much value in repeating all this work for each, only one should suffice.\n\nSame for the individual exposes records underneath a board, If we have one sufficiently complicated record, the diff of permissions (with/without the patch) should confirm it for all other records aswell.",
+      "parentUuid": "99f33127_9c69bd3e",
+      "revId": "fe3011e965385d80839fb2684195ad419972ff72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "58d636d0_6be8d94a",
         "filename": "src/entity_manager/dbus_interface.hpp",
         "patchSetId": 1
@@ -119,6 +137,24 @@
       "writtenOn": "2026-01-21T00:48:42Z",
       "side": 1,
       "message": "Since with this change various properties now become writable, did you check the callers of this function recursively to see if they are passing the correct permission?\n\nWould be nice to see that in the commit message, since this change could expose bugs in other places.",
+      "revId": "fe3011e965385d80839fb2684195ad419972ff72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5a90df6_bc9547a2",
+        "filename": "src/entity_manager/dbus_interface.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-28T07:52:53Z",
+      "side": 1,
+      "message": "Looking at the callers, we only have one caller until we reach `EMDBusInterface::populateInterfaceFromJson` which then has multiple callers.\n\nI would expect reasoning like\n\ncallers of addValueToDBus:\n- populateInterfacePropertyFromJson\n\ncallers of populateInterfacePropertyFromJson:\n- EMDBusInterface::populateInterfaceFromJson\n\ncallers of \n- EMDBusInterface::populateInterfaceFromJson\n\n```\nsrc/entity_manager/dbus_interface.cpp|198 col 23| void EMDBusInterface::populateInterfaceFromJson(                                                                                        \nsrc/entity_manager/dbus_interface.cpp|369 col 5| populateInterfaceFromJson(\nsrc/entity_manager/dbus_interface.hpp|41 col 10| void populateInterfaceFromJson(\nsrc/entity_manager/entity_manager.cpp|182 col 20| dbus_interface.populateInterfaceFromJson(\nsrc/entity_manager/entity_manager.cpp|194 col 28| dbus_interface.populateInterfaceFromJson(\nsrc/entity_manager/entity_manager.cpp|273 col 24| dbus_interface.populateInterfaceFromJson(\nsrc/entity_manager/entity_manager.cpp|285 col 24| dbus_interface.populateInterfaceFromJson(\nsrc/entity_manager/entity_manager.cpp|309 col 20| dbus_interface.populateInterfaceFromJson(\nsrc/entity_manager/entity_manager.cpp|329 col 24| dbus_interface.populateInterfaceFromJson(\nsrc/entity_manager/entity_manager.cpp|372 col 28| dbus_interface.populateInterfaceFromJson( \n```\n\nAnd then we could check which permission they are passing. There is a default read-only permission somewhere in the caller stack so if the callers do nothing special then nothing would change. But it would be great if we could write down those findings.\n\nLet me know if you don\u0027t want to do it, i need this change so i can help out as well to do the parts you don\u0027t want to do.",
+      "parentUuid": "58d636d0_6be8d94a",
       "revId": "fe3011e965385d80839fb2684195ad419972ff72",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
