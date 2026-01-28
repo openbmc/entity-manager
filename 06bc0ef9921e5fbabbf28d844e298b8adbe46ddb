@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1695511_181c51af",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-28T01:59:58Z",
+      "side": 1,
+      "message": "using concrete object paths in the example could help. I\u0027m also confused because `Fru0` is removed but the `GetSubTree` did not return it in the first place?",
+      "revId": "06bc0ef9921e5fbabbf28d844e298b8adbe46ddb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20a662cf_b38215bd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-28T01:59:58Z",
+      "side": 1,
+      "message": "```suggestion\n- Entity Manager calls GetAll on Fru_1 and failed, resulting in Fru_1\n```",
+      "range": {
+        "startLine": 18,
+        "startChar": 51,
+        "endLine": 18,
+        "endChar": 59
+      },
+      "revId": "06bc0ef9921e5fbabbf28d844e298b8adbe46ddb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d7bb0f8_e2a8e175",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-28T01:59:58Z",
+      "side": 1,
+      "message": "nit (unrelated)\n\n```suggestion\nJan 20 00:25:02 bmc entity-manager[22410]: error calling GetAll on  xyz.openbmc_project.FruDevice /xyz/openbmc_project/FruDevice/Fru_1 xyz.openbmc_project.FruDevice\n```\n\nlog statement also needs fixing, `getall` is confusing when it\u0027s actually `GetAll` function. Things like that make it hard to search logs.",
+      "range": {
+        "startLine": 23,
+        "startChar": 57,
+        "endLine": 23,
+        "endChar": 63
+      },
+      "revId": "06bc0ef9921e5fbabbf28d844e298b8adbe46ddb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edff25b0_6a9b5cc1",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 899,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-28T01:59:58Z",
+      "side": 1,
+      "message": "function size has increased, can you extract something, possibly in a preceding patch? This new change is not making the code any simpler. See core guidelines for recommendation on function size.\n\nI would recommend a separate function to compute `productName`.",
+      "revId": "06bc0ef9921e5fbabbf28d844e298b8adbe46ddb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
