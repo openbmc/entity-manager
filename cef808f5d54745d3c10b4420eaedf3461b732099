@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba71d435_c8ec7bb7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-28T01:30:53Z",
+      "side": 1,
+      "message": "Thanks for looking into this 👍",
+      "revId": "cef808f5d54745d3c10b4420eaedf3461b732099",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3b49545_f9885195",
@@ -14,6 +31,30 @@
       "writtenOn": "2026-01-27T22:36:37Z",
       "side": 1,
       "message": "previously this returned nullopt. Did something change so now it shouldn\u0027t?",
+      "range": {
+        "startLine": 195,
+        "startChar": 18,
+        "endLine": 195,
+        "endChar": 24
+      },
+      "revId": "cef808f5d54745d3c10b4420eaedf3461b732099",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c07bd360_795b3506",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-28T01:30:53Z",
+      "side": 1,
+      "message": "Now it returns `true` which is mapped to `ret` on the right side of the diff on line 312.\nWhich is `nullopt` in the caller function.\n\n```\nstd::optional\u003cstd::string\u003e ret \u003d std::nullopt;\n\n...\n\nif (templateCharReplaceLoop(strPtr, interface, ret, value))\n{\n    return ret;\n}\n```\n\nWhen extracting a function, any `return` inside that now called function has to be mapped to a `return` in the new caller function as well.\n\nI\u0027m using `true` to cause the `return ret;` in the calling function and `false` to continue the normal control flow.",
+      "parentUuid": "e3b49545_f9885195",
       "range": {
         "startLine": 195,
         "startChar": 18,
