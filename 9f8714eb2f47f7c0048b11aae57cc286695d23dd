@@ -249,6 +249,54 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d013fbf1_e3de94c7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-28T02:23:48Z",
+      "side": 1,
+      "message": "closing this one, we can continue discussion on your markdown docs 👍",
+      "parentUuid": "01fad2a4_6ca21882",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 27
+      },
+      "revId": "9f8714eb2f47f7c0048b11aae57cc286695d23dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd087e9f_8b0d3482",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-28T02:23:48Z",
+      "side": 1,
+      "message": "Thank You!",
+      "parentUuid": "e5b5bd85_061d64f9",
+      "range": {
+        "startLine": 21,
+        "startChar": 15,
+        "endLine": 21,
+        "endChar": 26
+      },
+      "revId": "9f8714eb2f47f7c0048b11aae57cc286695d23dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a52d7f16_8742457d",
@@ -320,6 +368,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a57a2dd5_9736bfd9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-28T02:23:48Z",
+      "side": 1,
+      "message": "Ok, i may have misunderstood something about your change, i first thought that it only applied inside a single configuration record.\n\nIf it\u0027s just like the old `${bus}` template var system, and the only thing it does different is that it extracts the number then it\u0027s a different story.\n\nResolving this one for now.",
+      "parentUuid": "6935c894_08f2818a",
+      "revId": "9f8714eb2f47f7c0048b11aae57cc286695d23dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4eff02c4_0f19a478",
@@ -387,6 +453,24 @@
       "side": 1,
       "message": "I\u0027ve already added the unit test in commit message. Please check if you think anything else could be added.",
       "parentUuid": "fb3faea5_6f3b91d2",
+      "revId": "9f8714eb2f47f7c0048b11aae57cc286695d23dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1030ecd7_1a931372",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-28T02:23:48Z",
+      "side": 1,
+      "message": "Manual tests are nice but not sufficient for this kind of feature. Your feature can easily be unit-tested in similar to how it\u0027s done for the existing template var system\n\nhttps://github.com/openbmc/entity-manager/blob/1f08ce74119b4cbd97e542e11eefc5fe99de9d94/test/entity_manager/test_entity-manager.cpp#L73",
+      "parentUuid": "c5751418_d33eee99",
       "revId": "9f8714eb2f47f7c0048b11aae57cc286695d23dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
