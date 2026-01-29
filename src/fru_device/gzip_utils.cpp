@@ -10,7 +10,7 @@
 #include <string>
 #include <vector>
 
-std::optional<std::string> gzipInflate(std::span<uint8_t> compressedBytes)
+std::optional<std::string> gzipInflate(std::span<const uint8_t> compressedBytes)
 {
     std::string uncompressedBytes;
     if (compressedBytes.empty())
@@ -18,10 +18,8 @@ std::optional<std::string> gzipInflate(std::span<uint8_t> compressedBytes)
         return std::nullopt;
     }
 
-    z_stream strm{
-
-    };
-    strm.next_in = (Bytef*)compressedBytes.data();
+    z_stream strm{};
+    strm.next_in = std::bit_cast<Bytef*>(compressedBytes.data());
     strm.avail_in = static_cast<uInt>(compressedBytes.size());
     strm.total_out = 0;
 
