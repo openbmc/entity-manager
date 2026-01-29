@@ -14,11 +14,15 @@
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
+#include <stdplus/fd/create.hpp>
+#include <stdplus/fd/managed.hpp>
+#include <stdplus/raw.hpp>
 
 #include <array>
 #include <cerrno>
 #include <charconv>
 #include <chrono>
+#include <cstdint>
 #include <ctime>
 #include <filesystem>
 #include <flat_map>
@@ -107,16 +111,30 @@ static bool hasEepromFile(size_t bus, size_t address)
     }
 }
 
-static int64_t readFromEeprom(int fd, off_t offset, size_t len, uint8_t* buf)
+static int64_t readFromEeprom(const std::shared_ptr<stdplus::ManagedFd>& fd,
+                              off_t offset, std::span<uint8_t> outbuf)
 {
-    auto result = lseek(fd, offset, SEEK_SET);
-    if (result < 0)
+    try
     {
-        lg2::error("failed to seek");
+        fd->lseek(offset, stdplus::fd::Whence::Set);
+    }
+    catch (const std::system_error& e)
+    {
+        lg2::error("failed to seek: {ERR}", "ERR", e.what());
         return -1;
     }
 
-    return read(fd, buf, len);
+    // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
+    std::span<std::byte> byteBuf(reinterpret_cast<std::byte*>(outbuf.data()),
+                                 outbuf.size());
+    try
+    {
+        return fd->read(byteBuf).size();
+    }
+    catch (const std::system_error& e)
+    {
+        return -1;
+    }
 }
 
 static int busStrToInt(const std::string_view busName)
@@ -189,11 +207,10 @@ static void makeProbeInterface(size_t bus, size_t address,
 // Issue an I2C transaction to first write to_target_buf_len bytes,then read
 // from_target_buf_len bytes.
 static int i2cSmbusWriteThenRead(
-    int file, uint16_t address, uint8_t* toTargetBuf, uint8_t toTargetBufLen,
-    uint8_t* fromTargetBuf, uint8_t fromTargetBufLen)
+    const std::shared_ptr<stdplus::ManagedFd>& fd, uint16_t address,
+    std::span<uint8_t> toTargetBuf, std::span<uint8_t> fromTargetBuf)
 {
-    if (toTargetBuf == nullptr || toTargetBufLen == 0 ||
-        fromTargetBuf == nullptr || fromTargetBufLen == 0)
+    if (toTargetBuf.empty() || fromTargetBuf.empty())
     {
         return -1;
     }
@@ -204,69 +221,77 @@ static int i2cSmbusWriteThenRead(
 
     msgs[0].addr = address;
     msgs[0].flags = 0;
-    msgs[0].len = toTargetBufLen;
-    msgs[0].buf = toTargetBuf;
+    msgs[0].len = toTargetBuf.size();
+    msgs[0].buf = const_cast<uint8_t*>(toTargetBuf.data());
     msgs[1].addr = address;
     msgs[1].flags = I2C_M_RD;
-    msgs[1].len = fromTargetBufLen;
-    msgs[1].buf = fromTargetBuf;
+    msgs[1].len = fromTargetBuf.size();
+    msgs[1].buf = const_cast<uint8_t*>(fromTargetBuf.data());
 
     rdwr.msgs = msgs.data();
     rdwr.nmsgs = msgs.size();
 
-    int ret = ioctl(file, I2C_RDWR, &rdwr);
-
+    int ret = 0;
+    try
+    {
+        ret = fd->ioctl(I2C_RDWR, &rdwr);
+    }
+    catch (const std::system_error& e)
+    {
+        lg2::error("failed call i2cSmbusWriteThenRead: {ERR}", "ERR", e.what());
+        return -1;
+    }
     return (ret == static_cast<int>(msgs.size())) ? msgs[1].len : -1;
 }
 
-static int64_t readData(bool is16bit, bool isBytewise, int file,
-                        uint16_t address, off_t offset, size_t len,
-                        uint8_t* buf)
+static int64_t readData(bool is16bit, bool isBytewise,
+                        const std::shared_ptr<stdplus::ManagedFd>& fd,
+                        uint16_t address, off_t offset, std::span<uint8_t> buf)
 {
     if (!is16bit)
     {
         if (!isBytewise)
         {
             return i2c_smbus_read_i2c_block_data(
-                file, static_cast<uint8_t>(offset), len, buf);
+                fd->get(), static_cast<uint8_t>(offset), buf.size(),
+                const_cast<uint8_t*>(buf.data()));
         }
 
-        std::span<uint8_t> bufspan{buf, len};
-        for (size_t i = 0; i < len; i++)
+        for (size_t i = 0; i < buf.size(); i++)
         {
             int byte = i2c_smbus_read_byte_data(
-                file, static_cast<uint8_t>(offset + i));
+                fd->get(), static_cast<uint8_t>(offset + i));
             if (byte < 0)
             {
                 return static_cast<int64_t>(byte);
             }
-            bufspan[i] = static_cast<uint8_t>(byte);
+            buf[i] = static_cast<uint8_t>(byte);
         }
-        return static_cast<int64_t>(len);
+        return static_cast<int64_t>(buf.size());
     }
 
     offset = htobe16(offset);
-    // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
-    uint8_t* u8Offset = reinterpret_cast<uint8_t*>(&offset);
-    return i2cSmbusWriteThenRead(file, address, u8Offset, 2, buf, len);
+    return i2cSmbusWriteThenRead(fd, address,
+                                 stdplus::raw::asSpan<uint8_t>(offset), buf);
 }
 
 // Mode_1:
 // --------
 // Please refer to document docs/address_size_detection_modes.md for
 // more details and explanations.
-static std::optional<bool> isDevice16BitMode1(int file)
+static std::optional<bool> isDevice16BitMode1(
+    const std::shared_ptr<stdplus::ManagedFd>& fd)
 {
     // Set the higher data word address bits to 0. It's safe on 8-bit
     // addressing EEPROMs because it doesn't write any actual data.
-    int ret = i2c_smbus_write_byte(file, 0);
+    int ret = i2c_smbus_write_byte(fd->get(), 0);
     if (ret < 0)
     {
         return std::nullopt;
     }
 
     /* Get first byte */
-    int byte1 = i2c_smbus_read_byte_data(file, 0);
+    int byte1 = i2c_smbus_read_byte_data(fd->get(), 0);
     if (byte1 < 0)
     {
         return std::nullopt;
@@ -276,7 +301,7 @@ static std::optional<bool> isDevice16BitMode1(int file)
      */
     for (int i = 0; i < 7; i++)
     {
-        int byte2 = i2c_smbus_read_byte_data(file, 0);
+        int byte2 = i2c_smbus_read_byte_data(fd->get(), 0);
         if (byte2 < 0)
         {
             return std::nullopt;
@@ -293,14 +318,13 @@ static std::optional<bool> isDevice16BitMode1(int file)
 // --------
 // Please refer to document docs/address_size_detection_modes.md for
 // more details and explanations.
-static std::optional<bool> isDevice16BitMode2(int file, uint16_t address)
+static std::optional<bool> isDevice16BitMode2(
+    const std::shared_ptr<stdplus::ManagedFd>& fd, uint16_t address)
 {
     uint8_t first = 0;
-    uint8_t cur = 0;
+    uint8_t cur;
     uint16_t v = 0;
     int ret = 0;
-    // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
-    uint8_t* p = reinterpret_cast<uint8_t*>(&v);
 
     /*
      * Write 2 bytes byte0 = 0, byte1 = {0..7} and then subsequent read byte
@@ -311,7 +335,9 @@ static std::optional<bool> isDevice16BitMode2(int file, uint16_t address)
     {
         v = htobe16(i);
 
-        ret = i2cSmbusWriteThenRead(file, address, p, 2, &cur, 1);
+        ret =
+            i2cSmbusWriteThenRead(fd, address, stdplus::raw::asSpan<uint8_t>(v),
+                                  stdplus::raw::asSpan<uint8_t>(cur));
         if (ret < 0)
         {
             return std::nullopt;
@@ -330,16 +356,17 @@ static std::optional<bool> isDevice16BitMode2(int file, uint16_t address)
     return false;
 }
 
-static std::optional<bool> isDevice16Bit(int file, uint16_t address)
+static std::optional<bool> isDevice16Bit(
+    const std::shared_ptr<stdplus::ManagedFd>& fd, uint16_t address)
 {
     std::string mode(fruDevice16BitDetectMode);
 
     if (mode == "MODE_2")
     {
-        return isDevice16BitMode2(file, address);
+        return isDevice16BitMode2(fd, address);
     }
 
-    return isDevice16BitMode1(file);
+    return isDevice16BitMode1(fd);
 }
 
 // TODO: This code is very similar to the non-eeprom version and can be merged
@@ -347,24 +374,29 @@ static std::optional<bool> isDevice16Bit(int file, uint16_t address)
 static std::vector<uint8_t> processEeprom(int bus, int address)
 {
     auto path = getEepromPath(bus, address);
-
-    int file = open(path.c_str(), O_RDONLY);
-    if (file < 0)
+    std::shared_ptr<stdplus::ManagedFd> fd;
+    try
     {
-        lg2::error("Unable to open eeprom file: {PATH}", "PATH", path);
+        fd = std::make_shared<stdplus::ManagedFd>(stdplus::fd::open(
+            path.c_str(),
+            stdplus::fd::OpenFlags(stdplus::fd::OpenAccess::ReadOnly)));
+    }
+    catch (const std::system_error& e)
+    {
+        lg2::error("Unable to open eeprom file: {PATH}: {ERR}", "PATH", path,
+                   "ERR", e.what());
         return {};
     }
 
     std::string errorMessage = "eeprom at " + std::to_string(bus) +
                                " address " + std::to_string(address);
-    auto readFunc = [file](off_t offset, size_t length, uint8_t* outbuf) {
-        return readFromEeprom(file, offset, length, outbuf);
+    auto readFunc = [fd](off_t offset, std::span<uint8_t> outbuf) {
+        return readFromEeprom(fd, offset, outbuf);
     };
     FRUReader reader(std::move(readFunc));
     std::pair<std::vector<uint8_t>, bool> pair =
         readFRUContents(reader, errorMessage);
 
-    close(file);
     return pair.first;
 }
 
@@ -437,9 +469,9 @@ std::set<size_t> findI2CEeproms(int i2cBus,
     return foundList;
 }
 
-int getBusFRUs(int file, int first, int last, int bus,
-               std::shared_ptr<DeviceMap> devices, const bool& powerIsOn,
-               const std::set<size_t>& addressBlocklist,
+int getBusFRUs(std::shared_ptr<stdplus::ManagedFd> fd, int first, int last,
+               int bus, std::shared_ptr<DeviceMap> devices,
+               const bool& powerIsOn, const std::set<size_t>& addressBlocklist,
                sdbusplus::asio::object_server& objServer)
 {
     std::future<int> future = std::async(std::launch::async, [&]() {
@@ -511,14 +543,23 @@ int getBusFRUs(int file, int first, int last, int bus,
                 continue;
             }
             // Set target address
-            if (ioctl(file, I2C_SLAVE, ii) < 0)
+            try
             {
-                lg2::error("device at bus {BUS} address {ADDR} busy", "BUS",
-                           bus, "ADDR", ii);
+                if (ioctl(fd->get(), I2C_SLAVE, ii) < 0)
+                {
+                    lg2::error("device at bus {BUS} address {ADDR} busy", "BUS",
+                               bus, "ADDR", ii);
+                    continue;
+                }
+            }
+            catch (const std::system_error& e)
+            {
+                lg2::error("device at bus {BUS} address {ADDR} busy: {ERR}",
+                           "BUS", bus, "ADDR", ii, "ERR", e.what());
                 continue;
             }
             // probe
-            if (i2c_smbus_read_byte(file) < 0)
+            if (i2c_smbus_read_byte(fd->get()) < 0)
             {
                 continue;
             }
@@ -543,7 +584,7 @@ int getBusFRUs(int file, int first, int last, int bus,
             }
 
             /* Check for Device type if it is 8 bit or 16 bit */
-            std::optional<bool> is16Bit = isDevice16Bit(file, ii);
+            std::optional<bool> is16Bit = isDevice16Bit(fd, ii);
             if (!is16Bit.has_value())
             {
                 lg2::error("failed to read bus {BUS} address {ADDR}", "BUS",
@@ -556,10 +597,9 @@ int getBusFRUs(int file, int first, int last, int bus,
             }
             bool is16BitBool{*is16Bit};
 
-            auto readFunc = [is16BitBool, file,
-                             ii](off_t offset, size_t length, uint8_t* outbuf) {
-                return readData(is16BitBool, false, file, ii, offset, length,
-                                outbuf);
+            auto readFunc = [is16BitBool, fd,
+                             ii](off_t offset, std::span<uint8_t> outbuf) {
+                return readData(is16BitBool, false, fd, ii, offset, outbuf);
             };
             FRUReader reader(std::move(readFunc));
             std::string errorMessage =
@@ -573,12 +613,10 @@ int getBusFRUs(int file, int first, int last, int bus,
                 // certain FRU eeproms require bytewise reading.
                 // otherwise garbage is read. e.g. SuperMicro PWS 920P-SQ
 
-                auto readFunc =
-                    [is16BitBool, file,
-                     ii](off_t offset, size_t length, uint8_t* outbuf) {
-                        return readData(is16BitBool, true, file, ii, offset,
-                                        length, outbuf);
-                    };
+                auto readFunc = [is16BitBool, fd,
+                                 ii](off_t offset, std::span<uint8_t> outbuf) {
+                    return readData(is16BitBool, true, fd, ii, offset, outbuf);
+                };
                 FRUReader readerBytewise(std::move(readFunc));
                 pair = readFRUContents(readerBytewise, errorMessage);
             }
@@ -602,11 +640,9 @@ int getBusFRUs(int file, int first, int last, int bus,
         {
             busBlocklist[bus] = std::nullopt;
         }
-        close(file);
         return -1;
     }
 
-    close(file);
     return future.get();
 }
 
@@ -801,21 +837,35 @@ static void findI2CDevices(const std::vector<fs::path>& i2cBuses,
             }
         }
 
-        auto file = open(i2cBus.c_str(), O_RDWR);
-        if (file < 0)
+        std::shared_ptr<stdplus::ManagedFd> fd;
+        try
         {
-            lg2::error("unable to open i2c device {PATH}", "PATH",
-                       i2cBus.string());
+            fd = std::make_shared<stdplus::ManagedFd>(stdplus::fd::open(
+                i2cBus.c_str(), stdplus::fd::OpenAccess::ReadWrite));
+        }
+        catch (const std::system_error& e)
+        {
+            lg2::error("unable to open i2c device {PATH}: {ERR}", "PATH",
+                       i2cBus.string(), "ERR", e.what());
             continue;
         }
         unsigned long funcs = 0;
 
-        if (ioctl(file, I2C_FUNCS, &funcs) < 0)
+        try
+        {
+            if (ioctl(fd->get(), I2C_FUNCS, &funcs) < 0)
+            {
+                lg2::error(
+                    "Error: Could not get the adapter functionality matrix bus {BUS}",
+                    "BUS", bus);
+                continue;
+            }
+        }
+        catch (const std::system_error& e)
         {
             lg2::error(
-                "Error: Could not get the adapter functionality matrix bus {BUS}",
-                "BUS", bus);
-            close(file);
+                "Error: Could not get the adapter functionality matrix bus {BUS}: {ERR}",
+                "BUS", bus, "ERR", e.what());
             continue;
         }
         if (((funcs & I2C_FUNC_SMBUS_READ_BYTE) == 0U) ||
@@ -823,7 +873,6 @@ static void findI2CDevices(const std::vector<fs::path>& i2cBuses,
         {
             lg2::error("Error: Can't use SMBus Receive Byte command bus {BUS}",
                        "BUS", bus);
-            close(file);
             continue;
         }
         auto& device = busmap[bus];
@@ -835,7 +884,7 @@ static void findI2CDevices(const std::vector<fs::path>& i2cBuses,
         lg2::debug("Scanning bus {BUS}", "BUS", bus);
 
         // fd is closed in this function in case the bus locks up
-        getBusFRUs(file, 0x03, 0x77, bus, device, powerIsOn, addressBlocklist,
+        getBusFRUs(fd, 0x03, 0x77, bus, device, powerIsOn, addressBlocklist,
                    objServer);
 
         lg2::debug("Done scanning bus {BUS}", "BUS", bus);
@@ -1003,7 +1052,7 @@ static bool readBaseboardFRU(std::vector<uint8_t>& baseboardFRU)
     return true;
 }
 
-bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
+bool writeFRU(uint8_t bus, uint8_t address, std::span<const uint8_t> fru)
 {
     std::flat_map<std::string, std::string, std::less<>> tmp;
     if (fru.size() > maxFruSize)
@@ -1038,19 +1087,27 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
     {
         auto path = getEepromPath(bus, address);
         off_t offset = 0;
-
-        int eeprom = open(path.c_str(), O_RDWR | O_CLOEXEC);
-        if (eeprom < 0)
+        std::shared_ptr<stdplus::ManagedFd> eeprom;
+        try
         {
-            lg2::error("unable to open i2c device {PATH}", "PATH", path);
+            eeprom = std::make_shared<stdplus::ManagedFd>(stdplus::fd::open(
+                path.c_str(),
+                stdplus::BitFlags<stdplus::fd::OpenFlag>(
+                    static_cast<int>(stdplus::fd::OpenAccess::ReadWrite) |
+                    static_cast<int>(stdplus::fd::OpenFlag::CloseOnExec))));
+        }
+        catch (const std::system_error& e)
+        {
+            lg2::error("unable to open i2c device {PATH}: {ERR}", "PATH", path,
+                       "ERR", e.what());
             throw DBusInternalError();
             return false;
         }
 
         std::string errorMessage = "eeprom at " + std::to_string(bus) +
                                    " address " + std::to_string(address);
-        auto readFunc = [eeprom](off_t offset, size_t length, uint8_t* outbuf) {
-            return readFromEeprom(eeprom, offset, length, outbuf);
+        auto readFunc = [eeprom](off_t offset, std::span<uint8_t> outbuf) {
+            return readFromEeprom(eeprom, offset, outbuf);
         };
         FRUReader reader(std::move(readFunc));
 
@@ -1064,42 +1121,65 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
             offset = sections->IpmiFruOffset;
         }
 
-        if (lseek(eeprom, offset, SEEK_SET) < 0)
+        try
         {
-            lg2::error("Unable to seek to offset {OFFSET} in device: {PATH}",
-                       "OFFSET", offset, "PATH", path);
-            close(eeprom);
+            eeprom->lseek(offset, stdplus::fd::Whence::Set);
+        }
+        catch (const std::system_error& e)
+        {
+            lg2::error(
+                "Unable to seek to offset {OFFSET} in device: {PATH}: {ERR}",
+                "OFFSET", offset, "PATH", path, "ERR", e.what());
             throw DBusInternalError();
         }
 
-        ssize_t writtenBytes = write(eeprom, fru.data(), fru.size());
-        if (writtenBytes < 0)
+        // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
+        std::span<const std::byte> fruSpan(
+            reinterpret_cast<const std::byte*>(fru.data()), fru.size());
+        try
         {
-            lg2::error("unable to write to i2c device {PATH}", "PATH", path);
-            close(eeprom);
+            eeprom->write(fruSpan);
+        }
+        catch (const std::system_error& e)
+        {
+            lg2::error("unable to write to i2zc device {PATH}: {ERR}", "PATH",
+                       path, "ERR", e.what());
             throw DBusInternalError();
             return false;
         }
-
-        close(eeprom);
         return true;
     }
 
     std::string i2cBus = "/dev/i2c-" + std::to_string(bus);
-
-    int file = open(i2cBus.c_str(), O_RDWR | O_CLOEXEC);
-    if (file < 0)
+    std::shared_ptr<stdplus::ManagedFd> fd;
+    try
     {
-        lg2::error("unable to open i2c device {PATH}", "PATH", i2cBus);
+        fd = std::make_shared<stdplus::ManagedFd>(stdplus::fd::open(
+            i2cBus.c_str(),
+            stdplus::BitFlags<stdplus::fd::OpenFlag>(
+                static_cast<int>(stdplus::fd::OpenAccess::ReadWrite) |
+                static_cast<int>(stdplus::fd::OpenFlag::CloseOnExec))));
+    }
+    catch (const std::system_error& e)
+    {
+        lg2::error("unable to open i2c device {PATH}: {ERR}", "PATH", i2cBus,
+                   "ERR", e.what());
         throw DBusInternalError();
         return false;
     }
-    if (ioctl(file, I2C_SLAVE_FORCE, address) < 0)
+    try
     {
-        lg2::error("unable to set device address");
-        close(file);
-        throw DBusInternalError();
-        return false;
+        if (ioctl(fd->get(), I2C_SLAVE_FORCE, address) < 0)
+        {
+            lg2::error("unable to set device address");
+            throw DBusInternalError();
+            return false;
+        }
+    }
+    catch (const std::system_error& e)
+    {
+        lg2::error("unable to set device address: {ERR}", "ERR", e.what());
+        throw e;
     }
 
     constexpr const size_t retryMax = 2;
@@ -1112,22 +1192,29 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
         {
             // The 4K EEPROM only uses the A2 and A1 device address bits
             // with the third bit being a memory page address bit.
-            if (ioctl(file, I2C_SLAVE_FORCE, ++address) < 0)
+            try
             {
-                lg2::error("unable to set device address");
-                close(file);
-                throw DBusInternalError();
-                return false;
+                if (ioctl(fd->get(), I2C_SLAVE_FORCE, ++address) < 0)
+                {
+                    lg2::error("unable to set device address");
+                    throw DBusInternalError();
+                    return false;
+                }
+            }
+            catch (const std::system_error& e)
+            {
+                lg2::error("unable to set device address: {ERR}", "ERR",
+                           e.what());
+                throw e;
             }
         }
 
-        if (i2c_smbus_write_byte_data(file, static_cast<uint8_t>(index),
+        if (i2c_smbus_write_byte_data(fd->get(), static_cast<uint8_t>(index),
                                       fru[index]) < 0)
         {
             if ((retries--) == 0U)
             {
                 lg2::error("error writing fru: {ERR}", "ERR", strerror(errno));
-                close(file);
                 throw DBusInternalError();
                 return false;
             }
@@ -1140,7 +1227,6 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
         // most eeproms require 5-10ms between writes
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
-    close(file);
     return true;
 }
 

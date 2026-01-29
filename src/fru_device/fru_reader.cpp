@@ -5,19 +5,19 @@
 
 #include <cstring>
 
-ssize_t FRUReader::read(off_t start, size_t len, uint8_t* outbuf)
+ssize_t FRUReader::read(off_t start, std::span<uint8_t> outbuf)
 {
     size_t done = 0;
-    size_t remaining = len;
+    size_t remaining = outbuf.size();
     size_t cursor = start;
-    while (done < len)
+    while (done < outbuf.size())
     {
         if (eof.has_value() && cursor >= eof.value())
         {
             break;
         }
 
-        const uint8_t* blkData = nullptr;
+        std::span<uint8_t> blkData;
         size_t available = 0;
         size_t blk = cursor / cacheBlockSize;
         size_t blkOffset = cursor % cacheBlockSize;
@@ -25,9 +25,8 @@ ssize_t FRUReader::read(off_t start, size_t len, uint8_t* outbuf)
         if (findBlk == cache.end())
         {
             // miss, populate cache
-            uint8_t* newData = cache[blk].data();
-            int64_t ret =
-                readFunc(blk * cacheBlockSize, cacheBlockSize, newData);
+            std::span<uint8_t> newBlkData = cache[blk];
+            int64_t ret = readFunc(blk * cacheBlockSize, newBlkData);
 
             // if we've reached the end of the eeprom, record its size
             if (ret >= 0 && static_cast<size_t>(ret) < cacheBlockSize)
@@ -42,13 +41,13 @@ ssize_t FRUReader::read(off_t start, size_t len, uint8_t* outbuf)
                 return done != 0U ? done : ret;
             }
 
-            blkData = newData;
+            blkData = newBlkData;
             available = ret;
         }
         else
         {
             // hit, use cached data
-            blkData = findBlk->second.data();
+            blkData = findBlk->second;
 
             // if the hit is to the block containing the (previously
             // discovered on the miss that populated it) end of the eeprom,
@@ -68,7 +67,8 @@ ssize_t FRUReader::read(off_t start, size_t len, uint8_t* outbuf)
                             : std::min(available - blkOffset, remaining);
 
         // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-pointer-arithmetic)
-        memcpy(outbuf + done, blkData + blkOffset, toCopy);
+        memcpy(outbuf.data() + done, blkData.data() + blkOffset, toCopy);
+
         cursor += toCopy;
         done += toCopy;
         remaining -= toCopy;
