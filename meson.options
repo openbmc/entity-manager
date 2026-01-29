@@ -25,6 +25,18 @@ option(
     description: 'Different modes to detect 16-bit address EEPROM devices. MODE_1 is current and default mode.',
 )
 option(
+    'fru-device-maxretries',
+    type: 'integer',
+    value: 0,
+    description: 'Maximum number of retries for I2C device discovery.',
+)
+option(
+    'fru-device-retrydelay',
+    type: 'integer',
+    value: 5,
+    description: 'Delay in seconds between retries for I2C device discovery.',
+)
+option(
     'devicetree-vpd',
     type: 'boolean',
     description: 'Build device-tree VPD parser',
