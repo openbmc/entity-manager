@@ -836,11 +836,12 @@ std::set<size_t> loadBlocklist(const char* path)
     return addressBlocklist;
 }
 
-static void findI2CDevices(const std::vector<fs::path>& i2cBuses,
-                           BusMap& busmap, const bool& powerIsOn,
-                           const std::set<size_t>& addressBlocklist,
-                           sdbusplus::asio::object_server& objServer)
+static std::vector<fs::path> findI2CDevices(
+    const std::vector<fs::path>& i2cBuses, BusMap& busmap,
+    const bool& powerIsOn, const std::set<size_t>& addressBlocklist,
+    sdbusplus::asio::object_server& objServer)
 {
+    std::vector<fs::path> retryI2cBuses;
     for (const auto& i2cBus : i2cBuses)
     {
         int bus = busStrToInt(i2cBus.string());
@@ -915,34 +916,65 @@ static void findI2CDevices(const std::vector<fs::path>& i2cBuses,
         lg2::debug("Scanning bus {BUS}", "BUS", bus);
 
         // fd is closed in this function in case the bus locks up
-        getBusFRUs(fd, 0x03, 0x77, bus, device, powerIsOn, addressBlocklist,
-                   objServer);
+        // If the bus is locked up, we will retry for up to {maxRetries} times.
+        if (!getBusFRUs(fd, 0x03, 0x77, bus, device, powerIsOn,
+                        addressBlocklist, objServer))
+        {
+            retryI2cBuses.push_back(i2cBus);
+        }
 
         lg2::debug("Done scanning bus {BUS}", "BUS", bus);
     }
+
+    return retryI2cBuses;
 }
 
 // this class allows an async response after all i2c devices are discovered
 struct FindDevicesWithCallback :
     std::enable_shared_from_this<FindDevicesWithCallback>
 {
-    FindDevicesWithCallback(const std::vector<fs::path>& i2cBuses,
-                            BusMap& busmap, const bool& powerIsOn,
-                            sdbusplus::asio::object_server& objServer,
-                            const std::set<size_t>& addressBlocklist,
-                            std::function<void()>&& callback) :
+    FindDevicesWithCallback(
+        const std::vector<fs::path>& i2cBuses, BusMap& busmap,
+        const bool& powerIsOn, sdbusplus::asio::object_server& objServer,
+        const std::set<size_t>& addressBlocklist,
+        std::function<void()>&& callback, size_t retries = maxRetries) :
         _i2cBuses(i2cBuses), _busMap(busmap), _powerIsOn(powerIsOn),
         _objServer(objServer), _callback(std::move(callback)),
-        _addressBlocklist{addressBlocklist}
+        _addressBlocklist{addressBlocklist}, _retries(retries)
     {}
     ~FindDevicesWithCallback()
     {
         _callback();
+        if (_retryI2cBuses.empty())
+        {
+            lg2::info("All I2C devices discovered successfully.");
+            return;
+        }
+        if (maxRetries == 0)
+        {
+            return;
+        }
+        if (_retries == 0)
+        {
+            lg2::error(
+                "Failed to discover all I2C devices after {MAX_RETRIES} retries.",
+                "MAX_RETRIES", maxRetries);
+            return;
+        }
+
+        auto scan = std::make_shared<FindDevicesWithCallback>(
+            _i2cBuses, _busMap, _powerIsOn, _objServer, _addressBlocklist,
+            std::move(_callback), _retries - 1);
+        auto timer = std::make_shared<boost::asio::steady_timer>(io);
+        timer->expires_after(retryDelay);
+        timer->async_wait([timer, scan](const boost::system::error_code&) {
+            scan->run();
+        });
     }
     void run()
     {
-        findI2CDevices(_i2cBuses, _busMap, _powerIsOn, _addressBlocklist,
-                       _objServer);
+        _retryI2cBuses = findI2CDevices(_i2cBuses, _busMap, _powerIsOn,
+                                        _addressBlocklist, _objServer);
     }
 
     const std::vector<fs::path>& _i2cBuses;
@@ -951,6 +983,11 @@ struct FindDevicesWithCallback :
     sdbusplus::asio::object_server& _objServer;
     std::function<void()> _callback;
     std::set<size_t> _addressBlocklist;
+    size_t _retries;
+    std::vector<fs::path> _retryI2cBusesgit;
+
+    static constexpr size_t maxRetries = FRU_DEVICE_MAXRETRIES;
+    static constexpr std::chrono::seconds retryDelay{FRU_DEVICE_RETRYDELAY};
 };
 
 void addFruObjectToDbus(
