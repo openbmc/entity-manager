@@ -10,7 +10,7 @@
 #include <string>
 #include <vector>
 
-std::optional<std::string> gzipInflate(std::span<uint8_t> compressedBytes)
+std::optional<std::string> gzipInflate(std::span<const uint8_t> compressedBytes)
 {
     std::string uncompressedBytes;
     if (compressedBytes.empty())
