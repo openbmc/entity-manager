@@ -12,6 +12,7 @@
 #include <cstdint>
 #include <filesystem>
 #include <iomanip>
+#include <iostream>
 #include <numeric>
 #include <set>
 #include <sstream>
@@ -726,14 +727,14 @@ std::string parseMacFromGzipXmlHeader(FRUReader& reader, off_t offset)
     constexpr size_t totalReadSize = 32UL * 1024UL;
 
     std::vector<uint8_t> headerData(totalReadSize, 0U);
-
-    int rc = reader.read(offset, totalReadSize, headerData.data());
+    std::span<uint8_t> headerDataSpan(headerData);
+    int rc = reader.read(offset, headerDataSpan);
     if (rc <= 0)
     {
         return {};
     }
 
-    std::optional<std::string> xml = gzipInflate(headerData);
+    std::optional<std::string> xml = gzipInflate(headerDataSpan);
     if (!xml)
     {
         return {};
@@ -756,7 +757,8 @@ std::optional<FruSections> findFRUHeader(
     FRUReader& reader, const std::string& errorHelp, off_t startingOffset)
 {
     std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData = {};
-    if (reader.read(startingOffset, 0x8, blockData.data()) < 0)
+    std::span<uint8_t> blockDataSpan(blockData);
+    if (reader.read(startingOffset, blockDataSpan.subspan(0, 0x8)) < 0)
     {
         lg2::error("failed to read {ERR} base offset {OFFSET}", "ERR",
                    errorHelp, "OFFSET", startingOffset);
@@ -826,6 +828,7 @@ std::pair<std::vector<uint8_t>, bool> readFRUContents(
     FRUReader& reader, const std::string& errorHelp)
 {
     std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData{};
+    std::span<uint8_t> blockDataSpan(blockData);
     std::optional<FruSections> sections = findFRUHeader(reader, errorHelp, 0);
     if (!sections)
     {
@@ -874,7 +877,8 @@ std::pair<std::vector<uint8_t>, bool> readFRUContents(
 
         areaOffset *= fruBlockSize;
 
-        if (reader.read(baseOffset + areaOffset, 0x2, blockData.data()) < 0)
+        std::span<uint8_t> areaBlockData = blockDataSpan.subspan(0, 0x2);
+        if (reader.read(baseOffset + areaOffset, areaBlockData) < 0)
         {
             lg2::error("failed to read {ERR} base offset {OFFSET}", "ERR",
                        errorHelp, "OFFSET", baseOffset);
@@ -904,7 +908,8 @@ std::pair<std::vector<uint8_t>, bool> readFRUContents(
         {
             // In multi-area, the area offset points to the 0th record, each
             // record has 3 bytes of the header we care about.
-            if (reader.read(baseOffset + areaOffset, 0x3, blockData.data()) < 0)
+            std::span<uint8_t> areaBlockData = blockDataSpan.subspan(0, 0x3);
+            if (reader.read(baseOffset + areaOffset, areaBlockData) < 0)
             {
                 lg2::error("failed to read {STR} base offset {OFFSET}", "STR",
                            errorHelp, "OFFSET", baseOffset);
@@ -935,8 +940,8 @@ std::pair<std::vector<uint8_t>, bool> readFRUContents(
         size_t requestLength =
             std::min(static_cast<size_t>(I2C_SMBUS_BLOCK_MAX), fruLength);
 
-        if (reader.read(baseOffset + readOffset, requestLength,
-                        blockData.data()) < 0)
+        if (reader.read(baseOffset + readOffset,
+                        blockDataSpan.subspan(0, requestLength)) < 0)
         {
             lg2::error("failed to read {ERR} base offset {OFFSET}", "ERR",
                        errorHelp, "OFFSET", baseOffset);
