@@ -8,6 +8,7 @@
 #include <functional>
 #include <map>
 #include <optional>
+#include <span>
 #include <utility>
 
 extern "C"
@@ -21,7 +22,7 @@ extern "C"
 // is not guaranteed to be) less than len if the read would go beyond the end
 // of the FRU.
 using ReadBlockFunc =
-    std::function<int64_t(off_t offset, size_t len, uint8_t* outbuf)>;
+    std::function<int64_t(off_t offset, std::span<uint8_t> outbuf)>;
 
 // A caching wrapper around a ReadBlockFunc
 class FRUReader
@@ -32,7 +33,7 @@ class FRUReader
     // The ::read() operation here is analogous to ReadBlockFunc (with the same
     // return value semantics), but is not subject to SMBus block size
     // limitations; it can read as much data as needed in a single call.
-    ssize_t read(off_t start, size_t len, uint8_t* outbuf);
+    ssize_t read(off_t start, std::span<uint8_t> outbuf);
 
   private:
     static constexpr size_t cacheBlockSize = 32;
