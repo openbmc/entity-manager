@@ -3,12 +3,16 @@ if get_option('fru-device-resizefru')
     cpp_args_fd = cpp_args_fd + ['-DENABLE_FRU_AREA_RESIZE']
 endif
 detect_mode = get_option('fru-device-16bitdetectmode')
+max_retries = get_option('fru-device-maxretries')
+retry_delay = get_option('fru-device-retrydelay')
 
 cpp_args_fd += [
     '-DFRU_DEVICE_16BITDETECTMODE="' + detect_mode + '"',
     '-DENABLE_FRU_UPDATE_PROPERTY=' + (
         get_option('fru-device-update-property') == 'all' ? '1' : '0'
     ),
+    '-DFRU_DEVICE_MAXRETRIES=' + max_retries.to_string(),
+    '-DFRU_DEVICE_RETRYDELAY=' + retry_delay.to_string(),
 ]
 
 executable(
