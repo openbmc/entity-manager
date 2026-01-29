@@ -151,22 +151,18 @@ TEST(VerifyChecksumTest, WrapBoundaryHigh)
     EXPECT_EQ(calculateChecksum(data), 255);
 }
 
-int64_t getDataTempl(std::span<const uint8_t> data, off_t offset, size_t length,
-                     uint8_t* outBuf)
+int64_t getDataTempl(std::span<const uint8_t> data, off_t offset,
+                     std::span<uint8_t> outbuf)
 {
     if (offset >= static_cast<off_t>(data.size()))
     {
         return 0;
     }
 
-    uint16_t idx = offset;
+    size_t size = std::min(data.size() - offset, outbuf.size());
     // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-pointer-arithmetic)
-    for (; idx < std::min(data.size(), offset + length); ++idx, ++outBuf)
-    {
-        *outBuf = data[idx];
-    }
-
-    return idx - offset;
+    std::memcpy(outbuf.data(), data.data() + offset, size);
+    return size;
 }
 
 TEST(FRUReaderTest, ReadData)
@@ -178,20 +174,20 @@ TEST(FRUReaderTest, ReadData)
         data.push_back(i);
     }
     std::array<uint8_t, blockSize * 2> rdbuf{};
-    auto getData = [&data](auto o, auto l, auto* b) {
-        return getDataTempl(data, o, l, b);
+    std::span<uint8_t> rdbufSpan(rdbuf);
+    auto getData = [&data](auto o, std::span<uint8_t> b) {
+        return getDataTempl(data, o, b);
     };
     FRUReader reader(getData);
 
-    EXPECT_EQ(reader.read(0, data.size(), rdbuf.data()),
-              static_cast<ssize_t>(data.size()));
+    EXPECT_EQ(reader.read(0, rdbufSpan), static_cast<ssize_t>(data.size()));
     EXPECT_TRUE(std::equal(rdbuf.begin(), rdbuf.end(), data.begin()));
     for (size_t i = 0; i < blockSize * 2; i++)
     {
-        EXPECT_EQ(reader.read(i, 1, rdbuf.data()), 1);
+        EXPECT_EQ(reader.read(i, rdbufSpan.subspan(0, 1)), 1);
         EXPECT_EQ(rdbuf[i], i);
     }
-    EXPECT_EQ(reader.read(blockSize - 1, 2, rdbuf.data()), 2);
+    EXPECT_EQ(reader.read(blockSize - 1, rdbufSpan.subspan(0, 2)), 2);
     EXPECT_EQ(rdbuf[0], blockSize - 1);
     EXPECT_EQ(rdbuf[1], blockSize);
 }
@@ -199,12 +195,13 @@ TEST(FRUReaderTest, ReadData)
 TEST(FRUReaderTest, StartPastUnknownEOF)
 {
     const std::vector<uint8_t> data = {};
-    auto getData = [&data](auto o, auto l, auto* b) {
-        return getDataTempl(data, o, l, b);
+    auto getData = [&data](auto o, std::span<uint8_t> b) {
+        return getDataTempl(data, o, b);
     };
     FRUReader reader(getData);
+    std::array<uint8_t, 0> buf{};
 
-    EXPECT_EQ(reader.read(1, 1, nullptr), 0);
+    EXPECT_EQ(reader.read(1, buf), 0);
 }
 
 TEST(FRUReaderTest, StartPastKnownEOF)
@@ -212,32 +209,32 @@ TEST(FRUReaderTest, StartPastKnownEOF)
     std::vector<uint8_t> data = {};
     data.resize(blockSize / 2);
     std::array<uint8_t, blockSize> blockData{};
-    auto getData = [&data](auto o, auto l, auto* b) {
-        return getDataTempl(data, o, l, b);
+    std::array<uint8_t, 0> emptyBuf{};
+    auto getData = [&data](auto o, std::span<uint8_t> b) {
+        return getDataTempl(data, o, b);
     };
     FRUReader reader(getData);
 
-    EXPECT_EQ(reader.read(0, blockSize, blockData.data()),
-              static_cast<ssize_t>(data.size()));
-    EXPECT_EQ(reader.read(data.size(), 1, nullptr), 0);
-    EXPECT_EQ(reader.read(data.size() + 1, 1, nullptr), 0);
-    EXPECT_EQ(reader.read(blockSize, 1, nullptr), 0);
-    EXPECT_EQ(reader.read(blockSize + 1, 1, nullptr), 0);
+    EXPECT_EQ(reader.read(0, blockData), static_cast<ssize_t>(data.size()));
+    EXPECT_EQ(reader.read(data.size(), emptyBuf), 0);
+    EXPECT_EQ(reader.read(data.size() + 1, emptyBuf), 0);
+    EXPECT_EQ(reader.read(blockSize, emptyBuf), 0);
+    EXPECT_EQ(reader.read(blockSize + 1, emptyBuf), 0);
 }
 
 TEST(FRUReaderTest, DecreasingEOF)
 {
     const std::vector<uint8_t> data = {};
-    auto getData = [&data](auto o, auto l, auto* b) {
-        return getDataTempl(data, o, l, b);
+    auto getData = [&data](auto o, std::span<uint8_t> b) {
+        return getDataTempl(data, o, b);
     };
     FRUReader reader(getData);
-
-    EXPECT_EQ(reader.read(blockSize * 2, 1, nullptr), 0);
-    EXPECT_EQ(reader.read(blockSize + (blockSize / 2), 1, nullptr), 0);
-    EXPECT_EQ(reader.read(blockSize, 1, nullptr), 0);
-    EXPECT_EQ(reader.read(blockSize / 2, 1, nullptr), 0);
-    EXPECT_EQ(reader.read(0, 1, nullptr), 0);
+    std::vector<uint8_t> buf;
+    EXPECT_EQ(reader.read(blockSize * 2, buf), 0);
+    EXPECT_EQ(reader.read(blockSize + (blockSize / 2), buf), 0);
+    EXPECT_EQ(reader.read(blockSize, buf), 0);
+    EXPECT_EQ(reader.read(blockSize / 2, buf), 0);
+    EXPECT_EQ(reader.read(0, buf), 0);
 }
 
 TEST(FRUReaderTest, CacheHit)
@@ -245,16 +242,16 @@ TEST(FRUReaderTest, CacheHit)
     std::vector<uint8_t> data = {'X'};
     std::array<uint8_t, blockSize> read1{};
     std::array<uint8_t, blockSize> read2{};
-    auto getData = [&data](auto o, auto l, auto* b) {
-        return getDataTempl(data, o, l, b);
+    auto getData = [&data](auto o, std::span<uint8_t> b) {
+        return getDataTempl(data, o, b);
     };
     FRUReader reader(getData);
 
     // cache hit should return the same data for the second read even if we
     // change it behind the FRUReader's back after the first
-    EXPECT_EQ(reader.read(0, blockSize, read1.data()), 1);
+    EXPECT_EQ(reader.read(0, read1), 1);
     data[0] = 'Y';
-    EXPECT_EQ(reader.read(0, blockSize, read2.data()), 1);
+    EXPECT_EQ(reader.read(0, read2), 1);
     EXPECT_EQ(read1[0], read2[0]);
 }
 
@@ -262,17 +259,15 @@ TEST(FRUReaderTest, ReadPastKnownEnd)
 {
     const std::vector<uint8_t> data = {'X', 'Y'};
     std::array<uint8_t, blockSize> rdbuf{};
-    auto getData = [&data](auto o, auto l, auto* b) {
-        return getDataTempl(data, o, l, b);
+    auto getData = [&data](auto o, std::span<uint8_t> b) {
+        return getDataTempl(data, o, b);
     };
     FRUReader reader(getData);
 
-    EXPECT_EQ(reader.read(0, data.size(), rdbuf.data()),
-              static_cast<ssize_t>(data.size()));
+    EXPECT_EQ(reader.read(0, rdbuf), static_cast<ssize_t>(data.size()));
     EXPECT_EQ(rdbuf[0], 'X');
     EXPECT_EQ(rdbuf[1], 'Y');
-    EXPECT_EQ(reader.read(1, data.size(), rdbuf.data()),
-              static_cast<ssize_t>(data.size() - 1));
+    EXPECT_EQ(reader.read(1, rdbuf), static_cast<ssize_t>(data.size() - 1));
     EXPECT_EQ(rdbuf[0], 'Y');
 }
 
@@ -282,13 +277,12 @@ TEST(FRUReaderTest, MultiBlockRead)
     data.resize(blockSize, 'X');
     data.resize(2 * blockSize, 'Y');
     std::array<uint8_t, 2 * blockSize> rdbuf{};
-    auto getData = [&data](auto o, auto l, auto* b) {
-        return getDataTempl(data, o, l, b);
+    auto getData = [&data](auto o, std::span<uint8_t> b) {
+        return getDataTempl(data, o, b);
     };
     FRUReader reader(getData);
 
-    EXPECT_EQ(reader.read(0, 2 * blockSize, rdbuf.data()),
-              static_cast<ssize_t>(2 * blockSize));
+    EXPECT_EQ(reader.read(0, rdbuf), static_cast<ssize_t>(2 * blockSize));
     EXPECT_TRUE(std::equal(rdbuf.begin(), rdbuf.end(), data.begin()));
 }
 
@@ -297,22 +291,22 @@ TEST(FRUReaderTest, ShrinkingEEPROM)
     std::vector<uint8_t> data = {};
     data.resize(3 * blockSize, 'X');
     std::array<uint8_t, blockSize> rdbuf{};
-    auto getData = [&data](auto o, auto l, auto* b) {
-        return getDataTempl(data, o, l, b);
+    auto getData = [&data](auto o, std::span<uint8_t> b) {
+        return getDataTempl(data, o, b);
     };
     FRUReader reader(getData);
 
-    EXPECT_EQ(reader.read(data.size() - 1, 2, rdbuf.data()), 1);
+    EXPECT_EQ(reader.read(data.size() - 1, rdbuf), 1);
     data.resize(blockSize);
-    EXPECT_EQ(reader.read(data.size() - 1, 2, rdbuf.data()), 1);
+    EXPECT_EQ(reader.read(data.size() - 1, rdbuf), 1);
 }
 
 TEST(FindFRUHeaderTest, InvalidHeader)
 {
     const std::vector<uint8_t> data = {255, 16};
     off_t offset = 0;
-    auto getData = [&data](auto o, auto l, auto* b) {
-        return getDataTempl(data, o, l, b);
+    auto getData = [&data](auto o, std::span<uint8_t> b) {
+        return getDataTempl(data, o, b);
     };
     FRUReader reader(getData);
     auto sections = findFRUHeader(reader, "error", offset);
@@ -323,8 +317,8 @@ TEST(FindFRUHeaderTest, NoData)
 {
     const std::vector<uint8_t> data = {};
     off_t offset = 0;
-    auto getData = [&data](auto o, auto l, auto* b) {
-        return getDataTempl(data, o, l, b);
+    auto getData = [&data](auto o, std::span<uint8_t> b) {
+        return getDataTempl(data, o, b);
     };
     FRUReader reader(getData);
 
@@ -337,8 +331,8 @@ TEST(FindFRUHeaderTest, ValidHeader)
     const std::vector<uint8_t> data = {0x01, 0x00, 0x01, 0x02,
                                        0x03, 0x04, 0x00, 0xf5};
     off_t offset = 0;
-    auto getData = [&data](auto o, auto l, auto* b) {
-        return getDataTempl(data, o, l, b);
+    auto getData = [&data](auto o, std::span<uint8_t> b) {
+        return getDataTempl(data, o, b);
     };
     FRUReader reader(getData);
     auto sections = findFRUHeader(reader, "error", offset);
@@ -354,8 +348,8 @@ TEST(FindFRUHeaderTest, TyanInvalidHeader)
     std::vector<uint8_t> data = {'$', 'T', 'Y', 'A', 'N', '$', 0, 0};
     data.resize(0x6000 + I2C_SMBUS_BLOCK_MAX);
     off_t offset = 0;
-    auto getData = [&data](auto o, auto l, auto* b) {
-        return getDataTempl(data, o, l, b);
+    auto getData = [&data](auto o, std::span<uint8_t> b) {
+        return getDataTempl(data, o, b);
     };
     FRUReader reader(getData);
     auto sections = findFRUHeader(reader, "error", offset);
@@ -366,8 +360,8 @@ TEST(FindFRUHeaderTest, TyanNoData)
 {
     const std::vector<uint8_t> data = {'$', 'T', 'Y', 'A', 'N', '$', 0, 0};
     off_t offset = 0;
-    auto getData = [&data](auto o, auto l, auto* b) {
-        return getDataTempl(data, o, l, b);
+    auto getData = [&data](auto o, std::span<uint8_t> b) {
+        return getDataTempl(data, o, b);
     };
     FRUReader reader(getData);
     auto sections = findFRUHeader(reader, "error", offset);
@@ -383,8 +377,8 @@ TEST(FindFRUHeaderTest, TyanValidHeader)
     copy(fruHeader.begin(), fruHeader.end(), back_inserter(data));
 
     off_t offset = 0;
-    auto getData = [&data](auto o, auto l, auto* b) {
-        return getDataTempl(data, o, l, b);
+    auto getData = [&data](auto o, std::span<uint8_t> b) {
+        return getDataTempl(data, o, b);
     };
     FRUReader reader(getData);
 
@@ -402,8 +396,8 @@ TEST(FindFRUHeaderTest, GigaInvalidHeader)
     std::vector<uint8_t> data = {'G', 'I', 'G', 'A', 'B', 'Y', 'T', 'E'};
     data.resize(0x6000 + I2C_SMBUS_BLOCK_MAX);
     off_t offset = 0;
-    auto getData = [&data](auto o, auto l, auto* b) {
-        return getDataTempl(data, o, l, b);
+    auto getData = [&data](auto o, std::span<uint8_t> b) {
+        return getDataTempl(data, o, b);
     };
     FRUReader reader(getData);
     auto sections = findFRUHeader(reader, "error", offset);
@@ -414,8 +408,8 @@ TEST(FindFRUHeaderTest, GigaNoData)
 {
     const std::vector<uint8_t> data = {'G', 'I', 'G', 'A', 'B', 'Y', 'T', 'E'};
     off_t offset = 0;
-    auto getData = [&data](auto o, auto l, auto* b) {
-        return getDataTempl(data, o, l, b);
+    auto getData = [&data](auto o, std::span<uint8_t> b) {
+        return getDataTempl(data, o, b);
     };
     FRUReader reader(getData);
     auto sections = findFRUHeader(reader, "error", offset);
@@ -431,8 +425,8 @@ TEST(FindFRUHeaderTest, GigaValidHeader)
     copy(fruHeader.begin(), fruHeader.end(), back_inserter(data));
 
     off_t offset = 0;
-    auto getData = [&data](auto o, auto l, auto* b) {
-        return getDataTempl(data, o, l, b);
+    auto getData = [&data](auto o, std::span<uint8_t> b) {
+        return getDataTempl(data, o, b);
     };
     FRUReader reader(getData);
 
