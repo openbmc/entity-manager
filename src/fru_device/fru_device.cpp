@@ -834,11 +834,12 @@ std::set<size_t> loadBlocklist(const char* path)
     return addressBlocklist;
 }
 
-static void findI2CDevices(const std::vector<fs::path>& i2cBuses,
-                           BusMap& busmap, const bool& powerIsOn,
-                           const std::set<size_t>& addressBlocklist,
-                           sdbusplus::asio::object_server& objServer)
+static std::vector<fs::path> findI2CDevices(
+    const std::vector<fs::path>& i2cBuses, BusMap& busmap,
+    const bool& powerIsOn, const std::set<size_t>& addressBlocklist,
+    sdbusplus::asio::object_server& objServer)
 {
+    std::vector<fs::path> retryI2cBuses;
     for (const auto& i2cBus : i2cBuses)
     {
         int bus = busStrToInt(i2cBus.string());
@@ -913,11 +914,17 @@ static void findI2CDevices(const std::vector<fs::path>& i2cBuses,
         lg2::debug("Scanning bus {BUS}", "BUS", bus);
 
         // fd is closed in this function in case the bus locks up
-        getBusFRUs(fd, 0x03, 0x77, bus, device, powerIsOn, addressBlocklist,
-                   objServer);
+        // If the bus is locked up, we will retry for up to 5 times.
+        if (!getBusFRUs(fd, 0x03, 0x77, bus, device, powerIsOn,
+                        addressBlocklist, objServer))
+        {
+            retryI2cBuses.push_back(i2cBus);
+        }
 
         lg2::debug("Done scanning bus {BUS}", "BUS", bus);
     }
+
+    return retryI2cBuses;
 }
 
 // this class allows an async response after all i2c devices are discovered
@@ -939,8 +946,27 @@ struct FindDevicesWithCallback :
     }
     void run()
     {
-        findI2CDevices(_i2cBuses, _busMap, _powerIsOn, _addressBlocklist,
-                       _objServer);
+        std::vector<fs::path> retryI2cBuses = findI2CDevices(
+            _i2cBuses, _busMap, _powerIsOn, _addressBlocklist, _objServer);
+        std::string msg;
+        for (size_t retryCount = 0; retryCount < maxRetries; retryCount++)
+        {
+            if (retryI2cBuses.empty())
+            {
+                break;
+            }
+            msg.clear();
+            for (const auto& i2cBus : retryI2cBuses)
+            {
+                msg += i2cBus.string() + " ";
+            }
+            lg2::info("Retrying {BUSES} in {DELAY} seconds... {RETRY_COUNT}",
+                      "BUSES", msg, "DELAY", retryDelay.count(), "RETRY_COUNT",
+                      retryCount);
+            std::this_thread::sleep_for(retryDelay);
+            retryI2cBuses = findI2CDevices(retryI2cBuses, _busMap, _powerIsOn,
+                                           _addressBlocklist, _objServer);
+        }
     }
 
     const std::vector<fs::path>& _i2cBuses;
@@ -949,6 +975,9 @@ struct FindDevicesWithCallback :
     sdbusplus::asio::object_server& _objServer;
     std::function<void()> _callback;
     std::set<size_t> _addressBlocklist;
+
+    static constexpr size_t maxRetries = 5;
+    static constexpr std::chrono::seconds retryDelay{5};
 };
 
 void addFruObjectToDbus(
