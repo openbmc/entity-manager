@@ -96,6 +96,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "95cd81df_07c1ad04",
+        "filename": "src/dbus_regex.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-29T04:30:51Z",
+      "side": 1,
+      "message": "\u003e should we remove them from the namespace and put them in the functions themselves?\n\nI pulled these out of the function to avoid possibly repeated construction. \nBut we can achieve the same with a `static` local variable. My mistake 😄\n\nMoved them into the functions instead to limit their scope to where they are used 👍",
+      "parentUuid": "6e024fc6_ee4a54d5",
+      "range": {
+        "startLine": 8,
+        "startChar": 24,
+        "endLine": 8,
+        "endChar": 31
+      },
+      "revId": "170b01bc4a88059293da9b0c9823bdbd46cefc02",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8f705a60_2604cd85",
@@ -113,6 +137,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "faa5a655_7c3b31f8",
+        "filename": "src/dbus_regex.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-29T04:30:51Z",
+      "side": 1,
+      "message": "\u003e Not sure we need a function with one line.\n\nChanged it to match your preference 👍",
+      "parentUuid": "8f705a60_2604cd85",
+      "revId": "170b01bc4a88059293da9b0c9823bdbd46cefc02",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "755b87d4_84d7d6f5",
@@ -126,6 +168,24 @@
       "writtenOn": "2026-01-28T22:47:41Z",
       "side": 1,
       "message": "In terms of API design, should these be producing a new string?  Functionally they\u0027re producing a new string internally, and I don\u0027t think we want to lose that.",
+      "revId": "170b01bc4a88059293da9b0c9823bdbd46cefc02",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb989e19_88842a23",
+        "filename": "src/dbus_regex.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-29T04:30:51Z",
+      "side": 1,
+      "message": "Fixed it now 👍",
+      "parentUuid": "755b87d4_84d7d6f5",
       "revId": "170b01bc4a88059293da9b0c9823bdbd46cefc02",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
