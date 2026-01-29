@@ -142,6 +142,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "81aaf6dd_94086ff6",
+        "filename": "src/entity_manager/dbus_interface.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-29T03:03:09Z",
+      "side": 1,
+      "message": "\u003e Generally, we will see the permissions using the busctl introspect command:\n\nThanks for clarifying this, looks like i was wrong and the plain \u0027busctl\u0027 also shows it 😊\n\nI have added the permission dump test results from my board to the commit message, hoping that\u0027s okay for you. There was no big surprises in that dump.",
+      "parentUuid": "af6b5b59_ef0196c1",
+      "revId": "fe3011e965385d80839fb2684195ad419972ff72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "58d636d0_6be8d94a",
@@ -191,6 +209,24 @@
       "side": 1,
       "message": "Could you check this file \n\nsrc/entity_manager/dbus_interface.hpp -\u003e In 46 line \n\n void populateInterfaceFromJson(\n        nlohmann::json\u0026 systemConfiguration, const std::string\u0026 jsonPointerPath,\n        std::shared_ptr\u003csdbusplus::asio::dbus_interface\u003e\u0026 iface,\n        nlohmann::json\u0026 dict,\n        sdbusplus::asio::PropertyPermission permission \u003d\n            sdbusplus::asio::PropertyPermission::readOnly);\n\n\nIt is directly assigning the readonly is it helpful for us?\n\n@alexander.hansen@9elements.com I am intrested to work on this. Please Give your suggestions to move forward.Thanks",
       "parentUuid": "e5a90df6_bc9547a2",
+      "revId": "fe3011e965385d80839fb2684195ad419972ff72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60f89f31_55538d8e",
+        "filename": "src/entity_manager/dbus_interface.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-29T03:03:09Z",
+      "side": 1,
+      "message": "\u003e It is directly assigning the readonly is it helpful for us?\n\nI assume so. Writable properties for configuration should have a use-case which needs that since it complicates reactor implementation. So read-only would be my preferred default.\n\nAdded the inspection results to your change, so resolving this comment.",
+      "parentUuid": "a928c749_c7a45835",
       "revId": "fe3011e965385d80839fb2684195ad419972ff72",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
