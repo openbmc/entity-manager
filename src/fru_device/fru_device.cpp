@@ -33,6 +33,7 @@
 #include <iomanip>
 #include <limits>
 #include <map>
+#include <memory>
 #include <optional>
 #include <regex>
 #include <set>
@@ -466,180 +467,216 @@ std::set<size_t> findI2CEeproms(int i2cBus,
     return foundList;
 }
 
-int getBusFRUs(const std::shared_ptr<stdplus::ManagedFd>& fd, int first,
-               int last, int bus, std::shared_ptr<DeviceMap> devices,
-               const bool& powerIsOn, const std::set<size_t>& addressBlocklist,
-               sdbusplus::asio::object_server& objServer)
+bool i2cFruScan(const std::weak_ptr<stdplus::ManagedFd>& weakFd, int first,
+                int last, int bus, const std::shared_ptr<DeviceMap>& devices,
+                const bool& powerIsOn, const std::set<size_t>& addressBlocklist,
+                sdbusplus::asio::object_server& objServer)
 {
-    std::future<int> future = std::async(std::launch::async, [&]() {
-        // NOTE: When reading the devices raw on the bus, it can interfere with
-        // the driver's ability to operate, therefore read eeproms first before
-        // scanning for devices without drivers. Several experiments were run
-        // and it was determined that if there were any devices on the bus
-        // before the eeprom was hit and read, the eeprom driver wouldn't open
-        // while the bus device was open. An experiment was not performed to see
-        // if this issue was resolved if the i2c bus device was closed, but
-        // hexdumps of the eeprom later were successful.
+    // NOTE: When reading the devices raw on the bus, it can interfere
+    // with the driver's ability to operate, therefore read eeproms
+    // first before scanning for devices without drivers. Several
+    // experiments were run and it was determined that if there were any
+    // devices on the bus before the eeprom was hit and read, the eeprom
+    // driver wouldn't open while the bus device was open. An experiment
+    // was not performed to see if this issue was resolved if the i2c
+    // bus device was closed, but hexdumps of the eeprom later were
+    // successful.
 
-        // Scan for i2c eeproms loaded on this bus.
-        std::set<size_t> skipList = findI2CEeproms(bus, devices);
-        std::flat_set<size_t>& failedItems = failedAddresses[bus];
-        std::flat_set<size_t>& foundItems = fruAddresses[bus];
-        foundItems.clear();
+    // Scan for i2c eeproms loaded on this bus.
+    std::set<size_t> skipList = findI2CEeproms(bus, devices);
+    std::flat_set<size_t>& failedItems = failedAddresses[bus];
+    std::flat_set<size_t>& foundItems = fruAddresses[bus];
+    foundItems.clear();
 
-        skipList.insert_range(addressBlocklist);
+    skipList.insert_range(addressBlocklist);
 
-        auto busFind = busBlocklist.find(bus);
-        if (busFind != busBlocklist.end())
+    auto busFind = busBlocklist.find(bus);
+    if (busFind != busBlocklist.end())
+    {
+        const std::optional<std::flat_set<size_t>>& addresses = busFind->second;
+        if (addresses != std::nullopt)
         {
-            if (busFind->second != std::nullopt)
+            for (const auto& address : *addresses)
             {
-                for (const auto& address : *(busFind->second))
+                skipList.insert(address);
+            }
+        }
+    }
+
+    std::flat_set<size_t>* rootFailures = nullptr;
+    int rootBus = getRootBus(bus);
+
+    if (rootBus >= 0)
+    {
+        auto rootBusFind = busBlocklist.find(rootBus);
+        if (rootBusFind != busBlocklist.end())
+        {
+            const std::optional<std::flat_set<size_t>>& rootAddresses =
+                rootBusFind->second;
+            if (rootAddresses != std::nullopt)
+            {
+                for (const auto& rootAddress : *rootAddresses)
                 {
-                    skipList.insert(address);
+                    skipList.insert(rootAddress);
                 }
             }
         }
+        rootFailures = &(failedAddresses[rootBus]);
+        foundItems = fruAddresses[rootBus];
+    }
 
-        std::flat_set<size_t>* rootFailures = nullptr;
-        int rootBus = getRootBus(bus);
+    constexpr int startSkipTargetAddr = 0;
+    constexpr int endSkipTargetAddr = 12;
 
-        if (rootBus >= 0)
+    for (int ii = first; ii <= last; ii++)
+    {
+        if (foundItems.contains(ii))
         {
-            auto rootBusFind = busBlocklist.find(rootBus);
-            if (rootBusFind != busBlocklist.end())
-            {
-                if (rootBusFind->second != std::nullopt)
-                {
-                    for (const auto& rootAddress : *(rootBusFind->second))
-                    {
-                        skipList.insert(rootAddress);
-                    }
-                }
-            }
-            rootFailures = &(failedAddresses[rootBus]);
-            foundItems = fruAddresses[rootBus];
+            continue;
+        }
+        if (skipList.contains(ii))
+        {
+            continue;
+        }
+        // skipping since no device is present in this range
+        if (ii >= startSkipTargetAddr && ii <= endSkipTargetAddr)
+        {
+            continue;
         }
 
-        constexpr int startSkipTargetAddr = 0;
-        constexpr int endSkipTargetAddr = 12;
-
-        for (int ii = first; ii <= last; ii++)
+        std::shared_ptr<stdplus::ManagedFd> newFd = weakFd.lock();
+        if (newFd == nullptr)
         {
-            if (foundItems.contains(ii))
+            lg2::error("File descriptor at bus {BUS} is closed due to timeout",
+                       "BUS", bus);
+            return false;
+        }
+        // Set target address
+        try
+        {
+            if (ioctl(newFd->get(), I2C_SLAVE, ii) < 0)
             {
-                continue;
-            }
-            if (skipList.contains(ii))
-            {
-                continue;
-            }
-            // skipping since no device is present in this range
-            if (ii >= startSkipTargetAddr && ii <= endSkipTargetAddr)
-            {
-                continue;
-            }
-            // Set target address
-            try
-            {
-                if (ioctl(fd->get(), I2C_SLAVE, ii) < 0)
-                {
-                    lg2::error("device at bus {BUS} address {ADDR} busy", "BUS",
-                               bus, "ADDR", ii);
-                    continue;
-                }
-            }
-            catch (const std::system_error& e)
-            {
-                lg2::error("device at bus {BUS} address {ADDR} busy: {ERR}",
-                           "BUS", bus, "ADDR", ii, "ERR", e.what());
-                continue;
-            }
-            // probe
-            if (i2c_smbus_read_byte(fd->get()) < 0)
-            {
-                continue;
-            }
-
-            lg2::debug("something at bus {BUS}, addr {ADDR}", "BUS", bus,
-                       "ADDR", ii);
-
-            makeProbeInterface(bus, ii, objServer);
-
-            if (failedItems.contains(ii))
-            {
-                // if we failed to read it once, unlikely we can read it later
-                continue;
-            }
-
-            if (rootFailures != nullptr)
-            {
-                if (rootFailures->contains(ii))
-                {
-                    continue;
-                }
-            }
-
-            /* Check for Device type if it is 8 bit or 16 bit */
-            std::optional<bool> is16Bit = isDevice16Bit(fd, ii);
-            if (!is16Bit.has_value())
-            {
-                lg2::error("failed to read bus {BUS} address {ADDR}", "BUS",
+                lg2::error("device at bus {BUS} address {ADDR} busy", "BUS",
                            bus, "ADDR", ii);
-                if (powerIsOn)
-                {
-                    failedItems.insert(ii);
-                }
                 continue;
             }
-            bool is16BitBool{*is16Bit};
-
-            auto readFunc = [is16BitBool, fd,
-                             ii](off_t offset, std::span<uint8_t> outbuf) {
-                return readData(is16BitBool, false, fd, ii, offset, outbuf);
-            };
-            FRUReader reader(std::move(readFunc));
-            std::string errorMessage =
-                "bus " + std::to_string(bus) + " address " + std::to_string(ii);
-            std::pair<std::vector<uint8_t>, bool> pair =
-                readFRUContents(reader, errorMessage);
-            const bool foundHeader = pair.second;
-
-            if (!foundHeader && !is16BitBool)
-            {
-                // certain FRU eeproms require bytewise reading.
-                // otherwise garbage is read. e.g. SuperMicro PWS 920P-SQ
-
-                auto readFunc = [is16BitBool, fd,
-                                 ii](off_t offset, std::span<uint8_t> outbuf) {
-                    return readData(is16BitBool, true, fd, ii, offset, outbuf);
-                };
-                FRUReader readerBytewise(std::move(readFunc));
-                pair = readFRUContents(readerBytewise, errorMessage);
-            }
-
-            if (pair.first.empty())
-            {
-                continue;
-            }
-
-            devices->emplace(ii, pair.first);
-            fruAddresses[bus].insert(ii);
         }
-        return 1;
+        catch (const std::system_error& e)
+        {
+            lg2::error("device at bus {BUS} address {ADDR} busy: {ERR}", "BUS",
+                       bus, "ADDR", ii, "ERR", e.what());
+            continue;
+        }
+        // probe
+        if (i2c_smbus_read_byte(newFd->get()) < 0)
+        {
+            continue;
+        }
+
+        lg2::debug("something at bus {BUS}, addr {ADDR}", "BUS", bus, "ADDR",
+                   ii);
+
+        makeProbeInterface(bus, ii, objServer);
+
+        if (failedItems.contains(ii))
+        {
+            // if we failed to read it once, unlikely we can read it
+            // later
+            continue;
+        }
+
+        if (rootFailures != nullptr)
+        {
+            if (rootFailures->contains(ii))
+            {
+                continue;
+            }
+        }
+
+        /* Check for Device type if it is 8 bit or 16 bit */
+        std::optional<bool> is16Bit = isDevice16Bit(newFd, ii);
+        if (!is16Bit.has_value())
+        {
+            lg2::error("failed to read bus {BUS} address {ADDR}", "BUS", bus,
+                       "ADDR", ii);
+            if (powerIsOn)
+            {
+                failedItems.insert(ii);
+            }
+            continue;
+        }
+        bool is16BitBool{*is16Bit};
+
+        auto readFunc = [is16BitBool, newFd,
+                         ii](off_t offset, std::span<uint8_t> outbuf) {
+            return readData(is16BitBool, false, newFd, ii, offset, outbuf);
+        };
+        FRUReader reader(std::move(readFunc));
+        std::string errorMessage =
+            "bus " + std::to_string(bus) + " address " + std::to_string(ii);
+        std::pair<std::vector<uint8_t>, bool> pair =
+            readFRUContents(reader, errorMessage);
+        const bool foundHeader = pair.second;
+
+        if (!foundHeader && !is16BitBool)
+        {
+            // certain FRU eeproms require bytewise reading.
+            // otherwise garbage is read. e.g. SuperMicro PWS 920P-SQ
+
+            auto readFunc = [is16BitBool, newFd,
+                             ii](off_t offset, std::span<uint8_t> outbuf) {
+                return readData(is16BitBool, true, newFd, ii, offset, outbuf);
+            };
+            FRUReader readerBytewise(std::move(readFunc));
+            pair = readFRUContents(readerBytewise, errorMessage);
+        }
+
+        if (pair.first.empty())
+        {
+            continue;
+        }
+
+        devices->emplace(ii, pair.first);
+        fruAddresses[bus].insert(ii);
+    }
+    return true;
+};
+
+bool getBusFRUs(const std::shared_ptr<stdplus::ManagedFd>& fd, int first,
+                int last, int bus, const std::shared_ptr<DeviceMap>& devices,
+                const bool& powerIsOn, const std::set<size_t>& addressBlocklist,
+                sdbusplus::asio::object_server& objServer)
+{
+    std::weak_ptr<stdplus::ManagedFd> weakFd = fd;
+    auto promise = std::make_shared<std::promise<bool>>();
+    std::future<bool> future = promise->get_future();
+    std::thread t([weakFd, bus, first, last, devices, &powerIsOn,
+                   &addressBlocklist, &objServer, promise]() {
+        try
+        {
+            promise->set_value(
+                i2cFruScan(weakFd, first, last, bus, devices, powerIsOn,
+                           addressBlocklist, objServer));
+        }
+        catch (...)
+        {
+            promise->set_exception(std::current_exception());
+        }
     });
     std::future_status status =
         future.wait_for(std::chrono::seconds(busTimeoutSeconds));
     if (status == std::future_status::timeout)
     {
         lg2::error("Error reading bus {BUS}", "BUS", bus);
+        t.detach();
         if (powerIsOn)
         {
             busBlocklist[bus] = std::nullopt;
         }
-        return -1;
+        return false;
     }
 
+    t.join();
     return future.get();
 }
 
