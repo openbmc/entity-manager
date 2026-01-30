@@ -34,22 +34,22 @@
         {
             "Address": "0x4c",
             "Bus": "$bus",
-            "Name": "BRB_R_OUTLET0_TEMP_C",
-            "Name1": "BRB_R_PCIE_SW_AMB_TEMP_C",
-            "Name2": "BRB_R_OUTLET1_TEMP_C",
+            "Name": "BRB_R_OUTLET_BE5_TEMP_C",
+            "Name1": "BRB_R_OUTLET_SW_TEMP_C",
+            "Name2": "BRB_R_OUTLET_BE7_TEMP_C",
             "Type": "TMP432"
         },
         {
             "Address": "0x4c",
             "Bus": "$bus + 1",
-            "Name": "BRB_R_INLET_TEMP_C",
-            "Name1": "BRB_R_BE_TEMP_C",
-            "Name2": "BRB_R_FE_TEMP_C",
+            "Name": "BRB_R_INLET_SW_TEMP_C",
+            "Name1": "BRB_R_INLET_BE7_TEMP_C",
+            "Name2": "BRB_R_INLET_BE5_TEMP_C",
             "Type": "TMP432"
         }
     ],
     "Name": "BRB_R",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Anacapa.* RBB', 'BOARD_MANUFACTURER': 'Inventec'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Anacapa(?!.*T20).*RBB', 'BOARD_MANUFACTURER': 'Inventec'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
