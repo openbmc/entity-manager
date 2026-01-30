@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86c7ff89_2b739329",
+        "filename": "docs/sensor_mux.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-30T07:25:16Z",
+      "side": 1,
+      "message": "This is confusing due to the off-by-one. Why is `Name1` mapped to `temp2_input`?\n\nDo we really want to document that?\n\nMaybe it would be best to rework these sensor config schemas to properly map to channels in hwmon subsystem and then document that.",
+      "range": {
+        "startLine": 44,
+        "startChar": 1,
+        "endLine": 46,
+        "endChar": 72
+      },
+      "revId": "50c804a862f0fa77a911abd0dcf37d434f4cd985",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
