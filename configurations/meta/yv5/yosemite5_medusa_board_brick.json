@@ -1131,18 +1131,9 @@
             "Inputs": [
                 "PDB_BRICK0_TEMP_C",
                 "PDB_BRICK1_TEMP_C",
-                "PDB_BRICK2_TEMP_C",
-                "PDB_DISCRETE_EXTERNAL_TEMP_C",
-                "PDB_DISCRETE_INTERNAL_TEMP_C"
+                "PDB_BRICK2_TEMP_C"
             ],
-            "MissingIsAcceptable": [
-                "PDB_BRICK0_TEMP_C",
-                "PDB_BRICK1_TEMP_C",
-                "PDB_BRICK2_TEMP_C",
-                "PDB_DISCRETE_EXTERNAL_TEMP_C",
-                "PDB_DISCRETE_INTERNAL_TEMP_C"
-            ],
-            "Name": "PID_PDB_BRICK_DISCRETE",
+            "Name": "PID_PDB_BRICK",
             "NegativeHysteresis": 2.0,
             "OutLimitMax": 100,
             "OutLimitMin": 0,
@@ -1270,136 +1261,6 @@
             "Type": "Pid.Zone",
             "UpdateThermalsTimeMS": 1000,
             "ZoneIndex": 1
-        },
-        {
-            "Address": "0x5c",
-            "Bus": 8,
-            "Labels": [
-                "vin",
-                "vout1",
-                "iin",
-                "iout1",
-                "temp1",
-                "temp2",
-                "pout1",
-                "pin"
-            ],
-            "Name": "PDB_DISCRETE",
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.918,
-                    "Label": "vin",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 45.9
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 1.12,
-                    "Label": "vin",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 56
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.226,
-                    "Label": "vout1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 11.3
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.26,
-                    "Label": "vout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 13
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 1.772,
-                    "Label": "iin",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 88.6
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 7.2,
-                    "Label": "iout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 360
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 8.14,
-                    "Label": "iout1",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 407
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.1,
-                    "Label": "temp1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 2.5,
-                    "Label": "temp1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 125
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.1,
-                    "Label": "temp2",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 2.5,
-                    "Label": "temp2",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 125
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 93.6,
-                    "Label": "pout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 4680
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 99.24,
-                    "Label": "pin",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 4962
-                }
-            ],
-            "Type": "RAA228006",
-            "iin_Name": "PDB_DISCRETE_IIN_CURR_A",
-            "iout1_Name": "PDB_DISCRETE_IOUT_CURR_A",
-            "pin_Name": "PDB_DISCRETE_PIN_PWR_W",
-            "pout1_Name": "PDB_DISCRETE_POUT_PWR_W",
-            "temp1_Name": "PDB_DISCRETE_EXTERNAL_TEMP_C",
-            "temp2_Name": "PDB_DISCRETE_INTERNAL_TEMP_C",
-            "vin_Name": "PDB_DISCRETE_VIN_VOLT_V",
-            "vout1_Name": "PDB_DISCRETE_VOUT_VOLT_V"
         },
         {
             "Class": "temp",
@@ -1558,18 +1419,9 @@
             "Inputs": [
                 "PDB_BRICK0_TEMP_C",
                 "PDB_BRICK1_TEMP_C",
-                "PDB_BRICK2_TEMP_C",
-                "PDB_DISCRETE_EXTERNAL_TEMP_C",
-                "PDB_DISCRETE_INTERNAL_TEMP_C"
+                "PDB_BRICK2_TEMP_C"
             ],
-            "MissingIsAcceptable": [
-                "PDB_BRICK0_TEMP_C",
-                "PDB_BRICK1_TEMP_C",
-                "PDB_BRICK2_TEMP_C",
-                "PDB_DISCRETE_EXTERNAL_TEMP_C",
-                "PDB_DISCRETE_INTERNAL_TEMP_C"
-            ],
-            "Name": "Stepwise_PDB_BRICK_DISCRETE",
+            "Name": "Stepwise_PDB_BRICK",
             "NegativeHysteresis": 2.0,
             "Output": [
                 22.0,
@@ -2102,7 +1954,11 @@
         }
     ],
     "Name": "Yosemite5 Medusa Board",
-    "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 .*', 'BOARD_PRODUCT_NAME': 'Medusa Board', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)'})",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 .*', 'BOARD_PRODUCT_NAME': 'Medusa Board', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)'})",
+        "AND",
+        "xyz.openbmc_project.FruDevice({'BOARD_INFO_AM4': '(flex|delta)'})"
+    ],
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
