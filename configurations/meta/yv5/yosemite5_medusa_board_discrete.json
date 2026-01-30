@@ -1129,20 +1129,10 @@
             "ILimitMax": 100,
             "ILimitMin": -50,
             "Inputs": [
-                "PDB_BRICK0_TEMP_C",
-                "PDB_BRICK1_TEMP_C",
-                "PDB_BRICK2_TEMP_C",
                 "PDB_DISCRETE_EXTERNAL_TEMP_C",
                 "PDB_DISCRETE_INTERNAL_TEMP_C"
             ],
-            "MissingIsAcceptable": [
-                "PDB_BRICK0_TEMP_C",
-                "PDB_BRICK1_TEMP_C",
-                "PDB_BRICK2_TEMP_C",
-                "PDB_DISCRETE_EXTERNAL_TEMP_C",
-                "PDB_DISCRETE_INTERNAL_TEMP_C"
-            ],
-            "Name": "PID_PDB_BRICK_DISCRETE",
+            "Name": "PID_PDB_DISCRETE",
             "NegativeHysteresis": 2.0,
             "OutLimitMax": 100,
             "OutLimitMin": 0,
@@ -1556,20 +1546,10 @@
         {
             "Class": "temp",
             "Inputs": [
-                "PDB_BRICK0_TEMP_C",
-                "PDB_BRICK1_TEMP_C",
-                "PDB_BRICK2_TEMP_C",
                 "PDB_DISCRETE_EXTERNAL_TEMP_C",
                 "PDB_DISCRETE_INTERNAL_TEMP_C"
             ],
-            "MissingIsAcceptable": [
-                "PDB_BRICK0_TEMP_C",
-                "PDB_BRICK1_TEMP_C",
-                "PDB_BRICK2_TEMP_C",
-                "PDB_DISCRETE_EXTERNAL_TEMP_C",
-                "PDB_DISCRETE_INTERNAL_TEMP_C"
-            ],
-            "Name": "Stepwise_PDB_BRICK_DISCRETE",
+            "Name": "Stepwise_PDB_DISCRETE",
             "NegativeHysteresis": 2.0,
             "Output": [
                 22.0,
@@ -1851,258 +1831,14 @@
             "temp1_Name": "PDB_HSC_TEMP_C",
             "vin_Name": "PDB_HSC_VIN_VOLT_V",
             "vout1_Name": "PDB_HSC_VOUT_VOLT_V"
-        },
-        {
-            "Address": "0x66",
-            "Bus": 8,
-            "Labels": [
-                "vin",
-                "vout1",
-                "iout1",
-                "temp1"
-            ],
-            "Name": "PDB_BRICK0",
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.918,
-                    "Label": "vin",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 45.9
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 1.12,
-                    "Label": "vin",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 56
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.226,
-                    "Label": "vout1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 11.3
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.26,
-                    "Label": "vout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 13
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 2.9,
-                    "Label": "iout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 145
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 3.34,
-                    "Label": "iout1",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 167
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.1,
-                    "Label": "temp1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 2.5,
-                    "Label": "temp1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 125
-                }
-            ],
-            "Type": "pmbus",
-            "iout1_Name": "PDB_BRICK0_CURR_A",
-            "temp1_Name": "PDB_BRICK0_TEMP_C",
-            "vin_Name": "PDB_BRICK0_VIN_VOLT_V",
-            "vout1_Name": "PDB_BRICK0_VOUT_VOLT_V"
-        },
-        {
-            "Address": "0x67",
-            "Bus": 8,
-            "Labels": [
-                "vin",
-                "vout1",
-                "iout1",
-                "temp1"
-            ],
-            "Name": "PDB_BRICK1",
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.918,
-                    "Label": "vin",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 45.9
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 1.12,
-                    "Label": "vin",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 56
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.226,
-                    "Label": "vout1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 11.3
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.26,
-                    "Label": "vout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 13
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 2.9,
-                    "Label": "iout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 145
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 3.34,
-                    "Label": "iout1",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 167
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.1,
-                    "Label": "temp1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 2.5,
-                    "Label": "temp1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 125
-                }
-            ],
-            "Type": "pmbus",
-            "iout1_Name": "PDB_BRICK1_CURR_A",
-            "temp1_Name": "PDB_BRICK1_TEMP_C",
-            "vin_Name": "PDB_BRICK1_VIN_VOLT_V",
-            "vout1_Name": "PDB_BRICK1_VOUT_VOLT_V"
-        },
-        {
-            "Address": "0x68",
-            "Bus": 8,
-            "Labels": [
-                "vin",
-                "vout1",
-                "iout1",
-                "temp1"
-            ],
-            "Name": "PDB_BRICK2",
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.918,
-                    "Label": "vin",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 45.9
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 1.12,
-                    "Label": "vin",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 56
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.226,
-                    "Label": "vout1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 11.3
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.26,
-                    "Label": "vout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 13
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 2.9,
-                    "Label": "iout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 145
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 3.34,
-                    "Label": "iout1",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 167
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.1,
-                    "Label": "temp1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 2.5,
-                    "Label": "temp1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 125
-                }
-            ],
-            "Type": "pmbus",
-            "iout1_Name": "PDB_BRICK2_CURR_A",
-            "pin_Name": "PDB_BRICK2_PIN_PWR_W",
-            "pout1_Name": "PDB_BRICK2_POUT_PWR_W",
-            "temp1_Name": "PDB_BRICK2_TEMP_C",
-            "vin_Name": "PDB_BRICK2_VIN_VOLT_V",
-            "vout1_Name": "PDB_BRICK2_VOUT_VOLT_V"
         }
     ],
     "Name": "Yosemite5 Medusa Board",
-    "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 .*', 'BOARD_PRODUCT_NAME': 'Medusa Board', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)'})",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 .*', 'BOARD_PRODUCT_NAME': 'Medusa Board', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)'})",
+        "AND",
+        "xyz.openbmc_project.FruDevice({'BOARD_INFO_AM4': 'discrete'})"
+    ],
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
