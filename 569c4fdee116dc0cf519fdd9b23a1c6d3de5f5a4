@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebac467f_a4e7a9f8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 24
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1002762
+      },
+      "writtenOn": "2026-01-30T06:08:25Z",
+      "side": 1,
+      "message": "Thanks for the suggestion.\n\nUpdated the commit message to use:\nFixes openbmc/entity-manager#25",
+      "parentUuid": "06c70d5e_c8b571d3",
+      "revId": "569c4fdee116dc0cf519fdd9b23a1c6d3de5f5a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "e74c778d_76cd4708",
@@ -122,6 +140,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "16b72bf4_ff40169d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 24
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002762
+      },
+      "writtenOn": "2026-01-30T06:08:25Z",
+      "side": 1,
+      "message": "Thanks for the feedback.\n\nApologies for my earlier brief responses — I’m new to the community\nand still learning the expected review and discussion process.\nI’ll improve the documentation quality and provide more detailed\nresponses to review comments going forward.\n\nI’ll also start reviewing other patches while this is under review",
+      "parentUuid": "9f3ac454_d3ce600a",
+      "revId": "569c4fdee116dc0cf519fdd9b23a1c6d3de5f5a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "267fdbf1_6ab66cad",
@@ -158,6 +194,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9cc22750_cf796fb3",
+        "filename": "docs/sensor_mux.md",
+        "patchSetId": 24
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1002762
+      },
+      "writtenOn": "2026-01-30T06:08:25Z",
+      "side": 1,
+      "message": "1.In our DCSCM design, external connected cards (Like Power boards,Fan Boards) conncted via I2C multiplexers and each card includes an EEPROM on one mux channel, which is probed during system initialization.\n2.Based on successful EEPROM detection, the corresponding mux channel and its dynamically created I2C bus number are identified, and the remaining downstream devices on other mux channels are instantiated.\n3.Since these bus numbers are determined at runtime and are not fixed, Entity-Manager uses relative bus notation ($bus+N) to correctly reference devices behind the mux.",
+      "parentUuid": "87a5c056_306709d1",
+      "revId": "569c4fdee116dc0cf519fdd9b23a1c6d3de5f5a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f23b14b6_72e7729f",
         "filename": "docs/sensor_mux.md",
         "patchSetId": 24
@@ -169,6 +223,24 @@
       "writtenOn": "2026-01-23T19:23:47Z",
       "side": 1,
       "message": "Please don\u0027t put example json configs in docs.  EVERY EM config is in this same repo.  Just link to one that implements what you are trying to show here.",
+      "revId": "569c4fdee116dc0cf519fdd9b23a1c6d3de5f5a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4629aa86_bc1b831c",
+        "filename": "docs/sensor_mux.md",
+        "patchSetId": 24
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1002762
+      },
+      "writtenOn": "2026-01-30T06:08:25Z",
+      "side": 1,
+      "message": "I have removed inline JSON examples and updated the documentation to link\nto an existing Entity-Manager configuration in this repository.",
+      "parentUuid": "f23b14b6_72e7729f",
       "revId": "569c4fdee116dc0cf519fdd9b23a1c6d3de5f5a4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -198,6 +270,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "67235458_e7a4b74b",
+        "filename": "docs/sensor_mux.md",
+        "patchSetId": 24
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1002762
+      },
+      "writtenOn": "2026-01-30T06:08:25Z",
+      "side": 1,
+      "message": "Upadted.Please Check",
+      "parentUuid": "0ecbd4f3_5263d7e4",
+      "range": {
+        "startLine": 78,
+        "startChar": 42,
+        "endLine": 78,
+        "endChar": 56
+      },
+      "revId": "569c4fdee116dc0cf519fdd9b23a1c6d3de5f5a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "22eca72a_8a4cd5cb",
         "filename": "docs/sensor_mux.md",
         "patchSetId": 24
@@ -209,6 +305,24 @@
       "writtenOn": "2026-01-23T16:13:29Z",
       "side": 1,
       "message": "I\u0027m pretty sure this whole document was generated with a coding agent.  Why do we want this when there are hallucinations?",
+      "revId": "569c4fdee116dc0cf519fdd9b23a1c6d3de5f5a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "baea8b40_be3429eb",
+        "filename": "docs/sensor_mux.md",
+        "patchSetId": 24
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1002762
+      },
+      "writtenOn": "2026-01-30T06:08:25Z",
+      "side": 1,
+      "message": "This document is prepared based on the existing reference documentation (docs/my_first_sensors.md) and updated to reflect the mux configuration as defined in our DCSCM specification.",
+      "parentUuid": "22eca72a_8a4cd5cb",
       "revId": "569c4fdee116dc0cf519fdd9b23a1c6d3de5f5a4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
