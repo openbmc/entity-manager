@@ -1,0 +1,50 @@
+{
+    "Exposes": [
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "BRB_L FRU",
+            "Type": "EEPROM"
+        },
+        {
+            "Address": "0x20",
+            "Bus": "$bus + 1",
+            "Name": "BRB_L_RETIMER_TEMP_C",
+            "PowerState": "On",
+            "Type": "PT5161L"
+        },
+        {
+            "Address": "0x4c",
+            "Bus": "$bus",
+            "Name": "BRB_L_OUTLET_BE3_TEMP_C",
+            "Name1": "BRB_L_OUTLET_BE1_TEMP_C",
+            "Name2": "BRB_L_OUTLET_RT_TEMP_C",
+            "Type": "TMP432"
+        },
+        {
+            "Address": "0x4c",
+            "Bus": "$bus + 1",
+            "Name": "BRB_L_INLET_BE3_TEMP_C",
+            "Name1": "BRB_L_INLET_BE1_TEMP_C",
+            "Name2": "BRB_L_INLET_RT_TEMP_C",
+            "Type": "TMP432"
+        }
+    ],
+    "Name": "BRB_L",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Anacapa.*T20.*LBB', 'BOARD_MANUFACTURER': 'Inventec'})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$BOARD_MANUFACTURE_DATE",
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER",
+        "SparePartNumber": "$BOARD_INFO_AM1"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Revision": {
+        "Version": "$PRODUCT_VERSION"
+    }
+}
