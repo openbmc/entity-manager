@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2f21af86_899e2d26",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2026-02-02T19:27:42Z",
+      "side": 1,
+      "message": "I think everything is cleaned up properly right now. This change was made to make sure that we don\u0027t continue using the fd after we close it already.\n\n- https://gerrit.openbmc.org/c/openbmc/entity-manager/+/87122\n\nWe could technically also just pass in the reference of the fd and set it to -1 after we close it, however, that can be undefined behavior when it goes out of scope.",
+      "parentUuid": "187845d4_550d6db5",
+      "range": {
+        "startLine": 9,
+        "startChar": 58,
+        "endLine": 10,
+        "endChar": 32
+      },
+      "revId": "794c9474e39afa879ed5ee280199bd744d9b4c99",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "68a67cce_917faf84",
         "filename": "/COMMIT_MSG",
         "patchSetId": 8
@@ -37,6 +61,24 @@
       "writtenOn": "2026-02-02T04:27:54Z",
       "side": 1,
       "message": "Can you put a `Tested` statement to know how you tested this change.",
+      "revId": "794c9474e39afa879ed5ee280199bd744d9b4c99",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "927e7c95_e9e566b7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2026-02-02T19:27:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68a67cce_917faf84",
       "revId": "794c9474e39afa879ed5ee280199bd744d9b4c99",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
