@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5bedf5e6_ef89c006",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2026-02-02T20:37:58Z",
+      "side": 1,
+      "message": "yeah, the `ReScan` debus method or just at start up.\n\nDo you mean that we shouldn\u0027t have meson options to configure the retry method?",
+      "parentUuid": "0e43ef0c_5835ea28",
+      "range": {
+        "startLine": 10,
+        "startChar": 30,
+        "endLine": 10,
+        "endChar": 61
+      },
+      "revId": "1a37e40279dd8a80289731c4ac0ccf070038f4e0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d35d8f17_926be1d3",
         "filename": "src/fru_device/meson.build",
         "patchSetId": 7
@@ -37,6 +61,24 @@
       "writtenOn": "2026-02-02T04:39:01Z",
       "side": 1,
       "message": "Did you implement any kind of sane build-time boundaries for the values?\n\nCan the user configure the retry delay to be negative, or the retries to be 999999?\n\nCan we error out here if the configuration is not sane.",
+      "revId": "1a37e40279dd8a80289731c4ac0ccf070038f4e0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d5d0392_ddb30be6",
+        "filename": "src/fru_device/meson.build",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2026-02-02T20:37:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d35d8f17_926be1d3",
       "revId": "1a37e40279dd8a80289731c4ac0ccf070038f4e0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
