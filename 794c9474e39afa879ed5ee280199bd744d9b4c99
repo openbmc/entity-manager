@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "187845d4_550d6db5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-02T04:27:54Z",
+      "side": 1,
+      "message": "Are there cases where the cleanup is not done? What\u0027s better about this `shared_ptr` approach?\n\nFrom my perspective, `shared_ptr` tends to make code less readable since it\u0027s harder to tell when the destructor will be called.",
+      "range": {
+        "startLine": 9,
+        "startChar": 58,
+        "endLine": 10,
+        "endChar": 32
+      },
+      "revId": "794c9474e39afa879ed5ee280199bd744d9b4c99",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68a67cce_917faf84",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-02T04:27:54Z",
+      "side": 1,
+      "message": "Can you put a `Tested` statement to know how you tested this change.",
+      "revId": "794c9474e39afa879ed5ee280199bd744d9b4c99",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
