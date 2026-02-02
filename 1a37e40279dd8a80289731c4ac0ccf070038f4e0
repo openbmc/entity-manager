@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e43ef0c_5835ea28",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-02T04:39:01Z",
+      "side": 1,
+      "message": "Do you mean `ReScan` dbus method?\n\nWhy would fru-device need meson options to recover from it\u0027s self-induced bus scanning?\n\nCan it not handle this condition internally?",
+      "range": {
+        "startLine": 10,
+        "startChar": 30,
+        "endLine": 10,
+        "endChar": 61
+      },
+      "revId": "1a37e40279dd8a80289731c4ac0ccf070038f4e0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d35d8f17_926be1d3",
+        "filename": "src/fru_device/meson.build",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-02T04:39:01Z",
+      "side": 1,
+      "message": "Did you implement any kind of sane build-time boundaries for the values?\n\nCan the user configure the retry delay to be negative, or the retries to be 999999?\n\nCan we error out here if the configuration is not sane.",
+      "revId": "1a37e40279dd8a80289731c4ac0ccf070038f4e0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
