@@ -392,6 +392,36 @@
             "curr1_Name": "MB_VR_CPU_PVDD33_CURR_A",
             "in1_Name": "MB_VR_CPU_PVDD33_VOLT_V",
             "temp1_Name": "MB_VR_CPU_PVDD33_TEMP_C"
+        },
+        {
+            "Address": "0x60",
+            "Bus": 58,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Anacapa.VR.MP2869_pvddcr_cpu0_p0",
+                "VendorIANA": 40981
+            },
+            "Name": "Anacapa_MB_VR_pvddcr_cpu0_p0",
+            "Type": "MP2X6XXFirmware"
+        },
+        {
+            "Address": "0x62",
+            "Bus": 58,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Anacapa.VR.MP29612_pvddcr_cpu1_p0",
+                "VendorIANA": 40981
+            },
+            "Name": "Anacapa_MB_VR_pvddcr_cpu1_p0",
+            "Type": "MP2X6XXFirmware"
+        },
+        {
+            "Address": "0x64",
+            "Bus": 58,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Anacapa.VR.MP29612_pvddcr_soc_p0",
+                "VendorIANA": 40981
+            },
+            "Name": "Anapaca_MB_VR_pvddcr_soc_p0",
+            "Type": "MP2X6XXFirmware"
         }
     ],
     "Name": "MB",
