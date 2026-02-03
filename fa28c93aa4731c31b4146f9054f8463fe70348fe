@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d967fa90_9c07c300",
+        "filename": "platform_configurations/nvidia/mgx_connectx8_supernic_switch_server.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1002395
+      },
+      "writtenOn": "2026-02-03T04:39:39Z",
+      "side": 1,
+      "message": "From where should we obtain configuration properties (NvidiaMctpVdm for nvidia-gpu application for example) other than Name for BridgedEndpoints? By using Board property to find the EM inventory path that has configuration? If yes then what if two BridgedEndpoints corresponds to two different EM inventory path, or that is not supported? And if multiple BridgedEndpoints (and also bridge?) has their configurations (NvidiaMctpVdm for nvidia-gpu application for example) on the same EM inventory path how can we associate different configuration to individual BridgedEndpoints?",
+      "revId": "fa28c93aa4731c31b4146f9054f8463fe70348fe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "93ea0078_93256f36",
         "filename": "platform_configurations/nvidia/mgx_connectx8_supernic_switch_server.json",
         "patchSetId": 1
