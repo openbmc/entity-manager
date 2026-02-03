@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "def54b5e_d30c0b6b",
+        "filename": "platform_configurations/nvidia/mgx_connectx8_supernic_switch_server.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-02-03T06:10:39Z",
+      "side": 1,
+      "message": "NvidiaMctpVdm is in the previous patch. Please review the nvidia-gpu patch for bridged endpoints handling (you may already have - \"Board\" property is used).\n\nWe can certainly add more config here if that\u0027s you main concern (I\u0027m not sure I followed all the questions). It\u0027s an array of strings (names) now but we can add more as need be.",
+      "parentUuid": "d967fa90_9c07c300",
+      "revId": "fa28c93aa4731c31b4146f9054f8463fe70348fe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "93ea0078_93256f36",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-01-29T04:13:49Z",
       "side": 1,
       "message": "we chatted offline, but its not clear to me how pldmd is going to discover this info without an appropriate mctpreactor association.",
+      "revId": "fa28c93aa4731c31b4146f9054f8463fe70348fe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7156196c_3fbc043a",
+        "filename": "platform_configurations/nvidia/mgx_connectx8_supernic_switch_server.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-02-03T06:10:39Z",
+      "side": 1,
+      "message": "There is a reactor association which points back to this config and apps (I have a patch for dbus-sensors nvidia-gpu) can look up bridged endpoints config.",
+      "parentUuid": "93ea0078_93256f36",
       "revId": "fa28c93aa4731c31b4146f9054f8463fe70348fe",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
