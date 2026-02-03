@@ -46,6 +46,30 @@
       },
       "revId": "1894179131094dea6173a80d5f4c29e1b6c552b8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c83097bc_1bfd7e75",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-03T01:08:11Z",
+      "side": 1,
+      "message": "Thanks for breaking out a single function.\n\nIt would be nice if that could be done in such a way that there\u0027s a patch for each function which is broken out, such that each of those patches is doing nothing else but breaking out that function.\n\ne.g.\n\n- patch 1: break out getBusFrus\n...\n- patch n: break out i2cFruScan\n- patch n+1: Exit gracefully if getBusFRUs times out\n\nIt would be some amount of work but you are using `std::thread` here and your change is not trivial so it would be nice if that could be separate from the refactoring work.\n\nSo in case there is any regressions resulting from the fix it will be easier to roll back without also having to roll back all the refactoring.",
+      "parentUuid": "efa43b27_ed1aec6a",
+      "range": {
+        "startLine": 474,
+        "startChar": 4,
+        "endLine": 497,
+        "endChar": 1
+      },
+      "revId": "1894179131094dea6173a80d5f4c29e1b6c552b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
