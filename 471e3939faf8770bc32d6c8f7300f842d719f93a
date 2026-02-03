@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6be43cf9_53597fa3",
+        "filename": "src/dbus_regex.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2026-02-03T15:53:13Z",
+      "side": 1,
+      "message": "I am also a bit confused about the naming here, as @ed@tanous.net already pointed out o.O\n\nI see `sanitizeForDBusMember` being used to sanitize the last element to append to an object path instead of an actual DBus member.\n\n\n`sanitizeForDBusPath` does not seem to sanitize object paths, rather dbus members.\n\nThis is not related to this patch directly, since you just took over the naming that was already present, but I would like to see them swapped at some point.",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 1
+      },
+      "revId": "471e3939faf8770bc32d6c8f7300f842d719f93a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
