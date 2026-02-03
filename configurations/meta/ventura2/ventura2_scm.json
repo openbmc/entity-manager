@@ -526,6 +526,25 @@
                 }
             ],
             "Type": "TMP75"
+        },
+        {
+            "Address": "0x40",
+            "Bus": 7,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Ventura2.CPLD.LCMXO3D_9400_scm",
+                "VendorIANA": 40981
+            },
+            "Name": "Ventura2_SCM_CPLD",
+            "Type": "LatticeLCMXO3D_9400Firmware"
+        },
+        {
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Ventura2.TPM.BMC",
+                "VendorIANA": 40981
+            },
+            "Name": "Ventura2_TPM",
+            "TPMIndex": 0,
+            "Type": "TPM2Firmware"
         }
     ],
     "Name": "Ventura2 SCM",
