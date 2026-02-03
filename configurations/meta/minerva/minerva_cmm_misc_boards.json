@@ -75,5 +75,50 @@
             "SerialNumber": "Unknown",
             "SparePartNumber": "Unknown"
         }
+    },
+    {
+        "Exposes": [],
+        "Name": "$Name",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'MtiaBlade*', 'Compatible': 'com.meta.Hardware.BMC.Model.Minerva'})"
+        ],
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "Quanta",
+            "Model": "MINERVA_T21_GENOA",
+            "PartNumber": "Unknown",
+            "SerialNumber": "Unknown",
+            "SparePartNumber": "01-101316"
+        }
+    },
+    {
+        "Exposes": [],
+        "Name": "$Name",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'NWBlade[12]', 'Compatible': 'com.meta.Hardware.BMC.Model.Minerva'})"
+        ],
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "Celestica LLC",
+            "Model": "Minerva Janga SMB",
+            "PartNumber": "Unknown",
+            "SerialNumber": "Unknown",
+            "SparePartNumber": "20-100025"
+        }
+    },
+    {
+        "Exposes": [],
+        "Name": "$Name",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'NWBlade[3-6]', 'Compatible': 'com.meta.Hardware.BMC.Model.Minerva'})"
+        ],
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "Celestica LLC",
+            "Model": "Minerva Tahan SMB",
+            "PartNumber": "Unknown",
+            "SerialNumber": "Unknown",
+            "SparePartNumber": "20-100083"
+        }
     }
 ]
