@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3aff9538_2a2ebbfa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-03T00:59:05Z",
+      "side": 1,
+      "message": "\u003e Do you mean that we shouldn\u0027t have meson options to configure the retry method?\n\nI\u0027m wondering since fru-device is a detection daemon, we do not necessarily know which platform we are on until fru-device has finished it\u0027s detection run.\n\nSo i am wondering how would we even configure this option on a per-platform basis if the fru-device application is built for a firmware image which may have to support a large number of devices, such as with DC-SCM modules.\n\nEssentially what i am asking is if it is entirely impossible to choose a value for the retry which would work well for all platforms, without a need to configure it.",
+      "parentUuid": "5bedf5e6_ef89c006",
+      "range": {
+        "startLine": 10,
+        "startChar": 30,
+        "endLine": 10,
+        "endChar": 61
+      },
+      "revId": "1a37e40279dd8a80289731c4ac0ccf070038f4e0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d35d8f17_926be1d3",
         "filename": "src/fru_device/meson.build",
         "patchSetId": 7
