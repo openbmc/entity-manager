@@ -1783,34 +1783,5 @@
         "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
             "AssetTag": "$CHASSIS_INFO_AM3"
         }
-    },
-    {
-        "Exposes": [
-            {
-                "Address": "$address",
-                "Bus": "$bus",
-                "Name": "MB $bus - 23 FRU",
-                "Type": "EEPROM"
-            }
-        ],
-        "Name": "Harma MB $bus - 23",
-        "Probe": [
-            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Harma MB ', 'BOARD_INFO_AM4': 'vr-isl'})",
-            "AND",
-            "FOUND('Minerva CMM SCM')"
-        ],
-        "Type": "Board",
-        "xyz.openbmc_project.Inventory.Decorator.Asset": {
-            "BuildDate": "$BOARD_MANUFACTURE_DATE",
-            "Manufacturer": "$BOARD_MANUFACTURER",
-            "Model": "$BOARD_PRODUCT_NAME",
-            "PartNumber": "$BOARD_PART_NUMBER",
-            "SerialNumber": "$BOARD_SERIAL_NUMBER",
-            "SparePartNumber": "$BOARD_INFO_AM1"
-        },
-        "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
-            "AssetTag": "$PRODUCT_ASSET_TAG"
-        },
-        "xyz.openbmc_project.Inventory.Item.Board.Motherboard": {}
     }
 ]
