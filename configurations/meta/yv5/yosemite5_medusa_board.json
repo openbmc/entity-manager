@@ -264,13 +264,13 @@
             "Connector": {
                 "Name": "FAN0_TACH_IL",
                 "Pwm": 2,
-                "PwmName": "FAN_PWM",
+                "PwmName": "PDB_FAN_PWM",
                 "Tachs": [
                     0
                 ]
             },
             "Index": 0,
-            "Name": "FAN0_TACH_IL_SPEED_RPM",
+            "Name": "PDB_FAN0_TACH_IL_SPEED_RPM",
             "PowerState": "Always",
             "Presence": {
                 "MonitorType": "Polling",
@@ -308,13 +308,13 @@
             "Connector": {
                 "Name": "FAN0_TACH_OL",
                 "Pwm": 2,
-                "PwmName": "FAN_PWM",
+                "PwmName": "PDB_FAN_PWM",
                 "Tachs": [
                     1
                 ]
             },
             "Index": 1,
-            "Name": "FAN0_TACH_OL_SPEED_RPM",
+            "Name": "PDB_FAN0_TACH_OL_SPEED_RPM",
             "PowerState": "Always",
             "Presence": {
                 "MonitorType": "Polling",
@@ -352,13 +352,13 @@
             "Connector": {
                 "Name": "FAN1_TACH_IL",
                 "Pwm": 2,
-                "PwmName": "FAN_PWM",
+                "PwmName": "PDB_FAN_PWM",
                 "Tachs": [
                     2
                 ]
             },
             "Index": 2,
-            "Name": "FAN1_TACH_IL_SPEED_RPM",
+            "Name": "PDB_FAN1_TACH_IL_SPEED_RPM",
             "PowerState": "Always",
             "Presence": {
                 "MonitorType": "Polling",
@@ -396,13 +396,13 @@
             "Connector": {
                 "Name": "FAN1_TACH_OL",
                 "Pwm": 2,
-                "PwmName": "FAN_PWM",
+                "PwmName": "PDB_FAN_PWM",
                 "Tachs": [
                     3
                 ]
             },
             "Index": 3,
-            "Name": "FAN1_TACH_OL_SPEED_RPM",
+            "Name": "PDB_FAN1_TACH_OL_SPEED_RPM",
             "PowerState": "Always",
             "Presence": {
                 "MonitorType": "Polling",
@@ -440,13 +440,13 @@
             "Connector": {
                 "Name": "FAN2_TACH_IL",
                 "Pwm": 2,
-                "PwmName": "FAN_PWM",
+                "PwmName": "PDB_FAN_PWM",
                 "Tachs": [
                     4
                 ]
             },
             "Index": 4,
-            "Name": "FAN2_TACH_IL_SPEED_RPM",
+            "Name": "PDB_FAN2_TACH_IL_SPEED_RPM",
             "PowerState": "Always",
             "Presence": {
                 "MonitorType": "Polling",
@@ -484,13 +484,13 @@
             "Connector": {
                 "Name": "FAN2_TACH_OL",
                 "Pwm": 2,
-                "PwmName": "FAN_PWM",
+                "PwmName": "PDB_FAN_PWM",
                 "Tachs": [
                     5
                 ]
             },
             "Index": 5,
-            "Name": "FAN2_TACH_OL_SPEED_RPM",
+            "Name": "PDB_FAN2_TACH_OL_SPEED_RPM",
             "PowerState": "Always",
             "Presence": {
                 "MonitorType": "Polling",
@@ -528,13 +528,13 @@
             "Connector": {
                 "Name": "FAN3_TACH_IL",
                 "Pwm": 2,
-                "PwmName": "FAN_PWM",
+                "PwmName": "PDB_FAN_PWM",
                 "Tachs": [
                     6
                 ]
             },
             "Index": 6,
-            "Name": "FAN3_TACH_IL_SPEED_RPM",
+            "Name": "PDB_FAN3_TACH_IL_SPEED_RPM",
             "PowerState": "Always",
             "Presence": {
                 "MonitorType": "Polling",
@@ -572,13 +572,13 @@
             "Connector": {
                 "Name": "FAN3_TACH_OL",
                 "Pwm": 2,
-                "PwmName": "FAN_PWM",
+                "PwmName": "PDB_FAN_PWM",
                 "Tachs": [
                     7
                 ]
             },
             "Index": 7,
-            "Name": "FAN3_TACH_OL_SPEED_RPM",
+            "Name": "PDB_FAN3_TACH_OL_SPEED_RPM",
             "PowerState": "Always",
             "Presence": {
                 "MonitorType": "Polling",
@@ -971,20 +971,20 @@
             "ILimitMax": 0.0,
             "ILimitMin": 0.0,
             "Inputs": [
-                "FAN0_TACH_IL_SPEED_RPM",
-                "FAN0_TACH_OL_SPEED_RPM",
-                "FAN1_TACH_IL_SPEED_RPM",
-                "FAN1_TACH_OL_SPEED_RPM",
-                "FAN2_TACH_IL_SPEED_RPM",
-                "FAN2_TACH_OL_SPEED_RPM",
-                "FAN3_TACH_IL_SPEED_RPM",
-                "FAN3_TACH_OL_SPEED_RPM"
+                "PDB_FAN0_TACH_IL_SPEED_RPM",
+                "PDB_FAN0_TACH_OL_SPEED_RPM",
+                "PDB_FAN1_TACH_IL_SPEED_RPM",
+                "PDB_FAN1_TACH_OL_SPEED_RPM",
+                "PDB_FAN2_TACH_IL_SPEED_RPM",
+                "PDB_FAN2_TACH_OL_SPEED_RPM",
+                "PDB_FAN3_TACH_IL_SPEED_RPM",
+                "PDB_FAN3_TACH_OL_SPEED_RPM"
             ],
             "Name": "All Fan",
             "OutLimitMax": 100.0,
             "OutLimitMin": 0.0,
             "Outputs": [
-                "FAN_PWM"
+                "PDB_FAN_PWM"
             ],
             "PCoefficient": 0.0,
             "SlewNeg": 0.0,
