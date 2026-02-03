@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d29d7e53_f68f068f",
+        "filename": "platform_configurations/nvidia/mgx_connectx8_supernic_switch_server.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-02-03T06:07:00Z",
+      "side": 1,
+      "message": "We can certainly add it in the platform config; there\u0027s just no need in this commit.",
+      "parentUuid": "f5904835_0e6a6bf5",
+      "revId": "a1b90f78c3780e12315794e15d8ea96a36933926",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dc550b6c_4c9d2d85",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-02-03T04:25:39Z",
       "side": 1,
       "message": "Do this Board corresponds to SMA? If no then should that Board have configuration related to SMA? And if it corresponds to the GPU (a bridged endpoint) then should we need one Board property for each BridgedEndpoint item that is added in the next commit?",
+      "revId": "a1b90f78c3780e12315794e15d8ea96a36933926",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca109774_174c116b",
+        "filename": "platform_configurations/nvidia/mgx_connectx8_supernic_switch_server.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-02-03T06:07:00Z",
+      "side": 1,
+      "message": "This corresponds to SMA and GPU, and yes the next commit introduces bridged endpoints.",
+      "parentUuid": "dc550b6c_4c9d2d85",
       "revId": "a1b90f78c3780e12315794e15d8ea96a36933926",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
