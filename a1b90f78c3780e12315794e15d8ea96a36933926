@@ -69,6 +69,29 @@
       "parentUuid": "dc550b6c_4c9d2d85",
       "revId": "a1b90f78c3780e12315794e15d8ea96a36933926",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65526f34_8f9cefaa",
+        "filename": "platform_configurations/nvidia/mgx_connectx8_supernic_switch_server.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-04T04:28:41Z",
+      "side": 1,
+      "message": "You\u0027ve added this, but nowhere have you described what \"board\" means or does.  Presumably I would expect to see this board in your probe?  Given that all of these devices are pluggable.\n\nWhat happens when I plug in an RTX5000 into this same slot?  Can you show an example of that please?",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 55
+      },
+      "revId": "a1b90f78c3780e12315794e15d8ea96a36933926",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
