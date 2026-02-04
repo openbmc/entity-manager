@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87ab8419_771fab82",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-04T04:22:12Z",
+      "side": 1,
+      "message": "Kinda surprised to see all the +1s here.  Have people tried this and found it useful?",
+      "revId": "4d073eb4d561a3e4a0e9e102e158d48cf37c189c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0dd1c90_b94a3103",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 17
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-04T04:22:12Z",
+      "side": 1,
+      "message": "This is describing a whole new type of config (A platform config).  We can\u0027t be adding it to the existing device config schemas.\n\nAs written, now these platform configs can declare ANYTHING a device config could.  That at a minimum doesn\u0027t seem like it was tested, and I\u0027m really not sure was a good idea.",
+      "revId": "4d073eb4d561a3e4a0e9e102e158d48cf37c189c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3139937f_72a04789",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 17
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-04T04:22:12Z",
+      "side": 1,
+      "message": "Probably shouldn\u0027t be string here?",
+      "revId": "4d073eb4d561a3e4a0e9e102e158d48cf37c189c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d82d2f53_62b57d4b",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 17
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-04T04:22:12Z",
+      "side": 1,
+      "message": "?  How could this be known at compile time?",
+      "revId": "4d073eb4d561a3e4a0e9e102e158d48cf37c189c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
