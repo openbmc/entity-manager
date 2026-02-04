@@ -9,6 +9,7 @@
 #include <boost/asio/steady_timer.hpp>
 #include <phosphor-logging/lg2.hpp>
 
+#include <cerrno>
 #include <charconv>
 #include <flat_map>
 #include <flat_set>
@@ -46,6 +47,20 @@ void getInterfaces(
               const DBusInterface& resp) mutable {
             if (errc)
             {
+                // EBADR indicates the D-Bus object was removed between
+                // GetSubTree and GetAll. This corresponds to
+                // org.freedesktop.DBus.Error.UnknownObject and is expected
+                // during concurrent device removal. Skip retry to avoid
+                // unnecessary delays.
+                if (errc.value() == EBADR)
+                {
+                    lg2::info("D-Bus object removed during scan, skipping: "
+                              "{BUSNAME} {PATH} {INTF}",
+                              "BUSNAME", instance.busName, "PATH",
+                              instance.path, "INTF", instance.interface);
+                    return;
+                }
+
                 lg2::error("error calling getall on {BUSNAME} {PATH} {INTF}",
                            "BUSNAME", instance.busName, "PATH", instance.path,
                            "INTF", instance.interface);
