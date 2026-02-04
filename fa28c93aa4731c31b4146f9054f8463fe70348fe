@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c4467460_7e316b8f",
+        "filename": "platform_configurations/nvidia/mgx_connectx8_supernic_switch_server.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-04T04:30:17Z",
+      "side": 1,
+      "message": "what does \"GPU 0\" Describe?  In the way EM configs are normally done, this would generally be another exposes record.  In this way if you have 3 layers of bridges (Bridge to bridge to end device) you can still describe it.",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 42
+      },
+      "revId": "fa28c93aa4731c31b4146f9054f8463fe70348fe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d967fa90_9c07c300",
         "filename": "platform_configurations/nvidia/mgx_connectx8_supernic_switch_server.json",
         "patchSetId": 1
