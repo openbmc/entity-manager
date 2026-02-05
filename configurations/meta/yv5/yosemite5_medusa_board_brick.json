@@ -1074,6 +1074,10 @@
                 "MB_E1S0_TEMP_C",
                 "MB_E1S1_TEMP_C"
             ],
+            "MissingIsAcceptable": [
+                "MB_E1S0_TEMP_C",
+                "MB_E1S1_TEMP_C"
+            ],
             "Name": "PID_MB_E1S",
             "NegativeHysteresis": 2.0,
             "OutLimitMax": 100,
@@ -1365,6 +1369,10 @@
         {
             "Class": "temp",
             "Inputs": [
+                "MB_E1S0_TEMP_C",
+                "MB_E1S1_TEMP_C"
+            ],
+            "MissingIsAcceptable": [
                 "MB_E1S0_TEMP_C",
                 "MB_E1S1_TEMP_C"
             ],
