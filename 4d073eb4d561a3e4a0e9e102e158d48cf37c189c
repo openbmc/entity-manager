@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cb093891_8b367a2b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-02-05T14:16:13Z",
+      "side": 1,
+      "message": "I\u0027m not entirely sure how to respond do this. I believe Marc has tested the overall set of patches on Alon8. I of course have (testing details have been added to relevant commits).",
+      "parentUuid": "87ab8419_771fab82",
+      "revId": "4d073eb4d561a3e4a0e9e102e158d48cf37c189c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d0dd1c90_b94a3103",
         "filename": "schemas/mctp.json",
         "patchSetId": 17
@@ -31,6 +49,24 @@
       "writtenOn": "2026-02-04T04:22:12Z",
       "side": 1,
       "message": "This is describing a whole new type of config (A platform config).  We can\u0027t be adding it to the existing device config schemas.\n\nAs written, now these platform configs can declare ANYTHING a device config could.  That at a minimum doesn\u0027t seem like it was tested, and I\u0027m really not sure was a good idea.",
+      "revId": "4d073eb4d561a3e4a0e9e102e158d48cf37c189c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04630719_7bd2fc66",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 17
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-02-05T14:16:13Z",
+      "side": 1,
+      "message": "This would usually be in a platform config, yes. What is your suggestion - move this to a platform configs directory/not have a schema for platform configs at the moment/something else?\n\nThe following was also noted by Andrew in an older comment: this is in addition to platform configs - As it stands its only usable in the configuration for the board containing the BMC from where we can describe the absolute topology (where while the device is USB-attached and USB supports hot-plug, the topology is fixed in the hardware design).",
+      "parentUuid": "d0dd1c90_b94a3103",
       "revId": "4d073eb4d561a3e4a0e9e102e158d48cf37c189c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -54,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9b1c5dfe_e5757a4f",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 17
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-02-05T14:16:13Z",
+      "side": 1,
+      "message": "Will fix this.",
+      "parentUuid": "3139937f_72a04789",
+      "revId": "4d073eb4d561a3e4a0e9e102e158d48cf37c189c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d82d2f53_62b57d4b",
         "filename": "schemas/mctp.json",
         "patchSetId": 17
@@ -65,6 +119,24 @@
       "writtenOn": "2026-02-04T04:22:12Z",
       "side": 1,
       "message": "?  How could this be known at compile time?",
+      "revId": "4d073eb4d561a3e4a0e9e102e158d48cf37c189c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca36311b_828dd81c",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 17
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-02-05T14:16:13Z",
+      "side": 1,
+      "message": "This actually is fixed based on the device USB gadget firmware. The RootHubPosition can vary based on SoC/platform.",
+      "parentUuid": "d82d2f53_62b57d4b",
       "revId": "4d073eb4d561a3e4a0e9e102e158d48cf37c189c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
