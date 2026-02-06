@@ -180,6 +180,46 @@
             "Type": "BMC"
         },
         {
+            "Name": "HarmaLowerFanBoard1",
+            "PresencePinNames": [
+                "presence-lower-fanboard1"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "HarmaLowerFanBoard2",
+            "PresencePinNames": [
+                "presence-lower-fanboard2"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "HarmaUpperFanBoard1",
+            "PresencePinNames": [
+                "presence-upper-fanboard1"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "HarmaUpperFanBoard2",
+            "PresencePinNames": [
+                "presence-upper-fanboard2"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
             "Level": "Critical",
             "Name": "ComputeBlade",
             "PinName": "leakage-detect-alert",
