@@ -188,13 +188,8 @@
             "Type": "ADC"
         },
         {
-            "Class": "Aspeed2600_Hwmon",
-            "Name": "Chassis Intrusion Sensor",
-            "Type": "ChassisIntrusionSensor"
-        },
-        {
-            "Address": "0x50",
-            "Bus": 9,
+            "Address": "$address",
+            "Bus": "$bus",
             "Name": "DCSCM FRU",
             "Type": "EEPROM"
         },
