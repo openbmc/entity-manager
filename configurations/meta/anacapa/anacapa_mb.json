@@ -239,6 +239,22 @@
             "vout1_Name": "MB_VR_CPU_PVDD18_S5_P0_VOUT_VOLT_V"
         },
         {
+            "Address": "0x46",
+            "Bus": 58,
+            "Labels": [
+                "iout1",
+                "temp1",
+                "vin",
+                "vout1"
+            ],
+            "Name": "MB_VR_CPU_PVDD33_S5_P0",
+            "Type": "MPQ8785",
+            "iout1_Name": "MB_VR_CPU_PVDD33_S5_P0_CURR_A",
+            "temp1_Name": "MB_VR_CPU_PVDD33_S5_P0_TEMP_C",
+            "vin_Name": "MB_VR_CPU_PVDD33_S5_P0_VIN_VOLT_V",
+            "vout1_Name": "MB_VR_CPU_PVDD33_S5_P0_VOUT_VOLT_V"
+        },
+        {
             "Address": "0x6a",
             "Bus": 24,
             "Name": "MB_E1S_BOOT_TEMP_C",
@@ -378,20 +394,6 @@
             "Bus": 52,
             "Name": "MB_CPU_REAR_TEMP_C",
             "Type": "TMP75"
-        },
-        {
-            "Address": "0x46",
-            "Bus": 58,
-            "Labels": [
-                "in1",
-                "curr1",
-                "temp1"
-            ],
-            "Name": "MB_VR_CPU_PVDD33",
-            "Type": "pmbus",
-            "curr1_Name": "MB_VR_CPU_PVDD33_CURR_A",
-            "in1_Name": "MB_VR_CPU_PVDD33_VOLT_V",
-            "temp1_Name": "MB_VR_CPU_PVDD33_TEMP_C"
         }
     ],
     "Name": "MB",
