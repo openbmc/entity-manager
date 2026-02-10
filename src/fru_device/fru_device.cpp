@@ -873,14 +873,9 @@ struct FindDevicesWithCallback :
     std::set<size_t> _addressBlocklist;
 };
 
-void addFruObjectToDbus(
-    std::vector<uint8_t>& device,
-    std::flat_map<std::pair<size_t, size_t>,
-                  std::shared_ptr<sdbusplus::asio::dbus_interface>>&
-        dbusInterfaceMap,
-    uint32_t bus, uint32_t address, size_t& unknownBusObjectCount,
-    const bool& powerIsOn, const std::set<size_t>& addressBlocklist,
-    sdbusplus::asio::object_server& objServer)
+std::optional<std::string> getFruProjectName(std::vector<uint8_t>& device,
+                                             uint32_t bus, uint32_t address,
+                                             size_t& unknownBusObjectCount)
 {
     std::flat_map<std::string, std::string, std::less<>> formattedFRU;
 
@@ -889,7 +884,7 @@ void addFruObjectToDbus(
     if (!optionalProductName)
     {
         lg2::error("getProductName failed. product name is empty.");
-        return;
+        return std::nullopt;
     }
 
     std::string productName =
@@ -901,31 +896,79 @@ void addFruObjectToDbus(
         productName += "_";
         productName += std::to_string(++(*index));
     }
+    return productName;
+}
+
+bool updateFruField(uint32_t bus, uint32_t address,
+                    size_t& unknownBusObjectCount, const bool& powerIsOn,
+                    const std::set<size_t>& addressBlocklist,
+                    const std::string& fieldName, const std::string& fieldValue)
+{
+    // Update the property
+    if (!updateFruProperty(fieldValue, bus, address, fieldName,
+                           dbusInterfaceMap, unknownBusObjectCount, powerIsOn,
+                           addressBlocklist, objServer))
+    {
+        lg2::debug("Failed to Add Field: Name = {NAME}, Value = {VALUE}",
+                   "NAME", fieldName, "VALUE", fieldValue);
+        return false;
+    }
+
+    return true;
+}
+
+int fruUpdateProperty(
+    uint32_t bus, uint32_t address, size_t& unknownBusObjectCount,
+    const bool& powerIsOn, const std::string& propertyName,
+    std::flat_map<std::pair<size_t, size_t>,
+                  std::shared_ptr<sdbusplus::asio::dbus_interface>>&
+        dbusInterfaceMap,
+    const std::string& req, std::string& resp)
+{
+    if (strcmp(req.c_str(), resp.c_str()) != 0)
+    {
+        // call the method which will update
+        if (updateFruProperty(req, bus, address, propertyName, dbusInterfaceMap,
+                              unknownBusObjectCount, powerIsOn,
+                              addressBlocklist, objServer))
+        {
+            resp = req;
+        }
+        else
+        {
+            throw std::invalid_argument("FRU property update failed.");
+        }
+    }
+    return 1;
+}
+
+void addFruObjectToDbus(
+    std::vector<uint8_t>& device,
+    std::flat_map<std::pair<size_t, size_t>,
+                  std::shared_ptr<sdbusplus::asio::dbus_interface>>&
+        dbusInterfaceMap,
+    uint32_t bus, uint32_t address, size_t& unknownBusObjectCount,
+    const bool& powerIsOn, const std::set<size_t>& addressBlocklist,
+    sdbusplus::asio::object_server& objServer)
+{
+    std::optional<std::string> productName =
+        getFruProjectName(device, bus, address, unknownBusObjectCount);
+    if (!productName)
+    {
+        return;
+    }
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
-        objServer.add_interface(productName, "xyz.openbmc_project.FruDevice");
+        objServer.add_interface(productName.value(),
+                                "xyz.openbmc_project.FruDevice");
     dbusInterfaceMap[std::pair<size_t, size_t>(bus, address)] = iface;
 
     if (ENABLE_FRU_UPDATE_PROPERTY)
     {
         iface->register_method(
             "UpdateFruField",
-            [bus, address, &dbusInterfaceMap, &unknownBusObjectCount,
-             &powerIsOn, &objServer, addressBlocklist](
-                const std::string& fieldName, const std::string& fieldValue) {
-                // Update the property
-                if (!updateFruProperty(fieldValue, bus, address, fieldName,
-                                       dbusInterfaceMap, unknownBusObjectCount,
-                                       powerIsOn, addressBlocklist, objServer))
-                {
-                    lg2::debug(
-                        "Failed to Add Field: Name = {NAME}, Value = {VALUE}",
-                        "NAME", fieldName, "VALUE", fieldValue);
-                    return false;
-                }
-
-                return true;
-            });
+            std::bind_front(updateFruField, bus, address, unknownBusObjectCount,
+                            powerIsOn, addressBlocklist));
     }
 
     for (auto property : formattedFRU)
@@ -945,27 +988,10 @@ void addFruObjectToDbus(
             std::string propertyName = property.first;
             iface->register_property(
                 key, property.second + '\0',
-                [bus, address, propertyName, &dbusInterfaceMap,
-                 &unknownBusObjectCount, &powerIsOn, &objServer,
-                 &addressBlocklist](const std::string& req, std::string& resp) {
-                    if (strcmp(req.c_str(), resp.c_str()) != 0)
-                    {
-                        // call the method which will update
-                        if (updateFruProperty(req, bus, address, propertyName,
-                                              dbusInterfaceMap,
-                                              unknownBusObjectCount, powerIsOn,
-                                              addressBlocklist, objServer))
-                        {
-                            resp = req;
-                        }
-                        else
-                        {
-                            throw std::invalid_argument(
-                                "FRU property update failed.");
-                        }
-                    }
-                    return 1;
-                });
+                std::bind_front(fruUpdateProperty, bus, address,
+                                unknownBusObjectCount, powerIsOn,
+                                addressBlocklist, propertyName,
+                                dbusInterfaceMap));
         }
         else if (!iface->register_property(key, property.second + '\0'))
         {
