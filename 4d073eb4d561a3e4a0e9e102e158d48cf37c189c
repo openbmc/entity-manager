@@ -139,6 +139,24 @@
       "parentUuid": "d82d2f53_62b57d4b",
       "revId": "4d073eb4d561a3e4a0e9e102e158d48cf37c189c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "635df6a8_bb8a7838",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 17
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-02-10T23:11:09Z",
+      "side": 1,
+      "message": "\u003e ?  How could this be known at compile time?\n\nThis is not the Linux/MCTP definition of \"Interface\" but rather the USB device definition, e.g. from `9.2.3 Configuration` of `usb_20.pdf`:\n\n\u003e 9.2.3 Configuration\n\u003e...\n\u003e Within a single configuration, a device may support multiple interfaces. An interface is a related set of endpoints that present a single feature or function of the device to the host. The protocol used to communicate with this related set of endpoints and the purpose of each endpoint within the interface may be specified as part of a device class or vendor-specific definition.",
+      "parentUuid": "ca36311b_828dd81c",
+      "revId": "4d073eb4d561a3e4a0e9e102e158d48cf37c189c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
