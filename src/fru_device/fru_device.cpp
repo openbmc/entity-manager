@@ -873,23 +873,20 @@ struct FindDevicesWithCallback :
     std::set<size_t> _addressBlocklist;
 };
 
-void addFruObjectToDbus(
+std::optional<std::string> getFruProjectName(
     std::vector<uint8_t>& device,
     std::flat_map<std::pair<size_t, size_t>,
                   std::shared_ptr<sdbusplus::asio::dbus_interface>>&
         dbusInterfaceMap,
-    uint32_t bus, uint32_t address, size_t& unknownBusObjectCount,
-    const bool& powerIsOn, const std::set<size_t>& addressBlocklist,
-    sdbusplus::asio::object_server& objServer)
+    std::flat_map<std::string, std::string, std::less<>>& formattedFRU,
+    uint32_t bus, uint32_t address, size_t& unknownBusObjectCount)
 {
-    std::flat_map<std::string, std::string, std::less<>> formattedFRU;
-
     std::optional<std::string> optionalProductName = getProductName(
         device, formattedFRU, bus, address, unknownBusObjectCount);
     if (!optionalProductName)
     {
         lg2::error("getProductName failed. product name is empty.");
-        return;
+        return std::nullopt;
     }
 
     std::string productName =
@@ -901,9 +898,30 @@ void addFruObjectToDbus(
         productName += "_";
         productName += std::to_string(++(*index));
     }
+    return productName;
+}
+
+void addFruObjectToDbus(
+    std::vector<uint8_t>& device,
+    std::flat_map<std::pair<size_t, size_t>,
+                  std::shared_ptr<sdbusplus::asio::dbus_interface>>&
+        dbusInterfaceMap,
+    uint32_t bus, uint32_t address, size_t& unknownBusObjectCount,
+    const bool& powerIsOn, const std::set<size_t>& addressBlocklist,
+    sdbusplus::asio::object_server& objServer)
+{
+    std::flat_map<std::string, std::string, std::less<>> formattedFRU;
+    std::optional<std::string> productName =
+        getFruProjectName(device, dbusInterfaceMap, formattedFRU, bus, address,
+                          unknownBusObjectCount);
+    if (!productName)
+    {
+        return;
+    }
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
-        objServer.add_interface(productName, "xyz.openbmc_project.FruDevice");
+        objServer.add_interface(productName.value(),
+                                "xyz.openbmc_project.FruDevice");
     dbusInterfaceMap[std::pair<size_t, size_t>(bus, address)] = iface;
 
     if (ENABLE_FRU_UPDATE_PROPERTY)
