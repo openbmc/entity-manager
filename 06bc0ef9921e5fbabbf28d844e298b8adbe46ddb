@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b74e29a9_fcc84aab",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2026-02-10T18:40:52Z",
+      "side": 1,
+      "message": "tried to updated it a bit more to be more clear. Please do let me know if it is still not clear enough.\n\nThe issue is `/xyz/openbmc_project/FruDevice/Fru` get return in `GetSubTree`, but by the time that entity-manager is making the GetAll on the output of `GetSubTree`... it got removed. It is a race condition.",
+      "parentUuid": "b1695511_181c51af",
+      "revId": "06bc0ef9921e5fbabbf28d844e298b8adbe46ddb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "20a662cf_b38215bd",
         "filename": "/COMMIT_MSG",
         "patchSetId": 4
@@ -31,6 +49,30 @@
       "writtenOn": "2026-01-28T01:59:58Z",
       "side": 1,
       "message": "```suggestion\n- Entity Manager calls GetAll on Fru_1 and failed, resulting in Fru_1\n```",
+      "range": {
+        "startLine": 18,
+        "startChar": 51,
+        "endLine": 18,
+        "endChar": 59
+      },
+      "revId": "06bc0ef9921e5fbabbf28d844e298b8adbe46ddb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31e3ef81_7f60b234",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2026-02-10T18:40:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20a662cf_b38215bd",
       "range": {
         "startLine": 18,
         "startChar": 51,
@@ -64,6 +106,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e9ec200_b7e1653e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2026-02-10T18:40:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d7bb0f8_e2a8e175",
+      "range": {
+        "startLine": 23,
+        "startChar": 57,
+        "endLine": 23,
+        "endChar": 63
+      },
+      "revId": "06bc0ef9921e5fbabbf28d844e298b8adbe46ddb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "edff25b0_6a9b5cc1",
@@ -77,6 +143,24 @@
       "writtenOn": "2026-01-28T01:59:58Z",
       "side": 1,
       "message": "function size has increased, can you extract something, possibly in a preceding patch? This new change is not making the code any simpler. See core guidelines for recommendation on function size.\n\nI would recommend a separate function to compute `productName`.",
+      "revId": "06bc0ef9921e5fbabbf28d844e298b8adbe46ddb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "836b63d1_3fa53b7a",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 899,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2026-02-10T18:40:52Z",
+      "side": 1,
+      "message": "sure, will clean it up in another patch.",
+      "parentUuid": "edff25b0_6a9b5cc1",
       "revId": "06bc0ef9921e5fbabbf28d844e298b8adbe46ddb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
