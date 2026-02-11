@@ -33,6 +33,24 @@
       "message": "This addresses the exact issue of scalar properties being force-set to read-only. Thanks for the patch.",
       "revId": "49f7c8eb04158303d3a3b7b378c47d744070e3c7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ea2c810_e6e99338",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-11T23:27:56Z",
+      "side": 1,
+      "message": "\u003e do you have any preference for the settable interfaces?\n\nThe intent is that the configuration interfaces are settable;  This isn\u0027t \"just\" a bmcweb thing, but from someone that might want to make persistent, or non persistent changes to their config through shell.\n\nFor example, if you wanted to change a P parameter on a pid loop, you might just set it and change it, that one node will reset.",
+      "parentUuid": "05b1af55_82fe071e",
+      "revId": "49f7c8eb04158303d3a3b7b378c47d744070e3c7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ],
   "submitRequirementResults": []
