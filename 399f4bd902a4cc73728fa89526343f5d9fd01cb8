@@ -443,6 +443,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "10ba7830_1dbacf8b",
+        "filename": "docs/entity_manager_dbus_api.md",
+        "patchSetId": 65
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-11T23:36:49Z",
+      "side": 1,
+      "message": "\u003e No, i do not have any example.\n\nThis is going to make it hard to discuss.\n\n\u003e he toplevel config needs to be signalled last.\n\nThat\u0027s not really how EM configs work.  Properties are settable, and could be set at any time.  That\u0027s why they\u0027re under the same path today.\n\n\u003e micro optimizing this patch is not on the list of things i want to do here.\n\nAsking for one example of how these are correctly used isn\u0027t a micro optimization.",
+      "parentUuid": "f5353d0f_b727af4c",
+      "range": {
+        "startLine": 214,
+        "startChar": 0,
+        "endLine": 215,
+        "endChar": 80
+      },
+      "revId": "399f4bd902a4cc73728fa89526343f5d9fd01cb8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fdbbe607_9ecd7f7a",
         "filename": "docs/entity_manager_dbus_api.md",
         "patchSetId": 65
@@ -513,6 +537,30 @@
       "side": 1,
       "message": "There is nothing broken by this patch. Everything stays the same.\nIt\u0027s only enabling this code path. The code (as of current revision) needs `Type` field on nested configuration record to do anything at all.",
       "parentUuid": "cb21a824_da72de43",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 1
+      },
+      "revId": "399f4bd902a4cc73728fa89526343f5d9fd01cb8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88f38557_b67ea2c2",
+        "filename": "meson.options",
+        "patchSetId": 65
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-11T23:36:49Z",
+      "side": 1,
+      "message": "Then why have the option?  (answer in the description).",
+      "parentUuid": "03953603_71d43ec5",
       "range": {
         "startLine": 37,
         "startChar": 0,
