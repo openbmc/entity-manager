@@ -22,6 +22,30 @@
       },
       "revId": "283a3015bc5425ae4821a8a48367244158d85bf7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5208c992_952518ce",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-11T05:30:08Z",
+      "side": 0,
+      "message": "Thanks, yes the `Status` is definitely used even outside `DisableNode`.\n\nReverted the change there and also in the other file. Please look again and let me know if it\u0027s good now 👍",
+      "parentUuid": "dd20ce68_daaf62a8",
+      "range": {
+        "startLine": 237,
+        "startChar": 4,
+        "endLine": 245,
+        "endChar": 5
+      },
+      "revId": "283a3015bc5425ae4821a8a48367244158d85bf7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
