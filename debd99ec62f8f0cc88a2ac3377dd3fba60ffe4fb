@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3f12fc5_55d6ba5d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-11T01:35:59Z",
+      "side": 1,
+      "message": "```suggestion\n\nSplit out getFruProjectName into separate functions.\n\nTested: on ${Machine}\n\nno devices missing, object paths same as before\n\n... busctl output ...\n\n```",
+      "range": {
+        "startLine": 8,
+        "startChar": 1,
+        "endLine": 10,
+        "endChar": 1
+      },
+      "revId": "debd99ec62f8f0cc88a2ac3377dd3fba60ffe4fb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76d3d50c_ccfbb0c0",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 876,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-11T01:35:59Z",
+      "side": 1,
+      "message": "```suggestion\nstd::optional\u003cstd::string\u003e getFruObjectPath(\n```",
+      "range": {
+        "startLine": 876,
+        "startChar": 27,
+        "endLine": 876,
+        "endChar": 44
+      },
+      "revId": "debd99ec62f8f0cc88a2ac3377dd3fba60ffe4fb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
