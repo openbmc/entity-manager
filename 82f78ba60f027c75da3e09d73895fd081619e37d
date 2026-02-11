@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4a22fda4_924305f2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-11T23:25:37Z",
+      "side": 1,
+      "message": "Please answer in the commit message WHY we want to remove features, and we can go from there.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 52
+      },
+      "revId": "82f78ba60f027c75da3e09d73895fd081619e37d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "62140aa1_0903acf7",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
@@ -14,6 +37,24 @@
       "writtenOn": "2026-02-11T21:27:40Z",
       "side": 1,
       "message": "I tried to find an old commit that added this to a config file, but maybe it was just used downstream?\n\nIt could be there are people using this feature and we don\u0027t know about it. (not sure if that\u0027s a reason to keep or remove it)\n\n@ed@tanous.net do you know the history of this?",
+      "revId": "82f78ba60f027c75da3e09d73895fd081619e37d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "177cd66f_40f8a56f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-11T23:25:37Z",
+      "side": 1,
+      "message": "It\u0027s intended to let you disable things downstream.  As an example, it lets you disable the \"fan4\" port, if you detect a chassis that only has 3 fans.\n\nLets get some justification for why we want to remove it, then we can go from there.  I suspect there\u0027s a simpler patch.",
+      "parentUuid": "62140aa1_0903acf7",
       "revId": "82f78ba60f027c75da3e09d73895fd081619e37d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
