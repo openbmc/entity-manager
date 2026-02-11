@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9d1ccf65_f586e5f6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-11T23:52:02Z",
+      "side": 1,
+      "message": "We really don\u0027t need the actual output of the command in the commit message.  The point is that the tests can be reproduced by others, and you\u0027ve documented the tests you\u0027ve personally ran to make sure you\u0027re not pushing testing work on others.  The actual output might be interesting sometimes if we\u0027re trying to document a change, but \"output didn\u0027t change\" is perfectly adequate.\n\n+1 on needing a tested statement.",
+      "parentUuid": "c3f12fc5_55d6ba5d",
+      "range": {
+        "startLine": 8,
+        "startChar": 1,
+        "endLine": 10,
+        "endChar": 1
+      },
+      "revId": "debd99ec62f8f0cc88a2ac3377dd3fba60ffe4fb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "76d3d50c_ccfbb0c0",
         "filename": "src/fru_device/fru_device.cpp",
         "patchSetId": 3
@@ -43,6 +67,64 @@
         "endLine": 876,
         "endChar": 44
       },
+      "revId": "debd99ec62f8f0cc88a2ac3377dd3fba60ffe4fb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90ffc8f1_38cdb0c2",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 876,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-11T23:52:02Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "76d3d50c_ccfbb0c0",
+      "range": {
+        "startLine": 876,
+        "startChar": 27,
+        "endLine": 876,
+        "endChar": 44
+      },
+      "revId": "debd99ec62f8f0cc88a2ac3377dd3fba60ffe4fb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b01e37ac_4b4839f5",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 883,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-11T23:52:02Z",
+      "side": 1,
+      "message": "Would be great to get a unit test or two for this.  Doesn\u0027t have to be extensive, and will accept this patch without it if we really don\u0027t have time to write one..",
+      "revId": "debd99ec62f8f0cc88a2ac3377dd3fba60ffe4fb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45c91e57_e5e00cbf",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 901,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-11T23:52:02Z",
+      "side": 1,
+      "message": "This is how the code is, but in a future version of this patch, if we used the sdbusplus::message::object_path semantics, that would be an improvement.",
       "revId": "debd99ec62f8f0cc88a2ac3377dd3fba60ffe4fb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
