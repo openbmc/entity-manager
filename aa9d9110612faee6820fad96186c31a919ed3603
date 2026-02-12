@@ -46,6 +46,30 @@
       },
       "revId": "aa9d9110612faee6820fad96186c31a919ed3603",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "181f148e_7012ef73",
+        "filename": "configurations/meta/anacapa/anacapa_scm.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-02-12T16:08:15Z",
+      "side": 1,
+      "message": "It seems like other files are adding this, but I don\u0027t understand why.  I\u0027ll merge this as-is but I think we should follow up with a removal of all the self-referential EEPROM fields.",
+      "parentUuid": "6bd6a81e_c9ecb8d4",
+      "range": {
+        "startLine": 191,
+        "startChar": 0,
+        "endLine": 194,
+        "endChar": 28
+      },
+      "revId": "aa9d9110612faee6820fad96186c31a919ed3603",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
