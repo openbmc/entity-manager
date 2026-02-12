@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "687b5572_c8b82e0a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002520
+      },
+      "writtenOn": "2026-02-12T12:23:56Z",
+      "side": 1,
+      "message": "Here’s some additional info for the review. \nAfter applying this change, the EntityManager creates the following valve-related inventory objects:\n\n```\nroot@bmc:~# busctl tree xyz.openbmc_project.EntityManager | grep -i valve\n        │ │ ├─ /xyz/openbmc_project/inventory/system/board/Ventura2_SCM/ReturnValve_1\n        │ │ ├─ /xyz/openbmc_project/inventory/system/board/Ventura2_SCM/ReturnValve_2\n        │ │ ├─ /xyz/openbmc_project/inventory/system/board/Ventura2_SCM/ReturnValve_3\n        │ │ ├─ /xyz/openbmc_project/inventory/system/board/Ventura2_SCM/SupplyValve2_1\n        │ │ ├─ /xyz/openbmc_project/inventory/system/board/Ventura2_SCM/SupplyValve2_2\n        │ │ ├─ /xyz/openbmc_project/inventory/system/board/Ventura2_SCM/SupplyValve2_3\n        │ │ ├─ /xyz/openbmc_project/inventory/system/board/Ventura2_SCM/SupplyValve_1\n        │ │ ├─ /xyz/openbmc_project/inventory/system/board/Ventura2_SCM/SupplyValve_2\n        │ │ ├─ /xyz/openbmc_project/inventory/system/board/Ventura2_SCM/SupplyValve_3\n        │ ├─ /xyz/openbmc_project/inventory/system/cable/ReturnValve_1_Port\n        │ ├─ /xyz/openbmc_project/inventory/system/cable/ReturnValve_2_Port\n        │ ├─ /xyz/openbmc_project/inventory/system/cable/ReturnValve_3_Port\n        │ ├─ /xyz/openbmc_project/inventory/system/cable/SupplyValve2_1_Port\n        │ ├─ /xyz/openbmc_project/inventory/system/cable/SupplyValve2_2_Port\n        │ └─ /xyz/openbmc_project/inventory/system/cable/SupplyValve2_3_Port\n        └─ /xyz/openbmc_project/inventory/system/valve\n          ├─ /xyz/openbmc_project/inventory/system/valve/ReturnValve_1\n          │ └─ /xyz/openbmc_project/inventory/system/valve/ReturnValve_1/ReturnValve_1\n          ├─ /xyz/openbmc_project/inventory/system/valve/ReturnValve_2\n          │ └─ /xyz/openbmc_project/inventory/system/valve/ReturnValve_2/ReturnValve_2\n          ├─ /xyz/openbmc_project/inventory/system/valve/ReturnValve_3\n          │ └─ /xyz/openbmc_project/inventory/system/valve/ReturnValve_3/ReturnValve_3\n          ├─ /xyz/openbmc_project/inventory/system/valve/SupplyValve2_1\n          │ └─ /xyz/openbmc_project/inventory/system/valve/SupplyValve2_1/SupplyValve2_1\n          ├─ /xyz/openbmc_project/inventory/system/valve/SupplyValve2_2\n          │ └─ /xyz/openbmc_project/inventory/system/valve/SupplyValve2_2/SupplyValve2_2\n          └─ /xyz/openbmc_project/inventory/system/valve/SupplyValve2_3\n            └─ /xyz/openbmc_project/inventory/system/valve/SupplyValve2_3/SupplyValve2_3\n```",
+      "revId": "e6aa23ee669ddb0bad4ca081611dd8b76ebe608f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
