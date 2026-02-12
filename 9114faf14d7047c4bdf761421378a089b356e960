@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17c66c73_0ccef086",
+        "filename": "docs/platform_configuration.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-12T07:49:36Z",
+      "side": 1,
+      "message": "Overall the feature sounds like an interesting use-case to me, maybe it would help to make a configuration example for the commit message to see how it would be used on your system.",
+      "range": {
+        "startLine": 17,
+        "startChar": 8,
+        "endLine": 18,
+        "endChar": 42
+      },
+      "revId": "9114faf14d7047c4bdf761421378a089b356e960",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd38f3ac_9c9583f0",
+        "filename": "docs/platform_configuration.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-12T07:49:36Z",
+      "side": 1,
+      "message": "Does `configurations/\u003cvendor\u003e/` work as well?\n\nThen it would land in the existing destination directory on the BMC rofs and require less extra work. Otherwise you would have to decide on where to install it and add the extra directories into the EM implementation.\n\nSince there\u0027s a `Type` on these configs i don\u0027t think they will be hard to find and the `configurations` directory is already organized by vendor and platform.",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 2
+      },
+      "revId": "9114faf14d7047c4bdf761421378a089b356e960",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1b7ea2a_b48aaac2",
+        "filename": "schemas/global.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-12T07:49:36Z",
+      "side": 1,
+      "message": "For the probe, please either break that out in the toplevel EM config and `$ref` to it here or re-write it as either array or single string.\n\n\nWriting it as array of string is not much more overhead than writing it as a single string and having less alternatives to write it simplifies things for the user.",
+      "range": {
+        "startLine": 128,
+        "startChar": 16,
+        "endLine": 141,
+        "endChar": 18
+      },
+      "revId": "9114faf14d7047c4bdf761421378a089b356e960",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a27c8b1f_19e4997b",
+        "filename": "schemas/global.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-12T07:49:36Z",
+      "side": 1,
+      "message": "As written EM would create an interface `xyz.openbmc_project.Inventory.Item.Platform`\n\nwhich is not documented, i cannot find it currently. Do you want to document such an interface or alternatively prevent EM from creating it.",
+      "range": {
+        "startLine": 142,
+        "startChar": 15,
+        "endLine": 146,
+        "endChar": 17
+      },
+      "revId": "9114faf14d7047c4bdf761421378a089b356e960",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24e7af5e_f5ec8b6f",
+        "filename": "schemas/global.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-12T07:49:36Z",
+      "side": 1,
+      "message": "Please remove it here.\n\nWe don\u0027t need 2 ways to configure this and we don\u0027t need the indentation bloat introduced by the array.\n\nIt\u0027s just confusing for users to have 2 ways of doing things.",
+      "range": {
+        "startLine": 161,
+        "startChar": 1,
+        "endLine": 163,
+        "endChar": 21
+      },
+      "revId": "9114faf14d7047c4bdf761421378a089b356e960",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f41e569_f708b8c6",
+        "filename": "schemas/platform_schemas/platform_exposes_record.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-12T07:49:36Z",
+      "side": 1,
+      "message": "If it\u0027s a configuration then it probably needs a schema with the properties listed.\n\nThere\u0027s only `Name` and `Type` currently.\n\nI don\u0027t think we can introduce any free-form configuration record.\n\nWhich properties can be configured needs to be known from the schema at build time since that\u0027s when configurations are validated.",
+      "range": {
+        "startLine": 5,
+        "startChar": 118,
+        "endLine": 5,
+        "endChar": 197
+      },
+      "revId": "9114faf14d7047c4bdf761421378a089b356e960",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
