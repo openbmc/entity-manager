@@ -348,4 +348,15 @@ std::string buildInventorySystemPath(std::string& boardName,
 
     return std::format("{}{}/{}", path, boardTypeLower, boardName);
 }
+
+std::string getExposesKey(const nlohmann::json& config)
+{
+    auto typeIt = config.find("Type");
+    if (typeIt != config.end() && typeIt->is_string() &&
+        typeIt->get<std::string>() == "Platform")
+    {
+        return "PlatformExposes";
+    }
+    return "Exposes";
+}
 } // namespace em_utils

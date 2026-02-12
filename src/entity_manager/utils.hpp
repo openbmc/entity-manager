@@ -38,4 +38,6 @@ std::optional<std::string> templateCharReplace(
 std::string buildInventorySystemPath(std::string& boardName,
                                      const std::string& boardType);
 
+std::string getExposesKey(const nlohmann::json& config);
+
 } // namespace em_utils

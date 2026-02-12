@@ -197,13 +197,14 @@ void EntityManager::postBoardToDBus(
         }
     }
 
-    nlohmann::json::iterator exposes = boardValues.find("Exposes");
+    const std::string exposesKey = em_utils::getExposesKey(boardValues);
+    nlohmann::json::iterator exposes = boardValues.find(exposesKey);
     if (exposes == boardValues.end())
     {
         return;
     }
     // iterate through exposes
-    jsonPointerPath += "Exposes/";
+    jsonPointerPath += exposesKey + "/";
 
     // store the board level pointer so we can modify it on the way down
     std::string jsonPointerPathBoard = jsonPointerPath;
