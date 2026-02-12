@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c6b537e_8cd695ab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-02-12T08:59:39Z",
+      "side": 1,
+      "message": "Modified to platform schema.",
+      "parentUuid": "cb093891_8b367a2b",
+      "revId": "4d073eb4d561a3e4a0e9e102e158d48cf37c189c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0dd1c90_b94a3103",
@@ -71,6 +89,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1ede1a1_cbb70e79",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 17
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-02-12T08:59:39Z",
+      "side": 1,
+      "message": "Per our description, I introduced a platform schema for platform configs (made this a new parent commit; can squash if need be). The MCTP config is now a platform schema.",
+      "parentUuid": "04630719_7bd2fc66",
+      "revId": "4d073eb4d561a3e4a0e9e102e158d48cf37c189c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3139937f_72a04789",
@@ -102,6 +138,24 @@
       "side": 1,
       "message": "Will fix this.",
       "parentUuid": "3139937f_72a04789",
+      "revId": "4d073eb4d561a3e4a0e9e102e158d48cf37c189c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cec0b533_607b03ec",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 17
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-02-12T08:59:39Z",
+      "side": 1,
+      "message": "Fixed this and other params which should also be numbers.",
+      "parentUuid": "9b1c5dfe_e5757a4f",
       "revId": "4d073eb4d561a3e4a0e9e102e158d48cf37c189c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -155,6 +209,24 @@
       "side": 1,
       "message": "\u003e ?  How could this be known at compile time?\n\nThis is not the Linux/MCTP definition of \"Interface\" but rather the USB device definition, e.g. from `9.2.3 Configuration` of `usb_20.pdf`:\n\n\u003e 9.2.3 Configuration\n\u003e...\n\u003e Within a single configuration, a device may support multiple interfaces. An interface is a related set of endpoints that present a single feature or function of the device to the host. The protocol used to communicate with this related set of endpoints and the purpose of each endpoint within the interface may be specified as part of a device class or vendor-specific definition.",
       "parentUuid": "ca36311b_828dd81c",
+      "revId": "4d073eb4d561a3e4a0e9e102e158d48cf37c189c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a9f764a_2e2f098e",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 17
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-02-12T08:59:39Z",
+      "side": 1,
+      "message": "Resolving this - this has been modified to be a platform schema now.",
+      "parentUuid": "635df6a8_bb8a7838",
       "revId": "4d073eb4d561a3e4a0e9e102e158d48cf37c189c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
