@@ -278,6 +278,8 @@ configs = [
     'meta/yv5/yosemite5_e1s_expansion_board_adc_tic_pmon_tic.json',
     'meta/yv5/yosemite5_e1s_x4_expansion_board_adc_ons_pmon_rtk.json',
     'meta/yv5/yosemite5_e1s_x4_expansion_board_adc_ons_pmon_rtk_dvt1.json',
+    'meta/yv5/yosemite5_e1s_x4_expansion_board_adc_ons_pmon_sgy.json',
+    'meta/yv5/yosemite5_e1s_x4_expansion_board_adc_ons_pmon_sgy_dvt1.json',
     'meta/yv5/yosemite5_e1s_x4_expansion_board_adc_tic_pmon_tic.json',
     'meta/yv5/yosemite5_e1s_x4_expansion_board_adc_tic_pmon_tic_dvt1.json',
     'meta/yv5/yosemite5_mb_ssd.json',
