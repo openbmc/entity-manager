@@ -418,6 +418,36 @@
             "Type": "GPIODeviceDetect"
         },
         {
+            "Name": "SupplyValve2_1",
+            "PresencePinNames": [
+                "PRSNT1_VT2_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "SupplyValve2_2",
+            "PresencePinNames": [
+                "PRSNT2_VT2_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "SupplyValve2_3",
+            "PresencePinNames": [
+                "PRSNT3_VT2_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
             "Level": "Critical",
             "Name": "RackDripTrayLeak1",
             "PinName": "CHASSIS0_LEAK_Q_N_R",
