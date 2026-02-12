@@ -69,6 +69,29 @@
       "message": "Looks fine to me though I see there is ongoing discussion on the dbus-sensors side of things",
       "revId": "753539a5ff0bab69dbdb3d9ddc2ac97255bb0a23",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f303b01_ad804b82",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 865,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-12T02:19:44Z",
+      "side": 1,
+      "message": "?  Really not following why we\u0027re referencing two configs here.  Shouldn\u0027t we just have the Firmware Id here?  Presumably that\u0027s lookupable from the type (ie TPS25990) without needing to encode it here?",
+      "range": {
+        "startLine": 865,
+        "startChar": 36,
+        "endLine": 865,
+        "endChar": 166
+      },
+      "revId": "753539a5ff0bab69dbdb3d9ddc2ac97255bb0a23",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
