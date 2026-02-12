@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "963a2c23_93b54370",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-12T02:36:22Z",
+      "side": 1,
+      "message": "I\u0027m not really following what we\u0027re doing here.  These schemas govern the json, which I would expect to be consistent in type (we can debate string or int).  Generally we wouldn\u0027t move from string to int because that now requires that we can\u0027t do math (because the existing expression engine isn\u0027t the best).  It\u0027s not clear to me what this accomplishes, and certainly I\u0027m not interested in having both be allowed at a json level.",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 42
+      },
+      "revId": "c3b9efa82b15ea96e8c8a9047bac34071afd4f57",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bc5d3c2e_defe12fc",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -50,6 +73,24 @@
       "side": 1,
       "message": "EM does not know about the DBus type when we configure with string.\nIt looks at the string at runtime and does a duck typing based on whatever it evaluates to.\n\nSo if there are no template vars and no operators like `+` then EM may just put a string on DBus and possibly crash the reactor.\n\njson-schema cannot represent this information.\n\nWe may need our own data structure in EM to represent what we need out of a schema:\n\n- name of property\n- type of property in config json\n- type of property on DBus (current solution cannot represent this)\n- optional/required property\n\nCurrently we use json-schema in a very specific way and we only need a small subset of it\u0027s features.\n\n@ed@tanous.net would you be ok with replacing json schema with our own json based solution here to solve these issues?\n\nWhat\u0027s your take on this, how do we teach EM which type is to be used at runtime for a given property?",
       "parentUuid": "0c3b7b89_8eb2be00",
+      "revId": "c3b9efa82b15ea96e8c8a9047bac34071afd4f57",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10f85786_82f25386",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-12T02:36:22Z",
+      "side": 1,
+      "message": "You can\u0027t really map dbus to the json schemas directly.  The logic for \"is this a number\" conversion is bonkers (and to be clear, should be fixed) but string is the safer of the two options, because EM devolves everything back to a string.\n\n\u003e our own data structure\n\nI really don\u0027t want to maintain per-property data structures.  FWIW, even the json schema implies a level of type safety that people rely on and fail because they didn\u0027t test.  As much as I dislike DRY sometimes, I think it applies here, needing to add an EM config, a json schema, a backend implementation, possibly a PDI config, and now a new structure for a single property is a development model that I don\u0027t think is very efficient and I\u0027m not sure I could support.\n\nIf we want to make changes in this area, I think the simplest would be \"everything is a string\" at dbus level.  Languages like TCL do this.  Some strings will look a lot like integers/hex and can be interpreted in the daemon as such.  Most EM daemons already interpret an \"number like\" string property as a number.  That way we\u0027re not trying to write per property conversions, and the config APIs look sane without needing yet another place we need to document each property.",
+      "parentUuid": "b6a2cbf3_5e40472c",
       "revId": "c3b9efa82b15ea96e8c8a9047bac34071afd4f57",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
