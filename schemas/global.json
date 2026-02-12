@@ -1,6 +1,20 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$defs": {
+        "Probe": {
+            "description": "The entity manager probe statement. A single string or array of strings describing a match condition (e.g. when a DBus property has a specific value). When the match occurs, the configuration is applied.",
+            "anyOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
         "EMConfig": {
             "title": "Entity Manager Configuration",
             "description": "The schema for an entity manager configuration. An entity manager configuration describes an association between a match condition, also known as a probe, and an array of heterogeneous configuration data.  When a probe match occurs, the configuration data is exported to DBus.",
@@ -22,18 +36,7 @@
                     "type": "string"
                 },
                 "Probe": {
-                    "description": "The schema for an entity manager probe statement. Probes can be a single string or an array. Probes describe a match condition, for example when a DBus property has a specific value. When the match condition occurs, the information described by the Exposes property is exported onto the DBus.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        }
-                    ]
+                    "$ref": "#/$defs/Probe"
                 },
                 "Type": {
                     "title": "Configuration Type",
@@ -107,6 +110,34 @@
                 }
             },
             "required": ["Exposes", "Name", "Probe", "Type"]
+        },
+        "EMPlatformConfig": {
+            "title": "Entity Manager Platform Configuration",
+            "description": "The schema for an entity manager platform configuration. A platform configuration describes a match condition and platform exposes (e.g. MCTP USB topology) that can span multiple entities.",
+            "additionalProperties": false,
+            "type": "object",
+            "properties": {
+                "PlatformExposes": {
+                    "description": "The schema for the platform exposes property. Must be an array where elements are of type PlatformExposesElement.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "platform/platform_exposes_record.json#/$defs/PlatformExposesElement"
+                    }
+                },
+                "Name": {
+                    "description": "The schema for the name property. The name property identifies the configuration.",
+                    "type": "string"
+                },
+                "Probe": {
+                    "$ref": "#/$defs/Probe"
+                },
+                "Type": {
+                    "title": "Configuration Type",
+                    "description": "The type property identifies this as a platform configuration.",
+                    "enum": ["Platform"]
+                }
+            },
+            "required": ["Name", "PlatformExposes", "Probe", "Type"]
         }
     },
     "title": "Entity Manager Configuration File",
@@ -120,6 +151,9 @@
         },
         {
             "$ref": "#/$defs/EMConfig"
+        },
+        {
+            "$ref": "#/$defs/EMPlatformConfig"
         }
     ]
 }

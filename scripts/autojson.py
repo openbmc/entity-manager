@@ -107,11 +107,16 @@ for file in files:
     with open(file) as fp:
         j = json.loads(comments.extract_comments(fp.read()))
 
+    def exposes_key(obj):
+        return "PlatformExposes" if obj.get("Type") == "Platform" else "Exposes"
+
     if isinstance(j, list):
         for item in j:
-            item["Exposes"] = sorted(item["Exposes"], key=lambda k: k["Type"])
+            key = exposes_key(item)
+            item[key] = sorted(item[key], key=lambda k: k["Type"])
     else:
-        j["Exposes"] = sorted(j["Exposes"], key=lambda k: k["Type"])
+        key = exposes_key(j)
+        j[key] = sorted(j[key], key=lambda k: k["Type"])
 
     with open(file, "w") as fp:
         contents = json.dumps(
