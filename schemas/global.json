@@ -40,13 +40,13 @@
                     "description": "The schema for the type property. The type property identifies the type of the configuration.  When exported, configurations will be instantiated as children of: /xyz/openbmc_project/configuration/<Type>",
                     "enum": [
                         "Board",
+                        "Cable",
                         "Chassis",
+                        "Cpu",
+                        "FlowMeter",
                         "NVMe",
                         "PowerSupply",
-                        "Cpu",
-                        "Cable",
                         "Valve",
-                        "FlowMeter"
                     ]
                 },
                 "xyz.openbmc_project.Common.UUID": {
