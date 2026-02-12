@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "30c19967_13dc1bd8",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 1017,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-12T00:11:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14c638f9_b2addd71",
+      "revId": "0c29c689a47659d89d87f0a4605bd145d9565879",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "17676b1f_50b2858c",
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "https://www.kernel.org/doc/html/v6.1/i2c/smbus-protocol.html -\u003e Doc here says \"If you write a driver for some I2C device, please try to use the SMBus commands if at all possible....This makes it possible to use the device driver on both SMBus adapters and I2C adapters.\" Do we want to keep it so smbus is supported, or do most eeproms not use smbus so we don\u0027t need the smbus commands?\n\n(and looks like by definition smbus uses 8-bit address so we do not need to worry about smbus support for 16-bit address eeproms)",
       "parentUuid": "17676b1f_50b2858c",
+      "revId": "0c29c689a47659d89d87f0a4605bd145d9565879",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c0968e6_43af2857",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 1027,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-12T00:11:23Z",
+      "side": 1,
+      "message": "\u003e please try to use the SMBus commands if at all possible\n\nConsidering we weren\u0027t able to use the smbus commands, I\u0027m assuming we don\u0027t fit the \"can use\" description of the smbus.\n\nIt\u0027s fine, we can have both paths.",
+      "parentUuid": "f125732e_4e507b28",
       "revId": "0c29c689a47659d89d87f0a4605bd145d9565879",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
