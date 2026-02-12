@@ -418,6 +418,36 @@
             "Type": "GPIODeviceDetect"
         },
         {
+            "Name": "SupplyValve2_1",
+            "PresencePinNames": [
+                "PRSNT1_VT2_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "SupplyValve2_2",
+            "PresencePinNames": [
+                "PRSNT2_VT2_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "SupplyValve2_3",
+            "PresencePinNames": [
+                "PRSNT3_VT2_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
             "Level": "Critical",
             "Name": "RackDripTrayLeak1",
             "PinName": "CHASSIS0_LEAK_Q_N_R",
@@ -538,6 +568,11 @@
         "PartNumber": "$BOARD_PART_NUMBER",
         "SerialNumber": "$BOARD_SERIAL_NUMBER",
         "SparePartNumber": "$BOARD_INFO_AM1"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Compatible": {
+        "Names": [
+            "com.meta.Hardware.BMC.Ventura2"
+        ]
     },
     "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
         "AssetTag": "$PRODUCT_ASSET_TAG"
