@@ -804,320 +804,6 @@
             "Type": "LatticeLFMXO5_25Firmware"
         },
         {
-            "Address": "0x47",
-            "Bus": 18,
-            "Labels": [
-                "vout1",
-                "vout2",
-                "iout1",
-                "iout2",
-                "pout1",
-                "pout2"
-            ],
-            "Name": "PVDDCR_CPU0_P0",
-            "Name1": "PVDDIO_MEM_S3_P0",
-            "PowerState": "On",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.034,
-                    "Label": "vout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1.7
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.0054,
-                    "Label": "vout1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0.27
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 8.84,
-                    "Label": "iout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 442
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 13.8,
-                    "Label": "pout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 690
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.027,
-                    "Label": "vout2",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1.35
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.0168,
-                    "Label": "vout2",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0.84
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 5.75,
-                    "Label": "iout2",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 287.5
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 7.11,
-                    "Label": "pout2",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 355.5
-                }
-            ],
-            "Type": "MP2869",
-            "iout1_Name": "MB_VR_CPU_PVDDCR_CPU0_CURR_A",
-            "iout2_Name": "MB_VR_CPU_PVDDIO_MEM_S3_CURR_A",
-            "pout1_Name": "MB_VR_CPU_PVDDCR_CPU0_PWR_W",
-            "pout2_Name": "MB_VR_CPU_PVDDIO_MEM_S3_PWR_W",
-            "vout1_Name": "MB_VR_CPU_PVDDCR_CPU0_VOLT_V",
-            "vout2_Name": "MB_VR_CPU_PVDDIO_MEM_S3_VOLT_V"
-        },
-        {
-            "Address": "0x4d",
-            "Bus": 18,
-            "Labels": [
-                "vout1",
-                "vout2",
-                "iout1",
-                "iout2",
-                "pout1",
-                "pout2"
-            ],
-            "Name": "PVDDCR_SOC_P0",
-            "Name1": "PVDDIO_P0",
-            "PowerState": "On",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.0264,
-                    "Label": "vout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1.32
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.0122,
-                    "Label": "vout1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0.61
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 8.2,
-                    "Label": "iout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 410
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 10.7448,
-                    "Label": "pout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 537.24
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.0265,
-                    "Label": "vout2",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1.325
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.0173,
-                    "Label": "vout2",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0.865
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 1.104,
-                    "Label": "iout2",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 55.2
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 1.3424,
-                    "Label": "pout2",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 67.12
-                }
-            ],
-            "Type": "MP29612",
-            "iout1_Name": "MB_VR_CPU_PVDDCR_SOC_CURR_A",
-            "iout2_Name": "MB_VR_CPU_PVDDIO_CURR_A",
-            "pout1_Name": "MB_VR_CPU_PVDDCR_SOC_PWR_W",
-            "pout2_Name": "MB_VR_CPU_PVDDIO_PWR_W",
-            "vout1_Name": "MB_VR_CPU_PVDDCR_SOC_VOLT_V",
-            "vout2_Name": "MB_VR_CPU_PVDDIO_VOLT_V"
-        },
-        {
-            "Address": "0x4e",
-            "Bus": 18,
-            "Labels": [
-                "vout1",
-                "iout1",
-                "pout1"
-            ],
-            "Name": "PVDDCR_CPU1_P0",
-            "PowerState": "On",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.034,
-                    "Label": "vout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1.7
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.0054,
-                    "Label": "vout1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0.27
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 8.84,
-                    "Label": "iout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 442.0
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 13.8,
-                    "Label": "pout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 690
-                }
-            ],
-            "Type": "MP29612",
-            "iout1_Name": "MB_VR_CPU_PVDDCR_CPU1_CURR_A",
-            "pout1_Name": "MB_VR_CPU_PVDDCR_CPU1_PWR_W",
-            "vout1_Name": "MB_VR_CPU_PVDDCR_CPU1_VOLT_V"
-        },
-        {
-            "Address": "0x4d",
-            "Bus": 18,
-            "FirmwareInfo": {
-                "CompatibleHardware": "com.meta.Hardware.Santabarbara.VR.MP29612_pvddcr_soc_p0",
-                "VendorIANA": 40981
-            },
-            "Name": "Santabarbara_MB_VR_pvddcr_soc_p0",
-            "Type": "MP2X6XXFirmware"
-        },
-        {
-            "Address": "0x4e",
-            "Bus": 18,
-            "FirmwareInfo": {
-                "CompatibleHardware": "com.meta.Hardware.Santabarbara.VR.MP29612_pvddcr_cpu1_p0",
-                "VendorIANA": 40981
-            },
-            "Name": "Santabarbara_MB_VR_pvddcr_cpu1_p0",
-            "Type": "MP2X6XXFirmware"
-        },
-        {
-            "Address": "0x47",
-            "Bus": 18,
-            "FirmwareInfo": {
-                "CompatibleHardware": "com.meta.Hardware.Santabarbara.VR.MP2869_pvddcr_cpu0_p0",
-                "VendorIANA": 40981
-            },
-            "Name": "Santabarbara_MB_VR_pvddcr_cpu0_p0",
-            "Type": "MP2X6XXFirmware"
-        },
-        {
-            "Address": "0x46",
-            "Bus": "18",
-            "Labels": [
-                "iout1",
-                "vout1",
-                "pout1"
-            ],
-            "Name": "MB_VR_PVDD18_S5",
-            "PowerState": "On",
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.0336,
-                    "Label": "vout1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 1.68
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.0373,
-                    "Label": "vout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1.865
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.506,
-                    "Label": "iout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 25.3
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.936,
-                    "Label": "pout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 46.8
-                }
-            ],
-            "Type": "MP9945",
-            "iout1_Name": "MB_VR_PVDD18_S5_CURR_A",
-            "pout1_Name": "MB_VR_PVDD18_S5_PWR_W",
-            "vout1_Name": "MB_VR_PVDD18_S5_VOLT_V"
-        },
-        {
-            "Address": "0x46",
-            "Bus": 18,
-            "FirmwareInfo": {
-                "CompatibleHardware": "com.meta.Hardware.Santabarbara.VR.MP9945_pvdd18_s5",
-                "VendorIANA": 40981
-            },
-            "Name": "Santabarbara_MB_VR_pvdd18_s5",
-            "Type": "MP994XFirmware"
-        },
-        {
             "Address": "0x6a",
             "Bus": 20,
             "Name": "MB_E1S0_TEMP_C",
@@ -1204,6 +890,261 @@
             "Type": "Pid.Zone",
             "UpdateThermalsTimeMS": 1000,
             "ZoneIndex": 0
+        },
+        {
+            "Address": "0x60",
+            "Bus": 18,
+            "Labels": [
+                "vout1",
+                "vout2",
+                "iout1",
+                "iout2",
+                "pout1",
+                "pout2"
+            ],
+            "Name": "PVDDCR_CPU0_P0",
+            "Name1": "PVDDIO_MEM_S3_P0",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.034,
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.7
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0054,
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.27
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 8.84,
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 442
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 13.8,
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 690
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.027,
+                    "Label": "vout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.35
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0168,
+                    "Label": "vout2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.84
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 5.75,
+                    "Label": "iout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 287.5
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 7.11,
+                    "Label": "pout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 355.5
+                }
+            ],
+            "Type": "RAA228228",
+            "iout1_Name": "MB_VR_CPU_PVDDCR_CPU0_CURR_A",
+            "iout2_Name": "MB_VR_CPU_PVDDIO_MEM_S3_CURR_A",
+            "pout1_Name": "MB_VR_CPU_PVDDCR_CPU0_PWR_W",
+            "pout2_Name": "MB_VR_CPU_PVDDIO_MEM_S3_PWR_W",
+            "vout1_Name": "MB_VR_CPU_PVDDCR_CPU0_VOLT_V",
+            "vout2_Name": "MB_VR_CPU_PVDDIO_MEM_S3_VOLT_V"
+        },
+        {
+            "Address": "0x62",
+            "Bus": 18,
+            "Labels": [
+                "vout1",
+                "iout1",
+                "pout1"
+            ],
+            "Name": "PVDDCR_CPU1_P0",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.034,
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.7
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0054,
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.27
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 8.84,
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 442.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 13.8,
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 690
+                }
+            ],
+            "Type": "RAA228228",
+            "iout1_Name": "MB_VR_CPU_PVDDCR_CPU1_CURR_A",
+            "pout1_Name": "MB_VR_CPU_PVDDCR_CPU1_PWR_W",
+            "vout1_Name": "MB_VR_CPU_PVDDCR_CPU1_VOLT_V"
+        },
+        {
+            "Address": "0x64",
+            "Bus": 18,
+            "Labels": [
+                "vout1",
+                "vout2",
+                "iout1",
+                "iout2",
+                "pout1",
+                "pout2"
+            ],
+            "Name": "PVDDCR_SOC_P0",
+            "Name1": "PVDDIO_P0",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0264,
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.32
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0122,
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.61
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 8.2,
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 410
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 10.7448,
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 537.24
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0265,
+                    "Label": "vout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.325
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0173,
+                    "Label": "vout2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.865
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.104,
+                    "Label": "iout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 55.2
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.3424,
+                    "Label": "pout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 67.12
+                }
+            ],
+            "Type": "RAA228228",
+            "iout1_Name": "MB_VR_CPU_PVDDCR_SOC_CURR_A",
+            "iout2_Name": "MB_VR_CPU_PVDDIO_CURR_A",
+            "pout1_Name": "MB_VR_CPU_PVDDCR_SOC_PWR_W",
+            "pout2_Name": "MB_VR_CPU_PVDDIO_PWR_W",
+            "vout1_Name": "MB_VR_CPU_PVDDCR_SOC_VOLT_V",
+            "vout2_Name": "MB_VR_CPU_PVDDIO_VOLT_V"
+        },
+        {
+            "Address": "0x60",
+            "Bus": 18,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Santabarbara.VR.RAA229639_pvddcr_cpu0_p0",
+                "VendorIANA": 40981
+            },
+            "Name": "Santabarbara_MB_VR_pvddcr_cpu0_p0",
+            "Type": "RAA22XGen3p5Firmware"
+        },
+        {
+            "Address": "0x62",
+            "Bus": 18,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Santabarbara.VR.RAA229640_pvddcr_cpu1_p0",
+                "VendorIANA": 40981
+            },
+            "Name": "Santabarbara_MB_VR_pvddcr_cpu1_p0",
+            "Type": "RAA22XGen3p5Firmware"
+        },
+        {
+            "Address": "0x64",
+            "Bus": 18,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Santabarbara.VR.RAA229640_pvddcr_soc_p0",
+                "VendorIANA": 40981
+            },
+            "Name": "Santabarbara_MB_VR_pvddcr_soc_p0",
+            "Type": "RAA22XGen3p5Firmware"
         },
         {
             "Address": "0x3c",
@@ -1619,6 +1560,65 @@
             ]
         },
         {
+            "Address": "0x69",
+            "Bus": "18",
+            "Labels": [
+                "iout1",
+                "vout1",
+                "pout1"
+            ],
+            "Name": "MB_VR_PVDD18_S5",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0336,
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.68
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0373,
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.865
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.506,
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 25.3
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.936,
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 46.8
+                }
+            ],
+            "Type": "TDA38640",
+            "iout1_Name": "MB_VR_PVDD18_S5_CURR_A",
+            "pout1_Name": "MB_VR_PVDD18_S5_PWR_W",
+            "vout1_Name": "MB_VR_PVDD18_S5_VOLT_V"
+        },
+        {
+            "Address": "0x69",
+            "Bus": 18,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Santabarbara.VR.TDA38640A_pvdd18_s5",
+                "VendorIANA": 40981
+            },
+            "Name": "Santabarbara_MB_VR_pvdd18_s5",
+            "Type": "TDA38640AFirmware"
+        },
+        {
             "Address": "0x4c",
             "Bus": 19,
             "Name": "MB_OUTLET_TEMP_C",
@@ -1664,7 +1664,7 @@
         }
     ],
     "Name": "Santa Barbara Chassis",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara MB', 'BOARD_MANUFACTURER': 'Quanta', 'PRODUCT_VERSION': '^(?!EVT1).*', 'BOARD_INFO_AM4': 'vr-mps'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara MB', 'BOARD_MANUFACTURER': 'Quanta', 'PRODUCT_VERSION': '^(?!EVT1).*', 'BOARD_INFO_AM4': 'vr-rtt'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
