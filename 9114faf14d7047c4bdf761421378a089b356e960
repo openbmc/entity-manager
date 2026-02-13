@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5a7689f_1aeea40e",
+        "filename": "docs/platform_configuration.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-02-13T07:39:26Z",
+      "side": 1,
+      "message": "Thanks, child commits will show concrete/tested on upstream examples. Those already existed (MCTP over USB on Nvidia upstream platform) - I\u0027m addressing Ed\u0027s comments on adding MCTP over USB as a platform schema/config as opposed to a regular/entity config.",
+      "parentUuid": "17c66c73_0ccef086",
+      "range": {
+        "startLine": 17,
+        "startChar": 8,
+        "endLine": 18,
+        "endChar": 42
+      },
+      "revId": "9114faf14d7047c4bdf761421378a089b356e960",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fd38f3ac_9c9583f0",
@@ -47,6 +71,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "00ff1bf4_a9c4d84b",
+        "filename": "docs/platform_configuration.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-02-13T07:39:26Z",
+      "side": 1,
+      "message": "I moved platform/ under schemas/ (and under configurations/). This wat the existing scripts work.",
+      "parentUuid": "fd38f3ac_9c9583f0",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 2
+      },
+      "revId": "9114faf14d7047c4bdf761421378a089b356e960",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d1b7ea2a_b48aaac2",
@@ -60,6 +108,30 @@
       "writtenOn": "2026-02-12T07:49:36Z",
       "side": 1,
       "message": "For the probe, please either break that out in the toplevel EM config and `$ref` to it here or re-write it as either array or single string.\n\n\nWriting it as array of string is not much more overhead than writing it as a single string and having less alternatives to write it simplifies things for the user.",
+      "range": {
+        "startLine": 128,
+        "startChar": 16,
+        "endLine": 141,
+        "endChar": 18
+      },
+      "revId": "9114faf14d7047c4bdf761421378a089b356e960",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8c8f8c6_374ed9f0",
+        "filename": "schemas/global.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-02-13T07:39:26Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d1b7ea2a_b48aaac2",
       "range": {
         "startLine": 128,
         "startChar": 16,
@@ -95,6 +167,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9a997b3c_09ff0db9",
+        "filename": "schemas/global.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-02-13T07:39:26Z",
+      "side": 1,
+      "message": "I don\u0027t have a strong opinion about either of the above or leaving it as is (current behavior). Will hear from @ed@tanous.net as well. Keeping this comment unsresolved.",
+      "parentUuid": "a27c8b1f_19e4997b",
+      "range": {
+        "startLine": 142,
+        "startChar": 15,
+        "endLine": 146,
+        "endChar": 17
+      },
+      "revId": "9114faf14d7047c4bdf761421378a089b356e960",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "24e7af5e_f5ec8b6f",
         "filename": "schemas/global.json",
         "patchSetId": 3
@@ -106,6 +202,30 @@
       "writtenOn": "2026-02-12T07:49:36Z",
       "side": 1,
       "message": "Please remove it here.\n\nWe don\u0027t need 2 ways to configure this and we don\u0027t need the indentation bloat introduced by the array.\n\nIt\u0027s just confusing for users to have 2 ways of doing things.",
+      "range": {
+        "startLine": 161,
+        "startChar": 1,
+        "endLine": 163,
+        "endChar": 21
+      },
+      "revId": "9114faf14d7047c4bdf761421378a089b356e960",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29a1661a_26c3ad8d",
+        "filename": "schemas/global.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-02-13T07:39:26Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "24e7af5e_f5ec8b6f",
       "range": {
         "startLine": 161,
         "startChar": 1,
@@ -133,6 +253,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9f804fc_c639c1bd",
+        "filename": "schemas/platform_schemas/platform_exposes_record.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-02-13T07:39:26Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "27c13e34_6e5cb440",
+      "revId": "9114faf14d7047c4bdf761421378a089b356e960",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4f41e569_f708b8c6",
@@ -146,6 +284,30 @@
       "writtenOn": "2026-02-12T07:49:36Z",
       "side": 1,
       "message": "If it\u0027s a configuration then it probably needs a schema with the properties listed.\n\nThere\u0027s only `Name` and `Type` currently.\n\nI don\u0027t think we can introduce any free-form configuration record.\n\nWhich properties can be configured needs to be known from the schema at build time since that\u0027s when configurations are validated.",
+      "range": {
+        "startLine": 5,
+        "startChar": 118,
+        "endLine": 5,
+        "endChar": 197
+      },
+      "revId": "9114faf14d7047c4bdf761421378a089b356e960",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49a25c5c_2acf16b9",
+        "filename": "schemas/platform_schemas/platform_exposes_record.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-02-13T07:39:26Z",
+      "side": 1,
+      "message": "That\u0027s happening in the child commit. As I mentioned in that commit, I can squash commits if need be. At the moment I wanted to keep this separate to get feedback on the concept.",
+      "parentUuid": "4f41e569_f708b8c6",
       "range": {
         "startLine": 5,
         "startChar": 118,
