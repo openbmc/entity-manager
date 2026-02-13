@@ -93,6 +93,24 @@
       "parentUuid": "b6a2cbf3_5e40472c",
       "revId": "c3b9efa82b15ea96e8c8a9047bac34071afd4f57",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6907d5a_0ec9672a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-13T03:42:07Z",
+      "side": 1,
+      "message": "\u003e level of type safety that people rely on and fail because they didn\u0027t test. \n\nI just don\u0027t get why configuration has to be so difficult. It\u0027s 101 of application programming. You have a config property, which has an expected type. No need for duck typing.\n\nEither the value has the expected type or there\u0027s a conversion error which is logged and the config is discarded. That\u0027s it. very simple.\n\nNo need to pass on the config parsing and type conversion problems onto reactors - since that is part of entity-manager\u0027s responsibility.\n\nSince there\u0027s a bunch of reactors but only one entity-manager, it makes sense to solve config parsing problems in entity-manager to prevent unnecessary code duplication.\n\n\u003e As much as I dislike DRY sometimes, I think it applies here, needing \nto add an EM config, a json schema, a backend implementation, possibly a\n PDI config, and now a new structure for a single property is a \ndevelopment model that I don\u0027t think is very efficient and I\u0027m not sure I\n could support.\n\nWhat would change for the config schema author is that they would have to specify the D-Bus type in addition to what they have to specify currently.\nSomething like `\"D-Bus-Type\": \"uint32\"` (or whichever char that\u0027s in D-Bus notation).\n\nI don\u0027t get why this is such a big problem since config schema authors already know which type to use since they have to parse that on the reactor side.\n\n\u003e If we want to make changes in this area, I think the simplest would be \"everything is a string\" at dbus level.\n\nentity-manager is already plenty slow without converting everything to string.\nYour suggestion would both increase runtime and memory consumption on entity-manager side and runtime (parsing overhead) on reactor side in addition to duplicating type conversion and associated error handling code across all reactors.",
+      "parentUuid": "10f85786_82f25386",
+      "revId": "c3b9efa82b15ea96e8c8a9047bac34071afd4f57",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
