@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f94c3974_e08f231a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-13T17:49:15Z",
+      "side": 1,
+      "message": "MBX is a company name?  I\u0027m not seeing anything in a quick search, maybe we need to put ahead?  Or is this a Mitac chassis?\n\nGoal for naming here is that if it\u0027s something public, the name is searchable.  If it\u0027s not a public company or it\u0027s some private config, so be it.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 3
+      },
+      "revId": "0835ae9d1cdb6f969f27755f4db1a47e37d04f8a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "768c3d8c_8aa8d3a6",
+        "filename": "OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-13T17:49:15Z",
+      "side": 1,
+      "message": "Do not sign up others for maintainership roles;  Unless my search failed, I haven\u0027t seen any contributions from Marvin, so this kind of maintainership is inappropriate.  I also don\u0027t see him in the latest roll call.\n\nAlexander, given that in the past you\u0027ve outright ignored written rules in ways that take significant amount of maintainer time, I\u0027m not personally comfortable sharing maintainership of this folder with you without review.  This commit is a good example that you need some level of review before checkin (given that you\u0027ve not modeled the nic correctly).\n\nI would be ecstatic for you AND marvin to add yourself as reviewers and do more review.\n\nIf other maintainers feel differently, I\u0027m happy to have that discussion.",
+      "revId": "0835ae9d1cdb6f969f27755f4db1a47e37d04f8a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05ca8ec9_02fbe668",
+        "filename": "configurations/mbx/mbx-1.57-chassis.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-13T17:49:15Z",
+      "side": 1,
+      "message": "Certainly your chassis doesn\u0027t have a fan connector.  Fan connector would go on the baseboard.\nhere: https://github.com/openbmc/entity-manager/blob/c88a1bea872d49a1ac7f4e0600f347120840486c/configurations/tyan/s8030_baseboard.json#L418",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 31
+      },
+      "revId": "0835ae9d1cdb6f969f27755f4db1a47e37d04f8a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b643ff50_d5963c1e",
+        "filename": "configurations/mbx/mbx-1.57-chassis.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-13T17:49:15Z",
+      "side": 1,
+      "message": "? Why are we naming something \"Ignore\"?",
+      "revId": "0835ae9d1cdb6f969f27755f4db1a47e37d04f8a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b37e5ac5_dca7edc3",
+        "filename": "configurations/mbx/mbx-1.57-chassis.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-13T17:49:15Z",
+      "side": 1,
+      "message": "Nic1 temp would belong to a NIC object?  Probably missing a file for the NIC?",
+      "revId": "0835ae9d1cdb6f969f27755f4db1a47e37d04f8a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
