@@ -92,6 +92,30 @@
       },
       "revId": "753539a5ff0bab69dbdb3d9ddc2ac97255bb0a23",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f403326_2e5de174",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 865,
+      "author": {
+        "id": 1001127
+      },
+      "writtenOn": "2026-02-13T02:44:04Z",
+      "side": 1,
+      "message": "The `FirmwareName` property is now redundant.\nThe implementation in \nhttps://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/83968\nhas transitioned to a lookup table mechanism based on the firmware types.",
+      "parentUuid": "8f303b01_ad804b82",
+      "range": {
+        "startLine": 865,
+        "startChar": 36,
+        "endLine": 865,
+        "endChar": 166
+      },
+      "revId": "753539a5ff0bab69dbdb3d9ddc2ac97255bb0a23",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
