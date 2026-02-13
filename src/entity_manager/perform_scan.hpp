@@ -47,4 +47,10 @@ struct PerformScan final : std::enable_shared_from_this<PerformScan>
     boost::asio::io_context& io;
 };
 
+namespace detail
+{
+void pruneMissingByName(nlohmann::json& missingConfigurations,
+                        const std::vector<std::string>& names);
+}
+
 } // namespace scan
