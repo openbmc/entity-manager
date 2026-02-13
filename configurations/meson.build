@@ -106,6 +106,8 @@ configs = [
     'intel/stp_baseboard.json',
     'intel/stp_p4000_chassis.json',
     'intel/wft_baseboard.json',
+    'mbx/mbx_1_57_chassis.json',
+    'mellanox/connectx-6.json',
     'meta/anacapa/anacapa_bridge_l_t16.json',
     'meta/anacapa/anacapa_bridge_l_t20.json',
     'meta/anacapa/anacapa_bridge_r_t16.json',

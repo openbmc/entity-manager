@@ -1,0 +1,75 @@
+{
+    "Exposes": [
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "CX6 NIC FRU $bus",
+            "Type": "EEPROM"
+        },
+        {
+            "Name": "GenericContainPort",
+            "PortType": "contained_by",
+            "Type": "Port"
+        },
+        {
+            "Address": "0x1f",
+            "Bus": "$bus",
+            "Labels": [
+                "temp2"
+            ],
+            "Name": "NIC Ignore $bus",
+            "Name1": "NIC Temp $bus",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Index": 2,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "less than",
+                    "Index": 2,
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 5
+                },
+                {
+                    "Direction": "greater than",
+                    "Index": 2,
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 90
+                },
+                {
+                    "Direction": "greater than",
+                    "Index": 2,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 105
+                },
+                {
+                    "Direction": "greater than",
+                    "Index": 2,
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 120
+                }
+            ],
+            "Type": "TMP421"
+        }
+    ],
+    "Name": "Mellanox ConnectX-6",
+    "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'ConnectX-6 Dx 100GE*', 'PRODUCT_MANUFACTURER': 'Mellanox'})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$PRODUCT_MANUFACTURER",
+        "Model": "$PRODUCT_PRODUCT_NAME",
+        "PartNumber": "$PRODUCT_PART_NUMBER",
+        "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    }
+}
