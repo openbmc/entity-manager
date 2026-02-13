@@ -82,6 +82,14 @@ namespace detail
 // and lexed. Returns an empty vector on error (a non-string statement or a
 // lexing error); a valid probe is never empty.
 std::vector<probe::Token> parseProbeCommand(const nlohmann::json& probeField);
+
+// Collect the "Name" of every entry in systemConfiguration, i.e. the names of
+// the already-applied configs.
+std::vector<std::string> collectConfiguredNames(
+    const nlohmann::json& systemConfiguration);
+
+void pruneMissingByName(nlohmann::json& missingConfigurations,
+                        const std::vector<std::string>& names);
 } // namespace detail
 
 } // namespace scan
