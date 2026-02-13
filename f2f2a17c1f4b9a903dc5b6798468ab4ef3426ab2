@@ -110,6 +110,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d8270f6d_b11c041c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-13T18:22:15Z",
+      "side": 1,
+      "message": "\u003e \u003e \"NIC 1 Temperature\" which is what humans read. \n\u003e \n\u003e We (Meta) don\u0027t have humans.  😊\n\nGot it, I\u0027m talking to an LLM 😊\n\n\u003e \n\u003e Everything goes through automation and unfortunately our internal team has a \"sensor schema we want to see\".  This is easy for content under `configurations/meta` but is obviously less easy for stuff outside there.\n\nYep, and I sympathize with that.  Nvidia has the same, as does Intel, as does Google.  At an EM level, naming is intended to be common to OpenBMC and consensus based.  Maybe in a meta layer we add some kind of \"meta renames to this\" mapping table so meta/nvidia/intel can have power to rename their things at will?\n\nThat sounds like what \"Alexander was potentially working on a method to overwrite common-device configs on a per-machine basis\" means, so I\u0027m in full support.\n\n\u003e \n\u003e \u003e I will say I\u0027m not a fan of the \"whomever checked it in first wins\" approach and would like to see some consistency here, but consistency is hard.\n\u003e \n\u003e I agree with the sentiment and would like to see consistency.  I think there is some value in \"first mover gets preference\" though when we\u0027re the ones putting in the effort to do everything upstream.  We\u0027ve even contributed most of the configs for Nvidia hardware.\n\u003e \n\u003e I brought up @alexander.hansen@9elements.com \u0027s work because Meta has been contracting with 9E to improve the situation here with this exact problem in mind.  There has been work in this direction but I don\u0027t think the [upstream] reception has been great.\n\nSome of the problem here is that this patch isn\u0027t an improvement, I would say it\u0027s going backwards from consistency.  I don\u0027t think anything else names these this way.\n\n\u003e \n\u003e I\u0027m fine with holding downstream patches for stuff that is in common use (like Nvidia parts) but I don\u0027t think we should need to hold downstream patches when we seem to be the only one using the config (as is the case of the Broadcomm ones) and we\u0027re the ones expending the effort on both ends of this problem: contributing the hardware configs and trying to enhance EM to have vendor/platform-specific tweaks.\n\u003e \n\u003e As soon as Alexander\u0027s work is in an acceptable state, I\u0027m good with us refactoring every sensor to be a \"human-oriented name\" if that\u0027s what you want and then the Meta-schema can be handled with his work.\n\nHuman readable is what I want for the simple reason that I can review it for correctness, that APIs like Redfish \"require\" it, and it\u0027s relatively easy to explain without having to read boatloads of documentation.  I don\u0027t know Metas naming policy, I don\u0027t know AMIs naming policy, and I know Googles naming policy breaks DBus (and requires patched downstream workarounds to that effect).\n\nAdding underscores here actually doesn\u0027t change the dbus path, so at that level it should be noop to keep the spaes.\n\nIf we do the mapping infra right, we can also make the rules relatively resistant to change.  \"Meta likes underscores instead of spaces\" could be codified.  \"Nvidia prefers Fan capitalized as FAN\", and things of that nature.\n\nBack to this patch, from a consistency standpoint, this is a regression, but you\u0027re right, Meta are the only ones that use this device at the moment.  This is not a hill I\u0027m going to stand on and block, because progress is better than consistency.  Remove the underscores (because those aren\u0027t required) and this patch can go.",
+      "parentUuid": "6e3d1c6c_9f3efe7a",
+      "revId": "f2f2a17c1f4b9a903dc5b6798468ab4ef3426ab2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1c8c9efd_13cfcba9",
         "filename": "configurations/brcm_200g_1p_ocp_mezz.json",
         "patchSetId": 2
@@ -145,6 +163,30 @@
       "side": 1,
       "message": "We\u0027ve named all of our sensors this way.",
       "parentUuid": "1c8c9efd_13cfcba9",
+      "range": {
+        "startLine": 15,
+        "startChar": 28,
+        "endLine": 15,
+        "endChar": 29
+      },
+      "revId": "f2f2a17c1f4b9a903dc5b6798468ab4ef3426ab2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa44d983_37f002a2",
+        "filename": "configurations/brcm_200g_1p_ocp_mezz.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-13T18:22:15Z",
+      "side": 1,
+      "message": "Spaces are replaced with underscores when constructing the dbus path already, so the dbus path should be what you expect (with underscores) without defining them here.",
+      "parentUuid": "a8adf34f_d01b809d",
       "range": {
         "startLine": 15,
         "startChar": 28,
