@@ -11,6 +11,7 @@
 #include <boost/asio/steady_timer.hpp>
 #include <phosphor-logging/lg2.hpp>
 
+#include <algorithm>
 #include <cerrno>
 #include <charconv>
 #include <flat_map>
@@ -574,6 +575,10 @@ void scan::PerformScan::updateSystemConfiguration(
 
         usedNames.insert(deviceName);
 
+        // So FOUND('resolved name') can match; we already added probeName
+        // (template) at the start
+        passedProbes.push_back(deviceName);
+
         for (auto& keyPair : record)
         {
             if (keyPair.first != "Name")
@@ -634,8 +639,59 @@ void scan::PerformScan::updateSystemConfiguration(
     }
 }
 
+void scan::detail::pruneMissingByName(nlohmann::json& missingConfigurations,
+                                      const std::vector<std::string>& names)
+{
+    for (const std::string& name : names)
+    {
+        for (auto mit = missingConfigurations.begin();
+             mit != missingConfigurations.end();)
+        {
+            const auto& dev = mit.value();
+            auto nameIt = dev.find("Name");
+            if (nameIt != dev.end() && nameIt->is_string() &&
+                nameIt->get<std::string>() == name)
+            {
+                mit = missingConfigurations.erase(mit);
+            }
+            else
+            {
+                ++mit;
+            }
+        }
+    }
+}
+
+std::vector<std::string> scan::detail::collectConfiguredNames(
+    const nlohmann::json& systemConfiguration)
+{
+    std::vector<std::string> names;
+    for (const auto& [_, config] : systemConfiguration.items())
+    {
+        auto nameIt = config.find("Name");
+        if (nameIt != config.end() && nameIt->is_string())
+        {
+            names.push_back(nameIt->get<std::string>());
+        }
+    }
+    return names;
+}
+
 void scan::PerformScan::run()
 {
+    // Seed from systemConfiguration so we don't prune configs that are
+    // already applied.
+    for (const std::string& name :
+         detail::collectConfiguredNames(_em.systemConfiguration))
+    {
+        passedProbes.push_back(name);
+    }
+
+    // Remove from missingConfigurations any config whose Name is in
+    // passedProbes (e.g. from previous scan or just seeded above), so the
+    // callback won't prune them.
+    detail::pruneMissingByName(_missingConfigurations, passedProbes);
+
     std::flat_set<std::string, std::less<>> dbusProbeInterfaces;
     std::vector<std::shared_ptr<probe::PerformProbe>> dbusProbePointers;
 

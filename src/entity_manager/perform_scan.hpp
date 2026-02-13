@@ -47,4 +47,15 @@ struct PerformScan final : std::enable_shared_from_this<PerformScan>
     boost::asio::io_context& io;
 };
 
+namespace detail
+{
+// Collect the "Name" of every entry in systemConfiguration (skipping any
+// entry without a string Name), i.e. the names of already-applied configs.
+std::vector<std::string> collectConfiguredNames(
+    const nlohmann::json& systemConfiguration);
+
+void pruneMissingByName(nlohmann::json& missingConfigurations,
+                        const std::vector<std::string>& names);
+} // namespace detail
+
 } // namespace scan
