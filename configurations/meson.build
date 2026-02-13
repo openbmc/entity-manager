@@ -256,6 +256,7 @@ configs = [
     'meta/yv5/yosemite5_e1s_x4_expansion_board_adc_tic_pmon_tic.json',
     'meta/yv5/yosemite5_mb_vr_mps_pvdd18vr_mps_adc_tic_i3chub_rtt.json',
     'meta/yv5/yosemite5_mb_vr_rtt_pvdd18vr_mps_adc_tic_i3chub_rtt.json',
+    'meta/yv5/yosemite5_mb_vr_rtt_pvdd18vr_sni_adc_tic_i3chub_rtt.json',
     'meta/yv5/yosemite5_mb_vr_sni_pvdd18vr_sni_adc_tic_i3chub_rtt.json',
     'meta/yv5/yosemite5_medusa_board.json',
     'meta/yv5/yosemite5_scm.json',
