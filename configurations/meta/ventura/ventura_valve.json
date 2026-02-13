@@ -13,7 +13,7 @@
         ],
         "Name": "$Name",
         "Probe": [
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^SupplyValve_1$'})"
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^SupplyValve_1$', 'Compatible': 'com.meta.Hardware.BMC.Ventura'})"
         ],
         "Type": "Valve",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
@@ -41,7 +41,7 @@
         ],
         "Name": "$Name",
         "Probe": [
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^ReturnValve_1$'})"
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^ReturnValve_1$', 'Compatible': 'com.meta.Hardware.BMC.Ventura'})"
         ],
         "Type": "Valve",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
