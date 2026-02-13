@@ -117,6 +117,24 @@
       "parentUuid": "44c642fb_43ef907e",
       "revId": "82f78ba60f027c75da3e09d73895fd081619e37d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16f3ef1f_a3f95d05",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-13T02:37:29Z",
+      "side": 1,
+      "message": "\u003e Proving that nobody uses a feature is difficult, and especially for a \nsmall feature like this, isn\u0027t worth the maintenance effort to break by \nremoval. \n\nIt\u0027s not \u0027difficult\u0027, it\u0027s *impossible*.\n\n\u003e If this feature is preventing you from implementing something, I\u0027m happy\n to have a technical discussion there about how to accomplish that, but \nthe justification that nobody uses it therefore it\u0027s worth the effort to\n review and delete, I don\u0027t agree with.\n\nIt\u0027s not \u0027preventing\u0027 me from doing anything, it is just slowing me down since i have to test the (likely) unused feature when making changes. So it\u0027s an ongoing burden for me, if it were to be removed, that is a one-time effort for you to review it and going forward things would be easier for me.\n\nThat being said, i guess it\u0027s up to you to decide which features to keep around.",
+      "parentUuid": "b45360ad_7bb0f1fa",
+      "revId": "82f78ba60f027c75da3e09d73895fd081619e37d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
