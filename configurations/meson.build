@@ -198,6 +198,7 @@ configs = [
     'meta/ventura2/ventura2_cable.json',
     'meta/ventura2/ventura2_canbus.json',
     'meta/ventura2/ventura2_fan_tic.json',
+    'meta/ventura2/ventura2_leak_legacy.json',
     'meta/ventura2/ventura2_management.json',
     'meta/ventura2/ventura2_minisas_bottom.json',
     'meta/ventura2/ventura2_minisas_top.json',
