@@ -1,6 +1,91 @@
 [
     {
         "Exposes": [],
+        "Name": "$Name",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^RackDripTrayLeak1Port$', 'Compatible': '^com.meta.Hardware.BMC.Ventura2$'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^RackDripTrayLeak2Port$', 'Compatible': '^com.meta.Hardware.BMC.Ventura2$'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^RackLeakSpare1Port$', 'Compatible': '^com.meta.Hardware.BMC.Ventura2$'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^RackLeakSpare2Port$', 'Compatible': '^com.meta.Hardware.BMC.Ventura2$'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^RackLeakSpare3Port$', 'Compatible': '^com.meta.Hardware.BMC.Ventura2$'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^RackFloorLeakPort$', 'Compatible': '^com.meta.Hardware.BMC.Ventura2$'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^RackFloorLeakSpare1Port$', 'Compatible': '^com.meta.Hardware.BMC.Ventura2$'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^RackFloorLeakSpare2Port$', 'Compatible': '^com.meta.Hardware.BMC.Ventura2$'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^RackVerticalColdManifoldLeakPort$', 'Compatible': '^com.meta.Hardware.BMC.Ventura2$'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^RackVerticalHotManifoldLeakPort$', 'Compatible': '^com.meta.Hardware.BMC.Ventura2$'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^RackHorizontalColdManifoldLeakPort$', 'Compatible': '^com.meta.Hardware.BMC.Ventura2$'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^RackHorizontalHotManifoldLeakPort$', 'Compatible': '^com.meta.Hardware.BMC.Ventura2$'})"
+        ],
+        "Type": "Cable",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "Unknown",
+            "Model": "Unknown",
+            "PartNumber": "Unknown",
+            "SerialNumber": "Unknown",
+            "SparePartNumber": "00-000000"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.Cable": {
+            "Length": 0.0,
+            "Type": "Copper"
+        }
+    },
+    {
+        "Exposes": [],
+        "Name": "$Name",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^RPU1LeakPort1$', 'Compatible': '^com.meta.Hardware.BMC.Ventura2$'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^RPU1LeakPort2$', 'Compatible': '^com.meta.Hardware.BMC.Ventura2$'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^RPU2LeakPort1$', 'Compatible': '^com.meta.Hardware.BMC.Ventura2$'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^RPU2LeakPort2$', 'Compatible': '^com.meta.Hardware.BMC.Ventura2$'})"
+        ],
+        "Type": "Cable",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "Unknown",
+            "Model": "Unknown",
+            "PartNumber": "Unknown",
+            "SerialNumber": "Unknown",
+            "SparePartNumber": "07-100409"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.Cable": {
+            "Length": 4.0,
+            "Type": "Copper"
+        }
+    },
+    {
+        "Exposes": [],
+        "Name": "$Name",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^LeakPort([1-9]|[1-3][0-9]|40)$', 'Compatible': '^com.meta.Hardware.BMC.Ventura2$'})"
+        ],
+        "Type": "Cable",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "Unknown",
+            "Model": "Unknown",
+            "PartNumber": "Unknown",
+            "SerialNumber": "Unknown",
+            "SparePartNumber": "Unknown"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.Cable": {
+            "Length": 0.0,
+            "Type": "Copper"
+        }
+    },
+    {
+        "Exposes": [],
         "Name": "ReturnValve_1_Port",
         "Probe": [
             "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^ReturnValve_1$', 'Compatible': '^com.meta.Hardware.BMC.Ventura2$'})"
