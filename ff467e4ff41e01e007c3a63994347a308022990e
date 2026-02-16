@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14a1a51d_a0df1881",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-16T06:07:56Z",
+      "side": 1,
+      "message": "Since it\u0027s a patch touching core logic of EM, it would be nice to test it independently in both happy path and error path with/without cached configuration with full debug logs.\n\ni don\u0027t think it\u0027s some trivial refactoring which can just be grouped together with other stuff. Maybe others will think differently.",
+      "revId": "ff467e4ff41e01e007c3a63994347a308022990e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "544a0a17_c2a0673f",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-16T06:07:56Z",
+      "side": 1,
+      "message": "see cpp core guidelines on function size. This function is already plenty unreadable,\nlet\u0027s not add extra stuff on top here without first breaking something out.",
+      "revId": "ff467e4ff41e01e007c3a63994347a308022990e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c23a91eb_6f0f4fb3",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 634,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-16T06:07:56Z",
+      "side": 1,
+      "message": "```\nauto nameIt \u003d config.find(\"Name\");\nif (nameIt !\u003d config.end() \u0026\u0026 nameIt-\u003eis_string())\n```\n\nIMO it\u0027s not appropriate to check if a configuration has a `Name` property (and which type it is) in the middle of the entity-manager probe / scan code.\n\n\nIt\u0027s necessary property for both EM config and individual exposes records.\n\nThat\u0027s something which should be checked as part of configuration parsing when entity-manager starts and loads (cached) configuration / state.\n\n\nOtherwise we may be checking it multiple times at runtime (on every properties changed and retry of probe and scan), creating extra overhead and i also don\u0027t see any proper error messages or testing of the error path here in case the property is not present.\n\n\nIf we instead check it as part of configuration parsing / init flow it will only be done once and we have a clean way to handle it (with proper error message) by discarding that cached configuration or configuration file.",
+      "range": {
+        "startLine": 627,
+        "startChar": 4,
+        "endLine": 634,
+        "endChar": 5
+      },
+      "revId": "ff467e4ff41e01e007c3a63994347a308022990e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af7f1f67_99b27e41",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 634,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-16T06:07:56Z",
+      "side": 1,
+      "message": "see cpp core guidelines on function size. Let\u0027s break out a function before adding all this extra code in here.",
+      "range": {
+        "startLine": 623,
+        "startChar": 0,
+        "endLine": 634,
+        "endChar": 5
+      },
+      "revId": "ff467e4ff41e01e007c3a63994347a308022990e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e046ff1_56438f33",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 638,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-16T06:07:56Z",
+      "side": 1,
+      "message": "Let\u0027s add a unit test for the expected state of `passedProbe` + `_missingConfigurations`\n\nIf we need a full paragraph to explain how it works, let\u0027s make sure it does not break again in the future.",
+      "range": {
+        "startLine": 636,
+        "startChar": 0,
+        "endLine": 638,
+        "endChar": 33
+      },
+      "revId": "ff467e4ff41e01e007c3a63994347a308022990e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
