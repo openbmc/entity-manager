@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c603a2d3_84b31588",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-16T22:49:55Z",
+      "side": 1,
+      "message": "Maybe we name it \u0027mbx-systems\u0027 ?  Just searching \"mbx\" doesn\u0027t give any relevant results for me.  First page of results on Google is MBX biosciences, a C++ library, and MBX extreme, none of which seem right.",
+      "parentUuid": "9acc615f_da81fc30",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 3
+      },
+      "revId": "0835ae9d1cdb6f969f27755f4db1a47e37d04f8a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "768c3d8c_8aa8d3a6",
         "filename": "OWNERS",
         "patchSetId": 1
@@ -197,6 +221,24 @@
       "side": 1,
       "message": "Sounds like we need to go debug this patch a little more then?  Maybe omit this for now while it\u0027s not working?\n\nNaming something \"ignore\" isn\u0027t really a great mechanism to disable a channel.  That\u0027s probably worth talking through for a TMP421 given it does a \"name1\" approach.",
       "parentUuid": "755985d5_a83cf2e1",
+      "revId": "0835ae9d1cdb6f969f27755f4db1a47e37d04f8a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf8ad971_80996a06",
+        "filename": "configurations/mbx/mbx-1.57-chassis.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-16T22:49:55Z",
+      "side": 1,
+      "message": "To elaborate more, because the TMP421 uses the hwmontemp sensor, which initially expected 1:1 mapping on sensor names, it\u0027s hard to disable the tmp421 itself.\n\nAre we positive we got the part number right here?  If we were using this driver, and the real part was something like a MAX1618, which doesn\u0027t have a local register, only remote, we\u0027d get the behavior you\u0027re seeing here, where only one sensor would read.",
+      "parentUuid": "fa5e9c53_4c01457f",
       "revId": "0835ae9d1cdb6f969f27755f4db1a47e37d04f8a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

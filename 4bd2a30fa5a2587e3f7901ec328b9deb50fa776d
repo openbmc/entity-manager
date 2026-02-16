@@ -1,6 +1,46 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ec2a34a_4e6366fd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-16T22:49:55Z",
+      "side": 1,
+      "message": "Overall looking much better.",
+      "revId": "4bd2a30fa5a2587e3f7901ec328b9deb50fa776d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0810213_eac780bf",
+        "filename": "configurations/mellanox/connectx-6.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-16T22:49:55Z",
+      "side": 1,
+      "message": "If I believe the manual here:\nhttps://docs.nvidia.com/nvidia-connectx-6-ethernet-adapter-cards-user-manual.pdf\n\nThis looks to be a 128kb part (A 16 bit part), so presumably we\u0027d need to use an AT24c128 specific type here?",
+      "range": {
+        "startLine": 7,
+        "startChar": 21,
+        "endLine": 7,
+        "endChar": 27
+      },
+      "revId": "4bd2a30fa5a2587e3f7901ec328b9deb50fa776d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7cac8b5b_5cf106bb",
