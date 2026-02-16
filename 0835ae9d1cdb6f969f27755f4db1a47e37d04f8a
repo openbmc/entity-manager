@@ -85,6 +85,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3ef463de_7847d46d",
+        "filename": "OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-16T21:05:48Z",
+      "side": 1,
+      "message": "This only appears partially resolved.   You are still signing up Marvin as a reviewer;  If Marvin wants that, he can open up a patch.",
+      "parentUuid": "1be110d3_b33612a0",
+      "revId": "0835ae9d1cdb6f969f27755f4db1a47e37d04f8a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "05ca8ec9_02fbe668",
         "filename": "configurations/mbx/mbx-1.57-chassis.json",
         "patchSetId": 1
@@ -167,6 +185,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fa5e9c53_4c01457f",
+        "filename": "configurations/mbx/mbx-1.57-chassis.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-16T21:05:48Z",
+      "side": 1,
+      "message": "Sounds like we need to go debug this patch a little more then?  Maybe omit this for now while it\u0027s not working?\n\nNaming something \"ignore\" isn\u0027t really a great mechanism to disable a channel.  That\u0027s probably worth talking through for a TMP421 given it does a \"name1\" approach.",
+      "parentUuid": "755985d5_a83cf2e1",
+      "revId": "0835ae9d1cdb6f969f27755f4db1a47e37d04f8a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b37e5ac5_dca7edc3",
         "filename": "configurations/mbx/mbx-1.57-chassis.json",
         "patchSetId": 1
@@ -237,6 +273,30 @@
       "side": 1,
       "message": "I dumped the `ipmitool fru` output, so i am not understanding the question here.",
       "parentUuid": "70a314b4_d81f8ec9",
+      "range": {
+        "startLine": 295,
+        "startChar": 70,
+        "endLine": 295,
+        "endChar": 74
+      },
+      "revId": "0835ae9d1cdb6f969f27755f4db1a47e37d04f8a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9db902b4_bcdbfd26",
+        "filename": "configurations/mbx/mbx-1.57-chassis.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-16T21:05:48Z",
+      "side": 1,
+      "message": "Please don\u0027t resolve comments if you\u0027re asking a question back.  It makes it hard to know if you\u0027ve resolved the issue or not, or are wanting more discussion.\n\nThis specific system you\u0027re on had \"1.57\".  The question is whether all of these systems have 1.57 in the FRU, or is 1.57 a version number, and we need to accept 1.X or 1.\\d\\d instead.",
+      "parentUuid": "8e56527d_e98bf78f",
       "range": {
         "startLine": 295,
         "startChar": 70,
