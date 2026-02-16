@@ -81,6 +81,24 @@
       "parentUuid": "604c76cf_18df43c7",
       "revId": "3bf16a10b077ea18509f9406e1e8ffe44795a719",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6c6c8ab_36534373",
+        "filename": "src/entity_manager/object_mapper.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-16T06:32:27Z",
+      "side": 1,
+      "message": "\u003e putting async_method calls in their own compile unit can cause template \nduplication issues, because this same code might be compiled in multiple\n units.\n\nThe function is used a lot in dbus-sensors (inside separate translation units), also in new code you have merged there... can you please further explain why i cannot use the function?\n\n\n\n```\nsrc/Utils.hpp\n238:    conn-\u003easync_method_call(\n274:        self-\u003edbusConnection-\u003easync_method_call(\n326:        dbusConnection-\u003easync_method_call(\n\nsrc/mcu/MCUTempSensor.cpp\n208:    dbusConnection-\u003easync_method_call(\n\nsrc/Utils.cpp\n356:    conn-\u003easync_method_call(\n389:    conn-\u003easync_method_call(\n424:    conn-\u003easync_method_call(\n685:    conn-\u003easync_method_call(\n828:    conn.async_method_call(\n\nsrc/exit-air/ExitAirTempSensor.cpp\n114:    conn-\u003easync_method_call(\n130:                conn-\u003easync_method_call(\n145:                        conn-\u003easync_method_call(\n225:    dbusConnection-\u003easync_method_call(\n311:    dbusConnection-\u003easync_method_call(\n562:    dbusConnection-\u003easync_method_call(\n580:    dbusConnection-\u003easync_method_call(\n607:                    self-\u003edbusConnection-\u003easync_method_call(\n\nsrc/Thresholds.cpp\n147:        conn-\u003easync_method_call(\n193:                conn-\u003easync_method_call(\n\nsrc/fan/FanMain.cpp\n232:    conn-\u003easync_method_call(\n\nsrc/smbpbi/SmbpbiSensor.cpp\n473:    dbusConnection-\u003easync_method_call(\n\nsrc/mctp/MCTPEndpoint.cpp\n120:    connection-\u003easync_method_call(\n308:        connection-\u003easync_method_call(\n349:    connection-\u003easync_method_call(\n\nsrc/ipmb/IpmbSensor.cpp\n153:    dbusConnection-\u003easync_method_call(\n499:    dbusConnection-\u003easync_method_call(\n600:    dbusConnection-\u003easync_method_call(\n\nsrc/ipmb/IpmbSDRSensor.cpp\n51:    conn-\u003easync_method_call(\n94:    conn-\u003easync_method_call(\n140:    conn-\u003easync_method_call(\n\nsrc/intrusion/IntrusionSensorMain.cpp\n427:        conn-\u003easync_method_call(\n\nsrc/nvidia-gpu/NvidiaDeviceDiscovery.cpp\n295:                    conn-\u003easync_method_call(\n328:    conn-\u003easync_method_call(\n414:    dbusConnection-\u003easync_method_call(\n```\n\nIf ed does not have time, maybe @spinler@us.ibm.com can you kindly explain it?",
+      "parentUuid": "61e28844_e77fb846",
+      "revId": "3bf16a10b077ea18509f9406e1e8ffe44795a719",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
