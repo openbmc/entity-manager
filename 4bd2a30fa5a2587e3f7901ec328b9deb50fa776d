@@ -41,6 +41,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1004d50f_638260e6",
+        "filename": "configurations/mellanox/connectx-6.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-17T04:22:39Z",
+      "side": 1,
+      "message": "Thanks for digging this up. Changed the type to match and added the document link in the commit message.",
+      "parentUuid": "d0810213_eac780bf",
+      "range": {
+        "startLine": 7,
+        "startChar": 21,
+        "endLine": 7,
+        "endChar": 27
+      },
+      "revId": "4bd2a30fa5a2587e3f7901ec328b9deb50fa776d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7cac8b5b_5cf106bb",
@@ -54,6 +78,24 @@
       "writtenOn": "2026-02-16T21:05:48Z",
       "side": 1,
       "message": "I count 5 fan headers on an S8030 board if I look at this picture https://www.mitaccomputing.com/Motherboards_S8030_S8030GM2NE_EN~Spec not 3.  If you don\u0027t have a way to test the other disconnected fan headers, that\u0027s fine, but lets make some assumptions that the other two fan headers are hooked to PWM 0 and 1 (given this starts at 3) and put that in the config.\n\nIf we\u0027re wrong, we can always fix it later once we have an acceptable fan setup, but I\u0027d rather we not accentually break this later by adding fan headers.",
+      "revId": "4bd2a30fa5a2587e3f7901ec328b9deb50fa776d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5972bfad_630c21e4",
+        "filename": "configurations/tyan/s8030_baseboard.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-17T04:22:39Z",
+      "side": 1,
+      "message": "Many Thanks for spending so much time on this review. Agree that the baseboard shall expose all the fan headers.\n\nI have pwm1 - pwm6 in hwmon. Adjusted the config to add the 5 headers. The extra headers don\u0027t cause any threshold event log since there is no reading so it\u0027s fine for me to have these enabled for now.\n\nAlso tested the pid loop again to confirm that the right pwm is written by pid control.",
+      "parentUuid": "7cac8b5b_5cf106bb",
       "revId": "4bd2a30fa5a2587e3f7901ec328b9deb50fa776d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

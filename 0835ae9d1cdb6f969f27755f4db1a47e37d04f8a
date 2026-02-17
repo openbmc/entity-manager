@@ -72,6 +72,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f05a987c_12ccb5e9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-17T04:22:39Z",
+      "side": 1,
+      "message": "\u003e Maybe we name it \u0027mbx-systems\u0027 ?\n\nYes, that seems to be the full company name, and better for search 👍\n\nFixed it here in the commit message and also renamed the config folder.",
+      "parentUuid": "c603a2d3_84b31588",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 3
+      },
+      "revId": "0835ae9d1cdb6f969f27755f4db1a47e37d04f8a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "768c3d8c_8aa8d3a6",
@@ -121,6 +145,24 @@
       "side": 1,
       "message": "This only appears partially resolved.   You are still signing up Marvin as a reviewer;  If Marvin wants that, he can open up a patch.",
       "parentUuid": "1be110d3_b33612a0",
+      "revId": "0835ae9d1cdb6f969f27755f4db1a47e37d04f8a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ecb5b65_2332a747",
+        "filename": "OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-17T04:22:39Z",
+      "side": 1,
+      "message": "changed it to not add other people.",
+      "parentUuid": "3ef463de_7847d46d",
       "revId": "0835ae9d1cdb6f969f27755f4db1a47e37d04f8a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -245,6 +287,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f1100bf9_18befe68",
+        "filename": "configurations/mbx/mbx-1.57-chassis.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-17T04:22:39Z",
+      "side": 1,
+      "message": "\u003e Naming something \"ignore\" isn\u0027t really a great mechanism to disable a channel. \n\nWhat is the mechanism to disable the channel, is there a way to do it?\n\nIf there is no way, let\u0027s not get blocked on that. If someone finds the \u0027right\u0027 way to do it then i can simply re-test that on my board.\n\n\u003e Are we positive we got the part number right here?\n\nNot certain. That\u0027s simply the driver which happened to work on it. Someone at Nvidia will know it better since mellanox was apparently acquired by nvidia (https://en.wikipedia.org/wiki/Mellanox_Technologies).\n\n\u003e If we were using this driver, and the real part was something like a MAX1618, which doesn\u0027t have a local register, only remote, we\u0027d get the behavior \nyou\u0027re seeing here, where only one sensor would read.\n\n```\nroot@s8030-bmc-30303035c0c1:~# zcat /proc/config.gz | grep -i MAX16\n# CONFIG_SENSORS_MAX16065 is not set\nCONFIG_SENSORS_MAX1619\u003dy\n# CONFIG_SENSORS_MAX1668 is not set\n# CONFIG_SENSORS_MAX16064 is not set\n# CONFIG_SENSORS_MAX16601 is not set\n```\n\n```\nroot@s8030-bmc-30303035c0c1:/sys/bus/i2c/devices/i2c-19# echo max1619 0x1f \u003e new_device\n\n[ 1083.670610] i2c i2c-19: new_device: Instantiated device max1619 at 0x1f\n\nroot@s8030-bmc-30303035c0c1:/sys/bus/i2c/devices/i2c-19# cat 19-001f/hwmon/hwmon5/temp1_input \n0\nroot@s8030-bmc-30303035c0c1:/sys/bus/i2c/devices/i2c-19# cat 19-001f/hwmon/hwmon5/temp2_input \n48000\n```\n\nso max1618 did not probe at all but max1619 driver did probe.\nI\u0027m not sure if max1618 should be a separate driver, i only found max1619 in kernel \n\nhttps://github.com/torvalds/linux/blob/9702969978695d9a699a1f34771580cdbb153b33/drivers/hwmon/max1619.c#L55\n\nAs you can see the max1619 does expose 2 temperature sensors so we\u0027re back at square one.\n\nI split the patch, one for the chassis and one for the NIC to avoid getting everything stuck here.",
+      "parentUuid": "cf8ad971_80996a06",
+      "revId": "0835ae9d1cdb6f969f27755f4db1a47e37d04f8a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b37e5ac5_dca7edc3",
         "filename": "configurations/mbx/mbx-1.57-chassis.json",
         "patchSetId": 1
@@ -339,6 +399,30 @@
       "side": 1,
       "message": "Please don\u0027t resolve comments if you\u0027re asking a question back.  It makes it hard to know if you\u0027ve resolved the issue or not, or are wanting more discussion.\n\nThis specific system you\u0027re on had \"1.57\".  The question is whether all of these systems have 1.57 in the FRU, or is 1.57 a version number, and we need to accept 1.X or 1.\\d\\d instead.",
       "parentUuid": "8e56527d_e98bf78f",
+      "range": {
+        "startLine": 295,
+        "startChar": 70,
+        "endLine": 295,
+        "endChar": 74
+      },
+      "revId": "0835ae9d1cdb6f969f27755f4db1a47e37d04f8a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d67c4799_f24c986a",
+        "filename": "configurations/mbx/mbx-1.57-chassis.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-17T04:22:39Z",
+      "side": 1,
+      "message": "\u003e The question is whether all of these systems have 1.57 in the FRU, or is\n 1.57 a version number, and we need to accept 1.X or 1.\\d\\d instead.\n\nI have another chassis `mbx-1.60-chassis.json` which is based on Tyan S5549 baseboard.\n\nSince that\u0027s an intel platform and S8030 is AMD, it cannot be a version number since it\u0027s different socket which means whole different board instead of minor changes.\n\nThat\u0027s my current understanding of things. If someone else has these boards and knows better i can change it but i do not want to introduce some wildcard match here based purely on speculations.",
+      "parentUuid": "9db902b4_bcdbfd26",
       "range": {
         "startLine": 295,
         "startChar": 70,
