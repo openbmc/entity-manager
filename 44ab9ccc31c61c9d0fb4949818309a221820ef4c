@@ -135,6 +135,23 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c6f1ef4_de729630",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-02-18T19:39:06Z",
+      "side": 1,
+      "message": "It\u0027s not clear to me what this is supposed to have broken, other than the `last.json` being removed.  There was already a window in the original implementation where the JSON cache can be deleted but not re-written, in which case the `last.json` could be used as a restore case but never was.",
+      "revId": "44ab9ccc31c61c9d0fb4949818309a221820ef4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "008777ee_7c5d9b6d",
@@ -172,6 +189,30 @@
       "side": 1,
       "message": "line 617 before this change.\n```\nstd::filesystem::copy(currentConfiguration, lastConfiguration);\n```\n\nSo the current and last are the same contents, right?\nSo it would not matter which one we load from?\n\n\u003e doesn\u0027t this break logging of removed items?\n\nI tested by removing a powersupply and then running fru-device `ReScan`.\nentity-manager picks up the change and emits the right logs.\n\n```\nJan 26 02:05:32 s8030-bmc-30303035c0c1 entity-manager[13706]: pruning configuration\nJan 26 02:05:32 s8030-bmc-30303035c0c1 entity-manager[13706]: Inventory Removed: Supermicro PWS 920P SQ 0\nJan 26 02:05:32 s8030-bmc-30303035c0c1 entity-manager[13706]: deriving new configuration\nJan 26 02:05:32 s8030-bmc-30303035c0c1 entity-manager[13706]: start loading device overlays\nJan 26 02:05:32 s8030-bmc-30303035c0c1 entity-manager[13706]: finish loading device overlays\nJan 26 02:05:32 s8030-bmc-30303035c0c1 entity-manager[13706]: writing system configuration to /var/configuration/system.json\n```\n\nLet me know if you need a specific scenario tested and i can try it out.\nI don\u0027t manually test all the scenario and sequence of events since there is 100s of those.",
       "parentUuid": "008777ee_7c5d9b6d",
+      "range": {
+        "startLine": 623,
+        "startChar": 0,
+        "endLine": 623,
+        "endChar": 47
+      },
+      "revId": "44ab9ccc31c61c9d0fb4949818309a221820ef4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "342e0044_b52f6875",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 623,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-02-18T19:39:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c90e5e0_69280105",
       "range": {
         "startLine": 623,
         "startChar": 0,
