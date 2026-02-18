@@ -83,6 +83,23 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "a088a127_f6290ebe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-02-18T19:41:22Z",
+      "side": 1,
+      "message": "nit: I usually prefer these follow kernel fixes tag conventions on repositories.\n\n```suggestion\nFixes: 1df06a426eb0 (\"Log device added and device removed into journal\")\n```\n\nI created this with `git fixes 1df06...` and the following alias:\n```\n[alias]\n    fixes \u003d\"log -n1 --format\u003d\u0027%h (\\\"%s\\\")\u0027 --abbrev\u003d12\"\n```",
+      "revId": "44ab9ccc31c61c9d0fb4949818309a221820ef4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "c7cbdd34_073f5bc2",
