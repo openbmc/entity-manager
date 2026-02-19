@@ -160,7 +160,7 @@ In our example we only care about the eeprom and the temperature sensor. The
 `Type` field is checked against a device export map and if it matches a known
 device, it'll attempt to install the device. Be noticed that dbus only allows an
 interface name as an dot delimited string with each truncated substring starting
-with alphabets(a-z, A-Z). So the Type is intensionally renamed as EEPROM_24C02.
+with alphabets(a-z, A-Z). So the Type is intentionally renamed as EEPROM_24C02.
 It is safe to do so since Entity manager types are not required to be 1:1 with
 Linux types.
 

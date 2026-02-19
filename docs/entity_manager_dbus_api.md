@@ -14,7 +14,7 @@ is not a description of the internal workings.
 
 Entities are top level json objects that describe a piece of hardware. They are
 groups of configurations with few properties of their own, they are a container
-type for most pratical purposes.
+type for most practical purposes.
 
 #### Devices: `/xyz/openbmc_project/Inventory/Item/{Entity Type}/{Entity Name}/{Configuration}`
 
@@ -78,7 +78,7 @@ method call. Array objects will be indexed zero based.
 
 ##### Properties
 
-All members of the dictonary.
+All members of the dictionary.
 
 **Example**:
 
@@ -96,7 +96,7 @@ Interface: xyz.openbmc_project.Device.threshold.0
 Based on the above DBus object, there is an implicit requirement that device
 objects may not have more than one level deep of dictionary or list of
 dictionary. It is possible to extend in the future to allow nearly infinite
-levels deep of dictonary with extending the
+levels deep of dictionary with extending the
 **xyz.openbmc_project.Device.{Object}** to allow
 **xyz.openbmc_project.Device.{Object}.{SubObject}.{SubObject}** but that
 complexity will be avoided until proven needed.
