@@ -286,6 +286,31 @@ static std::optional<std::string> templateCharReplaceArray(
     return std::nullopt;
 }
 
+// @param strPtr: string to parse as number
+// @param strPtr: may be in base 10 or base 16 with '0x' prefix
+// @returns uint64_t number if it can be parsed as such
+static std::optional<uint64_t> parseAsNumber(const std::string* strPtr)
+{
+    std::string_view strView = *strPtr;
+    int base = 10;
+    if (strView.starts_with("0x"))
+    {
+        strView.remove_prefix(2);
+        base = 16;
+    }
+
+    uint64_t temp = 0;
+    bool fullMatch = false;
+    const std::from_chars_result res =
+        fromCharsWrapper(strView, temp, fullMatch, base);
+    if (res.ec == std::errc{} && fullMatch)
+    {
+        return temp;
+    }
+
+    return std::nullopt;
+}
+
 // finds the template character (currently set to $) and replaces the value with
 // the field found in a dbus object i.e. $ADDRESS would get populated with the
 // ADDRESS field from a object on dbus
@@ -332,21 +357,10 @@ std::optional<std::string> templateCharReplace(
         return ret;
     }
 
-    std::string_view strView = *strPtr;
-    int base = 10;
-    if (strView.starts_with("0x"))
+    const std::optional<uint64_t> optNum = parseAsNumber(strPtr);
+    if (optNum.has_value())
     {
-        strView.remove_prefix(2);
-        base = 16;
-    }
-
-    uint64_t temp = 0;
-    bool fullMatch = false;
-    const std::from_chars_result res =
-        fromCharsWrapper(strView, temp, fullMatch, base);
-    if (res.ec == std::errc{} && fullMatch)
-    {
-        value = temp;
+        value = optNum.value();
     }
 
     return ret;
