@@ -187,6 +187,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0698dad5_93f2a6c7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-19T00:22:24Z",
+      "side": 1,
+      "message": "\u003e It\u0027s not clear to me what this is supposed to have broken, other than the last.json being removed\n\nI\u0027m not even against having some kind of developer feature like that to compare runtime config changes but IMO it should be implemented in the config write flow and not in the init flow. \n\nSince it\u0027s purely an output feature for the developer and is never fed back into EM.\n\nSo if anyone actually needs/wants it i see no problem adding it back in a way that\u0027s less confusing and works slightly different (reflecting any runtime config change and not squashing everything that happened since EM last re-started).",
+      "parentUuid": "2c6f1ef4_de729630",
+      "revId": "44ab9ccc31c61c9d0fb4949818309a221820ef4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "008777ee_7c5d9b6d",
