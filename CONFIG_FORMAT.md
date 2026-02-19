@@ -42,7 +42,7 @@ intended to be simple, and are guided by the following principles.
      - Example: SAS modules and cards made by the same company, on the same
        process, and branded with different manufacturers and part numbers.
      - Non-Example: Power supplies. While all pmbus power supplies appear
-       similar, there tend to be significant differences in featuresets, bugs,
+       similar, there tend to be significant differences in feature sets, bugs,
        and OEM supported firmware features. As such, they require separate
        config files.
 
@@ -61,11 +61,11 @@ intended to be simple, and are guided by the following principles.
    undetectable between platforms. Why?
    - There are many behaviors that the BMC has that are very easily detected at
      runtime, or where the behavior can be identical between different
-     platforms. Things like timeouts, protocol versions, and communcation
+     platforms. Things like timeouts, protocol versions, and communication
      channels can generally be represented with a default that works for all
      platforms, and doesn't need to be an entity-configurable parameter. In
      general, reducing the config files to _only_ the differences reduces
-     complexity, and explicitly bounds where dicsussion is needed for platform
+     complexity, and explicitly bounds where discussion is needed for platform
      differences, and where a difference is "supported" and "reasonable" to
      maintain in the long run.
 
@@ -95,11 +95,11 @@ Within a configuration file, there is a JSON object which consists of multiple
 Template strings in the form of "$identifier" may be used in configuration
 files. The following table describes the template strings currently defined.
 
-| Template String | Description                                                                                                                                                                                                                         |
-| :-------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| "$bus"          | During a I2C bus scan and when the "probe" command is successful, this template string is substituted with the bus number to which the device is connected.                                                                         |
-| "$address"      | When the "probe" is successful, this template string is substituted with the (7-bit) I2C address of the FRU device.                                                                                                                 |
-| "$index"        | A run-tim enumeration. This template string is substituted with a unique index value when the "probe" command is successful. This allows multiple identical devices (e.g., HSBPs) to exist in a system but each with a unique name. |
+| Template String | Description                                                                                                                                                                                                                          |
+| :-------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| "$bus"          | During a I2C bus scan and when the "probe" command is successful, this template string is substituted with the bus number to which the device is connected.                                                                          |
+| "$address"      | When the "probe" is successful, this template string is substituted with the (7-bit) I2C address of the FRU device.                                                                                                                  |
+| "$index"        | A run-time enumeration. This template string is substituted with a unique index value when the "probe" command is successful. This allows multiple identical devices (e.g., HSBPs) to exist in a system but each with a unique name. |
 
 ## Configuration HowTos
 
