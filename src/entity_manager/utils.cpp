@@ -264,6 +264,28 @@ static bool templateCharReplaceLoop(
     return false;
 }
 
+static std::optional<std::string> templateCharReplaceObj(
+    nlohmann::json::object_t* objPtr, const DBusInterface& interface,
+    const size_t index, const std::optional<std::string>& replaceStr)
+{
+    for (auto& [key, value] : *objPtr)
+    {
+        templateCharReplace(value, interface, index, replaceStr);
+    }
+    return std::nullopt;
+}
+
+static std::optional<std::string> templateCharReplaceArray(
+    nlohmann::json::array_t* arrayPtr, const DBusInterface& interface,
+    const size_t index, const std::optional<std::string>& replaceStr)
+{
+    for (auto& value : *arrayPtr)
+    {
+        templateCharReplace(value, interface, index, replaceStr);
+    }
+    return std::nullopt;
+}
+
 // finds the template character (currently set to $) and replaces the value with
 // the field found in a dbus object i.e. $ADDRESS would get populated with the
 // ADDRESS field from a object on dbus
@@ -271,33 +293,23 @@ std::optional<std::string> templateCharReplace(
     nlohmann::json& value, const DBusInterface& interface, const size_t index,
     const std::optional<std::string>& replaceStr)
 {
-    std::optional<std::string> ret = std::nullopt;
-
     nlohmann::json::object_t* objPtr =
         value.get_ptr<nlohmann::json::object_t*>();
     if (objPtr != nullptr)
     {
-        for (auto& [key, value] : *objPtr)
-        {
-            templateCharReplace(value, interface, index, replaceStr);
-        }
-        return ret;
+        return templateCharReplaceObj(objPtr, interface, index, replaceStr);
     }
 
     nlohmann::json::array_t* arrPtr = value.get_ptr<nlohmann::json::array_t*>();
     if (arrPtr != nullptr)
     {
-        for (auto& value : *arrPtr)
-        {
-            templateCharReplace(value, interface, index, replaceStr);
-        }
-        return ret;
+        return templateCharReplaceArray(arrPtr, interface, index, replaceStr);
     }
 
     std::string* strPtr = value.get_ptr<std::string*>();
     if (strPtr == nullptr)
     {
-        return ret;
+        return std::nullopt;
     }
 
     replaceAll(*strPtr, std::string(templateChar) + "index",
@@ -306,6 +318,8 @@ std::optional<std::string> templateCharReplace(
     {
         replaceAll(*strPtr, *replaceStr, std::to_string(index));
     }
+
+    std::optional<std::string> ret = std::nullopt;
 
     if (templateCharReplaceLoop(strPtr, interface, ret, value))
     {
