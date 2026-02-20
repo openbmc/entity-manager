@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "56781b29_bceb5abb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-02-20T09:19:24Z",
+      "side": 1,
+      "message": "Done, will update commit message.",
+      "parentUuid": "14a1a51d_a0df1881",
+      "revId": "ff467e4ff41e01e007c3a63994347a308022990e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "544a0a17_c2a0673f",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-02-16T06:07:56Z",
       "side": 1,
       "message": "see cpp core guidelines on function size. This function is already plenty unreadable,\nlet\u0027s not add extra stuff on top here without first breaking something out.",
+      "revId": "ff467e4ff41e01e007c3a63994347a308022990e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc8ce514_e57d953b",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-02-20T09:19:24Z",
+      "side": 1,
+      "message": "I agree the function is large but I think the refactor should be done independent of this series - I will still do that but in a different commit. I did separate out a function for what I added below.",
+      "parentUuid": "544a0a17_c2a0673f",
       "revId": "ff467e4ff41e01e007c3a63994347a308022990e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -81,6 +117,54 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3d6ff70_02242aca",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 634,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-02-20T09:19:24Z",
+      "side": 1,
+      "message": "Removed the check (checks on Name exist already).",
+      "parentUuid": "c23a91eb_6f0f4fb3",
+      "range": {
+        "startLine": 627,
+        "startChar": 4,
+        "endLine": 634,
+        "endChar": 5
+      },
+      "revId": "ff467e4ff41e01e007c3a63994347a308022990e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13eae781_8b74ab67",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 634,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-02-20T09:19:24Z",
+      "side": 1,
+      "message": "I agree the function is large but I think the refactor should be done independent of this series - I will still do that but in a different commit. I did separate out a function for what I added below.",
+      "parentUuid": "af7f1f67_99b27e41",
+      "range": {
+        "startLine": 623,
+        "startChar": 0,
+        "endLine": 634,
+        "endChar": 5
+      },
+      "revId": "ff467e4ff41e01e007c3a63994347a308022990e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2e046ff1_56438f33",
@@ -94,6 +178,30 @@
       "writtenOn": "2026-02-16T06:07:56Z",
       "side": 1,
       "message": "Let\u0027s add a unit test for the expected state of `passedProbe` + `_missingConfigurations`\n\nIf we need a full paragraph to explain how it works, let\u0027s make sure it does not break again in the future.",
+      "range": {
+        "startLine": 636,
+        "startChar": 0,
+        "endLine": 638,
+        "endChar": 33
+      },
+      "revId": "ff467e4ff41e01e007c3a63994347a308022990e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40692ffa_5dc490ed",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 638,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-02-20T09:19:24Z",
+      "side": 1,
+      "message": "Added a test.",
+      "parentUuid": "2e046ff1_56438f33",
       "range": {
         "startLine": 636,
         "startChar": 0,
