@@ -74,6 +74,15 @@ auto GPIOPresenceManager::addConfig(const sdbusplus::message::object_path& obj,
 
     auto gpioConfigs = presenceMap[obj]->gpioPolarity;
 
+    // Re-add: restore presence from cached GPIO state.
+    for (const auto& [gpioName, _] : gpioConfigs)
+    {
+        if (gpioState.contains(gpioName))
+        {
+            presenceMap[obj]->updateGPIOPresence(gpioName);
+        }
+    }
+
     // populate fdios
     for (auto& [gpioName, _] : gpioConfigs)
     {
