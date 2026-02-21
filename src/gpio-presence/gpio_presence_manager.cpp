@@ -124,6 +124,15 @@ auto GPIOPresenceManager::addConfig(const sdbusplus::message::object_path& obj,
             ctx.spawn(readGPIOAsyncEvent(gpioName));
         }
     }
+
+    // Re-add: update presence from cached GPIO state for already-tracked lines.
+    for (const auto& [gpioName, _] : gpioConfigs)
+    {
+        if (gpioState.contains(gpioName))
+        {
+            presenceMap[obj]->updateGPIOPresence(gpioName);
+        }
+    }
 }
 
 auto GPIOPresenceManager::addConfigHandler(sdbusplus::message::object_path obj)
