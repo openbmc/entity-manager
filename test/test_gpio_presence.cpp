@@ -174,3 +174,58 @@ TEST(GpioPresence, DevicePresentThenDisappearDbus)
     ctx.spawn(testDevicePresentThenDisappearDbus(ctx));
     ctx.run();
 }
+
+auto testReAddConfigRestoresPresenceDbus(sdbusplus::async::context& ctx)
+    -> sdbusplus::async::task<>
+{
+    gpio_presence::GPIOPresenceManager sensor(ctx);
+
+    std::string busName = sensor.setupBusName();
+
+    std::string name = "cable0";
+    std::string gpioName = "TEST_GPIO";
+
+    std::vector<std::string> gpioNames = {gpioName};
+    std::vector<uint64_t> gpioValues = {0};
+    std::vector<std::string> parentInvCompatible = {};
+
+    auto c1 = std::make_unique<gpio_presence::DevicePresence>(
+        ctx, gpioNames, gpioValues, name, sensor.gpioState,
+        parentInvCompatible);
+
+    sdbusplus::message::object_path objPath = c1->getObjPath();
+
+    sensor.addConfig(name, std::move(c1));
+    sensor.updatePresence(gpioName, false);
+
+    auto client = sdbusplus::client::xyz::openbmc_project::inventory::source::
+                      DevicePresence<>(ctx)
+                          .service(busName)
+                          .path(objPath.str);
+
+    std::string nameFound = co_await client.name();
+    EXPECT_EQ(nameFound, "cable0");
+
+    // Simulate config provider restart: replace config with a new
+    // DevicePresence while GPIO lines are already tracked.
+    auto c2 = std::make_unique<gpio_presence::DevicePresence>(
+        ctx, gpioNames, gpioValues, name, sensor.gpioState,
+        parentInvCompatible);
+
+    sensor.addConfig(name, std::move(c2));
+
+    // The new DevicePresence must have its D-Bus interface created from
+    // cached GPIO state, without requiring another GPIO event.
+    nameFound = co_await client.name();
+    EXPECT_EQ(nameFound, "cable0");
+
+    ctx.request_stop();
+    co_return;
+}
+
+TEST(GpioPresence, ReAddConfigRestoresPresenceDbus)
+{
+    sdbusplus::async::context ctx;
+    ctx.spawn(testReAddConfigRestoresPresenceDbus(ctx));
+    ctx.run();
+}
