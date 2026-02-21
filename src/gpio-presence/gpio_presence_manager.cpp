@@ -74,6 +74,17 @@ auto GPIOPresenceManager::addConfig(const sdbusplus::message::object_path& obj,
 
     auto gpioConfigs = presenceMap[obj]->gpioPolarity;
 
+    // Update presence from cached GPIO state. On re-add the GPIO setup
+    // loop below skips already-tracked lines, so no readGPIOAsyncEvent
+    // runs and the new DevicePresence would never get its D-Bus interface.
+    for (const auto& [gpioName, _] : gpioConfigs)
+    {
+        if (gpioState.contains(gpioName))
+        {
+            presenceMap[obj]->updateGPIOPresence(gpioName);
+        }
+    }
+
     // populate fdios
     for (auto& [gpioName, _] : gpioConfigs)
     {
