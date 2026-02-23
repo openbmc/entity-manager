@@ -755,14 +755,19 @@
                 "Type": "ADC"
             },
             {
-                "Connector": {
-                    "Name": "Fan Connector 1",
-                    "Pwm": 2,
-                    "PwmName": "PWM3",
-                    "Tachs": [
-                        4
-                    ]
-                },
+                "LED": "fan3_fault",
+                "Name": "Fan connector 3",
+                "Pwm": 2,
+                "PwmName": "PWM3",
+                "Status": "disabled",
+                "Tachs": [
+                    4,
+                    5
+                ],
+                "Type": "FanConnector"
+            },
+            {
+                "BindConnector": "Fan connector 3",
                 "Index": 4,
                 "MaxReading": 25500,
                 "Name": "FAN3_1",
@@ -784,14 +789,7 @@
                 "Type": "AspeedFan"
             },
             {
-                "Connector": {
-                    "Name": "Fan Connector 2",
-                    "Pwm": 2,
-                    "PwmName": "PWM3",
-                    "Tachs": [
-                        5
-                    ]
-                },
+                "BindConnector": "Fan connector 3",
                 "Index": 5,
                 "MaxReading": 25500,
                 "Name": "FAN3_2",
@@ -813,14 +811,19 @@
                 "Type": "AspeedFan"
             },
             {
-                "Connector": {
-                    "Name": "Fan Connector 3",
-                    "Pwm": 3,
-                    "PwmName": "PWM4",
-                    "Tachs": [
-                        6
-                    ]
-                },
+                "LED": "fan4_fault",
+                "Name": "Fan connector 4",
+                "Pwm": 3,
+                "PwmName": "PWM4",
+                "Status": "disabled",
+                "Tachs": [
+                    6,
+                    7
+                ],
+                "Type": "FanConnector"
+            },
+            {
+                "BindConnector": "Fan connector 4",
                 "Index": 6,
                 "MaxReading": 25500,
                 "Name": "FAN4_1",
@@ -842,14 +845,7 @@
                 "Type": "AspeedFan"
             },
             {
-                "Connector": {
-                    "Name": "Fan Connector 4",
-                    "Pwm": 3,
-                    "PwmName": "PWM4",
-                    "Tachs": [
-                        7
-                    ]
-                },
+                "BindConnector": "Fan connector 4",
                 "Index": 7,
                 "MaxReading": 25500,
                 "Name": "FAN4_2",
@@ -871,14 +867,19 @@
                 "Type": "AspeedFan"
             },
             {
-                "Connector": {
-                    "Name": "Fan Connector 5",
-                    "Pwm": 4,
-                    "PwmName": "PWM5",
-                    "Tachs": [
-                        8
-                    ]
-                },
+                "LED": "fan5_fault",
+                "Name": "Fan connector 5",
+                "Pwm": 4,
+                "PwmName": "PWM5",
+                "Status": "disabled",
+                "Tachs": [
+                    8,
+                    9
+                ],
+                "Type": "FanConnector"
+            },
+            {
+                "BindConnector": "Fan connector 5",
                 "Index": 8,
                 "MaxReading": 25500,
                 "Name": "FAN5_1",
@@ -900,14 +901,7 @@
                 "Type": "AspeedFan"
             },
             {
-                "Connector": {
-                    "Name": "Fan Connector 6",
-                    "Pwm": 4,
-                    "PwmName": "PWM5",
-                    "Tachs": [
-                        9
-                    ]
-                },
+                "BindConnector": "Fan connector 5",
                 "Index": 9,
                 "MaxReading": 25500,
                 "Name": "FAN5_2",
@@ -929,14 +923,19 @@
                 "Type": "AspeedFan"
             },
             {
-                "Connector": {
-                    "Name": "Fan Connector 7",
-                    "Pwm": 5,
-                    "PwmName": "PWM6",
-                    "Tachs": [
-                        10
-                    ]
-                },
+                "LED": "fan6_fault",
+                "Name": "Fan connector 6",
+                "Pwm": 5,
+                "PwmName": "PWM6",
+                "Status": "disabled",
+                "Tachs": [
+                    10,
+                    11
+                ],
+                "Type": "FanConnector"
+            },
+            {
+                "BindConnector": "Fan connector 6",
                 "Index": 10,
                 "MaxReading": 25500,
                 "Name": "FAN6_1",
@@ -958,14 +957,7 @@
                 "Type": "AspeedFan"
             },
             {
-                "Connector": {
-                    "Name": "Fan Connector 8",
-                    "Pwm": 5,
-                    "PwmName": "PWM6",
-                    "Tachs": [
-                        11
-                    ]
-                },
+                "BindConnector": "Fan connector 6",
                 "Index": 11,
                 "MaxReading": 25500,
                 "Name": "FAN6_2",
@@ -987,14 +979,19 @@
                 "Type": "AspeedFan"
             },
             {
-                "Connector": {
-                    "Name": "Fan Connector 9",
-                    "Pwm": 6,
-                    "PwmName": "PWM7",
-                    "Tachs": [
-                        12
-                    ]
-                },
+                "LED": "fan7_fault",
+                "Name": "Fan connector 7",
+                "Pwm": 6,
+                "PwmName": "PWM7",
+                "Status": "disabled",
+                "Tachs": [
+                    12,
+                    13
+                ],
+                "Type": "FanConnector"
+            },
+            {
+                "BindConnector": "Fan connector 7",
                 "Index": 12,
                 "MaxReading": 25500,
                 "Name": "FAN7_1",
@@ -1016,14 +1013,7 @@
                 "Type": "AspeedFan"
             },
             {
-                "Connector": {
-                    "Name": "Fan Connector 10",
-                    "Pwm": 6,
-                    "PwmName": "PWM7",
-                    "Tachs": [
-                        13
-                    ]
-                },
+                "BindConnector": "Fan connector 7",
                 "Index": 13,
                 "MaxReading": 25500,
                 "Name": "FAN7_2",
@@ -1045,14 +1035,19 @@
                 "Type": "AspeedFan"
             },
             {
-                "Connector": {
-                    "Name": "Fan Connector 11",
-                    "Pwm": 7,
-                    "PwmName": "PWM8",
-                    "Tachs": [
-                        14
-                    ]
-                },
+                "LED": "fan8_fault",
+                "Name": "Fan connector 8",
+                "Pwm": 7,
+                "PwmName": "PWM8",
+                "Status": "disabled",
+                "Tachs": [
+                    14,
+                    15
+                ],
+                "Type": "FanConnector"
+            },
+            {
+                "BindConnector": "Fan connector 8",
                 "Index": 14,
                 "MaxReading": 25500,
                 "Name": "FAN8_1",
@@ -1074,14 +1069,7 @@
                 "Type": "AspeedFan"
             },
             {
-                "Connector": {
-                    "Name": "Fan Connector 12",
-                    "Pwm": 7,
-                    "PwmName": "PWM8",
-                    "Tachs": [
-                        15
-                    ]
-                },
+                "BindConnector": "Fan connector 8",
                 "Index": 15,
                 "MaxReading": 25500,
                 "Name": "FAN8_2",
