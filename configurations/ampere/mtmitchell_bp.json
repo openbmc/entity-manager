@@ -1,87 +1,150 @@
-{
-    "Exposes": [
-        {
-            "Address": "$address",
-            "Bus": "$bus",
-            "Name": "Mitchell BP_$BUS % 100 + 1",
-            "Type": "EEPROM"
+[
+    {
+        "Exposes": [
+           {
+                "Address": "$ADDRESS",
+                "Bus": "$BUS",
+                "Name": "Mt.Jefferson BP 1 EEPROM",
+                "Type": "EEPROM"
+            },
+            {
+                "Address": "0x18",
+                "Bus": "0x9",
+                "EntityId": "0xf",
+                "EntityInstance": "0x2",
+                "Name": "FrontBPTemp1",
+                "Type": "JC42"
+            },
+            {
+                "Address": "0x6a",
+                "Bus": "0x30",
+                "Name": "nvme0",
+                "Type": "NVME1000"
+            },
+            {
+                "Address": "0x6a",
+                "Bus": "0x31",
+                "Name": "nvme1",
+                "Type": "NVME1000"
+            },
+            {
+                "Address": "0x6a",
+                "Bus": "0x32",
+                "Name": "nvme2",
+                "Type": "NVME1000"
+            },
+            {
+                "Address": "0x6a",
+                "Bus": "0x33",
+                "Name": "nvme3",
+                "Type": "NVME1000"
+            },
+            {
+                "Address": "0x6a",
+                "Bus": "0x34",
+                "Name": "nvme4",
+                "Type": "NVME1000"
+            },
+            {
+                "Address": "0x6a",
+                "Bus": "0x35",
+                "Name": "nvme5",
+                "Type": "NVME1000"
+            },
+            {
+                "Address": "0x6a",
+                "Bus": "0x36",
+                "Name": "nvme6",
+                "Type": "NVME1000"
+            },
+            {
+                "Address": "0x6a",
+                "Bus": "0x37",
+                "Name": "nvme7",
+                "Type": "NVME1000"
+            }
+        ],
+        "Name": "Mt.Jefferson BP 1",
+        "Probe": [
+            "xyz.openbmc_project.FruDevice({'BOARD_PART_NUMBER': 'CBP2980', 'ADDRESS': 80})",
+            "AND",
+            "FOUND('Mt.Jefferson_Motherboard')"
+        ],
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$BOARD_MANUFACTURER",
+            "Model": "$BOARD_PRODUCT_NAME",
+            "PartNumber": "$BOARD_PART_NUMBER",
+            "SerialNumber": "$BOARD_SERIAL_NUMBER"
         },
-        {
-            "Address": "0x6a",
-            "Bus": "$BUS % 100 * 8 + 48 + 0",
-            "Name": "nvme$BUS % 100 * 8 + 0",
-            "Type": "NVME1000"
+        "xyz.openbmc_project.Inventory.Decorator.Replaceable": {
+            "FieldReplaceable": false,
+            "HotPluggable": false
         },
-        {
-            "Address": "0x6a",
-            "Bus": "$BUS % 100 * 8 + 48 + 1",
-            "Name": "nvme$BUS % 100 * 8 + 1",
-            "Type": "NVME1000"
-        },
-        {
-            "Address": "0x6a",
-            "Bus": "$BUS % 100 * 8 + 48 + 2",
-            "Name": "nvme$BUS % 100 * 8 + 2",
-            "Type": "NVME1000"
-        },
-        {
-            "Address": "0x6a",
-            "Bus": "$BUS % 100 * 8 + 48 + 3",
-            "Name": "nvme$BUS % 100 * 8 + 3",
-            "Type": "NVME1000"
-        },
-        {
-            "Address": "0x6a",
-            "Bus": "$BUS % 100 * 8 + 48 + 4",
-            "Name": "nvme$BUS % 100 * 8 + 4",
-            "Type": "NVME1000"
-        },
-        {
-            "Address": "0x6a",
-            "Bus": "$BUS % 100 * 8 + 48 + 5",
-            "Name": "nvme$BUS % 100 * 8 + 5",
-            "Type": "NVME1000"
-        },
-        {
-            "Address": "0x6a",
-            "Bus": "$BUS % 100 * 8 + 48 + 6",
-            "Name": "nvme$BUS % 100 * 8 + 6",
-            "Type": "NVME1000"
-        },
-        {
-            "Address": "0x6a",
-            "Bus": "$BUS % 100 * 8 + 48 + 7",
-            "Name": "nvme$BUS % 100 * 8 + 7",
-            "Type": "NVME1000"
-        },
-        {
-            "Address": "0x4C",
-            "Bus": "$bus",
-            "Name": "FrontBPTemp$BUS % 100 + 1",
-            "Type": "TMP75"
+        "xyz.openbmc_project.Inventory.Decorator.Revision": {
+            "Version": "$BOARD_INFO_AM1"
         }
-    ],
-    "Name": "Mitchell BP_$BUS % 100",
-    "Probe": [
-        "xyz.openbmc_project.FruDevice({'BOARD_PART_NUMBER': 'YZBB-01650-105'})",
-        "OR",
-        "xyz.openbmc_project.FruDevice({'BOARD_PART_NUMBER': 'YZBB-02856-102'})",
-        "AND",
-        "FOUND('Mt.Mitchell_Motherboard')"
-    ],
-    "Type": "Board",
-    "xyz.openbmc_project.Inventory.Decorator.Asset": {
-        "BuildDate": "$BOARD_MANUFACTURE_DATE",
-        "Manufacturer": "$BOARD_MANUFACTURER",
-        "Model": "$BOARD_PRODUCT_NAME",
-        "PartNumber": "$BOARD_PART_NUMBER",
-        "SerialNumber": "$BOARD_SERIAL_NUMBER"
     },
-    "xyz.openbmc_project.Inventory.Decorator.Replaceable": {
-        "FieldReplaceable": false,
-        "HotPluggable": false
-    },
-    "xyz.openbmc_project.Inventory.Decorator.Revision": {
-        "Version": "$BOARD_INFO_AM1"
-    }
-}
+    {
+        "Exposes": [
+            {
+                "Address": "$ADDRESS",
+                "Bus": "$BUS",
+                "Name": "Mt.Jefferson BP 2 EEPROM",
+                "Type": "EEPROM"
+            },
+            {
+                "Address": "0x1a",
+                "Bus": "0x9",
+                "EntityId": "0xf",
+                "EntityInstance": "0x3",
+                "Name": "FrontBPTemp2",
+                "Type": "JC42"
+            },
+            {
+                "Address": "0x6a",
+                "Bus": "0x38",
+                "Name": "nvme8",
+                "Type": "NVME1000"
+            },
+            {
+                "Address": "0x6a",
+                "Bus": "0x39",
+                "Name": "nvme9",
+                "Type": "NVME1000"
+            },
+            {
+                "Address": "0x6a",
+                "Bus": "0x3a",
+                "Name": "nvme10",
+                "Type": "NVME1000"
+            },
+            {
+                "Address": "0x6a",
+                "Bus": "0x3b",
+                "Name": "nvme11",
+                "Type": "NVME1000"
+            }
+        ],
+        "Name": "Mt.Jefferson BP 2",
+        "Probe": [
+            "xyz.openbmc_project.FruDevice({'BOARD_PART_NUMBER': 'CBP2980', 'ADDRESS': 82})",
+            "AND",
+            "FOUND('Mt.Jefferson_Motherboard')"
+        ],
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$BOARD_MANUFACTURER",
+            "Model": "$BOARD_PRODUCT_NAME",
+            "PartNumber": "$BOARD_PART_NUMBER",
+            "SerialNumber": "$BOARD_SERIAL_NUMBER"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.Replaceable": {
+            "FieldReplaceable": false,
+            "HotPluggable": false
+        },
+        "xyz.openbmc_project.Inventory.Decorator.Revision": {
+            "Version": "$BOARD_INFO_AM1"
+        }
+     }
+]
