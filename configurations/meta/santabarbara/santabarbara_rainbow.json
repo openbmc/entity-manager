@@ -3,7 +3,7 @@
         {
             "Address": "$address",
             "Bus": "$bus",
-            "Name": "Santa Barbara Rainbow module FRU $bus",
+            "Name": "Santa Barbara Rainbow module FRU $bus / 2 + 2 * 3 % 5 * 3 + 1 / 4",
             "Type": "EEPROM"
         },
         {
@@ -13,11 +13,11 @@
                 "CompatibleHardware": "com.meta.Hardware.Santabarbara.CPLD.LCMXO3D_9400_rainbow",
                 "VendorIANA": 40981
             },
-            "Name": "Santabarbara_Rainbow_CPLD_$bus",
+            "Name": "Santabarbara_Rainbow_CPLD_$bus / 2 + 2 * 3 % 5 * 3 + 1 / 4",
             "Type": "LatticeLCMXO3D_9400Firmware"
         }
     ],
-    "Name": "Santa Barbara Rainbow module $bus",
+    "Name": "Santa Barbara Rainbow module $bus / 2 + 2 * 3 % 5 * 3 + 1 / 4",
     "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara Rainbow module', 'BOARD_MANUFACTURER': 'Quanta'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
