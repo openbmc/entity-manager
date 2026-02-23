@@ -15,7 +15,11 @@
         }
     ],
     "Name": "NVIDIA HMC",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'P4764', 'BOARD_MANUFACTURER': 'NVIDIA'})",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'P4764', 'BOARD_MANUFACTURER': 'NVIDIA'})",
+        "OR",
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'P3809', 'BOARD_MANUFACTURER': 'NVIDIA', 'PRODUCT_PRODUCT_NAME': 'P3809-HMC'})"
+    ],
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
