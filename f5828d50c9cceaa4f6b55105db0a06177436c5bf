@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "123302cc_85095bd3",
+        "filename": "test/test_gpio_presence.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1000584
+      },
+      "writtenOn": "2026-02-23T15:40:07Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3263c867_6cae804b",
+      "range": {
+        "startLine": 193,
+        "startChar": 20,
+        "endLine": 194,
+        "endChar": 72
+      },
+      "revId": "f5828d50c9cceaa4f6b55105db0a06177436c5bf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "05aacc46_323009a2",
         "filename": "test/test_gpio_presence.cpp",
         "patchSetId": 5
@@ -54,6 +78,24 @@
       "writtenOn": "2026-02-23T00:24:42Z",
       "side": 1,
       "message": "```suggestion\n    sensor.updatePresence(gpioName, false);\n```\n\nThis is closer to how the other tests do it and also provides more test coverage.\n\nTried it out and the test still provides same pass/fail with/without your fix.",
+      "revId": "f5828d50c9cceaa4f6b55105db0a06177436c5bf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f6e57e9_5c65e77a",
+        "filename": "test/test_gpio_presence.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1000584
+      },
+      "writtenOn": "2026-02-23T15:40:07Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "05aacc46_323009a2",
       "revId": "f5828d50c9cceaa4f6b55105db0a06177436c5bf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -71,6 +113,30 @@
       "writtenOn": "2026-02-23T00:24:42Z",
       "side": 1,
       "message": "```suggestion\n    // Re-add: simulate config provider restart. The reactor should create\n```\n\nnit: IMO better to re-word it slightly.",
+      "range": {
+        "startLine": 204,
+        "startChar": 48,
+        "endLine": 204,
+        "endChar": 70
+      },
+      "revId": "f5828d50c9cceaa4f6b55105db0a06177436c5bf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "443707ca_1639d55d",
+        "filename": "test/test_gpio_presence.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1000584
+      },
+      "writtenOn": "2026-02-23T15:40:07Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "73a7d239_4ddf110d",
       "range": {
         "startLine": 204,
         "startChar": 48,
