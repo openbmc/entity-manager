@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2a467b1_c596e96f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-23T00:24:42Z",
+      "side": 1,
+      "message": "nice fix, few comments",
+      "revId": "f5828d50c9cceaa4f6b55105db0a06177436c5bf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3263c867_6cae804b",
+        "filename": "test/test_gpio_presence.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-23T00:24:42Z",
+      "side": 1,
+      "message": "IMO we should try to replicate the real scenario here.\n\nI don\u0027t see the problem with the path conflict, the `insert_or_assign` will take care of replacing the existing config.\n\nWhen the gpio is set to low in the testcase, that change should result in the D-Bus interface being created. The config being re-added should not be an issue.\n\nIf the D-Bus interface were not present when the config was re-added we would not be testing the failure scenario described in commit message.",
+      "range": {
+        "startLine": 193,
+        "startChar": 20,
+        "endLine": 194,
+        "endChar": 72
+      },
+      "revId": "f5828d50c9cceaa4f6b55105db0a06177436c5bf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05aacc46_323009a2",
+        "filename": "test/test_gpio_presence.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-23T00:24:42Z",
+      "side": 1,
+      "message": "```suggestion\n    sensor.updatePresence(gpioName, false);\n```\n\nThis is closer to how the other tests do it and also provides more test coverage.\n\nTried it out and the test still provides same pass/fail with/without your fix.",
+      "revId": "f5828d50c9cceaa4f6b55105db0a06177436c5bf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73a7d239_4ddf110d",
+        "filename": "test/test_gpio_presence.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-23T00:24:42Z",
+      "side": 1,
+      "message": "```suggestion\n    // Re-add: simulate config provider restart. The reactor should create\n```\n\nnit: IMO better to re-word it slightly.",
+      "range": {
+        "startLine": 204,
+        "startChar": 48,
+        "endLine": 204,
+        "endChar": 70
+      },
+      "revId": "f5828d50c9cceaa4f6b55105db0a06177436c5bf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
