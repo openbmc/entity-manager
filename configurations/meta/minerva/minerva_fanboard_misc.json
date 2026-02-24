@@ -3,7 +3,7 @@
         "Exposes": [],
         "Name": "$Name",
         "Probe": [
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'MinervaFan*'})"
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'MinervaFan*', 'Compatible': 'com.meta.Hardware.Minerva*'})"
         ],
         "Type": "Board",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
