@@ -525,9 +525,24 @@ resCodes formatIPMIFRU(
                 unsigned int minutes =
                     *fruBytesIter | *(fruBytesIter + 1) << 8 |
                     *(fruBytesIter + 2) << 16;
+
+                // The manufacturing date in IPMI is a 3 byte field that starts
+                // on 1/1/1996. In 2027 it is going to roll over. A demarcation
+                // date of 1/1/2006 is used such that any date before that is
+                // treated as if it is instead after the roll over date in 2027.
+                // 1/1/2006 is 3653 days after 1/1/1996
+                // (365 * 10 + 3 leap days (1996, 2000, 2004))
+                constexpr uint32_t demarcationMinutes = 3653 * 24 * 60;
+                constexpr uint32_t rolloverMinutes = 16777216; // 2^24
+                unsigned long totalMinutes = minutes;
+                if (totalMinutes < demarcationMinutes)
+                {
+                    totalMinutes += rolloverMinutes;
+                }
+
                 std::tm fruTime = intelEpoch();
                 std::time_t timeValue = timegm(&fruTime);
-                timeValue += static_cast<long>(minutes) * 60;
+                timeValue += static_cast<long>(totalMinutes) * 60;
                 fruTime = *std::gmtime(&timeValue);
 
                 // Tue Nov 20 23:08:00 2018

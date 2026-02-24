@@ -489,6 +489,82 @@ TEST(formatIPMIFRU, FullDecode)
             Pair("PRODUCT_VERSION", "AE.1")));
 }
 
+TEST(FormatIPMIFRUTest, ManufactureDateRolloverZero)
+{
+    std::array<uint8_t, 176> bmcFru = {};
+    bmcFru[0] = 0x01;  // Version
+    bmcFru[3] = 0x01;  // Board area offset
+    bmcFru[7] = 0xfe;  // Header checksum
+
+    bmcFru[8] = 0x01;  // Board version
+    bmcFru[9] = 0x01;  // Board length (8 bytes)
+    bmcFru[10] = 0x19; // Language
+    bmcFru[11] = 0x00; // Minutes byte 0
+    bmcFru[12] = 0x00; // Minutes byte 1
+    bmcFru[13] = 0x00; // Minutes byte 2
+    bmcFru[14] = 0xc1; // End of fields
+    // Checksum: (0x01 + 0x01 + 0x19 + 0x00 + 0x00 + 0x00 + 0xc1) = 0xdc
+    // 0x100 - 0xdc = 0x24
+    bmcFru[15] = 0x24;
+
+    std::flat_map<std::string, std::string, std::less<>> result;
+    // We expect resWarn because mandatory fields are missing, but date should
+    // be parsed.
+    ASSERT_EQ(formatIPMIFRU(bmcFru, result), resCodes::resWarn);
+    // 0 minutes (1/1/1996) -> Nov 24, 2027
+    EXPECT_EQ(result["BOARD_MANUFACTURE_DATE"], "20271124T201600Z");
+}
+
+TEST(FormatIPMIFRUTest, ManufactureDateRolloverBeforeDemarcation)
+{
+    std::array<uint8_t, 176> bmcFru = {};
+    bmcFru[0] = 0x01;  // Version
+    bmcFru[3] = 0x01;  // Board area offset
+    bmcFru[7] = 0xfe;  // Header checksum
+
+    bmcFru[8] = 0x01;  // Board version
+    bmcFru[9] = 0x01;  // Board length (8 bytes)
+    bmcFru[10] = 0x19; // Language
+    bmcFru[14] = 0xc1; // End of fields
+
+    // Just before demarcation: 1/1/2006 - 1 minute = 5260319 minutes
+    // 5260319 = 0x50441f
+    bmcFru[11] = 0x1f;
+    bmcFru[12] = 0x44;
+    bmcFru[13] = 0x50;
+    // Checksum: (0x01 + 0x01 + 0x19 + 0x1f + 0x44 + 0x50 + 0xc1) = 0x18f
+    // 0x100 - 0x8f = 0x71
+    bmcFru[15] = 0x71;
+    std::flat_map<std::string, std::string, std::less<>> result;
+    ASSERT_EQ(formatIPMIFRU(bmcFru, result), resCodes::resWarn);
+    EXPECT_EQ(result["BOARD_MANUFACTURE_DATE"], "20371124T201500Z");
+}
+
+TEST(FormatIPMIFRUTest, ManufactureDateAtDemarcation)
+{
+    std::array<uint8_t, 176> bmcFru = {};
+    bmcFru[0] = 0x01;  // Version
+    bmcFru[3] = 0x01;  // Board area offset
+    bmcFru[7] = 0xfe;  // Header checksum
+
+    bmcFru[8] = 0x01;  // Board version
+    bmcFru[9] = 0x01;  // Board length (8 bytes)
+    bmcFru[10] = 0x19; // Language
+    bmcFru[14] = 0xc1; // End of fields
+
+    // At demarcation: 1/1/2006 = 5260320 minutes
+    // 5260320 = 0x504420
+    bmcFru[11] = 0x20;
+    bmcFru[12] = 0x44;
+    bmcFru[13] = 0x50;
+    // Checksum: (0x01 + 0x01 + 0x19 + 0x20 + 0x44 + 0x50 + 0xc1) = 0x190
+    // 0x100 - 0x90 = 0x70
+    bmcFru[15] = 0x70;
+    std::flat_map<std::string, std::string, std::less<>> result;
+    ASSERT_EQ(formatIPMIFRU(bmcFru, result), resCodes::resWarn);
+    EXPECT_EQ(result["BOARD_MANUFACTURE_DATE"], "20060101T000000Z");
+}
+
 // Test for the `isFieldEditable` function
 TEST(IsFieldEditableTest, ValidField)
 {
