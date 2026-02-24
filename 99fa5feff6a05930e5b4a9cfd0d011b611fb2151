@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8910d51_c8f73eb6",
+        "filename": "configurations/ampere/mtjade.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 1444,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-24T22:38:55Z",
+      "side": 1,
+      "message": "As an abstraction, this doesn\u0027t meet the intent that they be relatively self describing.\n\n\"Name1\" means \"The name of the 1st input on a TMP421\".\n\nHow do I know that ExtraNames, index 1 means the same thing?  A TMP421 only has 2 inputs, so making this an array means that there\u0027s another place we can now mess up the config in ways that aren\u0027t statically detectable.\n\nIf we follow the convention of PSUSensor, where we add in the types, this would become\n\nTemp1,\nTemp0,\n\nEct.",
+      "range": {
+        "startLine": 1442,
+        "startChar": 0,
+        "endLine": 1444,
+        "endChar": 18
+      },
+      "revId": "99fa5feff6a05930e5b4a9cfd0d011b611fb2151",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60ba120f_c4f7e5b4",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-24T22:38:55Z",
+      "side": 1,
+      "message": "This is now unbounded, which gives us less safety than we had before.  If I create an array of 100000 of these, that will be parsed as valid.\n\nAdmittedly, the old format should\u0027ve explicitly limited the regex more, but as written you can only go to Name99 before you get cut off.  For TMP421s, this should\u0027ve realistically only allowed Name1.",
+      "revId": "99fa5feff6a05930e5b4a9cfd0d011b611fb2151",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
