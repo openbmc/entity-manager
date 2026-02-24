@@ -86,6 +86,24 @@
       "message": "At a design issue, I\u0027m not terribly interested in maintaining a list of specific devices in code that need a new interface.  If this is a temporary stepping stone, so be it, happy to discuss, but this kind of thing needs to only be a temporary (days or weeks) measure",
       "revId": "20cac88135db0cedf9cf62f728b637b5a5ed830b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f556f95_bffd3420",
+        "filename": "src/entity_manager/config_type_tree.cpp",
+        "patchSetId": 72
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-02-24T12:17:57Z",
+      "side": 1,
+      "message": "\u003e  If this is a temporary stepping stone, so be it, happy to discuss, but this kind of thing needs to only be a temporary (days or weeks) measure\n\nDoes that mean you\u0027re fine with us doing one at a time, provided both the EM and dbus-sensors are available, and helping to merge them together?\n\nIn other cases you\u0027ve said \"I want this all done at once\".  We can\u0027t have it both ways unless you\u0027re expecting 50 constantly merge-conflicting commits all to be presented at once, which is a fairly challenging ask.\n\nI just want to make sure we have the direction...",
+      "parentUuid": "894e018a_eb0c887c",
+      "revId": "20cac88135db0cedf9cf62f728b637b5a5ed830b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
