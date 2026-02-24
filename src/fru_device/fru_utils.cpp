@@ -8,6 +8,7 @@
 #include <phosphor-logging/lg2.hpp>
 
 #include <array>
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <filesystem>
@@ -525,9 +526,27 @@ resCodes formatIPMIFRU(
                 unsigned int minutes =
                     *fruBytesIter | *(fruBytesIter + 1) << 8 |
                     *(fruBytesIter + 2) << 16;
+
+                // The manufacturing date in IPMI is a 3 byte field that starts
+                // on 1/1/1996. In 2027 it is going to roll over. A demarcation
+                // date of 1/1/2006 is used such that any date before that is
+                // treated as if it is instead after the roll over date in 2027.
+                using namespace std::chrono;
+                constexpr uint64_t demarcationMinutes =
+                    duration_cast<std::chrono::minutes>(
+                        sys_days(2006y / January / 1) -
+                        sys_days(1996y / January / 1))
+                        .count();
+                constexpr uint64_t rolloverMinutes = 1 << (3 /*bytes*/ * 8);
+                uint64_t totalMinutes = minutes;
+                if (totalMinutes < demarcationMinutes)
+                {
+                    totalMinutes += rolloverMinutes;
+                }
+
                 std::tm fruTime = intelEpoch();
                 std::time_t timeValue = timegm(&fruTime);
-                timeValue += static_cast<long>(minutes) * 60;
+                timeValue += static_cast<long>(totalMinutes) * 60;
                 fruTime = *std::gmtime(&timeValue);
 
                 // Tue Nov 20 23:08:00 2018
