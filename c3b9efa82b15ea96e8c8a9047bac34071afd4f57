@@ -111,6 +111,41 @@
       "parentUuid": "10f85786_82f25386",
       "revId": "c3b9efa82b15ea96e8c8a9047bac34071afd4f57",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0d1111c_c99ab128",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-02-24T12:12:15Z",
+      "side": 1,
+      "message": "\u003e Something like \"D-Bus-Type\": \"uint32\" (or whichever char that\u0027s in D-Bus notation).\n\nThat gets a big 👍 from me.\n\nThere is danger in the \"strings when we really want integer\".  I get that the JSON [currently] has to be a string in order to make the expressions work, but it also means it is of itself a potential bug location: someone could intend their JSON to devolve into a number after calculation but it doesn\u0027t.  Having the intended type clear gives us something we can check against, at least at probe match time, and give a clear indication of what went wrong.\n\nThe alternative is that every consuming daemon has to be able to accept int and string or else they fail the dbus read and likely fail with some strange error code or exception.\n\n\n----\n\nAt this point can we just get this merged?  I answered Matt\u0027s original question which is effectively entity-manager already does duck-typing.  Using a number when you know the number is: 1) clearer 2) an already established pattern.",
+      "parentUuid": "a6907d5a_0ec9672a",
+      "revId": "c3b9efa82b15ea96e8c8a9047bac34071afd4f57",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d60b2c8_e7cd4086",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-02-24T12:12:15Z",
+      "side": 1,
+      "message": "This should probably be `[\"string\", \"number\"]` also?",
+      "revId": "c3b9efa82b15ea96e8c8a9047bac34071afd4f57",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
