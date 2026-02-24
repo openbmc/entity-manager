@@ -7,6 +7,29 @@
             "Type": "EEPROM"
         },
         {
+            "Address": "0x50",
+            "Bus": 0,
+            "Name": "Anacapa_LBB_Retimer_EEPROM",
+            "Type": "EEPROM_24C256"
+        },
+        {
+            "Address": "0x20",
+            "Bus": 50,
+            "FirmwareDevice": "Anacapa_LBB_Retimer_EEPROM",
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Anacapa.Retimer.PT5081L",
+                "VendorIANA": 40981
+            },
+            "MuxOutputs": [
+                {
+                    "Name": "RTM_MUX_L",
+                    "Polarity": "High"
+                }
+            ],
+            "Name": "Anacapa_LBB_Retimer",
+            "Type": "PT5081LFirmware"
+        },
+        {
             "Address": "0x20",
             "Bus": "$bus + 1",
             "Name": "BRB_L_RETIMER_TEMP_C",
