@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "433a1aba_47881b8b",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-02-24T22:08:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "083778c0_52418f3c",
+      "revId": "197c235430f1d8b3a406325d30878d2c395dfab7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "63891e00_f9df7a5b",
@@ -48,6 +66,30 @@
       "writtenOn": "2026-02-24T21:06:25Z",
       "side": 1,
       "message": "Nit, could be 0xFFFFFF to be more clear, and wouldn\u0027t need the comment.  Don\u0027t care that much if you don\u0027t want to change it.",
+      "range": {
+        "startLine": 536,
+        "startChar": 53,
+        "endLine": 536,
+        "endChar": 61
+      },
+      "revId": "197c235430f1d8b3a406325d30878d2c395dfab7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6548f7d4_a5cf867e",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-02-24T22:08:18Z",
+      "side": 1,
+      "message": "Done.  Used `1 \u003c\u003c 24` since it is a 3 byte array of data (well I did 3*8 for clarity).",
+      "parentUuid": "63891e00_f9df7a5b",
       "range": {
         "startLine": 536,
         "startChar": 53,
@@ -88,6 +130,30 @@
       "writtenOn": "2026-02-24T21:06:25Z",
       "side": 1,
       "message": "why 176?  Could be 16?",
+      "range": {
+        "startLine": 494,
+        "startChar": 24,
+        "endLine": 494,
+        "endChar": 27
+      },
+      "revId": "197c235430f1d8b3a406325d30878d2c395dfab7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bea1757_180aae5a",
+        "filename": "test/test_fru-utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-02-24T22:08:18Z",
+      "side": 1,
+      "message": "Done.  I switched to using a clearer `to_array` call.",
+      "parentUuid": "eebcaeaf_d1c9c808",
       "range": {
         "startLine": 494,
         "startChar": 24,
