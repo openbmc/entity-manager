@@ -231,7 +231,7 @@ static bool templateCharReplaceLoop(
 
         // we assume that the replacement is a number, because we can
         // only do math on numbers.. we might concatenate strings in the
-        // future, but thats later
+        // future, but that's later
         int number = std::visit(VariantToIntVisitor(), propValue);
         auto exprBegin = splitResult.begin();
         auto exprEnd = splitResult.end();

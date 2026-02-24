@@ -197,7 +197,7 @@ void Topology::fillAssocsForPortId(
             }
             for (const auto& assocName : member.second)
             {
-                // if the other end of the assocation does not declare
+                // if the other end of the association does not declare
                 // the reverse association, do not associate
                 const bool otherAgrees =
                     other.second.contains(assocName.getReverse());

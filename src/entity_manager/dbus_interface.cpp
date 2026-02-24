@@ -251,7 +251,7 @@ static void addObjectRuntimeValidateJson(
 
     if (!schemaFile.good())
     {
-        throw std::invalid_argument("No schema avaliable, cannot validate.");
+        throw std::invalid_argument("No schema available, cannot validate.");
     }
     nlohmann::json schema =
         nlohmann::json::parse(schemaFile, nullptr, false, true);

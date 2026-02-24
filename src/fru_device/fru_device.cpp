@@ -720,7 +720,7 @@ std::set<size_t> loadBlocklist(const char* path)
             std::exit(EXIT_FAILURE);
         }
 
-        // Catch exception here for type mis-match.
+        // Catch exception here for type mismatch.
         try
         {
             for (const auto& busIterator : buses)
@@ -754,7 +754,7 @@ std::set<size_t> loadBlocklist(const char* path)
         }
         catch (const nlohmann::detail::type_error& e)
         {
-            // Type mis-match is a critical error.
+            // Type mismatch is a critical error.
             lg2::error("Invalid bus type: {ERR}", "ERR", e.what());
             std::exit(EXIT_FAILURE);
         }
@@ -788,7 +788,7 @@ static void findI2CDevices(const std::vector<fs::path>& i2cBuses,
         {
             if (busFind->second == std::nullopt)
             {
-                continue; // Skip blocked busses.
+                continue; // Skip blocked buses.
             }
         }
         int rootBus = getRootBus(bus);
