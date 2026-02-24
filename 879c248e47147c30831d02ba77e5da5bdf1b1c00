@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8882dbd5_693631a3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-24T22:55:54Z",
+      "side": 1,
+      "message": "In support of this.  I do want to point out this is us going outside the standard in a way that I think is reproducible by others, but IPMI isn\u0027t maintained and the authors don\u0027t seem interested in solving this problem.  Because of that, I suspect this is the right thing to do.\n\nUltimately it will be up to the hardware manufacturers to figure this out, and whatever they do, we\u0027ll have to support.  This seems like a good option.",
+      "revId": "879c248e47147c30831d02ba77e5da5bdf1b1c00",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd47e5f0_4e7f8d8d",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-24T22:55:54Z",
+      "side": 1,
+      "message": "I probably would\u0027ve kept the intermediate variable names\n\n\nsys_days intelEpoch(2006y / January / 1);\nsys_days demarkation(2006y / January / 1);\n\nconstexpr uint64_t demarcationMinutes \u003d\n                    duration_cast\u003cstd::chrono::minutes\u003e(demarkation - intelEpoch);\n\n\nBut all good, fine as is.",
+      "range": {
+        "startLine": 537,
+        "startChar": 0,
+        "endLine": 538,
+        "endChar": 53
+      },
+      "revId": "879c248e47147c30831d02ba77e5da5bdf1b1c00",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
