@@ -39,6 +39,29 @@
       },
       "revId": "879c248e47147c30831d02ba77e5da5bdf1b1c00",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f463eb6_b1cbf632",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-24T23:42:40Z",
+      "side": 1,
+      "message": "Let\u0027s break this roll over code out into a separate function.\n\nLet\u0027s add a `lg2::warning` when the roll-over has been done.\n\nSo that we don\u0027t do out-of-spec things without printing some kind of warning.",
+      "range": {
+        "startLine": 530,
+        "startChar": 2,
+        "endLine": 545,
+        "endChar": 17
+      },
+      "revId": "879c248e47147c30831d02ba77e5da5bdf1b1c00",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
