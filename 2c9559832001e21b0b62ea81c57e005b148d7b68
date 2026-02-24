@@ -39,6 +39,29 @@
       "message": "why are you doing this one different than the previous ones?",
       "revId": "2c9559832001e21b0b62ea81c57e005b148d7b68",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbc2c55a_9034f954",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 1188,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-24T23:58:31Z",
+      "side": 1,
+      "message": "Let\u0027s add a small description as to what this property is used for. You will probably know better what to write here, below is just my initial draft.\n\n```suggestion\n                    \"LED\": {\n                        \"description\": \"Name of LED Group to assert on lower critical threshold event\",\n                        \"type\": \"string\"\n                    }\n```",
+      "range": {
+        "startLine": 1186,
+        "startChar": 20,
+        "endLine": 1188,
+        "endChar": 21
+      },
+      "revId": "2c9559832001e21b0b62ea81c57e005b148d7b68",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
