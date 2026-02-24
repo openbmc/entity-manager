@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b4d5087_3d91aa1a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-02-24T22:14:08Z",
+      "side": 1,
+      "message": "nit: this is entity-manager (as a repo) so you don\u0027t need this prefix.\n\nPrefer you start with something like:\n```\nconfigurations: meta: {minerva,santabarbara}:\n```",
+      "revId": "c9f3d098b4d8391a179c98b99c28b00500c875fd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3dfd3ed2_2d8ad1a8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-02-24T22:14:08Z",
+      "side": 1,
+      "message": "nit: `Add compatible ...`",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 11
+      },
+      "revId": "c9f3d098b4d8391a179c98b99c28b00500c875fd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85f64185_63dd8e7a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-02-24T22:14:08Z",
+      "side": 1,
+      "message": "nit:\n\n* Drop references to non-public tasks.\n* Drop \"Tags:\" tag.",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 5
+      },
+      "revId": "c9f3d098b4d8391a179c98b99c28b00500c875fd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55d5cd12_cbe1df01",
+        "filename": "configurations/meta/minerva/minerva_fanboard_adc_silergy.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-02-24T22:14:08Z",
+      "side": 1,
+      "message": "These aren\u0027t intended to be arbitrary but defined in phosphor-dbus-interfaces.  Take a look at `yaml/com/meta/Hardware/Harma.interface.yaml` and you\u0027ll see a `Boards` enumeration.\n\nI\u0027d expect something like `com.meta.Hardware.Minerva.Boards.FanBoard` here (after you create the enum in PDI).",
+      "revId": "c9f3d098b4d8391a179c98b99c28b00500c875fd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "365810c9_4b68a003",
+        "filename": "configurations/meta/minerva/minerva_fanboard_misc.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-02-24T22:14:08Z",
+      "side": 1,
+      "message": "nit: let\u0027s be explicit here instead of wildcard.",
+      "range": {
+        "startLine": 6,
+        "startChar": 103,
+        "endLine": 6,
+        "endChar": 131
+      },
+      "revId": "c9f3d098b4d8391a179c98b99c28b00500c875fd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fde5fe6d_01785388",
+        "filename": "configurations/meta/santabarbara/santabarbara_scm.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-02-24T22:14:08Z",
+      "side": 1,
+      "message": "Since the SCM is the BMC card, you could use the existing enumeration: `com.meta.Hardware.BMC.Santabarbara`.",
+      "revId": "c9f3d098b4d8391a179c98b99c28b00500c875fd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
