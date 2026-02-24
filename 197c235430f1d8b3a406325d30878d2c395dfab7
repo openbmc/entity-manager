@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4df514c6_611f87bb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-24T21:06:25Z",
+      "side": 1,
+      "message": "Overall seems fine.",
+      "revId": "197c235430f1d8b3a406325d30878d2c395dfab7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "083778c0_52418f3c",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-24T21:06:25Z",
+      "side": 1,
+      "message": "Do we want to get this from std::chrono?  Something like (untested)\n\nstd::chrono::year_month_day demarcation(\n        2006y, std::chrono::January, 1d\n    );\nstd::chrono::minutes demarcationMinutes \u003d demarcation.count();\n\nNot sure that\u0027s any better or worse than what\u0027s here.  Close out with noop if you don\u0027t feel like making that change, I\u0027m fine either way.",
+      "revId": "197c235430f1d8b3a406325d30878d2c395dfab7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63891e00_f9df7a5b",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-24T21:06:25Z",
+      "side": 1,
+      "message": "Nit, could be 0xFFFFFF to be more clear, and wouldn\u0027t need the comment.  Don\u0027t care that much if you don\u0027t want to change it.",
+      "range": {
+        "startLine": 536,
+        "startChar": 53,
+        "endLine": 536,
+        "endChar": 61
+      },
+      "revId": "197c235430f1d8b3a406325d30878d2c395dfab7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17c0df31_5b9a4349",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-24T21:06:25Z",
+      "side": 1,
+      "message": "Some day this all needs ported to std::chrono, but that day isn\u0027t today.",
+      "revId": "197c235430f1d8b3a406325d30878d2c395dfab7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eebcaeaf_d1c9c808",
+        "filename": "test/test_fru-utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-24T21:06:25Z",
+      "side": 1,
+      "message": "why 176?  Could be 16?",
+      "range": {
+        "startLine": 494,
+        "startChar": 24,
+        "endLine": 494,
+        "endChar": 27
+      },
+      "revId": "197c235430f1d8b3a406325d30878d2c395dfab7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
