@@ -6,6 +6,7 @@
             "Labels": [
                 "in0",
                 "in1",
+                "in2",
                 "in3",
                 "in4",
                 "in5",
@@ -49,6 +50,22 @@
                 },
                 {
                     "Direction": "greater than",
+                    "Hysteresis": 0.0254,
+                    "Label": "in2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.27
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0226,
+                    "Label": "in2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.13
+                },
+                {
+                    "Direction": "greater than",
                     "Hysteresis": 0.0693,
                     "Label": "in3",
                     "Name": "upper critical",
@@ -65,19 +82,19 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 0.0378,
+                    "Hysteresis": 0.0254,
                     "Label": "in4",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 1.89
+                    "Value": 1.27
                 },
                 {
                     "Direction": "less than",
-                    "Hysteresis": 0.0342,
+                    "Hysteresis": 0.0226,
                     "Label": "in4",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 1.71
+                    "Value": 1.13
                 },
                 {
                     "Direction": "greater than",
@@ -97,35 +114,35 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 0.0315,
+                    "Hysteresis": 0.0254,
                     "Label": "in6",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 1.575
+                    "Value": 1.27
                 },
                 {
                     "Direction": "less than",
-                    "Hysteresis": 0.0285,
+                    "Hysteresis": 0.0226,
                     "Label": "in6",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 1.425
+                    "Value": 1.13
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 0.0252,
+                    "Hysteresis": 0.0254,
                     "Label": "in7",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 1.26
+                    "Value": 1.27
                 },
                 {
                     "Direction": "less than",
-                    "Hysteresis": 0.0228,
+                    "Hysteresis": 0.0226,
                     "Label": "in7",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 1.14
+                    "Value": 1.13
                 }
             ],
             "Type": "ADS7830",
@@ -133,13 +150,14 @@
             "in0_Scale": 133.2599,
             "in1_Name": "SWB_P3V3_AUX_ADC_VOLT_V",
             "in1_Scale": 479.103,
+            "in2_Name": "SWB_P1V2_SCO1_ADC_VOLT_V",
             "in3_Name": "SWB_P3V3_ADC_VOLT_V",
             "in3_Scale": 479.103,
-            "in4_Name": "SWB_P1V8_PEX_ADC_VOLT_V",
+            "in4_Name": "SWB_P1V2_SCO2_ADC_VOLT_V",
             "in5_Name": "SWB_P5V_ADC_VOLT_V",
             "in5_Scale": 335.5482,
-            "in6_Name": "SWB_P1V5_PEX_ADC_VOLT_V",
-            "in7_Name": "SWB_P1V2_PEX_ADC_VOLT_V"
+            "in6_Name": "SWB_P1V2_SCO3_ADC_VOLT_V",
+            "in7_Name": "SWB_P1V2_SCO4_ADC_VOLT_V"
         },
         {
             "Address": "$address",
@@ -376,82 +394,82 @@
                 "pout1",
                 "pout2"
             ],
-            "Name": "SWB_P0V895_PEX",
-            "Name1": "SWB_P0V81_PEX_0",
+            "Name": "SWB_P0V75_SCO1",
+            "Name1": "SWB_P0V75_SCO3",
             "PowerState": "On",
             "Thresholds": [
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 0.0192,
+                    "Hysteresis": 0.0158,
                     "Label": "vout1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 0.958
+                    "Value": 0.79
                 },
                 {
                     "Direction": "less than",
-                    "Hysteresis": 0.0152,
+                    "Hysteresis": 0.0142,
                     "Label": "vout1",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 0.758
+                    "Value": 0.71
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 4.025,
+                    "Hysteresis": 0.792,
                     "Label": "iout1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 201.25
+                    "Value": 39.6
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 3.8558,
+                    "Hysteresis": 0.6256,
                     "Label": "pout1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 192.79
+                    "Value": 31.28
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 0.0178,
+                    "Hysteresis": 0.0158,
                     "Label": "vout2",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 0.892
+                    "Value": 0.79
                 },
                 {
                     "Direction": "less than",
-                    "Hysteresis": 0.0147,
+                    "Hysteresis": 0.0142,
                     "Label": "vout2",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 0.736
+                    "Value": 0.71
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 0.759,
+                    "Hysteresis": 0.792,
                     "Label": "iout2",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 37.95
+                    "Value": 39.6
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 0.677,
+                    "Hysteresis": 0.6256,
                     "Label": "pout2",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 33.85
+                    "Value": 31.28
                 }
             ],
             "Type": "MP2971",
-            "iout1_Name": "SWB_P0V895_PEX_CURR_A",
-            "iout2_Name": "SWB_P0V81_PEX_0_CURR_A",
-            "pout1_Name": "SWB_P0V895_PEX_PWR_W",
-            "pout2_Name": "SWB_P0V81_PEX_0_PWR_W",
-            "vout1_Name": "SWB_P0V895_PEX_VOLT_V",
-            "vout2_Name": "SWB_P0V81_PEX_0_VOLT_V"
+            "iout1_Name": "SWB_P0V75_SCO1_CURR_A",
+            "iout2_Name": "SWB_P0V75_SCO3_CURR_A",
+            "pout1_Name": "SWB_P0V75_SCO1_PWR_W",
+            "pout2_Name": "SWB_P0V75_SCO3_PWR_W",
+            "vout1_Name": "SWB_P0V75_SCO1_VOLT_V",
+            "vout2_Name": "SWB_P0V75_SCO3_VOLT_V"
         },
         {
             "Address": "0x43",
@@ -464,101 +482,101 @@
                 "pout1",
                 "pout2"
             ],
-            "Name": "SWB_P0V81_PEX_1",
-            "Name1": "SWB_P1V2_PEX",
+            "Name": "SWB_P0V75_SCO2",
+            "Name1": "SWB_P0V75_SCO4",
             "PowerState": "On",
             "Thresholds": [
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 0.0178,
+                    "Hysteresis": 0.0158,
                     "Label": "vout1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 0.892
+                    "Value": 0.79
                 },
                 {
                     "Direction": "less than",
-                    "Hysteresis": 0.0147,
+                    "Hysteresis": 0.0142,
                     "Label": "vout1",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 0.736
+                    "Value": 0.71
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 0.955,
+                    "Hysteresis": 0.792,
                     "Label": "iout1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 47.75
+                    "Value": 39.6
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 0.8514,
+                    "Hysteresis": 0.6256,
                     "Label": "pout1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 42.57
+                    "Value": 31.28
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 0.0258,
+                    "Hysteresis": 0.0158,
                     "Label": "vout2",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 1.29
+                    "Value": 0.79
                 },
                 {
                     "Direction": "less than",
-                    "Hysteresis": 0.022,
+                    "Hysteresis": 0.0142,
                     "Label": "vout2",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 1.1
+                    "Value": 0.71
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 0.224,
+                    "Hysteresis": 0.792,
                     "Label": "iout2",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 11.2
+                    "Value": 39.6
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 0.2888,
+                    "Hysteresis": 0.6256,
                     "Label": "pout2",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 14.44
+                    "Value": 31.28
                 }
             ],
             "Type": "MP2971",
-            "iout1_Name": "SWB_P0V81_PEX_1_CURR_A",
-            "iout2_Name": "SWB_P1V2_PEX_CURR_A",
-            "pout1_Name": "SWB_P0V81_PEX_1_PWR_W",
-            "pout2_Name": "SWB_P1V2_PEX_PWR_W",
-            "vout1_Name": "SWB_P0V81_PEX_1_VOLT_V",
-            "vout2_Name": "SWB_P1V2_PEX_VOLT_V"
+            "iout1_Name": "SWB_P0V75_SCO2_CURR_A",
+            "iout2_Name": "SWB_P0V75_SCO4_CURR_A",
+            "pout1_Name": "SWB_P0V75_SCO2_PWR_W",
+            "pout2_Name": "SWB_P0V75_SCO4_PWR_W",
+            "vout1_Name": "SWB_P0V75_SCO2_VOLT_V",
+            "vout2_Name": "SWB_P0V75_SCO4_VOLT_V"
         },
         {
             "Address": "0x42",
             "Bus": 33,
             "FirmwareInfo": {
-                "CompatibleHardware": "com.meta.Hardware.Santabarbara.VR.MP2971_p0v81_pex_0",
+                "CompatibleHardware": "com.meta.Hardware.Santabarbara.VR.MP2971_p0v75_sco1_sco3",
                 "VendorIANA": 40981
             },
-            "Name": "Santabarbara_SWB_VR_p0v81_pex_0",
+            "Name": "Santabarbara_SWB_VR_p0v75_sco1_sco3",
             "Type": "MP297XFirmware"
         },
         {
             "Address": "0x43",
             "Bus": 33,
             "FirmwareInfo": {
-                "CompatibleHardware": "com.meta.Hardware.Santabarbara.VR.MP2971_p0v81_pex_1",
+                "CompatibleHardware": "com.meta.Hardware.Santabarbara.VR.MP2971_p0v75_sco2_sco4",
                 "VendorIANA": 40981
             },
-            "Name": "Santabarbara_SWB_VR_p0v81_pex_1",
+            "Name": "Santabarbara_SWB_VR_p0v75_sco2_sco4",
             "Type": "MP297XFirmware"
         },
         {
@@ -585,7 +603,7 @@
         }
     ],
     "Name": "Santa Barbara PCIe switch board",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara PCIe switch board'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara PCIe switch board', 'BOARD_MANUFACTURER': 'Quanta', 'BOARD_INFO_AM4': 'vr-mps switch-aeb'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
