@@ -8,6 +8,7 @@
 #include <phosphor-logging/lg2.hpp>
 
 #include <array>
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <filesystem>
@@ -43,6 +44,26 @@ char bcdPlusToChar(uint8_t val)
 {
     val &= 0xf;
     return (val < 10) ? static_cast<char>(val + '0') : bcdHighChars[val - 10];
+}
+
+static uint64_t handleIPMITimeRollover(uint64_t minutes)
+{
+    // The manufacturing date in IPMI is a 3 byte field that starts
+    // on 1/1/1996. In 2027 it is going to roll over. A demarcation
+    // date of 1/1/2006 is used such that any date before that is
+    // treated as if it is instead after the roll over date in 2027.
+    using namespace std::chrono;
+    constexpr uint64_t demarcationMinutes =
+        duration_cast<std::chrono::minutes>(
+            sys_days(2006y / January / 1) - sys_days(1996y / January / 1))
+            .count();
+    constexpr uint64_t rolloverMinutes = 1 << (3 /*bytes*/ * 8);
+
+    if (minutes < demarcationMinutes)
+    {
+        return minutes + rolloverMinutes;
+    }
+    return minutes;
 }
 
 enum FRUDataEncoding
@@ -525,9 +546,12 @@ resCodes formatIPMIFRU(
                 unsigned int minutes =
                     *fruBytesIter | *(fruBytesIter + 1) << 8 |
                     *(fruBytesIter + 2) << 16;
+
+                auto totalMinutes = handleIPMITimeRollover(minutes);
+
                 std::tm fruTime = intelEpoch();
                 std::time_t timeValue = timegm(&fruTime);
-                timeValue += static_cast<long>(minutes) * 60;
+                timeValue += static_cast<long>(totalMinutes) * 60;
                 fruTime = *std::gmtime(&timeValue);
 
                 // Tue Nov 20 23:08:00 2018
