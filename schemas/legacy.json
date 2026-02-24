@@ -1182,6 +1182,10 @@
                             "type": "number"
                         },
                         "type": "array"
+                    },
+                    "LED": {
+                        "description": "Name of LED group to assert on lower critical threshold event",
+                        "type": "string"
                     }
                 },
                 "required": ["Name", "Pwm", "Tachs"],
