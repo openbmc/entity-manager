@@ -89,7 +89,7 @@ class Topology
     std::unordered_map<Path, BoardType> boardTypes;
     std::unordered_map<BoardName, Path> boardNames;
 
-    // Represents the mapping between inventory object pathes of a
+    // Represents the mapping between inventory object paths of a
     // probed configuration and the object paths of DBus interfaces
     // it was probed on.
     std::unordered_map<Path, std::set<Path>> probePaths;
