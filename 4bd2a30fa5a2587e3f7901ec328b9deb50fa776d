@@ -98,6 +98,24 @@
       "parentUuid": "7cac8b5b_5cf106bb",
       "revId": "4bd2a30fa5a2587e3f7901ec328b9deb50fa776d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f30bc9a5_a2518e47",
+        "filename": "configurations/tyan/s8030_baseboard.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-25T19:26:56Z",
+      "side": 1,
+      "message": "FWIW, I physically have one of these boards behind me on the bench, so I have some incentive to get this right.\n\n\u003eThe extra headers don\u0027t cause any threshold event log since there is no \nreading so it\u0027s fine for me to have these enabled for now.\n\nIn general by default you should have no thresholds on a fan header, then apply the thresholds based on the detected chassis (and therefore fans).\n\n\u003e Also tested the pid loop again to confirm that the right pwm is written by pid control.\n\nRock on.",
+      "parentUuid": "5972bfad_630c21e4",
+      "revId": "4bd2a30fa5a2587e3f7901ec328b9deb50fa776d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
