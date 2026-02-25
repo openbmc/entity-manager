@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d61796e5_197df3e7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-25T04:52:28Z",
+      "side": 1,
+      "message": "@ed@tanous.net please look again if you find the time 👍",
+      "revId": "dea028acbfbb045204c4527929e1f92131572186",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73775887_32771eb2",
+        "filename": "configurations/mbx-systems/mbx_1_57_chassis.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-25T04:52:28Z",
+      "side": 1,
+      "message": "Changed the chassis config to use `BindConnector` feature in the latest revision to properly separate the connector from the fan and it\u0027s associated thresholds.\n\nI hope this aligns with your expectation and existing configs 👍\n\nAlso re-tested the chassis + baseboard config.",
+      "range": {
+        "startLine": 4,
+        "startChar": 13,
+        "endLine": 4,
+        "endChar": 26
+      },
+      "revId": "dea028acbfbb045204c4527929e1f92131572186",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
