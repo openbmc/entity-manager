@@ -12,6 +12,7 @@
 #include <cstddef>
 #include <cstdint>
 #include <filesystem>
+#include <format>
 #include <iomanip>
 #include <numeric>
 #include <set>
@@ -27,14 +28,6 @@ extern "C"
 
 constexpr size_t fruVersion = 1; // Current FRU spec version number is 1
 
-std::tm intelEpoch()
-{
-    std::tm val = {};
-    val.tm_year = 1996 - 1900;
-    val.tm_mday = 1;
-    return val;
-}
-
 char sixBitToChar(uint8_t val)
 {
     return static_cast<char>((val & 0x3f) + ' ');
@@ -46,24 +39,29 @@ char bcdPlusToChar(uint8_t val)
     return (val < 10) ? static_cast<char>(val + '0') : bcdHighChars[val - 10];
 }
 
-static uint64_t handleIPMITimeRollover(uint64_t minutes)
+static std::string formatIPMITime(uint32_t minutes)
 {
     // The manufacturing date in IPMI is a 3 byte field that starts
     // on 1/1/1996. In 2027 it is going to roll over. A demarcation
     // date of 1/1/2006 is used such that any date before that is
     // treated as if it is instead after the roll over date in 2027.
     using namespace std::chrono;
-    constexpr uint64_t demarcationMinutes =
-        duration_cast<std::chrono::minutes>(
-            sys_days(2006y / January / 1) - sys_days(1996y / January / 1))
+
+    constexpr auto intelEpoch = sys_days{1996y / January / 1};
+    constexpr auto demarcationDate = sys_days{2006y / January / 1};
+    constexpr auto demarcationMinutes =
+        duration_cast<std::chrono::minutes>(demarcationDate - intelEpoch)
             .count();
     constexpr uint64_t rolloverMinutes = 1 << (3 /*bytes*/ * 8);
 
+    uint64_t totalMinutes = minutes;
     if (minutes < demarcationMinutes)
     {
-        return minutes + rolloverMinutes;
+        totalMinutes += rolloverMinutes;
     }
-    return minutes;
+
+    auto tp = intelEpoch + std::chrono::minutes(totalMinutes);
+    return std::format("{:%Y%m%dT%H%M%SZ}", tp);
 }
 
 enum FRUDataEncoding
@@ -547,25 +545,7 @@ resCodes formatIPMIFRU(
                     *fruBytesIter | *(fruBytesIter + 1) << 8 |
                     *(fruBytesIter + 2) << 16;
 
-                auto totalMinutes = handleIPMITimeRollover(minutes);
-
-                std::tm fruTime = intelEpoch();
-                std::time_t timeValue = timegm(&fruTime);
-                timeValue += static_cast<long>(totalMinutes) * 60;
-                fruTime = *std::gmtime(&timeValue);
-
-                // Tue Nov 20 23:08:00 2018
-                std::array<char, 32> timeString = {};
-                auto bytes = std::strftime(timeString.data(), timeString.size(),
-                                           "%Y%m%dT%H%M%SZ", &fruTime);
-                if (bytes == 0)
-                {
-                    lg2::error("invalid time string encountered");
-                    return resCodes::resErr;
-                }
-
-                result["BOARD_MANUFACTURE_DATE"] =
-                    std::string_view(timeString.data(), bytes);
+                result["BOARD_MANUFACTURE_DATE"] = formatIPMITime(minutes);
                 fruBytesIter += 3;
                 fruAreaFieldNames = &boardFruAreas;
                 break;
