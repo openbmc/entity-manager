@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b46cb4bd_920aa230",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-02-25T11:53:06Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "8882dbd5_693631a3",
+      "revId": "879c248e47147c30831d02ba77e5da5bdf1b1c00",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cd47e5f0_4e7f8d8d",
@@ -31,6 +49,30 @@
       "writtenOn": "2026-02-24T22:55:54Z",
       "side": 1,
       "message": "I probably would\u0027ve kept the intermediate variable names\n\n\nsys_days intelEpoch(2006y / January / 1);\nsys_days demarkation(2006y / January / 1);\n\nconstexpr uint64_t demarcationMinutes \u003d\n                    duration_cast\u003cstd::chrono::minutes\u003e(demarkation - intelEpoch);\n\n\nBut all good, fine as is.",
+      "range": {
+        "startLine": 537,
+        "startChar": 0,
+        "endLine": 538,
+        "endChar": 53
+      },
+      "revId": "879c248e47147c30831d02ba77e5da5bdf1b1c00",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e179ee7_c8cf6c72",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-02-25T11:53:06Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "cd47e5f0_4e7f8d8d",
       "range": {
         "startLine": 537,
         "startChar": 0,
@@ -78,6 +120,30 @@
       "side": 1,
       "message": "\u003e Let\u0027s add a lg2::warning when the roll-over has been done.\n\u003e So that we don\u0027t do out-of-spec things without printing some kind of warning.\n\nI don\u0027t agree we should do this.  It seems to me like we\u0027re just going to be spamming the journal in about 1 years time for every FRU.  A warning is \"if something isn\u0027t taken care of it might lead to a problem\" but there is nothing to take care of here.\n\nEven info is ... what is the point?  PCIe didn\u0027t even come out until 2003.  There aren\u0027t realistically even many devices that you could _accidentally_ plug into an openbmc supported system that were manufactured before 2006.",
       "parentUuid": "2f463eb6_b1cbf632",
+      "range": {
+        "startLine": 530,
+        "startChar": 2,
+        "endLine": 545,
+        "endChar": 17
+      },
+      "revId": "879c248e47147c30831d02ba77e5da5bdf1b1c00",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29a15b41_49990508",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-02-25T11:53:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aeba4afa_8b6d6074",
       "range": {
         "startLine": 530,
         "startChar": 2,
