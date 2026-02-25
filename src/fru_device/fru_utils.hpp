@@ -89,8 +89,6 @@ inline const std::string& getFruAreaName(fruAreas area)
     return fruAreaNames[static_cast<unsigned int>(area)];
 }
 
-std::tm intelEpoch();
-
 char sixBitToChar(uint8_t val);
 
 /* 0xd - 0xf are reserved values, but not fatal; use a placeholder char. */
