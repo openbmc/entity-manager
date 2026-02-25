@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1b45b6e_4cc42c99",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2026-02-25T03:22:28Z",
+      "side": 1,
+      "message": "careless copy-paste. Updated.",
+      "parentUuid": "ae3b0bde_9bd62b1e",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 61
+      },
+      "revId": "2c9559832001e21b0b62ea81c57e005b148d7b68",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e23aa159_650245d0",
@@ -41,6 +65,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c60fa1aa_a8a4b8fe",
+        "filename": "configurations/ampere/mtjefferson_mb.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 1114,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2026-02-25T03:22:28Z",
+      "side": 1,
+      "message": "The 2 configs in the previous 2 commits have 2 tachometers on each fan and need to reuse the connector config of the same PWM channel. Because this machine only has one tach on each physical fan, so there\u0027s no need to define a separate Connector config but just define it directly here.",
+      "parentUuid": "e23aa159_650245d0",
+      "revId": "2c9559832001e21b0b62ea81c57e005b148d7b68",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bbc2c55a_9034f954",
@@ -54,6 +96,30 @@
       "writtenOn": "2026-02-24T23:58:31Z",
       "side": 1,
       "message": "Let\u0027s add a small description as to what this property is used for. You will probably know better what to write here, below is just my initial draft.\n\n```suggestion\n                    \"LED\": {\n                        \"description\": \"Name of LED Group to assert on lower critical threshold event\",\n                        \"type\": \"string\"\n                    }\n```",
+      "range": {
+        "startLine": 1186,
+        "startChar": 20,
+        "endLine": 1188,
+        "endChar": 21
+      },
+      "revId": "2c9559832001e21b0b62ea81c57e005b148d7b68",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b61932c5_9ddd46f6",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 1188,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2026-02-25T03:22:28Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "bbc2c55a_9034f954",
       "range": {
         "startLine": 1186,
         "startChar": 20,
