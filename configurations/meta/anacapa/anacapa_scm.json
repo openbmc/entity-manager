@@ -6,16 +6,22 @@
             "ScaleFactor": 0.112359551,
             "Thresholds": [
                 {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 13.2
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.4
                 },
                 {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 10.8
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.6
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 16.4
                 }
             ],
             "Type": "ADC"
@@ -26,16 +32,28 @@
             "ScaleFactor": 0.27173913,
             "Thresholds": [
                 {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 5.25
+                    "Direction": "less than",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 4.316
                 },
                 {
                     "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 4.75
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 4.94
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 5.46
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 5.876
                 }
             ],
             "Type": "ADC"
@@ -46,16 +64,28 @@
             "ScaleFactor": 0.410677618,
             "Thresholds": [
                 {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 3.6
+                    "Direction": "less than",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 2.75
                 },
                 {
                     "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 3.0
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 3.14
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.47
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 3.74
                 }
             ],
             "Type": "ADC"
@@ -66,16 +96,28 @@
             "ScaleFactor": 0.54200542,
             "Thresholds": [
                 {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 2.625
+                    "Direction": "less than",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 2.075
                 },
                 {
                     "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
+                    "Name": "lower non critical",
+                    "Severity": 0,
                     "Value": 2.375
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 2.625
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 2.825
                 }
             ],
             "Type": "ADC"
@@ -86,16 +128,28 @@
             "ScaleFactor": 0.750469043,
             "Thresholds": [
                 {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1.98
+                    "Direction": "less than",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 0.8715
                 },
                 {
                     "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 1.62
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 1.71
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1.89
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 1.98
                 }
             ],
             "Type": "ADC"
@@ -106,16 +160,28 @@
             "ScaleFactor": 0.410677618,
             "Thresholds": [
                 {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1.98
+                    "Direction": "less than",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 0.8715
                 },
                 {
                     "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 1.62
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 1.71
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1.89
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 1.98
                 }
             ],
             "Type": "ADC"
@@ -126,16 +192,28 @@
             "ScaleFactor": 1,
             "Thresholds": [
                 {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1.26
+                    "Direction": "less than",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 0.996
                 },
                 {
                     "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
+                    "Name": "lower non critical",
+                    "Severity": 0,
                     "Value": 1.14
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1.26
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 1.356
                 }
             ],
             "Type": "ADC"
@@ -154,16 +232,10 @@
             "ScaleFactor": 0.333333333,
             "Thresholds": [
                 {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 3.4
-                },
-                {
                     "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 2.6
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 2
                 }
             ],
             "Type": "ADC"
@@ -173,16 +245,28 @@
             "Name": "SCM_P1V0_VOLT_V",
             "Thresholds": [
                 {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1.1
+                    "Direction": "less than",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 0.83
                 },
                 {
                     "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0.9
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 0.95
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1.05
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 1.13
                 }
             ],
             "Type": "ADC"
@@ -279,6 +363,20 @@
             "Address": "0x4b",
             "Bus": 9,
             "Name": "SCM_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 40
+                }
+            ],
             "Type": "TMP75"
         }
     ],
