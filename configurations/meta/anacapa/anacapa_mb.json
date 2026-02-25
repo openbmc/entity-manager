@@ -285,6 +285,26 @@
             "vout1_Name": "MB_VR_CPU_PVDD33_S5_P0_VOUT_VOLT_V"
         },
         {
+            "Address": "0x46",
+            "Bus": 58,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Anacapa.VR.MPQ8786_pvdd33_s5_p0",
+                "VendorIANA": 40981
+            },
+            "Name": "Anacapa_MB_VR_pvdd33_s5_p0",
+            "Type": "MPQ87XXFirmware"
+        },
+        {
+            "Address": "0x47",
+            "Bus": 58,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Anacapa.VR.MPQ8785_pvdd18_s5_p0",
+                "VendorIANA": 40981
+            },
+            "Name": "Anacapa_MB_VR_pvdd18_s5_p0",
+            "Type": "MPQ87XXFirmware"
+        },
+        {
             "Address": "0x6a",
             "Bus": 24,
             "Name": "MB_E1S_BOOT_TEMP_C",
