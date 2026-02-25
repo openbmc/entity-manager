@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3665de6c_a0d38958",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-25T02:34:44Z",
+      "side": 1,
+      "message": "The previous format is not acceptable since it breaks D-Bus design intent. So we have to find a new solution.\n\nWhat about something like \n```\n{\n  \"Name\": \"U52\",\n  \"ChannelNames\": [\n    \"MB Air Inlet\",\n    \"MB Air Outlet\",\n  ],\n  ...\n  \"Type\": \"...\"\n}\n```\n\nwhere we do not use the `Name` property at all on the `dbus-sensors` side and instead let `Name` represent the name of the chip e.g. in the schematic.\n\nThat way the first channel does not get any \u0027special\u0027 treatment which is more consistent overall.",
+      "parentUuid": "9dfa9abc_3ccb714e",
+      "revId": "99fa5feff6a05930e5b4a9cfd0d011b611fb2151",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a8910d51_c8f73eb6",
         "filename": "configurations/ampere/mtjade.json",
         "patchSetId": 7
@@ -31,6 +49,30 @@
       "writtenOn": "2026-02-24T22:38:55Z",
       "side": 1,
       "message": "As an abstraction, this doesn\u0027t meet the intent that they be relatively self describing.\n\n\"Name1\" means \"The name of the 1st input on a TMP421\".\n\nHow do I know that ExtraNames, index 1 means the same thing?  A TMP421 only has 2 inputs, so making this an array means that there\u0027s another place we can now mess up the config in ways that aren\u0027t statically detectable.\n\nIf we follow the convention of PSUSensor, where we add in the types, this would become\n\nTemp1,\nTemp0,\n\nEct.",
+      "range": {
+        "startLine": 1442,
+        "startChar": 0,
+        "endLine": 1444,
+        "endChar": 18
+      },
+      "revId": "99fa5feff6a05930e5b4a9cfd0d011b611fb2151",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e0ddd89_07eaadb7",
+        "filename": "configurations/ampere/mtjade.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 1444,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-25T02:34:44Z",
+      "side": 1,
+      "message": "\u003e How do I know that ExtraNames, index 1 means the same thing?\n\nAdded `description` property to properly document it. Sorry for just adding config properties without any documentation.\n\n\u003e mess up the config in ways that aren\u0027t statically detectable.\n\nIf that would have been the intent to limit the number of channel names to match the sensor type, the previous solution does not do that either.\n\n\u003e If we follow the convention of PSUSensor,\n\nThat\u0027s literally the worst schema that we have. I don\u0027t think there\u0027s much we can learn from it.\n\nIf we are looking for examples, then maybe device tree schemas could be worth looking at. But that\u0027s historically not really been done for EM schemas so i am not considering it here.",
+      "parentUuid": "a8910d51_c8f73eb6",
       "range": {
         "startLine": 1442,
         "startChar": 0,
@@ -72,6 +114,24 @@
       "side": 1,
       "message": "It can be bounded both ways with `minItems` and `maxItems`. One or both should be required in the configuration.",
       "parentUuid": "60ba120f_c4f7e5b4",
+      "revId": "99fa5feff6a05930e5b4a9cfd0d011b611fb2151",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de46fe81_aec3bad6",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-25T02:34:44Z",
+      "side": 1,
+      "message": "Yes, nice find. Added the `maxItems` for now. In the future it could be broken down further for each temp sensor type to better validate the configuration.",
+      "parentUuid": "1189271b_fdb34fcc",
       "revId": "99fa5feff6a05930e5b4a9cfd0d011b611fb2151",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
