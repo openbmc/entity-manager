@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "87d0b90d_74504103",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-02-25T19:37:58Z",
+      "side": 1,
+      "message": "\u003e since it breaks D-Bus design intent\n\nThese are json files, not Dbus.  Sure, we can agree that when these are converted to dbus interfaces, the properties they create are less than ideal.  That doesn\u0027t mean we need to change the json, it means we need to figure out the DBus property conversion.\n\n\u003e The previous format is not acceptable \n\n\"not acceptable\" is subjective,   Sure, the dbus interfaces they create are less than ideal, but they do WORK today on real systems, which is the important part.  I understand you and Patrick want to push PDI to where it wasn\u0027t before, and that\u0027s a noble goal, but these json files aren\u0027t governed by PDI, nor are the consuming daemons, so I\u0027m not really sure the justification of that.  Lets get the commit message updated if that\u0027s your intent here.",
+      "parentUuid": "3665de6c_a0d38958",
+      "revId": "99fa5feff6a05930e5b4a9cfd0d011b611fb2151",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a8910d51_c8f73eb6",
         "filename": "configurations/ampere/mtjade.json",
         "patchSetId": 7
