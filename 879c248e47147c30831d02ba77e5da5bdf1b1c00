@@ -62,6 +62,30 @@
       },
       "revId": "879c248e47147c30831d02ba77e5da5bdf1b1c00",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aeba4afa_8b6d6074",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-02-25T11:42:57Z",
+      "side": 1,
+      "message": "\u003e Let\u0027s add a lg2::warning when the roll-over has been done.\n\u003e So that we don\u0027t do out-of-spec things without printing some kind of warning.\n\nI don\u0027t agree we should do this.  It seems to me like we\u0027re just going to be spamming the journal in about 1 years time for every FRU.  A warning is \"if something isn\u0027t taken care of it might lead to a problem\" but there is nothing to take care of here.\n\nEven info is ... what is the point?  PCIe didn\u0027t even come out until 2003.  There aren\u0027t realistically even many devices that you could _accidentally_ plug into an openbmc supported system that were manufactured before 2006.",
+      "parentUuid": "2f463eb6_b1cbf632",
+      "range": {
+        "startLine": 530,
+        "startChar": 2,
+        "endLine": 545,
+        "endChar": 17
+      },
+      "revId": "879c248e47147c30831d02ba77e5da5bdf1b1c00",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
