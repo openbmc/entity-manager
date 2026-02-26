@@ -552,3 +552,45 @@ TEST(Topology, SimilarToYosemiteV3)
     EXPECT_TRUE(assocs[chassis4Path].contains(
         {"contained_by", "containing", superChassisPath}));
 }
+
+TEST(Topology, MiscItemContainingItem)
+{
+    const std::string boardPath =
+        "/xyz/openbmc_project/inventory/system/board/SomeBoard";
+    const std::string cpuPath =
+        "/xyz/openbmc_project/inventory/system/cpu/SomeCpu";
+    const std::string dimmPath =
+        "/xyz/openbmc_project/inventory/system/dimm/SomeDimm";
+
+    const nlohmann::json cpuExposesItem =
+        makeContainedPortExposesItem("SomeCpuPort");
+    const nlohmann::json dimmExposesItem =
+        makeContainedPortExposesItem("SomeDimmPort");
+    const nlohmann::json boardExposesItem1 =
+        makeContainingPortExposesItem("SomeCpuPort");
+    const nlohmann::json boardExposesItem2 =
+        makeContainingPortExposesItem("SomeDimmPort");
+
+    Topology topo;
+    BoardMap boards{
+        {boardPath, "SomeBoard"},
+        {cpuPath, "SomeCpu"},
+        {dimmPath, "SomeDimm"},
+    };
+
+    topo.addBoard(cpuPath, "Cpu", "SomeCpu", cpuExposesItem);
+    topo.addBoard(dimmPath, "Dimm", "SomeDimm", dimmExposesItem);
+    topo.addBoard(boardPath, "Board", "SomeBoard", boardExposesItem1);
+    topo.addBoard(boardPath, "Board", "SomeBoard", boardExposesItem2);
+
+    auto assocs = topo.getAssocs(std::views::keys(boards));
+
+    EXPECT_EQ(assocs[boardPath].size(), 0);
+
+    EXPECT_EQ(assocs[cpuPath].size(), 1);
+    EXPECT_TRUE(
+        assocs[cpuPath].contains({"contained_by", "containing", boardPath}));
+    EXPECT_EQ(assocs[dimmPath].size(), 1);
+    EXPECT_TRUE(
+        assocs[dimmPath].contains({"contained_by", "containing", boardPath}));
+}

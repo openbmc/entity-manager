@@ -3,8 +3,8 @@
 #include "phosphor-logging/lg2.hpp"
 
 const AssocName assocContaining =
-    AssocName("containing", "contained_by", {"Chassis"},
-              {"Board", "Chassis", "PowerSupply"});
+    AssocName("containing", "contained_by", {"Board", "Chassis"},
+              {"Board", "Chassis", "Cpu", "Dimm", "PowerSupply"});
 const AssocName assocContainedBy = assocContaining.getReverse();
 
 // Topology tests say that a chassis can be powering another chassis.
