@@ -33,6 +33,46 @@
       "message": "Can an example also be added in the description based on /sys/bus/usb path?",
       "revId": "a0b3c58dae0c7683502a7cd7c95cdf385b72dc3f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88d0deb8_c869f284",
+        "filename": "schemas/platform/mctp.json",
+        "patchSetId": 24
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001076
+      },
+      "writtenOn": "2026-02-26T06:01:43Z",
+      "side": 1,
+      "message": "This label is a bit confusing as USB too has Configuration Descriptors. Can the description be updated to highlight the difference or the label be renamed?",
+      "range": {
+        "startLine": 17,
+        "startChar": 17,
+        "endLine": 17,
+        "endChar": 30
+      },
+      "revId": "a0b3c58dae0c7683502a7cd7c95cdf385b72dc3f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c69ea72_906b5b31",
+        "filename": "schemas/platform/mctp.json",
+        "patchSetId": 24
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001076
+      },
+      "writtenOn": "2026-02-26T06:01:43Z",
+      "side": 1,
+      "message": "This label is a bit confusing as USB too has Interface Descriptors. Can the description be updated to highlight the difference or the label be renamed?\n\nAlso as this change is looking at MCTP over USB, and if this is really referring to Interface Descriptor, then cant this be derived using MCTP class value in Interface Descriptor.",
+      "revId": "a0b3c58dae0c7683502a7cd7c95cdf385b72dc3f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
