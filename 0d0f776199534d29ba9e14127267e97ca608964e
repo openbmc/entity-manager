@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e966222e_e2dbeb56",
+        "filename": "configurations/mellanox/connectx-6.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-26T04:38:31Z",
+      "side": 1,
+      "message": "I\u0027m not following.. What should i write down here?\n\nKeep in mind i will also have to adjust it on the chassis side then as well, otherwise the association will not be created.",
+      "parentUuid": "944aad9b_80c6ff26",
+      "range": {
+        "startLine": 10,
+        "startChar": 21,
+        "endLine": 10,
+        "endChar": 39
+      },
+      "revId": "0d0f776199534d29ba9e14127267e97ca608964e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bf229465_6ccebf4b",
         "filename": "configurations/mellanox/connectx-6.json",
         "patchSetId": 2
@@ -180,6 +204,30 @@
       "side": 1,
       "message": "Did we get the correct type here?  If these don\u0027t use a TMP421, lets figure out the right device.",
       "parentUuid": "f38282eb_cdb6b564",
+      "range": {
+        "startLine": 20,
+        "startChar": 25,
+        "endLine": 20,
+        "endChar": 32
+      },
+      "revId": "0d0f776199534d29ba9e14127267e97ca608964e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf08b7c1_b10a1e23",
+        "filename": "configurations/mellanox/connectx-6.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-26T04:38:31Z",
+      "side": 1,
+      "message": "I took a look at the card again from all sides and also looked into the document you found \nhttps://docs.nvidia.com/nvidia-connectx-6-ethernet-adapter-cards-user-manual.pdf\n\n\nThe document states\n\n\u003e The adapter card incorporates the ConnectX IC, which operates in the range of temperatures\nbetween 0°C and 105°C.\n\nand\n\n\u003e The card\u0027s thermal sensors can be read through the system’s SMBus. The user can read these\nthermal sensors and adapt the system airflow following the readouts and the needs of the above-\nmentioned IC thermal\n\nI assume that the temperature sensor is directly part of the SoC and not a separate chip. So there is no way for me to figure which one it is supposed to be or if it even models an existing temp sensor on I2C or some custom solution.\n\nI don\u0027t see any way i can make progress here on my own, even if i tried all possible drivers for i2c temp sensors, it would not tell us anything about what\u0027s really in there.\n\nThe options i see currently:\n\n- you confirm internally within nvidia what\u0027s the correct driver to use\n- we go with the current version, accepting that there\u0027s a dead temp channel until someone fixes the config\n- we drop the temp sensor from the config, leaving users with an inventory item but no temperature reading (IMO the worst options since these NICs tend to run pretty hot)",
+      "parentUuid": "247f4761_d18ce10f",
       "range": {
         "startLine": 20,
         "startChar": 25,
