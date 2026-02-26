@@ -26,6 +26,10 @@
                     "description": "This indicates the physical port of the serial device within that interface.",
                     "type": "number"
                 },
+                "HubPort": {
+                    "description": "(optional) If the device is on a USB Hub, then this indicates the port on the hub the device is connected within the interface.",
+                    "type": "number"
+                },
                 "Mode": {
                     "enum": ["RS232", "RS485"]
                 },
