@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "208a6cc7_e9165679",
+        "filename": "configurations/mellanox/connectx-6.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-26T01:51:43Z",
+      "side": 1,
+      "message": "That\u0027s how it\u0027s been done in other configs.. Anyways, what else should i write here?",
+      "parentUuid": "755bbd40_e4e2839b",
+      "range": {
+        "startLine": 10,
+        "startChar": 21,
+        "endLine": 10,
+        "endChar": 39
+      },
+      "revId": "0d0f776199534d29ba9e14127267e97ca608964e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bf229465_6ccebf4b",
         "filename": "configurations/mellanox/connectx-6.json",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2026-02-25T19:29:50Z",
       "side": 1,
       "message": "How does this work?  I don\u0027t think we have a PLDM backend for this that supports connectx?",
+      "range": {
+        "startLine": 12,
+        "startChar": 21,
+        "endLine": 12,
+        "endChar": 25
+      },
+      "revId": "0d0f776199534d29ba9e14127267e97ca608964e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f22ac90_5b418167",
+        "filename": "configurations/mellanox/connectx-6.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-26T01:51:43Z",
+      "side": 1,
+      "message": "This has nothing to do with PLDM.\n\nIt\u0027s an entity-manager feature to be able to create associations between the inventory items that it holds.\n\nhttps://github.com/openbmc/entity-manager/blob/master/docs/associations.md\n\nIn this case i am creating `contained_by` association here to the chassis. If you look into the chassis config you will find a port with the same name.\n\nAt runtime this enables creating the correct associations between inventory items.",
+      "parentUuid": "bf229465_6ccebf4b",
       "range": {
         "startLine": 12,
         "startChar": 21,
@@ -70,6 +118,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f38282eb_cdb6b564",
+        "filename": "configurations/mellanox/connectx-6.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-26T01:51:43Z",
+      "side": 1,
+      "message": "Renamed to `NIC Temp 1 $bus`",
+      "parentUuid": "4b888333_a0750a54",
+      "range": {
+        "startLine": 20,
+        "startChar": 25,
+        "endLine": 20,
+        "endChar": 32
+      },
+      "revId": "0d0f776199534d29ba9e14127267e97ca608964e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2270d12d_8a9b33c8",
@@ -83,6 +155,30 @@
       "writtenOn": "2026-02-25T19:29:50Z",
       "side": 1,
       "message": "This could match both the dual port variant of the card and the single port variant of the card.  Presumably (especially if we\u0027re enumerating the port above) we need two configs.\n\nEither:\nRemove the port definition so this is correct for both variants\nDuplicate the config for the two variants, making this regex more specific.\u003d to the single port variant.",
+      "range": {
+        "startLine": 64,
+        "startChar": 70,
+        "endLine": 64,
+        "endChar": 89
+      },
+      "revId": "0d0f776199534d29ba9e14127267e97ca608964e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9e625cb_2fdcd666",
+        "filename": "configurations/mellanox/connectx-6.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-26T01:51:43Z",
+      "side": 1,
+      "message": "The `\"Type\": \"Port\"` config record has nothing to do with physical network ports, it is used to create associations.",
+      "parentUuid": "2270d12d_8a9b33c8",
       "range": {
         "startLine": 64,
         "startChar": 70,
