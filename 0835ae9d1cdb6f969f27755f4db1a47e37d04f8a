@@ -120,6 +120,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c5f543f_786163dc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-26T01:51:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8994d91b_422cdb1e",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 3
+      },
+      "revId": "0835ae9d1cdb6f969f27755f4db1a47e37d04f8a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "768c3d8c_8aa8d3a6",
@@ -377,6 +401,24 @@
       "side": 1,
       "message": "\u003e What is the mechanism to disable the channel, is there a way to do it?\n\nToday there\u0027s not a way, but lets not call the sensor \"ignore\", which was the original request.\n\n\u003e That\u0027s simply the driver which happened to work on it.\n\nLets not guess here.  If you have the board it\u0027s easy enough to find the chip and look up the part number.  If we need a new driver, so be it, but lets not check in a config that we know is incorrect.\n\nIf you don\u0027t want to solve that immediately, lets just omit the temp sensor for now, and we can regroup when we figure out the correct device.",
       "parentUuid": "76fa638e_2456f3e3",
+      "revId": "0835ae9d1cdb6f969f27755f4db1a47e37d04f8a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7677686d_557fb8d5",
+        "filename": "configurations/mbx/mbx-1.57-chassis.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-02-26T01:51:31Z",
+      "side": 1,
+      "message": "I\u0027ll mark this resolved since the NIC temperate sensors have moved to the other patch https://gerrit.openbmc.org/c/openbmc/entity-manager/+/87502 and you already opened a comment there.",
+      "parentUuid": "5ed4ff6c_1af2f37c",
       "revId": "0835ae9d1cdb6f969f27755f4db1a47e37d04f8a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
