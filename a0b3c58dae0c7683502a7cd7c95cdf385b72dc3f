@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "27204433_ad1b4978",
+        "filename": "schemas/platform/mctp.json",
+        "patchSetId": 24
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-02-26T15:28:20Z",
+      "side": 1,
+      "message": "An example for what? Something like:\n\nls /sys/bus/usb/devices/1-1.1.1.2\\:1.2/net/\n\nmctpusb1?\n\nThere are subsequent changes in the chain with real example for an upstream platform.",
+      "parentUuid": "b361619f_620fcaf3",
+      "revId": "a0b3c58dae0c7683502a7cd7c95cdf385b72dc3f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e373ead_08a29206",
@@ -48,6 +66,24 @@
       "writtenOn": "2026-02-26T05:57:47Z",
       "side": 1,
       "message": "Can an example also be added in the description based on /sys/bus/usb path?",
+      "revId": "a0b3c58dae0c7683502a7cd7c95cdf385b72dc3f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b497b57_62c0e66f",
+        "filename": "schemas/platform/mctp.json",
+        "patchSetId": 24
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-02-26T15:28:20Z",
+      "side": 1,
+      "message": "An example for what? Something like:\n\nls /sys/bus/usb/devices/1-1.1.1.2\\:1.2/net/\n\nmctpusb1?\n\nThere are subsequent changes in the chain with real example for an upstream platform.",
+      "parentUuid": "0e373ead_08a29206",
       "revId": "a0b3c58dae0c7683502a7cd7c95cdf385b72dc3f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -75,6 +111,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fb0109f_bcfb9317",
+        "filename": "schemas/platform/mctp.json",
+        "patchSetId": 24
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-02-26T15:28:20Z",
+      "side": 1,
+      "message": "This is actually the configuration number in the USB descriptor (bConfigurationValue ) as reported by the device.",
+      "parentUuid": "88d0deb8_c869f284",
+      "range": {
+        "startLine": 17,
+        "startChar": 17,
+        "endLine": 17,
+        "endChar": 30
+      },
+      "revId": "a0b3c58dae0c7683502a7cd7c95cdf385b72dc3f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c69ea72_906b5b31",
@@ -88,6 +148,24 @@
       "writtenOn": "2026-02-26T06:01:43Z",
       "side": 1,
       "message": "This label is a bit confusing as USB too has Interface Descriptors. Can the description be updated to highlight the difference or the label be renamed?\n\nAlso as this change is looking at MCTP over USB, and if this is really referring to Interface Descriptor, then cant this be derived using MCTP class value in Interface Descriptor.",
+      "revId": "a0b3c58dae0c7683502a7cd7c95cdf385b72dc3f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48f60df8_d50bc4fe",
+        "filename": "schemas/platform/mctp.json",
+        "patchSetId": 24
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-02-26T15:28:20Z",
+      "side": 1,
+      "message": "This one too is the same as the one reported by the device via bInterfaceNumber.\n\nI am not getting this suggestion. The idea here is to tie the bus-ports-configuration-interface together in the MCTP reactor to arrive at the net i/f name to be used when calling mctpd\u0027s D-Bus API. For ex .. this information might give us something like:\n\nls /sys/bus/usb/devices/1-1.1.1.2\\:1.2/net/\n\nmctpusb1The reactor would otherwise have to walk every config.interface for the device trying to locate the one which Has an interface class MCTP and then lookup the net i/f name. Don\u0027t see a benefit of doing that.",
+      "parentUuid": "4c69ea72_906b5b31",
       "revId": "a0b3c58dae0c7683502a7cd7c95cdf385b72dc3f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
