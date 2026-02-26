@@ -34,7 +34,7 @@
                 },
                 "Type": {
                     "title": "Configuration Type",
-                    "description": "The schema for the type property. The type property identifies the type of the configuration.  When exported, configurations will be instantiated as children of: /xyz/openbmc_project/configuration/<Type>",
+                    "description": "The schema for the type property. The type property identifies the type of the configuration.  When exported, configurations will be instantiated as children of: /xyz/openbmc_project/inventory/<Type>",
                     "enum": [
                         "Board",
                         "Cable",
