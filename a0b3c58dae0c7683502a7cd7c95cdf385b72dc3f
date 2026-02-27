@@ -53,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcd62d56_2e6c0dfa",
+        "filename": "schemas/platform/mctp.json",
+        "patchSetId": 24
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001076
+      },
+      "writtenOn": "2026-02-27T02:39:57Z",
+      "side": 1,
+      "message": "It would be better to document this in description or docs using the `/sys/bus/usb/devices/1-1.1.1.2\\:1.2/net/` path as example or a different example like mctp1.",
+      "parentUuid": "27204433_ad1b4978",
+      "revId": "a0b3c58dae0c7683502a7cd7c95cdf385b72dc3f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e373ead_08a29206",
@@ -84,6 +102,24 @@
       "side": 1,
       "message": "An example for what? Something like:\n\nls /sys/bus/usb/devices/1-1.1.1.2\\:1.2/net/\n\nmctpusb1?\n\nThere are subsequent changes in the chain with real example for an upstream platform.",
       "parentUuid": "0e373ead_08a29206",
+      "revId": "a0b3c58dae0c7683502a7cd7c95cdf385b72dc3f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5e73549_a351c036",
+        "filename": "schemas/platform/mctp.json",
+        "patchSetId": 24
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001076
+      },
+      "writtenOn": "2026-02-27T02:39:57Z",
+      "side": 1,
+      "message": "It would be better to document this in description or docs using the `/sys/bus/usb/devices/1-1.1.1.2\\:1.2/net/` path as example or a different example like mctp1.",
+      "parentUuid": "9b497b57_62c0e66f",
       "revId": "a0b3c58dae0c7683502a7cd7c95cdf385b72dc3f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -135,6 +171,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "25033d7b_68ae35fb",
+        "filename": "schemas/platform/mctp.json",
+        "patchSetId": 24
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001076
+      },
+      "writtenOn": "2026-02-27T02:39:57Z",
+      "side": 1,
+      "message": "Thanks for clarification, can the description be updated mentioning to refer bConfigurationValue field in the Configuration Descriptor to enhance the readability?",
+      "parentUuid": "3fb0109f_bcfb9317",
+      "range": {
+        "startLine": 17,
+        "startChar": 17,
+        "endLine": 17,
+        "endChar": 30
+      },
+      "revId": "a0b3c58dae0c7683502a7cd7c95cdf385b72dc3f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c69ea72_906b5b31",
@@ -166,6 +226,24 @@
       "side": 1,
       "message": "This one too is the same as the one reported by the device via bInterfaceNumber.\n\nI am not getting this suggestion. The idea here is to tie the bus-ports-configuration-interface together in the MCTP reactor to arrive at the net i/f name to be used when calling mctpd\u0027s D-Bus API. For ex .. this information might give us something like:\n\nls /sys/bus/usb/devices/1-1.1.1.2\\:1.2/net/\n\nmctpusb1The reactor would otherwise have to walk every config.interface for the device trying to locate the one which Has an interface class MCTP and then lookup the net i/f name. Don\u0027t see a benefit of doing that.",
       "parentUuid": "4c69ea72_906b5b31",
+      "revId": "a0b3c58dae0c7683502a7cd7c95cdf385b72dc3f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba47eda4_ef8647bd",
+        "filename": "schemas/platform/mctp.json",
+        "patchSetId": 24
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001076
+      },
+      "writtenOn": "2026-02-27T02:39:57Z",
+      "side": 1,
+      "message": "Thanks for clarification, can the description be updated mentioning to refer bInterfaceNumber field in the Interface Descriptor to enhance the readability?",
+      "parentUuid": "48f60df8_d50bc4fe",
       "revId": "a0b3c58dae0c7683502a7cd7c95cdf385b72dc3f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
