@@ -27,6 +27,42 @@ constexpr const char* muxSymlinkDir = "/dev/i2c-mux";
 
 const std::regex illegalNameRegex("[^A-Za-z0-9_]");
 
+static std::string deviceDirName(uint64_t bus, uint64_t address)
+{
+    std::ostringstream name;
+    name << bus << "-" << std::hex << std::setw(4) << std::setfill('0')
+         << address;
+    return name.str();
+}
+
+void setMuxIdleMode(const std::string& muxName, size_t busIndex, size_t address,
+                    const std::string& idleMode)
+{
+    constexpr const char* idleModeAsIs = "-1";
+    constexpr const char* idleModeDisconnect = "-2";
+
+    std::error_code ec;
+
+    std::string deviceDir = deviceDirName(busIndex, address);
+
+    std::filesystem::path idlePath(i2CDevsDir);
+    idlePath /= deviceDir + "/idle_state";
+
+    std::string modeData =
+        (idleMode == "Disconnect") ? idleModeDisconnect : idleModeAsIs;
+
+    std::ofstream idleFile(idlePath);
+    if (!idleFile.good())
+    {
+        lg2::error("Can't set idle mode in {PATH} for {MUX}", "PATH", idlePath,
+                   "MUX", muxName);
+    }
+    else
+    {
+        idleFile << modeData;
+    }
+}
+
 // helper function to make json types into string
 std::string jsonToString(const nlohmann::json& in)
 {
@@ -43,14 +79,6 @@ std::string jsonToString(const nlohmann::json& in)
         return array;
     }
     return in.dump();
-}
-
-static std::string deviceDirName(uint64_t bus, uint64_t address)
-{
-    std::ostringstream name;
-    name << bus << "-" << std::hex << std::setw(4) << std::setfill('0')
-         << address;
-    return name.str();
 }
 
 void linkMux(std::string_view muxName, uint64_t busIndex, uint64_t address,
@@ -219,6 +247,7 @@ void exportDevice(const devices::ExportTemplate& exportTemplate,
     std::optional<uint64_t> bus;
     std::optional<uint64_t> address;
     std::vector<std::string> channels;
+    std::string idleMode;
 
     for (auto keyPair = configuration.begin(); keyPair != configuration.end();
          keyPair++)
@@ -249,6 +278,11 @@ void exportDevice(const devices::ExportTemplate& exportTemplate,
         {
             channels = keyPair.value().get<std::vector<std::string>>();
         }
+        else if (keyPair.key() == "MuxIdleMode")
+        {
+            idleMode = keyPair.value().get<std::string>();
+        }
+
         replaceAll(parameters, templateChar + keyPair.key(), subsituteString);
         replaceAll(busPath, templateChar + keyPair.key(), subsituteString);
     }
@@ -257,6 +291,20 @@ void exportDevice(const devices::ExportTemplate& exportTemplate,
     {
         createDevice(busPath, parameters, constructor);
         return;
+    }
+
+    if (type.ends_with("Mux") && bus && address)
+    {
+        if (!channels.empty())
+        {
+            linkMux(name, static_cast<size_t>(*bus),
+                    static_cast<size_t>(*address), channels);
+        }
+        if (!idleMode.empty())
+        {
+            setMuxIdleMode(name, static_cast<size_t>(*bus),
+                           static_cast<size_t>(*address), idleMode);
+        }
     }
 
     buildDevice(name, busPath, parameters, *bus, *address, constructor,
