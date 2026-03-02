@@ -16,6 +16,23 @@
       "message": "Can you provide an actual example here of what\u0027s being fixed?",
       "revId": "93f3ca00f68a1d929ee0659a7764ddc5bc2f34ee",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd1d12ae_bf8cab44",
+        "filename": "test/entity_manager/test_perform_scan.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-02T01:58:54Z",
+      "side": 1,
+      "message": "This test by itself does not provide sufficient coverage of the functions which have been modified.\n\nFor example\n`scan::PerformScan::updateSystemConfiguration`\n`scan::PerformScan::run`\n\nthese are both nontrivial functions which are not sufficiently tested currently.\n\nConsider that when others are making changes in the future it will be good for them if there is some test case which helps to avoid breaking the fix you implemented here.",
+      "revId": "93f3ca00f68a1d929ee0659a7764ddc5bc2f34ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
