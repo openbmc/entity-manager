@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "b8faa47c_2c8cf484",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-02T05:12:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ccf73bcd_995f3d97",
+      "range": {
+        "startLine": 28,
+        "startChar": 30,
+        "endLine": 28,
+        "endChar": 68
+      },
+      "revId": "d75241dce5c2d1555d96a896f3e3c6148dc4ba5d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "6c48fa4a_e521fa50",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 7
@@ -58,6 +82,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7bd7628_87481b11",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-02T05:12:44Z",
+      "side": 1,
+      "message": "look at line 230\n\n```\n229 \n230 static void recordDiscoveredIdentifiers(\n231     std::set\u003cnlohmann::json\u003e\u0026 usedNames, std::list\u003csize_t\u003e\u0026 indexes,\n232     const std::string\u0026 probeName, const nlohmann::json\u0026 record)\n```",
+      "parentUuid": "ecfe1cc9_adf01939",
+      "revId": "d75241dce5c2d1555d96a896f3e3c6148dc4ba5d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2e04745c_b363bedb",
@@ -71,6 +113,30 @@
       "writtenOn": "2025-12-12T23:20:01Z",
       "side": 1,
       "message": "Just do auto here.  No need to convert the type on the bind_front call (which produces an implementation defined object, so auto is acceptable).",
+      "range": {
+        "startLine": 152,
+        "startChar": 15,
+        "endLine": 152,
+        "endChar": 23
+      },
+      "revId": "d75241dce5c2d1555d96a896f3e3c6148dc4ba5d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8eb88fd7_c9cb2c50",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-02T05:12:44Z",
+      "side": 1,
+      "message": "If i do `auto` it won\u0027t compile here. So i will write down the type here to make it compile. You can try it for yourself. I\u0027m not posting the error here since it\u0027s super verbose and incomprehensible.",
+      "parentUuid": "2e04745c_b363bedb",
       "range": {
         "startLine": 152,
         "startChar": 15,
@@ -104,6 +170,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61f1c1c1_75a2d93f",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-02T05:12:44Z",
+      "side": 1,
+      "message": "Made these functions static and declared outside of the class which resolve the issue with passing `this`.",
+      "parentUuid": "544783ab_1affbdca",
+      "range": {
+        "startLine": 153,
+        "startChar": 68,
+        "endLine": 153,
+        "endChar": 72
+      },
+      "revId": "d75241dce5c2d1555d96a896f3e3c6148dc4ba5d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "da3cf3d6_8510deae",
@@ -127,6 +217,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "81842103_44ab601d",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-02T05:12:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da3cf3d6_8510deae",
+      "range": {
+        "startLine": 158,
+        "startChar": 8,
+        "endLine": 158,
+        "endChar": 10
+      },
+      "revId": "d75241dce5c2d1555d96a896f3e3c6148dc4ba5d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bcf41528_fce81bc5",
@@ -140,6 +254,30 @@
       "writtenOn": "2025-12-12T23:20:01Z",
       "side": 1,
       "message": "nit: Would prefer to see this default arg just inlined into the first call.",
+      "range": {
+        "startLine": 54,
+        "startChar": 70,
+        "endLine": 54,
+        "endChar": 74
+      },
+      "revId": "d75241dce5c2d1555d96a896f3e3c6148dc4ba5d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1bec0d9e_71471d87",
+        "filename": "src/entity_manager/perform_scan.hpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-02T05:12:44Z",
+      "side": 1,
+      "message": "yep, makes sense. Fixed it 👍",
+      "parentUuid": "bcf41528_fce81bc5",
       "range": {
         "startLine": 54,
         "startChar": 70,
