@@ -70,6 +70,24 @@
       "parentUuid": "795484d9_a034c01f",
       "revId": "b2482dea6e03cc51c46864f1e77823305d983ba2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b898ead_ce47f585",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-02T21:35:21Z",
+      "side": 1,
+      "message": "\u003e simply print a warning when the same name is used with a\ndifferent type.\n\nI don\u0027t think that this point we even want it to be a warning.  Warning would imply that we think it\u0027s incorrect, and I don\u0027t think that\u0027s the case here.  EM has provisions for handling collisions.",
+      "parentUuid": "99670f2e_68f63b8e",
+      "revId": "b2482dea6e03cc51c46864f1e77823305d983ba2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
