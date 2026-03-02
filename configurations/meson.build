@@ -33,6 +33,7 @@ configs = [
     'broadcomm/100g_1p_ocp_mezz.json',
     'broadcomm/200g_1p_ocp_mezz.json',
     'broadcomm/400g_1p_ocp3.json',
+    'broadcomm/800g_1p_ocp.json',
     'compuware/cdr_9011_3m1_psu.json',
     'delta/awf2dc3200w_psu.json',
     'delta/dps-1600ab_psu.json',
