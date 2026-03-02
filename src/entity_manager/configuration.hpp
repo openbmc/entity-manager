@@ -23,6 +23,8 @@ class Configuration
     void filterProbeInterfaces();
 
   private:
+    void loadSingleConfigFile(const std::filesystem::path& jsonPath,
+                              const nlohmann::json& schema);
     std::vector<std::filesystem::path> configurationDirectories;
 };
 
