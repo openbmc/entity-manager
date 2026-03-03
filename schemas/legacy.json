@@ -831,6 +831,9 @@
                 },
                 "(in|power|curr|iout|iin|pout|pin)(1[0-7]|[1-9])?_Offset$": {
                     "$ref": "#/$defs/Types/OffsetType"
+                },
+                "^(in|in_voltage|vin|vmon|vout|voltage)(1[0-7]|[0-9])?_ShuntResistorInOhms$": {
+                    "$ref": "#/$defs/Types/ShuntResistorInOhms"
                 }
             },
             "properties": {
@@ -1328,6 +1331,10 @@
             },
             "ScaleValue": {
                 "type": "number"
+            },
+            "ShuntResistorInOhms": {
+                "type": "number",
+                "exclusiveMinimum": 0
             },
             "SensorType": {
                 "enum": ["current", "power", "voltage"]
