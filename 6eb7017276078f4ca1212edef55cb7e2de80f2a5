@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4ddd378_f1310342",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 835,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-03T07:48:13Z",
+      "side": 1,
+      "message": "Any chance we can do that in a separate schema?\n\nMaybe something like \n\n```\n{\n  \"Name\": \"Override1\",\n  \"OverrideName\": \"FANBOARD$bus % 30 ADC\",\n  \"Label\": \"in0\",\n  \"Unit\": \"Amperes\",\n  \"Type\": \"UnitOverride\"\n}\n```\n\nNow `OverrideName` would be the `Name` for which the override is done, and `Label` for the label where we are overriding the unit.\n\nWhat do you think about it 😊",
+      "revId": "6eb7017276078f4ca1212edef55cb7e2de80f2a5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
