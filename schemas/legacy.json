@@ -831,6 +831,9 @@
                 },
                 "(in|power|curr|iout|iin|pout|pin)(1[0-7]|[1-9])?_Offset$": {
                     "$ref": "#/$defs/Types/OffsetType"
+                },
+                "(pin|pout|power|maxpin|vin|maxvin|voltage|vout|vmon|in|iin|iout|curr|maxiout|temp|maxtemp|fan|in_voltage|in_current|out_voltage|out_current)[0-9]*_Units$": {
+                    "$ref": "#/$defs/Types/Units"
                 }
             },
             "properties": {
