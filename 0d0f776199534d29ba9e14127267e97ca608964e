@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "051f44ae_d62e1a38",
+        "filename": "configurations/mellanox/connectx-6.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2026-03-03T23:00:34Z",
+      "side": 1,
+      "message": "Maybe just \"NicPort\" or \"MellanoxNicPort\". There is no constraint on the `Name` property to contain the name of the association. `PortType` already expresses the association.",
+      "parentUuid": "e966222e_e2dbeb56",
+      "range": {
+        "startLine": 10,
+        "startChar": 21,
+        "endLine": 10,
+        "endChar": 39
+      },
+      "revId": "0d0f776199534d29ba9e14127267e97ca608964e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bf229465_6ccebf4b",
         "filename": "configurations/mellanox/connectx-6.json",
         "patchSetId": 2
