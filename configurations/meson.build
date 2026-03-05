@@ -271,6 +271,7 @@ configs = [
     'nuvoton/npcm8xx_evb.json',
     'nvidia/bmc_p3809.json',
     'nvidia/cable_cartridge.json',
+    'nvidia/clover_cx9.json',
     'nvidia/cx7_mezzanine_module.json',
     'nvidia/cx8_mezzanine_module.json',
     'nvidia/gb200.json',
