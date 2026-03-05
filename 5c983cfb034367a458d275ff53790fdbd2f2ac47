@@ -39,6 +39,24 @@
       "message": "I\u0027m confused, these are ieisystem components, but somehow are being detected using IBM VPD proprietary stuff?  Something isn\u0027t adding up there, maybe we also need a probe on the FRU?",
       "revId": "5c983cfb034367a458d275ff53790fdbd2f2ac47",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f94399ea_80c93b06",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-03-05T19:34:29Z",
+      "side": 1,
+      "message": "Technically it is \"OpenPower VPD\" not \"proprietary IBM VPD\" and these were openpower system components.  The \"com.ibm\" is, I guess, how all those structures are unfortunately documented in phosphor-dbus-interfaces, mostly because they get free reign in that tree and I don\u0027t have to review it.",
+      "parentUuid": "ff4e0ae1_3981f85d",
+      "revId": "5c983cfb034367a458d275ff53790fdbd2f2ac47",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
