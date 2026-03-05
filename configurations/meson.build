@@ -278,6 +278,7 @@ configs = [
     'nvidia/hmc.json',
     'nvidia/imgx_connectx8_supernic_switch.json',
     'nvidia/rtx6000_pro.json',
+    'nvidia/vr_nvl72.json',
     'ocp/cx7_ocp.json',
     'ocp/cx8_ocp.json',
     'solum/pssf132202a.json',
