@@ -283,6 +283,7 @@ configs = [
     'nvidia/cable_cartridge.json',
     'nvidia/cx7_mezzanine_module.json',
     'nvidia/cx8_mezzanine_module.json',
+    'nvidia/cx9_mezzanine_module.json',
     'nvidia/gb200.json',
     'nvidia/gb300.json',
     'nvidia/hmc.json',
