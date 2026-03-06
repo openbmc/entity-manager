@@ -12,6 +12,792 @@
             "Name": "HMC",
             "Port": 80,
             "Type": "SatelliteController"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 3000,
+            "MinValue": 0,
+            "Name": "HGX_GPU0_PWR_W",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 75,
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "Watts",
+            "ValueType": "UINT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 3000,
+            "MinValue": 0,
+            "Name": "HGX_GPU1_PWR_W",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 79,
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "Watts",
+            "ValueType": "UINT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 3000,
+            "MinValue": 0,
+            "Name": "HGX_GPU2_PWR_W",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 83,
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "Watts",
+            "ValueType": "UINT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 3000,
+            "MinValue": 0,
+            "Name": "HGX_GPU3_PWR_W",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 87,
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "Watts",
+            "ValueType": "UINT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 127,
+            "MinValue": -128,
+            "Name": "HGX_GPU0_THERMAL_MARGIN_TEMP_C",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 108,
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.002,
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": -0.1
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.04,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": -2.0
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": -5.0
+                }
+            ],
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "DegreesC",
+            "ValueType": "UINT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 127,
+            "MinValue": -128,
+            "Name": "HGX_GPU1_THERMAL_MARGIN_TEMP_C",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 112,
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.002,
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": -0.1
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.04,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": -2.0
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": -5.0
+                }
+            ],
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "DegreesC",
+            "ValueType": "UINT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 127,
+            "MinValue": -128,
+            "Name": "HGX_GPU2_THERMAL_MARGIN_TEMP_C",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 116,
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.002,
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": -0.1
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.04,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": -2.0
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": -5.0
+                }
+            ],
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "DegreesC",
+            "ValueType": "UINT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 127,
+            "MinValue": -128,
+            "Name": "HGX_GPU3_THERMAL_MARGIN_TEMP_C",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 120,
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.002,
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": -0.1
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.04,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": -2.0
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": -5.0
+                }
+            ],
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "DegreesC",
+            "ValueType": "UINT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 100000,
+            "MinValue": 0,
+            "Name": "HGX_GPU0_ENERGY_J",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 141,
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "Joules",
+            "ValueType": "UINT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 100000,
+            "MinValue": 0,
+            "Name": "HGX_GPU1_ENERGY_J",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 149,
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "Joules",
+            "ValueType": "UINT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 100000,
+            "MinValue": 0,
+            "Name": "HGX_GPU2_ENERGY_J",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 157,
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "Joules",
+            "ValueType": "UINT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 100000,
+            "MinValue": 0,
+            "Name": "HGX_GPU3_ENERGY_J",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 165,
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "Joules",
+            "ValueType": "UINT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 3000,
+            "MinValue": 0,
+            "Name": "HGX_GPU0_DRAM_PWR_W",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 206,
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "Watts",
+            "ValueType": "UINT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 3000,
+            "MinValue": 0,
+            "Name": "HGX_GPU1_DRAM_PWR_W",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 210,
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "Watts",
+            "ValueType": "UINT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 3000,
+            "MinValue": 0,
+            "Name": "HGX_GPU2_DRAM_PWR_W",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 214,
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "Watts",
+            "ValueType": "UINT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 3000,
+            "MinValue": 0,
+            "Name": "HGX_GPU3_DRAM_PWR_W",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 218,
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "Watts",
+            "ValueType": "UINT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 127,
+            "MinValue": -128,
+            "Name": "HGX_HMC_TEMP_C",
+            "PollRate": 1,
+            "ReadOffset": 240,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.9,
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 95.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.86,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 93.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.8,
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 90.0
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.002,
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": -0.1
+                }
+            ],
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "DegreesC",
+            "ValueType": "UINT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 127,
+            "MinValue": -128,
+            "Name": "HGX_GPU0_TEMP_C",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 288,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.8,
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 90.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.84,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 92.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.9,
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 95.0
+                }
+            ],
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "DegreesC",
+            "ValueType": "UINT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 127,
+            "MinValue": -128,
+            "Name": "HGX_GPU1_TEMP_C",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 292,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.8,
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 90.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.84,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 92.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.9,
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 95.0
+                }
+            ],
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "DegreesC",
+            "ValueType": "UINT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 127,
+            "MinValue": -128,
+            "Name": "HGX_GPU2_TEMP_C",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 296,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.8,
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 90.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.84,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 92.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.9,
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 95.0
+                }
+            ],
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "DegreesC",
+            "ValueType": "UINT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 127,
+            "MinValue": -128,
+            "Name": "HGX_GPU3_TEMP_C",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 300,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.8,
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 90.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.84,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 92.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.9,
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 95.0
+                }
+            ],
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "DegreesC",
+            "ValueType": "UINT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 100000,
+            "MinValue": 0,
+            "Name": "HGX_CPU0_ENERGY_J",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 640,
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "Joules",
+            "ValueType": "FLOAT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 3000,
+            "MinValue": 0,
+            "Name": "HGX_CPU0_PWR_W",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 648,
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "Watts",
+            "ValueType": "FLOAT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 3000,
+            "MinValue": 0,
+            "Name": "HGX_CPU0_VR_CPU_PWR_W",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 656,
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "Watts",
+            "ValueType": "FLOAT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 3000,
+            "MinValue": 0,
+            "Name": "HGX_CPU0_VR_SOC_PWR_W",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 664,
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "Watts",
+            "ValueType": "FLOAT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 127,
+            "MinValue": -127,
+            "Name": "HGX_CPU0_TEMP_C",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 672,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7,
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 85.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.76,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 88.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.8,
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 90.0
+                }
+            ],
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "DegreesC",
+            "ValueType": "FLOAT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 127,
+            "MinValue": -127,
+            "Name": "HGX_CPU0_THERMAL_MARGIN_TEMP_C",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 680,
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.002,
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": -0.1
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.06,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": -3.0
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": -5.0
+                }
+            ],
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "DegreesC",
+            "ValueType": "FLOAT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 100,
+            "MinValue": 0,
+            "Name": "HGX_CPU0_VR_CPU_VOLT_V",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 688,
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "Volts",
+            "ValueType": "FLOAT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 100,
+            "MinValue": 0,
+            "Name": "HGX_CPU0_VR_SOC_VOLT_V",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 696,
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "Volts",
+            "ValueType": "FLOAT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 100000,
+            "MinValue": 0,
+            "Name": "HGX_CPU1_ENERGY_J",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 896,
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "Joules",
+            "ValueType": "FLOAT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 3000,
+            "MinValue": 0,
+            "Name": "HGX_CPU1_PWR_W",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 904,
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "Watts",
+            "ValueType": "FLOAT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 3000,
+            "MinValue": 0,
+            "Name": "HGX_CPU1_VR_CPU_PWR_W",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 912,
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "Watts",
+            "ValueType": "FLOAT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 3000,
+            "MinValue": 0,
+            "Name": "HGX_CPU1_VR_SOC_PWR_W",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 920,
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "Watts",
+            "ValueType": "FLOAT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 127,
+            "MinValue": -127,
+            "Name": "HGX_CPU1_TEMP_C",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 928,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7,
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 85.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.76,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 88.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.8,
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 90.0
+                }
+            ],
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "DegreesC",
+            "ValueType": "FLOAT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 127,
+            "MinValue": -127,
+            "Name": "HGX_CPU1_THERMAL_MARGIN_TEMP_C",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 936,
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.002,
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": -0.1
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.06,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": -3.0
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": -5.0
+                }
+            ],
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "DegreesC",
+            "ValueType": "FLOAT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 100,
+            "MinValue": 0,
+            "Name": "HGX_CPU1_VR_CPU_VOLT_V",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 944,
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "Volts",
+            "ValueType": "FLOAT64"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 3,
+            "MaxValue": 100,
+            "MinValue": 0,
+            "Name": "HGX_CPU1_VR_SOC_VOLT_V",
+            "PollRate": 1,
+            "PowerState": "On",
+            "ReadOffset": 952,
+            "Type": "SmbpbiVirtualEeprom",
+            "Units": "Volts",
+            "ValueType": "FLOAT64"
         }
     ],
     "Name": "NVIDIA HMC",
