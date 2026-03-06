@@ -912,8 +912,8 @@
             "Type": "XeonCPU"
         }
     ],
-    "Name": "nf5280m7 baseboard",
-    "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'NF5280M7'})",
+    "Name": "NF5280M7 Baseboard",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'NF5280M7', 'BOARD_MANUFACTURER': 'IEISystem', 'PRODUCT_PRODUCT_NAME': 'NF5280M7'})",
     "Type": "Chassis",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "Manufacturer": "$BOARD_MANUFACTURER",
