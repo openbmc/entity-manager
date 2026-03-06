@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "197315b3_71c026d2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2026-03-06T03:21:09Z",
+      "side": 1,
+      "message": "The directory name follows the company name \"IEISystem\",\nso we used \"ieisystem\" here.",
+      "parentUuid": "848dea0b_04b561a8",
+      "range": {
+        "startLine": 11,
+        "startChar": 43,
+        "endLine": 11,
+        "endChar": 53
+      },
+      "revId": "5c983cfb034367a458d275ff53790fdbd2f2ac47",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ff4e0ae1_3981f85d",
@@ -91,6 +115,24 @@
       "side": 1,
       "message": "I’m not following. There are 3 boards being moved. \n\n- 2 from IBM - these both have com.ibm identifiers (openpower). Assuming Matt can confirm these aren’t actually his boards. \n- 1 from Asrock - this has a FruDevice probe already but is just a model number and no board/product manufacturers.  Maybe we can get George to add those. \n\nWould it be easier if these were two different commits?",
       "parentUuid": "2a570397_a7286be4",
+      "revId": "5c983cfb034367a458d275ff53790fdbd2f2ac47",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86eea31d_03d7b4e2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2026-03-06T03:21:09Z",
+      "side": 1,
+      "message": "\u003e I’m not following. There are 3 boards being moved. \n\u003e \n\u003e - 2 from IBM - these both have com.ibm identifiers (openpower). Assuming Matt can confirm these aren’t actually his boards. \n\nThe FP5280G3 platform is based on OpenPower. In OpenPower systems, the VPD structures typically use `com.ibm` identifiers, so the configuration keeps those identifiers to remain consistent with the existing OpenPower platform conventions.\n\n\u003e - 1 from Asrock - this has a FruDevice probe already but is just a model number and no board/product manufacturers.  Maybe we can get George to add those. \n\nFor the NF5280M7 configuration, I also added board manufacturer information.\n\n\u003e \n\u003e Would it be easier if these were two different commits?\n\nThanks for the feedback. 😊\n\nI have split the original change into two commits to make the changes clearer for review.",
+      "parentUuid": "5d710324_264eb353",
       "revId": "5c983cfb034367a458d275ff53790fdbd2f2ac47",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
