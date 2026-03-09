@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "75bbf98a_fb75aba0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-03-09T19:26:40Z",
+      "side": 1,
+      "message": "The simple answer is Ohm\u0027s Law: V \u003d I * R.  While an ADC typically measures voltage, you can use it to measure current by having a fixed resistor tied to the ADC pin.\n\nVendors have whole documents that describe how to use their hardware for voltage-based current sensing.  Ex. https://www.analog.com/en/resources/app-notes/an-105fa.html\n\nSo, while ADC measures \"Voltage\" if you know the circuit design you use it to measure \"Amperes\".  Right now we\u0027re having to create phosphor-virtual-sensors for each one of these, but it seems relatively straight-forward to just to it natively in dbus-sensors.",
+      "parentUuid": "f3024b9d_3b386889",
+      "revId": "6eb7017276078f4ca1212edef55cb7e2de80f2a5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f4ddd378_f1310342",
         "filename": "schemas/legacy.json",
         "patchSetId": 4
