@@ -250,6 +250,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d500fb56_87e2f02f",
+        "filename": "src/usb_device/udev_helpers.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-09T17:30:05Z",
+      "side": 1,
+      "message": "Most importantly, I don\u0027t want to be gating inclusion of working code on arbitrary coding guidelines.  I want the rules we enforce to have an impact on maintainability or engineering.  Keep in mind, I didn\u0027t write this app;  It was an app written by someone at Google that decided that getting it upstream wasn\u0027t worth the effort, by in part likely because of rules like the above.  Looking at Googles bmc open source tree and making assumptions from that, it\u0027s been in use for years without issues.  It is more important that people feel like they have a path to get code into the build than it is to enforce things like number of and variety of compile units.  I don\u0027t know any widely-used standard that enforces c++ to the level of \"this should be a header\".\n\nAnd remember, if there\u0027s problems that this causes in a practical sense, we can always adapt and refactor (as you do quite often, and I appreciate).",
+      "parentUuid": "a2bc8ef5_70be3073",
+      "revId": "8117c5e7cce448e7b538dd0f329e44f136eda070",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "16b9210e_175a7ff2",
         "filename": "src/usb_device/usb_device_monitor.hpp",
         "patchSetId": 2
