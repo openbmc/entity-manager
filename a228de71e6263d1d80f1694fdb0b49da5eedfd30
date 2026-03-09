@@ -1,0 +1,141 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7683308_e7baf9a8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-09T17:29:22Z",
+      "side": 1,
+      "message": "I like the idea of enforcing some minimum requirements for `Probe` statement but as written it still needs a lot of work.",
+      "revId": "a228de71e6263d1d80f1694fdb0b49da5eedfd30",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89798578_73638d06",
+        "filename": "scripts/check_fru_manufacturer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-09T17:29:22Z",
+      "side": 1,
+      "message": "Out of curiosity, did you try to see if we get less failures just checking for the manufacturer probe?\n\nIf that gets us started with fewer failures then maybe it could be worth achieving that first.",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 78
+      },
+      "revId": "a228de71e6263d1d80f1694fdb0b49da5eedfd30",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db6710b9_6a13c484",
+        "filename": "scripts/check_fru_manufacturer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-09T17:29:22Z",
+      "side": 1,
+      "message": "This is the copy-pasted existing function `remove_c_comments` from \n`scripts/validate_configs.py`",
+      "revId": "a228de71e6263d1d80f1694fdb0b49da5eedfd30",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfe2b794_34d7bcb7",
+        "filename": "scripts/check_fru_manufacturer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-09T17:29:22Z",
+      "side": 1,
+      "message": "This list should probably go into a separate file.",
+      "revId": "a228de71e6263d1d80f1694fdb0b49da5eedfd30",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15fba805_a5d5a4ae",
+        "filename": "scripts/check_fru_manufacturer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-09T17:29:22Z",
+      "side": 1,
+      "message": "Let\u0027s get rid of this manufacturer matches folder stuff for now and let\u0027s start with a manufacturer match existing. If we have to make all these regex contortions to figure it out then it will be hard for folks to figure out why their changes are failing.\n\nOverall the parsing here is conceptually wrong anyways since `Probe` is supposed to represent a boolean-ish conditional which needs an AST and proper parsing.\n\nCreating complicated regex to work around that is an unstable shortcut which will likely introduce problems later on.",
+      "range": {
+        "startLine": 268,
+        "startChar": 1,
+        "endLine": 285,
+        "endChar": 16
+      },
+      "revId": "a228de71e6263d1d80f1694fdb0b49da5eedfd30",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d07f56a_88ea83ad",
+        "filename": "scripts/check_fru_manufacturer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-09T17:29:22Z",
+      "side": 1,
+      "message": "Existing script already has all this code for collecting config files and paths.\n\nLet\u0027s break that out and use a shared function instead of duplicating here.",
+      "range": {
+        "startLine": 367,
+        "startChar": 1,
+        "endLine": 374,
+        "endChar": 58
+      },
+      "revId": "a228de71e6263d1d80f1694fdb0b49da5eedfd30",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96ab4e70_adafa4a8",
+        "filename": "scripts/run-ci.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-09T17:29:22Z",
+      "side": 1,
+      "message": "I would prefer we integrate these checks with the existing logic. The existing logic has some `158     with ProcessPoolExecutor(max_workers\u003dargs.threads) as executor:`\n\nprocess pool thingy which Patrick did to avoid the delay of sequential processing.",
+      "revId": "a228de71e6263d1d80f1694fdb0b49da5eedfd30",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
