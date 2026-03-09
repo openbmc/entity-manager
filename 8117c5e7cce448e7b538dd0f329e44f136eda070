@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b445f48_fcc5bf02",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-09T17:08:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ac24a5a2_96f245d5",
+      "revId": "8117c5e7cce448e7b538dd0f329e44f136eda070",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1460d3f3_4775090a",
@@ -49,6 +67,24 @@
       "side": 1,
       "message": "GB200NVL72 uses usb devices, for example.  I\u0027d prefer to keep the commit message generic.",
       "parentUuid": "1460d3f3_4775090a",
+      "revId": "8117c5e7cce448e7b538dd0f329e44f136eda070",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46576f68_6ff91def",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-09T17:08:21Z",
+      "side": 1,
+      "message": "`configurations/nvidia/gb200.json` currently only probes on `xyz.openbmc_project.FruDevice`. Let\u0027s stack a patch or create a gerrit topic to make sure there is an initial user to avoid merging dead code here.\n\nIt is a fairly standard requirement for upstream features that there has to be at least one upstream user.",
+      "parentUuid": "3cb5ba5e_150354b8",
       "revId": "8117c5e7cce448e7b538dd0f329e44f136eda070",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -160,6 +196,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0de19371_10f33d71",
+        "filename": "src/usb_device/udev_helpers.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-09T17:08:21Z",
+      "side": 1,
+      "message": "Do you have any opinion on the matter? I think it\u0027s quite convenient to have one file per class and also helps to quickly find the relevant files.\n\nIt can also help to avoid git conflicts and does not require us to make a choice as to the order of the classes inside the file.\n\nIt also helps to avoid including more than what is necessary.",
+      "parentUuid": "5377e24b_dbcf9af3",
+      "revId": "8117c5e7cce448e7b538dd0f329e44f136eda070",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "16b9210e_175a7ff2",
         "filename": "src/usb_device/usb_device_monitor.hpp",
         "patchSetId": 2
@@ -189,6 +243,24 @@
       "side": 1,
       "message": "To reduce the number of compile units.  As written this is only included from one compile unit.",
       "parentUuid": "16b9210e_175a7ff2",
+      "revId": "8117c5e7cce448e7b538dd0f329e44f136eda070",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbc8d368_7641a61a",
+        "filename": "src/usb_device/usb_device_monitor.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-09T17:08:21Z",
+      "side": 1,
+      "message": "\u003e To reduce the number of compile units. \n\nmeson supports unity builds if you want to reduce the number of build TUs.\n\nAs written this is making a tradeoff with incremental compilation performance which is an quite important for contributors using smaller machines.\n\nSee https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#sf2-a-header-file-must-not-contain-object-definitions-or-non-inline-function-definitions\nalso",
+      "parentUuid": "7c1a010a_9a77dbc3",
       "revId": "8117c5e7cce448e7b538dd0f329e44f136eda070",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
