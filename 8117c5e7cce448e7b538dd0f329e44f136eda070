@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3cb5ba5e_150354b8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-09T16:29:20Z",
+      "side": 1,
+      "message": "GB200NVL72 uses usb devices, for example.  I\u0027d prefer to keep the commit message generic.",
+      "parentUuid": "1460d3f3_4775090a",
+      "revId": "8117c5e7cce448e7b538dd0f329e44f136eda070",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4708e120_709de2be",
@@ -48,6 +66,24 @@
       "writtenOn": "2026-03-09T10:49:09Z",
       "side": 1,
       "message": "why is it commented out here?",
+      "revId": "8117c5e7cce448e7b538dd0f329e44f136eda070",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80af7d26_23af3b8e",
+        "filename": "src/meson.build",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-09T16:29:20Z",
+      "side": 1,
+      "message": "Because this is WIP.   Fixed.",
+      "parentUuid": "4708e120_709de2be",
       "revId": "8117c5e7cce448e7b538dd0f329e44f136eda070",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -71,6 +107,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7afc34d5_e5511520",
+        "filename": "src/usb_device/udev_helpers.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-09T16:29:20Z",
+      "side": 1,
+      "message": "ACK",
+      "parentUuid": "18ee226f_76fb5448",
+      "revId": "8117c5e7cce448e7b538dd0f329e44f136eda070",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "77822dd9_70da545c",
         "filename": "src/usb_device/udev_helpers.hpp",
         "patchSetId": 2
@@ -88,6 +142,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5377e24b_dbcf9af3",
+        "filename": "src/usb_device/udev_helpers.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-09T16:29:20Z",
+      "side": 1,
+      "message": "What you\u0027ve asked for isn\u0027t something we enforce today.  I\u0027m not going to start enforcing it on this commit.",
+      "parentUuid": "77822dd9_70da545c",
+      "revId": "8117c5e7cce448e7b538dd0f329e44f136eda070",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "16b9210e_175a7ff2",
         "filename": "src/usb_device/usb_device_monitor.hpp",
         "patchSetId": 2
@@ -99,6 +171,24 @@
       "writtenOn": "2026-03-09T10:49:09Z",
       "side": 1,
       "message": "These are not templates, why are they in a hpp file?",
+      "revId": "8117c5e7cce448e7b538dd0f329e44f136eda070",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c1a010a_9a77dbc3",
+        "filename": "src/usb_device/usb_device_monitor.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-09T16:29:20Z",
+      "side": 1,
+      "message": "To reduce the number of compile units.  As written this is only included from one compile unit.",
+      "parentUuid": "16b9210e_175a7ff2",
       "revId": "8117c5e7cce448e7b538dd0f329e44f136eda070",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
