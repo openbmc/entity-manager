@@ -89,6 +89,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "96e68db4_7d96cdce",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-09T17:20:24Z",
+      "side": 1,
+      "message": "\u003e `configurations/nvidia/gb200.json` currently only probes on `xyz.openbmc_project.FruDevice`. Let\u0027s stack a patch or create a gerrit topic to make sure there is an initial user to avoid merging dead code here.\n\nThis is still marked WIP for this and other reasons.\n\n\u003e \n\n\u003e It is a fairly standard requirement for upstream features that there has to be at least one upstream user.\n\n\nI\u0027m going to resolve this.  When this gets marked non-WIP, and you still think this isn\u0027t being met, we can go from there.  FWIW, requiring an EM config isn\u0027t a rule that I was aware of, so I\u0027m not going to enforce it.",
+      "parentUuid": "46576f68_6ff91def",
+      "revId": "8117c5e7cce448e7b538dd0f329e44f136eda070",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4708e120_709de2be",
@@ -208,6 +226,24 @@
       "side": 1,
       "message": "Do you have any opinion on the matter? I think it\u0027s quite convenient to have one file per class and also helps to quickly find the relevant files.\n\nIt can also help to avoid git conflicts and does not require us to make a choice as to the order of the classes inside the file.\n\nIt also helps to avoid including more than what is necessary.",
       "parentUuid": "5377e24b_dbcf9af3",
+      "revId": "8117c5e7cce448e7b538dd0f329e44f136eda070",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2bc8ef5_70be3073",
+        "filename": "src/usb_device/udev_helpers.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-09T17:20:24Z",
+      "side": 1,
+      "message": "\u003e Do you have any opinion on the matter?\n\nMy opinion is that:\n1. It doesn\u0027t matter in an engineering sense.\n2. Trying to enforce the above isn\u0027t worth the effort\n3. Discussing general c++ \"rules\" like this in a single review isn\u0027t the right place for that discussion.\n4. When and when not to use compile units is subtle and has unintended impacts (binary size being one common one).",
+      "parentUuid": "0de19371_10f33d71",
       "revId": "8117c5e7cce448e7b538dd0f329e44f136eda070",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
