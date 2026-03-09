@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a7eb8445_2e79f089",
+        "filename": "configurations/ibm/huygens_spdm_responder.json",
+        "patchSetId": 15
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-09T13:32:42Z",
+      "side": 1,
+      "message": "\u003e Right, so pick a name for what it is in THIS system.\n\nWhat should the contributor write there?\n\nIt\u0027s just a record name after all so if we don\u0027t have any concrete suggestion, is it a big issue? Is it worth holding up this patch over it?\n\nIMO `${Type} $index` is somewhat of a sane default for a `Name` if there is nothing from a schematic or other document which already defines some name for it.",
+      "parentUuid": "139bdf56_3eb49c1c",
+      "range": {
+        "startLine": 5,
+        "startChar": 21,
+        "endLine": 5,
+        "endChar": 37
+      },
+      "revId": "59e967528a781ca4e1dd19552294f88370e3a6db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "207352a1_c0147970",
         "filename": "configurations/ibm/huygens_spdm_responder.json",
         "patchSetId": 15
@@ -181,6 +205,30 @@
       "side": 1,
       "message": "Hi Ed\n\nI remember we have already discussed on this topic sometime back over discord,\nLLDP is neighbor discovery protocol, The network neighbor represents a piece of hardware. since SPDM is trying to identify TCP endpoints devices, it needs to probe LLDP interfaces",
       "parentUuid": "e6d113cc_0bad4d6f",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 132
+      },
+      "revId": "59e967528a781ca4e1dd19552294f88370e3a6db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8313267_4783140b",
+        "filename": "configurations/ibm/huygens_spdm_responder.json",
+        "patchSetId": 15
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-09T13:32:42Z",
+      "side": 1,
+      "message": "\u003e This seems like something we could just encapsulate entirely within the application?\n\nPossibly, but isn\u0027t this something for SPDM maintainers to look into as to how their design should be implemented?\n\nFunctionally it\u0027s just a D-Bus interface to probe on. Since we have the\n```\n        \"AND\",\n        \"FOUND(\u0027Huygens System Chassis\u0027)\"\n```\nit should not have any adverse effects on other systems, right?",
+      "parentUuid": "65a9173c_17c0d133",
       "range": {
         "startLine": 13,
         "startChar": 0,
