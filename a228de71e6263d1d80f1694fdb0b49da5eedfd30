@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "003ce870_bd454b27",
+        "filename": "scripts/check_fru_manufacturer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-09T18:31:43Z",
+      "side": 1,
+      "message": "\u003e Out of curiosity, did you try to see if we get less failures just checking for the manufacturer probe?\n\nPresumably we would, but no, I didn\u0027t test that.\n\n\u003e \n\u003e If that gets us started with fewer failures then maybe it could be worth achieving that first.\n\n\nI prefer this patchset as written;  That gives us a way to enforce for new things and burn down over time.",
+      "parentUuid": "89798578_73638d06",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 78
+      },
+      "revId": "a228de71e6263d1d80f1694fdb0b49da5eedfd30",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "db6710b9_6a13c484",
         "filename": "scripts/check_fru_manufacturer.py",
         "patchSetId": 4
@@ -54,6 +78,24 @@
       "writtenOn": "2026-03-09T17:29:22Z",
       "side": 1,
       "message": "This is the copy-pasted existing function `remove_c_comments` from \n`scripts/validate_configs.py`",
+      "revId": "a228de71e6263d1d80f1694fdb0b49da5eedfd30",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "308def2e_128749a8",
+        "filename": "scripts/check_fru_manufacturer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-09T18:31:43Z",
+      "side": 1,
+      "message": "Yes, it is.  The function is the same.  It\u0027s not worth making a generic scripts utils class for two lines",
+      "parentUuid": "db6710b9_6a13c484",
       "revId": "a228de71e6263d1d80f1694fdb0b49da5eedfd30",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -77,6 +119,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fa2d4dec_00e73386",
+        "filename": "scripts/check_fru_manufacturer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-09T18:31:43Z",
+      "side": 1,
+      "message": "I prefer to keep it here.  Eventually this list goes away, so I\u0027d like to keep this all in one file for now.",
+      "parentUuid": "cfe2b794_34d7bcb7",
+      "revId": "a228de71e6263d1d80f1694fdb0b49da5eedfd30",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "15fba805_a5d5a4ae",
         "filename": "scripts/check_fru_manufacturer.py",
         "patchSetId": 4
@@ -88,6 +148,30 @@
       "writtenOn": "2026-03-09T17:29:22Z",
       "side": 1,
       "message": "Let\u0027s get rid of this manufacturer matches folder stuff for now and let\u0027s start with a manufacturer match existing. If we have to make all these regex contortions to figure it out then it will be hard for folks to figure out why their changes are failing.\n\nOverall the parsing here is conceptually wrong anyways since `Probe` is supposed to represent a boolean-ish conditional which needs an AST and proper parsing.\n\nCreating complicated regex to work around that is an unstable shortcut which will likely introduce problems later on.",
+      "range": {
+        "startLine": 268,
+        "startChar": 1,
+        "endLine": 285,
+        "endChar": 16
+      },
+      "revId": "a228de71e6263d1d80f1694fdb0b49da5eedfd30",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4502879_4242fd1b",
+        "filename": "scripts/check_fru_manufacturer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-09T18:31:43Z",
+      "side": 1,
+      "message": "\u003e Let\u0027s get rid of this manufacturer matches folder stuff for now and let\u0027s start with a manufacturer match existing. If we have to make all these regex contortions to figure it out then it will be hard for folks to figure out why their changes are failing.\n\nNot interested in that.  The manufacturer matches stuff works as written, and as a maintainer I believe this script will help me maintain the folder structure.\n\nGiven the number of violations of this on code that was at one point reviewed, we need to have some kind of automation, and burn down list.\n\n\u003e \n\n\u003e Overall the parsing here is conceptually wrong anyways since `Probe` is supposed to represent a boolean-ish conditional which needs an AST and proper parsing.\n\nAgreed, this makes assumptions about the parsing, but I believe them to be correct assumptions that we will use positive matches, not NOT in a FRU probe.\n\n\u003e \n\u003e Creating complicated regex to work around that is an unstable shortcut which will likely introduce problems later on.\n\n\nCan you be more specific about the potential problems and what you think we should do here instead?  This is only a CI script.  If we have problems, we can always disable it (temporarily or permanently)",
+      "parentUuid": "15fba805_a5d5a4ae",
       "range": {
         "startLine": 268,
         "startChar": 1,
@@ -123,6 +207,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d83c6693_c5ce5c42",
+        "filename": "scripts/check_fru_manufacturer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-09T18:31:43Z",
+      "side": 1,
+      "message": "I\u0027d like to see scripts runnable in isolation. I\u0027m not worried about this minor amount of code duplication in a CI script.",
+      "parentUuid": "9d07f56a_88ea83ad",
+      "range": {
+        "startLine": 367,
+        "startChar": 1,
+        "endLine": 374,
+        "endChar": 58
+      },
+      "revId": "a228de71e6263d1d80f1694fdb0b49da5eedfd30",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "96ab4e70_adafa4a8",
         "filename": "scripts/run-ci.sh",
         "patchSetId": 4
@@ -134,6 +242,24 @@
       "writtenOn": "2026-03-09T17:29:22Z",
       "side": 1,
       "message": "I would prefer we integrate these checks with the existing logic. The existing logic has some `158     with ProcessPoolExecutor(max_workers\u003dargs.threads) as executor:`\n\nprocess pool thingy which Patrick did to avoid the delay of sequential processing.",
+      "revId": "a228de71e6263d1d80f1694fdb0b49da5eedfd30",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09c7f731_7ed28c4f",
+        "filename": "scripts/run-ci.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-09T18:31:43Z",
+      "side": 1,
+      "message": "\u003e I would prefer we integrate these checks with the existing logic.\n\nIs that something you\u0027d like to put up a patch for?  I\u0027m not against it, I just don\u0027t understand why we\u0027re worried in this context and it doesn\u0027t rise to the level of necessary for me.  As written, this script runs in 160ms for all configs on my machine.  For comparison, even with parallel execution, the schema check takes 2.0 seconds on the same machine, and 54 seconds user.  That difference is why the other one requires a pool and this one doesn\u0027t.\n\n\nas an aside, I would be really curious to know why we even need a pool on validate_configs, and why it\u0027s so slow.  I\u0027d bet we\u0027re scanning in the schemas for every iteration, and wouldn\u0027t need the pool there if we just read them in at the start, but that\u0027s a guess.",
+      "parentUuid": "96ab4e70_adafa4a8",
       "revId": "a228de71e6263d1d80f1694fdb0b49da5eedfd30",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
