@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21af29a5_67f9060b",
+        "filename": "configurations/meta/yv5/yosemite5_e1s_x4_expansion_board_adc_ons_pmon_rtk.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-03-09T20:04:43Z",
+      "side": 1,
+      "message": "Board needs a compatible, right?",
+      "revId": "8ad4346880d50d7e055fadbe8f2ca3c67aafb1ca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "302b1b96_4013b882",
+        "filename": "configurations/meta/yv5/yosemite5_e1s_x4_expansion_board_adc_tic_pmon_tic.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-03-09T20:04:43Z",
+      "side": 1,
+      "message": "Board needs a compatible, right?",
+      "revId": "8ad4346880d50d7e055fadbe8f2ca3c67aafb1ca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89bd4c2a_8f3d0567",
+        "filename": "configurations/meta/yv5/yosemite5_mb_vr_mps_pvdd18vr_mps_adc_tic_i3chub_rtt.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 1588,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-03-09T20:04:43Z",
+      "side": 1,
+      "message": "This isn\u0027t the BMC or the SCM card.  Please don\u0027t use the Compatible that implies it is.\n\nYou will need to create a new Board enumeration in `yaml/com/meta/Hardware/Yosemite5.interface.yaml`.  You\u0027ll see similar recent commits for other platforms.",
+      "revId": "8ad4346880d50d7e055fadbe8f2ca3c67aafb1ca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76735d96_2efb770d",
+        "filename": "configurations/meta/yv5/yosemite5_misc.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-03-09T20:04:43Z",
+      "side": 1,
+      "message": "The Compatible all need to be adjusted here.",
+      "revId": "8ad4346880d50d7e055fadbe8f2ca3c67aafb1ca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
