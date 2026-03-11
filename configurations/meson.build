@@ -192,6 +192,7 @@ configs = [
     'meta/santabarbara/santabarbara_pdb1.json',
     'meta/santabarbara/santabarbara_pdb1_vr_sni.json',
     'meta/santabarbara/santabarbara_pdb2.json',
+    'meta/santabarbara/santabarbara_pdb2_vr_ti.json',
     'meta/santabarbara/santabarbara_pttv.json',
     'meta/santabarbara/santabarbara_rainbow.json',
     'meta/santabarbara/santabarbara_scm.json',
