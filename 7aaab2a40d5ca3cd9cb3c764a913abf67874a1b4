@@ -177,6 +177,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1b929a1_272271aa",
+        "filename": "src/usb_device/usb_device_monitor.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-11T21:29:25Z",
+      "side": 1,
+      "message": "I still think it would be an improvement to use the new constructor here to make it const and possible also reduce the number of lines it takes up.\n\nThe path and what\u0027s appended to it will be right next to each other that way, and i believe it will be easier on the eyes.\n\n\u003e not something we enforce with any regularity.\n\nYes but a new constructor provides new opportunities to change how we write the code, so we can re-evaluate.\n\nI\u0027m aware you weren\u0027t completely happy with the new constructor there so i will mark this as resolved for now.",
+      "parentUuid": "b0ef469f_b8de6484",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 27
+      },
+      "revId": "7aaab2a40d5ca3cd9cb3c764a913abf67874a1b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bfce5e58_2cbed582",
@@ -226,6 +250,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "68b45b57_174c793f",
+        "filename": "src/usb_device/usb_device_monitor.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-11T21:29:25Z",
+      "side": 1,
+      "message": "I still believe it would be good to properly develop and document this interface in the PDI.\n\nThe documentation aspect will be quite useful for folks to be able to look up this interface and the meaning of it\u0027s properties and the intention behind it.\n\nAre you saying that interfaces only used inside one repository cannot be documented to potentially be re-used elsewhere?\n\nThere are a lot of interfaces in the PDI which are only exposed or consumed by a single repo.",
+      "parentUuid": "ae93e89b_1aa4f017",
+      "range": {
+        "startLine": 71,
+        "startChar": 38,
+        "endLine": 71,
+        "endChar": 70
+      },
+      "revId": "7aaab2a40d5ca3cd9cb3c764a913abf67874a1b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d62b15ce_55d14e1a",
         "filename": "src/usb_device/usb_device_monitor.hpp",
         "patchSetId": 4
@@ -255,6 +303,24 @@
       "side": 1,
       "message": "Not interested in making that change.  generated server requires PDI bindings and a lot more infra than this template specialization, and EM today doesn\u0027t take a dependency on PDI.\n\nThe interface is \"owned\" by this code.  If the \"interface is changed\" this code will be the one to do it.  If other services are implementing an internal interface, they really shouldnt\u0027 do that.",
       "parentUuid": "d62b15ce_55d14e1a",
+      "revId": "7aaab2a40d5ca3cd9cb3c764a913abf67874a1b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5eb513f0_2ff8249f",
+        "filename": "src/usb_device/usb_device_monitor.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-11T21:29:25Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0b767b0f_43ad128e",
       "revId": "7aaab2a40d5ca3cd9cb3c764a913abf67874a1b4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
