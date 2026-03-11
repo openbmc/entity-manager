@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "850df9da_e3063682",
+        "filename": "scripts/check_fru_manufacturer.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-11T10:35:51Z",
+      "side": 1,
+      "message": "Let\u0027s separate the script from the functions doing the work and modularize it in a separate file.\n\nCurrently the functions here cannot be re-used since there will be a name collision with another scripts `main` function.",
+      "revId": "ce719ab6c24ad960e4efeb49982558bc609d22e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

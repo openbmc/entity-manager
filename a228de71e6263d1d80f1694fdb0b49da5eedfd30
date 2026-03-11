@@ -102,6 +102,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "14117894_e6eb4001",
+        "filename": "scripts/check_fru_manufacturer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-11T10:35:51Z",
+      "side": 1,
+      "message": "We should not be duplicating code, even if it\u0027s just a single function.\n\nIf you duplicate this you are creating useless work for anyone reviewing the code who then needs to check if these functions are actually the same. \n\nAdditionally there is a danger of code drift as people modify one function but forget to replicate the change here.\n\nI can understand that if you are new to vibe coding you might have one-shot this without providing the coding agent with the existing code or instructing it to re-use instead of duplicating.",
+      "parentUuid": "308def2e_128749a8",
+      "revId": "a228de71e6263d1d80f1694fdb0b49da5eedfd30",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cfe2b794_34d7bcb7",
         "filename": "scripts/check_fru_manufacturer.py",
         "patchSetId": 4
@@ -131,6 +149,24 @@
       "side": 1,
       "message": "I prefer to keep it here.  Eventually this list goes away, so I\u0027d like to keep this all in one file for now.",
       "parentUuid": "cfe2b794_34d7bcb7",
+      "revId": "a228de71e6263d1d80f1694fdb0b49da5eedfd30",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "481be2a4_7e04b283",
+        "filename": "scripts/check_fru_manufacturer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-11T10:35:51Z",
+      "side": 1,
+      "message": "I would prefer it be broken out as a separate file. If you can\u0027t do that then at least don\u0027t put it in the middle of the code. Put the data at the top of the file and the actual code below then.",
+      "parentUuid": "fa2d4dec_00e73386",
       "revId": "a228de71e6263d1d80f1694fdb0b49da5eedfd30",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -184,6 +220,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4cc7f435_23abbe80",
+        "filename": "scripts/check_fru_manufacturer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-11T10:35:51Z",
+      "side": 1,
+      "message": "\u003e Can you be more specific about the potential problems and what you think\n we should do here instead?  This is only a CI script.  If we have \nproblems, we can always disable it (temporarily or permanently)\n\nLet\u0027s\n\n- write a real parser for probe statement (probably in c++)\n- re-use that code then to create this tool\n\nI don\u0027t like that we are duplicating things here and writing both the python and C++ code for parsing and processing the same thing. It\u0027s just writing everything twice and it will create a lot of work down the road for contributors.\n\nNote that it will create extra work for you too since you will probably be reviewing that code as well.",
+      "parentUuid": "c4502879_4242fd1b",
+      "range": {
+        "startLine": 268,
+        "startChar": 1,
+        "endLine": 285,
+        "endChar": 16
+      },
+      "revId": "a228de71e6263d1d80f1694fdb0b49da5eedfd30",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9d07f56a_88ea83ad",
         "filename": "scripts/check_fru_manufacturer.py",
         "patchSetId": 4
@@ -219,6 +279,30 @@
       "side": 1,
       "message": "I\u0027d like to see scripts runnable in isolation. I\u0027m not worried about this minor amount of code duplication in a CI script.",
       "parentUuid": "9d07f56a_88ea83ad",
+      "range": {
+        "startLine": 367,
+        "startChar": 1,
+        "endLine": 374,
+        "endChar": 58
+      },
+      "revId": "a228de71e6263d1d80f1694fdb0b49da5eedfd30",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22fba8cb_9b00abb3",
+        "filename": "scripts/check_fru_manufacturer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-11T10:35:51Z",
+      "side": 1,
+      "message": "So it\u0027s wrong to re-use our own code?\n\nYou can still run the script if you import code from another python file. It\u0027s a common feature in python.\n\n\u003e I\u0027m not worried about this minor amount of code duplication in a CI script.\n\nI think you are taking too many shortcuts here. Whatever you merge will potentially stay in the repo for a long time and all contributors will have to work with it or work around it.\n\n\nIf is acceptable then what prevents us from duplicating 100-line functions?\n\nOr copy-pasting entire applications like how it was done in dbus-sensors?",
+      "parentUuid": "d83c6693_c5ce5c42",
       "range": {
         "startLine": 367,
         "startChar": 1,
