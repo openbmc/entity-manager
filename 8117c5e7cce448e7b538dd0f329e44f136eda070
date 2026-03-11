@@ -268,6 +268,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bdbc9fed_fe6157f6",
+        "filename": "src/usb_device/udev_helpers.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-11T12:17:43Z",
+      "side": 1,
+      "message": "\u003e And remember, if there\u0027s problems that this causes in a practical sense, we can always adapt and refactor\n\nThere\u0027s a lot of code in entity-manager that could not be refactored, either for compatibility reasons or because maintainers were not interested in putting in the work required to review patches.\n\n\u003e When and when not to use compile units is subtle and has unintended impacts (binary size being one common one).\n\nThat\u0027s something to fix in compiler toolchains, not in our code. It\u0027s not our job to do the compiler\u0027s job.\n\nIf you really care about binary size then you should not compile it as a separate binary but instead make a single binary from it and the other applications in this repo. Similar to how we did it for bmcweb.\n\nThat will improve overall binary size consumption in the image, trading binary size for clarity and other things.",
+      "parentUuid": "d500fb56_87e2f02f",
+      "revId": "8117c5e7cce448e7b538dd0f329e44f136eda070",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "16b9210e_175a7ff2",
         "filename": "src/usb_device/usb_device_monitor.hpp",
         "patchSetId": 2
@@ -333,6 +351,24 @@
       "side": 1,
       "message": "\u003e \u003e To reduce the number of compile units. \n\u003e \n\n\u003e meson supports unity builds if you want to reduce the number of build TUs.\nNot interested in debating unit builds in this review.  Happy to discuss them in the appropriate forums (mailing list or discord).\n\n\u003e \n\n\u003e As written this is making a tradeoff with incremental compilation performance which is an quite important for contributors using smaller machines.\n\nHow so?  for this specific case, the usb daemon is dominated by link time.  When I\u0027ve measured in similar scenarios, the duplication of compile between compile units makes multiple compile units worse when LTO is enabled.  I will admit I haven\u0027t measured this specific daemon, but making generalities about a commit doesn\u0027t really help me understand the problem with this commit.  Were you not able to compile it?\n\n\u003e \n\u003e See https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#sf2-a-header-file-must-not-contain-object-definitions-or-non-inline-function-definitions\n\u003e also\n\n\nThis is a class definition, and is allowed by the cpp core guilelines doc you linked.\n\n\"A header file must contain only:.... class definitions\"",
       "parentUuid": "dbc8d368_7641a61a",
+      "revId": "8117c5e7cce448e7b538dd0f329e44f136eda070",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce1032ef_a8acc70f",
+        "filename": "src/usb_device/usb_device_monitor.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-11T12:17:43Z",
+      "side": 1,
+      "message": "Well you don\u0027t have to enable LTO for developer builds.\n\nAlso if you write it like this the amount of indentation is increased.",
+      "parentUuid": "4516d4c3_1e1ddd54",
       "revId": "8117c5e7cce448e7b538dd0f329e44f136eda070",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

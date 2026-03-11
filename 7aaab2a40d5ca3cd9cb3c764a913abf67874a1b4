@@ -1,0 +1,130 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2e569b7_149164a8",
+        "filename": "src/usb_device/udev_helpers.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-11T12:17:43Z",
+      "side": 1,
+      "message": "nit: is this function used anywhere in this patch?",
+      "range": {
+        "startLine": 54,
+        "startChar": 15,
+        "endLine": 54,
+        "endChar": 44
+      },
+      "revId": "7aaab2a40d5ca3cd9cb3c764a913abf67874a1b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "268a6f60_c2403bda",
+        "filename": "src/usb_device/udev_helpers.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-11T12:17:43Z",
+      "side": 1,
+      "message": "So there\u0027s an error on construction but the object is still constructed?\n\nDon\u0027t we need to throw an exception here?",
+      "revId": "7aaab2a40d5ca3cd9cb3c764a913abf67874a1b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19d34124_afd23a51",
+        "filename": "src/usb_device/usb_device.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-11T12:17:43Z",
+      "side": 1,
+      "message": "Where do you use `\u003cvector\u003e` here? Maybe I\u0027m being dense but i can\u0027t spot it.",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 2
+      },
+      "revId": "7aaab2a40d5ca3cd9cb3c764a913abf67874a1b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b397602d_11bf9a4c",
+        "filename": "src/usb_device/usb_device_monitor.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-11T12:17:43Z",
+      "side": 1,
+      "message": "Can we make this `const` if we use the new concatenating constructor for this type?",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 27
+      },
+      "revId": "7aaab2a40d5ca3cd9cb3c764a913abf67874a1b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfce5e58_2cbed582",
+        "filename": "src/usb_device/usb_device_monitor.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-11T12:17:43Z",
+      "side": 1,
+      "message": "I don\u0027t think this interface is documented to exist in PDI.\n\n\nDo you plan to document it there or is there already a change pending to get it added?",
+      "range": {
+        "startLine": 71,
+        "startChar": 38,
+        "endLine": 71,
+        "endChar": 70
+      },
+      "revId": "7aaab2a40d5ca3cd9cb3c764a913abf67874a1b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d62b15ce_55d14e1a",
+        "filename": "src/usb_device/usb_device_monitor.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-11T12:17:43Z",
+      "side": 1,
+      "message": "Can you use the generated server here? Otherwise the code could silently fail if the interface is changed at a later time.",
+      "revId": "7aaab2a40d5ca3cd9cb3c764a913abf67874a1b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
