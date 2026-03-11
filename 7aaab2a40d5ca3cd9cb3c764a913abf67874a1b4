@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "38d085d1_548a7a8a",
+        "filename": "src/usb_device/udev_helpers.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-11T19:37:32Z",
+      "side": 1,
+      "message": "Possibly not.  This came from Googles original patch.",
+      "parentUuid": "d2e569b7_149164a8",
+      "range": {
+        "startLine": 54,
+        "startChar": 15,
+        "endLine": 54,
+        "endChar": 44
+      },
+      "revId": "7aaab2a40d5ca3cd9cb3c764a913abf67874a1b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "268a6f60_c2403bda",
         "filename": "src/usb_device/udev_helpers.hpp",
         "patchSetId": 4
@@ -43,6 +67,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "922312af_0f7124b1",
+        "filename": "src/usb_device/udev_helpers.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-11T19:37:32Z",
+      "side": 1,
+      "message": "Hard to throw an exception in an async reactor.  Will look into handling this better (probably with a private constructor or a separate init method)",
+      "parentUuid": "268a6f60_c2403bda",
+      "revId": "7aaab2a40d5ca3cd9cb3c764a913abf67874a1b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "19d34124_afd23a51",
         "filename": "src/usb_device/usb_device.cpp",
         "patchSetId": 4
@@ -54,6 +96,30 @@
       "writtenOn": "2026-03-11T12:17:43Z",
       "side": 1,
       "message": "Where do you use `\u003cvector\u003e` here? Maybe I\u0027m being dense but i can\u0027t spot it.",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 2
+      },
+      "revId": "7aaab2a40d5ca3cd9cb3c764a913abf67874a1b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c813e8de_a35f29d2",
+        "filename": "src/usb_device/usb_device.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-11T19:37:32Z",
+      "side": 1,
+      "message": "it was used previously.  will remove.  (I really need to get include-cleaner running again).",
+      "parentUuid": "19d34124_afd23a51",
       "range": {
         "startLine": 11,
         "startChar": 0,
@@ -89,6 +155,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b0ef469f_b8de6484",
+        "filename": "src/usb_device/usb_device_monitor.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-11T19:37:32Z",
+      "side": 1,
+      "message": "Can we, yes, but that\u0027s not something we enforce with any regularity.",
+      "parentUuid": "b397602d_11bf9a4c",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 27
+      },
+      "revId": "7aaab2a40d5ca3cd9cb3c764a913abf67874a1b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bfce5e58_2cbed582",
         "filename": "src/usb_device/usb_device_monitor.hpp",
         "patchSetId": 4
@@ -112,6 +202,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ae93e89b_1aa4f017",
+        "filename": "src/usb_device/usb_device_monitor.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-11T19:37:32Z",
+      "side": 1,
+      "message": "\u003e I don\u0027t think this interface is documented to exist in PDI.\n\u003e \n\nNor should it be.\n\n\u003e \n\u003e Do you plan to document it there or is there already a change pending to get it added?\n\nNope, this is the equivalent of FRUDevice, it\u0027s an internal API for EM to use internally, and is not stable for general purpose use.",
+      "parentUuid": "bfce5e58_2cbed582",
+      "range": {
+        "startLine": 71,
+        "startChar": 38,
+        "endLine": 71,
+        "endChar": 70
+      },
+      "revId": "7aaab2a40d5ca3cd9cb3c764a913abf67874a1b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d62b15ce_55d14e1a",
         "filename": "src/usb_device/usb_device_monitor.hpp",
         "patchSetId": 4
@@ -123,6 +237,24 @@
       "writtenOn": "2026-03-11T12:17:43Z",
       "side": 1,
       "message": "Can you use the generated server here? Otherwise the code could silently fail if the interface is changed at a later time.",
+      "revId": "7aaab2a40d5ca3cd9cb3c764a913abf67874a1b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b767b0f_43ad128e",
+        "filename": "src/usb_device/usb_device_monitor.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-11T19:37:32Z",
+      "side": 1,
+      "message": "Not interested in making that change.  generated server requires PDI bindings and a lot more infra than this template specialization, and EM today doesn\u0027t take a dependency on PDI.\n\nThe interface is \"owned\" by this code.  If the \"interface is changed\" this code will be the one to do it.  If other services are implementing an internal interface, they really shouldnt\u0027 do that.",
+      "parentUuid": "d62b15ce_55d14e1a",
       "revId": "7aaab2a40d5ca3cd9cb3c764a913abf67874a1b4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

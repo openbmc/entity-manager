@@ -284,6 +284,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "41726dc1_46e2463a",
+        "filename": "src/usb_device/udev_helpers.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-11T19:37:32Z",
+      "side": 1,
+      "message": "\u003e \u003e And remember, if there\u0027s problems that this causes in a practical sense, we can always adapt and refactor\n\u003e \n\u003e There\u0027s a lot of code in entity-manager that could not be refactored, either for compatibility reasons or because maintainers were not interested in putting in the work required to review patches.\n\nWe\u0027ve now pivoted from compile units (which ARE refactorable if needed) to a general discussion about your attempts to enforce PDI on EM.  Happy to discuss with you in the appropriate forum, but lets keep this discussion about this patch.  The original ask was \"one class per cpp/hpp\", which I don\u0027t believe is neccesary.\n\n\n\u003e \n\u003e \u003e When and when not to use compile units is subtle and has unintended impacts (binary size being one common one).\n\u003e \n\u003e That\u0027s something to fix in compiler toolchains, not in our code. It\u0027s not our job to do the compiler\u0027s job.\n\nThe above is your opinion and I disagree with it very much, but this is again, not the right forum for making general \"not my problem\" arguments.\n\n\u003e \n\u003e If you really care about binary size then you should not compile it as a separate binary but instead make a single binary from it and the other applications in this repo. Similar to how we did it for bmcweb.\n\nEverything is about tradeoffs, and for better or worse all the existing detection daemons are currently separate applications.  I\u0027m not going to change that paradigm in this patch, but happy to discuss if you have thoughts there.\n\n\u003e \n\u003e That will improve overall binary size consumption in the image, trading binary size for clarity and other things.\n\nNot a change I\u0027m planning to make in this patch as it would be against the current status quo.  Happy to discuss elsewhere\n\nI believe this discussion has run its course on the original ask which was one cpp/hpp per file.  If we determine this to be the right thing to do later, it is a pretty doable refactor.",
+      "parentUuid": "bdbc9fed_fe6157f6",
+      "revId": "8117c5e7cce448e7b538dd0f329e44f136eda070",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "16b9210e_175a7ff2",
@@ -369,6 +387,24 @@
       "side": 1,
       "message": "Well you don\u0027t have to enable LTO for developer builds.\n\nAlso if you write it like this the amount of indentation is increased.",
       "parentUuid": "4516d4c3_1e1ddd54",
+      "revId": "8117c5e7cce448e7b538dd0f329e44f136eda070",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2a49475_39701def",
+        "filename": "src/usb_device/usb_device_monitor.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-11T19:37:32Z",
+      "side": 1,
+      "message": "Indentation is a fair point, but could also be done without headers.  As written, very few of these lines wrap.",
+      "parentUuid": "ce1032ef_a8acc70f",
       "revId": "8117c5e7cce448e7b538dd0f329e44f136eda070",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
