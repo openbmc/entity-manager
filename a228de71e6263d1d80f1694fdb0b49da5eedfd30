@@ -120,6 +120,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2aef4f79_cdf5fbab",
+        "filename": "scripts/check_fru_manufacturer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-11T20:20:02Z",
+      "side": 1,
+      "message": "\u003e We should not be duplicating code, even if it\u0027s just a single function.\n\nWe disagree.\n\n\u003e \n\u003e If you duplicate this you are creating useless work for anyone reviewing the code who then needs to check if these functions are actually the same.\n\nWe\u0027re talking about two lines here in a 400 line patch.  If you think it\u0027s wrong, or doesn\u0027t match the existing, lets talk.\n\n\u003e \n\u003e Additionally there is a danger of code drift as people modify one function but forget to replicate the change here.\n\nConsidering these are CI functions that are tested on every commit and only run on the repo, that\u0027s not a concern.  Code drift would result in an immediate CI failure.\n\n\u003e \n\u003e I can understand that if you are new to vibe coding you might have one-shot this without providing the coding agent with the existing code or instructing it to re-use instead of duplicating.\n\nIt\u0027s not about the vibe coding aspect here, it\u0027s about keeping this script runnable in isolation.  Again, two lines, I\u0027m not sure why we\u0027re arguing this.\n\nIf this were 50+ lines, I\u0027d understand, but if we\u0027re going to deduplicate any 2 line stanzas, there\u0027s a lot more changes that need to be made common.",
+      "parentUuid": "14117894_e6eb4001",
+      "revId": "a228de71e6263d1d80f1694fdb0b49da5eedfd30",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cfe2b794_34d7bcb7",
         "filename": "scripts/check_fru_manufacturer.py",
         "patchSetId": 4
@@ -167,6 +185,24 @@
       "side": 1,
       "message": "I would prefer it be broken out as a separate file. If you can\u0027t do that then at least don\u0027t put it in the middle of the code. Put the data at the top of the file and the actual code below then.",
       "parentUuid": "fa2d4dec_00e73386",
+      "revId": "a228de71e6263d1d80f1694fdb0b49da5eedfd30",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb58ce27_cff9152a",
+        "filename": "scripts/check_fru_manufacturer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-11T20:20:02Z",
+      "side": 1,
+      "message": "Moving to the top of the file is a fair ask.  I\u0027ve done that in the latest patchset.",
+      "parentUuid": "481be2a4_7e04b283",
       "revId": "a228de71e6263d1d80f1694fdb0b49da5eedfd30",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -244,6 +280,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a311f81e_eacbd7e4",
+        "filename": "scripts/check_fru_manufacturer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-11T20:20:02Z",
+      "side": 1,
+      "message": "\u003e \u003e Can you be more specific about the potential problems and what you think\n\u003e  we should do here instead?  This is only a CI script.  If we have \n\u003e problems, we can always disable it (temporarily or permanently)\n\u003e \n\u003e Let\u0027s\n\u003e \n\u003e - write a real parser for probe statement (probably in c++)\n\nGo right ahead.  Mine is in gerrit that I\u0027ve pointed you to in the past.  In terms of this change, this parser is \"good enough\" to identify failures.  Also the actual EM implementation doesn\u0027t yet use a real parser, so holding this patchset to that.\n\nAs maintainer, if we in the future have false positives because of this I will go resolve them as part of my maintenance of this repo.  Of the files checked in, I\u0027ve reviewed and I don\u0027t believe this to have false positives.\n\n\u003e - re-use that code then to create this tool\n\nI\u0027m in full support of this path, but it\u0027s not something I want to immediately execute on.  Is it something you want to do?  Functionally I\u0027d really like to see all of this CI-script stuff moved to C++ built tools, but folks seem to like scripts (rightfully so) so for CI, generally I don\u0027t enforce that CI tools be in C++.\n\n\u003e \n\u003e I don\u0027t like that we are duplicating things here and writing both the python and C++ code for parsing and processing the same thing. It\u0027s just writing everything twice and it will create a lot of work down the road for contributors.\n\nIs this a position you\u0027re willing to put engineering behind?  The scripts folder has duplicated things at CI time in python for a long time.  Functionally this isn\u0027t making things much worse.\n\nI agree, if we had C++ that could test all this stuff, it would run faster and likely be better, but that\u0027s not the status quo, and I\u0027m not prepared to keep having this problem get worse while that solution gets engineered.\n\n\u003e \n\u003e Note that it will create extra work for you too since you will probably be reviewing that code as well.\n\nYes, but it will be less work than having to constantly point out bad commits.  In terms of my personal tradeoff, I\u0027d rather possibly have to revisit one script review than definitely have to revisit hundreds of reviews that get this stuff wrong on first patchset.  The goal is ultimately to make things get upstream easier, and I believe that on-balance, this patchset accomplishes that.\n\nIf you truly believe that this will make things harder to maintain, I\u0027m happy to hear it, but from my perspective, it makes things easier.",
+      "parentUuid": "4cc7f435_23abbe80",
+      "range": {
+        "startLine": 268,
+        "startChar": 1,
+        "endLine": 285,
+        "endChar": 16
+      },
+      "revId": "a228de71e6263d1d80f1694fdb0b49da5eedfd30",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9d07f56a_88ea83ad",
         "filename": "scripts/check_fru_manufacturer.py",
         "patchSetId": 4
@@ -303,6 +363,30 @@
       "side": 1,
       "message": "So it\u0027s wrong to re-use our own code?\n\nYou can still run the script if you import code from another python file. It\u0027s a common feature in python.\n\n\u003e I\u0027m not worried about this minor amount of code duplication in a CI script.\n\nI think you are taking too many shortcuts here. Whatever you merge will potentially stay in the repo for a long time and all contributors will have to work with it or work around it.\n\n\nIf is acceptable then what prevents us from duplicating 100-line functions?\n\nOr copy-pasting entire applications like how it was done in dbus-sensors?",
       "parentUuid": "d83c6693_c5ce5c42",
+      "range": {
+        "startLine": 367,
+        "startChar": 1,
+        "endLine": 374,
+        "endChar": 58
+      },
+      "revId": "a228de71e6263d1d80f1694fdb0b49da5eedfd30",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec4368a6_0bd0c793",
+        "filename": "scripts/check_fru_manufacturer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-11T20:20:02Z",
+      "side": 1,
+      "message": "\u003e So it\u0027s wrong to re-use our own code?\n\nYou\u0027re taking something said in the context of this specific line of code, and claiming I said it was some general rule.  In this specific context, I believe that not relying on the existing content is a good thing (to avoid the threadpool).\n\n\u003e \n\u003e You can still run the script if you import code from another python file. It\u0027s a common feature in python.\n\nTrue, but now I have to maintain dependencies cross script, as as stated elsewhere, I\u0027m not at the point where I want to maintain this as anything other than one isolated test.\n\nIf we get to what you talk about elsewhere, where we have the \"real\" parser runnable as a c++ app, I agree, it makes sense to consolidate.\n\n\u003e \n\u003e \u003e I\u0027m not worried about this minor amount of code duplication in a CI script.\n\u003e \n\u003e I think you are taking too many shortcuts here. Whatever you merge will potentially stay in the repo for a long time and all contributors will have to work with it or work around it.\n\nAbsolutely right, I am taking shortcuts because I\u0027m spending too much time reviewing incorrect patches and I need automation.  If you\u0027re interested in helping to refactor these things in the way you envision, I could really use the help.  I\u0027m not against a lot of your ideas, just that I don\u0027t have time for it.\n\n\u003e \n\u003e \n\u003e If is acceptable then what prevents us from duplicating 100-line functions?\n\nThis is not duplicating 100 line functions, but to answer your question: Maintainers.\n\n\u003e \n\u003e Or copy-pasting entire applications like how it was done in dbus-sensors?\n\nI\u0027m not going to debate the history of how dbus-sensors came to be in a single code review.  If you\u0027re interested, I\u0027m happy to walk you through how that was allowed (hint, the maintainer wanted to support people merging code).  Ultimately what\u0027s there is now what the majority of people use, versus alternatives that enforced a lot more rules and were \"cleaner\" in design.  If you want to use those, I believe they\u0027re still available.",
+      "parentUuid": "22fba8cb_9b00abb3",
       "range": {
         "startLine": 367,
         "startChar": 1,
