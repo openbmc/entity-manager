@@ -65,6 +65,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a66b154_50b08e32",
+        "filename": "scripts/check_fru_manufacturer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-11T21:05:13Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "003ce870_bd454b27",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 78
+      },
+      "revId": "a228de71e6263d1d80f1694fdb0b49da5eedfd30",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db6710b9_6a13c484",
@@ -132,6 +156,24 @@
       "side": 1,
       "message": "\u003e We should not be duplicating code, even if it\u0027s just a single function.\n\nWe disagree.\n\n\u003e \n\u003e If you duplicate this you are creating useless work for anyone reviewing the code who then needs to check if these functions are actually the same.\n\nWe\u0027re talking about two lines here in a 400 line patch.  If you think it\u0027s wrong, or doesn\u0027t match the existing, lets talk.\n\n\u003e \n\u003e Additionally there is a danger of code drift as people modify one function but forget to replicate the change here.\n\nConsidering these are CI functions that are tested on every commit and only run on the repo, that\u0027s not a concern.  Code drift would result in an immediate CI failure.\n\n\u003e \n\u003e I can understand that if you are new to vibe coding you might have one-shot this without providing the coding agent with the existing code or instructing it to re-use instead of duplicating.\n\nIt\u0027s not about the vibe coding aspect here, it\u0027s about keeping this script runnable in isolation.  Again, two lines, I\u0027m not sure why we\u0027re arguing this.\n\nIf this were 50+ lines, I\u0027d understand, but if we\u0027re going to deduplicate any 2 line stanzas, there\u0027s a lot more changes that need to be made common.",
       "parentUuid": "14117894_e6eb4001",
+      "revId": "a228de71e6263d1d80f1694fdb0b49da5eedfd30",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ec0b6ee_76b959e1",
+        "filename": "scripts/check_fru_manufacturer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-11T21:05:13Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "2aef4f79_cdf5fbab",
       "revId": "a228de71e6263d1d80f1694fdb0b49da5eedfd30",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -302,6 +344,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d22b9cc_e72b12d7",
+        "filename": "scripts/check_fru_manufacturer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-11T21:05:13Z",
+      "side": 1,
+      "message": "\u003e Is this a position you\u0027re willing to put engineering behind?\n\nIn the long term, yes, but i would put test coverage as a higher priority.",
+      "parentUuid": "a311f81e_eacbd7e4",
+      "range": {
+        "startLine": 268,
+        "startChar": 1,
+        "endLine": 285,
+        "endChar": 16
+      },
+      "revId": "a228de71e6263d1d80f1694fdb0b49da5eedfd30",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9d07f56a_88ea83ad",
@@ -397,6 +463,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "78cd996e_e288159a",
+        "filename": "scripts/check_fru_manufacturer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-11T21:05:13Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ec4368a6_0bd0c793",
+      "range": {
+        "startLine": 367,
+        "startChar": 1,
+        "endLine": 374,
+        "endChar": 58
+      },
+      "revId": "a228de71e6263d1d80f1694fdb0b49da5eedfd30",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "96ab4e70_adafa4a8",
@@ -428,6 +518,24 @@
       "side": 1,
       "message": "\u003e I would prefer we integrate these checks with the existing logic.\n\nIs that something you\u0027d like to put up a patch for?  I\u0027m not against it, I just don\u0027t understand why we\u0027re worried in this context and it doesn\u0027t rise to the level of necessary for me.  As written, this script runs in 160ms for all configs on my machine.  For comparison, even with parallel execution, the schema check takes 2.0 seconds on the same machine, and 54 seconds user.  That difference is why the other one requires a pool and this one doesn\u0027t.\n\n\nas an aside, I would be really curious to know why we even need a pool on validate_configs, and why it\u0027s so slow.  I\u0027d bet we\u0027re scanning in the schemas for every iteration, and wouldn\u0027t need the pool there if we just read them in at the start, but that\u0027s a guess.",
       "parentUuid": "96ab4e70_adafa4a8",
+      "revId": "a228de71e6263d1d80f1694fdb0b49da5eedfd30",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f342d4f4_723a75f6",
+        "filename": "scripts/run-ci.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-11T21:05:13Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "09c7f731_7ed28c4f",
       "revId": "a228de71e6263d1d80f1694fdb0b49da5eedfd30",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
