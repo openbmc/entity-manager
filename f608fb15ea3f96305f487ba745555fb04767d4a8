@@ -18,6 +18,23 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba98edf6_7c9ffd42",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-11T13:41:58Z",
+      "side": 1,
+      "message": "Thanks for taking the time to review 👍",
+      "revId": "f608fb15ea3f96305f487ba745555fb04767d4a8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a94c3c1e_5fce00fe",
@@ -31,6 +48,24 @@
       "writtenOn": "2026-03-11T12:52:47Z",
       "side": 1,
       "message": "Do these fans not have presence detect GPIOs?",
+      "revId": "f608fb15ea3f96305f487ba745555fb04767d4a8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fdf40a3_ead7bbea",
+        "filename": "configurations/mbx_systems/1_57_chassis_fan_1.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-11T13:41:58Z",
+      "side": 1,
+      "message": "There\u0027s multiple 4-pin fan headers\n\nhttps://www.mitaccomputing.com/Motherboards_S8030_S8030GM2NE_EN~Spec\n\nhttps://en.wikipedia.org/wiki/Computer_fan#Connectors\n\nSo we only have pwm output and tach input.\n\nThe fan is not powered when the host is powered off so there is no way to use the tach input for presence detection.",
+      "parentUuid": "a94c3c1e_5fce00fe",
       "revId": "f608fb15ea3f96305f487ba745555fb04767d4a8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
