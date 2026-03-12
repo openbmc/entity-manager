@@ -11,6 +11,10 @@
                     "description": "The bus index to which the device is attached",
                     "type": "string"
                 },
+                "CreateSensors": {
+                    "description": "When false, pldmd will not create inventory paths or PLDM sensors for this terminus. Defaults to true if not specified.",
+                    "type": "boolean"
+                },
                 "Name": {
                     "description": "A recognisable name for the device",
                     "type": "string"
@@ -32,6 +36,10 @@
                 "Bus": {
                     "description": "The bus index to which the device is attached",
                     "type": "string"
+                },
+                "CreateSensors": {
+                    "description": "When false, pldmd will not create inventory paths or PLDM sensors for this terminus. Defaults to true if not specified.",
+                    "type": "boolean"
                 },
                 "Name": {
                     "description": "A recognisable name for the device",
