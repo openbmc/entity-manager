@@ -203,6 +203,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6df819ef_f657533e",
+        "filename": "src/usb_device/usb_device_monitor.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-12T16:08:37Z",
+      "side": 1,
+      "message": "\u003e possible also reduce the number of lines it takes up.\n\nI\u0027m confused, adding const here would push more characters?\n\n```        \nsdbusplus::message::object_path objPath(\n            \"/xyz/openbmc_project/usb_device\");\n```\n\nvs\n```\nconst sdbusplus::message::object_path objPath(\n            \"/xyz/openbmc_project/usb_device\");\n```\n\n?\n\nI\u0027m not really sure where all the \"new constructor\" stuff is coming from.  You\u0027re talking about the new sdbusplus patch you JUST merged?  I don\u0027t find that constructor any more clear than what\u0027s here, and it\u0027s less clear what the behavior is when we do it in the constructor.  Sorry, this code tracks better for me.\n\nobject_path::format(\"/xyz/openbmc_project/usb_device/{}\", device);\nor\nobject_path(\"xyz\", \"openbmc_project\", \"usb_device\", device);\n\nmakes more sense to my brain, as does what\u0027s in this patchset now.",
+      "parentUuid": "e1b929a1_272271aa",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 27
+      },
+      "revId": "7aaab2a40d5ca3cd9cb3c764a913abf67874a1b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bfce5e58_2cbed582",
         "filename": "src/usb_device/usb_device_monitor.hpp",
         "patchSetId": 4
@@ -262,6 +286,30 @@
       "side": 1,
       "message": "I still believe it would be good to properly develop and document this interface in the PDI.\n\nThe documentation aspect will be quite useful for folks to be able to look up this interface and the meaning of it\u0027s properties and the intention behind it.\n\nAre you saying that interfaces only used inside one repository cannot be documented to potentially be re-used elsewhere?\n\nThere are a lot of interfaces in the PDI which are only exposed or consumed by a single repo.",
       "parentUuid": "ae93e89b_1aa4f017",
+      "range": {
+        "startLine": 71,
+        "startChar": 38,
+        "endLine": 71,
+        "endChar": 70
+      },
+      "revId": "7aaab2a40d5ca3cd9cb3c764a913abf67874a1b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b008c986_7097deef",
+        "filename": "src/usb_device/usb_device_monitor.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-12T16:08:37Z",
+      "side": 1,
+      "message": "\u003e I still believe it would be good to properly develop and document this interface in the PDI.\n\nFeel free.  I question the word \"properly\".  This repo doesn\u0027t use PDI, and hasn\u0027t since its creation.  Imposing that on new patches isn\u0027t something I\u0027m prepared to do.  You may think PDI is proper, and that\u0027s fine, but it\u0027s a much longer process than reviewing code, and I personally find that process loses details that are required to make things work.\n\nI fully admit that Patrick and I disagree in this regard, and that too, is fine, we can all still make progress.\n\n\u003e \n\u003e The documentation aspect will be quite useful for folks to be able to look up this interface and the meaning of it\u0027s properties and the intention behind it.\n\nPDI is yaml files, to call it documentation is a stretch.  Possibly you prefer that abstraction, which is fine.\n\n\u003e \n\u003e Are you saying that interfaces only used inside one repository cannot be documented to potentially be re-used elsewhere?\n\nFor the second time today, that\u0027s not what I said and somehow a statement made about one API has been changed to apply to all cases in all scenarios (which is not what I said).  What I said is that THIS interface is not intended to be re-used elsewhere as written.  It\u0027s intended to be used for EM probes.  If someone wants to reuse it for non probes, that deserves a discussion, at which point possibly a PDI review is the right approach.\n\n\u003e \n\u003e There are a lot of interfaces in the PDI which are only exposed or consumed by a single repo.\n\nNot saying otherwise.",
+      "parentUuid": "68b45b57_174c793f",
       "range": {
         "startLine": 71,
         "startChar": 38,
