@@ -378,7 +378,77 @@
                 }
             ],
             "Type": "TMP75"
-        }
+        },
+        {
+            "Name": "PRSNT_CPU0_N",
+            "PresencePinNames": ["PRSNT_CPU0_N"],
+            "PresencePinValues": [0],
+            "LogPresenceChange": true,
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "LPDB_FAN1_PRSNT_N_R",
+            "PresencePinNames": ["LPDB_FAN1_PRSNT_N_R"],
+            "PresencePinValues": [0],
+            "LogPresenceChange": true,
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "LPDB_FAN2_PRSNT_N_R",
+            "PresencePinNames": ["LPDB_FAN2_PRSNT_N_R"],
+            "PresencePinValues": [0],
+            "LogPresenceChange": true,
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "LPDB_FAN3_PRSNT_N_R",
+            "PresencePinNames": ["LPDB_FAN3_PRSNT_N_R"],
+            "PresencePinValues": [0],
+            "LogPresenceChange": true,
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "LPDB_FAN4_PRSNT_N_R",
+            "PresencePinNames": ["LPDB_FAN4_PRSNT_N_R"],
+            "PresencePinValues": [0],
+            "LogPresenceChange": true,
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "LPDB_FAN5_PRSNT_N_R",
+            "PresencePinNames": ["LPDB_FAN5_PRSNT_N_R"],
+            "PresencePinValues": [0],
+            "LogPresenceChange": true,
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RPDB_FAN1_PRSNT_N_R",
+            "PresencePinNames": ["RPDB_FAN1_PRSNT_N_R"],
+            "PresencePinValues": [0],
+            "LogPresenceChange": true,
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RPDB_FAN2_PRSNT_N_R",
+            "PresencePinNames": ["RPDB_FAN2_PRSNT_N_R"],
+            "PresencePinValues": [0],
+            "LogPresenceChange": true,
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RPDB_FAN3_PRSNT_N_R",
+            "PresencePinNames": ["RPDB_FAN3_PRSNT_N_R"],
+            "PresencePinValues": [0],
+            "LogPresenceChange": true,
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RPDB_FAN4_PRSNT_N_R",
+            "PresencePinNames": ["RPDB_FAN4_PRSNT_N_R"],
+            "PresencePinValues": [0],
+            "LogPresenceChange": true,
+            "Type": "GPIODeviceDetect"
+         }
     ],
     "Name": "Anacapa SCM",
     "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Anacapa SCM', 'BOARD_MANUFACTURER': 'Quanta'})",

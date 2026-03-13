@@ -165,7 +165,7 @@ auto GPIOPresenceManager::addConfigFromDbusAsync(
 
     auto devicePresence = std::make_unique<DevicePresence>(
         ctx, props.presence_pin_names, props.presence_pin_values, props.name,
-        gpioState, parentInvCompatible);
+        gpioState, parentInvCompatible, props.log_presence_change);
 
     if (devicePresence)
     {
