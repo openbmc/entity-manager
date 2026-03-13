@@ -31,7 +31,8 @@ class DevicePresence
                    const std::vector<uint64_t>& gpioValues,
                    const std::string& deviceName,
                    const std::unordered_map<std::string, bool>& gpioState,
-                   const std::vector<std::string>& parentInvCompatible);
+                   const std::vector<std::string>& parentInvCompatible,
+                   bool logPresenceChange = false);
 
     auto updateGPIOPresence(const std::string& gpioLine) -> void;
 
@@ -60,6 +61,8 @@ class DevicePresence
 
     // property added when the hw is detected
     std::unique_ptr<DevicePresenceInterface> detectedIface = nullptr;
+    
+    bool logPresenceChange = false;
 };
 
 } // namespace gpio_presence

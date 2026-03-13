@@ -5,11 +5,13 @@
 
 #include "device_presence.hpp"
 
+#include <phosphor-logging/commit.hpp>
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/message/native_types.hpp>
 #include <xyz/openbmc_project/Configuration/GPIODeviceDetect/client.hpp>
 #include <xyz/openbmc_project/Configuration/GPIODeviceDetect/common.hpp>
 #include <xyz/openbmc_project/Inventory/Source/DevicePresence/aserver.hpp>
+#include <xyz/openbmc_project/State/Presence/event.hpp>
 
 #include <string>
 #include <vector>
@@ -26,9 +28,10 @@ DevicePresence::DevicePresence(
     sdbusplus::async::context& ctx, const std::vector<std::string>& gpioNames,
     const std::vector<uint64_t>& gpioValues, const std::string& deviceName,
     const std::unordered_map<std::string, bool>& gpioState,
-    const std::vector<std::string>& parentInvCompatible) :
+    const std::vector<std::string>& parentInvCompatible, bool logPresenceChangeIn) :
     deviceName(deviceName), gpioState(gpioState), ctx(ctx),
-    parentInventoryCompatible(parentInvCompatible)
+    parentInventoryCompatible(parentInvCompatible),
+    logPresenceChange(logPresenceChangeIn)
 {
     for (size_t i = 0; i < gpioNames.size(); i++)
     {
@@ -103,6 +106,16 @@ auto DevicePresence::updateDbusInterfaces() -> void
             DevicePresenceProperties{deviceName, firstCompatible});
 
         detectedIface->emit_added();
+
+        if (logPresenceChange)
+        {
+            auto logPath = lg2::commit(
+                sdbusplus::event::xyz::openbmc_project::state::Presence::DevicePresent(
+                    "DEVICE_NAME", deviceName));
+
+            info("Created present event log for {NAME} at {PATH}",
+                                            "NAME", deviceName, "PATH", logPath.str);
+        }
     }
 
     if (!present && detectedIface)
@@ -112,6 +125,16 @@ auto DevicePresence::updateDbusInterfaces() -> void
         detectedIface->emit_removed();
 
         detectedIface.reset();
+        
+        if (logPresenceChange)
+        {
+            auto logPath = lg2::commit(
+                sdbusplus::event::xyz::openbmc_project::state::Presence::DeviceAbsent(
+                    "DEVICE_NAME", deviceName));
+
+            info("Created absent event log for {NAME} at {PATH}",
+                                            "NAME", deviceName, "PATH", logPath.str);
+        }
     }
 }
 
