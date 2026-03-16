@@ -27,6 +27,10 @@
                     "items": {
                         "type": "number"
                     }
+                },
+                "LogPresenceChange": {
+                    "description": "Whether to emit event logs for presence state changes.",
+                    "type": "boolean"
                 }
             },
             "required": [
