@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "61f113a7_92e81c0b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1002850
+      },
+      "writtenOn": "2026-03-16T07:43:22Z",
+      "side": 1,
+      "message": "Updated the Tested section as suggested, and moved the Anacapa configuration change (anacapa_scm.json) into a separate commit so this change stays focused on the gpio-presence implementation and better matches the commit description.",
+      "parentUuid": "8c2e60c9_da76762e",
+      "revId": "6544b6fbf10c99d2eaa4eefc49b0e6b42259c4c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "8dbb928f_61f482a3",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 3
@@ -31,6 +49,24 @@
       "writtenOn": "2026-03-13T18:53:56Z",
       "side": 1,
       "message": "You can set the topic in gerrit and also set the topic for the other related changes for this feature https://gerrit.openbmc.org/q/owner:Rex.Fu@amd.com\n\nThat will enable the CI to use these changes as part of the test run and not fail to build.",
+      "revId": "6544b6fbf10c99d2eaa4eefc49b0e6b42259c4c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24b3064e_bd6baa37",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002850
+      },
+      "writtenOn": "2026-03-16T07:43:22Z",
+      "side": 1,
+      "message": "Thanks.I set the same topic for the related changes, but the build is still failing.",
+      "parentUuid": "8dbb928f_61f482a3",
       "revId": "6544b6fbf10c99d2eaa4eefc49b0e6b42259c4c2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
