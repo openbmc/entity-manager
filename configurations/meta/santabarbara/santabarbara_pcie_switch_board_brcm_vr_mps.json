@@ -426,6 +426,30 @@
             "Type": "LatticeLCMXO3D_9400Firmware"
         },
         {
+            "Address": "0x62",
+            "Bus": "94",
+            "Name": "SWB_PEX_94",
+            "PLDMSensors": [
+                {
+                    "ID": 1,
+                    "Name": "TEMP_C"
+                }
+            ],
+            "Type": "MCTPI2CTarget"
+        },
+        {
+            "Address": "0x62",
+            "Bus": "102",
+            "Name": "SWB_PEX_102",
+            "PLDMSensors": [
+                {
+                    "ID": 1,
+                    "Name": "TEMP_C"
+                }
+            ],
+            "Type": "MCTPI2CTarget"
+        },
+        {
             "Address": "0x42",
             "Bus": "33",
             "Labels": [
@@ -645,7 +669,11 @@
         }
     ],
     "Name": "Santa Barbara PCIe switch board",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara PCIe switch board', 'BOARD_MANUFACTURER': 'Quanta', 'BOARD_INFO_AM4': '^vr-(mps|rns) switch-brcm$'})",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara PCIe switch board'})",
+        "AND",
+        "xyz.openbmc_project.FruDevice({'BOARD_INFO_AM4': 'vr-mps switch-brcm'})"
+    ],
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
