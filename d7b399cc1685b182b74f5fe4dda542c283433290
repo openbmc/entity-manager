@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ace7a43c_da2c2533",
+        "filename": "schemas/gpio_presence.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-17T08:56:51Z",
+      "side": 1,
+      "message": "You need to add the `LogPresenceChange` property to `required` array here as well\notherwise configurations are not required to provide the property.\n\nIf there are configurations without the property then EM will not expose it on D-Bus and create the interface with a different set of properties, which is not allowed in D-Bus.\n\nIt will also cause errors and exceptions in PDI clients trying to read the missing property.",
+      "revId": "d7b399cc1685b182b74f5fe4dda542c283433290",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
