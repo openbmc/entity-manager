@@ -22,6 +22,47 @@
       },
       "revId": "47b56f0520e6c5f6e69f9e8e32ad4feccfb24c9f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c96a4820_a40efc3c",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-17T23:42:33Z",
+      "side": 1,
+      "message": "+1\n\nI\u0027m not sure I understand this code.  It never returns anything except nullopt, which means it should just return void, and the code below should return ret like it did before.",
+      "parentUuid": "80807781_d9ae0d21",
+      "range": {
+        "startLine": 275,
+        "startChar": 0,
+        "endLine": 275,
+        "endChar": 24
+      },
+      "revId": "47b56f0520e6c5f6e69f9e8e32ad4feccfb24c9f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c431a0b_b8bb9339",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-17T23:42:33Z",
+      "side": 1,
+      "message": "You\u0027ve defeated nrvo in this patch.  If you turn on -Wnvro on clang (which separately I\u0027m trying to do in bmcweb here if you\u0027re interested) you will see this code likely now triggers a warning:\nhttps://gerrit.openbmc.org/c/openbmc/bmcweb/+/80871",
+      "revId": "47b56f0520e6c5f6e69f9e8e32ad4feccfb24c9f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
