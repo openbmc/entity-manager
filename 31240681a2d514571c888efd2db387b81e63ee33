@@ -46,6 +46,30 @@
       },
       "revId": "31240681a2d514571c888efd2db387b81e63ee33",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8cfd3f7_0a02b7a2",
+        "filename": "configurations/meta/anacapa/anacapa_scm.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-17T08:56:35Z",
+      "side": 1,
+      "message": "You need to stack this change on top of 88281 then.\n\n(as in, create a local branch like below, and push that):\n\n88305 change \u003c- HEAD\n88281 change\n\nOtherwise the schema will be missing when CI runs for this change and you cannot get a Verified +1",
+      "parentUuid": "97e4a54f_9c3a8927",
+      "range": {
+        "startLine": 281,
+        "startChar": 13,
+        "endLine": 281,
+        "endChar": 30
+      },
+      "revId": "31240681a2d514571c888efd2db387b81e63ee33",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
