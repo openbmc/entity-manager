@@ -48,6 +48,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45bd8c75_592ed805",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-18T16:57:58Z",
+      "side": 1,
+      "message": "Yes. Looking at it now, it\u0027s pretty silly, not sure why i did that.\n\nProbably too focused on reducing the scope of the local variable and forgot to consider the useless return type on the functions which were broken out.\n\nChanged it to return the `ret` in the caller instead like before.",
+      "parentUuid": "80807781_d9ae0d21",
+      "range": {
+        "startLine": 275,
+        "startChar": 0,
+        "endLine": 275,
+        "endChar": 24
+      },
+      "revId": "47b56f0520e6c5f6e69f9e8e32ad4feccfb24c9f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c431a0b_b8bb9339",
@@ -61,6 +85,24 @@
       "writtenOn": "2026-03-17T23:42:33Z",
       "side": 1,
       "message": "You\u0027ve defeated nrvo in this patch.  If you turn on -Wnvro on clang (which separately I\u0027m trying to do in bmcweb here if you\u0027re interested) you will see this code likely now triggers a warning:\nhttps://gerrit.openbmc.org/c/openbmc/bmcweb/+/80871",
+      "revId": "47b56f0520e6c5f6e69f9e8e32ad4feccfb24c9f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d9fca80_f9dbed92",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-18T16:57:58Z",
+      "side": 1,
+      "message": "Changed it to initialize `ret` at the start of the function like before.",
+      "parentUuid": "2c431a0b_b8bb9339",
       "revId": "47b56f0520e6c5f6e69f9e8e32ad4feccfb24c9f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
