@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b429ac20_f7a9b0b2",
+        "filename": "src/dbus_regex.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-19T15:00:42Z",
+      "side": 1,
+      "message": "As an aside, because we\u0027re touching this code, std::regex is famously slow.  These really should be replaced with std::ranges::replace_if, or something of that nature.",
+      "revId": "628b886a320be9ec7bf9e5107843afbf3f2aed93",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
