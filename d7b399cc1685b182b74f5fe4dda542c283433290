@@ -16,6 +16,40 @@
       "message": "You need to add the `LogPresenceChange` property to `required` array here as well\notherwise configurations are not required to provide the property.\n\nIf there are configurations without the property then EM will not expose it on D-Bus and create the interface with a different set of properties, which is not allowed in D-Bus.\n\nIt will also cause errors and exceptions in PDI clients trying to read the missing property.",
       "revId": "d7b399cc1685b182b74f5fe4dda542c283433290",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3d94b99_f4eb0b49",
+        "filename": "src/gpio-presence/device_presence.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-03-19T02:07:04Z",
+      "side": 1,
+      "message": "This doesn\u0027t belong in gpio-presence.  It belongs in entity-manager itself as the probes occur.  I think someone else already has a patch for that, don\u0027t they?\n\nThe reason this doesn\u0027t belong here is because the DEVICE_NAME path is a dbus-path that is suppose to be \"private\" between the presence daemon and entity-manager and it has no correlation to a Redfish URI.  Therefore we can never add proper translation from the Argument to a valid Redfish URI.\n\nConversely, entity-manager paths usually have a corresponding Redfish URI; so we can [eventually] add valid Argument mapping in bmcweb for those dbus-path to URI translations (which are supposed to be done per the Redfish standard).",
+      "revId": "d7b399cc1685b182b74f5fe4dda542c283433290",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6e97226_69bb6442",
+        "filename": "src/gpio-presence/device_presence.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-03-19T02:07:04Z",
+      "side": 1,
+      "message": "Don\u0027t make a journal log for something you\u0027ve already made an event for.  This isn\u0027t useful.  Especially because most of the time phosphor-logging is already splatting stuff to the journal.",
+      "revId": "d7b399cc1685b182b74f5fe4dda542c283433290",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
