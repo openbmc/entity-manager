@@ -16,6 +16,24 @@
       "message": "As an aside, because we\u0027re touching this code, std::regex is famously slow.  These really should be replaced with std::ranges::replace_if, or something of that nature.",
       "revId": "628b886a320be9ec7bf9e5107843afbf3f2aed93",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83317cf6_d6d1270f",
+        "filename": "src/dbus_regex.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-20T14:27:54Z",
+      "side": 1,
+      "message": "Yes, and both of these functions are still wrong, when considering their usage.\n\n- their names are wrong, the 2nd function handles interface names actually\n- in the context of their usage, one is directly used to append object path segments, and does not handle empty string\n- the lower function (handling interface name segments) also does not handle empty string and \"..\" cases (not in-spec).\n\nOn top of that, their call sites also need patching since some of them rely on plain `std::string` for object path construction.\n\nThanks for the patch idea, i have prepared something\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/88525",
+      "parentUuid": "b429ac20_f7a9b0b2",
+      "revId": "628b886a320be9ec7bf9e5107843afbf3f2aed93",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
