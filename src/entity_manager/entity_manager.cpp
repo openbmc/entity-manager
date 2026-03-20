@@ -3,7 +3,7 @@
 
 #include "entity_manager.hpp"
 
-#include "../dbus_regex.hpp"
+#include "../dbus_util.hpp"
 #include "../utils.hpp"
 #include "../variant_visitors.hpp"
 #include "configuration.hpp"
@@ -143,8 +143,8 @@ void EntityManager::postBoardToDBus(
     if (findBoardType != boardValues.end() &&
         findBoardType->type() == nlohmann::json::value_t::string)
     {
-        boardType = dbus_regex::sanitizeForDBusMember(
-            findBoardType->get<std::string>());
+        boardType =
+            dbus_util::sanitizeForDBusMember(findBoardType->get<std::string>());
     }
     else
     {
@@ -244,12 +244,11 @@ void EntityManager::postExposesRecordsToDBus(
     std::string itemType = "unknown";
     if (findType != item.end())
     {
-        itemType =
-            dbus_regex::sanitizeForDBusPath(findType->get<std::string>());
+        itemType = dbus_util::sanitizeForDBusPath(findType->get<std::string>());
     }
 
     const std::string itemName =
-        dbus_regex::sanitizeForDBusMember(findName->get<std::string>());
+        dbus_util::sanitizeForDBusMember(findName->get<std::string>());
 
     std::string ifacePath = boardPath;
     ifacePath += "/";

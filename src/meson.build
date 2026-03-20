@@ -5,7 +5,7 @@ installdir = join_paths(get_option('libexecdir'), 'entity-manager')
 utils_lib = static_library(
     'utils',
     'utils.cpp',
-    'dbus_regex.cpp',
+    'dbus_util.cpp',
     dependencies: [boost, phosphor_logging_dep, sdbusplus],
 )
 

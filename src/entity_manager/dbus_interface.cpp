@@ -1,6 +1,6 @@
 #include "dbus_interface.hpp"
 
-#include "../dbus_regex.hpp"
+#include "../dbus_util.hpp"
 #include "perform_probe.hpp"
 #include "utils.hpp"
 
@@ -353,7 +353,7 @@ void EMDBusInterface::addObjectJson(
         lg2::error("Error writing json files");
     }
 
-    std::string dbusName = dbus_regex::sanitizeForDBusMember(*name);
+    std::string dbusName = dbus_util::sanitizeForDBusMember(*name);
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> interface =
         createInterface(path + "/" + dbusName,

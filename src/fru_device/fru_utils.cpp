@@ -3,7 +3,7 @@
 
 #include "fru_utils.hpp"
 
-#include "../dbus_regex.hpp"
+#include "../dbus_util.hpp"
 #include "gzip_utils.hpp"
 
 #include <phosphor-logging/lg2.hpp>
@@ -1671,8 +1671,7 @@ std::optional<std::string> getProductName(
     if (productNameFind != formattedFRU.end() &&
         !productNameFind->second.empty())
     {
-        productName =
-            dbus_regex::sanitizeForDBusMember(productNameFind->second);
+        productName = dbus_util::sanitizeForDBusMember(productNameFind->second);
     }
     else
     {
