@@ -78,11 +78,11 @@ test(
 )
 
 test(
-    'test_dbus_regex',
+    'test_dbus_util',
     executable(
-        'test_dbus_regex',
-        'test_dbus_regex.cpp',
-        '../src/dbus_regex.cpp',
+        'test_dbus_util',
+        'test_dbus_util.cpp',
+        '../src/dbus_util.cpp',
         include_directories: test_include_dir,
         dependencies: [gtest],
     ),

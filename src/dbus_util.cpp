@@ -1,8 +1,8 @@
-#include "dbus_regex.hpp"
+#include "dbus_util.hpp"
 
 #include <regex>
 
-namespace dbus_regex
+namespace dbus_util
 {
 
 std::string sanitizeForDBusMember(const std::string& str)
@@ -17,4 +17,4 @@ std::string sanitizeForDBusPath(const std::string& str)
     return std::regex_replace(str, illegalDbusPathRegex, "_");
 }
 
-} // namespace dbus_regex
+} // namespace dbus_util
