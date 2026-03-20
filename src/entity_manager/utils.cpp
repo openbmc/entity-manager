@@ -343,7 +343,7 @@ std::string buildInventorySystemPath(std::string& boardName,
     std::string path = "/xyz/openbmc_project/inventory/system/";
     std::string boardTypeLower = toLowerCopy(boardType);
 
-    boardName = dbus_util::sanitizeForDBusMember(boardName);
+    boardName = dbus_util::sanitizeForDBusPathSegment(boardName);
 
     return std::format("{}{}/{}", path, boardTypeLower, boardName);
 }
