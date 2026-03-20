@@ -3,7 +3,7 @@
 
 #include "overlay.hpp"
 
-#include "../dbus_regex.hpp"
+#include "../dbus_util.hpp"
 #include "../utils.hpp"
 #include "devices.hpp"
 #include "utils.hpp"
@@ -226,7 +226,7 @@ void exportDevice(const devices::ExportTemplate& exportTemplate,
         if (keyPair.key() == "Name" &&
             keyPair.value().type() == nlohmann::json::value_t::string)
         {
-            subsituteString = dbus_regex::sanitizeForDBusMember(
+            subsituteString = dbus_util::sanitizeForDBusMember(
                 keyPair.value().get<std::string>());
             name = subsituteString;
         }
