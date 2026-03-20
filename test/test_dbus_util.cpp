@@ -2,50 +2,94 @@
 
 #include <gtest/gtest.h>
 
-TEST(DBUS_UTIL, SanitizePathNop)
+TEST(DBUS_UTIL, ValidateIntfEmpty)
 {
-    std::string path = "Tyan_S8030_Baseboard";
-    path = dbus_util::sanitizeForDBusPath(path);
+    const std::string intf;
 
-    ASSERT_EQ(path, "Tyan_S8030_Baseboard");
+    ASSERT_FALSE(dbus_util::validateDBusInterfaceSegments(intf));
 }
 
-TEST(DBUS_UTIL, SanitizePathSimple)
+TEST(DBUS_UTIL, ValidateIntfSegmentNotBeginWithDigit)
 {
-    std::string path = "Tyan S8030 Baseboard";
-    path = dbus_util::sanitizeForDBusPath(path);
+    const std::string intf = "9.Stepwise";
 
-    ASSERT_EQ(path, "Tyan_S8030_Baseboard");
+    ASSERT_FALSE(dbus_util::validateDBusInterfaceSegments(intf));
 }
 
-TEST(DBUS_UTIL, SanitizePathWithDot)
+TEST(DBUS_UTIL, ValidateIntfSegmentNotBeginWithDigit2)
 {
-    std::string path = "xyz.openbmc_project.Configuration.ADC";
-    path = dbus_util::sanitizeForDBusPath(path);
+    const std::string intf = "PID.9";
 
-    ASSERT_EQ(path, "xyz.openbmc_project.Configuration.ADC");
+    ASSERT_FALSE(dbus_util::validateDBusInterfaceSegments(intf));
 }
 
-TEST(DBUS_UTIL, SanitizeMemberNop)
+TEST(DBUS_UTIL, ValidateIntfEmptySegment)
 {
-    std::string path = "P0_VDD_MEM_ABCD";
-    path = dbus_util::sanitizeForDBusMember(path);
+    const std::string intf = "..";
 
-    ASSERT_EQ(path, "P0_VDD_MEM_ABCD");
+    ASSERT_FALSE(dbus_util::validateDBusInterfaceSegments(intf));
 }
 
-TEST(DBUS_UTIL, SanitizeMember)
+TEST(DBUS_UTIL, ValidateIntfEmptySegmentEnd)
 {
-    std::string path = "P0 VDD bus % 13";
-    path = dbus_util::sanitizeForDBusMember(path);
+    const std::string intf = "Configuration.";
 
-    ASSERT_EQ(path, "P0_VDD_bus___13");
+    ASSERT_FALSE(dbus_util::validateDBusInterfaceSegments(intf));
 }
 
-TEST(DBUS_UTIL, SanitizeMemberWithDot)
+TEST(DBUS_UTIL, ValidateIntfNop)
 {
-    std::string path = "xyz.openbmc_project.Configuration.ADC";
-    path = dbus_util::sanitizeForDBusMember(path);
+    const std::string intf = "Tyan_S8030_Baseboard";
 
-    ASSERT_EQ(path, "xyz_openbmc_project_Configuration_ADC");
+    ASSERT_TRUE(dbus_util::validateDBusInterfaceSegments(intf));
+}
+
+TEST(DBUS_UTIL, ValidateIntfUnderscore)
+{
+    const std::string intf = "_Intf";
+
+    ASSERT_TRUE(dbus_util::validateDBusInterfaceSegments(intf));
+}
+
+TEST(DBUS_UTIL, ValidateIntfNop2)
+{
+    const std::string intf = "Pid.Zone";
+
+    ASSERT_TRUE(dbus_util::validateDBusInterfaceSegments(intf));
+}
+
+TEST(DBUS_UTIL, ValidateIntfSimple)
+{
+    const std::string intf = "Tyan S8030 Baseboard";
+
+    ASSERT_FALSE(dbus_util::validateDBusInterfaceSegments(intf));
+}
+
+TEST(DBUS_UTIL, ValidateIntfWithDot)
+{
+    const std::string intf = "xyz.openbmc_project.Configuration.ADC";
+
+    ASSERT_TRUE(dbus_util::validateDBusInterfaceSegments(intf));
+}
+
+TEST(DBUS_UTIL, SanitizePathSegmentNop)
+{
+    const std::string path = "P0_VDD_MEM_ABCD";
+
+    ASSERT_EQ(dbus_util::sanitizeForDBusPathSegment(path), "P0_VDD_MEM_ABCD");
+}
+
+TEST(DBUS_UTIL, SanitizePathSegment)
+{
+    const std::string path = "P0 VDD bus % 13";
+
+    ASSERT_EQ(dbus_util::sanitizeForDBusPathSegment(path), "P0_VDD_bus___13");
+}
+
+TEST(DBUS_UTIL, SanitizePathSegmentWithDot)
+{
+    const std::string path = "xyz.openbmc_project.Configuration.ADC";
+
+    ASSERT_EQ(dbus_util::sanitizeForDBusPathSegment(path),
+              "xyz_openbmc_project_Configuration_ADC");
 }

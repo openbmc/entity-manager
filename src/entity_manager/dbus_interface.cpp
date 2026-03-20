@@ -353,7 +353,7 @@ void EMDBusInterface::addObjectJson(
         lg2::error("Error writing json files");
     }
 
-    std::string dbusName = dbus_util::sanitizeForDBusMember(*name);
+    std::string dbusName = dbus_util::sanitizeForDBusPathSegment(*name);
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> interface =
         createInterface(path + "/" + dbusName,

@@ -1671,7 +1671,8 @@ std::optional<std::string> getProductName(
     if (productNameFind != formattedFRU.end() &&
         !productNameFind->second.empty())
     {
-        productName = dbus_util::sanitizeForDBusMember(productNameFind->second);
+        productName =
+            dbus_util::sanitizeForDBusPathSegment(productNameFind->second);
     }
     else
     {
