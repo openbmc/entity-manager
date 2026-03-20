@@ -226,7 +226,7 @@ void exportDevice(const devices::ExportTemplate& exportTemplate,
         if (keyPair.key() == "Name" &&
             keyPair.value().type() == nlohmann::json::value_t::string)
         {
-            subsituteString = dbus_util::sanitizeForDBusMember(
+            subsituteString = dbus_util::sanitizeForDBusPathSegment(
                 keyPair.value().get<std::string>());
             name = subsituteString;
         }

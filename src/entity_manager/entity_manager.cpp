@@ -143,8 +143,8 @@ void EntityManager::postBoardToDBus(
     if (findBoardType != boardValues.end() &&
         findBoardType->type() == nlohmann::json::value_t::string)
     {
-        boardType =
-            dbus_util::sanitizeForDBusMember(findBoardType->get<std::string>());
+        boardType = dbus_util::sanitizeForDBusPathSegment(
+            findBoardType->get<std::string>());
     }
     else
     {
@@ -244,11 +244,19 @@ void EntityManager::postExposesRecordsToDBus(
     std::string itemType = "unknown";
     if (findType != item.end())
     {
-        itemType = dbus_util::sanitizeForDBusPath(findType->get<std::string>());
+        itemType = findType->get<std::string>();
+    }
+
+    if (!dbus_util::validateDBusInterfaceSegments(itemType))
+    {
+        lg2::error(
+            "item Type '{TYPE}' is not a valid D-Bus interface segment(s)",
+            "TYPE", itemType);
+        return;
     }
 
     const std::string itemName =
-        dbus_util::sanitizeForDBusMember(findName->get<std::string>());
+        dbus_util::sanitizeForDBusPathSegment(findName->get<std::string>());
 
     std::string ifacePath = boardPath;
     ifacePath += "/";
