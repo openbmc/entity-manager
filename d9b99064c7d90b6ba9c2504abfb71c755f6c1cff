@@ -16,6 +16,24 @@
       "message": "This is an MCTP config. I am not sure if it makes sense to place PLDM config here.",
       "revId": "d9b99064c7d90b6ba9c2504abfb71c755f6c1cff",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36a2d3dc_29441c27",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-03-20T11:04:42Z",
+      "side": 1,
+      "message": "Thanks for the review.\nThis was inspired by change [86156], which proposes adding PLDMSensors and Inventory to the MCTP target schema. CreateSensors controls the same PLDM sensor behavior, so it seemed like a natural fit alongside those properties.\n\nIf we separate PLDM config into its own schema, we\u0027d need a binding mechanism back to the MCTP target, which could introduce timing/race issues like those discussed in change [86228].\n\nHappy to adapt if the community prefers a different approach.\n\n[86156]: https://gerrit.openbmc.org/c/openbmc/entity-manager/+/86156\n[86228]: https://gerrit.openbmc.org/c/openbmc/pldm/+/86228",
+      "parentUuid": "9b264b8c_f7b7e124",
+      "revId": "d9b99064c7d90b6ba9c2504abfb71c755f6c1cff",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
