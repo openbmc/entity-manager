@@ -521,6 +521,22 @@
                 "Address": "0x4c",
                 "Bus": 10,
                 "Name": "RMC_BRICK2_TEMP_C",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 1.0,
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 105
+                    },
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 1.0,
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 5
+                    }
+                ],
                 "Type": "TMP75"
             },
             {
@@ -560,7 +576,7 @@
                         "Label": "temp1",
                         "Name": "upper critical",
                         "Severity": 1,
-                        "Value": 105
+                        "Value": 113
                     },
                     {
                         "Direction": "less than",
