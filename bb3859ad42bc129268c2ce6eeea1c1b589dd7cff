@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a84ae75_2a60a23c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-20T14:42:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "875c5ad9_71b92a06",
+      "revId": "bb3859ad42bc129268c2ce6eeea1c1b589dd7cff",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "49ef4664_9a45261c",
@@ -35,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "17637a75_58147865",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-20T14:42:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "49ef4664_9a45261c",
+      "revId": "bb3859ad42bc129268c2ce6eeea1c1b589dd7cff",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8f0788be_691e1662",
@@ -48,6 +84,30 @@
       "writtenOn": "2026-03-18T18:53:36Z",
       "side": 1,
       "message": "please pass these by reference.  As written this function used in isolation could be used incorrectly, and would be required to have a nullptr check.\n\nYou already have a nullptr check in the calling function, so just do the dereference there.",
+      "range": {
+        "startLine": 277,
+        "startChar": 4,
+        "endLine": 277,
+        "endChar": 28
+      },
+      "revId": "bb3859ad42bc129268c2ce6eeea1c1b589dd7cff",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98bf29e6_c4395945",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-20T14:42:24Z",
+      "side": 1,
+      "message": "Makes sense, done.",
+      "parentUuid": "8f0788be_691e1662",
       "range": {
         "startLine": 277,
         "startChar": 4,
