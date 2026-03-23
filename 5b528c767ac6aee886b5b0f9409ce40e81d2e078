@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddbb5f76_58d0b41e",
+        "filename": "src/entity_manager/em_config.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-23T13:34:29Z",
+      "side": 1,
+      "message": "I\u0027ve made a comment on this helper function to document that it throws.\n\nThe 2 usages of it in the EMConfig constructor are intended to not be caught since the constructor itself also throws on error.\n\nFor a non-throwing way to construct it, `fromJson` can be used. I documented that as the *preferred* function and keeping the throwing one to avoid verbosity/workarounds in testcases.\n\nLet me know if you still prefer this function to not throw, but it will result in extra wrapper code to re-throw in the constructor.\n\nAlternatively we can model it as \u0027nothing throws\u0027 depending on your preference.",
+      "parentUuid": "92f353c8_2cb9cc41",
+      "revId": "5b528c767ac6aee886b5b0f9409ce40e81d2e078",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "01b94c22_dd30daa0",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-03-17T23:38:14Z",
       "side": 1,
       "message": "nullptr dereference",
+      "revId": "5b528c767ac6aee886b5b0f9409ce40e81d2e078",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3208b8fa_5e93343d",
+        "filename": "src/entity_manager/em_config.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-23T13:34:29Z",
+      "side": 1,
+      "message": "`getConfigProp` does not return `nullptr` and instead throws. The exception is propagated to whoever calls the `EMConfig` constructor.\n\nI added doc comment to both these functions explaining that they throw.\n\nAlso changed `getConfigProp` to return a value rather than a pointer.",
+      "parentUuid": "01b94c22_dd30daa0",
       "revId": "5b528c767ac6aee886b5b0f9409ce40e81d2e078",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
