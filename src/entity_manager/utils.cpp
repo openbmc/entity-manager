@@ -106,12 +106,11 @@ void handleLeftOverTemplateVars(nlohmann::json::array_t& value)
 
 void handleLeftOverTemplateVars(std::string& value)
 {
-    std::string* strPtr = &value;
     // Walking through the string to find $<templateVar>
     while (true)
     {
         std::ranges::subrange<std::string::const_iterator> findStart =
-            iFindFirst(*strPtr, std::string_view(templateChar));
+            iFindFirst(value, std::string_view(templateChar));
 
         if (!findStart)
         {
@@ -119,8 +118,7 @@ void handleLeftOverTemplateVars(std::string& value)
         }
 
         std::ranges::subrange<std::string::iterator> searchRange(
-            strPtr->begin() + (findStart.end() - strPtr->begin()),
-            strPtr->end());
+            value.begin() + (findStart.end() - value.begin()), value.end());
         std::ranges::subrange<std::string::const_iterator> findSpace =
             iFindFirst(searchRange, " ");
 
@@ -130,7 +128,7 @@ void handleLeftOverTemplateVars(std::string& value)
         {
             // No space means the template var spans to the end of
             // of the keyPair value
-            templateVarEnd = strPtr->end();
+            templateVarEnd = value.end();
         }
         else
         {
@@ -141,7 +139,7 @@ void handleLeftOverTemplateVars(std::string& value)
         lg2::error(
             "There's still template variable {VAR} un-replaced. Removing it from the string.\n",
             "VAR", std::string(findStart.begin(), templateVarEnd));
-        strPtr->erase(findStart.begin(), templateVarEnd);
+        value.erase(findStart.begin(), templateVarEnd);
     }
 }
 
