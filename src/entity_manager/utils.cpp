@@ -104,7 +104,11 @@ void handleLeftOverTemplateVars(nlohmann::json::array_t& value)
     }
 }
 
-static bool handleLeftOverTemplateVarOnce(std::string& value)
+// @brief    finds a template var in a string
+// @returns  subrange where the template var was found
+// @returns  std::nullopt  if no template var was found
+static std::optional<std::ranges::subrange<std::string::const_iterator>>
+    findLeftOverTemplateVar(std::string& value)
 {
     // Walking through the string to find $<templateVar>
     std::ranges::subrange<std::string::const_iterator> findStart =
@@ -112,10 +116,10 @@ static bool handleLeftOverTemplateVarOnce(std::string& value)
 
     if (!findStart)
     {
-        return false;
+        return std::nullopt;
     }
 
-    std::ranges::subrange<std::string::iterator> searchRange(
+    std::ranges::subrange<std::string::const_iterator> searchRange(
         value.begin() + (findStart.end() - value.begin()), value.end());
     std::ranges::subrange<std::string::const_iterator> findSpace =
         iFindFirst(searchRange, " ");
@@ -134,10 +138,24 @@ static bool handleLeftOverTemplateVarOnce(std::string& value)
         templateVarEnd = findSpace.begin();
     }
 
+    return std::ranges::subrange<std::string::const_iterator>(
+        findStart.begin(), templateVarEnd);
+}
+
+static bool handleLeftOverTemplateVarOnce(std::string& value)
+{
+    const std::optional<std::ranges::subrange<std::string::const_iterator>> tv =
+        findLeftOverTemplateVar(value);
+
+    if (!tv.has_value())
+    {
+        return false;
+    }
+
     lg2::error(
         "There's still template variable {VAR} un-replaced. Removing it from the string.\n",
-        "VAR", std::string(findStart.begin(), templateVarEnd));
-    value.erase(findStart.begin(), templateVarEnd);
+        "VAR", tv.value());
+    value.erase(tv.value().begin(), tv.value().end());
 
     return true;
 }
