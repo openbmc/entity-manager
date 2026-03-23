@@ -171,95 +171,108 @@ std::optional<std::string> templateCharReplace(
     return std::nullopt;
 }
 
+static std::optional<bool> templateCharReplaceOneProperty(
+    std::string*& strPtr, const std::string& propName,
+    const DBusValueVariant& propValue, std::optional<std::string>& ret,
+    nlohmann::json& value)
+{
+    std::string templateName = templateChar + propName;
+    std::ranges::subrange<std::string::const_iterator> find =
+        iFindFirst(*strPtr, templateName);
+    if (!find)
+    {
+        return std::nullopt;
+    }
+
+    size_t start = find.begin() - strPtr->begin();
+
+    // check for additional operations
+    if ((start == 0U) && find.end() == strPtr->end())
+    {
+        std::visit([&](auto&& val) { value = val; }, propValue);
+        return true;
+    }
+
+    constexpr const std::array<char, 5> mathChars = {'+', '-', '%', '*', '/'};
+    size_t nextItemIdx = start + templateName.size() + 1;
+
+    if (nextItemIdx > strPtr->size() ||
+        std::find(mathChars.begin(), mathChars.end(),
+                  strPtr->at(nextItemIdx)) == mathChars.end())
+    {
+        std::string val = std::visit(VariantToStringVisitor(), propValue);
+        iReplaceAll(*strPtr, templateName, val);
+        return std::nullopt;
+    }
+
+    // save the prefix
+    std::string prefix = strPtr->substr(0, start);
+
+    // operate on the rest
+    std::string end = strPtr->substr(nextItemIdx);
+
+    std::vector<std::string> splitResult = split(end, ' ');
+
+    // need at least 1 operation and number
+    if (splitResult.size() < 2)
+    {
+        lg2::error("Syntax error on template replacement of {STR}", "STR",
+                   *strPtr);
+        for (const std::string& data : splitResult)
+        {
+            lg2::error("{SPLIT} ", "SPLIT", data);
+        }
+        lg2::error("");
+        return std::nullopt;
+    }
+
+    // we assume that the replacement is a number, because we can
+    // only do math on numbers.. we might concatenate strings in the
+    // future, but that's later
+    int number = std::visit(VariantToIntVisitor(), propValue);
+    auto exprBegin = splitResult.begin();
+    auto exprEnd = splitResult.end();
+
+    number = expression::evaluate(number, exprBegin, exprEnd);
+
+    std::string replaced(find.begin(), find.end());
+    while (exprBegin != exprEnd)
+    {
+        replaced.append(" ").append(*exprBegin++);
+    }
+    ret = replaced;
+
+    std::string result = prefix + std::to_string(number);
+    while (exprEnd != splitResult.end())
+    {
+        result.append(" ").append(*exprEnd++);
+    }
+    value = result;
+
+    // We probably just invalidated the pointer abovei,
+    // reset and continue to handle multiple templates
+    strPtr = value.get_ptr<std::string*>();
+    if (strPtr == nullptr)
+    {
+        return false;
+    }
+
+    return std::nullopt;
+}
+
 static bool templateCharReplaceLoop(
     std::string*& strPtr, const DBusInterface& interface,
     std::optional<std::string>& ret, nlohmann::json& value)
 {
     for (const auto& [propName, propValue] : interface)
     {
-        std::string templateName = templateChar + propName;
-        std::ranges::subrange<std::string::const_iterator> find =
-            iFindFirst(*strPtr, templateName);
-        if (!find)
+        std::optional<bool> res = templateCharReplaceOneProperty(
+            strPtr, propName, propValue, ret, value);
+        if (res.has_value())
         {
-            continue;
-        }
-
-        size_t start = find.begin() - strPtr->begin();
-
-        // check for additional operations
-        if ((start == 0U) && find.end() == strPtr->end())
-        {
-            std::visit([&](auto&& val) { value = val; }, propValue);
-            return true;
-        }
-
-        constexpr const std::array<char, 5> mathChars = {'+', '-', '%', '*',
-                                                         '/'};
-        size_t nextItemIdx = start + templateName.size() + 1;
-
-        if (nextItemIdx > strPtr->size() ||
-            std::find(mathChars.begin(), mathChars.end(),
-                      strPtr->at(nextItemIdx)) == mathChars.end())
-        {
-            std::string val = std::visit(VariantToStringVisitor(), propValue);
-            iReplaceAll(*strPtr, templateName, val);
-            continue;
-        }
-
-        // save the prefix
-        std::string prefix = strPtr->substr(0, start);
-
-        // operate on the rest
-        std::string end = strPtr->substr(nextItemIdx);
-
-        std::vector<std::string> splitResult = split(end, ' ');
-
-        // need at least 1 operation and number
-        if (splitResult.size() < 2)
-        {
-            lg2::error("Syntax error on template replacement of {STR}", "STR",
-                       *strPtr);
-            for (const std::string& data : splitResult)
-            {
-                lg2::error("{SPLIT} ", "SPLIT", data);
-            }
-            lg2::error("");
-            continue;
-        }
-
-        // we assume that the replacement is a number, because we can
-        // only do math on numbers.. we might concatenate strings in the
-        // future, but that's later
-        int number = std::visit(VariantToIntVisitor(), propValue);
-        auto exprBegin = splitResult.begin();
-        auto exprEnd = splitResult.end();
-
-        number = expression::evaluate(number, exprBegin, exprEnd);
-
-        std::string replaced(find.begin(), find.end());
-        while (exprBegin != exprEnd)
-        {
-            replaced.append(" ").append(*exprBegin++);
-        }
-        ret = replaced;
-
-        std::string result = prefix + std::to_string(number);
-        while (exprEnd != splitResult.end())
-        {
-            result.append(" ").append(*exprEnd++);
-        }
-        value = result;
-
-        // We probably just invalidated the pointer abovei,
-        // reset and continue to handle multiple templates
-        strPtr = value.get_ptr<std::string*>();
-        if (strPtr == nullptr)
-        {
-            break;
+            return res.value();
         }
     }
-
     return false;
 }
 
