@@ -6,6 +6,22 @@
                 "Bus": "$bus",
                 "Name": "NVIDIA VR NVL72 0 FRU",
                 "Type": "EEPROM_24C64"
+            },
+            {
+                "Level": "Critical",
+                "Name": "Hpm0LeakDetector",
+                "PinName": "B0_vLeakDetect1Status0-I",
+                "Polarity": "High",
+                "SubType": "LeakSensingCable",
+                "Type": "GPIOLeakDetector"
+            },
+            {
+                "Level": "Critical",
+                "Name": "Hpm0LeakDetectorFault",
+                "PinName": "B0_vLeakDetect1Status1-I",
+                "Polarity": "High",
+                "SubType": "LeakSensingCable",
+                "Type": "GPIOLeakDetector"
             }
         ],
         "Name": "NVIDIA VR NVL72 0",
@@ -32,6 +48,22 @@
                 "Bus": "$bus",
                 "Name": "NVIDIA VR NVL72 1 FRU",
                 "Type": "EEPROM_24C64"
+            },
+            {
+                "Level": "Critical",
+                "Name": "Hpm1LeakDetector",
+                "PinName": "B1_vLeakDetect1Status0-I",
+                "Polarity": "High",
+                "SubType": "LeakSensingCable",
+                "Type": "GPIOLeakDetector"
+            },
+            {
+                "Level": "Critical",
+                "Name": "Hpm1LeakDetectorFault",
+                "PinName": "B1_vLeakDetect1Status1-I",
+                "Polarity": "High",
+                "SubType": "LeakSensingCable",
+                "Type": "GPIOLeakDetector"
             }
         ],
         "Name": "NVIDIA VR NVL72 1",
