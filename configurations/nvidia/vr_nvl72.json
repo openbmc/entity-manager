@@ -1,26 +1,86 @@
-{
-    "Exposes": [
-        {
-            "Address": "$address",
-            "Bus": "$bus",
-            "Name": "NVIDIA VR NVL72 $bus - 1 / 2 FRU",
-            "Type": "EEPROM_24C02"
+[
+    {
+        "Exposes": [
+            {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "NVIDIA VR NVL72 $bus - 1 / 2 FRU",
+                "Type": "EEPROM_24C02"
+            },
+            {
+                "Level": "Critical",
+                "Name": "Cpu0LeakDetector",
+                "PinName": "vLeakDetect1Status0-I",
+                "Polarity": "High",
+                "SubType": "LeakSensingCable",
+                "Type": "GPIOLeakDetector"
+            },
+            {
+                "Level": "Critical",
+                "Name": "Cpu0LeakDetectorFault",
+                "PinName": "vLeakDetect1Status1-I",
+                "Polarity": "High",
+                "SubType": "LeakSensingCable",
+                "Type": "GPIOLeakDetector"
+            }
+        ],
+        "Name": "NVIDIA VR NVL72 $bus - 1 / 2",
+        "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'PG558', 'BOARD_MANUFACTURER': 'NVIDIA', 'PRODUCT_PRODUCT_NAME': 'Vera Rubin NVL72 1CPU:2GPU', 'BUS': 1})",
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "BuildDate": "$BOARD_MANUFACTURE_DATE",
+            "Manufacturer": "$BOARD_MANUFACTURER",
+            "Model": "$BOARD_PRODUCT_NAME",
+            "PartNumber": "$BOARD_PART_NUMBER",
+            "SerialNumber": "$BOARD_SERIAL_NUMBER"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+            "AssetTag": "$PRODUCT_ASSET_TAG"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.Revision": {
+            "Version": "$PRODUCT_VERSION"
         }
-    ],
-    "Name": "NVIDIA VR NVL72 $bus - 1 / 2",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'PG558', 'BOARD_MANUFACTURER': 'NVIDIA', 'PRODUCT_PRODUCT_NAME': 'Vera Rubin NVL72 1CPU:2GPU'})",
-    "Type": "Board",
-    "xyz.openbmc_project.Inventory.Decorator.Asset": {
-        "BuildDate": "$BOARD_MANUFACTURE_DATE",
-        "Manufacturer": "$BOARD_MANUFACTURER",
-        "Model": "$BOARD_PRODUCT_NAME",
-        "PartNumber": "$BOARD_PART_NUMBER",
-        "SerialNumber": "$BOARD_SERIAL_NUMBER"
     },
-    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
-        "AssetTag": "$PRODUCT_ASSET_TAG"
-    },
-    "xyz.openbmc_project.Inventory.Decorator.Revision": {
-        "Version": "$PRODUCT_VERSION"
+    {
+        "Exposes": [
+            {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "NVIDIA VR NVL72 $bus - 1 / 2 FRU",
+                "Type": "EEPROM_24C02"
+            },
+            {
+                "Level": "Critical",
+                "Name": "Cpu1LeakDetector",
+                "PinName": "SEC_vLeakDetect1Status0-I",
+                "Polarity": "High",
+                "SubType": "LeakSensingCable",
+                "Type": "GPIOLeakDetector"
+            },
+            {
+                "Level": "Critical",
+                "Name": "Cpu1LeakDetectorFault",
+                "PinName": "SEC_vLeakDetect1Status1-I",
+                "Polarity": "High",
+                "SubType": "LeakSensingCable",
+                "Type": "GPIOLeakDetector"
+            }
+        ],
+        "Name": "NVIDIA VR NVL72 $bus - 1 / 2",
+        "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'PG558', 'BOARD_MANUFACTURER': 'NVIDIA', 'PRODUCT_PRODUCT_NAME': 'Vera Rubin NVL72 1CPU:2GPU', 'BUS': 3})",
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "BuildDate": "$BOARD_MANUFACTURE_DATE",
+            "Manufacturer": "$BOARD_MANUFACTURER",
+            "Model": "$BOARD_PRODUCT_NAME",
+            "PartNumber": "$BOARD_PART_NUMBER",
+            "SerialNumber": "$BOARD_SERIAL_NUMBER"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+            "AssetTag": "$PRODUCT_ASSET_TAG"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.Revision": {
+            "Version": "$PRODUCT_VERSION"
+        }
     }
-}
+]
