@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "69b44eee_cb3ff37a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002850
+      },
+      "writtenOn": "2026-03-25T10:26:11Z",
+      "side": 1,
+      "message": "Updated. The commit description has been rewritten to match the current change and no longer mentions LogPresenceChange or event logging.",
+      "parentUuid": "6ff44c47_ae843a3c",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 42
+      },
+      "revId": "25ff222edcfa3fbeb67c3c6172b7cfd7583b7fd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "967d1f2f_c40df585",
@@ -37,6 +61,24 @@
       "writtenOn": "2026-03-19T02:08:52Z",
       "side": 1,
       "message": "Who is requesting this?  For what purpose?",
+      "revId": "25ff222edcfa3fbeb67c3c6172b7cfd7583b7fd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43d6ef48_fbd42a3f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1002850
+      },
+      "writtenOn": "2026-03-25T10:26:11Z",
+      "side": 1,
+      "message": "Updated. That was from an earlier revision and is no longer part of this change.",
+      "parentUuid": "967d1f2f_c40df585",
       "revId": "25ff222edcfa3fbeb67c3c6172b7cfd7583b7fd4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -58,6 +100,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f93b563d_554f12c1",
+        "filename": "configurations/meta/anacapa/anacapa_scm.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1002850
+      },
+      "writtenOn": "2026-03-25T10:26:11Z",
+      "side": 1,
+      "message": "Done. I removed LogPresenceChange from this revision.",
+      "parentUuid": "49896604_f7169849",
+      "revId": "25ff222edcfa3fbeb67c3c6172b7cfd7583b7fd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "92bdfa57_3273eb9e",
@@ -71,6 +131,24 @@
       "writtenOn": "2026-03-19T02:10:50Z",
       "side": 1,
       "message": "Where are all the probe statements reacting to these fan presence pins?  It seems like these are pins detecting the presence of a fan; add fan objects please.",
+      "revId": "25ff222edcfa3fbeb67c3c6172b7cfd7583b7fd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec63c2ec_be641b2c",
+        "filename": "configurations/meta/anacapa/anacapa_scm.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1002850
+      },
+      "writtenOn": "2026-03-25T10:26:11Z",
+      "side": 1,
+      "message": "The fan-related GPIODeviceDetect entries are now added to the corresponding PDB configuration files, where the existing PDB fan objects are already defined.",
+      "parentUuid": "92bdfa57_3273eb9e",
       "revId": "25ff222edcfa3fbeb67c3c6172b7cfd7583b7fd4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
