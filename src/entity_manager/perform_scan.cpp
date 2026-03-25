@@ -94,16 +94,22 @@ static void processDbusObjects(
 
         for (const auto& [busname, ifaces] : object)
         {
-            for (const std::string& iface : ifaces)
+            // We should skip ourselve for probing to avoid circular
+            // probes / registrations when a configuration probe uses
+            // an object that's also being populated by EM itself.
+            if (!busname.starts_with(emDbusName))
             {
-                // The 3 default org.freedeskstop interfaces (Peer,
-                // Introspectable, and Properties) are returned by
-                // the mapper but don't have properties, so don't bother
-                // with the GetAll call to save some cycles.
-                if (!iface.starts_with("org.freedesktop"))
+                for (const std::string& iface : ifaces)
                 {
-                    getInterfaces({busname, path, iface}, probeVector, scan,
-                                  io);
+                    // The 3 default org.freedeskstop interfaces (Peer,
+                    // Introspectable, and Properties) are returned by
+                    // the mapper but don't have properties, so don't bother
+                    // with the GetAll call to save some cycles.
+                    if (!iface.starts_with("org.freedesktop"))
+                    {
+                        getInterfaces({busname, path, iface}, probeVector, scan,
+                                      io);
+                    }
                 }
             }
         }
