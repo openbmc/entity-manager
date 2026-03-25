@@ -5,6 +5,92 @@
             "Bus": "$bus",
             "Name": "NVIDIA VR NVL72 IO Board $bus - 73 FRU",
             "Type": "EEPROM"
+        },
+        {
+            "MaxValue": 255,
+            "MinValue": -255.0,
+            "Name": "IOB$bus - 73 NIC0_TEMP_C",
+            "PowerState": "On",
+            "Timeout": 30.0,
+            "Type": "ExternalSensor",
+            "Units": "DegreesC"
+        },
+        {
+            "MaxValue": 255,
+            "MinValue": -255.0,
+            "Name": "IOB$bus - 73 NIC0_OSFP_TEMP_C",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.36,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 68
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                }
+            ],
+            "Timeout": 30.0,
+            "Type": "ExternalSensor",
+            "Units": "DegreesC"
+        },
+        {
+            "MaxValue": 65535,
+            "MinValue": 0,
+            "Name": "IOB$bus - 73 NIC0_PWR_W",
+            "PowerState": "On",
+            "Timeout": 30.0,
+            "Type": "ExternalSensor",
+            "Units": "Watts"
+        },
+        {
+            "MaxValue": 255,
+            "MinValue": -255.0,
+            "Name": "IOB$bus - 73 NIC1_TEMP_C",
+            "PowerState": "On",
+            "Timeout": 30.0,
+            "Type": "ExternalSensor",
+            "Units": "DegreesC"
+        },
+        {
+            "MaxValue": 255,
+            "MinValue": -255.0,
+            "Name": "IOB$bus - 73 NIC1_OSFP_TEMP_C",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.36,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 68
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                }
+            ],
+            "Timeout": 30.0,
+            "Type": "ExternalSensor",
+            "Units": "DegreesC"
+        },
+        {
+            "MaxValue": 65535,
+            "MinValue": 0,
+            "Name": "IOB$bus - 73 NIC1_PWR_W",
+            "PowerState": "On",
+            "Timeout": 30.0,
+            "Type": "ExternalSensor",
+            "Units": "Watts"
         }
     ],
     "Name": "NVIDIA VR NVL72 IO Board $bus - 73",
