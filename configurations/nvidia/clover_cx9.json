@@ -5,6 +5,33 @@
             "Bus": "$bus",
             "Name": "NVIDIA VR NVL72 Clover FRU",
             "Type": "EEPROM"
+        },
+        {
+            "Name": "NS_NIC_TEMP_C",
+            "MinValue": -255.0,
+            "MaxValue": 255,
+            "Timeout": 30.0,
+            "PowerState": "On",
+            "Type": "ExternalSensor",
+            "Units": "DegreesC"
+        },
+        {
+            "Name": "NS_NIC_OSFP_TEMP_C",
+            "MinValue": -255.0,
+            "MaxValue": 255,
+            "Timeout": 30.0,
+            "PowerState": "On",
+            "Type": "ExternalSensor",
+            "Units": "DegreesC"
+        },
+        {
+            "MaxValue": 65535,
+            "MinValue": 0,
+            "Name": "NS_NIC_PWR_W",
+            "PowerState": "On",
+            "Timeout": 30.0,
+            "Type": "ExternalSensor",
+            "Units": "Watts"
         }
     ],
     "Name": "NVIDIA VR NVL72 Clover",
