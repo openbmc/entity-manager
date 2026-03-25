@@ -261,6 +261,39 @@ void exportDevice(const devices::ExportTemplate& exportTemplate,
                 destructor, hasHWMonDir, std::move(channels), io);
 }
 
+static void loadOverlayForConfigRecord(const nlohmann::json& configuration,
+                                       boost::asio::io_context& io)
+{
+    auto findStatus = configuration.find("Status");
+    // status missing is assumed to be 'okay'
+    if (findStatus != configuration.end() && *findStatus == "disabled")
+    {
+        return;
+    }
+    auto findType = configuration.find("Type");
+    if (findType == configuration.end() ||
+        findType->type() != nlohmann::json::value_t::string)
+    {
+        return;
+    }
+    const std::string& type = findType.value().get<std::string>();
+    const auto* device = std::ranges::find_if(
+        devices::exportTemplates,
+        [&type](const auto& tmp) { return tmp.type == type; });
+    if (device != devices::exportTemplates.end())
+    {
+        exportDevice(*device, configuration, io);
+        return;
+    }
+
+    // Because many devices are intentionally not exportable,
+    // this error message is not printed in all situations.
+    // If wondering why your device not appearing, add your type to
+    // the exportTemplates array in the devices.hpp file.
+    lg2::debug("Device type {TYPE} not found in export map allowlist", "TYPE",
+               type);
+}
+
 bool loadOverlays(const nlohmann::json& systemConfiguration,
                   boost::asio::io_context& io)
 {
@@ -279,34 +312,7 @@ bool loadOverlays(const nlohmann::json& systemConfiguration,
 
         for (const auto& configuration : *findExposes)
         {
-            auto findStatus = configuration.find("Status");
-            // status missing is assumed to be 'okay'
-            if (findStatus != configuration.end() && *findStatus == "disabled")
-            {
-                continue;
-            }
-            auto findType = configuration.find("Type");
-            if (findType == configuration.end() ||
-                findType->type() != nlohmann::json::value_t::string)
-            {
-                continue;
-            }
-            const std::string& type = findType.value().get<std::string>();
-            const auto* device = std::ranges::find_if(
-                devices::exportTemplates,
-                [&type](const auto& tmp) { return tmp.type == type; });
-            if (device != devices::exportTemplates.end())
-            {
-                exportDevice(*device, configuration, io);
-                continue;
-            }
-
-            // Because many devices are intentionally not exportable,
-            // this error message is not printed in all situations.
-            // If wondering why your device not appearing, add your type to
-            // the exportTemplates array in the devices.hpp file.
-            lg2::debug("Device type {TYPE} not found in export map allowlist",
-                       "TYPE", type);
+            loadOverlayForConfigRecord(configuration, io);
         }
     }
 
