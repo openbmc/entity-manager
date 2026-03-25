@@ -23,7 +23,7 @@ constexpr const int32_t maxMapperDepth = 0;
 struct DBusInterfaceInstance
 {
     std::string busName;
-    std::string path;
+    sdbusplus::message::object_path path;
     std::string interface;
 };
 

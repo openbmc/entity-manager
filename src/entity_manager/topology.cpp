@@ -54,7 +54,8 @@ std::optional<AssocName> Topology::getAssocByName(const std::string& name)
     return std::nullopt;
 }
 
-void Topology::addBoard(const std::string& path, const std::string& boardType,
+void Topology::addBoard(const sdbusplus::message::object_path& path,
+                        const std::string& boardType,
                         const std::string& boardName,
                         const nlohmann::json& exposesItem)
 {
@@ -157,10 +158,11 @@ void Topology::addPort(const PortType& port, const Path& path,
     ports[port][path].insert(assocName);
 }
 
-std::unordered_map<std::string, std::set<Association>> Topology::getAssocs(
-    BoardPathsView boardPaths)
+std::unordered_map<sdbusplus::message::object_path, std::set<Association>>
+    Topology::getAssocs(BoardPathsView boardPaths)
 {
-    std::unordered_map<std::string, std::set<Association>> result;
+    std::unordered_map<sdbusplus::message::object_path, std::set<Association>>
+        result;
 
     // look at each upstream port type
     for (const auto& port : ports)
@@ -183,7 +185,8 @@ std::unordered_map<std::string, std::set<Association>> Topology::getAssocs(
 }
 
 void Topology::fillAssocsForPortId(
-    std::unordered_map<std::string, std::set<Association>>& result,
+    std::unordered_map<sdbusplus::message::object_path, std::set<Association>>&
+        result,
     BoardPathsView boardPaths,
     const std::map<Path, std::set<AssocName>>& pathAssocs)
 {
@@ -215,7 +218,8 @@ void Topology::fillAssocsForPortId(
 }
 
 void Topology::fillAssocForPortId(
-    std::unordered_map<std::string, std::set<Association>>& result,
+    std::unordered_map<sdbusplus::message::object_path, std::set<Association>>&
+        result,
     BoardPathsView boardPaths, const Path& upstream, const Path& downstream,
     const AssocName& assocName)
 {
