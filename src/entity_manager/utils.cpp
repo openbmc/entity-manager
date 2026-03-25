@@ -375,10 +375,10 @@ std::optional<std::string> templateCharReplace(
     return ret;
 }
 
-sdbusplus::message::object_path buildInventorySystemPath(
-    std::string& boardName, const std::string& boardType)
+sdbusplus::object_path buildInventorySystemPath(std::string& boardName,
+                                                const std::string& boardType)
 {
-    const sdbusplus::message::object_path basePath(
+    const sdbusplus::object_path basePath(
         "/xyz/openbmc_project/inventory/system");
 
     boardName = dbus_util::sanitizeForDBusMember(boardName);

@@ -36,7 +36,7 @@ void tryIfaceInitialize(std::shared_ptr<sdbusplus::asio::dbus_interface>& iface)
 }
 
 std::shared_ptr<sdbusplus::asio::dbus_interface>
-    EMDBusInterface::createInterface(const std::string& path,
+    EMDBusInterface::createInterface(const sdbusplus::object_path& path,
                                      const std::string& interface,
                                      const std::string& parent, bool checkNull)
 {
@@ -267,7 +267,7 @@ static void addObjectRuntimeValidateJson(
 void EMDBusInterface::addObject(
     const std::flat_map<std::string, JsonVariantType, std::less<>>& data,
     nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,
-    const std::string& path, const std::string& board)
+    const sdbusplus::object_path& path, const std::string& board)
 {
     nlohmann::json::json_pointer ptr(jsonPointerPath);
     nlohmann::json& base = systemConfiguration[ptr];
@@ -295,7 +295,7 @@ void EMDBusInterface::addObject(
 
 void EMDBusInterface::addObjectJson(
     nlohmann::json& newData, nlohmann::json& systemConfiguration,
-    const std::string& jsonPointerPath, const std::string& path,
+    const std::string& jsonPointerPath, const sdbusplus::object_path& path,
     const std::string& board)
 {
     nlohmann::json::json_pointer ptr(jsonPointerPath);
@@ -356,7 +356,7 @@ void EMDBusInterface::addObjectJson(
     std::string dbusName = dbus_util::sanitizeForDBusMember(*name);
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> interface =
-        createInterface(path + "/" + dbusName,
+        createInterface(path / dbusName,
                         "xyz.openbmc_project.Configuration." + *type, board,
                         true);
     // permission is read-write, as since we just created it, must be
@@ -368,7 +368,7 @@ void EMDBusInterface::addObjectJson(
 }
 
 void EMDBusInterface::createAddObjectMethod(
-    const std::string& jsonPointerPath, const std::string& path,
+    const std::string& jsonPointerPath, const sdbusplus::object_path& path,
     nlohmann::json& systemConfiguration, const std::string& board)
 {
     std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
@@ -377,7 +377,7 @@ void EMDBusInterface::createAddObjectMethod(
     iface->register_method(
         "AddObject",
         [&systemConfiguration, jsonPointerPath{std::string(jsonPointerPath)},
-         path{std::string(path)}, board{std::string(board)},
+         path{sdbusplus::object_path(path)}, board{std::string(board)},
          this](const std::flat_map<std::string, JsonVariantType, std::less<>>&
                    data) {
             addObject(data, systemConfiguration, jsonPointerPath, path, board);

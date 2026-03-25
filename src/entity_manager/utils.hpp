@@ -35,7 +35,7 @@ std::optional<std::string> templateCharReplace(
     nlohmann::json& value, const DBusInterface& interface, size_t index,
     const std::optional<std::string>& replaceStr = std::nullopt);
 
-sdbusplus::message::object_path buildInventorySystemPath(
-    std::string& boardName, const std::string& boardType);
+sdbusplus::object_path buildInventorySystemPath(std::string& boardName,
+                                                const std::string& boardType);
 
 } // namespace em_utils
