@@ -27,14 +27,14 @@ class EMDBusInterface
                     const std::filesystem::path& schemaDirectory);
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> createInterface(
-        const std::string& path, const std::string& interface,
+        const sdbusplus::object_path& path, const std::string& interface,
         const std::string& parent, bool checkNull = false);
 
     std::vector<std::weak_ptr<sdbusplus::asio::dbus_interface>>&
         getDeviceInterfaces(const nlohmann::json& device);
 
     void createAddObjectMethod(const std::string& jsonPointerPath,
-                               const std::string& path,
+                               const sdbusplus::object_path& path,
                                nlohmann::json& systemConfiguration,
                                const std::string& board);
 
@@ -54,13 +54,14 @@ class EMDBusInterface
     void addObject(
         const std::flat_map<std::string, JsonVariantType, std::less<>>& data,
         nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,
-        const std::string& path, const std::string& board);
+        const sdbusplus::object_path& path, const std::string& board);
 
     // @brief: same as 'addObject', but operates on json
     void addObjectJson(nlohmann::json& newData,
                        nlohmann::json& systemConfiguration,
                        const std::string& jsonPointerPath,
-                       const std::string& path, const std::string& board);
+                       const sdbusplus::object_path& path,
+                       const std::string& board);
 
     boost::asio::io_context& io;
     sdbusplus::asio::object_server& objServer;
