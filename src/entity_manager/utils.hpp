@@ -7,6 +7,8 @@
 #include <sdbusplus/asio/connection.hpp>
 
 constexpr const char* configurationOutDir = "/var/configuration/";
+constexpr const char* emDbusName = "xyz.openbmc_project.EntityManager";
+constexpr const char* emDbusPath = "/xyz/openbmc_project/EntityManager";
 constexpr const char* versionHashFile = "/var/configuration/version";
 constexpr const char* versionFile = "/etc/os-release";
 
