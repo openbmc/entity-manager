@@ -219,7 +219,8 @@ void EntityManager::postBoardToDBus(
 void EntityManager::postExposesRecordsToDBus(
     nlohmann::json& item, size_t& exposesIndex,
     const std::string& boardNameOrig, std::string jsonPointerPath,
-    const std::string& jsonPointerPathBoard, const std::string& boardPath,
+    const std::string& jsonPointerPathBoard,
+    const sdbusplus::message::object_path& boardPath,
     const std::string& boardType)
 {
     exposesIndex++;
@@ -252,9 +253,7 @@ void EntityManager::postExposesRecordsToDBus(
     const std::string itemName =
         dbus_regex::sanitizeForDBusMember(findName->get<std::string>());
 
-    std::string ifacePath = boardPath;
-    ifacePath += "/";
-    ifacePath += itemName;
+    const sdbusplus::message::object_path ifacePath = boardPath / itemName;
 
     if (itemType == "BMC")
     {
@@ -310,7 +309,8 @@ void EntityManager::postExposesRecordsToDBus(
 bool EntityManager::postConfigurationRecord(
     const std::string& name, nlohmann::json& config,
     const std::string& boardNameOrig, const std::string& itemType,
-    const std::string& jsonPointerPath, const std::string& ifacePath)
+    const std::string& jsonPointerPath,
+    const sdbusplus::message::object_path& ifacePath)
 {
     if (config.type() == nlohmann::json::value_t::object)
     {
@@ -640,7 +640,8 @@ void EntityManager::handleCurrentConfigurationJson()
     }
 }
 
-void EntityManager::registerCallback(const std::string& path)
+void EntityManager::registerCallback(
+    const sdbusplus::message::object_path& path)
 {
     if (dbusMatches.contains(path))
     {
@@ -654,7 +655,7 @@ void EntityManager::registerCallback(const std::string& path)
 
     sdbusplus::bus::match_t match(
         static_cast<sdbusplus::bus_t&>(*systemBus),
-        "type='signal',member='PropertiesChanged',path='" + path + "'",
+        "type='signal',member='PropertiesChanged',path='" + path.str + "'",
         eventHandler);
     dbusMatches.emplace(path, std::move(match));
 }
@@ -706,7 +707,7 @@ void EntityManager::initFilters(
             if (irContainsProbeInterface(interfaces, probeInterfaces))
             {
                 // Clean up match on probe interface removal to avoid leaks
-                dbusMatches.erase(path.str);
+                dbusMatches.erase(path);
                 propertiesChangedCallback();
             }
         });
