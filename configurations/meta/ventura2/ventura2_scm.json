@@ -109,13 +109,13 @@
                     "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 1.89
+                    "Value": 3.465
                 },
                 {
                     "Direction": "less than",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 1.71
+                    "Value": 3.135
                 }
             ],
             "Type": "ADC"
@@ -717,14 +717,6 @@
             "Address": "0x4b",
             "Bus": 9,
             "Name": "SCM_INLET_TEMP_C",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 40
-                }
-            ],
             "Type": "TMP75"
         },
         {
