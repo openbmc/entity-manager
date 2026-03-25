@@ -19,7 +19,7 @@
 struct DBusInterfaceInstance
 {
     std::string busName;
-    std::string path;
+    sdbusplus::object_path path;
     std::string interface;
 };
 
