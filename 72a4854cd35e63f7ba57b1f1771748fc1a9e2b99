@@ -22,6 +22,30 @@
       },
       "revId": "72a4854cd35e63f7ba57b1f1771748fc1a9e2b99",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab1587c7_e0e5c875",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-26T09:15:27Z",
+      "side": 1,
+      "message": "\u003e I\u0027m not sure I really even understand this.  \n\nYou do understand, we had this same discussion like 100 times already.\n\n\u003e and why PDI can\u0027t consume \"Name1\" as a property?\n\nD-Bus interfaces have a fixed number of properties.\n\nAnother solution would be to simply put an interface with\nfixed properties `Name1`, `Name2`, `Name3`, ... , `Name17`\n\nand consume that on dbus-sensors side.\nThe unused names would then be empty strings and can be ignored by the client.\n\nThat way we stay D-Bus compatible and the PDI abstraction works.\n\nBut that would require build a representation of what a config record is supposed to look like on D-Bus, which is an idea you rejected previously.",
+      "parentUuid": "965f6f51_34ea5915",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 67
+      },
+      "revId": "72a4854cd35e63f7ba57b1f1771748fc1a9e2b99",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

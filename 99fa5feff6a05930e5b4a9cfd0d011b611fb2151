@@ -188,6 +188,24 @@
       "parentUuid": "4e11ba54_f24f779f",
       "revId": "99fa5feff6a05930e5b4a9cfd0d011b611fb2151",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "691d8bee_521927ab",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-26T09:15:27Z",
+      "side": 1,
+      "message": "\u003e Because these are shared schema, you can\u0027t really define a single maxItems that applies to all chips.\n\nThis was not done previously either with the patternProperties. So there is no regression on that part.\n\n\u003e Overall, this still results in possibly unbounded property lists, and doesn\u0027t give a definition of what each index represents.\n\nI did put `description` on both properties which documents that the name of first channel and additional channels are configured.\n\nSo it maps directly to linux hwmon channels like before, but now it\u0027s documented.",
+      "parentUuid": "628937f6_a1e68eac",
+      "revId": "99fa5feff6a05930e5b4a9cfd0d011b611fb2151",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
