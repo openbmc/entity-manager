@@ -1,6 +1,62 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$defs": {
+        "AnalogValve": {
+            "description": "The definition for the analog valve for liquid cooling",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Name": {
+                    "description": "The name of the analog valve.",
+                    "type": "string"
+                },
+                "Type": {
+                    "description": "The type of configuration object",
+                    "const": "AnalogValve"
+                },
+                "MaxFlowRate": {
+                    "description": "The maximum flow rate supported by the analog valve.",
+                    "type": "number"
+                },
+                "SetPointVoltageRange": {
+                    "description": "The voltage range [min, max] for the valve setpoint.",
+                    "type": "array",
+                    "prefixItems": [
+                        {
+                            "description": "The minimum voltage for analog valve setpoint",
+                            "type": "number"
+                        },
+                        {
+                            "description": "The maximum voltage for analog valve setpoint",
+                            "type": "number"
+                        }
+                    ],
+                    "minItems": 2,
+                    "maxItems": 2
+                },
+                "FeedbackADC": {
+                    "description": "The ADC used to read valve feedback.",
+                    "$ref": "legacy.json#/$defs/ADC"
+                },
+                "SetPointDAC": {
+                    "description": "The DAC used to output the valve setpoint voltage.",
+                    "$ref": "legacy.json#/$defs/DAC"
+                },
+                "Tolerance": {
+                    "description": "The acceptable voltage deviation between setpoint and feedback before the valve is considered out of position.",
+                    "type": "number"
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "MaxFlowRate",
+                "SetPointVoltageRange",
+                "FeedbackADC",
+                "SetPointDAC",
+                "Tolerance"
+            ]
+        },
         "GPIOValve": {
             "additionalProperties": false,
             "description": "Configuration for GPIO based Valve.",
