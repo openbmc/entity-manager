@@ -375,14 +375,14 @@ std::optional<std::string> templateCharReplace(
     return ret;
 }
 
-std::string buildInventorySystemPath(std::string& boardName,
-                                     const std::string& boardType)
+sdbusplus::object_path buildInventorySystemPath(std::string& boardName,
+                                                const std::string& boardType)
 {
-    std::string path = "/xyz/openbmc_project/inventory/system/";
-    std::string boardTypeLower = toLowerCopy(boardType);
+    const sdbusplus::object_path basePath(
+        "/xyz/openbmc_project/inventory/system");
 
     boardName = dbus_util::sanitizeForDBusMember(boardName);
 
-    return std::format("{}{}/{}", path, boardTypeLower, boardName);
+    return basePath / toLowerCopy(boardType) / boardName;
 }
 } // namespace em_utils
