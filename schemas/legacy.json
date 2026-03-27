@@ -647,6 +647,44 @@
             "required": ["Name", "Type", "Index"],
             "type": "object"
         },
+        "DAC": {
+            "description": "Digital to analog converter for voltage setpoint",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "Type": {
+                    "const": "DAC"
+                },
+                "Bus": {
+                    "$ref": "#/$defs/Types/Bus"
+                },
+                "Address": {
+                    "$ref": "#/$defs/Types/Address"
+                },
+                "Index": {
+                    "$ref": "#/$defs/Types/Index"
+                },
+                "Offset": {
+                    "description": "The voltage offset for DAC raw value conversion.",
+                    "type": "number"
+                },
+                "ScaleFactor": {
+                    "$ref": "#/$defs/Types/ScaleFactor"
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "Bus",
+                "Address",
+                "Index",
+                "Offset",
+                "ScaleFactor"
+            ]
+        },
         "TempSensor": {
             "description": "implemented in dbus-sensors: HwmonTempSensor",
             "additionalProperties": false,
