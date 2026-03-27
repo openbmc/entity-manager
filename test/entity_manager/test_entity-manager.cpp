@@ -931,3 +931,36 @@ TEST(MatchProbe, nullNeqArray)
     DBusValueVariant v = std::vector<uint8_t>{};
     EXPECT_FALSE(matchProbe(j, v));
 }
+
+TEST(BuildInventorySystemPath, noAdjustment)
+{
+    std::string boardName = "Tyan S8030";
+    auto path = em_utils::buildInventorySystemPath(boardName, "Board");
+
+    const auto expect = sdbusplus::object_path(
+        "/xyz/openbmc_project/inventory/system/board/Tyan_S8030");
+
+    EXPECT_EQ(expect, path);
+}
+
+TEST(BuildInventorySystemPath, needsSanitize)
+{
+    std::string name = "MBX 1.60";
+    auto path = em_utils::buildInventorySystemPath(name, "Chassis");
+
+    const auto expect = sdbusplus::object_path(
+        "/xyz/openbmc_project/inventory/system/chassis/MBX_1_60");
+
+    EXPECT_EQ(expect, path);
+}
+
+TEST(BuildInventorySystemPath, needsSanitizeUnderscores)
+{
+    std::string name = "Mt.Mitchell_Motherboard";
+    auto path = em_utils::buildInventorySystemPath(name, "Board");
+
+    const auto expect = sdbusplus::object_path(
+        "/xyz/openbmc_project/inventory/system/board/Mt_Mitchell_Motherboard");
+
+    EXPECT_EQ(expect, path);
+}
