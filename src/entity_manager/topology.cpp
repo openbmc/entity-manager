@@ -2,6 +2,10 @@
 
 #include "phosphor-logging/lg2.hpp"
 
+#include <sdbusplus/message/native_types.hpp>
+
+using object_path = sdbusplus::object_path;
+
 const AssocName assocContaining =
     AssocName("containing", "contained_by", {"Chassis"},
               {"Board", "Chassis", "PowerSupply"});
@@ -54,7 +58,7 @@ std::optional<AssocName> Topology::getAssocByName(const std::string& name)
     return std::nullopt;
 }
 
-void Topology::addBoard(const std::string& path, const std::string& boardType,
+void Topology::addBoard(const object_path& path, const std::string& boardType,
                         const std::string& boardName,
                         const nlohmann::json& exposesItem)
 {
@@ -92,7 +96,7 @@ void Topology::addBoard(const std::string& path, const std::string& boardType,
     boardTypes[path] = boardType;
 }
 
-void Topology::addConfiguredPort(const Path& path,
+void Topology::addConfiguredPort(const object_path& path,
                                  const nlohmann::json& exposesItem)
 {
     const auto findConnectsToName = exposesItem.find("Name");
@@ -122,7 +126,7 @@ void Topology::addConfiguredPort(const Path& path,
     addPort(connectsToName, path, assoc.value());
 }
 
-void Topology::addDownstreamPort(const Path& path,
+void Topology::addDownstreamPort(const object_path& path,
                                  const nlohmann::json& exposesItem)
 {
     auto findConnectsTo = exposesItem.find("ConnectsToType");
@@ -143,7 +147,7 @@ void Topology::addDownstreamPort(const Path& path,
     }
 }
 
-void Topology::addPort(const PortType& port, const Path& path,
+void Topology::addPort(const PortType& port, const object_path& path,
                        const AssocName& assocName)
 {
     if (!ports.contains(port))
@@ -157,10 +161,10 @@ void Topology::addPort(const PortType& port, const Path& path,
     ports[port][path].insert(assocName);
 }
 
-std::unordered_map<std::string, std::set<Association>> Topology::getAssocs(
+std::unordered_map<object_path, std::set<Association>> Topology::getAssocs(
     BoardPathsView boardPaths)
 {
-    std::unordered_map<std::string, std::set<Association>> result;
+    std::unordered_map<object_path, std::set<Association>> result;
 
     // look at each upstream port type
     for (const auto& port : ports)
@@ -183,9 +187,9 @@ std::unordered_map<std::string, std::set<Association>> Topology::getAssocs(
 }
 
 void Topology::fillAssocsForPortId(
-    std::unordered_map<std::string, std::set<Association>>& result,
+    std::unordered_map<object_path, std::set<Association>>& result,
     BoardPathsView boardPaths,
-    const std::map<Path, std::set<AssocName>>& pathAssocs)
+    const std::map<object_path, std::set<AssocName>>& pathAssocs)
 {
     for (const auto& member : pathAssocs)
     {
@@ -215,9 +219,9 @@ void Topology::fillAssocsForPortId(
 }
 
 void Topology::fillAssocForPortId(
-    std::unordered_map<std::string, std::set<Association>>& result,
-    BoardPathsView boardPaths, const Path& upstream, const Path& downstream,
-    const AssocName& assocName)
+    std::unordered_map<object_path, std::set<Association>>& result,
+    BoardPathsView boardPaths, const object_path& upstream,
+    const object_path& downstream, const AssocName& assocName)
 {
     if (!assocName.allowedOnBoardTypes.contains(boardTypes[upstream]))
     {
@@ -265,8 +269,8 @@ void Topology::remove(const std::string& boardName)
     probePaths.erase(boardName);
 }
 
-void Topology::addProbePath(const std::string& boardPath,
-                            const std::string& probePath)
+void Topology::addProbePath(const object_path& boardPath,
+                            const object_path& probePath)
 {
     lg2::info("Probe path added: {PROBE} probed_by {BOARD} boards config",
               "PROBE", probePath, "BOARD", boardPath);
