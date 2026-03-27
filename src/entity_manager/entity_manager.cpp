@@ -79,7 +79,8 @@ EntityManager::EntityManager(
 
 void EntityManager::postToDbus(const nlohmann::json& newConfiguration)
 {
-    std::map<std::string, std::string> newBoards; // path -> name
+    std::map<sdbusplus::message::object_path, std::string>
+        newBoards; // path -> name
 
     // iterate through boards
     for (const auto& [boardId, boardConfig] : newConfiguration.items())
@@ -117,7 +118,7 @@ void EntityManager::postToDbus(const nlohmann::json& newConfiguration)
 
 void EntityManager::postBoardToDBus(
     const std::string& boardId, const nlohmann::json::object_t& boardConfig,
-    std::map<std::string, std::string>& newBoards)
+    std::map<sdbusplus::message::object_path, std::string>& newBoards)
 {
     auto boardNameIt = boardConfig.find("Name");
     if (boardNameIt == boardConfig.end())
