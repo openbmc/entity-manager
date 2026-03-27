@@ -156,7 +156,7 @@ void EntityManager::postBoardToDBus(
     lg2::debug("post {TYPE} '{NAME}' to DBus", "TYPE", boardType, "NAME",
                boardName);
 
-    const std::string boardPath =
+    const sdbusplus::object_path boardPath =
         em_utils::buildInventorySystemPath(boardName, boardType);
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> inventoryIface =
