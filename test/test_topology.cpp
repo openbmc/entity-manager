@@ -7,10 +7,17 @@
 
 using ::testing::UnorderedElementsAre;
 
-const std::string subchassisPath =
-    "/xyz/openbmc_project/inventory/system/chassis/Subchassis";
-const std::string superchassisPath =
-    "/xyz/openbmc_project/inventory/system/chassis/Superchassis";
+// local type alias to keep things readable
+using ObjPath = sdbusplus::object_path;
+
+const ObjPath subchassisPath(
+    "/xyz/openbmc_project/inventory/system/chassis/Subchassis");
+const ObjPath subchassisPath2(
+    "/xyz/openbmc_project/inventory/system/chassis/Subchassis2");
+const ObjPath superchassisPath(
+    "/xyz/openbmc_project/inventory/system/chassis/Superchassis");
+const ObjPath superchassisPath2(
+    "/xyz/openbmc_project/inventory/system/chassis/Superchassis2");
 
 const Association subchassisAssoc =
     std::make_tuple("contained_by", "containing", superchassisPath);
@@ -48,7 +55,7 @@ const nlohmann::json otherExposesItem = nlohmann::json::parse(R"(
     }
 )");
 
-using BoardMap = std::map<std::string, std::string>;
+using BoardMap = std::map<sdbusplus::object_path, std::string>;
 
 TEST(Topology, Empty)
 {
@@ -187,12 +194,11 @@ TEST(Topology, 2Subchassis)
 {
     Topology topo;
     BoardMap boards{{subchassisPath, "BoardA"},
-                    {subchassisPath + "2", "BoardB"},
+                    {subchassisPath2, "BoardB"},
                     {superchassisPath, "BoardC"}};
 
     topo.addBoard(subchassisPath, "Chassis", "BoardA", subchassisExposesItem);
-    topo.addBoard(subchassisPath + "2", "Chassis", "BoardB",
-                  subchassisExposesItem);
+    topo.addBoard(subchassisPath2, "Chassis", "BoardB", subchassisExposesItem);
     topo.addBoard(superchassisPath, "Chassis", "BoardC",
                   superchassisExposesItem);
 
@@ -201,8 +207,8 @@ TEST(Topology, 2Subchassis)
     EXPECT_EQ(assocs.size(), 2U);
     EXPECT_EQ(assocs[subchassisPath].size(), 1U);
     EXPECT_TRUE(assocs[subchassisPath].contains(subchassisAssoc));
-    EXPECT_EQ(assocs[subchassisPath + "2"].size(), 1U);
-    EXPECT_TRUE(assocs[subchassisPath + "2"].contains(subchassisAssoc));
+    EXPECT_EQ(assocs[subchassisPath2].size(), 1U);
+    EXPECT_TRUE(assocs[subchassisPath2].contains(subchassisAssoc));
 }
 
 TEST(Topology, OneNewBoard)
@@ -211,8 +217,7 @@ TEST(Topology, OneNewBoard)
     BoardMap boards{{subchassisPath, "BoardA"}};
 
     topo.addBoard(subchassisPath, "Chassis", "BoardA", subchassisExposesItem);
-    topo.addBoard(subchassisPath + "2", "Chassis", "BoardB",
-                  subchassisExposesItem);
+    topo.addBoard(subchassisPath2, "Chassis", "BoardB", subchassisExposesItem);
     topo.addBoard(superchassisPath, "Chassis", "BoardC",
                   superchassisExposesItem);
 
@@ -227,17 +232,17 @@ TEST(Topology, OneNewBoard)
 TEST(Topology, 2Superchassis)
 {
     Association subchassisAssoc2 =
-        std::make_tuple("contained_by", "containing", superchassisPath + "2");
+        std::make_tuple("contained_by", "containing", superchassisPath2);
 
     Topology topo;
     BoardMap boards{{subchassisPath, "BoardA"},
                     {superchassisPath, "BoardB"},
-                    {superchassisPath + "2", "BoardC"}};
+                    {superchassisPath2, "BoardC"}};
 
     topo.addBoard(subchassisPath, "Chassis", "BoardA", subchassisExposesItem);
     topo.addBoard(superchassisPath, "Chassis", "BoardB",
                   superchassisExposesItem);
-    topo.addBoard(superchassisPath + "2", "Chassis", "BoardC",
+    topo.addBoard(superchassisPath2, "Chassis", "BoardC",
                   superchassisExposesItem);
 
     auto assocs = topo.getAssocs(std::views::keys(boards));
@@ -252,31 +257,30 @@ TEST(Topology, 2Superchassis)
 TEST(Topology, 2SuperchassisAnd2Subchassis)
 {
     Association subchassisAssoc2 =
-        std::make_tuple("contained_by", "containing", superchassisPath + "2");
+        std::make_tuple("contained_by", "containing", superchassisPath2);
 
     Topology topo;
     BoardMap boards{{subchassisPath, "BoardA"},
-                    {subchassisPath + "2", "BoardB"},
+                    {subchassisPath2, "BoardB"},
                     {superchassisPath, "BoardC"},
-                    {superchassisPath + "2", "BoardD"}};
+                    {superchassisPath2, "BoardD"}};
 
     topo.addBoard(subchassisPath, "Chassis", "BoardA", subchassisExposesItem);
-    topo.addBoard(subchassisPath + "2", "Chassis", "BoardB",
-                  subchassisExposesItem);
+    topo.addBoard(subchassisPath2, "Chassis", "BoardB", subchassisExposesItem);
     topo.addBoard(superchassisPath, "Chassis", "BoardC",
                   superchassisExposesItem);
-    topo.addBoard(superchassisPath + "2", "Chassis", "BoardD",
+    topo.addBoard(superchassisPath2, "Chassis", "BoardD",
                   superchassisExposesItem);
 
     auto assocs = topo.getAssocs(std::views::keys(boards));
 
     EXPECT_EQ(assocs.size(), 2U);
     EXPECT_EQ(assocs[subchassisPath].size(), 2U);
-    EXPECT_EQ(assocs[subchassisPath + "2"].size(), 2U);
+    EXPECT_EQ(assocs[subchassisPath2].size(), 2U);
 
     EXPECT_THAT(assocs[subchassisPath],
                 UnorderedElementsAre(subchassisAssoc, subchassisAssoc2));
-    EXPECT_THAT(assocs[subchassisPath + "2"],
+    EXPECT_THAT(assocs[subchassisPath2],
                 UnorderedElementsAre(subchassisAssoc, subchassisAssoc2));
 }
 
@@ -284,12 +288,11 @@ TEST(Topology, Remove)
 {
     Topology topo;
     BoardMap boards{{subchassisPath, "BoardA"},
-                    {subchassisPath + "2", "BoardB"},
+                    {subchassisPath2, "BoardB"},
                     {superchassisPath, "BoardC"}};
 
     topo.addBoard(subchassisPath, "Chassis", "BoardA", subchassisExposesItem);
-    topo.addBoard(subchassisPath + "2", "Chassis", "BoardB",
-                  subchassisExposesItem);
+    topo.addBoard(subchassisPath2, "Chassis", "BoardB", subchassisExposesItem);
     topo.addBoard(superchassisPath, "Chassis", "BoardC",
                   superchassisExposesItem);
 
@@ -299,8 +302,8 @@ TEST(Topology, Remove)
         EXPECT_EQ(assocs.size(), 2U);
         EXPECT_EQ(assocs[subchassisPath].size(), 1U);
         EXPECT_TRUE(assocs[subchassisPath].contains(subchassisAssoc));
-        EXPECT_EQ(assocs[subchassisPath + "2"].size(), 1U);
-        EXPECT_TRUE(assocs[subchassisPath + "2"].contains(subchassisAssoc));
+        EXPECT_EQ(assocs[subchassisPath2].size(), 1U);
+        EXPECT_TRUE(assocs[subchassisPath2].contains(subchassisAssoc));
     }
 
     {
@@ -308,8 +311,8 @@ TEST(Topology, Remove)
         auto assocs = topo.getAssocs(std::views::keys(boards));
 
         EXPECT_EQ(assocs.size(), 1U);
-        EXPECT_EQ(assocs[subchassisPath + "2"].size(), 1U);
-        EXPECT_TRUE(assocs[subchassisPath + "2"].contains(subchassisAssoc));
+        EXPECT_EQ(assocs[subchassisPath2].size(), 1U);
+        EXPECT_TRUE(assocs[subchassisPath2].contains(subchassisAssoc));
     }
 
     {
@@ -322,14 +325,14 @@ TEST(Topology, Remove)
 
 TEST(Topology, SimilarToTyanS8030)
 {
-    const std::string chassisPath =
-        "/xyz/openbmc_project/inventory/system/chassis/ChassisA";
-    const std::string boardPath =
-        "/xyz/openbmc_project/inventory/system/board/BoardA";
-    const std::string psu0Path =
-        "/xyz/openbmc_project/inventory/system/powersupply/PSU0";
-    const std::string psu1Path =
-        "/xyz/openbmc_project/inventory/system/powersupply/PSU1";
+    const ObjPath chassisPath(
+        "/xyz/openbmc_project/inventory/system/chassis/ChassisA");
+    const ObjPath boardPath(
+        "/xyz/openbmc_project/inventory/system/board/BoardA");
+    const ObjPath psu0Path(
+        "/xyz/openbmc_project/inventory/system/powersupply/PSU0");
+    const ObjPath psu1Path(
+        "/xyz/openbmc_project/inventory/system/powersupply/PSU1");
 
     const nlohmann::json chassisContainExposesItem = nlohmann::json::parse(R"(
     {
@@ -440,24 +443,24 @@ static nlohmann::json makeContainingPortExposesItem(const std::string& name)
 
 TEST(Topology, SimilarToYosemiteV3)
 {
-    const std::string blade1Path =
-        "/xyz/openbmc_project/inventory/system/board/Blade1";
-    const std::string blade2Path =
-        "/xyz/openbmc_project/inventory/system/board/Blade2";
-    const std::string blade3Path =
-        "/xyz/openbmc_project/inventory/system/board/Blade3";
-    const std::string blade4Path =
-        "/xyz/openbmc_project/inventory/system/board/Blade4";
-    const std::string chassis1Path =
-        "/xyz/openbmc_project/inventory/system/chassis/Blade1Chassis";
-    const std::string chassis2Path =
-        "/xyz/openbmc_project/inventory/system/chassis/Blade2Chassis";
-    const std::string chassis3Path =
-        "/xyz/openbmc_project/inventory/system/chassis/Blade3Chassis";
-    const std::string chassis4Path =
-        "/xyz/openbmc_project/inventory/system/chassis/Blade4Chassis";
-    const std::string superChassisPath =
-        "/xyz/openbmc_project/inventory/system/chassis/SuperChassis";
+    const ObjPath blade1Path(
+        "/xyz/openbmc_project/inventory/system/board/Blade1");
+    const ObjPath blade2Path(
+        "/xyz/openbmc_project/inventory/system/board/Blade2");
+    const ObjPath blade3Path(
+        "/xyz/openbmc_project/inventory/system/board/Blade3");
+    const ObjPath blade4Path(
+        "/xyz/openbmc_project/inventory/system/board/Blade4");
+    const ObjPath chassis1Path(
+        "/xyz/openbmc_project/inventory/system/chassis/Blade1Chassis");
+    const ObjPath chassis2Path(
+        "/xyz/openbmc_project/inventory/system/chassis/Blade2Chassis");
+    const ObjPath chassis3Path(
+        "/xyz/openbmc_project/inventory/system/chassis/Blade3Chassis");
+    const ObjPath chassis4Path(
+        "/xyz/openbmc_project/inventory/system/chassis/Blade4Chassis");
+    const ObjPath superChassisPath(
+        "/xyz/openbmc_project/inventory/system/chassis/SuperChassis");
 
     const nlohmann::json blade1ExposesItem =
         makeContainedPortExposesItem("Blade1Port");
