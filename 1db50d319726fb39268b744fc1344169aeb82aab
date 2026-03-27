@@ -16,6 +16,24 @@
       "message": "Not the biggest fan of the empty loop but it does reduce indentation and makes things a bit more readable",
       "revId": "1db50d319726fb39268b744fc1344169aeb82aab",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7519d2e_e4fb72fe",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-27T08:53:12Z",
+      "side": 1,
+      "message": "I did try to look for an existing function in\nhttps://en.cppreference.com/w/cpp/header/algorithm.html\n\nsince mixing the conditional and side effect also does not look super great to me.\n\nBut i couldn\u0027t find one which does what i want here (running a function until it returns false).\n\nAlternatively we could pass `std::ranges::subrange\u003cstd::string::const_iterator\u003e` and check that for not-empty then erase in the loop body.\n\nAnother way would be to define a 3rd function `fixpoint` to run a function until it returns false but then we have 3 functions :/",
+      "parentUuid": "76514ac5_5951c281",
+      "revId": "1db50d319726fb39268b744fc1344169aeb82aab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
