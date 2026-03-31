@@ -1,0 +1,274 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x6a",
+            "Bus": 19,
+            "Name": "E1S_TEMP_C",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.0,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 70
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 1.0,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                }
+            ],
+            "Type": "NVME1000"
+        },
+        {
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Ventura2.SPI.Host",
+                "VendorIANA": 40981
+            },
+            "MuxOutputs": [
+                {
+                    "Name": "FM_MUX1_SEL_R",
+                    "Polarity": "High"
+                }
+            ],
+            "Name": "Ventura2_BIOS",
+            "SPIControllerIndex": 1,
+            "SPIDeviceIndex": 0,
+            "Type": "SPIFlash"
+        },
+        {
+            "Address": "0x11",
+            "Bus": 34,
+            "Labels": [
+                "iin",
+                "iout1",
+                "vin",
+                "vout1",
+                "pin",
+                "pout1",
+                "temp1"
+            ],
+            "Name": "VNN_PCH",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "temp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                }
+            ],
+            "Type": "TDA38640",
+            "iin_Name": "COME_VNNPCH_IIN_CURR_A",
+            "iout1_Name": "COME_VNNPCH_IOUT_CURR_A",
+            "pin_Name": "COME_VNNPCH_PIN_PWR_W",
+            "pout1_Name": "COME_VNNPCH_POUT_PWR_W",
+            "temp1_Name": "COME_VNNPCH_TEMP_C",
+            "vin_Name": "COME_VNNPCH_VIN_VOLT_V",
+            "vout1_Name": "COME_VNNPCH_VOUT_VOLT_V"
+        },
+        {
+            "Address": "0x22",
+            "Bus": 34,
+            "Labels": [
+                "iin",
+                "iout1",
+                "vin",
+                "vout1",
+                "pin",
+                "pout1",
+                "temp1"
+            ],
+            "Name": "1V05_STBY",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "temp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                }
+            ],
+            "Type": "TDA38640",
+            "iin_Name": "COME_1V05_STBY_IIN_CURR_A",
+            "iout1_Name": "COME_1V05_STBY_IOUT_CURR_A",
+            "pin_Name": "COME_1V05_STBY_PIN_PWR_W",
+            "pout1_Name": "COME_1V05_STBY_POUT_PWR_W",
+            "temp1_Name": "COME_1V05_STBY_TEMP_C",
+            "vin_Name": "COME_1V05_STBY_VIN_VOLT_V",
+            "vout1_Name": "COME_1V05_STBY_VOUT_VOLT_V"
+        },
+        {
+            "Address": "0x45",
+            "Bus": 34,
+            "Labels": [
+                "iin",
+                "iout1",
+                "vin",
+                "vout1",
+                "pin",
+                "pout1",
+                "temp1"
+            ],
+            "Name": "VDDQ",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "temp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                }
+            ],
+            "Type": "TDA38640",
+            "iin_Name": "COME_VDDQ_IIN_CURR_A",
+            "iout1_Name": "COME_VDDQ_IOUT_CURR_A",
+            "pin_Name": "COME_VDDQ_PIN_PWR_W",
+            "pout1_Name": "COME_VDDQ_POUT_PWR_W",
+            "temp1_Name": "COME_VDDQ_TEMP_C",
+            "vin_Name": "COME_VDDQ_VIN_VOLT_V",
+            "vout1_Name": "COME_VDDQ_VOUT_VOLT_V"
+        },
+        {
+            "Address": "0x66",
+            "Bus": 34,
+            "Labels": [
+                "iin",
+                "iout1",
+                "vin",
+                "vout1",
+                "pin",
+                "pout1",
+                "temp1"
+            ],
+            "Name": "VCCANA",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "temp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                }
+            ],
+            "Type": "TDA38640",
+            "iin_Name": "COME_VCCANA_CPU_IIN_CURR_A",
+            "iout1_Name": "COME_VCCANA_CPU_IOUT_CURR_A",
+            "pin_Name": "COME_VCCANA_CPU_PIN_PWR_W",
+            "pout1_Name": "COME_VCCANA_CPU_POUT_PWR_W",
+            "temp1_Name": "COME_VCCANA_CPU_TEMP_C",
+            "vin_Name": "COME_VCCANA_CPU_VIN_VOLT_V",
+            "vout1_Name": "COME_VCCANA_CPU_VOUT_VOLT_V"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 33,
+            "Name": "COME_INLET_TEMP_C",
+            "Type": "TMP75"
+        },
+        {
+            "Address": "0x4a",
+            "Bus": 33,
+            "Name": "COME_OUTLET_TEMP_C",
+            "Type": "TMP75"
+        },
+        {
+            "Address": "0x76",
+            "Bus": 34,
+            "Labels": [
+                "vin1",
+                "vin2",
+                "vout1",
+                "vout2",
+                "iin1",
+                "iin2",
+                "iout1",
+                "iout2",
+                "pin1",
+                "pin2",
+                "pout1",
+                "pout2",
+                "temp1"
+            ],
+            "Name": "COME_VCCIN",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "temp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                }
+            ],
+            "Type": "XDPE152C4",
+            "iin1_Name": "COME_VCCIN_IIN1_CURR_A",
+            "iin2_Name": "COME_VCCIN_IIN2_CURR_A",
+            "iout1_Name": "COME_VCCIN_IOUT1_CURR_A",
+            "iout2_Name": "COME_VCCIN_IOUT2_CURR_A",
+            "pin1_Name": "COME_VCCIN_PIN1_PWR_W",
+            "pin2_Name": "COME_VCCIN_PIN2_PWR_W",
+            "pout1_Name": "COME_VCCIN_POUT1_PWR_W",
+            "pout2_Name": "COME_VCCIN_POUT2_PWR_W",
+            "temp1_Name": "COME_VCCIN_TEMP_1_TEMP_C",
+            "vin1_Name": "COME_VCCIN_VIN1_VOLT_V",
+            "vin2_Name": "COME_VCCIN_VIN2_VOLT_V",
+            "vout1_Name": "COME_VCCIN_VOUT1_VOLT_V",
+            "vout2_Name": "COME_VCCIN_VOUT2_VOLT_V"
+        },
+        {
+            "Address": "0x30",
+            "Bus": 0,
+            "CpuID": 1,
+            "Name": "COME_CPU",
+            "PowerState": "BiosPost",
+            "Type": "XeonCPU"
+        }
+    ],
+    "Name": "Ventura2 COMe",
+    "Probe": [
+        "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^PRSNT_COMe$', 'Compatible': '^com.meta.Hardware.BMC.Model.Ventura2$'})"
+    ],
+    "Type": "Board"
+}
