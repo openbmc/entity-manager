@@ -50,6 +50,29 @@
       "message": "I think you have an object that owns itself here.",
       "revId": "aa3feefcfca5950c9739efa8ce32e2ba60ccbc02",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01645bd3_15e4d981",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 1376,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-31T17:03:32Z",
+      "side": 1,
+      "message": "why do we take the overhead of std::function here?\n\nstd::ref is also unsafe here, even though that\u0027s a singleton, std::ref has the same issues as mentioned on the previous patchset.",
+      "range": {
+        "startLine": 1373,
+        "startChar": 0,
+        "endLine": 1376,
+        "endChar": 79
+      },
+      "revId": "aa3feefcfca5950c9739efa8ce32e2ba60ccbc02",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

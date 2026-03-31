@@ -115,6 +115,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "774ad4ab_d7375195",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 976,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-31T17:03:32Z",
+      "side": 1,
+      "message": "Pass integer values by value, not reference.",
+      "range": {
+        "startLine": 975,
+        "startChar": 48,
+        "endLine": 976,
+        "endChar": 63
+      },
+      "revId": "b411509af15ff6d02c28b422474309b2ddc6a20c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee112da5_09c8e36c",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 1714,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-31T17:03:32Z",
+      "side": 1,
+      "message": "try_emplace is probably what you want here.  Doing contains then operator[] twice triples the lookup.",
+      "range": {
+        "startLine": 1714,
+        "startChar": 16,
+        "endLine": 1714,
+        "endChar": 24
+      },
+      "revId": "b411509af15ff6d02c28b422474309b2ddc6a20c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cec6249_af102ef2",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 1730,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-31T17:03:32Z",
+      "side": 1,
+      "message": "We don\u0027t really want to be sending a copy here, right?",
+      "range": {
+        "startLine": 1730,
+        "startChar": 0,
+        "endLine": 1730,
+        "endChar": 71
+      },
+      "revId": "b411509af15ff6d02c28b422474309b2ddc6a20c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e90af168_ca12af11",
         "filename": "src/fru_device/fru_utils.hpp",
         "patchSetId": 10
