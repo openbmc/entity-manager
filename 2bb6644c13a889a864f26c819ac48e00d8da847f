@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "733406cd_fcbdd708",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-04-01T13:21:37Z",
+      "side": 1,
+      "message": "Why make this change though?  Alignment with a software concept when this is a hardware design element in a hardware design description doesn\u0027t immediately follow to me.\n\nThese really are \"slots\" and not \"hosts\".  Especially since you seem to be changing the medusa board and not the compute card.  Right now you\u0027re working on a Yv4 design that has 8 slots each with a single host, but there are/were proposals for a storage variant that uses 2 or 4 slots per host, where the extra slots are populated by storage expansion boards.",
+      "revId": "2bb6644c13a889a864f26c819ac48e00d8da847f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
