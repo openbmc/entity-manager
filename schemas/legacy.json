@@ -896,8 +896,8 @@
                 "Labels": {
                     "$ref": "#/$defs/Types/Labels"
                 },
-                "SlotId": {
-                    "$ref": "#/$defs/Types/SlotId"
+                "HostId": {
+                    "$ref": "#/$defs/Types/HostId"
                 },
                 "PowerState": {
                     "$ref": "#/$defs/Types/PowerState"
@@ -1357,7 +1357,7 @@
             "SensorType": {
                 "enum": ["current", "power", "voltage"]
             },
-            "SlotId": {
+            "HostId": {
                 "type": "string"
             },
             "Tachs": {
