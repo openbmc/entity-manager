@@ -22,6 +22,30 @@
       },
       "revId": "c58a6db7e68888bdf9587229f8bc5748c63aabf2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d627299_20a33a09",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-01T12:22:53Z",
+      "side": 1,
+      "message": "The relevant part of the sdbusplus code is this\n\n```\nstring_path_wrapper\u0026 string_path_wrapper::operator/\u003d(std::string_view extId)\n{\n    str.reserve(str.size() + 1 + extId.size() * 3);\n    if (!str.empty() \u0026\u0026 str[str.size() - 1] !\u003d \u0027/\u0027)\n    {\n        str.append(1, \u0027/\u0027);\n    }\n    if (extId.empty() ||\n        (!pathShouldEscape(extId[0]) \u0026\u0026\n         std::none_of(extId.begin() + 1, extId.end(), pathRequiresEscape)))\n    {\n        str.append(extId);\n        return *this;\n    }\n    pathAppendEscape(str, extId[0]);\n    for (auto c : extId.substr(1))\n    {\n        if (pathShouldEscape(c))\n        {\n            pathAppendEscape(str, c);\n        }\n        else\n        {\n            str.append(1, c);\n        }\n    }\n    return *this;\n}\n```\n\nif we assume non-empty path segment and no trailing \u0027/\u0027 on base path, and remove optimization, we can simplify to\n\n```\nstring_path_wrapper\u0026 string_path_wrapper::operator/\u003d(std::string_view extId)\n{\n    str.append(1, \u0027/\u0027);\n    if (!pathShouldEscape(extId[0]) \u0026\u0026\n         std::none_of(extId.begin() + 1, extId.end(), pathRequiresEscape))\n    {\n        str.append(extId);\n        return *this;\n    }\n    pathAppendEscape(str, extId[0]);\n    for (auto c : extId.substr(1))\n    {\n        if (pathShouldEscape(c))\n        {\n            pathAppendEscape(str, c);\n        }\n        else\n        {\n            str.append(1, c);\n        }\n    }\n    return *this;\n}\n```\n\nThe relevant helper functions: \n```\ninline bool pathShouldEscape(char c)\n{  return !std::isalnum(c); }\ninline bool pathRequiresEscape(char c)\n{  return pathShouldEscape(c) \u0026\u0026 c !\u003d \u0027_\u0027;  }\n```\n, inlining some to simplify further\n\n```\nstring_path_wrapper\u0026 string_path_wrapper::operator/\u003d(std::string_view extId)\n{\n    str.append(1, \u0027/\u0027);\n    if (std::isalnum(extId[0]) \u0026\u0026\n         std::none_of(extId.begin() + 1, extId.end(), pathRequiresEscape))\n    {\n        str.append(extId);\n        return *this;\n    }\n    pathAppendEscape(str, extId[0]);\n    for (auto c : extId.substr(1))\n    {\n        if (!std::isalnum(c))\n        {\n            pathAppendEscape(str, c);\n        }\n        else\n        {\n            str.append(1, c);\n        }\n    }\n    return *this;\n}\n```\nnow `dbus_regex::sanitizeForDBusMember` guarantees `[A-Za-z0-9_]`\nwhich means only a path segement  starting with `_` will be handled differently than before.\n\nThat gives us a happy path of:\n```\n    str.append(1, \u0027/\u0027);\n    str.append(extId);\n    return *this;\n```\nand unhappy path\n```\n    str.append(1, \u0027/\u0027);\n    pathAppendEscape(str, extId[0]);\n    for (auto c : extId.substr(1))\n    {\n        if (!std::isalnum(c))\n        {\n            pathAppendEscape(str, c);\n        }\n        else\n        {\n            str.append(1, c);\n        }\n    }\n    return *this;\n```\n\nTo answer the original question, an example where it could be different would be `\"_My_Board\"` or `\" My Board\"`\n\nThe behavior change is not required for the patch goal, and alternatively we could extend `sdbusplus::message::object_path` with another function which does not do escaping and only replaces with `_`.\n\nBut that means introducing alternatives to how `object_path` can handle path segment appends and something i would rather avoid.\n\nLet me know if you prefer that regardless, in that case i would have to raise an sdbusplus patch.",
+      "parentUuid": "afe11369_50e8f234",
+      "range": {
+        "startLine": 15,
+        "startChar": 36,
+        "endLine": 16,
+        "endChar": 35
+      },
+      "revId": "c58a6db7e68888bdf9587229f8bc5748c63aabf2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
