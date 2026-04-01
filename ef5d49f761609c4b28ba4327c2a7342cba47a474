@@ -96,6 +96,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "aa7bcff3_2b69f251",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-01T09:54:16Z",
+      "side": 1,
+      "message": "There are multiple upstream configurations which are probing on interfaces which (could be) exposed by EM.\n\nhttps://github.com/openbmc/entity-manager/blob/d40558216ad85e99f3c37614fc96e088241a4f72/configurations/meta/bletchley/bletchley_frontpanel.json#L90\n\nis probing on `xyz.openbmc_project.Inventory.Decorator.Asset`\n\nhttps://github.com/openbmc/entity-manager/blob/d40558216ad85e99f3c37614fc96e088241a4f72/configurations/ibm/sbp1_rssd.json#L381\n\nis probing on `xyz.openbmc_project.Inventory.Item`\n\nhttps://github.com/openbmc/entity-manager/blob/d40558216ad85e99f3c37614fc96e088241a4f72/configurations/ibm/tacoma_rack_controller.json#L20\n\nis probing on `xyz.openbmc_project.Inventory.Decorator.Asset`\n\nAs a consequence, someone wanting to stop EM from probing it\u0027s own interfaces must check that in those instances the interface is not coming from EM. Otherwise risk of breaking stuff.",
+      "parentUuid": "5ca46754_3f831820",
+      "revId": "ef5d49f761609c4b28ba4327c2a7342cba47a474",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e7605eed_9d662760",
         "filename": "/COMMIT_MSG",
         "patchSetId": 3
