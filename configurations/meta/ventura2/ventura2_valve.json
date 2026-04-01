@@ -170,13 +170,27 @@
     {
         "Exposes": [
             {
-                "CoolantLoopName": "CoolantLoop_1",
+                "FeedbackADC": {
+                    "Index": 0,
+                    "Name": "$Name Feedback ADC",
+                    "ScaleFactor": 0.0025,
+                    "Type": "ADC"
+                },
+                "MaxFlowRate": 333.0,
                 "Name": "$Name",
-                "OpenControlPinName": "WATER_VALVE1_OPEN",
-                "OpenControlValue": true,
-                "OpenPinName": "SUPPLY_CNTL1_FB",
-                "OpenPolarity": "High",
-                "Type": "GPIOValve"
+                "OpenThreshold": 2.1,
+                "SetPointDAC": {
+                    "Address": "0x000f",
+                    "Bus": 3,
+                    "Index": 0,
+                    "Name": "$Name SetPoint DAC",
+                    "Offset": 1.05,
+                    "ScaleFactor": 0.008826979,
+                    "Type": "DAC"
+                },
+                "SetPointVoltageRange": [2.0, 10.0],
+                "Tolerance": 0.03,
+                "Type": "AnalogValve"
             }
         ],
         "Name": "$Name",
@@ -198,13 +212,27 @@
     {
         "Exposes": [
             {
-                "CoolantLoopName": "CoolantLoop_2",
+                "FeedbackADC": {
+                    "Index": 1,
+                    "Name": "$Name Feedback ADC",
+                    "ScaleFactor": 0.0025,
+                    "Type": "ADC"
+                },
+                "MaxFlowRate": 333.0,
                 "Name": "$Name",
-                "OpenControlPinName": "WATER_VALVE2_OPEN",
-                "OpenControlValue": true,
-                "OpenPinName": "SUPPLY_CNTL2_FB",
-                "OpenPolarity": "High",
-                "Type": "GPIOValve"
+                "OpenThreshold": 2.1,
+                "SetPointDAC": {
+                    "Address": "0x000c",
+                    "Bus": 3,
+                    "Index": 0,
+                    "Name": "$Name SetPoint DAC",
+                    "Offset": 1.05,
+                    "ScaleFactor": 0.008826979,
+                    "Type": "DAC"
+                },
+                "SetPointVoltageRange": [2.0, 10.0],
+                "Tolerance": 0.03,
+                "Type": "AnalogValve"
             }
         ],
         "Name": "$Name",
@@ -226,13 +254,27 @@
     {
         "Exposes": [
             {
-                "CoolantLoopName": "CoolantLoop_3",
+                "FeedbackADC": {
+                    "Index": 0,
+                    "Name": "$Name Feedback ADC",
+                    "ScaleFactor": 0.0025,
+                    "Type": "ADC"
+                },
+                "MaxFlowRate": 333.0,
                 "Name": "$Name",
-                "OpenControlPinName": "WATER_VALVE3_OPEN",
-                "OpenControlValue": true,
-                "OpenPinName": "SUPPLY_CNTL3_FB",
-                "OpenPolarity": "High",
-                "Type": "GPIOValve"
+                "OpenThreshold": 2.1,
+                "SetPointDAC": {
+                    "Address": "0x000e",
+                    "Bus": 3,
+                    "Index": 0,
+                    "Name": "$Name SetPoint DAC",
+                    "Offset": 1.05,
+                    "ScaleFactor": 0.008826979,
+                    "Type": "DAC"
+                },
+                "SetPointVoltageRange": [2.0, 10.0],
+                "Tolerance": 0.03,
+                "Type": "AnalogValve"
             }
         ],
         "Name": "$Name",
