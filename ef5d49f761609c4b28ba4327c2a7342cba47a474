@@ -43,6 +43,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "175c84b9_c3b2a8f0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-04-01T03:47:53Z",
+      "side": 1,
+      "message": "?  The bug is in the above config.  You shouldn\u0027t be probing on Decorator.Asset interfaces.  I\u0027m not against this change, but ultimately the bad config is the problem.  You should be probing on the specific API, not an asset API.",
+      "parentUuid": "64e81994_a203494f",
+      "revId": "ef5d49f761609c4b28ba4327c2a7342cba47a474",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9cf99006_50fcb84b",
         "filename": "/COMMIT_MSG",
         "patchSetId": 3
@@ -54,6 +72,24 @@
       "writtenOn": "2026-03-31T16:01:28Z",
       "side": 1,
       "message": "How did you confirm this behavior change will not cause problems for existing upstream configs?\n\nAre there upstream configs which probe on interfaces also exposed by EM, that would be impacted by this change?",
+      "revId": "ef5d49f761609c4b28ba4327c2a7342cba47a474",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ca46754_3f831820",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-04-01T03:47:53Z",
+      "side": 1,
+      "message": "I\u0027m not aware of any that work that way, and by design they shouldn\u0027t be.",
+      "parentUuid": "9cf99006_50fcb84b",
       "revId": "ef5d49f761609c4b28ba4327c2a7342cba47a474",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -76,6 +112,29 @@
         "startChar": 1,
         "endLine": 21,
         "endChar": 58
+      },
+      "revId": "ef5d49f761609c4b28ba4327c2a7342cba47a474",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a796f892_062f8202",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-04-01T03:47:53Z",
+      "side": 1,
+      "message": "exact match please",
+      "range": {
+        "startLine": 100,
+        "startChar": 25,
+        "endLine": 100,
+        "endChar": 36
       },
       "revId": "ef5d49f761609c4b28ba4327c2a7342cba47a474",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
