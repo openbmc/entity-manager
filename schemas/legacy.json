@@ -899,6 +899,9 @@
                 "SlotId": {
                     "$ref": "#/$defs/Types/SlotId"
                 },
+                "HostId": {
+                    "$ref": "#/$defs/Types/HostId"
+                },
                 "PowerState": {
                     "$ref": "#/$defs/Types/PowerState"
                 },
@@ -1358,6 +1361,9 @@
                 "enum": ["current", "power", "voltage"]
             },
             "SlotId": {
+                "type": "string"
+            },
+            "HostId": {
                 "type": "string"
             },
             "Tachs": {
