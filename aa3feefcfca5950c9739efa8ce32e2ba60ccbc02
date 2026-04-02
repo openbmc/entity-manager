@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af72e393_cf338665",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 893,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-02T12:51:00Z",
+      "side": 1,
+      "message": "Agree, this looks like a bug. Changed it to capture a weak_ptr instead.",
+      "parentUuid": "045cf432_0b35e5d9",
+      "revId": "aa3feefcfca5950c9739efa8ce32e2ba60ccbc02",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3de9b06f_efb96b5b",
@@ -54,6 +72,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "409c3db2_307201ee",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 1252,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-02T12:51:00Z",
+      "side": 1,
+      "message": "From my perspective\n\n- scan is constructed\n- scan constructor stores shared_ptr\u003cFruDevice\u003e\n- scan destructor is called\n- `_callback()` is called\n- `scan-\u003erun()` is called\n- `fruDevice-\u003efindI2CDevices` does it\u0027s thing and hopefully returns\n- `scan-\u003erun()` returns \n- `_callback()` returns\n- `scan destructor returns`\n\n\nSo while the `FruDevice` instance may be kept alive by whoever called it\u0027s functions here, i don\u0027t think `struct FindDevicesWithCallback` can rely on that,\nso it gets it\u0027s own shared_ptr to FruDevice.\n\n\nDoes that work for you or did i get it wrong and you are talking about a different object 😊",
+      "parentUuid": "3de9b06f_efb96b5b",
+      "revId": "aa3feefcfca5950c9739efa8ce32e2ba60ccbc02",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "01645bd3_15e4d981",
         "filename": "src/fru_device/fru_device.cpp",
         "patchSetId": 11
@@ -65,6 +101,30 @@
       "writtenOn": "2026-03-31T17:03:32Z",
       "side": 1,
       "message": "why do we take the overhead of std::function here?\n\nstd::ref is also unsafe here, even though that\u0027s a singleton, std::ref has the same issues as mentioned on the previous patchset.",
+      "range": {
+        "startLine": 1373,
+        "startChar": 0,
+        "endLine": 1376,
+        "endChar": 79
+      },
+      "revId": "aa3feefcfca5950c9739efa8ce32e2ba60ccbc02",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eec2ef17_cdc7db6c",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 1376,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-02T12:51:00Z",
+      "side": 1,
+      "message": "Yep, i should probably not be creating a reference to `FruUtils` instance there.\n\nChanged it to an inline lambda and capture `fruDevice` by reference.\n\nI\u0027m not concerned about capturing `fruDevice` by reference since we know the lifetime of it since we are in `main` function and know the `shared_ptr` is valid for the entire program duration.",
+      "parentUuid": "01645bd3_15e4d981",
       "range": {
         "startLine": 1373,
         "startChar": 0,

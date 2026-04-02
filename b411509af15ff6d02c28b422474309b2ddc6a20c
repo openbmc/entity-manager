@@ -136,6 +136,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5af1ca7_c62aebd0",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 976,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-02T12:51:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "774ad4ab_d7375195",
+      "range": {
+        "startLine": 975,
+        "startChar": 48,
+        "endLine": 976,
+        "endChar": 63
+      },
+      "revId": "b411509af15ff6d02c28b422474309b2ddc6a20c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ee112da5_09c8e36c",
@@ -159,6 +183,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2901ab0b_07535110",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 1714,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-02T12:51:00Z",
+      "side": 1,
+      "message": "yep, thanks/sorry, fixed it!",
+      "parentUuid": "ee112da5_09c8e36c",
+      "range": {
+        "startLine": 1714,
+        "startChar": 16,
+        "endLine": 1714,
+        "endChar": 24
+      },
+      "revId": "b411509af15ff6d02c28b422474309b2ddc6a20c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3cec6249_af102ef2",
@@ -172,6 +220,30 @@
       "writtenOn": "2026-03-31T17:03:32Z",
       "side": 1,
       "message": "We don\u0027t really want to be sending a copy here, right?",
+      "range": {
+        "startLine": 1730,
+        "startChar": 0,
+        "endLine": 1730,
+        "endChar": 71
+      },
+      "revId": "b411509af15ff6d02c28b422474309b2ddc6a20c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8056427c_1cce831f",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 1730,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-02T12:51:00Z",
+      "side": 1,
+      "message": "The `sizeof` for that tuple type is 16 bytes.\n\nConsidering that we don\u0027t have 100s of FRU eeproms,\n\ni am not super concerned. This function gives us a flat representation of the FRU eeproms for callers to iterate over.\n\n\nWhat else would you like to see here, a view?\n\nIf we return a view, don\u0027t we expose the underlying type of whatever type we use for storage?",
+      "parentUuid": "3cec6249_af102ef2",
       "range": {
         "startLine": 1730,
         "startChar": 0,
