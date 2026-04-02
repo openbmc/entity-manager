@@ -16,6 +16,24 @@
       "message": "Do we also need to adjust `EntityManager::initFilters` to prevent `propertiesChangedCallback` from starting the timer in case we receive our own `InterfacesAdded` signal?\n\nI don\u0027t remember if that would even occur off the top of my hat though...",
       "revId": "a1b21c001cf8ed86ab8a43f00dc377374fa21fac",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb23cf12_0daa8b86",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1002321
+      },
+      "writtenOn": "2026-04-02T16:23:48Z",
+      "side": 1,
+      "message": "Thank you for pointing this out! My CR indeed causes `propertiesChangedInProgress` to be always `true`, which is not good.\n\nI\u0027ll need to figure out how I can easily solve this issue. Due to national holidays in Germany this will have to wait till Tuesday/Wednesday.",
+      "parentUuid": "aab20b86_0a524d2c",
+      "revId": "a1b21c001cf8ed86ab8a43f00dc377374fa21fac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
