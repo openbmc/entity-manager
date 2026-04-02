@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdd8c076_78a3a9c7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1002321
+      },
+      "writtenOn": "2026-04-02T11:58:49Z",
+      "side": 1,
+      "message": "Yes, done. Also clarified it a bit more because I seem to have mixed up some words in the D-Bus context.",
+      "parentUuid": "ccd5c80f_9ca9de6a",
+      "range": {
+        "startLine": 8,
+        "startChar": 1,
+        "endLine": 10,
+        "endChar": 15
+      },
+      "revId": "ef5d49f761609c4b28ba4327c2a7342cba47a474",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "64e81994_a203494f",
@@ -55,6 +79,24 @@
       "side": 1,
       "message": "?  The bug is in the above config.  You shouldn\u0027t be probing on Decorator.Asset interfaces.  I\u0027m not against this change, but ultimately the bad config is the problem.  You should be probing on the specific API, not an asset API.",
       "parentUuid": "64e81994_a203494f",
+      "revId": "ef5d49f761609c4b28ba4327c2a7342cba47a474",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e0c5969_58f9623a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1002321
+      },
+      "writtenOn": "2026-04-02T11:58:49Z",
+      "side": 1,
+      "message": "@alexander.hansen@9elements.com Exactly. Changing the probe was an idea that I had too, but haven\u0027t looked too much into. will check it.\n\n\n@ed@tanous.net `devicetree-vpd-parser` exports the values on the `Decorator.Asset` interface [1], which is also defined in the design doc [2]. Another way to solve the issue would be either:\n- allowing to filter by D-Bus names in the Probe, or\n\n- move the properties from `devicetree-vpd-parser` into another interface, which in the end would require a change in the design.\n\n[1] https://github.com/openbmc/entity-manager/blob/d40558216ad85e99f3c37614fc96e088241a4f72/src/devicetree_vpd_parser/machine_context.hpp#L10-L16\n[2] https://github.com/openbmc/docs/blob/49beca34959cb2922a0dede07da9ec52dc4f4be5/designs/entity-manager-hw-id-vpd-discover-via-device-tree.md?plain\u003d1#L315-L325",
+      "parentUuid": "175c84b9_c3b2a8f0",
       "revId": "ef5d49f761609c4b28ba4327c2a7342cba47a474",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -114,6 +156,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9e4c87c6_70022d2f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1002321
+      },
+      "writtenOn": "2026-04-02T11:58:49Z",
+      "side": 1,
+      "message": "There\u0027s only one config that I am unaware where it\u0027s coming from, and that is the Tacoma Rack controller. For all other configs I was able to figure out where it was coming from:\n\nBletchley: https://github.com/openbmc/openbmc/blob/991de8113f8deea0ffb2aade388aa19a36e0959d/meta-facebook/meta-bletchley/recipes-phosphor/settings/phosphor-settings-defaults-native/bletchley-frontpanel.yaml\n\nSBP1: https://github.com/openbmc/openbmc/blob/991de8113f8deea0ffb2aade388aa19a36e0959d/meta-ibm/meta-genesis3/recipes-phosphor/inventory/static-inventory/static-inventory.yaml#L1142\n\nTacoma Rack Controller: No idea.",
+      "parentUuid": "5ca46754_3f831820",
+      "revId": "ef5d49f761609c4b28ba4327c2a7342cba47a474",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e7605eed_9d662760",
         "filename": "/COMMIT_MSG",
         "patchSetId": 3
@@ -125,6 +185,30 @@
       "writtenOn": "2026-03-31T16:01:28Z",
       "side": 1,
       "message": "This is not an upstream config, only DL360G12 is upstream, right?\n\n```\nls configurations/hpe/\ndl360g12_baseboard.json\n```\n\nso no one can really tell which problem you actually ran into, and if it is a real issue or just an instance of misconfiguration.\n\nPlease provide some permalink or concrete example.\n\nIs it \nhttps://github.com/canopybmc/canopybmc/blob/469720b37c74783f52806ef01dac67d880bf6e69/meta-canopy/meta-hpe/meta-common/recipes-phosphor/configuration/entity-manager/dl365g11_baseboard.json\n\nby any chance?",
+      "range": {
+        "startLine": 19,
+        "startChar": 1,
+        "endLine": 21,
+        "endChar": 58
+      },
+      "revId": "ef5d49f761609c4b28ba4327c2a7342cba47a474",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4dd35b1b_1a599efd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1002321
+      },
+      "writtenOn": "2026-04-02T11:58:49Z",
+      "side": 1,
+      "message": "Right... I forgot to add the reference here (yours is correct). Sorry about that! Fixed.",
+      "parentUuid": "e7605eed_9d662760",
       "range": {
         "startLine": 19,
         "startChar": 1,
@@ -148,6 +232,30 @@
       "writtenOn": "2026-04-01T03:47:53Z",
       "side": 1,
       "message": "exact match please",
+      "range": {
+        "startLine": 100,
+        "startChar": 25,
+        "endLine": 100,
+        "endChar": 36
+      },
+      "revId": "ef5d49f761609c4b28ba4327c2a7342cba47a474",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f078db47_551bb891",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1002321
+      },
+      "writtenOn": "2026-04-02T11:58:49Z",
+      "side": 1,
+      "message": "Agreed. Fixed.",
+      "parentUuid": "a796f892_062f8202",
       "range": {
         "startLine": 100,
         "startChar": 25,

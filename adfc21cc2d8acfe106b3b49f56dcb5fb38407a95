@@ -16,6 +16,24 @@
       "message": "Seems unrelated to this change.",
       "revId": "adfc21cc2d8acfe106b3b49f56dcb5fb38407a95",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d22572de_cb2c55e9",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1002321
+      },
+      "writtenOn": "2026-04-02T11:58:49Z",
+      "side": 0,
+      "message": "Mentioned in the commit description, since I use the D-Bus name of EM in a condition now it\u0027d make sense to move it to a constant and also use it on the iface registration. If you don\u0027t agree with the change, then I\u0027ll drop it again.",
+      "parentUuid": "ef1f5db3_157e9398",
+      "revId": "adfc21cc2d8acfe106b3b49f56dcb5fb38407a95",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
