@@ -88,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "46bcbfde_d468ea19",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 1252,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2026-04-02T15:49:09Z",
+      "side": 1,
+      "message": "whoa, this is a complicated set of callbacks lol, I missed that we were already inside another lambda...I\u0027m a little surprised that shared_from_this works from inside a lambda...\n\nAnyways, after reading some more, I think you\u0027re right. resolving.",
+      "parentUuid": "409c3db2_307201ee",
+      "revId": "aa3feefcfca5950c9739efa8ce32e2ba60ccbc02",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "01645bd3_15e4d981",
