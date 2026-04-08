@@ -172,7 +172,7 @@
         }
     ],
     "Name": "BRB_R",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Anacapa.*T20.*RBB EVT2', 'BOARD_MANUFACTURER': 'Inventec'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Anacapa.*T20.*RBB EVT2', 'BOARD_MANUFACTURER': '(Inventec|Wiwynn)'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
