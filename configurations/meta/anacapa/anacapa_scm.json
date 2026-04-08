@@ -381,7 +381,11 @@
         }
     ],
     "Name": "Anacapa SCM",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Anacapa SCM', 'BOARD_MANUFACTURER': 'Quanta'})",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Anacapa SCM', 'BOARD_MANUFACTURER': 'Wiwynn'})",
+        "OR",
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Anacapa SCM', 'BOARD_MANUFACTURER': 'Quanta'})"
+    ],
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
