@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12ec1813_6346cc3e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-04-09T21:59:23Z",
+      "side": 1,
+      "message": "As a note, this is fine.  std::regex is widely known to be slow.  There\u0027s probably a bunch of articles you could cite, but I\u0027m not worried about it.",
+      "revId": "e955576604db6a858667806fc275a4d7aa63c5b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61635cb0_db586dc0",
+        "filename": "src/dbus_util.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-04-09T21:59:23Z",
+      "side": 1,
+      "message": "isalnum is different than what was there previously, as it calls through locale.  from the cpp reference page (with emphasis for effect)\n\"In the DEFAULT locale, the following characters are alphanumeric:\"\n\nhow often do people change their locale?  Idk, but if the goal is performance, I think being explicit would be better.\n\nSomething trivial like:\n\n```\n{\n    return (c \u003e\u003d \u00270\u0027 \u0026\u0026 c \u003c\u003d \u00279\u0027) ||\n           (c \u003e\u003d \u0027A\u0027 \u0026\u0026 c \u003c\u003d \u0027Z\u0027) ||\n           (c \u003e\u003d \u0027a\u0027 \u0026\u0026 c \u003c\u003d \u0027z\u0027);\n};\n```\n\nIs likely going to beat any locale implementation.",
+      "range": {
+        "startLine": 12,
+        "startChar": 16,
+        "endLine": 12,
+        "endChar": 23
+      },
+      "revId": "e955576604db6a858667806fc275a4d7aa63c5b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce7c78a7_1230e4bb",
+        "filename": "src/dbus_util.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-04-09T21:59:23Z",
+      "side": 1,
+      "message": "Why do you need this check?  This should arguably be an error, not silently solve a caller bug?",
+      "revId": "e955576604db6a858667806fc275a4d7aa63c5b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2038cf6f_6db2cd2d",
+        "filename": "src/dbus_util.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-04-09T21:59:23Z",
+      "side": 1,
+      "message": "could we just invert the bool on isValidDBusPathSegmentChar and avoid std::not_fn?  That makes the code simpler",
+      "range": {
+        "startLine": 22,
+        "startChar": 36,
+        "endLine": 22,
+        "endChar": 47
+      },
+      "revId": "e955576604db6a858667806fc275a4d7aa63c5b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a75cc39_65e709a0",
+        "filename": "src/dbus_util.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-04-09T21:59:23Z",
+      "side": 1,
+      "message": "Rather than sanitizing, should we just be returning an error?  Nobody should be specifying dbus interface names that are invalid and expect them to sanitize correctly.  This is different than dbus paths where we have to take freeform text and convert them into a valid dbus path.",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 60
+      },
+      "revId": "e955576604db6a858667806fc275a4d7aa63c5b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
