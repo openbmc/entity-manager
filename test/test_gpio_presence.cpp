@@ -79,7 +79,7 @@ auto testDevicePresentDbus(sdbusplus::async::context& ctx)
         ctx, gpioNames, gpioValues, name, sensor.gpioState,
         parentInvCompatible);
 
-    sdbusplus::message::object_path objPath = c->getObjPath();
+    sdbusplus::object_path objPath = c->getObjPath();
 
     sensor.addConfig(name, std::move(c));
 
@@ -131,7 +131,7 @@ auto testDevicePresentThenDisappearDbus(sdbusplus::async::context& ctx)
         ctx, gpioNames, gpioValues, name, sensor.gpioState,
         parentInvCompatible);
 
-    sdbusplus::message::object_path objPath = c->getObjPath();
+    sdbusplus::object_path objPath = c->getObjPath();
 
     sensor.addConfig(name, std::move(c));
 
@@ -205,7 +205,7 @@ auto testReAddConfigRestoresPresenceDbus(sdbusplus::async::context& ctx)
         ctx, gpioNames, gpioValues, name, sensor.gpioState,
         parentInvCompatible);
 
-    sdbusplus::message::object_path objPath = c2->getObjPath();
+    sdbusplus::object_path objPath = c2->getObjPath();
 
     sensor.addConfig(name, std::move(c2));
 

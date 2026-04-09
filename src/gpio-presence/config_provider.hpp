@@ -10,11 +10,9 @@
 namespace gpio_presence
 {
 
-using AddedCallback =
-    std::function<void(const sdbusplus::message::object_path&)>;
+using AddedCallback = std::function<void(const sdbusplus::object_path&)>;
 
-using RemovedCallback =
-    std::function<void(const sdbusplus::message::object_path&)>;
+using RemovedCallback = std::function<void(const sdbusplus::object_path&)>;
 
 class ConfigProvider
 {

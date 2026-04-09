@@ -48,11 +48,11 @@ auto DevicePresence::updateGPIOPresence(const std::string& gpioLine) -> void
     updateDbusInterfaces();
 }
 
-auto DevicePresence::getObjPath() const -> sdbusplus::message::object_path
+auto DevicePresence::getObjPath() const -> sdbusplus::object_path
 {
-    sdbusplus::message::object_path objPathBase(
+    sdbusplus::object_path objPathBase(
         "/xyz/openbmc_project/GPIODeviceDetected/");
-    sdbusplus::message::object_path objPath = objPathBase / deviceName;
+    sdbusplus::object_path objPath = objPathBase / deviceName;
     return objPath;
 }
 
@@ -87,7 +87,7 @@ auto DevicePresence::updateDbusInterfaces() -> void
           deviceName);
 
     const bool present = isPresent();
-    sdbusplus::message::object_path objPath = getObjPath();
+    sdbusplus::object_path objPath = getObjPath();
 
     if (present && !detectedIface)
     {

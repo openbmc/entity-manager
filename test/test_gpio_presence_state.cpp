@@ -190,7 +190,7 @@ TEST_F(DevicePresenceDetailedTest, GetObjPathTest)
     DevicePresence device(ctx, gpioNames, gpioValues, deviceName, gpioState,
                           {});
 
-    sdbusplus::message::object_path objPath = device.getObjPath();
+    sdbusplus::object_path objPath = device.getObjPath();
     std::string expectedPath =
         "/xyz/openbmc_project/GPIODeviceDetected/" + deviceName;
 

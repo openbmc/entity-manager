@@ -37,7 +37,7 @@ class GPIOPresenceManager
     // add the configuration for object at path 'obj'
     // @param[in] obj       object path for the new config
     // @param[in] config    configuration for the new object
-    auto addConfig(const sdbusplus::message::object_path& obj,
+    auto addConfig(const sdbusplus::object_path& obj,
                    std::unique_ptr<DevicePresence> config) -> void;
 
     // update presence information based on new gpio state
@@ -52,13 +52,12 @@ class GPIOPresenceManager
   private:
     // fetch our configuration from dbus
     // @param[in] obj object path of the configuration
-    auto addConfigFromDbusAsync(sdbusplus::message::object_path obj)
+    auto addConfigFromDbusAsync(sdbusplus::object_path obj)
         -> sdbusplus::async::task<void>;
 
     // fetch the parent inventory items 'Compatible' Decorator
     // @param[in] obj object path of our configuration
-    auto getParentInventoryCompatible(
-        const sdbusplus::message::object_path& obj)
+    auto getParentInventoryCompatible(const sdbusplus::object_path& obj)
         -> sdbusplus::async::task<std::vector<std::string>>;
 
     // delete our configuration for the object at 'objPath'
@@ -71,7 +70,7 @@ class GPIOPresenceManager
 
     // handle config interface added
     // @param[in] obj    object path of the configuration
-    auto addConfigHandler(sdbusplus::message::object_path obj) -> void;
+    auto addConfigHandler(sdbusplus::object_path obj) -> void;
 
     // async block on fdio gpio event and handle it
     // @param[in] gpioLine     name of the gpio to watch for events

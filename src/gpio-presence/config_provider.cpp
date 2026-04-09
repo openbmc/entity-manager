@@ -93,8 +93,8 @@ auto ConfigProvider::handleInterfacesAdded(AddedCallback addConfig)
 
     while (!ctx.stop_requested())
     {
-        auto tmp = co_await addedMatch
-                       .next<sdbusplus::message::object_path, DBusObject>();
+        auto tmp =
+            co_await addedMatch.next<sdbusplus::object_path, DBusObject>();
 
         auto [objPath, intfMap] = std::move(tmp);
 
@@ -126,8 +126,9 @@ auto ConfigProvider::handleInterfacesRemoved(RemovedCallback removeConfig)
 
     while (!ctx.stop_requested())
     {
-        auto tmp = co_await removedMatch.next<sdbusplus::message::object_path,
-                                              std::vector<std::string>>();
+        auto tmp =
+            co_await removedMatch
+                .next<sdbusplus::object_path, std::vector<std::string>>();
         auto [objectPath, interfaces] = std::move(tmp);
 
         if (!std::ranges::contains(interfaces, interface))

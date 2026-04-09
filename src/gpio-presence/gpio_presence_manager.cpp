@@ -63,7 +63,7 @@ auto GPIOPresenceManager::setupBusName() const -> std::string
     return service;
 }
 
-auto GPIOPresenceManager::addConfig(const sdbusplus::message::object_path& obj,
+auto GPIOPresenceManager::addConfig(const sdbusplus::object_path& obj,
                                     std::unique_ptr<DevicePresence> config)
     -> void
 {
@@ -135,8 +135,7 @@ auto GPIOPresenceManager::addConfig(const sdbusplus::message::object_path& obj,
     }
 }
 
-auto GPIOPresenceManager::addConfigHandler(sdbusplus::message::object_path obj)
-    -> void
+auto GPIOPresenceManager::addConfigHandler(sdbusplus::object_path obj) -> void
 {
     // NOLINTBEGIN(performance-unnecessary-value-param)
     ctx.spawn(addConfigFromDbusAsync(obj));
@@ -145,7 +144,7 @@ auto GPIOPresenceManager::addConfigHandler(sdbusplus::message::object_path obj)
 
 // NOLINTBEGIN(performance-unnecessary-value-param)
 auto GPIOPresenceManager::addConfigFromDbusAsync(
-    const sdbusplus::message::object_path obj) -> sdbusplus::async::task<void>
+    const sdbusplus::object_path obj) -> sdbusplus::async::task<void>
 // NOLINTEND(performance-unnecessary-value-param)
 {
     auto props = co_await sdbusplus::client::xyz::openbmc_project::
@@ -174,7 +173,7 @@ auto GPIOPresenceManager::addConfigFromDbusAsync(
 }
 
 auto GPIOPresenceManager::getParentInventoryCompatible(
-    const sdbusplus::message::object_path& obj)
+    const sdbusplus::object_path& obj)
     -> sdbusplus::async::task<std::vector<std::string>>
 {
     const auto parentInvObjPath = obj.parent_path();

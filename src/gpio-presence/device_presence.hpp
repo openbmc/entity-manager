@@ -36,7 +36,7 @@ class DevicePresence
     auto updateGPIOPresence(const std::string& gpioLine) -> void;
 
     // @returns the object path of the 'detected' interface
-    auto getObjPath() const -> sdbusplus::message::object_path;
+    auto getObjPath() const -> sdbusplus::object_path;
 
     // computed from the state of the configured gpios
     auto isPresent() -> bool;

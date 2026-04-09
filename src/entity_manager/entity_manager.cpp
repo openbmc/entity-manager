@@ -578,7 +578,7 @@ static bool iaContainsProbeInterface(
     sdbusplus::message_t& msg,
     const std::unordered_set<std::string>& probeInterfaces)
 {
-    sdbusplus::message::object_path path;
+    sdbusplus::object_path path;
     DBusObject interfaces;
     msg.read(path, interfaces);
     return std::ranges::any_of(interfaces | std::views::keys,
@@ -699,8 +699,7 @@ void EntityManager::initFilters(
         sdbusplus::bus::match::rules::interfacesRemoved(),
         [this, probeInterfaces](sdbusplus::message_t& msg) {
             auto [path, interfaces] =
-                msg.unpack<sdbusplus::message::object_path,
-                           std::vector<std::string>>();
+                msg.unpack<sdbusplus::object_path, std::vector<std::string>>();
 
             if (irContainsProbeInterface(interfaces, probeInterfaces))
             {
