@@ -16,6 +16,29 @@
       "message": "friendly ping for review",
       "revId": "465410eab476d021db1ffcf563cb513b55a8ddc4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb4f395e_e1dbfdf0",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2026-04-09T21:28:59Z",
+      "side": 1,
+      "message": "putting just these 2 functions in the namespace doesn\u0027t really match with the other ones in the file.  all or none maybe?",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 14
+      },
+      "revId": "465410eab476d021db1ffcf563cb513b55a8ddc4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
