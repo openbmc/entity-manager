@@ -35,6 +35,10 @@
                 "EntityInstance": {
                     "$ref": "legacy.json#/$defs/Types/EntityInstance"
                 },
+                "Purpose": {
+                    "description": "Optional role of this virtual sensor.",
+                    "enum": ["TotalPower"]
+                },
                 "Sensors": {
                     "description": "Any DBus sensors whose values are used to determine the value of the virtual sensor.",
                     "items": {
