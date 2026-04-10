@@ -39,6 +39,30 @@
       },
       "revId": "465410eab476d021db1ffcf563cb513b55a8ddc4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97b3350f_dee0407e",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-10T08:50:33Z",
+      "side": 1,
+      "message": "Currently it looks like only `PerformScan` is part of `scan` namespace in this file, while the other structs and functions are top-level.\n\nChanged it to align with the other functions 👍\n\nAlso noticed both of these functions are only used in this file and can have internal linkage.",
+      "parentUuid": "bb4f395e_e1dbfdf0",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 14
+      },
+      "revId": "465410eab476d021db1ffcf563cb513b55a8ddc4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
