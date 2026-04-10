@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8de17a01_f81d14e8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-10T08:26:23Z",
+      "side": 1,
+      "message": "Let me know in case you want the tests as separate patch 👍",
+      "parentUuid": "1da4680d_8bc4d1ad",
+      "revId": "250cf141be2ca8dba6c9a4441336709e4cd29782",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b0f00c5_98dcb338",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-04-09T21:15:45Z",
       "side": 1,
       "message": "This is the Logging you\u0027ve removed now?",
+      "revId": "250cf141be2ca8dba6c9a4441336709e4cd29782",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4891d87_d6ee72c8",
+        "filename": "src/entity_manager/em_config.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-10T08:26:23Z",
+      "side": 1,
+      "message": "yep, forgot to update this patch when it got merged.\n\nUpdated it now since `Logging` property is no longer required, we can drop a bunch of code here as well 👍",
+      "parentUuid": "7b0f00c5_98dcb338",
       "revId": "250cf141be2ca8dba6c9a4441336709e4cd29782",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
