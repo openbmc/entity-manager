@@ -41,6 +41,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "86e70239_138bd422",
+        "filename": "src/dbus_util.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-13T09:26:20Z",
+      "side": 1,
+      "message": "Yes, this is a tradeoff with relying on defaults / re-implementing for more reliable solutions.\n\nChanged it to your solution which will be stable against locale changes and probably have better performance 👍",
+      "parentUuid": "61635cb0_db586dc0",
+      "range": {
+        "startLine": 12,
+        "startChar": 16,
+        "endLine": 12,
+        "endChar": 23
+      },
+      "revId": "e955576604db6a858667806fc275a4d7aa63c5b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ce7c78a7_1230e4bb",
@@ -54,6 +78,24 @@
       "writtenOn": "2026-04-09T21:59:23Z",
       "side": 1,
       "message": "Why do you need this check?  This should arguably be an error, not silently solve a caller bug?",
+      "revId": "e955576604db6a858667806fc275a4d7aa63c5b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e56cd7c_f899b7d0",
+        "filename": "src/dbus_util.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-13T09:26:20Z",
+      "side": 1,
+      "message": "Removed the check. Not returning any error since the existing code did not do that either and changing all the callers would cause scope creep.\n\nAdded the assumption (non-empty input) to the function\u0027s documentation comment.",
+      "parentUuid": "ce7c78a7_1230e4bb",
       "revId": "e955576604db6a858667806fc275a4d7aa63c5b9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -81,6 +123,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "041cd327_4d5a882b",
+        "filename": "src/dbus_util.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-13T09:26:20Z",
+      "side": 1,
+      "message": "I find it clearer this way because the function aligns with D-Bus spec which is worded positively. I don\u0027t expect any runtime overhead from writing it this way as compared to inverting it in the function itself.\n\nLong-term i would like to put functions like `isValidDBusPathSegmentChar` into sdbusplus anyways, so we will need it in that shape as well.",
+      "parentUuid": "2038cf6f_6db2cd2d",
+      "range": {
+        "startLine": 22,
+        "startChar": 36,
+        "endLine": 22,
+        "endChar": 47
+      },
+      "revId": "e955576604db6a858667806fc275a4d7aa63c5b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3a75cc39_65e709a0",
@@ -94,6 +160,30 @@
       "writtenOn": "2026-04-09T21:59:23Z",
       "side": 1,
       "message": "Rather than sanitizing, should we just be returning an error?  Nobody should be specifying dbus interface names that are invalid and expect them to sanitize correctly.  This is different than dbus paths where we have to take freeform text and convert them into a valid dbus path.",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 60
+      },
+      "revId": "e955576604db6a858667806fc275a4d7aa63c5b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c867233d_e997c8c1",
+        "filename": "src/dbus_util.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-13T09:26:20Z",
+      "side": 1,
+      "message": "I feel like that\u0027s something which should be done at the earliest stage of config parsing for `Type` field. No need to run for a while and then found out later that `Type` field is wrong.\n\nWith this patch i try to make a more optimal version of the existing code.\n\nI assume that discussion about right/wrong of existing behavior might be out of scope for a simple optimization change.",
+      "parentUuid": "3a75cc39_65e709a0",
       "range": {
         "startLine": 46,
         "startChar": 0,
