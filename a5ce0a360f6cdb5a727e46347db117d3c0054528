@@ -16,6 +16,24 @@
       "message": "@spinler@us.ibm.com why was this merged?",
       "revId": "a5ce0a360f6cdb5a727e46347db117d3c0054528",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5683eca9_a328f218",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2026-04-13T18:32:08Z",
+      "side": 1,
+      "message": "apologized in the other commit....\nPersonally I\u0027m still at a bit of a loss on the difference between modbus and tempsensoor:\n\n```\nTempSensor:\n                \"Type\": {\n                    \"enum\": [\n                        \"ADM1021\",\n```\n\nmodbus:\n```\n                \"Type\": {\n                    \"description\": \"The type of configuration object\",\n                    \"enum\": [\n                        \"ModbusRDF040DSS5193E0ReservoirPumpUnit\",\n```",
+      "parentUuid": "68c364f7_bc1f56d0",
+      "revId": "a5ce0a360f6cdb5a727e46347db117d3c0054528",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
