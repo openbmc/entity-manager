@@ -34,6 +34,24 @@
       "parentUuid": "68c364f7_bc1f56d0",
       "revId": "a5ce0a360f6cdb5a727e46347db117d3c0054528",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cca5bcc_07078f66",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-04-13T18:38:35Z",
+      "side": 1,
+      "message": "```\n        {\n            \"Type\": \"ADM1021\"\n        }\n```\nVersus\n```\n        {\n            \"Type\": \"ModbusDeltaECD70000020PMM\"\n        }\n```\n\n\nThe device type isn\u0027t \"modbus\", and certainly all the properties that apply to \"all\" modbus devices don\u0027t apply to these specific devices.  DeltaECD70000020PMM will likely have a specific SerialPort baud rate, that shouldn\u0027t go in the generic baud rate type that makes it configurable unless the actual pump allows it to be configured.",
+      "parentUuid": "5683eca9_a328f218",
+      "revId": "a5ce0a360f6cdb5a727e46347db117d3c0054528",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
