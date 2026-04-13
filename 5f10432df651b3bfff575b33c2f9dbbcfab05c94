@@ -34,6 +34,24 @@
       "parentUuid": "5bc4304a_95bb4dec",
       "revId": "5f10432df651b3bfff575b33c2f9dbbcfab05c94",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69b661db_02c9f474",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-04-13T20:13:02Z",
+      "side": 1,
+      "message": "I\u0027m asking for each type to be enumerated based on the device characteristics.  \"modbus\" is a protocol, not a device, and doesn\u0027t define how we talk to a device, so that means that the device type needs promoted to the type, and we need to only accept the properties that we need for that device.  In the majority of cases, I suspect most configs will be\n\n{\n   \"Type\": \"PhillipsPumpType\",\n   \"Name\": \"My pump name\",\n}\n\nwith no other properties, because the implementation just handles the rest of the implementation of the pump.  only the things that are DIFFERENT should be going in the config here.",
+      "parentUuid": "5a5aefdc_0e366b26",
+      "revId": "5f10432df651b3bfff575b33c2f9dbbcfab05c94",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
