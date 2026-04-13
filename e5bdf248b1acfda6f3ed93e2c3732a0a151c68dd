@@ -88,6 +88,24 @@
       "parentUuid": "f7cb8aef_47625be9",
       "revId": "e5bdf248b1acfda6f3ed93e2c3732a0a151c68dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a748b394_84336ab3",
+        "filename": "schemas/modbus.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-04-13T23:22:36Z",
+      "side": 1,
+      "message": "\u003e \"modbus\" is not a type.  That device might have multiple interfaces, \n\nModbus isn\u0027t a device type -- it\u0027s used here as an interface qualifier to indicate which interface of the device this config refers to, since a device can have multiple interfaces.\n\n\n\u003e and certainly doesn\u0027t share all these properties in common.  \n\nAll Modbus devices share these connection properties (BaudRate, DataParity, Address, etc.) -- the BMC needs them to configure the serial port before communicating with any Modbus device.\n\n\u003e A PanasonicBJBPM102A0001PMM has a known baud rate (or set of baud rates). It shouldn\u0027t be reading from a common type with all those properties.  We should only allow the properties that differs FOR THAT DEVICE.\n\nThe BaudRate is known by device but when BMC has to talk to the device it needs to set the same BaudRate on the serial link. Also, on same port we can have multiple different types of devices daisy chained which run at different BaudRates/Parity etc, so this needs to be configured before talking to a device. \n\n\u003e We should only allow the properties that differs FOR THAT DEVICE.\n\nYes, these are all the properties which differ FOR THAT DEVICE.",
+      "parentUuid": "526d769e_405cbc66",
+      "revId": "e5bdf248b1acfda6f3ed93e2c3732a0a151c68dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ],
   "submitRequirementResults": []
