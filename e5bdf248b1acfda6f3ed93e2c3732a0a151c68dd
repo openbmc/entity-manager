@@ -142,6 +142,24 @@
       "parentUuid": "2a392040_ccb86c52",
       "revId": "e5bdf248b1acfda6f3ed93e2c3732a0a151c68dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ff48450_e965a077",
+        "filename": "schemas/modbus.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-04-14T01:15:39Z",
+      "side": 1,
+      "message": "\u003e If the device has multiple interfaces, that\u0027s fine, they would all go under the one stanza. \n\nThey could and not would. They necessarily don\u0027t have to. \n\n\u003e That\u0027s the important thing here, the IMPLEMENTATION needs to own correctly connecting to that device, not the (sometimes arbitrary) config.\n\nNot sure how you are coming to that conclusion. And this is not arbitrary config, its the config needed as per Modbus spec to connect to device.\n\n\n\u003e No, they don\u0027t share everything, that\u0027s the point. Even if they did, and I invented a device next week that does modbus at 1gbps, that value isn\u0027t valid for any of these. Even if they support multiple, they support some RANGE that\u0027s specific to the device.\n\nNot sure you are referring to which point here. Here we are talking about Modbus RTU based devices over serial like like RS485 (not sure how your 1gsb example apply here). I am not inventing these properties. These are the properties which are needed to talk to the modbus devices and are there in modbus spec too.\n\n\u003e Right, which it should be looking up in the backend. These config files are meant to only include the DIFFERENCES between systems; Similarities need to go in code, otherwise we duplicate parameters everywhere.\n\nI don\u0027t understand where you see similarities here. The way you are creating analogy none of the i2c bus numbers, i2c addresses, min/max readings, thresholds, Units, polling rate, etc, should have ever been modeled in EM.\n\n\n\u003e Address seems completely reasonable to have in this file. The rest doesn\u0027t.\n\nI don\u0027t agree based on examples i gave above.\n\n\u003e You said yourself that baud rate at a minimum doesn\u0027t.\n\nI never said we shouldn\u0027t model BaudRate.\n\n\u003e I\u0027m pretty sure whether or not a device supports parity is also not per device.\n\nIts per device and will vary from vendor to vendor for what they choose.\n\n\u003e SensorRegisters is another good example of us adding stuff into this config that shouldn\u0027t be there. Put that in code.\n \nWhy that should go in code? This is similar to any other device configuration for reading the sensor data. The way it does for modbus device is via registers.\n\n\u003e Status bits is another good example\n\nSame goes for status bits as i mentioned above.",
+      "parentUuid": "d80071a8_a43aba22",
+      "revId": "e5bdf248b1acfda6f3ed93e2c3732a0a151c68dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ],
   "submitRequirementResults": []
