@@ -7,6 +7,16 @@
             "Type": "EEPROM"
         },
         {
+            "Name": "Slot_ID_Cable",
+            "PresencePinNames": [
+                "TRAY_SLOT_PRESENT_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
             "Address": "0x42",
             "Bus": 45,
             "Labels": [
@@ -530,6 +540,11 @@
     },
     "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
         "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Compatible": {
+        "Names": [
+            "com.meta.Hardware.Santabarbara.Boards.Power_Distribution_Board_1"
+        ]
     },
     "xyz.openbmc_project.Inventory.Decorator.Revision": {
         "Version": "$PRODUCT_VERSION"
