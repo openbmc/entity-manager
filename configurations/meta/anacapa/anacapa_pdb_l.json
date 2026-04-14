@@ -636,6 +636,102 @@
                 }
             ],
             "Type": "TMP75"
+        },
+        {
+            "Address": "0x60",
+            "Bus": "$bus",
+            "Labels": [
+                "iout1",
+                "temp1",
+                "vin",
+                "vout1"
+            ],
+            "Name": "PDB_L_P12V_SW_VRM",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 60
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 108
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 130
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 130
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 38
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 40
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 60
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 65
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.52
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.48
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 14.2
+                }
+            ],
+            "Type": "Q54SN120A1",
+            "iout1_Name": "PDB_L_P12V_SW_VRM_CURR_A",
+            "temp1_Name": "PDB_L_P12V_SW_VRM_TEMP_C",
+            "vin_Name": "PDB_L_P12V_SW_VRM_VIN_VOLT_V",
+            "vout1_Name": "PDB_L_P12V_SW_VRM_VOUT_VOLT_V"
         }
     ],
     "Name": "PDB_L",
