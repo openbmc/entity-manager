@@ -7,6 +7,16 @@
             "Type": "EEPROM"
         },
         {
+            "Name": "PDB2_SB_Cable",
+            "PresencePinNames": [
+                "PDB1_SB_CONN_PRSNT_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
             "Address": "0x21",
             "Bus": 43,
             "Connector": {
@@ -718,6 +728,11 @@
     },
     "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
         "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Compatible": {
+        "Names": [
+            "com.meta.Hardware.Santabarbara.Boards.Power_Distribution_Board_2"
+        ]
     },
     "xyz.openbmc_project.Inventory.Decorator.Revision": {
         "Version": "$PRODUCT_VERSION"

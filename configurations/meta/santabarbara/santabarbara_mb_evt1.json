@@ -237,6 +237,18 @@
             "Type": "EEPROM"
         },
         {
+            "Name": "E1SBP_Power_Cable",
+            "PresencePinNames": [
+                "FM_CBL_PRSNT_OSFP_A_N",
+                "FM_CBL_PRSNT_OSFP_B_N"
+            ],
+            "PresencePinValues": [
+                0,
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
             "Address": "0x21",
             "Bus": 1,
             "Connector": {
@@ -1665,6 +1677,11 @@
     },
     "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
         "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Compatible": {
+        "Names": [
+            "com.meta.Hardware.Santabarbara.Boards.MB"
+        ]
     },
     "xyz.openbmc_project.Inventory.Decorator.Revision": {
         "Version": "$PRODUCT_VERSION"
