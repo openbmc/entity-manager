@@ -65,6 +65,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c54775bb_e4ed849c",
+        "filename": "src/dbus_util.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-04-14T02:40:57Z",
+      "side": 1,
+      "message": "👍",
+      "parentUuid": "86e70239_138bd422",
+      "range": {
+        "startLine": 12,
+        "startChar": 16,
+        "endLine": 12,
+        "endChar": 23
+      },
+      "revId": "e955576604db6a858667806fc275a4d7aa63c5b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ce7c78a7_1230e4bb",
@@ -147,6 +171,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b41c4059_11c3688e",
+        "filename": "src/dbus_util.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-04-14T02:40:57Z",
+      "side": 1,
+      "message": "ACK.  I\u0027m not that worried about this, but I still think inverting the check would be easier to read, but agree to disagree.  THis is fine.",
+      "parentUuid": "041cd327_4d5a882b",
+      "range": {
+        "startLine": 22,
+        "startChar": 36,
+        "endLine": 22,
+        "endChar": 47
+      },
+      "revId": "e955576604db6a858667806fc275a4d7aa63c5b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3a75cc39_65e709a0",
@@ -184,6 +232,30 @@
       "side": 1,
       "message": "I feel like that\u0027s something which should be done at the earliest stage of config parsing for `Type` field. No need to run for a while and then found out later that `Type` field is wrong.\n\nWith this patch i try to make a more optimal version of the existing code.\n\nI assume that discussion about right/wrong of existing behavior might be out of scope for a simple optimization change.",
       "parentUuid": "3a75cc39_65e709a0",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 60
+      },
+      "revId": "e955576604db6a858667806fc275a4d7aa63c5b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52a56f8a_5ea3d285",
+        "filename": "src/dbus_util.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-04-14T02:40:57Z",
+      "side": 1,
+      "message": "\u003e I feel like that\u0027s something which should be done at the earliest stage of config parsing for `Type` field. No need to run for a while and then found out later that `Type` field is wrong.\n\nTechnically it\u0027s enforced at CI build time?  That\u0027s about as early as we can get?\n\n\u003e \n\u003e With this patch i try to make a more optimal version of the existing code.\n\u003e \n\u003e I assume that discussion about right/wrong of existing behavior might be out of scope for a simple optimization change.\n\nThis doesn\u0027t appear to be optimization, it appears to be new behavior?  Where did we sanitize before?",
+      "parentUuid": "c867233d_e997c8c1",
       "range": {
         "startLine": 46,
         "startChar": 0,
