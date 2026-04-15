@@ -17,6 +17,40 @@
                 "vout1"
             ],
             "Name": "PDB_HSC1_LM5066I",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.2,
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 60
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.8,
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 40
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.2,
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 60
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.8,
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 40
+                }
+            ],
             "Type": "LM5066I",
             "iin_Name": "PDB_HSC1_CURR_A",
             "pin_Name": "PDB_HSC1_PWR_W",
@@ -35,6 +69,41 @@
                 "vout1"
             ],
             "Name": "PDB_HSC2_LM5066I",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.2,
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 60
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.8,
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 40
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.2,
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 60
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.8,
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 40
+                }
+            ],
             "Type": "LM5066I",
             "iin_Name": "PDB_HSC2_CURR_A",
             "pin_Name": "PDB_HSC2_PWR_W",
@@ -53,6 +122,41 @@
                 "vout1"
             ],
             "Name": "PDB_HSC3_LM5066I",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.2,
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 60
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.8,
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 40
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.2,
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 60
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.8,
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 40
+                }
+            ],
             "Type": "LM5066I",
             "iin_Name": "PDB_HSC3_CURR_A",
             "pin_Name": "PDB_HSC3_PWR_W",
@@ -71,6 +175,41 @@
                 "vout1"
             ],
             "Name": "PDB_HSC4_LM5066I",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.2,
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 60
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.8,
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 40
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.2,
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 60
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.8,
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 40
+                }
+            ],
             "Type": "LM5066I",
             "iin_Name": "PDB_HSC4_CURR_A",
             "pin_Name": "PDB_HSC4_PWR_W",
@@ -95,6 +234,40 @@
                 "vout1"
             ],
             "Name": "PDB_HSC1_MP5926",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.2,
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 60
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.8,
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 40
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.2,
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 60
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.8,
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 40
+                }
+            ],
             "Type": "MP5926",
             "iin_Name": "PDB_HSC1_CURR_A",
             "pin_Name": "PDB_HSC1_PWR_W",
@@ -113,6 +286,41 @@
                 "vout1"
             ],
             "Name": "PDB_HSC2_MP5926",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.2,
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 60
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.8,
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 40
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.2,
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 60
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.8,
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 40
+                }
+            ],
             "Type": "MP5926",
             "iin_Name": "PDB_HSC2_CURR_A",
             "pin_Name": "PDB_HSC2_PWR_W",
@@ -131,6 +339,41 @@
                 "vout1"
             ],
             "Name": "PDB_HSC3_MP5926",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.2,
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 60
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.8,
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 40
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.2,
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 60
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.8,
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 40
+                }
+            ],
             "Type": "MP5926",
             "iin_Name": "PDB_HSC3_CURR_A",
             "pin_Name": "PDB_HSC3_PWR_W",
@@ -149,6 +392,41 @@
                 "vout1"
             ],
             "Name": "PDB_HSC4_MP5926",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.2,
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 60
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.8,
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 40
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.2,
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 60
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.8,
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 40
+                }
+            ],
             "Type": "MP5926",
             "iin_Name": "PDB_HSC4_CURR_A",
             "pin_Name": "PDB_HSC4_PWR_W",
