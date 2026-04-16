@@ -1,0 +1,174 @@
+{
+    "Name": "AMD Vulcano 800G OCP NIC system",
+    "PlatformExposes": [
+        {
+            "Configuration": 1,
+            "Interface": 1,
+            "Name": "BRB_L_FE_NIC0",
+            "PLDMSensors": [
+                {
+                    "ID": 61,
+                    "Name": "Temp_C"
+                }
+            ],
+            "Port": [
+                1,
+                6
+            ],
+            "RootHubPosition": 0,
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Configuration": 1,
+            "Interface": 1,
+            "Name": "BRB_L_BE_NIC0",
+            "PLDMSensors": [
+                {
+                    "ID": 61,
+                    "Name": "Temp_C"
+                }
+            ],
+            "Port": [
+                1,
+                5,
+                1
+            ],
+            "RootHubPosition": 0,
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Configuration": 1,
+            "Interface": 1,
+            "Name": "BRB_L_BE_NIC1",
+            "PLDMSensors": [
+                {
+                    "ID": 61,
+                    "Name": "Temp_C"
+                }
+            ],
+            "Port": [
+                1,
+                5,
+                2
+            ],
+            "RootHubPosition": 0,
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Configuration": 1,
+            "Interface": 1,
+            "Name": "BRB_L_BE_NIC2",
+            "PLDMSensors": [
+                {
+                    "ID": 61,
+                    "Name": "Temp_C"
+                }
+            ],
+            "Port": [
+                1,
+                5,
+                4
+            ],
+            "RootHubPosition": 0,
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Configuration": 1,
+            "Interface": 1,
+            "Name": "BRB_L_BE_NIC3",
+            "PLDMSensors": [
+                {
+                    "ID": 61,
+                    "Name": "Temp_C"
+                }
+            ],
+            "Port": [
+                1,
+                5,
+                3
+            ],
+            "RootHubPosition": 0,
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Configuration": 1,
+            "Interface": 1,
+            "Name": "BRB_R_BE_NIC4",
+            "PLDMSensors": [
+                {
+                    "ID": 61,
+                    "Name": "Temp_C"
+                }
+            ],
+            "Port": [
+                1,
+                4,
+                4
+            ],
+            "RootHubPosition": 0,
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Configuration": 1,
+            "Interface": 1,
+            "Name": "BRB_R_BE_NIC5",
+            "PLDMSensors": [
+                {
+                    "ID": 61,
+                    "Name": "Temp_C"
+                }
+            ],
+            "Port": [
+                1,
+                4,
+                3
+            ],
+            "RootHubPosition": 0,
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Configuration": 1,
+            "Interface": 1,
+            "Name": "BRB_R_BE_NIC6",
+            "PLDMSensors": [
+                {
+                    "ID": 61,
+                    "Name": "Temp_C"
+                }
+            ],
+            "Port": [
+                1,
+                4,
+                2
+            ],
+            "RootHubPosition": 0,
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Configuration": 1,
+            "Interface": 1,
+            "Name": "BRB_R_BE_NIC7",
+            "PLDMSensors": [
+                {
+                    "ID": 61,
+                    "Name": "Temp_C"
+                }
+            ],
+            "Port": [
+                1,
+                4,
+                1
+            ],
+            "RootHubPosition": 0,
+            "Type": "MCTPUSBDevice"
+        }
+    ],
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'VULCANO-1O800-OCP*', 'BOARD_MANUFACTURER': 'AMD'})",
+        "AND",
+        "FOUND('BRB_L')",
+        "AND",
+        "FOUND('BRB_R')"
+    ],
+    "Type": "Platform"
+}
