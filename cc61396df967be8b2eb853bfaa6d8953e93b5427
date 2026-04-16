@@ -39,6 +39,30 @@
       },
       "revId": "cc61396df967be8b2eb853bfaa6d8953e93b5427",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60887a69_7413476e",
+        "filename": "schemas/modbus.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-04-16T02:02:19Z",
+      "side": 1,
+      "message": "Address and SerialPort are properties of the device, but the previous range definition required flattening. New version of patch restructures it so each entry for this device type can be added individually with its own name.",
+      "parentUuid": "255cd0a2_824b84d5",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 30
+      },
+      "revId": "cc61396df967be8b2eb853bfaa6d8953e93b5427",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
