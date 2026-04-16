@@ -171,7 +171,7 @@
         "Exposes": [
             {
                 "FeedbackADC": {
-                    "Index": 0,
+                    "Index": 10,
                     "Name": "$Name Feedback ADC",
                     "ScaleFactor": 0.0025,
                     "Type": "ADC"
@@ -198,6 +198,8 @@
         ],
         "Name": "$Name",
         "Probe": [
+            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Ventura2 RMC', 'PRODUCT_VERSION': '^(?!EVT).+'})",
+            "AND",
             "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^SupplyValve2_1$', 'Compatible': '^com.meta.Hardware.BMC.Model.Ventura2$'})"
         ],
         "Type": "Valve",
@@ -216,7 +218,7 @@
         "Exposes": [
             {
                 "FeedbackADC": {
-                    "Index": 1,
+                    "Index": 11,
                     "Name": "$Name Feedback ADC",
                     "ScaleFactor": 0.0025,
                     "Type": "ADC"
@@ -243,6 +245,8 @@
         ],
         "Name": "$Name",
         "Probe": [
+            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Ventura2 RMC', 'PRODUCT_VERSION': '^(?!EVT).+'})",
+            "AND",
             "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^SupplyValve2_2$', 'Compatible': '^com.meta.Hardware.BMC.Model.Ventura2$'})"
         ],
         "Type": "Valve",
@@ -261,7 +265,7 @@
         "Exposes": [
             {
                 "FeedbackADC": {
-                    "Index": 0,
+                    "Index": 12,
                     "Name": "$Name Feedback ADC",
                     "ScaleFactor": 0.0025,
                     "Type": "ADC"
@@ -288,6 +292,149 @@
         ],
         "Name": "$Name",
         "Probe": [
+            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Ventura2 RMC', 'PRODUCT_VERSION': '^(?!EVT).+'})",
+            "AND",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^SupplyValve2_3$', 'Compatible': '^com.meta.Hardware.BMC.Model.Ventura2$'})"
+        ],
+        "Type": "Valve",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "NOT_SUPPORTED",
+            "Model": "NOT_SUPPORTED",
+            "PartNumber": "NOT_SUPPORTED",
+            "SerialNumber": "NOT_SUPPORTED",
+            "SparePartNumber": "NOT_SUPPORTED"
+        },
+        "xyz.openbmc_project.Inventory.Item.Valve": {
+            "Direction": "xyz.openbmc_project.Inventory.Item.Valve.Direction.Supply"
+        }
+    },
+    {
+        "Exposes": [
+            {
+                "FeedbackADC": {
+                    "Index": 13,
+                    "Name": "$Name Feedback ADC",
+                    "ScaleFactor": 0.0025,
+                    "Type": "ADC"
+                },
+                "MaxFlowRate": 333.0,
+                "Name": "$Name",
+                "OpenThreshold": 2.1,
+                "SetPointDAC": {
+                    "Address": "0x000f",
+                    "Bus": 6,
+                    "Index": 0,
+                    "Name": "$Name SetPoint DAC",
+                    "Offset": 1.05,
+                    "ScaleFactor": 0.008826979,
+                    "Type": "DAC"
+                },
+                "SetPointVoltageRange": [
+                    2.0,
+                    10.0
+                ],
+                "Tolerance": 0.03,
+                "Type": "AnalogValve"
+            }
+        ],
+        "Name": "$Name",
+        "Probe": [
+            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Ventura2 RMC', 'PRODUCT_VERSION': 'EVT'})",
+            "AND",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^SupplyValve2_1$', 'Compatible': '^com.meta.Hardware.BMC.Model.Ventura2$'})"
+        ],
+        "Type": "Valve",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "NOT_SUPPORTED",
+            "Model": "NOT_SUPPORTED",
+            "PartNumber": "NOT_SUPPORTED",
+            "SerialNumber": "NOT_SUPPORTED",
+            "SparePartNumber": "NOT_SUPPORTED"
+        },
+        "xyz.openbmc_project.Inventory.Item.Valve": {
+            "Direction": "xyz.openbmc_project.Inventory.Item.Valve.Direction.Supply"
+        }
+    },
+    {
+        "Exposes": [
+            {
+                "FeedbackADC": {
+                    "Index": 14,
+                    "Name": "$Name Feedback ADC",
+                    "ScaleFactor": 0.0025,
+                    "Type": "ADC"
+                },
+                "MaxFlowRate": 333.0,
+                "Name": "$Name",
+                "OpenThreshold": 2.1,
+                "SetPointDAC": {
+                    "Address": "0x000c",
+                    "Bus": 6,
+                    "Index": 0,
+                    "Name": "$Name SetPoint DAC",
+                    "Offset": 1.05,
+                    "ScaleFactor": 0.008826979,
+                    "Type": "DAC"
+                },
+                "SetPointVoltageRange": [
+                    2.0,
+                    10.0
+                ],
+                "Tolerance": 0.03,
+                "Type": "AnalogValve"
+            }
+        ],
+        "Name": "$Name",
+        "Probe": [
+            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Ventura2 RMC', 'PRODUCT_VERSION': 'EVT'})",
+            "AND",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^SupplyValve2_2$', 'Compatible': '^com.meta.Hardware.BMC.Model.Ventura2$'})"
+        ],
+        "Type": "Valve",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "NOT_SUPPORTED",
+            "Model": "NOT_SUPPORTED",
+            "PartNumber": "NOT_SUPPORTED",
+            "SerialNumber": "NOT_SUPPORTED",
+            "SparePartNumber": "NOT_SUPPORTED"
+        },
+        "xyz.openbmc_project.Inventory.Item.Valve": {
+            "Direction": "xyz.openbmc_project.Inventory.Item.Valve.Direction.Supply"
+        }
+    },
+    {
+        "Exposes": [
+            {
+                "FeedbackADC": {
+                    "Index": 15,
+                    "Name": "$Name Feedback ADC",
+                    "ScaleFactor": 0.0025,
+                    "Type": "ADC"
+                },
+                "MaxFlowRate": 333.0,
+                "Name": "$Name",
+                "OpenThreshold": 2.1,
+                "SetPointDAC": {
+                    "Address": "0x000e",
+                    "Bus": 6,
+                    "Index": 0,
+                    "Name": "$Name SetPoint DAC",
+                    "Offset": 1.05,
+                    "ScaleFactor": 0.008826979,
+                    "Type": "DAC"
+                },
+                "SetPointVoltageRange": [
+                    2.0,
+                    10.0
+                ],
+                "Tolerance": 0.03,
+                "Type": "AnalogValve"
+            }
+        ],
+        "Name": "$Name",
+        "Probe": [
+            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Ventura2 RMC', 'PRODUCT_VERSION': 'EVT'})",
+            "AND",
             "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^SupplyValve2_3$', 'Compatible': '^com.meta.Hardware.BMC.Model.Ventura2$'})"
         ],
         "Type": "Valve",
