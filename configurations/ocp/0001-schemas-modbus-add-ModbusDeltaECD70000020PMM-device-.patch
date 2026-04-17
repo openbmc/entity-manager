@@ -1,0 +1,32 @@
+From a5ce0a360f6cdb5a727e46347db117d3c0054528 Mon Sep 17 00:00:00 2001
+From: Jagpal Singh Gill <jagpalgill@fb.com>
+Date: Thu, 9 Apr 2026 11:28:24 -0700
+Subject: [PATCH] schemas: modbus: add ModbusDeltaECD70000020PMM device type
+
+Add Delta ECD70000020 PMM to the ModbusRTUDevice Type enum
+in the modbus schema to support this new device type in entity
+manager configurations.
+
+Change-Id: I3cb2cc38f16be7449ba9c128529da694fba409fb
+Signed-off-by: Jagpal Singh Gill <paligill@gmail.com>
+---
+ schemas/modbus.json | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/schemas/modbus.json b/schemas/modbus.json
+index d12a925..a834bc2 100644
+--- a/schemas/modbus.json
++++ b/schemas/modbus.json
+@@ -96,7 +96,8 @@
+                         "ModbusRDF040DSS5193E0ReservoirPumpUnit",
+                         "ModbusRDF040DSS5193E0HeatExchanger",
+                         "ModbusPanasonicBJBPM102A0001PMM",
+-                        "ModbusArtesyn7000433970000PMM"
++                        "ModbusArtesyn7000433970000PMM",
++                        "ModbusDeltaECD70000020PMM"
+                     ]
+                 },
+                 "Name": {
+-- 
+2.52.0
+
