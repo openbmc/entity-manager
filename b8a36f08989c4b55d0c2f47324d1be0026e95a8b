@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0df488f_2584ade7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-17T22:43:00Z",
+      "side": 1,
+      "message": "Yes, the paths are treated differently in gpio-presence, since it directly uses `sdbusplus::object_path` concatenation which applies its own \u0027encoding\u0027 in case the string is not valid path segment.\n\nThanks to this patch i went digging a bit and found \n\n```\nauto DevicePresence::getObjPath() const -\u003e sdbusplus::message::object_path\n{\n    sdbusplus::message::object_path objPathBase(\n        \"/xyz/openbmc_project/GPIODeviceDetected/\");\n    sdbusplus::message::object_path objPath \u003d objPathBase / deviceName;\n    return objPath;\n}\n```\n\nwhich is a conceptual bug in gpio-presence. Valid object paths do not have a trailing `/`.\n\nhttps://github.com/openbmc/entity-manager/blob/c2f8266d049557b269edf69a4963025b5c16e3f5/src/gpio-presence/device_presence.cpp#L51",
+      "revId": "b8a36f08989c4b55d0c2f47324d1be0026e95a8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
