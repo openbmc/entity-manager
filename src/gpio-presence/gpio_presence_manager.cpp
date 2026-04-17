@@ -103,8 +103,7 @@ auto GPIOPresenceManager::addConfig(const sdbusplus::object_path& obj,
 
         gpiod::line_request lineConfig;
         lineConfig.consumer = "gpio-presence";
-        lineConfig.request_type = gpiod::line_request::EVENT_BOTH_EDGES |
-                                  gpiod::line_request::DIRECTION_INPUT;
+        lineConfig.request_type = gpiod::line_request::EVENT_BOTH_EDGES;
 
         int lineFd = -1;
         try
