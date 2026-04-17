@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6a3de8e1_7e50784e",
+        "filename": "configurations/platform/amd/helios_vulcano_800g_ocp_nic_server.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002734
+      },
+      "writtenOn": "2026-04-17T00:02:45Z",
+      "side": 1,
+      "message": "To follow https://gerrit.openbmc.org/c/openbmc/entity-manager/+/85991, put the platform config under \"platform\" directory.",
+      "parentUuid": "b3810b0c_9ffce994",
+      "revId": "82471932bce354ef5e46529aa242884ebecaeb7d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "72fa3ae6_db926036",
         "filename": "configurations/platform/amd/helios_vulcano_800g_ocp_nic_server.json",
         "patchSetId": 1
@@ -31,6 +49,30 @@
       "writtenOn": "2026-04-16T23:47:47Z",
       "side": 1,
       "message": "What is this?\n\nThis seems like any system with your NIC plugged into it that happens to have two boards with this name is going to load your config.  That doesn\u0027t seem appropriate.",
+      "range": {
+        "startLine": 168,
+        "startChar": 0,
+        "endLine": 171,
+        "endChar": 24
+      },
+      "revId": "82471932bce354ef5e46529aa242884ebecaeb7d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0e05041_a242b758",
+        "filename": "configurations/platform/amd/helios_vulcano_800g_ocp_nic_server.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1002734
+      },
+      "writtenOn": "2026-04-17T00:02:45Z",
+      "side": 1,
+      "message": "In the system design, BE NIC should be plugged into Helios EAM, so it\u0027s better to add EAM FRU here.\nHowever, in the early development stage, we do not have enough EAM, this should be temporary probe condition to enable engineer samples that without EAM. \nOr should we just put this patch in META downstream project layer as a short-term solution?",
+      "parentUuid": "72fa3ae6_db926036",
       "range": {
         "startLine": 168,
         "startChar": 0,
