@@ -50,10 +50,8 @@ auto DevicePresence::updateGPIOPresence(const std::string& gpioLine) -> void
 
 auto DevicePresence::getObjPath() const -> sdbusplus::object_path
 {
-    sdbusplus::object_path objPathBase(
-        "/xyz/openbmc_project/GPIODeviceDetected/");
-    sdbusplus::object_path objPath = objPathBase / deviceName;
-    return objPath;
+    return sdbusplus::object_path("/xyz/openbmc_project/GPIODeviceDetected") /
+           deviceName;
 }
 
 auto DevicePresence::isPresent() -> bool
