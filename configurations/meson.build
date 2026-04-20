@@ -177,6 +177,7 @@ configs = [
     'meta/sanmiguel/sanmiguel_scm.json',
     'meta/sanmiguel/sanmiguel_smm_carrier.json',
     'meta/sanmiguel/sanmiguel_smm_extender.json',
+    'meta/santabarbara/santabarbara_arke_evb.json',
     'meta/santabarbara/santabarbara_cable.json',
     'meta/santabarbara/santabarbara_e1s_bp.json',
     'meta/santabarbara/santabarbara_evb.json',
