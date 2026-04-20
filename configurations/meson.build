@@ -180,6 +180,7 @@ configs = [
     'meta/santabarbara/santabarbara_arke_evb.json',
     'meta/santabarbara/santabarbara_cable.json',
     'meta/santabarbara/santabarbara_e1s_bp.json',
+    'meta/santabarbara/santabarbara_electra.json',
     'meta/santabarbara/santabarbara_evb.json',
     'meta/santabarbara/santabarbara_evb_pdb2.json',
     'meta/santabarbara/santabarbara_mb.json',
