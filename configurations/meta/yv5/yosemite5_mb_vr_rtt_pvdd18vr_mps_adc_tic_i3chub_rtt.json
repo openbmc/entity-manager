@@ -178,6 +178,26 @@
             "Type": "EEPROM"
         },
         {
+            "Name": "MB_E1S0",
+            "PresencePinNames": [
+                "PRSNT_BOOT_N_FF"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "MB_E1S1",
+            "PresencePinNames": [
+                "PRSNT_MCIO1A_N_FF"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
             "Address": "0x40",
             "Bus": 11,
             "Labels": [
@@ -370,136 +390,6 @@
             "power1_Name": "MB_PMON_NIC_P12V_PWR_W"
         },
         {
-            "Address": "0x44",
-            "Bus": 13,
-            "Labels": [
-                "in1",
-                "curr1",
-                "power1"
-            ],
-            "Name": "MB_PMON_E1S0",
-            "PowerState": "On",
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.216,
-                    "Label": "in1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 10.8
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.264,
-                    "Label": "in1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 13.2
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.0367,
-                    "Label": "curr1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1.837
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.044,
-                    "Label": "curr1",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 2.2
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.412,
-                    "Label": "power1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 20.6
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.5,
-                    "Label": "power1",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 25.0
-                }
-            ],
-            "Type": "INA230",
-            "curr1_Name": "MB_PMON_E1S0_P12V_CURR_A",
-            "in1_Name": "MB_PMON_E1S0_P12V_VOLT_V",
-            "power1_Name": "MB_PMON_E1S0_P12V_PWR_W"
-        },
-        {
-            "Address": "0x45",
-            "Bus": 13,
-            "Labels": [
-                "in1",
-                "curr1",
-                "power1"
-            ],
-            "Name": "MB_PMON_E1S1",
-            "PowerState": "On",
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.216,
-                    "Label": "in1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 10.8
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.264,
-                    "Label": "in1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 13.2
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.0367,
-                    "Label": "curr1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1.837
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.044,
-                    "Label": "curr1",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 2.2
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.412,
-                    "Label": "power1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 20.6
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.5,
-                    "Label": "power1",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 25.0
-                }
-            ],
-            "Type": "INA230",
-            "curr1_Name": "MB_PMON_E1S1_P12V_CURR_A",
-            "in1_Name": "MB_PMON_E1S1_P12V_VOLT_V",
-            "power1_Name": "MB_PMON_E1S1_P12V_PWR_W"
-        },
-        {
             "Address": "0x48",
             "Bus": 13,
             "Name": "MB_INLET_TEMP_C",
@@ -629,52 +519,6 @@
             },
             "Name": "Yosemite5_MB_VR_VDD18_S5",
             "Type": "MP994XFirmware"
-        },
-        {
-            "Address": "0x6a",
-            "Bus": 13,
-            "Name": "MB_E1S0_TEMP_C",
-            "PowerState": "On",
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.1,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5.0
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 1.4,
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 70.0
-                }
-            ],
-            "Type": "NVME1000"
-        },
-        {
-            "Address": "0x6a",
-            "Bus": 5,
-            "Name": "MB_E1S1_TEMP_C",
-            "PowerState": "On",
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.1,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5.0
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 1.4,
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 70.0
-                }
-            ],
-            "Type": "NVME1000"
         },
         {
             "Address": "0x60",
@@ -1552,6 +1396,11 @@
     },
     "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
         "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Compatible": {
+        "Names": [
+            "com.meta.Hardware.Yosemite5.Boards.MB"
+        ]
     },
     "xyz.openbmc_project.Inventory.Item.Board.Motherboard": {}
 }
