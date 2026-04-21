@@ -5,6 +5,7 @@ configs = [
     'acbel/r1ca2122a_psu.json',
     'acbel/rica_psu.json',
     'amd/mi455x_amc.json',
+    'amd/vulcano_1O800_800g_ocp.json',
     'ampere/mtjade.json',
     'ampere/mtjefferson_bmc.json',
     'ampere/mtjefferson_bp.json',
