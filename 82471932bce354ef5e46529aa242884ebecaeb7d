@@ -81,6 +81,30 @@
       },
       "revId": "82471932bce354ef5e46529aa242884ebecaeb7d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bbc88ba_2eb4ed44",
+        "filename": "configurations/platform/amd/helios_vulcano_800g_ocp_nic_server.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-04-21T19:55:58Z",
+      "side": 1,
+      "message": "Can we start with an EM config for the NIC itself?  We can then talk about how to adjust the \"platform\" pieces here but since platforms themselves aren\u0027t merged yet and the MCTPUSB stuff isn\u0027t merged yet, it seems like this is a ways out from getting merged.  If you at least add a config for the base FRU we at least get inventory from it.",
+      "parentUuid": "d0e05041_a242b758",
+      "range": {
+        "startLine": 168,
+        "startChar": 0,
+        "endLine": 171,
+        "endChar": 24
+      },
+      "revId": "82471932bce354ef5e46529aa242884ebecaeb7d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
