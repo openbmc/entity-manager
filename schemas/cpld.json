@@ -29,8 +29,13 @@
                         "LatticeLCMXO3LF_4300CFirmware",
                         "LatticeLFMXO5_25Firmware",
                         "LatticeLFMXO5_15DFirmware",
-                        "LatticeLFMXO5_65TFirmware"
+                        "LatticeLFMXO5_65TFirmware",
+                        "AlteraMAX10_10M16Firmware"
                     ]
+                },
+                "UpdateGpio": {
+                    "type": "string",
+                    "description": "The GPIO line name used to enable CPLD update mode"
                 },
                 "MuxOutputs": {
                     "$ref": "firmware.json#/$defs/MuxOutputs"
