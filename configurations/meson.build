@@ -122,6 +122,7 @@ configs = [
     'meta/anacapa/anacapa_mb.json',
     'meta/anacapa/anacapa_mb_evt1.json',
     'meta/anacapa/anacapa_mb_evt2.json',
+    'meta/anacapa/anacapa_nfc_tag.json',
     'meta/anacapa/anacapa_pdb_l.json',
     'meta/anacapa/anacapa_pdb_l_evt1.json',
     'meta/anacapa/anacapa_pdb_l_evt2.json',
