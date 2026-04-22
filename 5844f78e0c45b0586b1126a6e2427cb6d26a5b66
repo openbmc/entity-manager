@@ -16,6 +16,24 @@
       "message": "I\u0027m pretty sure there\u0027s a \u0027Clearing previous configuration\u0027 trace that shows up when the version changes, so I\u0027m just curious why you are interested in the actual hash values?",
       "revId": "5844f78e0c45b0586b1126a6e2427cb6d26a5b66",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "736b23a3_cb642e18",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1002631
+      },
+      "writtenOn": "2026-04-22T10:12:20Z",
+      "side": 1,
+      "message": "The inclusion of the hash values in the logs is intended to provide additional clarity and verification regarding the specific version files involved. While the \u0027Clearing previous configuration\u0027 trace indicates that a version change has occurred, logging the actual hash values helps us confirm the exact files being compared. This additional detail can be valuable for debugging and ensuring the accuracy of the version change detection process.",
+      "parentUuid": "f4c77285_c3de0911",
+      "revId": "5844f78e0c45b0586b1126a6e2427cb6d26a5b66",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
