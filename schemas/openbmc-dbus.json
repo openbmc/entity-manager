@@ -115,6 +115,16 @@
                             },
                             "required": ["Version"],
                             "type": "object"
+                        },
+                        "LocationCode": {
+                            "additionalProperties": false,
+                            "properties": {
+                                "LocationCode": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": ["LocationCode"],
+                            "type": "object"
                         }
                     },
                     "Item": {
