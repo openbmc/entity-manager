@@ -35,6 +35,30 @@
                 "PresencePinNames",
                 "PresencePinValues"
             ]
+        },
+        "Max10Cpld": {
+            "description": "Required information to complete altera MAX10 GPIO enable",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Name": {
+                    "type": "string"
+                },
+                "Type": {
+                    "const": "Max10Cpld"
+                },
+                "Bus": {
+                    "$ref": "legacy.json#/$defs/Types/Bus"
+                },
+                "Address": {
+                    "$ref": "legacy.json#/$defs/Types/Address"
+                },
+                "UpdateGpio": {
+                    "type": "string",
+                    "description": "The GPIO line name used to enable CPLD update mode"
+                }
+            },
+            "required": ["Name", "Type", "Bus", "Address", "UpdateGpio"]
         }
     }
 }
