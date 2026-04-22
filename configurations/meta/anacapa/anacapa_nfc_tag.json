@@ -1,0 +1,16 @@
+{
+    "Exposes": [],
+    "Name": "Anacapa NFC Tag",
+    "Probe": "xyz.openbmc_project.Nfc.Fru({'BOARD_PRODUCT_NAME': 'Anacapa Tag', 'BOARD_MANUFACTURER': 'AMD'})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$BOARD_MANUFACTURE_DATE",
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.LocationCode": {
+        "LocationCode": "$BOARD_INFO_AM1"
+    }
+}
