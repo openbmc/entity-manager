@@ -4,6 +4,7 @@ configs = [
     '3y-power/3ypower_vast2112_psu.json',
     'acbel/r1ca2122a_psu.json',
     'acbel/rica_psu.json',
+    'amd/mi455x_amc.json',
     'ampere/mtjade.json',
     'ampere/mtjefferson_bmc.json',
     'ampere/mtjefferson_bp.json',
