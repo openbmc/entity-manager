@@ -34,6 +34,24 @@
       "parentUuid": "c8ed7345_c563502f",
       "revId": "363ac292e58da49f2be111fd39c0c49115adcc13",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "002e7982_cf6a5e78",
+        "filename": "schemas/openbmc-dbus.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-23T11:05:02Z",
+      "side": 1,
+      "message": "\u003e Updated to include all seven PDI properties as optional fields.\n\nCiting Ed here\n\n\u003e there\u0027s no such thing as an optional \"property\" on dbus\n\nhttps://discordapp.com/channels/775381525260664832/1379890287614099638/1408524628892188794\n\nThe properties need to be set somehow. Either in config, or fallback to default, or some other way. But they need to always appear on D-Bus.\n\n\u003e This also made me notice Item.Dimm has the same gap\n\nyeah I\u0027m not aware of anything keeping things in sync between EM and PDI.\n\n\u003e Would it make sense to fill those in as well? I put up 89558 for that.\n\nThanks for doing the work to fix it 👍\n\nPDI could theoretically grow a feature to generate json schema for all interfaces, but currently there is quite the gap and lots of configs would fail to validate.\n\nIt could make sense to develop such a PDI feature in the future depending on if EM maintainers are ok with introducing that dependency.",
+      "parentUuid": "f4cc62da_3e834b91",
+      "revId": "363ac292e58da49f2be111fd39c0c49115adcc13",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
