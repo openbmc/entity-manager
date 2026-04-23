@@ -22,6 +22,30 @@
       },
       "revId": "25ec09dc701225f4a170420ecdb0768f7e89fcaa",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82131e58_7b10997a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-04-23T11:52:45Z",
+      "side": 1,
+      "message": "Thanks for the review. Updated the commit message to remove the\n\"optional\" wording.\n\nRegarding marking properties as required: DIMMs are field-replaceable,\nso the actual attributes can change across units sharing the same\nconfig. Prefer to keep the current form for now.",
+      "parentUuid": "9568adb8_0c83f315",
+      "range": {
+        "startLine": 18,
+        "startChar": 54,
+        "endLine": 19,
+        "endChar": 69
+      },
+      "revId": "25ec09dc701225f4a170420ecdb0768f7e89fcaa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
