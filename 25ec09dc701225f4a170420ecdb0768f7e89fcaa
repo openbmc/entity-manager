@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9568adb8_0c83f315",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-23T11:03:34Z",
+      "side": 1,
+      "message": "To me it looks like there is only one existing config\n\n```\n rg Item.Dimm configurations/\nconfigurations/meta/yv4/yosemite4_wailuafalls.json\n300:    \"xyz.openbmc_project.Inventory.Item.Dimm\": {}\n```\nso it could be possible to figure out the property values there and fill it out, then mark the properties here as required.\n\nBut i guess the patch is already improving things as-is without these changes.",
+      "range": {
+        "startLine": 18,
+        "startChar": 54,
+        "endLine": 19,
+        "endChar": 69
+      },
+      "revId": "25ec09dc701225f4a170420ecdb0768f7e89fcaa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
