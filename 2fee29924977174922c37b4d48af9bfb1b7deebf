@@ -3,6 +3,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1c4c48c1_806db393",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-04-23T18:06:14Z",
+      "side": 1,
+      "message": "The majority of these come from the drive itself through interogation.  How can we know these things at compile time?",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 46
+      },
+      "revId": "2fee29924977174922c37b4d48af9bfb1b7deebf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48d93746_9ce69f5b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-04-23T18:06:14Z",
+      "side": 1,
+      "message": "Overall I\u0027m not sure how this would work in practice unless we\u0027re half implementing the interface.  Maybe there\u0027s examples of filling out all these properties in a patchset somewhere?",
+      "revId": "2fee29924977174922c37b4d48af9bfb1b7deebf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d2b7255a_ad721bcb",
         "filename": "schemas/openbmc-dbus.json",
         "patchSetId": 5
@@ -20,6 +60,23 @@
         "endLine": 221,
         "endChar": 44
       },
+      "revId": "2fee29924977174922c37b4d48af9bfb1b7deebf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8eb9c86_b11d06b4",
+        "filename": "schemas/openbmc-dbus.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-04-23T18:06:14Z",
+      "side": 1,
+      "message": "As written, how would EM even implement this interface?  There\u0027s no way to know the \"LockedStatus\" from a static inventory map.",
       "revId": "2fee29924977174922c37b4d48af9bfb1b7deebf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
