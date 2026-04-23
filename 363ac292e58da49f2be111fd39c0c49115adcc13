@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8ed7345_c563502f",
+        "filename": "schemas/openbmc-dbus.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-23T08:37:33Z",
+      "side": 1,
+      "message": "`Inventory.Item.Drive` has a bunch of properties like\n\n`Capacity`, `Protocol`, `Type` in the interface definition.\n\nIf EM wants to expose the interface it needs to provide all these properties too.",
+      "revId": "363ac292e58da49f2be111fd39c0c49115adcc13",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
