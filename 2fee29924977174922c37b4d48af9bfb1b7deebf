@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2b7255a_ad721bcb",
+        "filename": "schemas/openbmc-dbus.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-23T12:08:51Z",
+      "side": 1,
+      "message": "```suggestion\n                            \"required\": [\"Capacity\", \"Protocol\", \"Type\", \"EncryptionStatus\", \"LockedStatus\", \"PredictedMediaLifeLeftPercent\", \"Resettable\"]\n                            \"type\": \"object\"\n```\n\nSince the properties are not optional, we should probably mark them as required like this. \n\nOtherwise configurations will validate even if they are missing these properties.\n\nWhich will then crash (generated) clients at runtime.",
+      "range": {
+        "startLine": 221,
+        "startChar": 28,
+        "endLine": 221,
+        "endChar": 44
+      },
+      "revId": "2fee29924977174922c37b4d48af9bfb1b7deebf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
