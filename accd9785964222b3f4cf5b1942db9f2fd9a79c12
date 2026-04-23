@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87855545_f9c9286f",
+        "filename": "configurations/meta/anacapa/anacapa_amc.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-04-23T18:20:40Z",
+      "side": 1,
+      "message": "This looks like a pretty generic identifier.  Is that going to be ok?  For similar Nvidia boards we\u0027ve had to find more details to get the particular device because for \"next generation\" you\u0027ll probably still call it an AMC but we\u0027ll need to uniquely identify that board vs this one.\n\nI assume this is a generic board that you might put into a non-Meta system.  It probably belongs in `configurations/amd`?",
+      "range": {
+        "startLine": 11,
+        "startChar": 45,
+        "endLine": 11,
+        "endChar": 72
+      },
+      "revId": "accd9785964222b3f4cf5b1942db9f2fd9a79c12",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
