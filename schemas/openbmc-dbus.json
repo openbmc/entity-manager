@@ -171,6 +171,120 @@
                         },
                         "Dimm": {
                             "additionalProperties": false,
+                            "properties": {
+                                "MemoryDataWidth": {
+                                    "type": "number"
+                                },
+                                "MemorySizeInKB": {
+                                    "type": "number"
+                                },
+                                "MemoryDeviceLocator": {
+                                    "type": "string"
+                                },
+                                "MemoryType": {
+                                    "enum": [
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.Other",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.Unknown",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.DRAM",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.EDRAM",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.VRAM",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.SRAM",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.RAM",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.ROM",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.FLASH",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.EEPROM",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.FEPROM",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.EPROM",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.CDRAM",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.ThreeDRAM",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.SDRAM",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.DDR_SGRAM",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.RDRAM",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.DDR",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.DDR2",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.DDR2_SDRAM_FB_DIMM",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.EDO",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.FastPageMode",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.PipelinedNibble",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.DDR3",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.FBD2",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.DDR4",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.LPDDR_SDRAM",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.LPDDR2_SDRAM",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.LPDDR3_SDRAM",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.LPDDR4_SDRAM",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.Logical",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.HBM",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.HBM2",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.HBM3",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.DDR2_SDRAM_FB_DIMM_PROB",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.DDR4E_SDRAM",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.DDR5",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.DeviceType.LPDDR5_SDRAM"
+                                    ]
+                                },
+                                "MemoryTypeDetail": {
+                                    "type": "string"
+                                },
+                                "MaxMemorySpeedInMhz": {
+                                    "type": "number"
+                                },
+                                "MemoryAttributes": {
+                                    "type": "number"
+                                },
+                                "MemoryConfiguredSpeedInMhz": {
+                                    "type": "number"
+                                },
+                                "ECC": {
+                                    "enum": [
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.Ecc.NoECC",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.Ecc.SingleBitECC",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.Ecc.MultiBitECC",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.Ecc.AddressParity"
+                                    ]
+                                },
+                                "CASLatencies": {
+                                    "type": "number"
+                                },
+                                "RevisionCode": {
+                                    "type": "number"
+                                },
+                                "FormFactor": {
+                                    "enum": [
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.FormFactor.RDIMM",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.FormFactor.UDIMM",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.FormFactor.SO_DIMM",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.FormFactor.LRDIMM",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.FormFactor.Mini_RDIMM",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.FormFactor.Mini_UDIMM",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.FormFactor.SO_RDIMM_72b",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.FormFactor.SO_UDIMM_72b",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.FormFactor.SO_DIMM_16b",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.FormFactor.SO_DIMM_32b",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.FormFactor.Die"
+                                    ]
+                                },
+                                "MemoryTotalWidth": {
+                                    "type": "number"
+                                },
+                                "AllowedSpeedsMT": {
+                                    "items": {
+                                        "type": "number"
+                                    },
+                                    "type": "array"
+                                },
+                                "MemoryMedia": {
+                                    "enum": [
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.MemoryTech.Other",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.MemoryTech.Unknown",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.MemoryTech.DRAM",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.MemoryTech.NVDIMM_N",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.MemoryTech.NVDIMM_F",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.MemoryTech.NVDIMM_P",
+                                        "xyz.openbmc_project.Inventory.Item.Dimm.MemoryTech.IntelOptane"
+                                    ]
+                                }
+                            },
                             "type": "object"
                         },
                         "Valve": {
