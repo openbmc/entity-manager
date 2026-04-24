@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc4d338d_fa42efa3",
+        "filename": "schemas/gpio_presence.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-24T08:25:51Z",
+      "side": 1,
+      "message": "This is not related to gpio based presence detection, right?\n\nIt sounds more like a firmware update use-case, which should probably go into `firmware.json` or another schema.",
+      "range": {
+        "startLine": 50,
+        "startChar": 16,
+        "endLine": 53,
+        "endChar": 17
+      },
+      "revId": "713808a1b8fd62b142a548cbbf321dd3217aed77",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
