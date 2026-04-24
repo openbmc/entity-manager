@@ -132,6 +132,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "01fb48de_d1a2827f",
+        "filename": "schemas/openbmc-dbus.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-24T09:02:20Z",
+      "side": 1,
+      "message": "Please don\u0027t mark my comments as resolved if the problem has not been resolved.\n\nIt\u0027s not like i am unresponsive for 2 months or anything, so there is no need to close these comments for reasons like that.\n\n\u003e I\u0027ve reverted to empty object for now since Ed pointed out EM can\u0027t provide these from static config.\n\nWhatever comments Ed makes, it does not have any direct effect on the interface definition, and it does not change D-Bus spec.\n\nThe properties need to be set as `required`.\n\n\u003e If you have ideas on how EM could handle runtime properties like these, happy to revisit adding them back.\n\nAll or most of `Inventory.Item.Drive` properties have default values or `Unknown` values. And `Resettable` property can be set to false initially.\n\nSo if we know (by whichever mechanism) that we have a drive, EM can just create the interface with default/unknown property values and the reactor responsible for the drives can update these at runtime?\n\nIf we don\u0027t want property changes at runtime, the reactor responsible for querying the drives could also just create the inventory item by itself.\n\nA third idea:\nThe reactor responsible for drives creates `DrivePresence` interface which EM then probes on and can use to transfer the properties. So essentially a mirror of the existing interface to help create the `Item.Drive`.",
+      "parentUuid": "9fd3cfb4_a19f5a42",
+      "range": {
+        "startLine": 221,
+        "startChar": 28,
+        "endLine": 221,
+        "endChar": 44
+      },
+      "revId": "2fee29924977174922c37b4d48af9bfb1b7deebf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d8eb9c86_b11d06b4",
         "filename": "schemas/openbmc-dbus.json",
         "patchSetId": 5
