@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e4aa7d8_6b4a3502",
+        "filename": "src/entity_manager/em_config.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2026-04-27T15:57:17Z",
+      "side": 1,
+      "message": "I get wanting value semantics, but with json this could be relatively large map of string to strings for example, right? this seems innefficient. Would this be easier to write as:\n// pick your favorite return type\nstd::expected\u003cvoid, std:error_code\u003e getConfigProp(const nlohmann::json::object_t\u0026 cfg, const std:string name, T\u0026 property);\n\nThat way you get template deduction as well, and no pointer semantics. Do we think we\u0027re getting RVO invoked here?",
+      "revId": "1d0abaf016e3584c3f752dcb109c87d7ad41fb2a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ba3fdeb_4c9fc35a",
+        "filename": "src/entity_manager/em_config.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2026-04-27T15:57:17Z",
+      "side": 1,
+      "message": "nit, this might be easier to read with\n\nauto const\u0026 probeStr \u003d findProbe-\u003esecond;",
+      "revId": "1d0abaf016e3584c3f752dcb109c87d7ad41fb2a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "054651ac_1e2b42b4",
+        "filename": "src/entity_manager/em_config.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2026-04-27T15:57:17Z",
+      "side": 1,
+      "message": "nit, maybe I\u0027m missing something but we\u0027re switching between (*findProbe).second and findProbe-\u003esecond, I find the second one easier to read but either one is fine, just be consistent.",
+      "revId": "1d0abaf016e3584c3f752dcb109c87d7ad41fb2a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0f762f7_012192d3",
+        "filename": "src/entity_manager/em_config.hpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2026-04-27T15:57:17Z",
+      "side": 1,
+      "message": "this class doesn\u0027t have any private members. Consider saving yourself some boilerplate and make it a struct. Or consider adding some invariants if you want it to be a \"class\"",
+      "revId": "1d0abaf016e3584c3f752dcb109c87d7ad41fb2a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a2237f1_e8c8eebb",
+        "filename": "src/entity_manager/em_config.hpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2026-04-27T15:57:17Z",
+      "side": 1,
+      "message": "Why are we exposing constructors we dont want people to use?",
+      "revId": "1d0abaf016e3584c3f752dcb109c87d7ad41fb2a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c60f9b8d_9074f129",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2026-04-27T15:57:17Z",
+      "side": 1,
+      "message": "nit, this reads weird. IMO it would be easier as\n\n1. call json.get_ptr\u003cconst nlohmann::json::object*\u003e()\n2. check nullptr, bale if null\n3. assign to value",
+      "revId": "1d0abaf016e3584c3f752dcb109c87d7ad41fb2a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a76f1a1_fe54eb41",
+        "filename": "src/entity_manager/utils.hpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2026-04-27T15:57:17Z",
+      "side": 1,
+      "message": "this seems like we\u0027re trending into abuse of function overloading and default params.",
+      "revId": "1d0abaf016e3584c3f752dcb109c87d7ad41fb2a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e421a94_4999cc8f",
+        "filename": "test/entity_manager/test_em_config.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2026-04-27T15:57:17Z",
+      "side": 1,
+      "message": "Thanks for the unit tests 💪",
+      "revId": "1d0abaf016e3584c3f752dcb109c87d7ad41fb2a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
