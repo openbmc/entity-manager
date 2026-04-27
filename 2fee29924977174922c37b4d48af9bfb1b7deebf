@@ -156,6 +156,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0580148a_a4da22b1",
+        "filename": "schemas/openbmc-dbus.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-04-27T09:36:48Z",
+      "side": 1,
+      "message": "Sorry about marking the comments as resolved.\n\nThank you for walking through these alternatives, it helped me think through how the schema choice relates to the PDI interface definition and entity-manager\u0027s role in populating it.\n\nThe reason I want `Inventory.Item.Drive` on the EM entity is for a sub-device state management design (change [89404], currently under review). The drive state manager daemon discovers devices by watching for `Inventory.Item.Drive` interfaces that entity-manager publishes after a successful probe, and creates per-device `State.Drive` objects with associations back to the inventory path. `Inventory.Decorator.ManagedHost` is also on the same entity for host dependency validation. Detection is driven by `gpio-presence` / `DevicePresence` Probe so the inventory lifecycle is tied to physical presence.\n\nFor the second suggestion (reactor creates the inventory item by itself) and third suggestion (reactor creates a `DrivePresence` interface which EM probes on and transfers the properties): my understanding is that both require a reactor daemon that can query the drive for runtime information before the `Inventory.Item.Drive` interface appears on D-Bus. In the drive state manager context, my concern is that if the reactor daemon fails to obtain runtime information for any reason (device in a bad state, communication issues, daemon not running), the `Inventory.Item.Drive` interface would not be created, and the drive state manager daemon would have no inventory to bind to. Unless the reactor daemon can create the object regardless of the runtime query result, power control would become unavailable exactly when it is most needed.\n\nFor the first suggestion (EM creates the interface with PDI default/Unknown values, reactor updates at runtime): from the drive state manager perspective, this has no impact since it only watches for the presence of `Inventory.Item.Drive`, not its property values. The inventory object exists as soon as `gpio-presence` detects the physical device, independent of whether a reactor has updated the properties. That said, for cases like the existing `Inventory.Item.Dimm` on yosemite4 Wailua Falls, a single interface instance on one entity cannot represent multiple physical DIMMs on that board, so the properties would not carry much meaning in that scenario either.\n\nIf I misunderstood any of the three approaches, please let me know. I appreciate the suggestions.\n\n[89404]:https://gerrit.openbmc.org/c/openbmc/docs/+/89404",
+      "parentUuid": "01fb48de_d1a2827f",
+      "range": {
+        "startLine": 221,
+        "startChar": 28,
+        "endLine": 221,
+        "endChar": 44
+      },
+      "revId": "2fee29924977174922c37b4d48af9bfb1b7deebf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d8eb9c86_b11d06b4",
         "filename": "schemas/openbmc-dbus.json",
         "patchSetId": 5
