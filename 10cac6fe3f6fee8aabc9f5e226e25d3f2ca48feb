@@ -16,6 +16,58 @@
       "message": "being lazy but is sdbusplus::object_path effectively a std::string under the covers?",
       "revId": "10cac6fe3f6fee8aabc9f5e226e25d3f2ca48feb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44236cb5_3c3eecc5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-04-27T18:24:54Z",
+      "side": 1,
+      "message": "Yes, it mostly just adds escaping functions.",
+      "parentUuid": "896a8ea4_8e1f46cb",
+      "revId": "10cac6fe3f6fee8aabc9f5e226e25d3f2ca48feb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39a8d99a_30359545",
+        "filename": "src/entity_manager/topology.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-04-27T18:24:54Z",
+      "side": 1,
+      "message": "Same here.",
+      "revId": "10cac6fe3f6fee8aabc9f5e226e25d3f2ca48feb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30083fb8_7475786b",
+        "filename": "test/test_topology.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-04-27T18:24:54Z",
+      "side": 1,
+      "message": "I don\u0027t think this is neccesary, and even if you were going to do it, you should keep the same class name.",
+      "revId": "10cac6fe3f6fee8aabc9f5e226e25d3f2ca48feb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
