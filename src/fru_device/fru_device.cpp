@@ -1453,6 +1453,10 @@ int main()
                 {
                     powerIsOn = true;
                 }
+                else 
+                {
+		    powerIsOn = false;	
+		}    
             }
 
             if (powerIsOn)
