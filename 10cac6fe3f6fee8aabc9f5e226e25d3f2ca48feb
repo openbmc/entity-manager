@@ -53,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de609c74_4459a776",
+        "filename": "src/entity_manager/topology.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-28T10:13:25Z",
+      "side": 1,
+      "message": "renamed to just `object_path` for the alias as suggested 👍",
+      "parentUuid": "39a8d99a_30359545",
+      "revId": "10cac6fe3f6fee8aabc9f5e226e25d3f2ca48feb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "30083fb8_7475786b",
@@ -66,6 +84,24 @@
       "writtenOn": "2026-04-27T18:24:54Z",
       "side": 1,
       "message": "I don\u0027t think this is neccesary, and even if you were going to do it, you should keep the same class name.",
+      "revId": "10cac6fe3f6fee8aabc9f5e226e25d3f2ca48feb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d05eb54_6990f19e",
+        "filename": "test/test_topology.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-28T10:13:25Z",
+      "side": 1,
+      "message": "\u003e you should keep the same class name.\n\nThanks, yeah that will make it much easier to remember what it\u0027s for.\n\nI removed the type alias here since the test code is not as dense and there\nis less benefit to have it here.\n\n\nI kept it around for the header and especially the data structure declarations,\nas it makes them more compact and readable.",
+      "parentUuid": "30083fb8_7475786b",
       "revId": "10cac6fe3f6fee8aabc9f5e226e25d3f2ca48feb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
