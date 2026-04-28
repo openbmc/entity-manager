@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7da29fde_7100957e",
+        "filename": "src/entity_manager/em_config.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-28T17:03:48Z",
+      "side": 1,
+      "message": "I have changed it here to `std::expected\u003cvoid, std::string\u003e` to capture the error message which could be simpler since it\u0027s just an internal API for this file.\n\n\u003e Do we think we\u0027re getting RVO invoked here?\n\nI was not super concerned about optimizations on this parsing code. \nThis function is only called around 2 times for each config file.\n\nBut happy to make changes here and there if someone knows a better way / algorithm.",
+      "parentUuid": "4e4aa7d8_6b4a3502",
+      "revId": "1d0abaf016e3584c3f752dcb109c87d7ad41fb2a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8ba3fdeb_4c9fc35a",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-04-27T15:57:17Z",
       "side": 1,
       "message": "nit, this might be easier to read with\n\nauto const\u0026 probeStr \u003d findProbe-\u003esecond;",
+      "revId": "1d0abaf016e3584c3f752dcb109c87d7ad41fb2a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a74122a2_de821c89",
+        "filename": "src/entity_manager/em_config.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-28T17:03:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ba3fdeb_4c9fc35a",
       "revId": "1d0abaf016e3584c3f752dcb109c87d7ad41fb2a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c329494c_4f614365",
+        "filename": "src/entity_manager/em_config.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-28T17:03:48Z",
+      "side": 1,
+      "message": "\u003e just be consistent.\n\n100% agree. Adjusted it and hopefully should be consistent now 👍\n\nAgree that using the arrow is more readable and also shorter.",
+      "parentUuid": "054651ac_1e2b42b4",
+      "revId": "1d0abaf016e3584c3f752dcb109c87d7ad41fb2a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e0f762f7_012192d3",
@@ -65,6 +119,24 @@
       "writtenOn": "2026-04-27T15:57:17Z",
       "side": 1,
       "message": "this class doesn\u0027t have any private members. Consider saving yourself some boilerplate and make it a struct. Or consider adding some invariants if you want it to be a \"class\"",
+      "revId": "1d0abaf016e3584c3f752dcb109c87d7ad41fb2a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "133034ab_a11fe38f",
+        "filename": "src/entity_manager/em_config.hpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-28T17:03:48Z",
+      "side": 1,
+      "message": "Made the throwing constructor private. I do see better encapsulation to be in the cards for this class, but have to keep it fairly plain now since it has to work as a replacement for a json object (where EM does all kinds of manipulations on it).\n\nIn the future it could be possible to distinguish between an original all-const version for the loaded config and a runtime version which represents an instance of a device.\n\nHowever all of that is only ideas for the future.",
+      "parentUuid": "e0f762f7_012192d3",
       "revId": "1d0abaf016e3584c3f752dcb109c87d7ad41fb2a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -86,6 +158,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "124590e2_8beba487",
+        "filename": "src/entity_manager/em_config.hpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-28T17:03:48Z",
+      "side": 1,
+      "message": "Made it private. It\u0027s not much overhead to go through the optional for testcases 👍",
+      "parentUuid": "7a2237f1_e8c8eebb",
+      "revId": "1d0abaf016e3584c3f752dcb109c87d7ad41fb2a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c60f9b8d_9074f129",
@@ -99,6 +189,24 @@
       "writtenOn": "2026-04-27T15:57:17Z",
       "side": 1,
       "message": "nit, this reads weird. IMO it would be easier as\n\n1. call json.get_ptr\u003cconst nlohmann::json::object*\u003e()\n2. check nullptr, bale if null\n3. assign to value",
+      "revId": "1d0abaf016e3584c3f752dcb109c87d7ad41fb2a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fb23bfb_3a2c944f",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-28T17:03:48Z",
+      "side": 1,
+      "message": "yep, and more verbose too (repeated lohmann json object ...)\n\nChanged it as suggested 👍",
+      "parentUuid": "c60f9b8d_9074f129",
       "revId": "1d0abaf016e3584c3f752dcb109c87d7ad41fb2a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -120,6 +228,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8abd08f5_85f78d21",
+        "filename": "src/entity_manager/utils.hpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-28T17:03:48Z",
+      "side": 1,
+      "message": "I have added `Str` suffix onto them now: `templateCharReplaceStr`, so it will be less confusing to tell them apart from the others.\n\nI have also removed the default arguments as they were not needed. Simply added the argument value where the caller did not yet supply it.",
+      "parentUuid": "0a76f1a1_fe54eb41",
+      "revId": "1d0abaf016e3584c3f752dcb109c87d7ad41fb2a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e421a94_4999cc8f",
@@ -133,6 +259,24 @@
       "writtenOn": "2026-04-27T15:57:17Z",
       "side": 1,
       "message": "Thanks for the unit tests 💪",
+      "revId": "1d0abaf016e3584c3f752dcb109c87d7ad41fb2a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06f77a23_c6065211",
+        "filename": "test/entity_manager/test_em_config.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-28T17:03:48Z",
+      "side": 1,
+      "message": "It makes me feel better about the code. Less chance for it to come back for repairs 😄\n\nThanks for the reviews ❤️",
+      "parentUuid": "7e421a94_4999cc8f",
       "revId": "1d0abaf016e3584c3f752dcb109c87d7ad41fb2a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
