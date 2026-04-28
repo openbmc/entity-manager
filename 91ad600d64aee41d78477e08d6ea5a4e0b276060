@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b29ffaba_f3257370",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-28T09:19:35Z",
+      "side": 1,
+      "message": "Why do you want to require the host to be powered to do a bus scan?\n\n\nhardware inventory information is separate from host power state. It should not be necessary to power it on to access IPMI fru eeproms.\n\n\nOtherwise, if the host is powered off, the BMC cannot distinguish that from hardware being removed, making hardware inventory implementation impossible.\n\nAny such hardware is probably wrongly designed.\n\nYou could implement that as a special case, meaning that the BMC knows this is the case for specific buses.\n\nBut i have never seen a hardware where not at least one FRU eeprom is accessible when the host is powered off.\n\nSo we cannot assume the limitation/quirk in your hardware design (for a specific bus) applies to all i2c buses on all hardware.",
+      "range": {
+        "startLine": 14,
+        "startChar": 36,
+        "endLine": 15,
+        "endChar": 42
+      },
+      "revId": "91ad600d64aee41d78477e08d6ea5a4e0b276060",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3cdb046_031ae128",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-28T09:19:35Z",
+      "side": 1,
+      "message": "```suggestion\nTested:\n```\n\nPlease also mention here on which hardware or emulation did you test this change?\n\nPlease also provide logs of the things that you tested.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 10
+      },
+      "revId": "91ad600d64aee41d78477e08d6ea5a4e0b276060",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63705abb_cb4b3811",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-28T09:19:35Z",
+      "side": 1,
+      "message": "Let\u0027s avoid further hacking on this inline implementation of a power state monitor.\n\nIt\u0027s a common pattern with proven solution that\u0027s used in multiple repos.\n\nLet\u0027s just use the existing power state monitor in `src/entity_manager/power_status_monitor.cpp` and make FruDevice use that one.",
+      "revId": "91ad600d64aee41d78477e08d6ea5a4e0b276060",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
