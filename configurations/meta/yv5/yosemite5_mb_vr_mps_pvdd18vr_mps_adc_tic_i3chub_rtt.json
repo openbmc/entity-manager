@@ -403,10 +403,10 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 0.9,
+                    "Hysteresis": 1.1,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 45.0
+                    "Value": 55.0
                 }
             ],
             "Type": "LM75A"
@@ -425,10 +425,10 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 1.5,
+                    "Hysteresis": 1.7,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 75.0
+                    "Value": 85.0
                 }
             ],
             "Type": "LM75A"
@@ -667,7 +667,7 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 6.82,
+                    "Hysteresis": 8.2,
                     "Label": "iout1",
                     "Name": "upper critical",
                     "Severity": 1,
@@ -675,7 +675,7 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 8.184,
+                    "Hysteresis": 10.7448,
                     "Label": "pout1",
                     "Name": "upper critical",
                     "Severity": 1,
@@ -800,7 +800,7 @@
             "Thresholds": [
                 {
                     "Direction": "less than",
-                    "Hysteresis": 0.0352,
+                    "Hysteresis": 0.0336,
                     "Label": "vout1",
                     "Name": "lower critical",
                     "Severity": 1,
@@ -808,7 +808,7 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 0.0366,
+                    "Hysteresis": 0.037,
                     "Label": "vout1",
                     "Name": "upper critical",
                     "Severity": 1,
