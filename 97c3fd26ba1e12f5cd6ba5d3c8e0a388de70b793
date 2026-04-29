@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "439fc666_273652dc",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-29T08:21:44Z",
+      "side": 1,
+      "message": "Yes, it is not needed\n\n```cpp\n 21808     template\u003ctypename PointerType, typename std::enable_if\u003c\n  21809                  std::is_pointer\u003cPointerType\u003e::value, int\u003e::type \u003d 0\u003e\n  21810     auto get_ptr() noexcept -\u003e decltype(std::declval\u003cbasic_json_t\u0026\u003e().get_impl_ptr(st        d::declval\u003cPointerType\u003e()))\n  21811     {\n  21812         // delegate the call to get_impl_ptr\u003c\u003e() \n  21813         return get_impl_ptr(static_cast\u003cPointerType\u003e(nullptr));\n  21814     }\n\n  21704     /// get a pointer to the value (string)\nA\u003e21705     string_t* get_impl_ptr(string_t* /*unused*/) noexcept\n  21706     {\n  21707         return is_string() ? m_data.m_value.string : nullptr;\n  21708     }\n```\n\nremoved the redundant check 👍",
+      "parentUuid": "bbe539ec_9e05b2fb",
+      "revId": "97c3fd26ba1e12f5cd6ba5d3c8e0a388de70b793",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7573083f_d4749095",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-04-28T18:10:45Z",
       "side": 1,
       "message": "same feedback here.",
+      "revId": "97c3fd26ba1e12f5cd6ba5d3c8e0a388de70b793",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bc6e862_aef13311",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-29T08:21:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7573083f_d4749095",
       "revId": "97c3fd26ba1e12f5cd6ba5d3c8e0a388de70b793",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
