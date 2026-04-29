@@ -898,11 +898,11 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 8.84,
+                    "Hysteresis": 9.88,
                     "Label": "iout1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 442
+                    "Value": 494.0
                 },
                 {
                     "Direction": "greater than",
@@ -986,19 +986,19 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 8.2,
+                    "Hysteresis": 8.51,
                     "Label": "iout1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 410
+                    "Value": 425.5
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 10.7448,
+                    "Hysteresis": 11.2332,
                     "Label": "pout1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 537.24
+                    "Value": 561.66
                 },
                 {
                     "Direction": "greater than",
@@ -1070,11 +1070,11 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 8.84,
+                    "Hysteresis": 9.88,
                     "Label": "iout1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 442.0
+                    "Value": 494.0
                 },
                 {
                     "Direction": "greater than",
@@ -1612,10 +1612,17 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 1.9,
+                    "Hysteresis": 2.0,
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 100.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.9,
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 95.0
                 }
             ],
             "Type": "SBTSI"
