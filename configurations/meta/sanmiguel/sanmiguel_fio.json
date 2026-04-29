@@ -8,7 +8,7 @@
         }
     ],
     "Name": "SanMiguel FIO",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'San Miguel FIO ', 'BOARD_MANUFACTURER': 'Quanta'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'San Miguel FIO ', 'BOARD_MANUFACTURER': '(Ingrasys|Quanta)'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
