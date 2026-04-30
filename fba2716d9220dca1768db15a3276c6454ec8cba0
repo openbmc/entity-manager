@@ -16,6 +16,24 @@
       "message": "It would be better to add a nullptr check for probeArray before\ndereferencing it in the for loop, since get_ptr() returns nullptr\nif the JSON value type does not match",
       "revId": "fba2716d9220dca1768db15a3276c6454ec8cba0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9f94129_0567489a",
+        "filename": "src/entity_manager/em_config.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-04-30T11:12:39Z",
+      "side": 1,
+      "message": "There is a check for the value type on line 69\n\n```\n\n    if (findProbe-\u003esecond.type() \u003d\u003d nlohmann::json::value_t::array)\n    {\n        const auto* probeArray \u003d\n            findProbe-\u003esecond.get_ptr\u003cconst nlohmann::json::array_t*\u003e();\n```\n\nso we already know it\u0027s an array.\n\nIt might be interesting to add testcases for non-(array or string) Probe statement  but i don\u0027t want to do that now since there were already complaints about the size of this patch.",
+      "parentUuid": "697573b8_278cd353",
+      "revId": "fba2716d9220dca1768db15a3276c6454ec8cba0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
