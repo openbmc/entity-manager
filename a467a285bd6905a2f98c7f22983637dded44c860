@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "852fc6ca_bcd6db2d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000212
+      },
+      "writtenOn": "2026-05-01T19:55:57Z",
+      "side": 1,
+      "message": "Please rename from using names ttyUSB* which can have a runtime change. Instead use the port names like ttyRS485-{N} which is the label on the chassis.\n\nAlso I think we are missing the configuration for the port? Is that coming up or missing?",
+      "revId": "a467a285bd6905a2f98c7f22983637dded44c860",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79a93cac_91c274e0",
+        "filename": "configurations/meta/ventura2/ventura2_valve.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1000212
+      },
+      "writtenOn": "2026-05-01T19:55:57Z",
+      "side": 1,
+      "message": "ttyRS485-8",
+      "revId": "a467a285bd6905a2f98c7f22983637dded44c860",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9874ad3e_286f3af9",
+        "filename": "configurations/meta/ventura2/ventura2_valve.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1000212
+      },
+      "writtenOn": "2026-05-01T19:55:57Z",
+      "side": 1,
+      "message": "call this ttyRS485-9",
+      "revId": "a467a285bd6905a2f98c7f22983637dded44c860",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a77258e_ebf7db28",
+        "filename": "configurations/meta/ventura2/ventura2_valve.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1000212
+      },
+      "writtenOn": "2026-05-01T19:55:57Z",
+      "side": 1,
+      "message": "ttyRS485-10",
+      "revId": "a467a285bd6905a2f98c7f22983637dded44c860",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3ca1e81_ae2f9a5b",
+        "filename": "configurations/meta/ventura2/ventura2_valve.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1000212
+      },
+      "writtenOn": "2026-05-01T19:55:57Z",
+      "side": 1,
+      "message": "ttyRS485-8",
+      "revId": "a467a285bd6905a2f98c7f22983637dded44c860",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2656171_655f4e89",
+        "filename": "configurations/meta/ventura2/ventura2_valve.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 1000212
+      },
+      "writtenOn": "2026-05-01T19:55:57Z",
+      "side": 1,
+      "message": "ttyRS485-9",
+      "revId": "a467a285bd6905a2f98c7f22983637dded44c860",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "406ec96e_104a8146",
+        "filename": "configurations/meta/ventura2/ventura2_valve.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1000212
+      },
+      "writtenOn": "2026-05-01T19:55:57Z",
+      "side": 1,
+      "message": "ttyRS485-10",
+      "revId": "a467a285bd6905a2f98c7f22983637dded44c860",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
