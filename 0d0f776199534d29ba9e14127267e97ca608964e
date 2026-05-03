@@ -360,6 +360,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "30394d5d_f95b5a81",
+        "filename": "configurations/mellanox/connectx-6.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-05-03T19:54:26Z",
+      "side": 1,
+      "message": "\u003e I assume that the temperature sensor is directly part of the SoC and not a separate chip.\n\nExactly, so a TMP421 device in your EM config isn\u0027t appropriate here unless you actually have a TMP421.  If you want to invent a new device called \"connectx6 temp sensor\" that\u0027s fine, but please don\u0027t put in configs that we know to be incorrect.",
+      "parentUuid": "d086a1fc_f2f0e3e0",
+      "range": {
+        "startLine": 20,
+        "startChar": 25,
+        "endLine": 20,
+        "endChar": 32
+      },
+      "revId": "0d0f776199534d29ba9e14127267e97ca608964e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2270d12d_8a9b33c8",
         "filename": "configurations/mellanox/connectx-6.json",
         "patchSetId": 2
