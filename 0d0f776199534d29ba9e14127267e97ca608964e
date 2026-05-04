@@ -408,6 +408,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b02478f4_012a55e6",
+        "filename": "configurations/mellanox/connectx-6.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-05-04T19:09:47Z",
+      "side": 1,
+      "message": "\u003e Exactly, so a TMP421 device in your EM config isn\u0027t appropriate here unless you actually have a TMP421.\n\n\u003e That\u0027s fine, then go create a new device type for this sensor and how it behaves.\n\nNo, this is not what we should be doing.\n\nWhat you are asking for requires Alexander to write a kernel driver with the new type.  But he doesn\u0027t have information to even formulate a successful commit message to the kernel let alone a whole new driver.\n\nThe types here are effectively \"compatible\" names; they are not literal device names.  There are other examples already in the EM tree where the \"real\" device isn\u0027t the literal stamped name of the device in a chip either.  But, if it acts like a TMP421, talks like a TMP421, we label it as a TMP421.  This is honestly the same behavior in the kernel and QEMU as well.\n\nTMP421 is a 20+ year old i2c design.  The CX-6 has been GA for over 6 years old.  These things aren\u0027t changing.  Asking the kernel to add a new compatible string just to be \"more explicit\" here isn\u0027t worth the effort it would take to make it happen.",
+      "parentUuid": "3f3bcbdc_c69ca4cc",
+      "range": {
+        "startLine": 20,
+        "startChar": 25,
+        "endLine": 20,
+        "endChar": 32
+      },
+      "revId": "0d0f776199534d29ba9e14127267e97ca608964e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2270d12d_8a9b33c8",
         "filename": "configurations/mellanox/connectx-6.json",
         "patchSetId": 2
