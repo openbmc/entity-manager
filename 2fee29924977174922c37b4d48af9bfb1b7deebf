@@ -103,6 +103,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5411c495_ef396a9d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-05-05T09:42:14Z",
+      "side": 1,
+      "message": "I think the gap may come from the fact that these runtime properties were added to Item.Drive for Redfish mapping, when the daemon expected to provide the runtime data was also the one expected to create the D-Bus object. In the EM model, EM creates the object but does not interrogate the device. `Item.Dimm` seems to have a similar situation.\n\nAs one possible direction, moving the runtime properties into a separate interface populated by the daemon that queries the hardware. bmcweb would need corresponding changes to read from the new interface. I may be missing context on the original design intent, and this would need broader discussion. If this direction is considered reasonable, I am happy to propose the changes.\n\nIf all runtime properties are moved out, the empty object in this patch would match what remains on Item.Drive in PDI. If some properties are kept on Item.Drive, I can add those to the schema accordingly. If owners prefer a different approach entirely, I can update as well.",
+      "parentUuid": "8d757f01_feb037a0",
+      "revId": "2fee29924977174922c37b4d48af9bfb1b7deebf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d2b7255a_ad721bcb",
         "filename": "schemas/openbmc-dbus.json",
         "patchSetId": 5
