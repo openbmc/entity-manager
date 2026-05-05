@@ -1,6 +1,48 @@
 {
     "Exposes": [
         {
+            "Address": "0x1f",
+            "Bus": "$bus",
+            "Labels": [
+                "in6",
+                "in7"
+            ],
+            "Name": "BUSBAR_ADC",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Label": "in6",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 0.1
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in6",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 3.74
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in7",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 0.1
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in7",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 3.74
+                }
+            ],
+            "Type": "ADC128D818",
+            "in6_Name": "PDB_R_BUSBAR_TSENSE_P2_VOLT_V",
+            "in7_Name": "PDB_R_BUSBAR_TSENSE_P1_VOLT_V"
+        },
+        {
             "Address": "$address",
             "Bus": "$bus",
             "Name": "PDB_R FRU",
@@ -622,7 +664,7 @@
             "Address": "0x4c",
             "Bus": "$bus",
             "Name": "PDB_R_P12V_MB_VRM_AMB_TEMP_C",
-            "Name1": "PDB_R_BUSBAR_TEMP_C",
+            "Name1": "PDB_R_BUSBAR_AMB_TEMP_C",
             "Name2": "PDB_R_EAM2_AMB_TEMP_C",
             "Thresholds": [
                 {
