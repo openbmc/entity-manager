@@ -252,7 +252,7 @@
             "Type": "GPIODeviceDetect"
         },
         {
-            "Name": "RackRightManifoldPort",
+            "Name": "RackColdManifoldPort",
             "PresencePinNames": [
                 "wPRSNT_LEAK3_SENSOR_R_PLD_N"
             ],
@@ -262,7 +262,7 @@
             "Type": "GPIODeviceDetect"
         },
         {
-            "Name": "RackLeftManifoldPort",
+            "Name": "RackHotManifoldPort",
             "PresencePinNames": [
                 "wPRSNT_LEAK4_SENSOR_R_PLD_N"
             ],
@@ -1059,7 +1059,7 @@
         },
         {
             "Level": "Critical",
-            "Name": "RackRightManifold",
+            "Name": "RackColdManifold",
             "PinName": "LEAK3_DETECT",
             "Polarity": "High",
             "SubType": "LeakSensingCable",
@@ -1067,7 +1067,7 @@
         },
         {
             "Level": "Critical",
-            "Name": "RackLeftManifold",
+            "Name": "RackHotManifold",
             "PinName": "LEAK4_DETECT",
             "Polarity": "High",
             "SubType": "LeakSensingCable",

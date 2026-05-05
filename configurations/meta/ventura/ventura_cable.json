@@ -26,7 +26,7 @@
         "Exposes": [],
         "Name": "$Name",
         "Probe": [
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^RackRightManifoldPort$', 'Compatible': '^com.meta.Hardware.BMC.Model.Ventura$'})"
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^RackColdManifoldPort$', 'Compatible': '^com.meta.Hardware.BMC.Model.Ventura$'})"
         ],
         "Type": "Cable",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
@@ -45,7 +45,7 @@
         "Exposes": [],
         "Name": "$Name",
         "Probe": [
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^RackLeftManifoldPort$', 'Compatible': '^com.meta.Hardware.BMC.Model.Ventura$'})"
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^RackHotManifoldPort$', 'Compatible': '^com.meta.Hardware.BMC.Model.Ventura$'})"
         ],
         "Type": "Cable",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
