@@ -368,7 +368,7 @@
             "Type": "GPIODeviceDetect"
         },
         {
-            "Name": "RackDripTrayLeak1Port",
+            "Name": "RackDripPanPort1",
             "PresencePinNames": [
                 "PRSNT_LEAK0_SENSOR_R_PLD_N"
             ],
@@ -378,7 +378,7 @@
             "Type": "GPIODeviceDetect"
         },
         {
-            "Name": "RackDripTrayLeak2Port",
+            "Name": "RackDripPanPort2",
             "PresencePinNames": [
                 "PRSNT_LEAK1_SENSOR_R_PLD_N"
             ],
@@ -388,7 +388,7 @@
             "Type": "GPIODeviceDetect"
         },
         {
-            "Name": "RackLeakSpare1Port",
+            "Name": "RackLeakSparePort1",
             "PresencePinNames": [
                 "PRSNT_LEAK2_SENSOR_R_PLD_N"
             ],
@@ -398,7 +398,7 @@
             "Type": "GPIODeviceDetect"
         },
         {
-            "Name": "RackLeakSpare2Port",
+            "Name": "RackLeakSparePort2",
             "PresencePinNames": [
                 "PRSNT_LEAK3_SENSOR_R_PLD_N"
             ],
@@ -408,7 +408,7 @@
             "Type": "GPIODeviceDetect"
         },
         {
-            "Name": "RackLeakSpare3Port",
+            "Name": "RackLeakSparePort3",
             "PresencePinNames": [
                 "PRSNT_LEAK4_SENSOR_R_PLD_N"
             ],
@@ -418,7 +418,7 @@
             "Type": "GPIODeviceDetect"
         },
         {
-            "Name": "RackFloorLeakPort",
+            "Name": "RackFloorLeakPort1",
             "PresencePinNames": [
                 "PRSNT_LEAK5_SENSOR_R_PLD_N"
             ],
@@ -428,7 +428,7 @@
             "Type": "GPIODeviceDetect"
         },
         {
-            "Name": "RackFloorLeakSpare1Port",
+            "Name": "RackFloorLeakPort2",
             "PresencePinNames": [
                 "PRSNT_LEAK6_SENSOR_R_PLD_N"
             ],
@@ -438,7 +438,7 @@
             "Type": "GPIODeviceDetect"
         },
         {
-            "Name": "RackFloorLeakSpare2Port",
+            "Name": "RackFloorLeakPort3",
             "PresencePinNames": [
                 "PRSNT_LEAK7_SENSOR_R_PLD_N"
             ],
@@ -619,7 +619,7 @@
         },
         {
             "Level": "Critical",
-            "Name": "RackDripTrayLeak1",
+            "Name": "RackDripPan1",
             "PinName": "CHASSIS0_LEAK_Q_N_R",
             "Polarity": "Low",
             "SubType": "LeakSensingCable",
@@ -627,7 +627,7 @@
         },
         {
             "Level": "Critical",
-            "Name": "RackDripTrayLeak2",
+            "Name": "RackDripPan2",
             "PinName": "CHASSIS1_LEAK_Q_N_R",
             "Polarity": "Low",
             "SubType": "LeakSensingCable",
@@ -659,7 +659,7 @@
         },
         {
             "Level": "Critical",
-            "Name": "RackFloorLeak",
+            "Name": "RackFloorLeak1",
             "PinName": "CHASSIS5_LEAK_Q_N_R",
             "Polarity": "Low",
             "SubType": "LeakSensingCable",
@@ -667,7 +667,7 @@
         },
         {
             "Level": "Critical",
-            "Name": "RackFloorLeakSpare1",
+            "Name": "RackFloorLeak2",
             "PinName": "CHASSIS6_LEAK_Q_N_R",
             "Polarity": "Low",
             "SubType": "LeakSensingCable",
@@ -675,7 +675,7 @@
         },
         {
             "Level": "Critical",
-            "Name": "RackFloorLeakSpare2",
+            "Name": "RackFloorLeak3",
             "PinName": "CHASSIS7_LEAK_Q_N_R",
             "Polarity": "Low",
             "SubType": "LeakSensingCable",
