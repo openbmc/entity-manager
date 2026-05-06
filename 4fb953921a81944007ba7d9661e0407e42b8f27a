@@ -22,6 +22,30 @@
       },
       "revId": "4fb953921a81944007ba7d9661e0407e42b8f27a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6a5fad1_3476b6f8",
+        "filename": "configurations/nvidia/vr_nvl72.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2026-05-06T00:51:46Z",
+      "side": 1,
+      "message": "Due to the linename of Leak GPIO pins (https://gerrit.openbmc.org/c/openbmc/entity-manager/+/88602/3), we are not able to use $address variable to replace \"B0\" \u0026 \"B1\".\n\n- HPM0\n - \"B0_vLeakDetect1Status0-I\"\n - \"B0_vLeakDetect1Status1-I\"\n\n- HPM1\n - \"B1_vLeakDetect1Status0-I\"\n - \"B1_vLeakDetect1Status1-I\"\n\n\nIt seems that a space is needed after the formula, otherwise the string will be incorrect.\n\nFor example: (address \u003d 80)\n\"B$address - 80_vLeakDetect1Status0-I\"  --\u003e \"B0\"\n\"B$address - 80 _vLeakDetect1Status0-I\"  --\u003e \"B0 _vLeakDetect1Status0-I\"",
+      "parentUuid": "7ab30f47_2167b8b0",
+      "range": {
+        "startLine": 12,
+        "startChar": 166,
+        "endLine": 12,
+        "endChar": 190
+      },
+      "revId": "4fb953921a81944007ba7d9661e0407e42b8f27a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
