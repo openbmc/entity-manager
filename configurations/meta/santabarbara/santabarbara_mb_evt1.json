@@ -237,6 +237,16 @@
             "Type": "EEPROM"
         },
         {
+            "Name": "MB_CPU0",
+            "PresencePinNames": [
+                "FM_PRSNT_CPU0_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
             "Name": "E1SBP_Cable_Power",
             "PresencePinNames": [
                 "FM_CBL_PRSNT_OSFP_A_N",
