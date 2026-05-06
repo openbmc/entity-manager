@@ -1416,6 +1416,11 @@
                         "Label": {
                             "type": "string"
                         },
+                        "LogOnSecondHit": {
+                            "description": "Assert threshold only after two consecutive over-limit readings",
+                            "type": "string",
+                            "enum": ["Required", "NotRequired"]
+                        },
                         "Name": {
                             "type": "string"
                         },
