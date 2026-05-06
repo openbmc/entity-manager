@@ -39,6 +39,48 @@
       "message": "Why did we make this change?  The reason isn\u0027t reflected in the commit message.  Probably belongs in a separate commit.\n\nMake sure we give reasons why we\u0027re removing the \"DDR4\" vs \"DDR5\" identifiers.",
       "revId": "ef799365703b894d1c69716c40ab5024581aa748",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b382038e_3af19c9b",
+        "filename": "configurations/meta/yv5/yosemite5_cxl_ddr4_board_vr_mps.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 808,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2026-05-06T00:48:24Z",
+      "side": 1,
+      "message": "VF and MF refer to Maple_Falls and \"Maple Falls\" and \"Victoria Falls\".\n\nShould expand VF/MF to their full names for clarity, or keep the shorter form?",
+      "parentUuid": "be257041_606739e3",
+      "range": {
+        "startLine": 808,
+        "startChar": 27,
+        "endLine": 808,
+        "endChar": 29
+      },
+      "revId": "ef799365703b894d1c69716c40ab5024581aa748",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7d2d3a7_82110f15",
+        "filename": "configurations/meta/yv5/yosemite5_cxl_ddr4_board_vr_mps.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 808,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2026-05-06T00:48:24Z",
+      "side": 1,
+      "message": "Hi @patrick@stwcx.xyz, VF and MF refer to \"Maple Falls\" and \"Victoria Falls\", respectively. The naming was changed from DDR4/DDR5 to VF/MF to better align with the board names.\n\nShould expand VF/MF to their full names for clarity, or keep the shorter form?",
+      "parentUuid": "01409895_8542922c",
+      "revId": "ef799365703b894d1c69716c40ab5024581aa748",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
