@@ -1416,6 +1416,11 @@
                         "Label": {
                             "type": "string"
                         },
+                        "LogRetryCount": {
+                            "description": "Number of consecutive over-limit readings required before asserting threshold",
+                            "type": "number",
+                            "minimum": 0
+                        },
                         "Name": {
                             "type": "string"
                         },
