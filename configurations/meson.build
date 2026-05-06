@@ -172,6 +172,8 @@ configs = [
     'meta/minerva/minerva_pttv.json',
     'meta/minerva/minerva_sitv.json',
     'meta/minerva/minerva_tahan_smb.json',
+    'meta/rainier/rainier_hpm.json',
+    'meta/rainier/rainier_scm_2600.json',
     'meta/sanmiguel/sanmiguel_fio.json',
     'meta/sanmiguel/sanmiguel_pdb.json',
     'meta/sanmiguel/sanmiguel_scm.json',
