@@ -13,6 +13,166 @@
             "Type": "EEPROM_24C256"
         },
         {
+            "MaxValue": 255,
+            "MinValue": -255.0,
+            "Name": "BRB_L_FE_NIC0_Temp_C",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 95
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 105
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 110
+                }
+            ],
+            "Timeout": 30.0,
+            "Type": "ExternalSensor",
+            "Units": "DegreesC"
+        },
+        {
+            "MaxValue": 255,
+            "MinValue": -255.0,
+            "Name": "EAM0_BE_NIC0_Temp_C",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 95
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 105
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 110
+                }
+            ],
+            "Timeout": 30.0,
+            "Type": "ExternalSensor",
+            "Units": "DegreesC"
+        },
+        {
+            "MaxValue": 255,
+            "MinValue": -255.0,
+            "Name": "EAM0_BE_NIC1_Temp_C",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 95
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 105
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 110
+                }
+            ],
+            "Timeout": 30.0,
+            "Type": "ExternalSensor",
+            "Units": "DegreesC"
+        },
+        {
+            "MaxValue": 255,
+            "MinValue": -255.0,
+            "Name": "EAM1_BE_NIC0_Temp_C",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 95
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 105
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 110
+                }
+            ],
+            "Timeout": 30.0,
+            "Type": "ExternalSensor",
+            "Units": "DegreesC"
+        },
+        {
+            "MaxValue": 255,
+            "MinValue": -255.0,
+            "Name": "EAM1_BE_NIC1_Temp_C",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 95
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 105
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 110
+                }
+            ],
+            "Timeout": 30.0,
+            "Type": "ExternalSensor",
+            "Units": "DegreesC"
+        },
+        {
             "Address": "0x71",
             "Bus": 0,
             "FirmwareInfo": {
