@@ -22,6 +22,30 @@
       },
       "revId": "ee92f1ae8f962f0e5b940073e416ad4a176e22dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "949d39b4_6f05f125",
+        "filename": "configurations/nvidia/cx9_mezzanine_module.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2026-05-06T01:17:42Z",
+      "side": 1,
+      "message": "For the CX9 modules we have received, the `BOARD_MANUFACTURER` field is set to \"Nvidia\" only.\n\nThis implementation was initially referenced from `cx8_mezzanine_module.json`. Also, according to the documentation provided by Nvidia, there are many other boards (e.g., HMC, HPM) that use \"NVIDIA\" as the manufacturer string.\n\nI guess supporting both \"Nvidia\" and \"NVIDIA\" should able to cover all cases.",
+      "parentUuid": "df34426b_a95a3e9c",
+      "range": {
+        "startLine": 11,
+        "startChar": 117,
+        "endLine": 11,
+        "endChar": 132
+      },
+      "revId": "ee92f1ae8f962f0e5b940073e416ad4a176e22dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
