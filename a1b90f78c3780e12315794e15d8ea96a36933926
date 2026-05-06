@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e8931720_3b87e70b",
+        "filename": "platform_configurations/nvidia/mgx_connectx8_supernic_switch_server.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1002395
+      },
+      "writtenOn": "2026-05-06T07:21:57Z",
+      "side": 1,
+      "message": "Correct me if I\u0027m wrong, but strictly speaking, isn\u0027t this SMA located on Board `Nvidia IMGX ConnectX8 SuperNIC Switch` as oppose to pluggable GPU Board? If yes shouldn\u0027t this be `Nvidia IMGX ConnectX8 SuperNIC Switch` instead?\n\nFor a case when an associated Entity (one pointed by Board property) has more than one configuration under its exposes section, to identify the configuration applicable to this particular SMA, should we make `Board` an object. Then, `BridgedEndpoints` property in the next commit would be array of `Board` objects. `Name` property of the `Board` object would be used by dbus-sensors applications to correctly identify applicable configuration exposed by associated Entity.\n\n```\n\"Board\": {\n    \"Entity\": \"Nvidia IMGX ConnectX8 SuperNIC Switch\",\n    \"Name\": \"GPU 7 SMA\"\n}\n\n```",
+      "parentUuid": "ca109774_174c116b",
+      "revId": "a1b90f78c3780e12315794e15d8ea96a36933926",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "65526f34_8f9cefaa",
         "filename": "platform_configurations/nvidia/mgx_connectx8_supernic_switch_server.json",
         "patchSetId": 2
