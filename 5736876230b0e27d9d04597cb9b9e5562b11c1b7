@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "77d58c0f_263aeba4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-05-07T11:42:45Z",
+      "side": 1,
+      "message": "overall sounds like a useful feature 👍",
+      "revId": "5736876230b0e27d9d04597cb9b9e5562b11c1b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "27896bc3_e88cb5f0",
@@ -14,6 +31,52 @@
       "writtenOn": "2026-05-07T11:16:02Z",
       "side": 1,
       "message": "This sounds like a very specific workaround.  What happens when someone needs to ignore 3 or 4?  Should we instead add a property of how many errors to ignore before reporting?",
+      "revId": "5736876230b0e27d9d04597cb9b9e5562b11c1b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60e8d211_141fa5a7",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1419,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-05-07T11:42:45Z",
+      "side": 1,
+      "message": "nitpick:\n\n\u003e Sensors behind I3C hubs occasionally report single spurious readings, such as impossible RPM spikes or temperatures dropping to sub-zero, which quickly revert to the normal range.\n\nThis applies to all thresholds for a specific sensor channel.\n\nSo we should probably not configure it per-threshold since it will always apply to all of the thresholds on a given channel.\n\ne.g. `temp1_input` will have this on all it\u0027s thresholds or none of them?\n\nAlternatively one could accept the config bloat and do some kind of sanity check on it to prevent it being mis-configured, but i did not see anything of that sort.",
+      "range": {
+        "startLine": 1419,
+        "startChar": 25,
+        "endLine": 1419,
+        "endChar": 39
+      },
+      "revId": "5736876230b0e27d9d04597cb9b9e5562b11c1b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b15defe8_c02f6727",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1422,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-05-07T11:42:45Z",
+      "side": 1,
+      "message": "Could you explain why you added `NotRequired` if you are not using it in any config.\n\nWhen would someone configure this value.\n\nIf you intended to avoid introducing new optional properties to the threshold configuration interface (more in line with D-Bus spec), all the existing instances would have to be adjusted as well.",
+      "range": {
+        "startLine": 1422,
+        "startChar": 50,
+        "endLine": 1422,
+        "endChar": 61
+      },
       "revId": "5736876230b0e27d9d04597cb9b9e5562b11c1b7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
