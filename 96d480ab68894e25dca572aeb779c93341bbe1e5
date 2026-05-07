@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c16fd24_5ac35e22",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-05-07T13:14:45Z",
+      "side": 1,
+      "message": "@ed@tanous.net\n\ncan you kindly look again and reference existing configs\n\nhttps://github.com/openbmc/entity-manager/blob/master/configurations/nvidia/cx7_mezzanine_module.json\n\nhttps://github.com/openbmc/entity-manager/blob/master/configurations/nvidia/cx8_mezzanine_module.json\n\nwhich i believe are quite similar as they also have a `TMP421` with unused channel.",
+      "revId": "96d480ab68894e25dca572aeb779c93341bbe1e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc1c34e9_fc7074cc",
@@ -19,6 +36,53 @@
         "startChar": 28,
         "endLine": 7,
         "endChar": 34
+      },
+      "revId": "96d480ab68894e25dca572aeb779c93341bbe1e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "680d7c4b_387e5d1b",
+        "filename": "configurations/mellanox/connectx-6.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-05-07T13:14:45Z",
+      "side": 1,
+      "message": "I don\u0027t know the size but looked again at the part. Did not spot the eeprom on there, either it is too small to see it properly or it is emulated by the SoC.\n\nSomeone can always adjust it later if they have more information.",
+      "parentUuid": "bc1c34e9_fc7074cc",
+      "range": {
+        "startLine": 7,
+        "startChar": 28,
+        "endLine": 7,
+        "endChar": 34
+      },
+      "revId": "96d480ab68894e25dca572aeb779c93341bbe1e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a59b559_caa8b3a9",
+        "filename": "configurations/mellanox/connectx-6.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-05-07T13:14:45Z",
+      "side": 1,
+      "message": "This is similar to https://github.com/openbmc/entity-manager/blob/master/configurations/nvidia/cx7_mezzanine_module.json\nand https://github.com/openbmc/entity-manager/blob/master/configurations/nvidia/cx8_mezzanine_module.json\n\nwith regards to `Labels, Name, Name1`\n\nand should work the same with regards to the unused channel.\n\nThey ignore it as well so it seems to be a similar situation like the configs which are already in tree.",
+      "range": {
+        "startLine": 11,
+        "startChar": 26,
+        "endLine": 16,
+        "endChar": 39
       },
       "revId": "96d480ab68894e25dca572aeb779c93341bbe1e5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
