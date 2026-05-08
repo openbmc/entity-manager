@@ -313,20 +313,20 @@
             "ILimitMax": 100,
             "ILimitMin": -50,
             "Inputs": [
-                "soc_mcp_DIMM_0_TS0_TEMP",
-                "soc_mcp_DIMM_1_TS0_TEMP",
-                "soc_mcp_DIMM_2_TS0_TEMP",
-                "soc_mcp_DIMM_3_TS0_TEMP",
-                "soc_mcp_DIMM_4_TS0_TEMP",
-                "soc_mcp_DIMM_5_TS0_TEMP",
-                "soc_mcp_DIMM_6_TS0_TEMP",
-                "soc_mcp_DIMM_7_TS0_TEMP",
-                "soc_mcp_DIMM_8_TS0_TEMP",
-                "soc_mcp_DIMM_9_TS0_TEMP",
-                "soc_mcp_DIMM_10_TS0_TEMP",
-                "soc_mcp_DIMM_11_TS0_TEMP"
+                "CXL_MF_DIMM_0_SPD_TEMP_C",
+                "CXL_MF_DIMM_1_SPD_TEMP_C",
+                "CXL_MF_DIMM_2_SPD_TEMP_C",
+                "CXL_MF_DIMM_3_SPD_TEMP_C",
+                "CXL_MF_DIMM_4_SPD_TEMP_C",
+                "CXL_MF_DIMM_5_SPD_TEMP_C",
+                "CXL_MF_DIMM_6_SPD_TEMP_C",
+                "CXL_MF_DIMM_7_SPD_TEMP_C",
+                "CXL_MF_DIMM_8_SPD_TEMP_C",
+                "CXL_MF_DIMM_9_SPD_TEMP_C",
+                "CXL_MF_DIMM_10_SPD_TEMP_C",
+                "CXL_MF_DIMM_11_SPD_TEMP_C"
             ],
-            "Name": "PID_SOC_MCP_DIMM_TS0",
+            "Name": "PID_CXL_MF_DIMM",
             "NegativeHysteresis": 2.0,
             "OutLimitMax": 100,
             "OutLimitMin": 0,
@@ -350,9 +350,9 @@
             "ILimitMax": 100,
             "ILimitMin": -50,
             "Inputs": [
-                "soc_mcp_chip_temp"
+                "CXL_MF_CHIP_TEMP_C"
             ],
-            "Name": "PID_SOC_MCP_CHIP",
+            "Name": "PID_CXL_MF_CHIP",
             "NegativeHysteresis": 2.0,
             "OutLimitMax": 100,
             "OutLimitMin": 0,
@@ -746,20 +746,20 @@
         {
             "Class": "temp",
             "Inputs": [
-                "soc_mcp_DIMM_0_TS0_TEMP",
-                "soc_mcp_DIMM_1_TS0_TEMP",
-                "soc_mcp_DIMM_2_TS0_TEMP",
-                "soc_mcp_DIMM_3_TS0_TEMP",
-                "soc_mcp_DIMM_4_TS0_TEMP",
-                "soc_mcp_DIMM_5_TS0_TEMP",
-                "soc_mcp_DIMM_6_TS0_TEMP",
-                "soc_mcp_DIMM_7_TS0_TEMP",
-                "soc_mcp_DIMM_8_TS0_TEMP",
-                "soc_mcp_DIMM_9_TS0_TEMP",
-                "soc_mcp_DIMM_10_TS0_TEMP",
-                "soc_mcp_DIMM_11_TS0_TEMP"
+                "CXL_MF_DIMM_0_SPD_TEMP_C",
+                "CXL_MF_DIMM_1_SPD_TEMP_C",
+                "CXL_MF_DIMM_2_SPD_TEMP_C",
+                "CXL_MF_DIMM_3_SPD_TEMP_C",
+                "CXL_MF_DIMM_4_SPD_TEMP_C",
+                "CXL_MF_DIMM_5_SPD_TEMP_C",
+                "CXL_MF_DIMM_6_SPD_TEMP_C",
+                "CXL_MF_DIMM_7_SPD_TEMP_C",
+                "CXL_MF_DIMM_8_SPD_TEMP_C",
+                "CXL_MF_DIMM_9_SPD_TEMP_C",
+                "CXL_MF_DIMM_10_SPD_TEMP_C",
+                "CXL_MF_DIMM_11_SPD_TEMP_C"
             ],
-            "Name": "Stepwise_SOC_MCP_DIMM_TS0",
+            "Name": "Stepwise_CXL_MF_DIMM",
             "NegativeHysteresis": 2.0,
             "Output": [
                 22.0,
@@ -784,9 +784,9 @@
         {
             "Class": "temp",
             "Inputs": [
-                "soc_mcp_chip_temp"
+                "CXL_MF_CHIP_TEMP_C"
             ],
-            "Name": "Stepwise_SOC_MCP_CHIP",
+            "Name": "Stepwise_CXL_MF_CHIP",
             "NegativeHysteresis": 2.0,
             "Output": [
                 22.0,
