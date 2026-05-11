@@ -120,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6a7fc296_a2321d2f",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1419,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-05-11T14:29:01Z",
+      "side": 1,
+      "message": "Assume the sensor returns \n\ncase 1: 3000 rpm, then 9999 rpm (wrong, cross warning threshold), then 3100 rpm.\ncase 2: 3000 rpm, then 99999 rpm (wrong, cross critical threshold), then 3100 rpm.\n\nDo we then assert the critical threshold in case 2 but do not assert the warning threshold in case 1?\n\nIf the reading is wrong, the value of that \u0027wrong\u0027 should not influence system behavior. Because otherwise system behavior would get unpredictable and depend on that random value.\n\n\nIf you want to see a sensor crossing the critical threshold as early as possible, and meanwhile have sensors occasionally reading a wrong value,\ni would suggest that on crossing the threshold, the sensor daemon should immediately read the sensor again, (based on the number of `ToleranceCount`) to then confirm if the threshold has to be asserted.\n\nThat is based on the assumption that there will only be `ToleranceCount` wrong readings in sequence, independent of the time between readings.\n\nIf you are instead talking about reading spikes in power-on / power-off phase then quickly repeated readings will not fix that and instead a time delay is needed between power state event and (re)starting sensor readings.",
+      "parentUuid": "ad60e0cf_f4591baa",
+      "range": {
+        "startLine": 1419,
+        "startChar": 25,
+        "endLine": 1419,
+        "endChar": 39
+      },
+      "revId": "5736876230b0e27d9d04597cb9b9e5562b11c1b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b15defe8_c02f6727",
         "filename": "schemas/legacy.json",
         "patchSetId": 2
@@ -155,6 +179,30 @@
       "side": 1,
       "message": "I initially followed the PEC pattern as a placeholder, but since the feature is disabled by default, NotRequired wouldn’t be used in the scenario. \nI’ve switched it to a numeric ToleranceCount.",
       "parentUuid": "b15defe8_c02f6727",
+      "range": {
+        "startLine": 1422,
+        "startChar": 50,
+        "endLine": 1422,
+        "endChar": 61
+      },
+      "revId": "5736876230b0e27d9d04597cb9b9e5562b11c1b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f1aac11_e629a628",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1422,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-05-11T14:29:01Z",
+      "side": 1,
+      "message": "Thanks for explaining it 👍",
+      "parentUuid": "a29d08c2_bf128b10",
       "range": {
         "startLine": 1422,
         "startChar": 50,

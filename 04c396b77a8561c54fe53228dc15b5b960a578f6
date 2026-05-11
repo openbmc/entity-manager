@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2196f610_52495702",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 1422,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-05-11T14:29:01Z",
+      "side": 1,
+      "message": "Should we have a maximum value of `ToleranceCount`?\n\nI agree that it would have to be an arbitrary value but i don\u0027t want to see someone to configure a tolerance for 23839 wrong readings in a row.\n\nAt some maximum delay / reading count the sensor should assert so this feature should probably be bounded.",
+      "revId": "04c396b77a8561c54fe53228dc15b5b960a578f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
