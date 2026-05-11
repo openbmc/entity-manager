@@ -78,6 +78,48 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ad60e0cf_f4591baa",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1419,
+      "author": {
+        "id": 1002296
+      },
+      "writtenOn": "2026-05-11T14:00:50Z",
+      "side": 1,
+      "message": "I originally made this configurable per-threshold because different threshold levels may need different tolerance policies. For example, users may want to tolerate transient low/negative temperature readings, but still log upper critical temperature conditions as early as possible.\n\nFor misconfiguration prevention, would it make sense to enforce that within the same direction, a more severe level\u0027s ToleranceCount does not exceed that of a less severe one?",
+      "parentUuid": "60e8d211_141fa5a7",
+      "range": {
+        "startLine": 1419,
+        "startChar": 25,
+        "endLine": 1419,
+        "endChar": 39
+      },
+      "revId": "5736876230b0e27d9d04597cb9b9e5562b11c1b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77c7493b_210d1799",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1419,
+      "author": {
+        "id": 1002296
+      },
+      "writtenOn": "2026-05-11T14:00:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b76628fa_5acbf55f",
+      "revId": "5736876230b0e27d9d04597cb9b9e5562b11c1b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b15defe8_c02f6727",
         "filename": "schemas/legacy.json",
         "patchSetId": 2
@@ -89,6 +131,30 @@
       "writtenOn": "2026-05-07T11:42:45Z",
       "side": 1,
       "message": "Could you explain why you added `NotRequired` if you are not using it in any config.\n\nWhen would someone configure this value.\n\nIf you intended to avoid introducing new optional properties to the threshold configuration interface (more in line with D-Bus spec), all the existing instances would have to be adjusted as well.",
+      "range": {
+        "startLine": 1422,
+        "startChar": 50,
+        "endLine": 1422,
+        "endChar": 61
+      },
+      "revId": "5736876230b0e27d9d04597cb9b9e5562b11c1b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a29d08c2_bf128b10",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1422,
+      "author": {
+        "id": 1002296
+      },
+      "writtenOn": "2026-05-11T14:00:50Z",
+      "side": 1,
+      "message": "I initially followed the PEC pattern as a placeholder, but since the feature is disabled by default, NotRequired wouldn’t be used in the scenario. \nI’ve switched it to a numeric ToleranceCount.",
+      "parentUuid": "b15defe8_c02f6727",
       "range": {
         "startLine": 1422,
         "startChar": 50,
