@@ -34,6 +34,24 @@
       "parentUuid": "2196f610_52495702",
       "revId": "04c396b77a8561c54fe53228dc15b5b960a578f6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4bbbed7_d5ced7c5",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 1422,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-05-11T17:30:08Z",
+      "side": 1,
+      "message": "\u003e If we pick 16 someone will say that isn\u0027t good enough...\n\n16 would work well for me.\n\n\u003e (I\u0027ve had to deal with a very similar thing here where the post code \ndaemon decided to put a maximum number of post codes at something like \n255 and it took months to get a higher maximum value allowed).\n\nThat\u0027s a people problem you are describing though, not a technical problem with the limit itself.\n\nIn case someone needs to ignore a higher number of garbage readings they simply adjust the threshold.\n\nOtherwise it would be possible to configure a completely dead sensor which has lots of thresholds but cannot assert one in a reasonable time-frame.\n\nI\u0027m somewhat on the side of preventing misconfiguration because misconfiguration has caused my own contributions to be delayed and having loose schemas like that demands more effort from the reviewer.",
+      "parentUuid": "f4dd72ad_ff4d8488",
+      "revId": "04c396b77a8561c54fe53228dc15b5b960a578f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
