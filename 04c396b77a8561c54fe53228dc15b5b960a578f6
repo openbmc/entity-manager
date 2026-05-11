@@ -52,6 +52,24 @@
       "parentUuid": "f4dd72ad_ff4d8488",
       "revId": "04c396b77a8561c54fe53228dc15b5b960a578f6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6881c5c1_4f734508",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 1422,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-05-11T20:46:16Z",
+      "side": 1,
+      "message": "Is 23839 a technically wrong value or just a likely not intended value?  If it is a wrong value, sure give me a limit above which everything else is a wrong value.  If it is a \"likely not intended value\" it isn\u0027t known if it is a misconfiguration or not.  You\u0027re being a nanny.\n\n\u003e In case someone needs to ignore a higher number of garbage readings they simply adjust the threshold.\n\nI don\u0027t know how this is any different than the example I gave you.  It was a \"simple matter of updating a meson.options\".  Except it took months to get a change approved.  It doesn\u0027t matter if it is a \"technical problem\" or a \"people problem\" to me.  Why put ourselves through it?\n\n\u003e Otherwise it would be possible to configure a completely dead sensor which has lots of thresholds but cannot assert one in a reasonable time-frame.\n\nIf we can come up with some \"reasonable [maximum] time-frame\"... ok.  Let\u0027s express it in terms of that then.",
+      "parentUuid": "b4bbbed7_d5ced7c5",
+      "revId": "04c396b77a8561c54fe53228dc15b5b960a578f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
