@@ -70,6 +70,24 @@
       "parentUuid": "b4bbbed7_d5ced7c5",
       "revId": "04c396b77a8561c54fe53228dc15b5b960a578f6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42ac9d0c_e6fe2bbe",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 1422,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-05-11T21:57:04Z",
+      "side": 1,
+      "message": "\u003e If we can come up with some \"reasonable [maximum] time-frame\"... ok.  Let\u0027s express it in terms of that then.\n\nIMO that\u0027s a completely different thing. Either a sensor may produce a number of wrong readings in sequence (independent of the time between readings)\n\nor maybe the circuit it is measuring glitches for a bounded duration (perhaps up to a maximum deviation, not crossing a critical threshold?)\n\nIMO these are completely different things and need different solutions.\n\nI don\u0027t know which one it is and there was no time series of the actual correct and measured (wrong) values provided with the patch. \n\nI don\u0027t want to ask for that data, but would like to mention that solving it incorrectly will break things if the time between readings changes.\n\nAnyways i thought the maximum value would be a value add (ability to reason about all upstream configs) but maybe it\u0027s not, resolving this.",
+      "parentUuid": "6881c5c1_4f734508",
+      "revId": "04c396b77a8561c54fe53228dc15b5b960a578f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
