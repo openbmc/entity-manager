@@ -379,6 +379,29 @@ TEST(FRUReaderTest, ShrinkingEEPROM)
     EXPECT_EQ(reader.read(data.size() - 1, 2, rdbuf.data()), 1);
 }
 
+TEST(ReadFRUContentsTest, InternalAreaZeroLengthByteBeforeBoardArea)
+{
+    // The internal-use area has no standard length field.  Its second byte is
+    // deliberately zero, while the following board area is a valid 8-byte
+    // area.  readFRUContents must use the board area's length and return both
+    // areas rather than treating the internal byte as a common-area length.
+    const auto data = std::to_array<uint8_t>({
+        0x01, 0x01, 0x00, 0x02, 0x00, 0x00, 0x00,
+        0xfc, // Common header: internal at byte 8, board at byte 16
+        0xaa, 0x00, 0xbb, 0xcc, 0xdd, 0xee, 0xff,
+        0x11, // Internal-use data; byte 1 is zero
+        0x01, 0x01, 0x19, 0x00, 0x00, 0x00, 0xc1,
+        0x24, // Board area: version 1, one 8-byte block
+    });
+    FRUReader reader(std::bind_front(getDataTempl, data));
+
+    const auto [contents, found] = readFRUContents(reader, "test FRU");
+
+    EXPECT_TRUE(found);
+    EXPECT_EQ(contents.size(), data.size());
+    EXPECT_TRUE(std::equal(contents.begin(), contents.end(), data.begin()));
+}
+
 TEST(FindFRUHeaderTest, InvalidHeader)
 {
     const std::vector<uint8_t> data = {255, 16};
@@ -615,6 +638,33 @@ TEST(FormatIPMIFRUTest, ManufactureDateAtDemarcation)
     std::flat_map<std::string, std::string, std::less<>> result;
     ASSERT_EQ(formatIPMIFRU(bmcFru, result), resCodes::resWarn);
     EXPECT_EQ(result["BOARD_MANUFACTURE_DATE"], "20060101T000000Z");
+}
+
+TEST(FormatIPMIFRUTest, CommonAreaHasZeroLength)
+{
+    // Product Area Length is 0x00 => the length multiplied by 8 is 0
+    // bytes while its actual length is 0x60 (96) bytes
+    const auto malformedFru = std::to_array<uint8_t>({
+        0x01, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0xfe, // Header
+        0x01, // Product Area Format Version
+        0x00, // Product Area Length
+        // remaining Product area data
+        0x19, 0x0c, 0x41, 0x72, 0x74, 0x65, // remaining of 1st 8 bytes
+        0x73, 0x79, 0x6e, 0x20, 0x20, 0x20, 0x20, 0x20, // next 8 bytes
+        0x24, 0x43, 0x52, 0x50, 0x53, 0x3a, 0x20, 0x43, // next 8 bytes
+        0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x20, 0x52, 0x65, // next 8 bytes
+        0x64, 0x75, 0x6e, 0x64, 0x61, 0x6e, 0x74, 0x20, // next 8 bytes
+        0x50, 0x6f, 0x77, 0x65, 0x72, 0x20, 0x53, 0x75, // next 8 bytes
+        0x70, 0x70, 0x6c, 0x79, 0x00, 0x10, 0x43, 0x53, // next 8 bytes
+        0x55, 0x32, 0x30, 0x30, 0x30, 0x41, 0x50, 0x2d, // next 8 bytes
+        0x33, 0x2d, 0x31, 0x30, 0x30, 0x20, 0x10, 0x52, // next 8 bytes
+        0x65, 0x6c, 0x65, 0x61, 0x73, 0x65, 0x20, 0x2d, // next 8 bytes
+        0x30, 0x30, 0x32, 0x31, 0x00, 0x20, 0x20, 0x0e, // next 8 bytes
+        0x4e, 0x33, 0x30, 0x30, 0x31, 0x35, 0x30, 0x30, // next 8 bytes
+        0x35, 0x52, 0x4a, 0x57, 0x5a, 0x20, 0xc1, 0xd1  // next 8 bytes
+    });
+    std::flat_map<std::string, std::string, std::less<>> result;
+    ASSERT_EQ(formatIPMIFRU(malformedFru, result), resCodes::resErr);
 }
 
 // Test for the `isFieldEditable` function
