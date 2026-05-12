@@ -16,6 +16,24 @@
       "message": "You don\u0027t need this specific object. Please use the one from cpld.json where you have added the type for Altera.",
       "revId": "42c69e22ffb1525cb3e62c16d83cbc936c0cb60a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43da74dc_f690468f",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2026-05-12T08:31:21Z",
+      "side": 1,
+      "message": "Thanks for the suggestion, I\u0027ve refactored the patch to fold UpdateGpio into the existing CPLD schema as suggested. The redundant Max10CPLD object has been removed.Please take another look.",
+      "parentUuid": "108acee9_774d39bc",
+      "revId": "42c69e22ffb1525cb3e62c16d83cbc936c0cb60a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
