@@ -28,6 +28,8 @@ extern "C"
 }
 
 constexpr size_t fruVersion = 1; // Current FRU spec version number is 1
+constexpr uint8_t validMultiRecordFormatVer =
+    0x2; // Current FRU spec Multirecord Record Format Version
 
 char sixBitToChar(uint8_t val)
 {
@@ -506,14 +508,22 @@ resCodes formatIPMIFRU(
         }
 
         size_t fruAreaSize = *fruBytesIter * fruBlockSize;
+        if (fruAreaSize == 0U)
+        {
+            lg2::error("Length of a common FRU area can't be zero");
+            return resCodes::resErr;
+        }
+
         if (fruAreaSize > fruBytes.size() - offset)
         {
             lg2::error("FRU area {AREA} length extends past end of FRU buffer",
                        "AREA", getFruAreaName(area));
             return resCodes::resErr;
         }
+
+        size_t areaEndOffset = offset + fruAreaSize - 1;
         std::span<const uint8_t>::const_iterator fruBytesIterEndArea =
-            fruBytes.begin() + offset + fruAreaSize - 1;
+            fruBytes.begin() + areaEndOffset;
         ++fruBytesIter;
 
         uint8_t fruComputedChecksum =
@@ -906,12 +916,18 @@ std::pair<std::vector<uint8_t>, bool> readFRUContents(
         if (reader.read(baseOffset + areaOffset, 0x2, blockData.data()) < 0)
         {
             lg2::error("failed to read {ERR} base offset {OFFSET}", "ERR",
-                       errorHelp, "OFFSET", baseOffset);
+                       errorHelp, "OFFSET", baseOffset + areaOffset);
             return {{}, true};
         }
 
         // Ignore data type (blockData is already unsigned).
         size_t length = blockData[1] * fruBlockSize;
+        if (length == 0U)
+        {
+            lg2::error("Length of a common FRU area can't be zero");
+            return {{}, true};
+        }
+
         areaOffset += length;
         fruLength = (areaOffset > fruLength) ? areaOffset : fruLength;
     }
@@ -927,6 +943,7 @@ std::pair<std::vector<uint8_t>, bool> readFRUContents(
         // the multi-area record header is 5 bytes long.
         constexpr size_t multiRecordHeaderSize = 5;
         constexpr uint8_t multiRecordEndOfListMask = 0x80;
+        constexpr uint8_t multiRecordFormatVerMask = 0x0F;
 
         // Sanity hard-limit to 64KB.
         while (areaOffset < std::numeric_limits<uint16_t>::max())
@@ -936,7 +953,16 @@ std::pair<std::vector<uint8_t>, bool> readFRUContents(
             if (reader.read(baseOffset + areaOffset, 0x3, blockData.data()) < 0)
             {
                 lg2::error("failed to read {STR} base offset {OFFSET}", "STR",
-                           errorHelp, "OFFSET", baseOffset);
+                           errorHelp, "OFFSET", baseOffset + areaOffset);
+                return {{}, true};
+            }
+
+            auto recordFormatVer = blockData[1] & multiRecordFormatVerMask;
+            if (recordFormatVer != validMultiRecordFormatVer)
+            {
+                lg2::error(
+                    "Unexpected Multirecord field's Record Format Version {VERSION}",
+                    "VERSION", recordFormatVer);
                 return {{}, true};
             }
 
