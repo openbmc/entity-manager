@@ -33,6 +33,24 @@
       "message": "I\u0027m still having a bit a hard time figuring out how thisfits in with fansensor in dbus-sensors (since I don\u0027t use it), which also hosts inventory items for fans and can do its own presence detection.  Are the Inventory.Item interfaces it has just unused by anything since there\u0027s no associations?",
       "revId": "d6218382cbf57645023210fe1cf66cc849530830",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32c7e84a_9d8a9441",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-05-13T16:14:41Z",
+      "side": 1,
+      "message": "Does it really create `Inventory.Item.Fan` interfaces?\n\nCan you point me to where those are created? I only found one where it creates plain `Inventory.Item` which are not useful for mapper queries.\n\n```\n 79 \n 80     if (presence)\n 81     {\n 82         presence-\u003emonitorPresence();\n 83         itemIface \u003d\n 84             objectServer.add_interface(\"/xyz/openbmc_project/inventory/\" + name,\n 85                                        \"xyz.openbmc_project.Inventory.Item\");\n 86         itemIface-\u003eregister_property(\"PrettyName\",\n 87                                      std::string()); // unused property\n 88         itemIface-\u003eregister_property(\"Present\", true);\n 89         itemIface-\u003einitialize();\n 90         itemAssoc \u003d objectServer.add_interface(\n 91             \"/xyz/openbmc_project/inventory/\" + name, association::interface);\n 92         itemAssoc-\u003eregister_property(\n 93             \"Associations\",\n 94             std::vector\u003cAssociation\u003e{\n 95                 {\"sensors\", \"inventory\",\n 96                  \"/xyz/openbmc_project/sensors/fan_tach/\" + name}});\n 97         itemAssoc-\u003einitialize();\n 98     }\n 99     setInitialProperties(sensor_paths::unitRPMs);\n100 }\n```\n\nI am not sure if that could even be picked up by bmcweb which is querying for `xyz.openbmc_project.Inventory.Item.Fan` and `xyz.openbmc_project.Sensor.Value`.\n\nSeparately the fansensor seems to only support gpio based presence detection and cannot create items for fans without such gpios.\n\nIn my use-case there are cases without presence gpios which still need inventory items. I don\u0027t see how that can be solved with fansensor.\n\nThere are also extra decorators like Asset or LocationCode which may need to be provided and this mix of dynamic and static configured information can only be supported by entity-manager currently.\n\nAs to the associations, based on my experiences with https://gerrit.openbmc.org/c/openbmc/bmcweb/+/87061, the bmcweb uses `cooled_by` to find the fans currently.\n\nI\u0027m not aware of fansensor supporting that association.\n\nI do agree with you that we currently have 2+? repositories providing fan inventory information and it would be great to not add a third but from my experience it\u0027s close to impossible to rework any of those designs.",
+      "parentUuid": "73c7817e_e5853162",
+      "revId": "d6218382cbf57645023210fe1cf66cc849530830",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
