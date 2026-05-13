@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f6d5f35_7f9cd22b",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2026-05-13T09:03:04Z",
+      "side": 1,
+      "message": "As I already check area size against 0 in readFRUContent, so that case will never reach here. Still, I added a test for that and the case where the end area offset exceeds FRU size.",
+      "parentUuid": "aed821b7_77aa08d4",
+      "revId": "a779bc43d4250d64e0e4c85fc7e827c0594c0811",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "62064c7a_9d30c98c",
@@ -31,6 +49,30 @@
       "writtenOn": "2026-05-12T21:52:39Z",
       "side": 1,
       "message": "nit: how about a constant for this like the fruVersion one above.",
+      "range": {
+        "startLine": 942,
+        "startChar": 35,
+        "endLine": 942,
+        "endChar": 38
+      },
+      "revId": "a779bc43d4250d64e0e4c85fc7e827c0594c0811",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13afa20f_1f7a8072",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 942,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2026-05-13T09:03:04Z",
+      "side": 1,
+      "message": "Added validMultiRecordFormatVer.",
+      "parentUuid": "62064c7a_9d30c98c",
       "range": {
         "startLine": 942,
         "startChar": 35,
