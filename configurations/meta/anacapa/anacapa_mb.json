@@ -323,6 +323,36 @@
             "Type": "EEPROM"
         },
         {
+            "Name": "PRSNT_CPU0",
+            "PresencePinNames": [
+                "PRSNT_CPU0_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "PRSNT_NFC_BOARD",
+            "PresencePinNames": [
+                "PRSNT_NFC_BOARD_R"
+            ],
+            "PresencePinValues": [
+                1
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "AMC_BRD_PRSNT_CPLD",
+            "PresencePinNames": [
+                "AMC_BRD_PRSNT_CPLD_L"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
             "Address": "0x71",
             "Bus": 6,
             "FirmwareInfo": {
