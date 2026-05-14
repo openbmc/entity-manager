@@ -188,8 +188,56 @@
             "Type": "ADC"
         },
         {
+            "Address": "0x20",
+            "Name": "PSU_SHELF_1",
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000552531000PowerShelf"
+        },
+        {
+            "Address": "0x21",
+            "Name": "PSU_SHELF_2",
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000552531000PowerShelf"
+        },
+        {
+            "Address": "0x22",
+            "Name": "PSU_SHELF_3",
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000552531000PowerShelf"
+        },
+        {
+            "Address": "0x23",
+            "Name": "PSU_SHELF_4",
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000552531000PowerShelf"
+        },
+        {
             "Name": "BMC",
             "Type": "BMC"
+        },
+        {
+            "Address": "0x20",
+            "Name": "PSU_SHELF_1",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD68000049PowerShelf"
+        },
+        {
+            "Address": "0x21",
+            "Name": "PSU_SHELF_2",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD68000049PowerShelf"
+        },
+        {
+            "Address": "0x22",
+            "Name": "PSU_SHELF_3",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD68000049PowerShelf"
+        },
+        {
+            "Address": "0x23",
+            "Name": "PSU_SHELF_4",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD68000049PowerShelf"
         },
         {
             "Address": "$address",
@@ -737,6 +785,16 @@
             "Name": "Ventura2_TPM",
             "TPMIndex": 0,
             "Type": "TPM2Firmware"
+        },
+        {
+            "BaudRate": 115200,
+            "DeviceAddress": "1e6a1000",
+            "DeviceInterface": 0,
+            "Mode": "RS485",
+            "Name": "ttyRS485-1",
+            "Port": 0,
+            "RTSDelay": 3,
+            "Type": "USBPort"
         },
         {
             "BaudRate": 19200,
