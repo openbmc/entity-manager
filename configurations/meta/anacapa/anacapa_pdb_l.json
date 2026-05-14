@@ -7,6 +7,16 @@
             "Type": "EEPROM"
         },
         {
+            "Name": "PDB_L_PRSNT",
+            "PresencePinNames": [
+                "PDB_L_PRSNT_R_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
             "Address": "0x2b",
             "Bus": "$bus",
             "Connector": {
