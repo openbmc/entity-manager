@@ -240,6 +240,66 @@
             "Type": "DeltaBBUBS723AE000PowerShelf"
         },
         {
+            "Address": "0xF0",
+            "Name": "CBU_SHELF_1",
+            "SerialPort": "ttyRS485-3",
+            "Type": "DeltaECD68000047PowerShelf"
+        },
+        {
+            "Address": "0xF1",
+            "Name": "CBU_SHELF_2",
+            "SerialPort": "ttyRS485-3",
+            "Type": "DeltaECD68000047PowerShelf"
+        },
+        {
+            "Address": "0xF2",
+            "Name": "CBU_SHELF_3",
+            "SerialPort": "ttyRS485-3",
+            "Type": "DeltaECD68000047PowerShelf"
+        },
+        {
+            "Address": "0xF3",
+            "Name": "CBU_SHELF_4",
+            "SerialPort": "ttyRS485-3",
+            "Type": "DeltaECD68000047PowerShelf"
+        },
+        {
+            "Address": "0xF0",
+            "Name": "CBU_SHELF_5",
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD68000047PowerShelf"
+        },
+        {
+            "Address": "0xF1",
+            "Name": "CBU_SHELF_6",
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD68000047PowerShelf"
+        },
+        {
+            "Address": "0xF2",
+            "Name": "CBU_SHELF_7",
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD68000047PowerShelf"
+        },
+        {
+            "Address": "0xF3",
+            "Name": "CBU_SHELF_8",
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD68000047PowerShelf"
+        },
+        {
+            "Address": "0xF4",
+            "Name": "CBU_SHELF_9",
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD68000047PowerShelf"
+        },
+        {
+            "Address": "0xF5",
+            "Name": "CBU_SHELF_10",
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD68000047PowerShelf"
+        },
+        {
             "Address": "0x20",
             "Name": "PSU_SHELF_1",
             "SerialPort": "ttyRS485-1",
@@ -840,6 +900,26 @@
             "DeviceInterface": 0,
             "Mode": "RS485",
             "Name": "ttyRS485-1",
+            "Port": 0,
+            "RTSDelay": 3,
+            "Type": "USBPort"
+        },
+        {
+            "BaudRate": 115200,
+            "DeviceAddress": "1e6a1000",
+            "DeviceInterface": 1,
+            "Mode": "RS485",
+            "Name": "ttyRS485-2",
+            "Port": 0,
+            "RTSDelay": 3,
+            "Type": "USBPort"
+        },
+        {
+            "BaudRate": 115200,
+            "DeviceAddress": "1e6a1000",
+            "DeviceInterface": 2,
+            "Mode": "RS485",
+            "Name": "ttyRS485-3",
             "Port": 0,
             "RTSDelay": 3,
             "Type": "USBPort"
