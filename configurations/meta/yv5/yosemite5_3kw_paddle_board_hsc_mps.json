@@ -1,0 +1,994 @@
+{
+    "Exposes": [
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "Yosemite5 Paddle Board FRU",
+            "Type": "EEPROM"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 6,
+            "Labels": [
+                "vin",
+                "vout1",
+                "iin",
+                "pin",
+                "temp1"
+            ],
+            "Name": "Paddle_P12V_HSC_1",
+            "PowerState": "ChassisOn",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 13.74
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.176
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 13.054
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.3
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 10.2
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 13.74
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.176
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 13.054
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.3
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 10.2
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iin",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 42.64
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 39.36
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iin",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 36.06
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pin",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 520.208
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 480.192
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pin",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 439.932
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 125
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "temp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                }
+            ],
+            "Type": "MP5998",
+            "iin_Name": "PADDLE_HSC1_CURR_A",
+            "pin_Name": "PADDLE_HSC1_PWR_W",
+            "temp1_Name": "PADDLE_HSC1_TEMP_C",
+            "vin_Name": "PADDLE_HSC1_VIN_VOLT_V",
+            "vout1_Name": "PADDLE_HSC1_VOUT_VOLT_V"
+        },
+        {
+            "Address": "0x42",
+            "Bus": 6,
+            "Labels": [
+                "vin",
+                "vout1",
+                "iin",
+                "pin",
+                "temp1"
+            ],
+            "Name": "Paddle_P12V_HSC_2",
+            "PowerState": "ChassisOn",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 13.74
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.176
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 13.054
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.3
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 10.2
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 13.74
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.176
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 13.054
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.3
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 10.2
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iin",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 42.64
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 39.36
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iin",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 36.06
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pin",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 520.208
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 480.192
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pin",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 439.932
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 125
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "temp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                }
+            ],
+            "Type": "MP5998",
+            "iin_Name": "PADDLE_HSC2_CURR_A",
+            "pin_Name": "PADDLE_HSC2_PWR_W",
+            "temp1_Name": "PADDLE_HSC2_TEMP_C",
+            "vin_Name": "PADDLE_HSC2_VIN_VOLT_V",
+            "vout1_Name": "PADDLE_HSC2_VOUT_VOLT_V"
+        },
+        {
+            "Address": "0x43",
+            "Bus": 6,
+            "Labels": [
+                "vin",
+                "vout1",
+                "iin",
+                "pin",
+                "temp1"
+            ],
+            "Name": "Paddle_P12V_HSC_3",
+            "PowerState": "ChassisOn",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 13.74
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.176
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 13.054
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.3
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 10.2
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 13.74
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.176
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 13.054
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.3
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 10.2
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iin",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 42.64
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 39.36
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iin",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 36.06
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pin",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 520.208
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 480.192
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pin",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 439.932
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 125
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "temp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                }
+            ],
+            "Type": "MP5998",
+            "iin_Name": "PADDLE_HSC3_CURR_A",
+            "pin_Name": "PADDLE_HSC3_PWR_W",
+            "temp1_Name": "PADDLE_HSC3_TEMP_C",
+            "vin_Name": "PADDLE_HSC3_VIN_VOLT_V",
+            "vout1_Name": "PADDLE_HSC3_VOUT_VOLT_V"
+        },
+        {
+            "Address": "0x44",
+            "Bus": 6,
+            "Labels": [
+                "vin",
+                "vout1",
+                "iin",
+                "pin",
+                "temp1"
+            ],
+            "Name": "Paddle_P12V_HSC_4",
+            "PowerState": "ChassisOn",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 13.74
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.176
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 13.054
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.3
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 10.2
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 13.74
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.176
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 13.054
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.3
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 10.2
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iin",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 42.64
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 39.36
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iin",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 36.06
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pin",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 520.208
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 480.192
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pin",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 439.932
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 125
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "temp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                }
+            ],
+            "Type": "MP5998",
+            "iin_Name": "PADDLE_HSC4_CURR_A",
+            "pin_Name": "PADDLE_HSC4_PWR_W",
+            "temp1_Name": "PADDLE_HSC4_TEMP_C",
+            "vin_Name": "PADDLE_HSC4_VIN_VOLT_V",
+            "vout1_Name": "PADDLE_HSC4_VOUT_VOLT_V"
+        },
+        {
+            "Address": "0x45",
+            "Bus": 6,
+            "Labels": [
+                "vin",
+                "vout1",
+                "iin",
+                "pin",
+                "temp1"
+            ],
+            "Name": "Paddle_P12V_HSC_5",
+            "PowerState": "ChassisOn",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 13.74
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.176
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 13.054
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.3
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 10.2
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 13.74
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.176
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 13.054
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.3
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 10.2
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iin",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 110.63
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 102.1
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iin",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 93.61
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pin",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 1349.686
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1245.62
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pin",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1142.042
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 125
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "temp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                }
+            ],
+            "Type": "MP5998",
+            "iin_Name": "PADDLE_HSC5_CURR_A",
+            "pin_Name": "PADDLE_HSC5_PWR_W",
+            "temp1_Name": "PADDLE_HSC5_TEMP_C",
+            "vin_Name": "PADDLE_HSC5_VIN_VOLT_V",
+            "vout1_Name": "PADDLE_HSC5_VOUT_VOLT_V"
+        },
+        {
+            "Address": "0x47",
+            "Bus": 8,
+            "Labels": [
+                "vin",
+                "vout1",
+                "iin",
+                "pin",
+                "temp1"
+            ],
+            "Name": "Paddle_P12V_HSC_7",
+            "PowerState": "ChassisOn",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 13.74
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.176
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 13.054
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.3
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 10.2
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 13.74
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.176
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 13.054
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.3
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 10.2
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iin",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 77.84
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 71.86
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iin",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 65.67
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pin",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 949.65
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 876.76
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pin",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 801.17
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 125
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "temp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                }
+            ],
+            "Type": "MP5998",
+            "iin_Name": "PADDLE_HSC7_CURR_A",
+            "pin_Name": "PADDLE_HSC7_PWR_W",
+            "temp1_Name": "PADDLE_HSC7_TEMP_C",
+            "vin_Name": "PADDLE_HSC7_VIN_VOLT_V",
+            "vout1_Name": "PADDLE_HSC7_VOUT_VOLT_V"
+        },
+        {
+            "Address": "0x41",
+            "Bus": 6,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Yosemite5.HSC.MP5998_p12v_aux",
+                "VendorIANA": 40981
+            },
+            "Name": "Yosemite5_Paddle_HSC1_P12V_AUX",
+            "Type": "MP5998Firmware"
+        },
+        {
+            "Address": "0x42",
+            "Bus": 6,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Yosemite5.HSC.MP5998_p12v_aux",
+                "VendorIANA": 40981
+            },
+            "Name": "Yosemite5_Paddle_HSC2_P12V_AUX",
+            "Type": "MP5998Firmware"
+        },
+        {
+            "Address": "0x43",
+            "Bus": 6,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Yosemite5.HSC.MP5998_p12v_aux",
+                "VendorIANA": 40981
+            },
+            "Name": "Yosemite5_Paddle_HSC3_P12V_AUX",
+            "Type": "MP5998Firmware"
+        },
+        {
+            "Address": "0x44",
+            "Bus": 6,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Yosemite5.HSC.MP5998_p12v_aux",
+                "VendorIANA": 40981
+            },
+            "Name": "Yosemite5_Paddle_HSC4_P12V_AUX",
+            "Type": "MP5998Firmware"
+        },
+        {
+            "Address": "0x45",
+            "Bus": 6,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Yosemite5.HSC.MP5998_p12v_aux",
+                "VendorIANA": 40981
+            },
+            "Name": "Yosemite5_Paddle_HSC5_P12V_AUX",
+            "Type": "MP5998Firmware"
+        },
+        {
+            "Address": "0x47",
+            "Bus": 8,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Yosemite5.HSC.MP5998_p12v_aux",
+                "VendorIANA": 40981
+            },
+            "Name": "Yosemite5_Paddle_HSC7_P12V_AUX",
+            "Type": "MP5998Firmware"
+        },
+        {
+            "Address": "0x4c",
+            "Bus": 8,
+            "Name": "PADDLE_INLET_TEMP_C",
+            "PowerState": "ChassisOn",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 125
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                }
+            ],
+            "Type": "TMP1075"
+        }
+    ],
+    "Name": "Yosemite5 3KW Paddle Board",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 T22 .*', 'BOARD_PRODUCT_NAME': '3KW paddle BD', 'BOARD_MANUFACTURER': 'Wiwynn'})",
+        "AND",
+        "xyz.openbmc_project.FruDevice({'BOARD_INFO_AM4': 'HSC-MPS'})"
+    ],
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$BOARD_MANUFACTURE_DATE",
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER",
+        "SparePartNumber": "$BOARD_INFO_AM1"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Revision": {
+        "Version": "$PRODUCT_VERSION"
+    }
+}
