@@ -144,6 +144,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b7ba091f_540586fa",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1419,
+      "author": {
+        "id": 1002296
+      },
+      "writtenOn": "2026-05-15T11:09:30Z",
+      "side": 1,
+      "message": "I agree that wrong readings should be filtered out. Using the same retry/filtering behavior across all thresholds in the same direction might be a cleaner approach. If a massive spike occurs (like Case 2), it could be confusing if only the Critical threshold gets asserted or only the Warning threshold logs a SEL.\n\nTo achieve an immediate re-read in dbus-sensors, we would need to dynamically set the waitTimer of restartRead to 0 ms for the next round.\nSince both transient noise and time-delay scenarios could happen, which implementation do you prefer?\n\nOption 1 (Interval-based Retry): Keep the current polling rate (e.g., 0.5s/1s) for retries. The time delay is implicitly toleranceCount × pollingRate, so users can tune the delay by adjusting the count.\n\nOption 2 (Immediate Retry): Re-read immediately by default. If a time delay is needed, we might introduce a new parameter to configure the retry interval.",
+      "parentUuid": "6a7fc296_a2321d2f",
+      "range": {
+        "startLine": 1419,
+        "startChar": 25,
+        "endLine": 1419,
+        "endChar": 39
+      },
+      "revId": "5736876230b0e27d9d04597cb9b9e5562b11c1b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b15defe8_c02f6727",
         "filename": "schemas/legacy.json",
         "patchSetId": 2
