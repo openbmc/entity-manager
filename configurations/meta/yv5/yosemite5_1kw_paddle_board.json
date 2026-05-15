@@ -187,6 +187,16 @@
             "vout1_Name": "PADDLE_HSC_VOUT_VOLT_V"
         },
         {
+            "Address": "0x47",
+            "Bus": 8,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Yosemite5.HSC.TPS25990_p12v_aux",
+                "VendorIANA": 40981
+            },
+            "Name": "Yosemite5_Paddle_HSC_P12V_AUX",
+            "Type": "TPS25990Firmware"
+        },
+        {
             "Address": "0x4B",
             "Bus": 8,
             "Labels": [
@@ -317,6 +327,16 @@
             "temp1_Name": "PADDLE_HSC_TEMP_C",
             "vin_Name": "PADDLE_HSC_VIN_VOLT_V",
             "vout1_Name": "PADDLE_HSC_VOUT_VOLT_V"
+        },
+        {
+            "Address": "0x4B",
+            "Bus": 8,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Yosemite5.HSC.RS31390_p12v_aux",
+                "VendorIANA": 40981
+            },
+            "Name": "Yosemite5_Paddle_HSC_P12V_AUX",
+            "Type": "RS31390Firmware"
         }
     ],
     "Name": "Yosemite5 1KW Paddle Board",
