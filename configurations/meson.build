@@ -228,6 +228,7 @@ configs = [
     'meta/ventura2/ventura2_minisas_bottom.json',
     'meta/ventura2/ventura2_minisas_top.json',
     'meta/ventura2/ventura2_rmcv2_mb.json',
+    'meta/ventura2/ventura2_rmcv2_mb_2nd.json',
     'meta/ventura2/ventura2_rmcv2_mb_sku1.json',
     'meta/ventura2/ventura2_rmcv2_mb_sku2.json',
     'meta/ventura2/ventura2_scm.json',
