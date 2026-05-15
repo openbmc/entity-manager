@@ -168,6 +168,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c217030a_949632ca",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1419,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-05-15T15:40:45Z",
+      "side": 1,
+      "message": "\u003e Option 1 (Interval-based Retry): Keep the current polling rate (e.g., \n0.5s/1s) for retries. The time delay is implicitly toleranceCount × \npollingRate, so users can tune the delay by adjusting the count.\n\nIf you were to implement it like that without also configuring your polling rate, dbus-sensors maintainers would not be able to change the default polling interval without possibly breaking your config.\n\nOption 2 sounds good. Re-read immediately to filter out wrong readings and then just have a `ToleranceDuration` config property to filter out time delay scenarios.",
+      "parentUuid": "b7ba091f_540586fa",
+      "range": {
+        "startLine": 1419,
+        "startChar": 25,
+        "endLine": 1419,
+        "endChar": 39
+      },
+      "revId": "5736876230b0e27d9d04597cb9b9e5562b11c1b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b15defe8_c02f6727",
         "filename": "schemas/legacy.json",
         "patchSetId": 2
