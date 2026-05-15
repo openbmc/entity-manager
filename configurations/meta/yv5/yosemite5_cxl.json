@@ -1,0 +1,24 @@
+[
+    {
+        "Exposes": [
+            {
+                "Address": "0x32",
+                "Bus": 12,
+                "Name": "CXL"
+            }
+        ],
+        "Name": "Yosemite5 CXL Victoria Falls",
+        "Inventory": "CXL",
+        "Probe": [
+            "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 .*', 'BOARD_PRODUCT_NAME': 'Victoria Falls', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)','BOARD_INFO_AM4': 'VR-MPS'})"
+        ],
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "NOT_SUPPORTED",
+            "Model": "NOT_SUPPORTED",
+            "PartNumber": "NOT_SUPPORTED",
+            "SerialNumber": "NOT_SUPPORTED",
+            "SparePartNumber": "NOT_SUPPORTED"
+        }
+    }
+]
