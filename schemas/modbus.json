@@ -41,6 +41,9 @@
                 "SerialPort": {
                     "description": "The name of the serial port where the device is connected.",
                     "type": "string"
+                },
+                "PollRate": {
+                    "$ref": "legacy.json#/$defs/Types/PollRate"
                 }
             },
             "required": ["Name", "Type", "Address", "SerialPort"]
