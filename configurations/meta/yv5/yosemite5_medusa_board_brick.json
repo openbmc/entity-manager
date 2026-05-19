@@ -1131,7 +1131,7 @@
             "ILimitMax": 100,
             "ILimitMin": -50,
             "Inputs": [
-                "Paddle_HSC_TEMP_C"
+                "PADDLE_HSC_TEMP_C"
             ],
             "Name": "PID_Paddle_HSC",
             "NegativeHysteresis": 2.0,
@@ -1192,7 +1192,7 @@
             "ILimitMax": 100,
             "ILimitMin": -50,
             "Inputs": [
-                "NIC_Temp_4"
+                "NIC0_TEMP_C"
             ],
             "Name": "PID_NIC",
             "NegativeHysteresis": 2.0,
@@ -1425,7 +1425,7 @@
         {
             "Class": "temp",
             "Inputs": [
-                "Paddle_HSC_TEMP_C"
+                "PADDLE_HSC_TEMP_C"
             ],
             "Name": "Stepwise_Paddle_HSC",
             "NegativeHysteresis": 2.0,
@@ -1480,7 +1480,7 @@
         {
             "Class": "temp",
             "Inputs": [
-                "NIC_Temp_4"
+                "NIC0_TEMP_C"
             ],
             "Name": "Stepwise_NIC",
             "NegativeHysteresis": 2.0,
