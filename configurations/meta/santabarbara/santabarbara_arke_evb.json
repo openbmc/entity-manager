@@ -15,6 +15,14 @@
             },
             "Name": "Santabarbara_Arke_EVB_CPLD",
             "Type": "LatticeLCMXO3D_9400Firmware"
+        },
+        {
+            "Address": "0x21",
+            "Bus": "$bus / 2 + 2 * 3 % 5 * 3 + 1 / 4 + 102",
+            "Inventory": "Arke EVB",
+            "Name": "MMC",
+            "PowerState": "BiosPost",
+            "Type": "MCTPI2CTarget"
         }
     ],
     "Name": "Santa Barbara Arke EVB",
