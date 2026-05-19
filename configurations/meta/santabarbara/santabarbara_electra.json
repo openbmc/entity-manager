@@ -15,6 +15,12 @@
             },
             "Name": "Santabarbara_Electra_CPLD_$bus / 2 + 2 * 3 % 5 * 3 + 1 / 4",
             "Type": "LatticeLCMXO3D_9400Firmware"
+        },
+        {
+            "Address": "0x21",
+            "Bus": "$bus / 2 + 2 * 3 % 5 * 3 + 1 / 4 + 102",
+            "Name": "MMC",
+            "Type": "MCTPI2CTarget"
         }
     ],
     "Name": "Santa Barbara Electra module $bus / 2 + 2 * 3 % 5 * 3 + 1 / 4",
