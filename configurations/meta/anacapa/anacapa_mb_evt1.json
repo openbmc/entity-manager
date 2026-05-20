@@ -14,6 +14,7 @@
                 "in7"
             ],
             "Name": "MB_ADC0",
+            "PollRate": 3,
             "Thresholds": [
                 {
                     "Direction": "less than",
@@ -346,6 +347,7 @@
                 "vout2"
             ],
             "Name": "MB_VR_CPU_PVDDIO_MEM_S3_P0",
+            "PollRate": 3,
             "PowerState": "On",
             "Thresholds": [
                 {
@@ -537,6 +539,7 @@
                 "vout1"
             ],
             "Name": "MB_VR_CPU_PVDDCR_CPU1_P0",
+            "PollRate": 3,
             "PowerState": "On",
             "Thresholds": [
                 {
@@ -645,6 +648,7 @@
             ],
             "Name": "MB_VR_CPU_PVDDCR_SOC_P0",
             "Name1": "MB_VR_CPU_PVDDIO_P0",
+            "PollRate": 3,
             "PowerState": "On",
             "Thresholds": [
                 {
@@ -866,6 +870,7 @@
                 "vout1"
             ],
             "Name": "MB_VR_CPU_PVDD18_S5_P0",
+            "PollRate": 3,
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -1010,6 +1015,7 @@
                 "vout1"
             ],
             "Name": "MB_VR_CPU_PVDD33_S5_P0",
+            "PollRate": 3,
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -1288,6 +1294,7 @@
                 "temp16"
             ],
             "Name": "SBRMI",
+            "PollRate": 3,
             "PowerState": "BiosPost",
             "Thresholds": [
                 {
