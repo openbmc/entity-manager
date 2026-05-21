@@ -43,6 +43,36 @@
             "Type": "GPIODeviceDetect"
         },
         {
+            "Name": "R_EAM0_NIC_CBL_PRSNT",
+            "PresencePinNames": [
+                "R_EAM0_NIC_CBL_PRSNT_L"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "R_EAM1_NIC_CBL_PRSNT",
+            "PresencePinNames": [
+                "R_EAM1_NIC_CBL_PRSNT_L"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RBB_Cable_Present",
+            "PresencePinNames": [
+                "RBB_Cable_Present"
+            ],
+            "PresencePinValues": [
+                1
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
             "Address": "0x71",
             "Bus": 1,
             "FirmwareInfo": {
@@ -214,6 +244,11 @@
     },
     "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
         "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Compatible": {
+        "Names": [
+            "com.meta.Hardware.Anacapa.Boards.BRB_R"
+        ]
     },
     "xyz.openbmc_project.Inventory.Decorator.Revision": {
         "Version": "$PRODUCT_VERSION"

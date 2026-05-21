@@ -353,6 +353,46 @@
             "Type": "GPIODeviceDetect"
         },
         {
+            "Name": "EAM0_BRD_PRSNT",
+            "PresencePinNames": [
+                "EAM0_BRD_PRSNT_R_L"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "EAM1_BRD_PRSNT",
+            "PresencePinNames": [
+                "EAM1_BRD_PRSNT_R_L "
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "EAM2_BRD_PRSNT",
+            "PresencePinNames": [
+                "EAM2_BRD_PRSNT_R_L"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "EAM3_BRD_PRSNT",
+            "PresencePinNames": [
+                "EAM3_BRD_PRSNT_R_L"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
             "Address": "0x71",
             "Bus": 6,
             "FirmwareInfo": {
@@ -2058,6 +2098,11 @@
     },
     "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
         "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Compatible": {
+        "Names": [
+            "com.meta.Hardware.Anacapa.Boards.MB"
+        ]
     },
     "xyz.openbmc_project.Inventory.Decorator.Revision": {
         "Version": "$PRODUCT_VERSION"
