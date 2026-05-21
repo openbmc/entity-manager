@@ -130,6 +130,16 @@
             "Type": "EEPROM"
         },
         {
+            "Name": "P12V_PWR_CABLE_PRSNT",
+            "PresencePinNames": [
+                "P12V_PWR_CABLE_PRSNT_L_R"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
             "Address": "0x2b",
             "Bus": "$bus",
             "Connector": {
@@ -948,6 +958,11 @@
     },
     "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
         "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Compatible": {
+        "Names": [
+            "com.meta.Hardware.Anacapa.Boards.RPDB"
+        ]
     },
     "xyz.openbmc_project.Inventory.Decorator.Revision": {
         "Version": "$PRODUCT_VERSION"
