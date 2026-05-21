@@ -1,0 +1,125 @@
+[
+    {
+        "Exposes": [
+            {
+                "Address": "0x35",
+                "Bus": "$bus",
+                "Labels": [
+                    "in_voltage0",
+                    "in_voltage1",
+                    "in_voltage2",
+                    "in_voltage3",
+                    "in_voltage4",
+                    "in_voltage5",
+                    "in_voltage6",
+                    "in_voltage7"
+                ],
+                "Name": "FAN_ADC",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 0.272,
+                        "Label": "in_voltage0",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 13.6
+                    },
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 0.21,
+                        "Label": "in_voltage0",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 10.5
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 0.272,
+                        "Label": "in_voltage2",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 13.6
+                    },
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 0.21,
+                        "Label": "in_voltage2",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 10.5
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 0.272,
+                        "Label": "in_voltage4",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 13.6
+                    },
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 0.21,
+                        "Label": "in_voltage4",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 10.5
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 0.272,
+                        "Label": "in_voltage6",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 13.6
+                    },
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 0.21,
+                        "Label": "in_voltage6",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 10.5
+                    }
+                ],
+                "Type": "MAX11617",
+                "in_voltage0_Max": 18,
+                "in_voltage0_Name": "FCB_0_FAN_0_VOLT_V",
+                "in_voltage0_Scale": 266.525,
+                "in_voltage1_Name": "FCB_0_FAN_0_IMON_VOLT_V",
+                "in_voltage1_Scale": 2000,
+                "in_voltage2_Max": 18,
+                "in_voltage2_Name": "FCB_0_FAN_1_VOLT_V",
+                "in_voltage2_Scale": 266.525,
+                "in_voltage3_Name": "FCB_0_FAN_1_IMON_VOLT_V",
+                "in_voltage3_Scale": 2000,
+                "in_voltage4_Max": 18,
+                "in_voltage4_Name": "FCB_0_FAN_2_VOLT_V",
+                "in_voltage4_Scale": 266.525,
+                "in_voltage5_Name": "FCB_0_FAN_2_IMON_VOLT_V",
+                "in_voltage5_Scale": 2000,
+                "in_voltage6_Max": 18,
+                "in_voltage6_Name": "FCB_0_FAN_3_VOLT_V",
+                "in_voltage6_Scale": 266.525,
+                "in_voltage7_Name": "FCB_0_FAN_3_IMON_VOLT_V",
+                "in_voltage7_Scale": 2000
+            }
+        ],
+        "Name": "Ventura2 Fan Board",
+        "Probe": "xyz.openbmc_project.FruDevice({'BOARD_MANUFACTURER': 'Quanta', 'BOARD_PRODUCT_NAME': 'Ventura2 FAN', 'BOARD_INFO_AM4': 'adc-max'})",
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "BuildDate": "$BOARD_MANUFACTURE_DATE",
+            "Manufacturer": "$BOARD_MANUFACTURER",
+            "Model": "$BOARD_PRODUCT_NAME",
+            "PartNumber": "$BOARD_PART_NUMBER",
+            "SerialNumber": "$BOARD_SERIAL_NUMBER",
+            "SparePartNumber": "$BOARD_INFO_AM1"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+            "AssetTag": "$PRODUCT_ASSET_TAG"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.Revision": {
+            "Version": "$PRODUCT_VERSION"
+        }
+    }
+]
