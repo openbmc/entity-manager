@@ -7,6 +7,56 @@
             "Type": "EEPROM"
         },
         {
+            "Name": "PDB2_Cable_Sideband",
+            "PresencePinNames": [
+                "PDB1_SB_CONN_PRSNT_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "PDB2_FAN7",
+            "PresencePinNames": [
+                "FAN_4_PRSNT_R_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "PDB2_FAN6",
+            "PresencePinNames": [
+                "FAN_5_PRSNT_R_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "PDB2_FAN5",
+            "PresencePinNames": [
+                "FAN_6_PRSNT_R_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "PDB2_FAN4",
+            "PresencePinNames": [
+                "FAN_7_PRSNT_R_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
             "Address": "0x21",
             "Bus": 43,
             "Connector": {
@@ -270,7 +320,7 @@
                 "curr1",
                 "power1"
             ],
-            "Name": "PDB2_P12V_FAN0",
+            "Name": "PDB2_P12V_FAN4",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -306,9 +356,9 @@
                 }
             ],
             "Type": "INA230",
-            "curr1_Name": "PDB2_P12V_FAN0_CURR_A",
-            "in1_Name": "PDB2_P12V_FAN0_VOLT_V",
-            "power1_Name": "PDB2_P12V_FAN0_PWR_W"
+            "curr1_Name": "PDB2_P12V_FAN4_CURR_A",
+            "in1_Name": "PDB2_P12V_FAN4_VOLT_V",
+            "power1_Name": "PDB2_P12V_FAN4_PWR_W"
         },
         {
             "Address": "0x43",
@@ -318,7 +368,7 @@
                 "curr1",
                 "power1"
             ],
-            "Name": "PDB2_P12V_FAN1",
+            "Name": "PDB2_P12V_FAN5",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -354,9 +404,9 @@
                 }
             ],
             "Type": "INA230",
-            "curr1_Name": "PDB2_P12V_FAN1_CURR_A",
-            "in1_Name": "PDB2_P12V_FAN1_VOLT_V",
-            "power1_Name": "PDB2_P12V_FAN1_PWR_W"
+            "curr1_Name": "PDB2_P12V_FAN5_CURR_A",
+            "in1_Name": "PDB2_P12V_FAN5_VOLT_V",
+            "power1_Name": "PDB2_P12V_FAN5_PWR_W"
         },
         {
             "Address": "0x44",
@@ -366,7 +416,7 @@
                 "curr1",
                 "power1"
             ],
-            "Name": "PDB2_P12V_FAN2",
+            "Name": "PDB2_P12V_FAN6",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -402,9 +452,9 @@
                 }
             ],
             "Type": "INA230",
-            "curr1_Name": "PDB2_P12V_FAN2_CURR_A",
-            "in1_Name": "PDB2_P12V_FAN2_VOLT_V",
-            "power1_Name": "PDB2_P12V_FAN2_PWR_W"
+            "curr1_Name": "PDB2_P12V_FAN6_CURR_A",
+            "in1_Name": "PDB2_P12V_FAN6_VOLT_V",
+            "power1_Name": "PDB2_P12V_FAN6_PWR_W"
         },
         {
             "Address": "0x47",
@@ -414,7 +464,7 @@
                 "curr1",
                 "power1"
             ],
-            "Name": "PDB2_P12V_FAN3",
+            "Name": "PDB2_P12V_FAN7",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -450,9 +500,9 @@
                 }
             ],
             "Type": "INA230",
-            "curr1_Name": "PDB2_P12V_FAN3_CURR_A",
-            "in1_Name": "PDB2_P12V_FAN3_VOLT_V",
-            "power1_Name": "PDB2_P12V_FAN3_PWR_W"
+            "curr1_Name": "PDB2_P12V_FAN7_CURR_A",
+            "in1_Name": "PDB2_P12V_FAN7_VOLT_V",
+            "power1_Name": "PDB2_P12V_FAN7_PWR_W"
         },
         {
             "Address": "0x4a",
@@ -708,6 +758,11 @@
     },
     "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
         "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Compatible": {
+        "Names": [
+            "com.meta.Hardware.Santabarbara.Boards.Power_Distribution_Board_2"
+        ]
     },
     "xyz.openbmc_project.Inventory.Decorator.Revision": {
         "Version": "$PRODUCT_VERSION"
