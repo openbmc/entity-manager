@@ -16,6 +16,24 @@
       "message": "@FrankChen4@quantatw.com Can you please confirm this is the only inventory source for PDB fans and there is no other source (such as EEPROM based via fru-device)? Want to make sure we don\u0027t end up with double inventory entries.",
       "revId": "4a4ed421b196ee40c79dcda9d423975a2becd07d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30191f5b_4a836c86",
+        "filename": "configurations/meta/santabarbara/santabarbara_pdb2_vr_ti.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1002606
+      },
+      "writtenOn": "2026-05-22T06:52:26Z",
+      "side": 1,
+      "message": "Confirmed. These PDB fans are only detected via GPIODeviceDetect.\n\nThere is no EEPROM-based FRU device or other inventory source\n(frudevice/entity-manager/etc.) for these PDB fan entries.\n\nExample inventory entry after fan insertion:\n```\nroot@bmc:~# mfg-tool inventory 2\u003e/dev/null | jq \u0027with_entries(select(.key | test(\"PDB2_FAN\")))\u0027\n{\n  \"system/board/PDB2_FAN4\": {\n    \"Decorator.Asset\": {\n      \"Manufacturer\": \"Unknown\",\n      \"Model\": \"Unknown\",\n      \"PartNumber\": \"Unknown\",\n      \"SerialNumber\": \"Unknown\",\n      \"SparePartNumber\": \"05-100368\"\n    },\n    \"Item.Board\": {\n      \"Name\": \"PDB2_FAN4\",\n      \"Type\": \"Board\"\n    }\n  }\n}\n```",
+      "parentUuid": "557e36d1_db4a1468",
+      "revId": "4a4ed421b196ee40c79dcda9d423975a2becd07d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
