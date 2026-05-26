@@ -3,6 +3,7 @@
 
 #include "../utils.hpp"
 #include "fru_utils.hpp"
+#include "neard_dbus.hpp"
 
 #include <fcntl.h>
 #include <sys/inotify.h>
@@ -50,6 +51,11 @@ constexpr size_t maxFruSize = 512;
 constexpr size_t maxEepromPageIndex = 255;
 constexpr size_t busTimeoutSeconds = 10;
 
+// Use a reserved bus value for NFC-based FRU objects.
+// These are not associated with any physical I2C device.
+constexpr uint32_t nfcBus = std::numeric_limits<uint32_t>::max();
+constexpr uint32_t nfcAddr = 0;
+
 constexpr const char* blocklistPath = PACKAGE_DIR "blacklist.json";
 
 const static constexpr char* baseboardFruLocation =
@@ -86,6 +92,13 @@ bool updateFruProperty(const std::string& propertyValue, uint32_t bus,
                        uint32_t address, const std::string& propertyName,
                        FruDetails& fruDetails,
                        sdbusplus::asio::object_server& objServer);
+
+// Identify NFC-based FRU objects using the reserved bus/address.
+// This is used to preserve them during I2C rescan.
+static bool isNfcFru(uint32_t bus, uint32_t address)
+{
+    return bus == nfcBus && address == nfcAddr;
+}
 
 // Given a bus/address, produce the path in sysfs for an eeprom.
 static std::string getEepromPath(size_t bus, size_t address)
@@ -1213,13 +1226,34 @@ static void publishFrusOnBus(const BusMap& busmap, uint16_t busNum,
 static void publishAllFrus(BusMap& busmap, FruDetails& fruDetails,
                            sdbusplus::asio::object_server& objServer)
 {
+    std::shared_ptr<sdbusplus::asio::dbus_interface> nfcIface;
+
     for (auto busIface : fruDetails.dbusInterfaceMap)
     {
+        auto [bus, addr] = busIface.first;
+
+        // Preserve NFC-based FRU objects during bus rescan.
+        // These are not discovered via I2C and would otherwise be
+        // removed
+        if (isNfcFru(bus, addr))
+        {
+            nfcIface = busIface.second;
+            continue;
+        }
+
         objServer.remove_interface(busIface.second);
     }
 
     fruDetails.dbusInterfaceMap.clear();
     fruDetails.unknownBusObjectCount = 0;
+
+    if (nfcIface != nullptr)
+    {
+        fruDetails.dbusInterfaceMap.emplace(
+            std::make_pair(static_cast<size_t>(nfcBus),
+                           static_cast<size_t>(nfcAddr)),
+            std::move(nfcIface));
+    }
 
     // todo, get this from a more sensable place
     std::vector<uint8_t> baseboardFRU;
@@ -1365,8 +1399,71 @@ bool updateFruProperty(const std::string& propertyValue, uint32_t bus,
     return true;
 }
 
+static void handleNfcPayload(std::vector<uint8_t>& payload,
+                             FruDetails& fruDetails,
+                             sdbusplus::asio::object_server& objServer)
+{
+    if (payload.empty())
+    {
+        lg2::warning("Empty payload");
+        return;
+    }
+
+    addFruObjectToDbus(payload, fruDetails, nfcBus, nfcAddr, objServer);
+}
+
+static void handleNfcTagAdded(
+    const std::shared_ptr<sdbusplus::asio::connection>& systemBus,
+    FruDetails& fruDetails, sdbusplus::asio::object_server& objServer,
+    sdbusplus::message_t& message)
+{
+    sdbusplus::object_path path;
+
+    std::map<
+        std::string,
+        std::map<std::string, std::variant<std::string, std::vector<uint8_t>>>>
+        interfaces;
+
+    message.read(path, interfaces);
+
+    auto it = interfaces.find(neardRecordInterface);
+    if (it == interfaces.end())
+    {
+        return;
+    }
+
+    const auto& props = it->second;
+
+    auto typeIt = props.find("Type");
+    if (typeIt == props.end())
+    {
+        return;
+    }
+
+    const auto* type = std::get_if<std::string>(&typeIt->second);
+    if (type == nullptr)
+    {
+        lg2::error("Invalid Type property value");
+        return;
+    }
+
+    if (*type != "MIME")
+    {
+        lg2::warning("Ignoring non-MIME record, Type={TYPE}", "TYPE", *type);
+        return;
+    }
+
+    getMimePayloadAsync(
+        systemBus, path,
+        [&fruDetails, &objServer](std::vector<uint8_t> payload) {
+            handleNfcPayload(payload, fruDetails, objServer);
+        });
+}
+
 int main()
 {
+    using namespace sdbusplus::bus::match::rules;
+
     auto systemBus = std::make_shared<sdbusplus::asio::connection>(io);
     sdbusplus::asio::object_server objServer(systemBus);
 
@@ -1444,6 +1541,18 @@ int main()
         "openbmc_project/state/"
         "host0',arg0='xyz.openbmc_project.State.Host'",
         eventHandler);
+
+    auto nfcTagAddedHandler =
+        [systemBus, &fruDetails, &objServer](sdbusplus::message_t& message) {
+            handleNfcTagAdded(systemBus, fruDetails, objServer, message);
+        };
+
+    sdbusplus::bus::match_t nfcTagAddedMatch = sdbusplus::bus::match_t(
+        static_cast<sdbusplus::bus_t&>(*systemBus),
+        type::signal() + sender("org.neard") +
+            interface("org.freedesktop.DBus.ObjectManager") +
+            member("InterfacesAdded"),
+        nfcTagAddedHandler);
 
     int fd = inotify_init();
     inotify_add_watch(fd, i2CDevLocation, IN_CREATE | IN_MOVED_TO | IN_DELETE);
