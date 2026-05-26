@@ -3,6 +3,7 @@ unit_files = [
     ['xyz.openbmc_project.EntityManager.service', ''],
     ['devicetree-vpd-parser.service', 'devicetree-vpd'],
     ['xyz.openbmc_project.gpiopresence.service', 'gpio-presence'],
+    ['nfc-fru-parser.service', 'nfc-fru-parser'],
 ]
 
 foreach u : unit_files

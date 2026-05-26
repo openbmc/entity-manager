@@ -1,0 +1,11 @@
+[Unit]
+Description=NFC FRU Parser
+After=neard.service
+Wants=neard.service
+
+[Service]
+ExecStart=/usr/libexec/entity-manager/nfc-fru-parser
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

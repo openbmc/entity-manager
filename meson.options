@@ -53,3 +53,8 @@ option(
     value: true,
     description: 'Cache the current configuration to support new-device detection. This option can be set to false for development, which will force re-parsing of configuration.',
 )
+option(
+    'nfc-fru-parser',
+    type: 'boolean',
+    description: 'Build NFC FRU parser.',
+)
