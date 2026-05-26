@@ -22,3 +22,7 @@ endif
 if get_option('gpio-presence')
     subdir('gpio-presence')
 endif
+
+if get_option('nfc-fru-parser')
+    subdir('nfc_fru_parser')
+endif
