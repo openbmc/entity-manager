@@ -17,6 +17,7 @@ executable(
     'fru_reader.cpp',
     'fru_utils.cpp',
     'gzip_utils.cpp',
+    'neard_dbus.cpp',
     cpp_args: cpp_args_fd,
     dependencies: [
         boost,
