@@ -1,0 +1,112 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "090de04a_3132bc73",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-05-26T16:44:37Z",
+      "side": 1,
+      "message": "I\u0027m a little confused about this service and its intent.  Especially because we\u0027re adding a new service, there should be some documentation (could be in your commit message if you wanted) about what this is doing.\n\nRight off the bat, I\u0027m not really understanding why we\u0027re adding a service to parse dbus records, and expose different dbus records.  This sounds like something that should be just done in the primary service, exposing the decoded data.\n\nPlease also link what service is hosting the nfc tag objects on dbus in this case, and overall architecture of how this is supposed to work.",
+      "revId": "4d1b5221f77fa8d12d048f9f4fa92913702c00ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81370a08_253d95e0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-05-26T16:44:37Z",
+      "side": 1,
+      "message": "Overall would like some understanding (in the commit message) of what this is doing.",
+      "revId": "4d1b5221f77fa8d12d048f9f4fa92913702c00ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ccc56f0_f933897e",
+        "filename": "src/nfc_fru_parser/neard_dbus.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-05-26T16:44:37Z",
+      "side": 1,
+      "message": "Do not do blocking calls in an async reactor ever.",
+      "revId": "4d1b5221f77fa8d12d048f9f4fa92913702c00ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e79ada9f_30c9b3b5",
+        "filename": "src/nfc_fru_parser/neard_dbus.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-05-26T16:44:37Z",
+      "side": 1,
+      "message": "Why are we doing an introspect here?  Shouldn\u0027t we already know the interfaces from a match expression (which seems to be missing).",
+      "revId": "4d1b5221f77fa8d12d048f9f4fa92913702c00ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8741035_5854c8b2",
+        "filename": "src/nfc_fru_parser/nfc_fru_parser.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-05-26T16:44:37Z",
+      "side": 1,
+      "message": "?  Why are we removing the interface if it alrady exists, shouldn\u0027t we just be appending it.",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 5
+      },
+      "revId": "4d1b5221f77fa8d12d048f9f4fa92913702c00ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "252c6e9f_dede044d",
+        "filename": "src/nfc_fru_parser/nfc_fru_parser.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-05-26T16:44:37Z",
+      "side": 1,
+      "message": "This reads a lot like you had timing issues that you\u0027re covering up with timers.  Please just fix the bugs.",
+      "revId": "4d1b5221f77fa8d12d048f9f4fa92913702c00ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
