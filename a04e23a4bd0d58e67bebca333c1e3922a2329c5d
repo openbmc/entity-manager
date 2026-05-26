@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fca1842f_58bfe5ba",
+        "filename": "src/entity_manager/topology.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-05-26T15:42:49Z",
+      "side": 1,
+      "message": "I am wondering if that will now permit\n\n`Board -\u003e containing -\u003e Chassis`\n\nto be configured, which is not intended, right?\n\nIs it possible, and if yes, can we restrict it some more to only allow the intended associations to be created.",
+      "revId": "a04e23a4bd0d58e67bebca333c1e3922a2329c5d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14418d20_36e0670a",
+        "filename": "test/test_topology.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-05-26T15:42:49Z",
+      "side": 1,
+      "message": "Are you not just shadowing these names inside the test again? e.g. line 14 and line 562.",
+      "revId": "a04e23a4bd0d58e67bebca333c1e3922a2329c5d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
