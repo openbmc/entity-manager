@@ -16,6 +16,24 @@
       "message": "```suggestion\n                    \"description\": \"The schema for the type property. The type property identifies the type of the configuration.  When exported, configurations will be instantiated as children of: /xyz/openbmc_project/inventory/system/\u003cType\u003e\",\n```\n\ncan find examples with e.g.\n\n\n`git log | grep -i \"/xyz/openbmc_project/inventory\"`",
       "revId": "2f90d2234ce64ab64d84d4c6bd7b308200d4cdbd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad57e750_75963d41",
+        "filename": "schemas/global.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2026-05-27T08:40:44Z",
+      "side": 1,
+      "message": "Yes, this seems to be the full parent path, thanks. Done",
+      "parentUuid": "3f9ec738_bc91ef55",
+      "revId": "2f90d2234ce64ab64d84d4c6bd7b308200d4cdbd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
