@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "55c23341_92d4f4b3",
+        "filename": "src/entity_manager/topology.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2026-05-27T08:39:43Z",
+      "side": 1,
+      "message": "Yes that would be possible, which in this particular case mayybe shouldn\u0027t. What if there is a HDD cage extending the board?  \n\nAt the same time this follows the PDI definition for associations on `Inventory.Item`s which allows for any item to be associated with another item.\n\n\nIf we were about to make restrictions on what goes and what doesn\u0027t, we probably would have to start in PDI and go from there. Just restricting in EM would conflict with the current definition. \nAlso I am not sure how feasible restricting certain associations in general is..who knows what will be manufactured tomorrow that will leave us rework the associations again and again :D",
+      "parentUuid": "fca1842f_58bfe5ba",
+      "revId": "a04e23a4bd0d58e67bebca333c1e3922a2329c5d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "14418d20_36e0670a",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-05-26T15:42:49Z",
       "side": 1,
       "message": "Are you not just shadowing these names inside the test again? e.g. line 14 and line 562.",
+      "revId": "a04e23a4bd0d58e67bebca333c1e3922a2329c5d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d361aa81_997f06f1",
+        "filename": "test/test_topology.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2026-05-27T08:39:43Z",
+      "side": 1,
+      "message": "Thanks, these are just remnants of prior testing that I forgot to delete. Removed them, done.",
+      "parentUuid": "14418d20_36e0670a",
       "revId": "a04e23a4bd0d58e67bebca333c1e3922a2329c5d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
