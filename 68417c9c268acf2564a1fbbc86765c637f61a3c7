@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "471f55d5_79f3c650",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2026-05-28T06:06:38Z",
+      "side": 1,
+      "message": "Here is an example introspect output for the created object:\n\nThis patch creates the following D-Bus object:\n\n/xyz/openbmc_project/inventory/system/board/Clemente_SCM/Clemente_SCM_CPLD\n\nExample introspect output:\n\nxyz.openbmc_project.Configuration.AlteraMAX10_10M16Firmware\n.Address      property  t  49\n.Bus          property  t  7\n.Name         property  s  \"Clemente_SCM_CPLD\"\n.Type         property  s  \"AlteraMAX10_10M16Firmware\"\n.UpdateGpio   property  s  \"USBDBG_IPMI_EN_L\"\n\nxyz.openbmc_project.Configuration.AlteraMAX10_10M16Firmware.FirmwareInfo\n.CompatibleHardware  property  s  \"com.meta.Hardware.Clemente.CPLD.MAX10_10M16\"\n.VendorIANA          property  t  40981",
+      "parentUuid": "064a47a6_4bbcbe46",
+      "revId": "68417c9c268acf2564a1fbbc86765c637f61a3c7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ff1fe5d2_2c660d21",
