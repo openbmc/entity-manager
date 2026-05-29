@@ -22,6 +22,10 @@
                     "description": "This indicates the interface number of the device.",
                     "type": "number"
                 },
+                "DeviceLocation": {
+                    "description": "The location of the USB device in the USB topology.",
+                    "type": "string"
+                },
                 "Port": {
                     "description": "This indicates the physical port of the serial device within that interface.",
                     "type": "number"
@@ -43,6 +47,7 @@
                 "Type",
                 "DeviceAddress",
                 "DeviceInterface",
+                "DeviceLocation",
                 "Port",
                 "Mode",
                 "BaudRate",
