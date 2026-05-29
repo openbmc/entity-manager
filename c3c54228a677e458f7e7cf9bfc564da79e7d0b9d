@@ -22,6 +22,30 @@
       },
       "revId": "c3c54228a677e458f7e7cf9bfc564da79e7d0b9d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "421c52bb_306bbc06",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1002850
+      },
+      "writtenOn": "2026-05-29T10:00:36Z",
+      "side": 1,
+      "message": "These GPIODeviceDetect entries do not create inventory objects by themselves.\n\nThe intent is to enable the existing gpio-presence flow to track removable device present/absent transitions and report insertion/removal through journal logs.\n\nI updated the commit message to make this clearer.",
+      "parentUuid": "f8c6efc0_51359475",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 60
+      },
+      "revId": "c3c54228a677e458f7e7cf9bfc564da79e7d0b9d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
