@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "20e885c1_c5000e24",
+        "filename": "src/meson.build",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-06-01T18:31:28Z",
+      "side": 1,
+      "message": "Sure.  That doesn\u0027t follow the convention, but I\u0027m not that worried.",
+      "parentUuid": "0f6dd27b_9c44affd",
+      "revId": "b8692385141d35b6a70fa2c93813923fd94b64c3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c083c217_777ddd7c",
         "filename": "src/usb_device/usb_device_monitor.hpp",
         "patchSetId": 5
@@ -121,6 +139,24 @@
       "side": 1,
       "message": "device can be of various subclasses like network device, mctp device, serial device. Hence it can allow more subclasses based on some configuration (maybe like a entity manager property)?",
       "parentUuid": "0334d7ab_51f9eba8",
+      "revId": "b8692385141d35b6a70fa2c93813923fd94b64c3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbdc4e52_d8cef805",
+        "filename": "src/usb_device/usb_device_monitor.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-06-01T18:31:28Z",
+      "side": 1,
+      "message": "Is there a reason this needs to be configurable though?  Can\u0027t this just be a superset of all supported?",
+      "parentUuid": "f9185fa1_9c19f27c",
       "revId": "b8692385141d35b6a70fa2c93813923fd94b64c3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
