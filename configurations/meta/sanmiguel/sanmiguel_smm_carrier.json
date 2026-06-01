@@ -1,54 +1,81 @@
-{
-    "Exposes": [
-        {
-            "Address": "$address",
-            "Bus": "$bus",
-            "Name": "SanMiguel SMM Carrier FRU",
-            "Type": "EEPROM"
+[
+    {
+        "Exposes": [
+            {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "SanMiguel SMM Carrier FRU",
+                "Type": "EEPROM"
+            },
+            {
+                "Name": "HostTpm",
+                "PresencePinNames": [
+                    "HDR_SPI_PRSNT_L-I"
+                ],
+                "PresencePinValues": [
+                    0
+                ],
+                "Type": "GPIODeviceDetect"
+            },
+            {
+                "Address": "0x48",
+                "Bus": 5,
+                "Name": "SMM_CARR_INLET_TEMP_C",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 2,
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 100
+                    },
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 0.1,
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 5
+                    }
+                ],
+                "Type": "LM75A"
+            }
+        ],
+        "Name": "SanMiguel SMM Carrier",
+        "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'San Miguel SMM Carrier ', 'BOARD_MANUFACTURER': '(Ingrasys|Quanta)'})",
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "BuildDate": "$BOARD_MANUFACTURE_DATE",
+            "Manufacturer": "$BOARD_MANUFACTURER",
+            "Model": "$BOARD_PRODUCT_NAME",
+            "PartNumber": "$BOARD_PART_NUMBER",
+            "SerialNumber": "$BOARD_SERIAL_NUMBER",
+            "SparePartNumber": "$BOARD_INFO_AM1"
         },
-        {
-            "Address": "0x48",
-            "Bus": 5,
-            "Name": "SMM_CARR_INLET_TEMP_C",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 2,
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 100
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.1,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5
-                }
-            ],
-            "Type": "LM75A"
+        "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+            "AssetTag": "$PRODUCT_ASSET_TAG"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.Compatible": {
+            "Names": [
+                "com.meta.Hardware.SanMiguel.Boards.SMM_Carrier"
+            ]
+        },
+        "xyz.openbmc_project.Inventory.Decorator.Revision": {
+            "Version": "$PRODUCT_VERSION"
         }
-    ],
-    "Name": "SanMiguel SMM Carrier",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'San Miguel SMM Carrier ', 'BOARD_MANUFACTURER': '(Ingrasys|Quanta)'})",
-    "Type": "Board",
-    "xyz.openbmc_project.Inventory.Decorator.Asset": {
-        "BuildDate": "$BOARD_MANUFACTURE_DATE",
-        "Manufacturer": "$BOARD_MANUFACTURER",
-        "Model": "$BOARD_PRODUCT_NAME",
-        "PartNumber": "$BOARD_PART_NUMBER",
-        "SerialNumber": "$BOARD_SERIAL_NUMBER",
-        "SparePartNumber": "$BOARD_INFO_AM1"
     },
-    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
-        "AssetTag": "$PRODUCT_ASSET_TAG"
-    },
-    "xyz.openbmc_project.Inventory.Decorator.Compatible": {
-        "Names": [
-            "com.meta.Hardware.SanMiguel.Boards.SMM_Carrier"
-        ]
-    },
-    "xyz.openbmc_project.Inventory.Decorator.Revision": {
-        "Version": "$PRODUCT_VERSION"
+    {
+        "Exposes": [],
+        "Name": "SanMiguel $Name",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'HostTpm', 'Compatible': 'com.meta.Hardware.SanMiguel.Boards.SMM_Carrier'})"
+        ],
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "NOT_SUPPORTED",
+            "Model": "NOT_SUPPORTED",
+            "PartNumber": "NOT_SUPPORTED",
+            "SerialNumber": "NOT_SUPPORTED",
+            "SparePartNumber": "NOT_SUPPORTED"
+        }
     }
-}
+]
