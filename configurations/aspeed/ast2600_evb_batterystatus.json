@@ -1,0 +1,22 @@
+{
+    "Exposes": [
+        {
+            "Name": "CMOS Battery",
+            "EntityId": "0x28",
+            "EntityInstance": "0x01",
+            "DeviceName": "P3V3_AUX",
+            "State": [
+                "Battery Low",
+                "Battery Failed",
+                "Battery presence detected"
+            ],
+            "Type": "Battery"
+        }
+    ],
+    "Name": "AST2600 EVB Baseboard",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({})",
+        "MATCH_ONE"
+    ],
+    "Type": "Board"
+}
