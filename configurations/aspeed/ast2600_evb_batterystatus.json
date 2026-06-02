@@ -15,7 +15,9 @@
     ],
     "Name": "AST2600 EVB Baseboard",
     "Probe": [
-        "xyz.openbmc_project.FruDevice({})",
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': '.*AST2600.*'})",
+        "OR",
+        "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': '.*AST2600.*'})",
         "MATCH_ONE"
     ],
     "Type": "Board"
