@@ -92,6 +92,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "64e466dc_93017f92",
+        "filename": "src/meson.build",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001076
+      },
+      "writtenOn": "2026-06-02T03:25:20Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "20e885c1_c5000e24",
+      "revId": "b8692385141d35b6a70fa2c93813923fd94b64c3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c083c217_777ddd7c",
         "filename": "src/usb_device/usb_device_monitor.hpp",
         "patchSetId": 5
@@ -157,6 +175,24 @@
       "side": 1,
       "message": "Is there a reason this needs to be configurable though?  Can\u0027t this just be a superset of all supported?",
       "parentUuid": "f9185fa1_9c19f27c",
+      "revId": "b8692385141d35b6a70fa2c93813923fd94b64c3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a3ada09_f71d0dd1",
+        "filename": "src/usb_device/usb_device_monitor.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1001076
+      },
+      "writtenOn": "2026-06-02T03:25:20Z",
+      "side": 1,
+      "message": "It can be used to probe mctpusb devices for mctpreactor instead of depending on FRU as an example. Similarly other USB device subclasses can have different usecase. It can be a superset as well, but how will a specific subclass be filtered like network devices?",
+      "parentUuid": "bbdc4e52_d8cef805",
       "revId": "b8692385141d35b6a70fa2c93813923fd94b64c3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
