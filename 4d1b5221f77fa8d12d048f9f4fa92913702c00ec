@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e2f2081_126a5ddf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1002728
+      },
+      "writtenOn": "2026-06-02T10:30:06Z",
+      "side": 1,
+      "message": "Sorry for late reply, and thank you for the feedback.\n\nThis service is intended for systems where FRU information is provided via NFC tags rather than the traditional I2C EEPROM interface.\n\nThe flow is:\n\nNFC Tag (IPMI FRU payload in NDEF MIME record)\n↓\nneard (exports NFC tag records on D-Bus)\n↓\nnfc-fru-parser (parses NDEF payload and exposes FRU inventory data on D-Bus)\n\nThe NFC tag stores binary data encoded in IPMI FRU format within an NDEF MIME record. The BMC uses NFC driver (nxp-nci) together with neard to access the tag contents. neard exposes the NDEF records on D-Bus, and this service parses the FRU payload and publishes the decoded inventory information through xyz.openbmc_project.NfcFruDevice.\n\nThis is not intended to replace existing fru-device service. It supports platforms where FRU information is intentionally provisioned via NFC tags and retrieved through the NFC stack.\n\nThe reason this is implemented as a separate service is that neard only provides generic NFC/NDEF functionality and exposes raw NDEF records on D-Bus. It has no knowledge of IPMI FRU semantics or OpenBMC inventory models. This service is responsible for interpreting a specific NDEF MIME payload format and translating it into OpenBMC inventory objects.\n\nOne example is Anacapa platform, where NFC tags are attached to FRUs and used for identification purposes (such as slot location) without requiring direct electrical connectivity.\n\nI agree that the current commit description does not provide enough architectural context. I will add more commit message to explain it.",
+      "parentUuid": "090de04a_3132bc73",
+      "revId": "4d1b5221f77fa8d12d048f9f4fa92913702c00ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "81370a08_253d95e0",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-05-26T16:44:37Z",
       "side": 1,
       "message": "Overall would like some understanding (in the commit message) of what this is doing.",
+      "revId": "4d1b5221f77fa8d12d048f9f4fa92913702c00ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb2334cf_44e34875",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002728
+      },
+      "writtenOn": "2026-06-02T10:30:06Z",
+      "side": 1,
+      "message": "I will add more commit message to explain it.",
+      "parentUuid": "81370a08_253d95e0",
       "revId": "4d1b5221f77fa8d12d048f9f4fa92913702c00ec",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -54,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "32c02742_9074c1c2",
+        "filename": "src/nfc_fru_parser/neard_dbus.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1002728
+      },
+      "writtenOn": "2026-06-02T10:30:06Z",
+      "side": 1,
+      "message": "I will revise it.",
+      "parentUuid": "8ccc56f0_f933897e",
+      "revId": "4d1b5221f77fa8d12d048f9f4fa92913702c00ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e79ada9f_30c9b3b5",
         "filename": "src/nfc_fru_parser/neard_dbus.cpp",
         "patchSetId": 3
@@ -65,6 +119,24 @@
       "writtenOn": "2026-05-26T16:44:37Z",
       "side": 1,
       "message": "Why are we doing an introspect here?  Shouldn\u0027t we already know the interfaces from a match expression (which seems to be missing).",
+      "revId": "4d1b5221f77fa8d12d048f9f4fa92913702c00ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d719faec_eb806791",
+        "filename": "src/nfc_fru_parser/neard_dbus.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1002728
+      },
+      "writtenOn": "2026-06-02T10:30:06Z",
+      "side": 1,
+      "message": "I will revise it.",
+      "parentUuid": "e79ada9f_30c9b3b5",
       "revId": "4d1b5221f77fa8d12d048f9f4fa92913702c00ec",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -94,6 +166,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f09c678f_fe84e736",
+        "filename": "src/nfc_fru_parser/nfc_fru_parser.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1002728
+      },
+      "writtenOn": "2026-06-02T10:30:06Z",
+      "side": 1,
+      "message": "I will revise it.",
+      "parentUuid": "b8741035_5854c8b2",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 5
+      },
+      "revId": "4d1b5221f77fa8d12d048f9f4fa92913702c00ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "252c6e9f_dede044d",
         "filename": "src/nfc_fru_parser/nfc_fru_parser.cpp",
         "patchSetId": 3
@@ -105,6 +201,24 @@
       "writtenOn": "2026-05-26T16:44:37Z",
       "side": 1,
       "message": "This reads a lot like you had timing issues that you\u0027re covering up with timers.  Please just fix the bugs.",
+      "revId": "4d1b5221f77fa8d12d048f9f4fa92913702c00ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "022c5a6c_f2e6eb78",
+        "filename": "src/nfc_fru_parser/nfc_fru_parser.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1002728
+      },
+      "writtenOn": "2026-06-02T10:30:06Z",
+      "side": 1,
+      "message": "I will revise it.",
+      "parentUuid": "252c6e9f_dede044d",
       "revId": "4d1b5221f77fa8d12d048f9f4fa92913702c00ec",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

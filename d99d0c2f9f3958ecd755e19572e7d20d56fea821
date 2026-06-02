@@ -16,6 +16,24 @@
       "message": "Can you explain more about which system and which FRU device you are supporting with this and how this would be used?\n\nIt looks like the mechanism is explained fairly well but i am not understanding why someone would not just use a regular i2c eeprom to create their inventory.",
       "revId": "d99d0c2f9f3958ecd755e19572e7d20d56fea821",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0635826f_249e344a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1002728
+      },
+      "writtenOn": "2026-06-02T10:30:06Z",
+      "side": 1,
+      "message": "Sorry for late reply, and thank you for your response.\n\nThis is intended for systems where FRU information is provided via NFC tags\nrather than a traditional I2C EEPROM interface. For example, in Anacapa server\nplatform deployments, NFC tags are attached to FRU to allow identification \n(such as slot location) without requiring direct electrical connectivity.\n\nIn this case, the NFC tag stores binary data encoded in IPMI FRU format\ninside an NDEF MIME record. BMC enables NFC driver (nxp-nci) and\nuses neard to retrieve the tag records over D-Bus. This parser then decodes\nthe FRU payload and exposes it via xyz.openbmc_project.NfcFruDevice.\n\nRegarding the question about using a regular I2C EEPROM:\nIn this design, the FRU data is intentionally encoded in the NFC tag\n(as an NDEF MIME record) and retrieved via the NFC interface,\nrather than being stored on a physical EEPROM.\n\nThis is used for identification purposes (e.g. slot location),\nwhere the NFC tag is attached to the FRU and serves as the source of inventory data.\n\nSo this is not intended to replace the existing fru-device (I2C EEPROM) flow,\nbut to support systems where FRU information is provisioned via NFC by design.\n\nI will add more commit message to explain it.",
+      "parentUuid": "b1bf3bdf_642fbf2b",
+      "revId": "d99d0c2f9f3958ecd755e19572e7d20d56fea821",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

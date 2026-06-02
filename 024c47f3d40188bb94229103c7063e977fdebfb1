@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1def3e10_90bbc3f1",
+        "filename": "src/nfc_fru_parser/neard_dbus.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1002728
+      },
+      "writtenOn": "2026-06-02T10:30:06Z",
+      "side": 1,
+      "message": "No, this is not related to BlueZ.\n\nThese constants correspond to D-Bus interfaces defined by neard,\nwhich is the NFC manager in the Linux NFC stack. For example,\n\"org.neard.Record\" is the interface used by neard to expose\nNDEF records over D-Bus.\n\nThis code simply consumes those interfaces to retrieve NFC tag\nrecords, rather than defining a new protocol or reusing anything\nfrom BlueZ.",
+      "parentUuid": "84724949_6c547202",
+      "revId": "024c47f3d40188bb94229103c7063e977fdebfb1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "448a4a67_b643068a",
         "filename": "src/nfc_fru_parser/nfc_fru_parser.cpp",
         "patchSetId": 4
@@ -31,6 +49,24 @@
       "writtenOn": "2026-05-26T16:48:30Z",
       "side": 1,
       "message": "I\u0027m struggling quite a bit understanding why we\u0027re trying to decode an Mime payload as an IPMI fru.  They\u0027re different formats and specifications.  If this is some off-spec usage of that, at least a rudimentary description of that needs to go in your commit message.",
+      "revId": "024c47f3d40188bb94229103c7063e977fdebfb1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45d401ad_c7eaa817",
+        "filename": "src/nfc_fru_parser/nfc_fru_parser.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1002728
+      },
+      "writtenOn": "2026-06-02T10:30:06Z",
+      "side": 1,
+      "message": "MIME record here is only the NDEF carrier type used by the NFC stack.\nThe payload inside that MIME record is vendor-defined and, in this case,\n contains binary data encoded in IPMI FRU format.\n\nSo this code is not treating MIME itself as an IPMI FRU format.\nRather, it is decoding the payload of a MIME-type NDEF record, \nwhere the payload content is intentionally provisioned as IPMI FRU binary data.\n\nI agree this was not explained clearly enough in the commit message,\nand I will update it to describe that layering and the intended use case.",
+      "parentUuid": "448a4a67_b643068a",
       "revId": "024c47f3d40188bb94229103c7063e977fdebfb1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
