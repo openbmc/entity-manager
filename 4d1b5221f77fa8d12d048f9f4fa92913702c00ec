@@ -54,6 +54,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7d1a106_e3ef600a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-06-02T21:11:40Z",
+      "side": 1,
+      "message": "Just so I understand, what part of the \"hardware architecture is really odd\"?\n\nI don\u0027t know that we can change much of this at this point, but the rack has NFC chips that identify rack position.  The server reads the NFC to figure out where it is in the rack.\n\nThere were two proposals for the data in the NFC: a raw string like \"P12\", or IPMI formatted data.  We went with IPMI data because that seemed more likely to be generally applicable, it would reuse a bunch of fru-device support (hopefully), and we\u0027d get error detection over a raw string.\n\nI highly suspect neard would not be interested in IPMI parsing of the NFC data, so we have to either go directly to the NFC kernel APIs or put that parsing middleware somewhere.",
+      "parentUuid": "f213709f_e3135ad0",
+      "revId": "4d1b5221f77fa8d12d048f9f4fa92913702c00ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "81370a08_253d95e0",
