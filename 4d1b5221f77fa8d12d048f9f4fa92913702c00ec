@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "f213709f_e3135ad0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-06-02T21:00:28Z",
+      "side": 1,
+      "message": "\u003e The reason this is implemented as a separate service is that neard only provides\n\nWhy is this a problem?  Go add support for what you need to that service and get the maintainers to review it?\n\n\u003e It has no knowledge of IPMI FRU semantics or OpenBMC inventory models.\n\nWhat does OpenBMC inventory have to do with this?  EM will continue hosting the inventory, all neard needs to do is publish SOME reasonable interface that EM can consume the properties of.\n\n\n\nI will say, this hardware architecture is really odd.  IF we\u0027re going to go create our own service, lets create our own service.  No need to try to play nice with neard.  Has there been any discussion with the neard maintainers about this structured data you\u0027ve put in the nfc tags?  I\u0027d almost prefer we maintain a fork of neard, or just have a service that goes direct kernel-\u003edbus than try to go reinvent a middleware service, but that\u0027s a discussion for after we\u0027ve had some discussion there.",
+      "parentUuid": "4e2f2081_126a5ddf",
+      "revId": "4d1b5221f77fa8d12d048f9f4fa92913702c00ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "81370a08_253d95e0",
