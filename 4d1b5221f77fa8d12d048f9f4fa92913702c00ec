@@ -72,6 +72,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "b766d133_29a85641",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-06-02T21:22:32Z",
+      "side": 1,
+      "message": "Loading an IPMI fru into some random field of a non IPMI protocol is really what keyed as different to me.  That\u0027s not to say we shouldn\u0027t try to support it, but I have yet to see PCIe slots identified by NFC, certainly also not with IPMI frus loaded on a field there.\n\nFWIW, the raw \"P12\" string option would\u0027ve meant we wouldn\u0027t have needed any implementation here, we could just have EM directly probe on Neard, but oh well, if that decision is made, we can figure that out.",
+      "parentUuid": "b7d1a106_e3ef600a",
+      "revId": "4d1b5221f77fa8d12d048f9f4fa92913702c00ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "81370a08_253d95e0",
