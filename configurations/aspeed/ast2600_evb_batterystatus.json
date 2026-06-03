@@ -1,0 +1,24 @@
+{
+    "Exposes": [
+        {
+            "DeviceName": "P3V3_AUX",
+            "EntityId": "0x28",
+            "EntityInstance": "0x01",
+            "Name": "CMOS Battery",
+            "State": [
+                "Battery Low",
+                "Battery Failed",
+                "Battery presence detected"
+            ],
+            "Type": "Battery"
+        }
+    ],
+    "Name": "AST2600 EVB Baseboard",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'AST2600 EVB', 'BOARD_MANUFACTURER': 'ASPEED'})",
+        "OR",
+        "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'AST2600 EVB', 'PRODUCT_MANUFACTURER': 'ASPEED'})",
+        "MATCH_ONE"
+    ],
+    "Type": "Board"
+}

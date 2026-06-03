@@ -424,6 +424,35 @@
             "required": ["Name", "Type", "Index", "Direction", "Polarity"],
             "type": "object"
         },
+        "Battery": {
+            "additionalProperties": false,
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "EntityId": {
+                    "type": "string"
+                },
+                "EntityInstance": {
+                    "type": "string"
+                },
+                "DeviceName": {
+                    "type": "string"
+                },
+                "State": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "Type": {
+                    "type": "string",
+                    "const": "Battery"
+                }
+            },
+            "required": ["Name", "Type", "EntityId", "EntityInstance"],
+            "type": "object"
+        },
         "MultiNodeID": {
             "additionalProperties": false,
             "properties": {
