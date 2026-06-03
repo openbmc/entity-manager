@@ -13,6 +13,16 @@
             "Type": "EEPROM_24C256"
         },
         {
+            "Name": "L_BB_Cable",
+            "PresencePinNames": [
+                "LBB_Cable_Present"
+            ],
+            "PresencePinValues": [
+                1
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
             "Address": "0x71",
             "Bus": 0,
             "FirmwareInfo": {
@@ -184,6 +194,11 @@
     },
     "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
         "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Compatible": {
+        "Names": [
+            "com.meta.Hardware.Anacapa.Boards.LBB"
+        ]
     },
     "xyz.openbmc_project.Inventory.Decorator.Revision": {
         "Version": "$PRODUCT_VERSION"
