@@ -15,6 +15,7 @@ configs = [
     'ampere/mtmitchell_bp.json',
     'ampere/mtmitchell_mb.json',
     'ampere/mtmitchell_riser.json',
+    'aspeed/ast2600_evb_batterystatus.json',
     'aspower/u1a-d10550_psu.json',
     'aspower/u1a-d10800_psu.json',
     'aspower/u1a-d11200_psu.json',
