@@ -16,6 +16,24 @@
       "message": "Can we use consistency?  Sometimes you\u0027re using \"Cable_Present\" and sometimes you\u0027re using \"CBL_PRSNT\".\n\nSince you\u0027ve used the name as \"CBL_PRSNT\" and in the resulting cable config you used \"$NAME\" doesn\u0027t that mean we end up with a cable named \"XYZ Cable Present\"?  Shouldn\u0027t the name be the name of the cable without the \"Present\"?",
       "revId": "c2fbe178d1b4bc787edf32cd18c8c31e2e3611aa",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b100f58_0e87554c",
+        "filename": "configurations/meta/anacapa/anacapa_bridge_r_t20.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1002850
+      },
+      "writtenOn": "2026-06-03T07:13:40Z",
+      "side": 1,
+      "message": "Updated. I removed the presence suffix from GPIODeviceDetect Name.",
+      "parentUuid": "afd32d18_d922e367",
+      "revId": "c2fbe178d1b4bc787edf32cd18c8c31e2e3611aa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
