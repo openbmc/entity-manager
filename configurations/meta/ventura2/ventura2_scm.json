@@ -1821,6 +1821,20 @@
             "Address": "0x4b",
             "Bus": 9,
             "Name": "SCM_INLET_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 60
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                }
+            ],
             "Type": "TMP75"
         },
         {
