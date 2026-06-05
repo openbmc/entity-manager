@@ -936,7 +936,7 @@
         }
     ],
     "Name": "PDB_R",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Anacapa(?!.*EVT1)(?!.*EVT2).*RPDB', 'BOARD_MANUFACTURER': '(Inventec|Wiwynn)'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Anacapa.* RPDB EVT2', 'BOARD_MANUFACTURER': '(Inventec|Wiwynn)'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
