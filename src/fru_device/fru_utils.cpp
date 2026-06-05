@@ -651,11 +651,11 @@ unsigned int updateFRUAreaLenAndChecksum(
     fruData[fruAreaLengthLoc] = static_cast<uint8_t>(newFRUAreaLen);
 
     // Calculate new checksum
-    std::vector<uint8_t> finalFRUData;
-    std::copy_n(fruData.begin() + fruAreaStart, checksumLoc - fruAreaStart,
-                std::back_inserter(finalFRUData));
+    std::span<const uint8_t> fruDataView{fruData};
 
-    fruData[checksumLoc] = calculateChecksum(finalFRUData);
+    fruData[checksumLoc] =
+        calculateChecksum(fruDataView.begin() + fruAreaStart,
+                          fruDataView.begin() + checksumLoc);
     return checksumLoc;
 }
 
