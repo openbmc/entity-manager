@@ -166,6 +166,30 @@
       },
       "revId": "c3c54228a677e458f7e7cf9bfc564da79e7d0b9d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6defbae0_606342b0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1002850
+      },
+      "writtenOn": "2026-06-05T09:17:21Z",
+      "side": 1,
+      "message": "Updated to support the hot-remove flow by triggering FruDeviceManager.ReScanBus() from the presence GPIO changes.\nNew Gerrit change: https://gerrit.openbmc.org/c/openbmc/openbmc/+/91006\n\nI also split \"Add cable inventory presence\" into a separate change and rebased it directly on master, so it no longer depends on this commit.",
+      "parentUuid": "f9e12680_49988301",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 60
+      },
+      "revId": "c3c54228a677e458f7e7cf9bfc564da79e7d0b9d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
