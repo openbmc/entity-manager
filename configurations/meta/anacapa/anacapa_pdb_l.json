@@ -7,6 +7,16 @@
             "Type": "EEPROM"
         },
         {
+            "Name": "L_PDB_Cable",
+            "PresencePinNames": [
+                "PDB_L_PRSNT_R_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
             "Address": "0x2b",
             "Bus": "$bus",
             "Connector": {
@@ -787,6 +797,11 @@
     },
     "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
         "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Compatible": {
+        "Names": [
+            "com.meta.Hardware.Anacapa.Boards.LPDB"
+        ]
     },
     "xyz.openbmc_project.Inventory.Decorator.Revision": {
         "Version": "$PRODUCT_VERSION"
