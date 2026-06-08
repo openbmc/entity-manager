@@ -119,6 +119,7 @@ configs = [
     'meta/anacapa/anacapa_bridge_r_t16_evt1.json',
     'meta/anacapa/anacapa_bridge_r_t16_evt2.json',
     'meta/anacapa/anacapa_bridge_r_t20_evt2.json',
+    'meta/anacapa/anacapa_cable.json',
     'meta/anacapa/anacapa_mb.json',
     'meta/anacapa/anacapa_mb_evt1.json',
     'meta/anacapa/anacapa_mb_evt2.json',
