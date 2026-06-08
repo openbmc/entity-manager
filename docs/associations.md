@@ -101,7 +101,7 @@ For example 'yosemite4.json':
 ```
 
 This configuration queries the object mapper to find an FruDevice interface with
-with the stated property values (BOARD_PRODUCT_NAME, PRODUCT_NAME). The path
+the stated property values (BOARD_PRODUCT_NAME, PRODUCT_NAME). The path
 `/xyz/openbmc_project/FruDevice/Management_Board_wBMC` is found, which means EM
 loads the configuration. The found path is the probed path and is placed as the
 probing/probed_by association property in the inventory item of the
