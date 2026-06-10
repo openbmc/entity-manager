@@ -432,6 +432,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f1a10c8b_95afd81d",
+        "filename": "configurations/mellanox/connectx-6.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-06-10T18:23:36Z",
+      "side": 1,
+      "message": "\u003e What you are asking for requires Alexander to write a kernel driver with the new type. \n\nThis is not what I asked for, and i agree, a new kernel driver for this would be overkill assuming the one leg of TMP421 works.\n\nWe should add a new type that can use the TMP421 in the kernel, and just ignore one leg of it so we don\u0027t get errant readings.  Should just be a hwmontempsensor change to come up with a way to ignore the one leg of the TMP421 that isn\u0027t working.\n\nExposing a broken temp sensor that we know can\u0027t ever read doesn\u0027t seem right, and would be an openbmc bug for any system that has this card in it.",
+      "parentUuid": "b02478f4_012a55e6",
+      "range": {
+        "startLine": 20,
+        "startChar": 25,
+        "endLine": 20,
+        "endChar": 32
+      },
+      "revId": "0d0f776199534d29ba9e14127267e97ca608964e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2270d12d_8a9b33c8",
         "filename": "configurations/mellanox/connectx-6.json",
         "patchSetId": 2
