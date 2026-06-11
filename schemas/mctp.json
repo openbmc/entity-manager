@@ -11,6 +11,10 @@
                     "description": "The bus index to which the device is attached",
                     "type": ["string", "number"]
                 },
+                "MCTPEndpointID": {
+                    "description": "The MCTP Endpoint ID for the device",
+                    "type": ["string", "number"]
+                },
                 "Name": {
                     "description": "A recognisable name for the device",
                     "type": "string"
@@ -31,6 +35,10 @@
                 },
                 "Bus": {
                     "description": "The bus index to which the device is attached",
+                    "type": ["string", "number"]
+                },
+                "MCTPEndpointID": {
+                    "description": "The MCTP Endpoint ID for the device",
                     "type": ["string", "number"]
                 },
                 "Name": {
