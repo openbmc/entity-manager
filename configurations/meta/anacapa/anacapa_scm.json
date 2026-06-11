@@ -360,6 +360,15 @@
             "Type": "SPIFlash"
         },
         {
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Anacapa.TPM.BMC",
+                "VendorIANA": 40981
+            },
+            "Name": "Anacapa_TPM",
+            "TPMIndex": 0,
+            "Type": "TPM2Firmware"
+        },
+	{
             "Address": "0x4b",
             "Bus": 9,
             "Name": "SCM_TEMP_C",
