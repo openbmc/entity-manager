@@ -2,6 +2,20 @@
     {
         "Exposes": [
             {
+                "Address": "0x4c",
+                "Bus": 16,
+                "Name": "RMC_U656_TEMP_C",
+                "Name1": "EXTERNAL_TEMP_C",
+                "Type": "ADT7461"
+            },
+            {
+                "Address": "0x4c",
+                "Bus": 17,
+                "Name": "RMC_U657_TEMP_C",
+                "Name1": "EXTERNAL2_TEMP_C",
+                "Type": "ADT7461"
+            },
+            {
                 "Address": "$address",
                 "Bus": "$bus",
                 "Name": "MB FRU",

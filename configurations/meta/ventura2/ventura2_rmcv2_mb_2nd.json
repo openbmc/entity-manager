@@ -494,6 +494,20 @@
                 "Type": "MCTPI2CTarget"
             },
             {
+                "Address": "0x4c",
+                "Bus": 16,
+                "Name": "RMC_U656_TEMP_C",
+                "Name1": "EXTERNAL_TEMP_C",
+                "Type": "TMP411"
+            },
+            {
+                "Address": "0x4c",
+                "Bus": 17,
+                "Name": "RMC_U657_TEMP_C",
+                "Name1": "EXTERNAL2_TEMP_C",
+                "Type": "TMP411"
+            },
+            {
                 "BaudRate": 115200,
                 "DeviceAddress": "1e6a1000",
                 "DeviceInterface": 0,
