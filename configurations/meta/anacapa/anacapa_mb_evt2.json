@@ -518,7 +518,9 @@
                 }
             ],
             "Type": "MP2869",
+            "iout1_Max": 600,
             "iout1_Name": "MB_VR_CPU_PVDDCR_CPU0_P0_CURR_A",
+            "iout2_Max": 350,
             "iout2_Name": "MB_VR_CPU_PVDDIO_MEM_S3_P0_CURR_A",
             "pout1_Name": "MB_VR_CPU_PVDDCR_CPU0_P0_PWR_W",
             "pout2_Name": "MB_VR_CPU_PVDDIO_MEM_S3_P0_PWR_W",
@@ -625,6 +627,7 @@
                 }
             ],
             "Type": "MP29612",
+            "iout1_Max": 600,
             "iout1_Name": "MB_VR_CPU_PVDDCR_CPU1_P0_CURR_A",
             "pout1_Name": "MB_VR_CPU_PVDDCR_CPU1_P0_PWR_W",
             "temp1_Name": "MB_VR_CPU_PVDDCR_CPU1_P0_TEMP_C",
@@ -817,6 +820,7 @@
                 }
             ],
             "Type": "MP29612",
+            "iout1_Max": 500,
             "iout1_Name": "MB_VR_CPU_PVDDCR_SOC_P0_CURR_A",
             "iout2_Name": "MB_VR_CPU_PVDDIO_P0_CURR_A",
             "pout1_Name": "MB_VR_CPU_PVDDCR_SOC_P0_PWR_W",
@@ -996,6 +1000,7 @@
             ],
             "Type": "MPQ8785",
             "iout1_Name": "MB_VR_CPU_PVDD18_S5_P0_CURR_A",
+            "temp1_Max": 180,
             "temp1_Name": "MB_VR_CPU_PVDD18_S5_P0_TEMP_C",
             "vin_Name": "MB_VR_CPU_PVDD18_S5_P0_VIN_VOLT_V",
             "vout1_Name": "MB_VR_CPU_PVDD18_S5_P0_VOUT_VOLT_V"
@@ -1140,6 +1145,7 @@
             ],
             "Type": "MPQ8785",
             "iout1_Name": "MB_VR_CPU_PVDD33_S5_P0_CURR_A",
+            "temp1_Max": 180,
             "temp1_Name": "MB_VR_CPU_PVDD33_S5_P0_TEMP_C",
             "vin_Name": "MB_VR_CPU_PVDD33_S5_P0_VIN_VOLT_V",
             "vout1_Name": "MB_VR_CPU_PVDD33_S5_P0_VOUT_VOLT_V"
