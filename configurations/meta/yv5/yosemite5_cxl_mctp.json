@@ -1,0 +1,66 @@
+[
+    {
+        "Exposes": [
+            {
+                "Address": "0x32",
+                "Bus": 12,
+                "Inventory": "Yosemite5_CXL_Victoria_Falls",
+                "Name": "CXL",
+                "Type": "MCTPI2CTarget"
+            }
+        ],
+        "Name": "Yosemite5 CXL Victoria Falls MCTP",
+        "Probe": [
+            "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 (EVT|DVT|DVT2)$', 'BOARD_PRODUCT_NAME': 'Victoria Falls', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)'})"
+        ],
+        "Type": "Board"
+    },
+    {
+        "Exposes": [
+            {
+                "Address": "0x32",
+                "Bus": 12,
+                "Inventory": "Yosemite5_CXL_Maple_Falls",
+                "Name": "CXL",
+                "Type": "MCTPI2CTarget"
+            }
+        ],
+        "Name": "Yosemite5 CXL Maple Falls MCTP",
+        "Probe": [
+            "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 (EVT|DVT|DVT2)$', 'BOARD_PRODUCT_NAME': 'Maple Falls', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)'})"
+        ],
+        "Type": "Board"
+    },
+    {
+        "Exposes": [
+            {
+                "Address": "0x32",
+                "Bus": 15,
+                "Inventory": "Yosemite5_CXL_Victoria_Falls",
+                "Name": "CXL",
+                "Type": "MCTPI2CTarget"
+            }
+        ],
+        "Name": "Yosemite5 CXL Victoria Falls MCTP",
+        "Probe": [
+            "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 (?!EVT$|DVT$|DVT2$).*', 'BOARD_PRODUCT_NAME': 'Victoria Falls', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)'})"
+        ],
+        "Type": "Board"
+    },
+    {
+        "Exposes": [
+            {
+                "Address": "0x32",
+                "Bus": 15,
+                "Inventory": "Yosemite5_CXL_Maple_Falls",
+                "Name": "CXL",
+                "Type": "MCTPI2CTarget"
+            }
+        ],
+        "Name": "Yosemite5 CXL Maple Falls MCTP",
+        "Probe": [
+            "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 (?!EVT$|DVT$|DVT2$).*', 'BOARD_PRODUCT_NAME': 'Maple Falls', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)'})"
+        ],
+        "Type": "Board"
+    }
+]
