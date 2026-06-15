@@ -1,0 +1,227 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8ed81a3_746b2085",
+        "filename": "service_files/nfc-fru-parser.service",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-15T08:38:17Z",
+      "side": 1,
+      "message": "I am wondering if it makes sense to create a whole new service, executable and process here.\n\nFrom what i read so far we are creating a single match from `main()` function, and not much else happens unless that match triggers.\n\nIf we just integrated the whole thing into an existing binary, there could be savings in overall compressed rofs size.\n\nIMO conceptually it would fit into the FruDevice binary. Then we could just select which one to run based on a commandline argument.\n\nNow if we should make it a separate process, that\u0027s another question, i do not think so. But others may have a different opinion.",
+      "revId": "5128a93978aa0cadc4d2af8e5d24b99962054de5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99d6a937_29ab6def",
+        "filename": "src/meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-15T08:38:17Z",
+      "side": 1,
+      "message": "nit: Why do we need an option here if all we do is create a D-Bus match and register a name. It\u0027s a lightweight operation if we can integrate that into an existing process.\n\nConsider that if you add an option everyone will need to decide if and how to configure it.",
+      "range": {
+        "startLine": 25,
+        "startChar": 1,
+        "endLine": 28,
+        "endChar": 5
+      },
+      "revId": "5128a93978aa0cadc4d2af8e5d24b99962054de5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "975eef2b_5d3d4b76",
+        "filename": "src/nfc_fru_parser/meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-15T08:38:17Z",
+      "side": 1,
+      "message": "Let\u0027s not compile these things multiple times. Let\u0027s make a shared or static library if there is shared code between multiple executables.",
+      "range": {
+        "startLine": 11,
+        "startChar": 2,
+        "endLine": 13,
+        "endChar": 35
+      },
+      "revId": "5128a93978aa0cadc4d2af8e5d24b99962054de5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8003566e_c6981f49",
+        "filename": "src/nfc_fru_parser/neard_dbus.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-15T08:38:17Z",
+      "side": 1,
+      "message": "Let\u0027s not call it `Variant`. That\u0027s the name of the template type, but does not tell us anything about what\u0027s going on here.\n\nAre we even using it anywhere? I could not find it.",
+      "range": {
+        "startLine": 8,
+        "startChar": 1,
+        "endLine": 11,
+        "endChar": 76
+      },
+      "revId": "5128a93978aa0cadc4d2af8e5d24b99962054de5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d3e552e_d99623c3",
+        "filename": "src/nfc_fru_parser/neard_dbus.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-15T08:38:17Z",
+      "side": 1,
+      "message": "we should probably use phosphor-logging for new code. It has a bunch of benefits like extra log levels that you cannot get with `cout` and `cerr`",
+      "revId": "5128a93978aa0cadc4d2af8e5d24b99962054de5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7c65f70_a2989f3b",
+        "filename": "src/nfc_fru_parser/neard_dbus.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-15T08:38:17Z",
+      "side": 1,
+      "message": "```suggestion\n            sdbusplus::object_path path;\n```\n\nPlease use the shorter type alias, i am trying to get rid of the longer one entirely.",
+      "range": {
+        "startLine": 52,
+        "startChar": 12,
+        "endLine": 52,
+        "endChar": 49
+      },
+      "revId": "5128a93978aa0cadc4d2af8e5d24b99962054de5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "784d88ed_eb31ff2c",
+        "filename": "src/nfc_fru_parser/neard_dbus.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-15T08:38:17Z",
+      "side": 1,
+      "message": "phosphor-logging",
+      "revId": "5128a93978aa0cadc4d2af8e5d24b99962054de5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9a4d82e_5dec981f",
+        "filename": "src/nfc_fru_parser/neard_dbus.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-15T08:38:17Z",
+      "side": 1,
+      "message": "Why are you changing the type here? It was `sdbusplus::object_path` before, why are we watering it down?",
+      "revId": "5128a93978aa0cadc4d2af8e5d24b99962054de5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d40e8725_a56290cd",
+        "filename": "src/nfc_fru_parser/nfc_fru_parser.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-15T08:38:17Z",
+      "side": 1,
+      "message": "```suggestion\n    sdbusplus::object_path productName(\"/xyz/openbmc_project/FruDevice\");\n```",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 2
+      },
+      "revId": "5128a93978aa0cadc4d2af8e5d24b99962054de5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfb3369c_15df387c",
+        "filename": "src/nfc_fru_parser/nfc_fru_parser.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-15T08:38:17Z",
+      "side": 1,
+      "message": "```suggestion\n        productName /\u003d\n            dbus_util::sanitizeForDBusPathSegment(productNameFind-\u003esecond);\n```",
+      "range": {
+        "startLine": 62,
+        "startChar": 7,
+        "endLine": 63,
+        "endChar": 75
+      },
+      "revId": "5128a93978aa0cadc4d2af8e5d24b99962054de5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f6e0963_04cc531b",
+        "filename": "src/nfc_fru_parser/nfc_fru_parser.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-15T08:38:17Z",
+      "side": 1,
+      "message": "```suggestion\n        productName /\u003d \"UNKNOWN\";\n```",
+      "revId": "5128a93978aa0cadc4d2af8e5d24b99962054de5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
