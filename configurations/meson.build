@@ -286,6 +286,7 @@ configs = [
     'meta/yv5/yosemite5_cxl_ddr5_board_vr_mps.json',
     'meta/yv5/yosemite5_cxl_ddr5_board_vr_raa.json',
     'meta/yv5/yosemite5_cxl_ddr5_evt_board_vr_raa.json',
+    'meta/yv5/yosemite5_cxl_mctp.json',
     'meta/yv5/yosemite5_e1s_expansion_board_adc_qns_pmon_sgy.json',
     'meta/yv5/yosemite5_e1s_expansion_board_adc_tic_pmon_tic.json',
     'meta/yv5/yosemite5_e1s_x4_expansion_board_adc_ons_pmon_rtk.json',
