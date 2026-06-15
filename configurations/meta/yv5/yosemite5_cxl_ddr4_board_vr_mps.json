@@ -264,12 +264,6 @@
         },
         {
             "Address": "0x32",
-            "Bus": "12",
-            "Name": "CXL",
-            "Type": "MCTPI2CTarget"
-        },
-        {
-            "Address": "0x32",
             "Bus": "15",
             "Name": "CXL",
             "Type": "MCTPI2CTarget"
@@ -807,7 +801,7 @@
     ],
     "Name": "Yosemite5 CXL Maple Falls",
     "Probe": [
-        "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 .*', 'BOARD_PRODUCT_NAME': 'Maple Falls', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)','BOARD_INFO_AM4': 'VR-MPS'})"
+        "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 (?!EVT$|DVT$|DVT2$).*', 'BOARD_PRODUCT_NAME': 'Maple Falls', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)','BOARD_INFO_AM4': 'VR-MPS'})"
     ],
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {

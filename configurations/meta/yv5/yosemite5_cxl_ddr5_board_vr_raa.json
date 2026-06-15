@@ -244,12 +244,6 @@
         },
         {
             "Address": "0x32",
-            "Bus": "12",
-            "Name": "CXL",
-            "Type": "MCTPI2CTarget"
-        },
-        {
-            "Address": "0x32",
             "Bus": "15",
             "Name": "CXL",
             "Type": "MCTPI2CTarget"
@@ -649,7 +643,7 @@
     ],
     "Name": "Yosemite5 CXL Victoria Falls",
     "Probe": [
-        "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 .*', 'PRODUCT_VERSION': '^(?!EVT).*', 'BOARD_PRODUCT_NAME': 'Victoria Falls', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)', 'BOARD_INFO_AM4': 'VR-RAA'})"
+        "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 (?!EVT$|DVT$|DVT2$).*', 'PRODUCT_VERSION': '^(?!EVT).*', 'BOARD_PRODUCT_NAME': 'Victoria Falls', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)', 'BOARD_INFO_AM4': 'VR-RAA'})"
     ],
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
