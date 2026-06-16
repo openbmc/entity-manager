@@ -75,7 +75,7 @@ boost::asio::io_context io;
 // NOLINTEND(cppcoreguidelines-avoid-non-const-global-variables)
 
 bool updateFruProperty(
-    const std::string& propertyValue, uint32_t bus, uint32_t address,
+    const std::string& propertyValue, uint16_t bus, uint8_t address,
     const std::string& propertyName,
     std::flat_map<std::pair<size_t, size_t>,
                   std::shared_ptr<sdbusplus::asio::dbus_interface>>&
@@ -878,7 +878,7 @@ void addFruObjectToDbus(
     std::flat_map<std::pair<size_t, size_t>,
                   std::shared_ptr<sdbusplus::asio::dbus_interface>>&
         dbusInterfaceMap,
-    uint32_t bus, uint32_t address, size_t& unknownBusObjectCount,
+    uint16_t bus, uint8_t address, size_t& unknownBusObjectCount,
     const bool& powerIsOn, const std::set<size_t>& addressBlocklist,
     sdbusplus::asio::object_server& objServer)
 {
@@ -1036,7 +1036,7 @@ bool writeFruByteData(bool is16Bit, int file, uint8_t address, uint16_t index,
                                      byteData) == 0;
 }
 
-bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
+bool writeFRU(uint16_t bus, uint8_t address, const std::vector<uint8_t>& fru)
 {
     std::flat_map<std::string, std::string, std::less<>> tmp;
     if (fru.size() > maxFruSize)
@@ -1246,7 +1246,8 @@ void rescanOneBus(
             for (auto device : *(found->second))
             {
                 addFruObjectToDbus(device.second, dbusInterfaceMap,
-                                   static_cast<uint32_t>(busNum), device.first,
+                                   static_cast<uint16_t>(busNum), 
+				   static_cast<uint8_t>(device.first),
                                    unknownBusObjectCount, powerIsOn,
                                    addressBlocklist, objServer);
             }
@@ -1324,10 +1325,12 @@ void rescanBusses(
                 {
                     for (auto device : *devicemap.second)
                     {
-                        addFruObjectToDbus(device.second, dbusInterfaceMap,
-                                           devicemap.first, device.first,
-                                           unknownBusObjectCount, powerIsOn,
-                                           addressBlocklist, objServer);
+                        addFruObjectToDbus(
+			    device.second, dbusInterfaceMap,
+			    static_cast<uint16_t>(devicemap.first),
+                            static_cast<uint8_t>(device.first),
+                            unknownBusObjectCount, powerIsOn,addressBlocklist, 
+			    objServer);
                     }
                 }
             });
@@ -1336,7 +1339,7 @@ void rescanBusses(
 }
 
 bool updateFruProperty(
-    const std::string& propertyValue, uint32_t bus, uint32_t address,
+    const std::string& propertyValue, uint16_t bus, uint8_t address,
     const std::string& propertyName,
     std::flat_map<std::pair<size_t, size_t>,
                   std::shared_ptr<sdbusplus::asio::dbus_interface>>&
@@ -1366,8 +1369,7 @@ bool updateFruProperty(
         return false;
     }
 
-    if (!writeFRU(static_cast<uint8_t>(bus), static_cast<uint8_t>(address),
-                  fruData))
+    if (!writeFRU(bus, address, fruData))
     {
         lg2::error("Failed to write the FRU");
         return false;

@@ -213,9 +213,9 @@ std::optional<int> findIndexForFRU(
 std::optional<std::string> getProductName(
     std::vector<uint8_t>& device,
     std::flat_map<std::string, std::string, std::less<>>& formattedFRU,
-    uint32_t bus, uint32_t address, size_t& unknownBusObjectCount);
+    uint16_t bus, uint8_t address, size_t& unknownBusObjectCount);
 
-bool getFruData(std::vector<uint8_t>& fruData, uint32_t bus, uint32_t address);
+bool getFruData(std::vector<uint8_t>& fruData, uint16_t bus, uint8_t address);
 
 bool isFieldEditable(std::string_view fieldName);
 
