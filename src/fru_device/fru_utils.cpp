@@ -1646,7 +1646,7 @@ std::optional<int> findIndexForFRU(
 std::optional<std::string> getProductName(
     std::vector<uint8_t>& device,
     std::flat_map<std::string, std::string, std::less<>>& formattedFRU,
-    uint32_t bus, uint32_t address, size_t& unknownBusObjectCount)
+    uint16_t bus, uint8_t address, size_t& unknownBusObjectCount)
 {
     std::string productName;
 
@@ -1686,12 +1686,11 @@ std::optional<std::string> getProductName(
     return productName;
 }
 
-bool getFruData(std::vector<uint8_t>& fruData, uint32_t bus, uint32_t address)
+bool getFruData(std::vector<uint8_t>& fruData, uint16_t bus, uint8_t address)
 {
     try
     {
-        fruData = getFRUInfo(static_cast<uint16_t>(bus),
-                             static_cast<uint8_t>(address));
+        fruData = getFRUInfo(bus, address);
     }
     catch (const std::invalid_argument& e)
     {
