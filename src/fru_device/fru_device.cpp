@@ -1036,7 +1036,7 @@ bool writeFruByteData(bool is16Bit, int file, uint8_t address, uint16_t index,
                                      byteData) == 0;
 }
 
-bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
+bool writeFRU(uint16_t bus, uint8_t address, const std::vector<uint8_t>& fru)
 {
     std::flat_map<std::string, std::string, std::less<>> tmp;
     if (fru.size() > maxFruSize)
@@ -1366,7 +1366,7 @@ bool updateFruProperty(
         return false;
     }
 
-    if (!writeFRU(static_cast<uint8_t>(bus), static_cast<uint8_t>(address),
+    if (!writeFRU(static_cast<uint16_t>(bus), static_cast<uint8_t>(address),
                   fruData))
     {
         lg2::error("Failed to write the FRU");
