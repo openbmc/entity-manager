@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0856184c_e992ad22",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-16T07:48:01Z",
+      "side": 1,
+      "message": "You can test this in qemu by emulating a lot of i2c gpio muxes and creating a corresponding dts.\n\nThen emulating an eeprom on a bus with a large bus number.\n\nNot saying that it necessarily needs testing, just that it can be tested.",
+      "revId": "ba0dd96de0bb8db8c368a77b670493b65ac3a553",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f0fc353_b2e8b1bf",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 1369,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-16T07:48:01Z",
+      "side": 1,
+      "message": "nit: On line 1339 we are using `uint32_t bus` and now you are changing the type to `uint16_t`.\n\nWhy do we need 2 different data types to represent a bus number, can we not go with one or the other consistently?",
+      "revId": "ba0dd96de0bb8db8c368a77b670493b65ac3a553",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
