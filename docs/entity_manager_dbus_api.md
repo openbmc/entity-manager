@@ -110,7 +110,7 @@ exposes :
 [
     {
         "name" : "front panel temp",
-        "property": {"key: "value"}
+        "property": {"key": "value"}
     }
 ]
 ```
