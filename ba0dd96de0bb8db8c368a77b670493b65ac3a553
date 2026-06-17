@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "41796120_8e5d09ba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-06-17T16:57:00Z",
+      "side": 1,
+      "message": "I agree we could test this in qemu.  If we can\u0027t, I\u0027m ok accepting this as is because there\u0027s some unit test coverage here, and in my read, the worst thing that happens is that \u003e255 bus numbers continue to not work, which is where we were at before.\n\nWould like to see the uint16 vs 32 thing sorted below, then LGTM.",
+      "revId": "ba0dd96de0bb8db8c368a77b670493b65ac3a553",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9f0fc353_b2e8b1bf",
         "filename": "src/fru_device/fru_device.cpp",
         "patchSetId": 9
@@ -31,6 +48,24 @@
       "writtenOn": "2026-06-16T07:48:01Z",
       "side": 1,
       "message": "nit: On line 1339 we are using `uint32_t bus` and now you are changing the type to `uint16_t`.\n\nWhy do we need 2 different data types to represent a bus number, can we not go with one or the other consistently?",
+      "revId": "ba0dd96de0bb8db8c368a77b670493b65ac3a553",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95e71dfc_e87f49fa",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 1369,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-06-17T16:57:00Z",
+      "side": 1,
+      "message": "+1.  I had the exact comment saved in draft.",
+      "parentUuid": "9f0fc353_b2e8b1bf",
       "revId": "ba0dd96de0bb8db8c368a77b670493b65ac3a553",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
