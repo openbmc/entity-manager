@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "deb01b55_adcb19b6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-06-17T16:51:05Z",
+      "side": 1,
+      "message": "Do we need to do some amount of testing that the object_path escaping is working properly?  Invent some injected character names possibly?\n\nI don\u0027t need to hold it up here, but it\u0027s been a problem in the past that was worked around.  This should arguably have the same behavior.",
+      "revId": "6063acc72448291260a2ba2c58cb90431ce9b8b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0bc6240_eee9affe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-06-17T16:51:05Z",
+      "side": 1,
+      "message": "One very minor copy/construction thing, then LGTM.",
+      "revId": "6063acc72448291260a2ba2c58cb90431ce9b8b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2f88534_da00630b",
+        "filename": "src/entity_manager/dbus_interface.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-06-17T16:51:05Z",
+      "side": 1,
+      "message": "?  This is already an object_path, and we\u0027re making a copy, shouldn\u0027t this just be \"path\" ?\n\nIn very old compilers the explicit construction was required (i forget the details) but these days we can just do the simple thing.",
+      "range": {
+        "startLine": 380,
+        "startChar": 13,
+        "endLine": 380,
+        "endChar": 43
+      },
+      "revId": "6063acc72448291260a2ba2c58cb90431ce9b8b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
