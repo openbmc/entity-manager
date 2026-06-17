@@ -56,6 +56,30 @@
       },
       "revId": "213d52b8710c59e1762e141d32d857a243eed03f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f7cb07d_7d248000",
+        "filename": "src/entity_manager/topology.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-17T13:25:53Z",
+      "side": 1,
+      "message": "I wanted to make some of the map types more compact.\n\nI do realize the type nesting cutoff at which to start using type aliases was chosen somewhat arbitrary, i removed the type alias to make the code more uniform overall.",
+      "parentUuid": "ef9e35df_cbfbabad",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 43
+      },
+      "revId": "213d52b8710c59e1762e141d32d857a243eed03f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
