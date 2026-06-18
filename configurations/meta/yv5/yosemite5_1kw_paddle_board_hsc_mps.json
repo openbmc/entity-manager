@@ -104,7 +104,9 @@
         }
     ],
     "Name": "Yosemite5 1KW Paddle Board",
-    "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 .*', 'BOARD_PRODUCT_NAME': '1KW paddle BD', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)','BOARD_INFO_AM4': 'HSC-MPS'})",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': '(Yosemite V5|Rainier) .*', 'BOARD_PRODUCT_NAME': '1KW paddle BD', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)', 'BOARD_INFO_AM4': 'HSC-MPS'})"
+    ],
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
