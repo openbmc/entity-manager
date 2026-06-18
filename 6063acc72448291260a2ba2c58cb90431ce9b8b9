@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "8ab8a129_23b01477",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-18T09:12:07Z",
+      "side": 1,
+      "message": "\u003e that the object_path escaping is working properly?  I\n\nobject_path escaping is tested in sdbusplus unit tests. I did not encounter any issues with it.\n\nhttps://github.com/openbmc/sdbusplus/blob/master/test/message/types.cpp\n\nhttps://github.com/openbmc/sdbusplus/blob/master/test/message/native_types.cpp\n\nI don\u0027t think EM needs to do anything special here that\u0027s not already covered by (sdbusplus) unit tests but if that\u0027s the case then we should probably add those unit tests.\n\n\u003e Invent some injected character names possibly?\n\nWhich edge case are we talking about? Which code path / function ? Can you give an example.\n\n\u003e I don\u0027t need to hold it up here,\n\nalright, i will mark it as resolved but we should probably clarify the cases you were worried about",
+      "parentUuid": "deb01b55_adcb19b6",
+      "revId": "6063acc72448291260a2ba2c58cb90431ce9b8b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "f0bc6240_eee9affe",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 9
@@ -48,6 +66,30 @@
       "writtenOn": "2026-06-17T16:51:05Z",
       "side": 1,
       "message": "?  This is already an object_path, and we\u0027re making a copy, shouldn\u0027t this just be \"path\" ?\n\nIn very old compilers the explicit construction was required (i forget the details) but these days we can just do the simple thing.",
+      "range": {
+        "startLine": 380,
+        "startChar": 13,
+        "endLine": 380,
+        "endChar": 43
+      },
+      "revId": "6063acc72448291260a2ba2c58cb90431ce9b8b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8cf960ce_8c77c5bc",
+        "filename": "src/entity_manager/dbus_interface.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-18T09:12:07Z",
+      "side": 1,
+      "message": "right, thanks, fixed it 👍",
+      "parentUuid": "a2f88534_da00630b",
       "range": {
         "startLine": 380,
         "startChar": 13,
