@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dccaa9c4_bed6bbf7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000520
+      },
+      "writtenOn": "2026-06-19T18:42:03Z",
+      "side": 1,
+      "message": "LGTM.\n`EntityId` and `EntityInstance` are IPMI-specific and should be set in some IPMI configuration file elsewhere, not here.\n`MinValue` and `MaxValue` are required by IPMI, in order to perform correct scaling of the sensor, to fit into IPMI\u0027s very limited 8-bit sensor resolution scale (a very good reason to want to use Redfish instead of IPMI for all new development going forward). They are also required here, even if IPMI is not in use on your system, because (it\u0027s been a long time, not sure if this is still true) they are also used for bounds-checking to help avoid OOB values being stored into the sensor value (defense in depth).",
+      "revId": "825888fd903d318bd0bbbd75e354f65376ef1449",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
