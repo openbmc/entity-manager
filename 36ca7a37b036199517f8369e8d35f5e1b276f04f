@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1269465d_d20e493d",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 1332,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-19T12:17:01Z",
+      "side": 1,
+      "message": "From my viewpoint, you did not remove the inconsistency w.r.t. the type used for the bus number. You just moved it to a different source location.\n\nIf you would have removed it then the only place where we would need casting would be at the D-Bus / filesystem / ... boundary, but `addFruObjectToDbus` is a function we define.\n\nDid i understand correctly?",
+      "range": {
+        "startLine": 1328,
+        "startChar": 43,
+        "endLine": 1332,
+        "endChar": 70
+      },
+      "revId": "36ca7a37b036199517f8369e8d35f5e1b276f04f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
