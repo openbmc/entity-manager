@@ -658,7 +658,7 @@ void EntityManager::registerCallback(const std::string& path)
     std::function<void(sdbusplus::message_t & message)> eventHandler =
         [&](sdbusplus::message_t&) { propertiesChangedCallback(); };
 
-    sdbusplus::bus::match_t match(
+    sdbusplus::match match(
         static_cast<sdbusplus::bus_t&>(*systemBus),
         "type='signal',member='PropertiesChanged',path='" + path + "'",
         eventHandler);
@@ -673,7 +673,7 @@ void EntityManager::registerCallback(const std::string& path)
 void EntityManager::initFilters(
     const std::unordered_set<std::string>& probeInterfaces)
 {
-    nameOwnerChangedMatch = std::make_unique<sdbusplus::bus::match_t>(
+    nameOwnerChangedMatch = std::make_unique<sdbusplus::match>(
         static_cast<sdbusplus::bus_t&>(*systemBus),
         sdbusplus::bus::match::rules::nameOwnerChanged(),
         [this](sdbusplus::message_t& m) {
@@ -691,7 +691,7 @@ void EntityManager::initFilters(
 
     // We also need a poke from DBus when new interfaces are created or
     // destroyed.
-    interfacesAddedMatch = std::make_unique<sdbusplus::bus::match_t>(
+    interfacesAddedMatch = std::make_unique<sdbusplus::match>(
         static_cast<sdbusplus::bus_t&>(*systemBus),
         sdbusplus::bus::match::rules::interfacesAdded(),
         [this, probeInterfaces](sdbusplus::message_t& msg) {
@@ -701,7 +701,7 @@ void EntityManager::initFilters(
             }
         });
 
-    interfacesRemovedMatch = std::make_unique<sdbusplus::bus::match_t>(
+    interfacesRemovedMatch = std::make_unique<sdbusplus::match>(
         static_cast<sdbusplus::bus_t&>(*systemBus),
         sdbusplus::bus::match::rules::interfacesRemoved(),
         [this, probeInterfaces](sdbusplus::message_t& msg) {
