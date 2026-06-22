@@ -18,7 +18,32 @@ EMDBusInterface::EMDBusInterface(boost::asio::io_context& io,
                                  sdbusplus::asio::object_server& objServer,
                                  const std::filesystem::path& schemaDirectory) :
     io(io), objServer(objServer), schemaDirectory(schemaDirectory)
-{}
+{
+    std::ifstream schemaStream(schemaDirectory / "legacy.json");
+    if (!schemaStream.good())
+    {
+        lg2::error("Cannot open legacy.json schema file");
+        return;
+    }
+    auto schema = nlohmann::json::parse(schemaStream, nullptr, false);
+    if (schema.is_discarded())
+    {
+        lg2::error("Illegal legacy.json schema file detected");
+        return;
+    }
+
+    try
+    {
+        tempSensorTypes =
+            schema["$defs"]["TempSensor"]["properties"]["Type"]["enum"]
+                .get<std::unordered_set<std::string>>();
+    }
+    catch (const nlohmann::json::exception& e)
+    {
+        lg2::error("Failed to parse TempSensor types from schema: {ERROR}",
+                   "ERROR", e.what());
+    }
+}
 
 void tryIfaceInitialize(std::shared_ptr<sdbusplus::asio::dbus_interface>& iface)
 {
@@ -224,6 +249,25 @@ void EMDBusInterface::populateInterfaceFromJson(
         populateInterfacePropertyFromJson(systemConfiguration, path, key, value,
                                           type, iface, permission);
     }
+
+    auto findType = dict.find("Type");
+    if (findType != dict.end() && findType->is_string() &&
+        tempSensorTypes.contains(findType->get<std::string>()))
+    {
+        if (dict.find("OffsetValue") == dict.end())
+        {
+            addValueToDBus<double>("OffsetValue", 0.0, *iface, permission,
+                                   systemConfiguration,
+                                   jsonPointerPath + "/OffsetValue");
+        }
+        if (dict.find("ScaleValue") == dict.end())
+        {
+            addValueToDBus<double>("ScaleValue", 1.0, *iface, permission,
+                                   systemConfiguration,
+                                   jsonPointerPath + "/ScaleValue");
+        }
+    }
+
     if (permission == sdbusplus::asio::PropertyPermission::readWrite)
     {
         createDeleteObjectMethod(jsonPointerPath, iface, systemConfiguration);

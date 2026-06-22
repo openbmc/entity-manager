@@ -9,6 +9,7 @@
 #include <sdbusplus/asio/object_server.hpp>
 
 #include <flat_map>
+#include <unordered_set>
 #include <vector>
 
 namespace dbus_interface
@@ -69,6 +70,8 @@ class EMDBusInterface
                   std::vector<std::weak_ptr<sdbusplus::asio::dbus_interface>>,
                   std::less<>>
         inventory;
+
+    std::unordered_set<std::string> tempSensorTypes;
 
     const std::filesystem::path schemaDirectory;
 };
