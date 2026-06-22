@@ -736,6 +736,12 @@
                 "Thresholds": {
                     "$ref": "#/$defs/Types/Thresholds"
                 },
+                "OffsetValue": {
+                    "$ref": "#/$defs/Types/OffsetValue"
+                },
+                "ScaleValue": {
+                    "$ref": "#/$defs/Types/ScaleValue"
+                },
                 "Type": {
                     "enum": [
                         "ADM1021",
@@ -778,7 +784,14 @@
                     ]
                 }
             },
-            "required": ["Name", "Type", "Bus", "Address"],
+            "required": [
+                "Name",
+                "Type",
+                "Bus",
+                "Address",
+                "OffsetValue",
+                "ScaleValue"
+            ],
             "type": "object"
         },
         "NVME1000": {
