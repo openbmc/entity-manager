@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cf9ef15_2aa171b2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-22T08:04:47Z",
+      "side": 1,
+      "message": "nit: patch link or a gerrit topic would be nice to understand which patch your are referring to. I guess it is this one\n\nhttps://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/91561",
+      "range": {
+        "startLine": 10,
+        "startChar": 29,
+        "endLine": 11,
+        "endChar": 66
+      },
+      "revId": "32e9e25a0c9476ddf376264611d700706952a8cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "727fdcba_7057a631",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-22T08:04:47Z",
+      "side": 1,
+      "message": "not sure about that one. From my reading of the code that\u0027s only possible if someone set non-default option `runtime-validate-json`.\n\n\nAnd even then it would not just drop these properties, it would drop the entire config file?\n\n```\n  void Configuration::loadSingleConfigFile(const std::filesystem::path\u0026 jsonPath,\n                                           const nlohmann::json\u0026 schema)\n  {\n      std::ifstream jsonStream(jsonPath.c_str());\n      if (!jsonStream.good())\n      {   \n          lg2::error(\"unable to open {PATH}\", \"PATH\", jsonPath.string());\n          return;\n      }   \n      auto data \u003d nlohmann::json::parse(jsonStream, nullptr, false, true);\n      if (data.is_discarded())\n      {   \n          lg2::error(\"syntax error in {PATH}\", \"PATH\", jsonPath.string());\n          return;\n      }   \n  \n      if (ENABLE_RUNTIME_VALIDATE_JSON \u0026\u0026 !validateJson(schema, data))\n      {   \n          lg2::error(\"Error validating {PATH}\", \"PATH\", jsonPath.string());\n          return;\n      }   \n  \n      if (data.type() \u003d\u003d nlohmann::json::value_t::array)\n      {   \n          for (auto\u0026 d : data)\n          {\n              configurations.emplace_back(d);\n          }   \n      }   \n      else\n      {   \n          configurations.emplace_back(data);\n      }   \n  }\n```\n\nCan you help me to understand which code path caused the behavior you are describing or alternatively remove the section from commit message.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 18
+      },
+      "revId": "32e9e25a0c9476ddf376264611d700706952a8cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2ef2ea9_7f4c68c1",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 744,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-22T08:04:47Z",
+      "side": 1,
+      "message": "could you add both of these to `required` array, otherwise it will be out of spec with D-Bus (D-Bus does not have optional properties).",
+      "range": {
+        "startLine": 739,
+        "startChar": 16,
+        "endLine": 744,
+        "endChar": 17
+      },
+      "revId": "32e9e25a0c9476ddf376264611d700706952a8cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
