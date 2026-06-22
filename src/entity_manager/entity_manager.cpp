@@ -287,6 +287,18 @@ void EntityManager::postExposesRecordsToDBus(
             getPermission(itemType));
     }
 
+    if (itemType == "TempSensor")
+    {
+        if (item.find("OffsetValue") == item.end())
+        {
+            item["OffsetValue"] = 0.0;
+        }
+        if (item.find("ScaleValue") == item.end())
+        {
+            item["ScaleValue"] = 1.0;
+        }
+    }
+
     for (const auto& [name, config] : item.items())
     {
         jsonPointerPath = jsonPointerPathBoard;
