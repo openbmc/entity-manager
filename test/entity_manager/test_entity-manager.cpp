@@ -10,6 +10,17 @@
 
 using namespace std::string_literals;
 
+TEST(TemplateCharReplace, replaceIndex)
+{
+    nlohmann::json j = {{"foo", "$index"}};
+    DBusInterface data;
+    data["BUS"] = 23;
+
+    em_utils::templateCharReplace(j, data, 3);
+
+    EXPECT_EQ(3, j["foo"]);
+}
+
 TEST(TemplateCharReplace, replaceOneInt)
 {
     nlohmann::json j = {{"foo", "$bus"}};
@@ -79,6 +90,17 @@ TEST(TemplateCharReplace, increment)
     em_utils::templateCharReplace(j, data, 0);
 
     nlohmann::json expected = "3 plus 1 equals 4";
+    EXPECT_EQ(expected, j["foo"]);
+}
+
+TEST(TemplateCharReplace, incrementIndex)
+{
+    nlohmann::json j = {{"foo", "$index + 3"}};
+    DBusInterface data;
+
+    em_utils::templateCharReplace(j, data, 2);
+
+    nlohmann::json expected = 5;
     EXPECT_EQ(expected, j["foo"]);
 }
 
