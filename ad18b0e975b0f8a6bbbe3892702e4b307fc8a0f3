@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "20c5caa0_0f409f55",
+        "filename": "src/entity_manager/em_config.cpp",
+        "patchSetId": 22
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-22T14:26:44Z",
+      "side": 1,
+      "message": "yep, silly me 😄\n\nfixed it.",
+      "parentUuid": "8be8151d_748d4308",
+      "range": {
+        "startLine": 19,
+        "startChar": 7,
+        "endLine": 19,
+        "endChar": 14
+      },
+      "revId": "ad18b0e975b0f8a6bbbe3892702e4b307fc8a0f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "14156348_3107dcf1",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-06-19T21:20:51Z",
       "side": 1,
       "message": "May as well do the stard lg2::error style using the {}.",
+      "range": {
+        "startLine": 52,
+        "startChar": 19,
+        "endLine": 52,
+        "endChar": 32
+      },
+      "revId": "ad18b0e975b0f8a6bbbe3892702e4b307fc8a0f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e999ad63_716e34fc",
+        "filename": "src/entity_manager/em_config.cpp",
+        "patchSetId": 22
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-22T14:26:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14156348_3107dcf1",
       "range": {
         "startLine": 52,
         "startChar": 19,
@@ -70,6 +118,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3125f50_f90f505d",
+        "filename": "src/entity_manager/em_config.cpp",
+        "patchSetId": 22
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-22T14:26:44Z",
+      "side": 1,
+      "message": "nice catch, yep, no need to copy. Fixed it 👍",
+      "parentUuid": "0c5d1337_0ec50d5d",
+      "range": {
+        "startLine": 216,
+        "startChar": 9,
+        "endLine": 216,
+        "endChar": 20
+      },
+      "revId": "ad18b0e975b0f8a6bbbe3892702e4b307fc8a0f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "18d65369_458d1b40",
@@ -83,6 +155,30 @@
       "writtenOn": "2026-06-19T21:20:51Z",
       "side": 1,
       "message": "Is this needed?",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 24
+      },
+      "revId": "ad18b0e975b0f8a6bbbe3892702e4b307fc8a0f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "354afc95_94482d1b",
+        "filename": "src/entity_manager/log_device_inventory.cpp",
+        "patchSetId": 22
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-22T14:26:44Z",
+      "side": 1,
+      "message": "nope. removed it 👍",
+      "parentUuid": "18d65369_458d1b40",
       "range": {
         "startLine": 4,
         "startChar": 0,
@@ -116,6 +212,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb7ca623_7325f8a1",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 22
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-22T14:26:44Z",
+      "side": 1,
+      "message": "right, we are taking the address of a local variable. Fixed it.",
+      "parentUuid": "2789c5eb_89fc0a52",
+      "range": {
+        "startLine": 455,
+        "startChar": 3,
+        "endLine": 460,
+        "endChar": 5
+      },
+      "revId": "ad18b0e975b0f8a6bbbe3892702e4b307fc8a0f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d50f47dc_e26c4955",
@@ -129,6 +249,24 @@
       "writtenOn": "2026-06-19T21:20:51Z",
       "side": 1,
       "message": "Should be easy to add tests for these.",
+      "revId": "ad18b0e975b0f8a6bbbe3892702e4b307fc8a0f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e81117b_c842f723",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 22
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-22T14:26:44Z",
+      "side": 1,
+      "message": "i am wondering if i can do you one better even if just for one of these functions.\n\nAll we need is the string replacement part of the template char mechanism without going through the json.\n\nSo i would like to extract that part out of \n`  std::optional\u003cstd::string\u003e templateCharReplace(\n      nlohmann::json\u0026 value, const DBusInterface\u0026 interface, const size_t index,\n      const std::optional\u003cstd::string\u003e\u0026 replaceStr)`\n\nand simply call that then. In that case it would already be covered by existing unit tests.\n\nHere is a change: https://gerrit.openbmc.org/c/openbmc/entity-manager/+/91586\n\nwhich should give us the required function.\n\nI will leave this open for now, if the linked change is any good i could rebase on that instead of re-rolling tests for the below.",
+      "parentUuid": "d50f47dc_e26c4955",
       "revId": "ad18b0e975b0f8a6bbbe3892702e4b307fc8a0f3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
