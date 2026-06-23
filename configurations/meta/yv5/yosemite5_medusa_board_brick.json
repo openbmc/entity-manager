@@ -259,6 +259,66 @@
             "Type": "EEPROM"
         },
         {
+            "Name": "Slot1_Cable",
+            "PresencePinNames": [
+                "SLOT1_PRSNT_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "Slot2_Cable",
+            "PresencePinNames": [
+                "SLOT2_PRSNT_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "Slot3_Cable",
+            "PresencePinNames": [
+                "SLOT3_PRSNT_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "Slot4_Cable",
+            "PresencePinNames": [
+                "SLOT4_PRSNT_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "Slot5_Cable",
+            "PresencePinNames": [
+                "SLOT5_PRSNT_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "Slot6_Cable",
+            "PresencePinNames": [
+                "SLOT6_PRSNT_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
             "Address": "0x5e",
             "Bus": 8,
             "Connector": {
@@ -1460,6 +1520,11 @@
     },
     "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
         "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Compatible": {
+        "Names": [
+            "com.meta.Hardware.Yosemite5.Boards.Medusa_Board"
+        ]
     },
     "xyz.openbmc_project.Inventory.Decorator.Revision": {
         "Version": "$PRODUCT_VERSION"
