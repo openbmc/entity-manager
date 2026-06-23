@@ -1,0 +1,141 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e29c8064_9ec6e7bf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-23T10:30:08Z",
+      "side": 1,
+      "message": "This already looking much nicer and diff has also shrunk in size!\n\nThank you for making all these changes 👍",
+      "revId": "a52faf528c5239e6a82217778d5c6a1e94053aab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e4ee224_347afe2d",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-23T10:30:08Z",
+      "side": 1,
+      "message": "nit: you already defined the constants around line 57, should we use those constants here?\n\nOtherwise we are using 2 different expressions to refer to the same value (see `nfcBus`) which can be confusing.",
+      "revId": "a52faf528c5239e6a82217778d5c6a1e94053aab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d691c33_59a2fad1",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 1496,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-23T10:30:08Z",
+      "side": 1,
+      "message": "see https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#f3-keep-functions-short-and-simple\n\nThis function is already way too long. I would really prefer this as a separate function instead of a local `std::function`.",
+      "revId": "a52faf528c5239e6a82217778d5c6a1e94053aab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b998cad4_98d91d3e",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 1497,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-23T10:30:08Z",
+      "side": 1,
+      "message": "Let\u0027s not capture everything here. Let\u0027s capture only what we need. Otherwise it is unclear what we depend on and might be hard to refactor later.",
+      "range": {
+        "startLine": 1497,
+        "startChar": 8,
+        "endLine": 1497,
+        "endChar": 12
+      },
+      "revId": "a52faf528c5239e6a82217778d5c6a1e94053aab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4a37fb8_776c3007",
+        "filename": "src/fru_device/neard_dbus.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-23T10:30:08Z",
+      "side": 1,
+      "message": "```suggestion\n    const sdbusplus::object_path\u0026 objPath,\n```",
+      "range": {
+        "startLine": 5,
+        "startChar": 4,
+        "endLine": 5,
+        "endChar": 31
+      },
+      "revId": "a52faf528c5239e6a82217778d5c6a1e94053aab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c85d879c_1403fd5d",
+        "filename": "src/fru_device/neard_dbus.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-23T10:30:08Z",
+      "side": 1,
+      "message": "```suggestion\n#pragma once\n\n#include \u003cphosphor-logging/lg2.hpp\u003e\n```",
+      "revId": "a52faf528c5239e6a82217778d5c6a1e94053aab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ef08940_3265cfd6",
+        "filename": "src/fru_device/neard_dbus.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-23T10:30:08Z",
+      "side": 1,
+      "message": "```suggestion\n    const sdbusplus::object_path\u0026 objPath,\n```",
+      "range": {
+        "startLine": 21,
+        "startChar": 4,
+        "endLine": 21,
+        "endChar": 31
+      },
+      "revId": "a52faf528c5239e6a82217778d5c6a1e94053aab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
