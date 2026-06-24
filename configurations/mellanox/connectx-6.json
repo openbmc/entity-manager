@@ -20,35 +20,35 @@
                     "Direction": "less than",
                     "Index": 2,
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 0
                 },
                 {
                     "Direction": "less than",
                     "Index": 2,
                     "Name": "lower non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 5
                 },
                 {
                     "Direction": "greater than",
                     "Index": 2,
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 90
                 },
                 {
                     "Direction": "greater than",
                     "Index": 2,
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 105
                 },
                 {
                     "Direction": "greater than",
                     "Index": 2,
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 120
                 }
             ],
