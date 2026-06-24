@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1135403d_df3d5692",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1002728
+      },
+      "writtenOn": "2026-06-24T07:36:34Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "4e4ee224_347afe2d",
+      "revId": "a52faf528c5239e6a82217778d5c6a1e94053aab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7d691c33_59a2fad1",
@@ -52,6 +70,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c30d41e8_5c35f846",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 1496,
+      "author": {
+        "id": 1002728
+      },
+      "writtenOn": "2026-06-24T07:36:34Z",
+      "side": 1,
+      "message": "Thanks for the feedback.\n\nI’ve refactored it into a separate helper function to improve readability and keep main function shorter and more focused.",
+      "parentUuid": "7d691c33_59a2fad1",
+      "revId": "a52faf528c5239e6a82217778d5c6a1e94053aab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b998cad4_98d91d3e",
@@ -65,6 +101,30 @@
       "writtenOn": "2026-06-23T10:30:08Z",
       "side": 1,
       "message": "Let\u0027s not capture everything here. Let\u0027s capture only what we need. Otherwise it is unclear what we depend on and might be hard to refactor later.",
+      "range": {
+        "startLine": 1497,
+        "startChar": 8,
+        "endLine": 1497,
+        "endChar": 12
+      },
+      "revId": "a52faf528c5239e6a82217778d5c6a1e94053aab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e8a52b5_f6d436af",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 1497,
+      "author": {
+        "id": 1002728
+      },
+      "writtenOn": "2026-06-24T07:36:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b998cad4_98d91d3e",
       "range": {
         "startLine": 1497,
         "startChar": 8,
@@ -98,6 +158,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d578082_35153a8d",
+        "filename": "src/fru_device/neard_dbus.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1002728
+      },
+      "writtenOn": "2026-06-24T07:36:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4a37fb8_776c3007",
+      "range": {
+        "startLine": 5,
+        "startChar": 4,
+        "endLine": 5,
+        "endChar": 31
+      },
+      "revId": "a52faf528c5239e6a82217778d5c6a1e94053aab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c85d879c_1403fd5d",
@@ -115,6 +199,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "291078a2_f4dc0c31",
+        "filename": "src/fru_device/neard_dbus.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1002728
+      },
+      "writtenOn": "2026-06-24T07:36:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c85d879c_1403fd5d",
+      "revId": "a52faf528c5239e6a82217778d5c6a1e94053aab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9ef08940_3265cfd6",
@@ -128,6 +230,30 @@
       "writtenOn": "2026-06-23T10:30:08Z",
       "side": 1,
       "message": "```suggestion\n    const sdbusplus::object_path\u0026 objPath,\n```",
+      "range": {
+        "startLine": 21,
+        "startChar": 4,
+        "endLine": 21,
+        "endChar": 31
+      },
+      "revId": "a52faf528c5239e6a82217778d5c6a1e94053aab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d77319a8_a71e6d15",
+        "filename": "src/fru_device/neard_dbus.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1002728
+      },
+      "writtenOn": "2026-06-24T07:36:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ef08940_3265cfd6",
       "range": {
         "startLine": 21,
         "startChar": 4,
