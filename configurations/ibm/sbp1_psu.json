@@ -23,7 +23,7 @@
                         "Hysteresis": 4.1,
                         "Label": "vin2",
                         "Name": "upper critical",
-                        "Severity": 1,
+                        "Severity": "Critical",
                         "Value": 410
                     },
                     {
@@ -31,7 +31,7 @@
                         "Hysteresis": 3.65,
                         "Label": "vin2",
                         "Name": "lower critical",
-                        "Severity": 1,
+                        "Severity": "Critical",
                         "Value": 365
                     },
                     {
@@ -39,7 +39,7 @@
                         "Hysteresis": 4,
                         "Label": "vin2",
                         "Name": "upper non critical",
-                        "Severity": 0,
+                        "Severity": "Warning",
                         "Value": 400
                     },
                     {
@@ -47,7 +47,7 @@
                         "Hysteresis": 3.8,
                         "Label": "vin2",
                         "Name": "lower non critical",
-                        "Severity": 0,
+                        "Severity": "Warning",
                         "Value": 380
                     },
                     {
@@ -55,7 +55,7 @@
                         "Hysteresis": 0.05,
                         "Label": "iin2",
                         "Name": "upper critical",
-                        "Severity": 1,
+                        "Severity": "Critical",
                         "Value": 5.0
                     },
                     {
@@ -63,7 +63,7 @@
                         "Hysteresis": 0.04,
                         "Label": "iin2",
                         "Name": "upper non critical",
-                        "Severity": 0,
+                        "Severity": "Warning",
                         "Value": 4
                     },
                     {
@@ -71,7 +71,7 @@
                         "Hysteresis": 1.25,
                         "Label": "temp1",
                         "Name": "upper critical",
-                        "Severity": 1,
+                        "Severity": "Critical",
                         "Value": 125.0
                     },
                     {
@@ -79,7 +79,7 @@
                         "Hysteresis": 1.1,
                         "Label": "temp1",
                         "Name": "upper non critical",
-                        "Severity": 0,
+                        "Severity": "Warning",
                         "Value": 110.0
                     },
                     {
@@ -87,7 +87,7 @@
                         "Hysteresis": 1.45,
                         "Label": "iout2",
                         "Name": "upper critical",
-                        "Severity": 1,
+                        "Severity": "Critical",
                         "Value": 145
                     },
                     {
@@ -95,7 +95,7 @@
                         "Hysteresis": 1.25,
                         "Label": "iout2",
                         "Name": "upper non critical",
-                        "Severity": 0,
+                        "Severity": "Warning",
                         "Value": 125
                     },
                     {
@@ -103,7 +103,7 @@
                         "Hysteresis": 0.133,
                         "Label": "vout2",
                         "Name": "upper critical",
-                        "Severity": 1,
+                        "Severity": "Critical",
                         "Value": 13.3
                     },
                     {
@@ -111,7 +111,7 @@
                         "Hysteresis": 0.11080000000000001,
                         "Label": "vout2",
                         "Name": "lower critical",
-                        "Severity": 1,
+                        "Severity": "Critical",
                         "Value": 11.08
                     },
                     {
@@ -119,7 +119,7 @@
                         "Hysteresis": 0.128,
                         "Label": "vout2",
                         "Name": "upper non critical",
-                        "Severity": 0,
+                        "Severity": "Warning",
                         "Value": 12.8
                     },
                     {
@@ -127,7 +127,7 @@
                         "Hysteresis": 0.1168,
                         "Label": "vout2",
                         "Name": "lower non critical",
-                        "Severity": 0,
+                        "Severity": "Warning",
                         "Value": 11.68
                     }
                 ],
@@ -172,7 +172,7 @@
                         "Hysteresis": 4.1,
                         "Label": "vin2",
                         "Name": "upper critical",
-                        "Severity": 1,
+                        "Severity": "Critical",
                         "Value": 410
                     },
                     {
@@ -180,7 +180,7 @@
                         "Hysteresis": 3.65,
                         "Label": "vin2",
                         "Name": "lower critical",
-                        "Severity": 1,
+                        "Severity": "Critical",
                         "Value": 365
                     },
                     {
@@ -188,7 +188,7 @@
                         "Hysteresis": 4,
                         "Label": "vin2",
                         "Name": "upper non critical",
-                        "Severity": 0,
+                        "Severity": "Warning",
                         "Value": 400
                     },
                     {
@@ -196,7 +196,7 @@
                         "Hysteresis": 3.8,
                         "Label": "vin2",
                         "Name": "lower non critical",
-                        "Severity": 0,
+                        "Severity": "Warning",
                         "Value": 380
                     },
                     {
@@ -204,7 +204,7 @@
                         "Hysteresis": 0.05,
                         "Label": "iin2",
                         "Name": "upper critical",
-                        "Severity": 1,
+                        "Severity": "Critical",
                         "Value": 5
                     },
                     {
@@ -212,7 +212,7 @@
                         "Hysteresis": 0.04,
                         "Label": "iin2",
                         "Name": "upper non critical",
-                        "Severity": 0,
+                        "Severity": "Warning",
                         "Value": 4
                     },
                     {
@@ -220,7 +220,7 @@
                         "Hysteresis": 1.25,
                         "Label": "temp1",
                         "Name": "upper critical",
-                        "Severity": 1,
+                        "Severity": "Critical",
                         "Value": 125.0
                     },
                     {
@@ -228,7 +228,7 @@
                         "Hysteresis": 1.1,
                         "Label": "temp1",
                         "Name": "upper non critical",
-                        "Severity": 0,
+                        "Severity": "Warning",
                         "Value": 110.0
                     },
                     {
@@ -236,7 +236,7 @@
                         "Hysteresis": 1.45,
                         "Label": "iout2",
                         "Name": "upper critical",
-                        "Severity": 1,
+                        "Severity": "Critical",
                         "Value": 145
                     },
                     {
@@ -244,7 +244,7 @@
                         "Hysteresis": 1.25,
                         "Label": "iout2",
                         "Name": "upper non critical",
-                        "Severity": 0,
+                        "Severity": "Warning",
                         "Value": 125
                     },
                     {
@@ -252,7 +252,7 @@
                         "Hysteresis": 0.133,
                         "Label": "vout2",
                         "Name": "upper critical",
-                        "Severity": 1,
+                        "Severity": "Critical",
                         "Value": 13.3
                     },
                     {
@@ -260,7 +260,7 @@
                         "Hysteresis": 0.11080000000000001,
                         "Label": "vout2",
                         "Name": "lower critical",
-                        "Severity": 1,
+                        "Severity": "Critical",
                         "Value": 11.08
                     },
                     {
@@ -268,7 +268,7 @@
                         "Hysteresis": 0.128,
                         "Label": "vout2",
                         "Name": "upper non critical",
-                        "Severity": 0,
+                        "Severity": "Warning",
                         "Value": 12.8
                     },
                     {
@@ -276,7 +276,7 @@
                         "Hysteresis": 0.1168,
                         "Label": "vout2",
                         "Name": "lower non critical",
-                        "Severity": 0,
+                        "Severity": "Warning",
                         "Value": 11.68
                     }
                 ],
@@ -321,7 +321,7 @@
                         "Hysteresis": 4.1,
                         "Label": "vin2",
                         "Name": "upper critical",
-                        "Severity": 1,
+                        "Severity": "Critical",
                         "Value": 410
                     },
                     {
@@ -329,7 +329,7 @@
                         "Hysteresis": 3.65,
                         "Label": "vin2",
                         "Name": "lower critical",
-                        "Severity": 1,
+                        "Severity": "Critical",
                         "Value": 365
                     },
                     {
@@ -337,7 +337,7 @@
                         "Hysteresis": 4,
                         "Label": "vin2",
                         "Name": "upper non critical",
-                        "Severity": 0,
+                        "Severity": "Warning",
                         "Value": 400
                     },
                     {
@@ -345,7 +345,7 @@
                         "Hysteresis": 3.8,
                         "Label": "vin2",
                         "Name": "lower non critical",
-                        "Severity": 0,
+                        "Severity": "Warning",
                         "Value": 380
                     },
                     {
@@ -353,7 +353,7 @@
                         "Hysteresis": 0.05,
                         "Label": "iin2",
                         "Name": "upper critical",
-                        "Severity": 1,
+                        "Severity": "Critical",
                         "Value": 5
                     },
                     {
@@ -361,7 +361,7 @@
                         "Hysteresis": 0.04,
                         "Label": "iin2",
                         "Name": "upper non critical",
-                        "Severity": 0,
+                        "Severity": "Warning",
                         "Value": 4
                     },
                     {
@@ -369,7 +369,7 @@
                         "Hysteresis": 1.25,
                         "Label": "temp1",
                         "Name": "upper critical",
-                        "Severity": 1,
+                        "Severity": "Critical",
                         "Value": 125.0
                     },
                     {
@@ -377,7 +377,7 @@
                         "Hysteresis": 1.1,
                         "Label": "temp1",
                         "Name": "upper non critical",
-                        "Severity": 0,
+                        "Severity": "Warning",
                         "Value": 110.0
                     },
                     {
@@ -385,7 +385,7 @@
                         "Hysteresis": 1.45,
                         "Label": "iout2",
                         "Name": "upper critical",
-                        "Severity": 1,
+                        "Severity": "Critical",
                         "Value": 145
                     },
                     {
@@ -393,7 +393,7 @@
                         "Hysteresis": 1.25,
                         "Label": "iout2",
                         "Name": "upper non critical",
-                        "Severity": 0,
+                        "Severity": "Warning",
                         "Value": 125
                     },
                     {
@@ -401,7 +401,7 @@
                         "Hysteresis": 0.133,
                         "Label": "vout2",
                         "Name": "upper critical",
-                        "Severity": 1,
+                        "Severity": "Critical",
                         "Value": 13.3
                     },
                     {
@@ -409,7 +409,7 @@
                         "Hysteresis": 0.11080000000000001,
                         "Label": "vout2",
                         "Name": "lower critical",
-                        "Severity": 1,
+                        "Severity": "Critical",
                         "Value": 11.08
                     },
                     {
@@ -417,7 +417,7 @@
                         "Hysteresis": 0.128,
                         "Label": "vout2",
                         "Name": "upper non critical",
-                        "Severity": 0,
+                        "Severity": "Warning",
                         "Value": 12.8
                     },
                     {
@@ -425,7 +425,7 @@
                         "Hysteresis": 0.1168,
                         "Label": "vout2",
                         "Name": "lower non critical",
-                        "Severity": 0,
+                        "Severity": "Warning",
                         "Value": 11.68
                     }
                 ],
@@ -470,7 +470,7 @@
                         "Hysteresis": 4.1,
                         "Label": "vin2",
                         "Name": "upper critical",
-                        "Severity": 1,
+                        "Severity": "Critical",
                         "Value": 410
                     },
                     {
@@ -478,7 +478,7 @@
                         "Hysteresis": 3.65,
                         "Label": "vin2",
                         "Name": "lower critical",
-                        "Severity": 1,
+                        "Severity": "Critical",
                         "Value": 365
                     },
                     {
@@ -486,7 +486,7 @@
                         "Hysteresis": 4,
                         "Label": "vin2",
                         "Name": "upper non critical",
-                        "Severity": 0,
+                        "Severity": "Warning",
                         "Value": 400
                     },
                     {
@@ -494,7 +494,7 @@
                         "Hysteresis": 3.8,
                         "Label": "vin2",
                         "Name": "lower non critical",
-                        "Severity": 0,
+                        "Severity": "Warning",
                         "Value": 380
                     },
                     {
@@ -502,7 +502,7 @@
                         "Hysteresis": 0.05,
                         "Label": "iin2",
                         "Name": "upper critical",
-                        "Severity": 1,
+                        "Severity": "Critical",
                         "Value": 5
                     },
                     {
@@ -510,7 +510,7 @@
                         "Hysteresis": 0.04,
                         "Label": "iin2",
                         "Name": "upper non critical",
-                        "Severity": 0,
+                        "Severity": "Warning",
                         "Value": 4
                     },
                     {
@@ -518,7 +518,7 @@
                         "Hysteresis": 1.25,
                         "Label": "temp1",
                         "Name": "upper critical",
-                        "Severity": 1,
+                        "Severity": "Critical",
                         "Value": 125.0
                     },
                     {
@@ -526,7 +526,7 @@
                         "Hysteresis": 1.1,
                         "Label": "temp1",
                         "Name": "upper non critical",
-                        "Severity": 0,
+                        "Severity": "Warning",
                         "Value": 110.0
                     },
                     {
@@ -534,7 +534,7 @@
                         "Hysteresis": 1.45,
                         "Label": "iout2",
                         "Name": "upper critical",
-                        "Severity": 1,
+                        "Severity": "Critical",
                         "Value": 145
                     },
                     {
@@ -542,7 +542,7 @@
                         "Hysteresis": 1.25,
                         "Label": "iout2",
                         "Name": "upper non critical",
-                        "Severity": 0,
+                        "Severity": "Warning",
                         "Value": 125
                     },
                     {
@@ -550,7 +550,7 @@
                         "Hysteresis": 0.133,
                         "Label": "vout2",
                         "Name": "upper critical",
-                        "Severity": 1,
+                        "Severity": "Critical",
                         "Value": 13.3
                     },
                     {
@@ -558,7 +558,7 @@
                         "Hysteresis": 0.11080000000000001,
                         "Label": "vout2",
                         "Name": "lower critical",
-                        "Severity": 1,
+                        "Severity": "Critical",
                         "Value": 11.08
                     },
                     {
@@ -566,7 +566,7 @@
                         "Hysteresis": 0.128,
                         "Label": "vout2",
                         "Name": "upper non critical",
-                        "Severity": 0,
+                        "Severity": "Warning",
                         "Value": 12.8
                     },
                     {
@@ -574,7 +574,7 @@
                         "Hysteresis": 0.1168,
                         "Label": "vout2",
                         "Name": "lower non critical",
-                        "Severity": 0,
+                        "Severity": "Warning",
                         "Value": 11.68
                     }
                 ],
