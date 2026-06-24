@@ -151,17 +151,7 @@ auto testDevicePresentThenDisappearDbus(sdbusplus::async::context& ctx)
     // gpio goes high, cable 0 should disappear
     sensor.updatePresence(gpioName, true);
 
-    try
-    {
-        co_await client.name();
-        assert(false);
-    }
-    catch (std::exception& _)
-    {
-        // expected, since cable 0 is gone.
-        // have to do something here to shut up clang-tidy
-        lg2::info("");
-    }
+    EXPECT_FALSE(sensor.getPresence(name));
 
     ctx.request_stop();
 
