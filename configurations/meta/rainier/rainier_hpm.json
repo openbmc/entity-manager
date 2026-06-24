@@ -197,8 +197,10 @@
             ],
             "Type": "ADS7830",
             "in0_Name": "MB_ADC_P12V_DIMM0_VOLT_V",
+            "in0_PowerState": "On",
             "in0_Scale": 157.5,
             "in1_Name": "MB_ADC_P12V_DIMM1_VOLT_V",
+            "in1_PowerState": "On",
             "in1_Scale": 157.5,
             "in2_Name": "MB_ADC_P1V8_STBY_VOLT_V",
             "in5_Name": "MB_ADC_V1P2_GPIO_VOLT_V",
@@ -239,6 +241,7 @@
                 "power1"
             ],
             "Name": "MB_PMON_DIMM_0",
+            "PowerState": "On",
             "Thresholds": [
                 {
                     "Direction": "less than",
@@ -253,13 +256,6 @@
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 13.2
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "curr1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5.73
                 },
                 {
                     "Direction": "greater than",
@@ -290,6 +286,7 @@
                 "power1"
             ],
             "Name": "MB_PMON_DIMM_1",
+            "PowerState": "On",
             "Thresholds": [
                 {
                     "Direction": "less than",
@@ -304,13 +301,6 @@
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 13.2
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "curr1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5.73
                 },
                 {
                     "Direction": "greater than",
