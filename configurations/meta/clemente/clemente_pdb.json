@@ -22,49 +22,49 @@
                     "Direction": "greater than",
                     "Label": "temp1",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 110
                 },
                 {
                     "Direction": "greater than",
                     "Label": "temp1",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 107
                 },
                 {
                     "Direction": "greater than",
                     "Label": "temp1",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 105
                 },
                 {
                     "Direction": "greater than",
                     "Label": "vin",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 60
                 },
                 {
                     "Direction": "less than",
                     "Label": "vin",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 40
                 },
                 {
                     "Direction": "greater than",
                     "Label": "vout1",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 60
                 },
                 {
                     "Direction": "less than",
                     "Label": "vout1",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 40
                 }
             ],
@@ -91,49 +91,49 @@
                     "Direction": "greater than",
                     "Label": "temp1",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 110
                 },
                 {
                     "Direction": "greater than",
                     "Label": "temp1",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 107
                 },
                 {
                     "Direction": "greater than",
                     "Label": "temp1",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 105
                 },
                 {
                     "Direction": "greater than",
                     "Label": "vin",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 60
                 },
                 {
                     "Direction": "less than",
                     "Label": "vin",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 40
                 },
                 {
                     "Direction": "greater than",
                     "Label": "vout1",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 60
                 },
                 {
                     "Direction": "less than",
                     "Label": "vout1",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 40
                 }
             ],
@@ -162,7 +162,7 @@
                     "Hysteresis": 0.272,
                     "Label": "vout1",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 13.6
                 },
                 {
@@ -170,7 +170,7 @@
                     "Hysteresis": 0.21,
                     "Label": "vout1",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 10.5
                 },
                 {
@@ -178,7 +178,7 @@
                     "Hysteresis": 2.5,
                     "Label": "temp1",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 120
                 },
                 {
@@ -186,7 +186,7 @@
                     "Hysteresis": 0.1,
                     "Label": "temp1",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 118
                 },
                 {
@@ -194,7 +194,7 @@
                     "Hysteresis": 0.1,
                     "Label": "temp1",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 110
                 },
                 {
@@ -202,7 +202,7 @@
                     "Hysteresis": 2.5,
                     "Label": "temp2",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 115
                 },
                 {
@@ -210,7 +210,7 @@
                     "Hysteresis": 0.1,
                     "Label": "temp2",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 113
                 },
                 {
@@ -218,7 +218,7 @@
                     "Hysteresis": 0.1,
                     "Label": "temp2",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 110
                 }
             ],
@@ -247,7 +247,7 @@
                     "Hysteresis": 0.272,
                     "Label": "vout1",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 13.6
                 },
                 {
@@ -255,7 +255,7 @@
                     "Hysteresis": 0.21,
                     "Label": "vout1",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 10.5
                 },
                 {
@@ -263,7 +263,7 @@
                     "Hysteresis": 2.5,
                     "Label": "temp1",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 115
                 },
                 {
@@ -271,7 +271,7 @@
                     "Hysteresis": 0.1,
                     "Label": "temp1",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 113
                 },
                 {
@@ -279,7 +279,7 @@
                     "Hysteresis": 0.1,
                     "Label": "temp1",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 110
                 },
                 {
@@ -287,7 +287,7 @@
                     "Hysteresis": 2.5,
                     "Label": "temp2",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 115
                 },
                 {
@@ -295,7 +295,7 @@
                     "Hysteresis": 0.1,
                     "Label": "temp2",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 113
                 },
                 {
@@ -303,7 +303,7 @@
                     "Hysteresis": 0.1,
                     "Label": "temp2",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 110
                 }
             ],
@@ -343,21 +343,21 @@
                     "Direction": "greater than",
                     "Hysteresis": 1.6,
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 100
                 },
                 {
                     "Direction": "greater than",
                     "Hysteresis": 1.6,
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 95
                 },
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0.1,
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 90
                 }
             ],
