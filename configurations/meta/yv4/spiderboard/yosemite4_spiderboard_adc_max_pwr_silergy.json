@@ -16,7 +16,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage0",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 13.74
                 },
                 {
@@ -24,7 +24,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage0",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 13.176
                 },
                 {
@@ -32,7 +32,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage0",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 13.054
                 },
                 {
@@ -40,7 +40,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage0",
                     "Name": "lower non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 11.346
                 },
                 {
@@ -48,7 +48,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage0",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 11.224
                 },
                 {
@@ -56,7 +56,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage0",
                     "Name": "lower non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 10.32
                 },
                 {
@@ -64,7 +64,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage1",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 3.8
                 },
                 {
@@ -72,7 +72,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage1",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 3.564
                 },
                 {
@@ -80,7 +80,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage1",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 3.531
                 },
                 {
@@ -88,7 +88,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage1",
                     "Name": "lower non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 3.069
                 },
                 {
@@ -96,7 +96,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage1",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 3.036
                 },
                 {
@@ -104,7 +104,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage1",
                     "Name": "lower non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 2.8
                 },
                 {
@@ -112,7 +112,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage2",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 13.74
                 },
                 {
@@ -120,7 +120,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage2",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 13.176
                 },
                 {
@@ -128,7 +128,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage2",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 13.054
                 },
                 {
@@ -136,7 +136,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage2",
                     "Name": "lower non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 11.346
                 },
                 {
@@ -144,7 +144,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage2",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 11.224
                 },
                 {
@@ -152,7 +152,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage2",
                     "Name": "lower non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 10.32
                 },
                 {
@@ -160,7 +160,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage3",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 3.8
                 },
                 {
@@ -168,7 +168,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage3",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 3.564
                 },
                 {
@@ -176,7 +176,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage3",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 3.531
                 },
                 {
@@ -184,7 +184,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage3",
                     "Name": "lower non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 3.069
                 },
                 {
@@ -192,7 +192,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage3",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 3.036
                 },
                 {
@@ -200,7 +200,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage3",
                     "Name": "lower non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 2.8
                 }
             ],
@@ -232,7 +232,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage0",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 13.74
                 },
                 {
@@ -240,7 +240,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage0",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 13.176
                 },
                 {
@@ -248,7 +248,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage0",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 13.054
                 },
                 {
@@ -256,7 +256,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage0",
                     "Name": "lower non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 11.346
                 },
                 {
@@ -264,7 +264,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage0",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 11.224
                 },
                 {
@@ -272,7 +272,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage0",
                     "Name": "lower non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 10.32
                 },
                 {
@@ -280,7 +280,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage1",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 3.8
                 },
                 {
@@ -288,7 +288,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage1",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 3.564
                 },
                 {
@@ -296,7 +296,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage1",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 3.531
                 },
                 {
@@ -304,7 +304,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage1",
                     "Name": "lower non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 3.069
                 },
                 {
@@ -312,7 +312,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage1",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 3.036
                 },
                 {
@@ -320,7 +320,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage1",
                     "Name": "lower non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 2.8
                 },
                 {
@@ -328,7 +328,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage2",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 13.74
                 },
                 {
@@ -336,7 +336,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage2",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 13.176
                 },
                 {
@@ -344,7 +344,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage2",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 13.054
                 },
                 {
@@ -352,7 +352,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage2",
                     "Name": "lower non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 11.346
                 },
                 {
@@ -360,7 +360,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage2",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 11.224
                 },
                 {
@@ -368,7 +368,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage2",
                     "Name": "lower non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 10.32
                 },
                 {
@@ -376,7 +376,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage3",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 3.8
                 },
                 {
@@ -384,7 +384,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage3",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 3.564
                 },
                 {
@@ -392,7 +392,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage3",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 3.531
                 },
                 {
@@ -400,7 +400,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage3",
                     "Name": "lower non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 3.069
                 },
                 {
@@ -408,7 +408,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage3",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 3.036
                 },
                 {
@@ -416,7 +416,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage3",
                     "Name": "lower non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 2.8
                 },
                 {
@@ -424,7 +424,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage8",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 14.333
                 },
                 {
@@ -432,7 +432,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage8",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 13.176
                 },
                 {
@@ -440,7 +440,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage8",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 13.054
                 },
                 {
@@ -448,7 +448,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage8",
                     "Name": "lower non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 11.346
                 },
                 {
@@ -456,7 +456,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage8",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 11.224
                 },
                 {
@@ -464,7 +464,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage8",
                     "Name": "lower non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 10.091
                 },
                 {
@@ -472,7 +472,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage9",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 3.828
                 },
                 {
@@ -480,7 +480,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage9",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 3.432
                 },
                 {
@@ -488,7 +488,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage9",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 3.399
                 },
                 {
@@ -496,7 +496,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage9",
                     "Name": "lower non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 3.201
                 },
                 {
@@ -504,7 +504,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage9",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 3.168
                 },
                 {
@@ -512,7 +512,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage9",
                     "Name": "lower non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 2.64
                 }
             ],
@@ -545,7 +545,7 @@
                     "Hysteresis": 0,
                     "Label": "curr1",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 1.5
                 },
                 {
@@ -553,7 +553,7 @@
                     "Hysteresis": 0,
                     "Label": "curr1",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 0.88
                 },
                 {
@@ -561,7 +561,7 @@
                     "Hysteresis": 0,
                     "Label": "curr1",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 0.84
                 },
                 {
@@ -569,7 +569,7 @@
                     "Hysteresis": 0,
                     "Label": "power1",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 18.75
                 },
                 {
@@ -577,7 +577,7 @@
                     "Hysteresis": 0,
                     "Label": "power1",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 11
                 },
                 {
@@ -585,7 +585,7 @@
                     "Hysteresis": 0,
                     "Label": "power1",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 10.5
                 },
                 {
@@ -593,7 +593,7 @@
                     "Hysteresis": 0,
                     "Label": "in1",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 14.333
                 },
                 {
@@ -601,7 +601,7 @@
                     "Hysteresis": 0,
                     "Label": "in1",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 13.176
                 },
                 {
@@ -609,7 +609,7 @@
                     "Hysteresis": 0,
                     "Label": "in1",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 13.054
                 },
                 {
@@ -617,7 +617,7 @@
                     "Hysteresis": 0,
                     "Label": "in1",
                     "Name": "lower non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 11.346
                 },
                 {
@@ -625,7 +625,7 @@
                     "Hysteresis": 0,
                     "Label": "in1",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 11.224
                 },
                 {
@@ -633,7 +633,7 @@
                     "Hysteresis": 0,
                     "Label": "in1",
                     "Name": "lower non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 10.091
                 }
             ],
@@ -658,7 +658,7 @@
                     "Hysteresis": 0,
                     "Label": "curr1",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 5.4
                 },
                 {
@@ -666,7 +666,7 @@
                     "Hysteresis": 0,
                     "Label": "curr1",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 4.51
                 },
                 {
@@ -674,7 +674,7 @@
                     "Hysteresis": 0,
                     "Label": "curr1",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 4.305
                 },
                 {
@@ -682,7 +682,7 @@
                     "Hysteresis": 0,
                     "Label": "power1",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 67.5
                 },
                 {
@@ -690,7 +690,7 @@
                     "Hysteresis": 0,
                     "Label": "power1",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 56.375
                 },
                 {
@@ -698,7 +698,7 @@
                     "Hysteresis": 0,
                     "Label": "power1",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 53.8125
                 },
                 {
@@ -706,7 +706,7 @@
                     "Hysteresis": 0,
                     "Label": "in1",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 14.333
                 },
                 {
@@ -714,7 +714,7 @@
                     "Hysteresis": 0,
                     "Label": "in1",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 13.176
                 },
                 {
@@ -722,7 +722,7 @@
                     "Hysteresis": 0,
                     "Label": "in1",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 13.054
                 },
                 {
@@ -730,7 +730,7 @@
                     "Hysteresis": 0,
                     "Label": "in1",
                     "Name": "lower non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 11.346
                 },
                 {
@@ -738,7 +738,7 @@
                     "Hysteresis": 0,
                     "Label": "in1",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 11.224
                 },
                 {
@@ -746,7 +746,7 @@
                     "Hysteresis": 0,
                     "Label": "in1",
                     "Name": "lower non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 10.091
                 }
             ],
@@ -771,7 +771,7 @@
                     "Hysteresis": 0,
                     "Label": "curr1",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 5.4
                 },
                 {
@@ -779,7 +779,7 @@
                     "Hysteresis": 0,
                     "Label": "curr1",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 4.51
                 },
                 {
@@ -787,7 +787,7 @@
                     "Hysteresis": 0,
                     "Label": "curr1",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 4.305
                 },
                 {
@@ -795,7 +795,7 @@
                     "Hysteresis": 0,
                     "Label": "power1",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 67.5
                 },
                 {
@@ -803,7 +803,7 @@
                     "Hysteresis": 0,
                     "Label": "power1",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 56.375
                 },
                 {
@@ -811,7 +811,7 @@
                     "Hysteresis": 0,
                     "Label": "power1",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 53.8125
                 },
                 {
@@ -819,7 +819,7 @@
                     "Hysteresis": 0,
                     "Label": "in1",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 14.333
                 },
                 {
@@ -827,7 +827,7 @@
                     "Hysteresis": 0,
                     "Label": "in1",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 13.176
                 },
                 {
@@ -835,7 +835,7 @@
                     "Hysteresis": 0,
                     "Label": "in1",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 13.054
                 },
                 {
@@ -843,7 +843,7 @@
                     "Hysteresis": 0,
                     "Label": "in1",
                     "Name": "lower non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 11.346
                 },
                 {
@@ -851,7 +851,7 @@
                     "Hysteresis": 0,
                     "Label": "in1",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 11.224
                 },
                 {
@@ -859,7 +859,7 @@
                     "Hysteresis": 0,
                     "Label": "in1",
                     "Name": "lower non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 10.091
                 }
             ],
@@ -884,7 +884,7 @@
                     "Hysteresis": 0,
                     "Label": "curr1",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 5.4
                 },
                 {
@@ -892,7 +892,7 @@
                     "Hysteresis": 0,
                     "Label": "curr1",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 4.51
                 },
                 {
@@ -900,7 +900,7 @@
                     "Hysteresis": 0,
                     "Label": "curr1",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 4.305
                 },
                 {
@@ -908,7 +908,7 @@
                     "Hysteresis": 0,
                     "Label": "power1",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 67.5
                 },
                 {
@@ -916,7 +916,7 @@
                     "Hysteresis": 0,
                     "Label": "power1",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 56.375
                 },
                 {
@@ -924,7 +924,7 @@
                     "Hysteresis": 0,
                     "Label": "power1",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 53.8125
                 },
                 {
@@ -932,7 +932,7 @@
                     "Hysteresis": 0,
                     "Label": "in1",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 14.333
                 },
                 {
@@ -940,7 +940,7 @@
                     "Hysteresis": 0,
                     "Label": "in1",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 13.176
                 },
                 {
@@ -948,7 +948,7 @@
                     "Hysteresis": 0,
                     "Label": "in1",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 13.054
                 },
                 {
@@ -956,7 +956,7 @@
                     "Hysteresis": 0,
                     "Label": "in1",
                     "Name": "lower non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 11.346
                 },
                 {
@@ -964,7 +964,7 @@
                     "Hysteresis": 0,
                     "Label": "in1",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 11.224
                 },
                 {
@@ -972,7 +972,7 @@
                     "Hysteresis": 0,
                     "Label": "in1",
                     "Name": "lower non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 10.091
                 }
             ],
@@ -997,7 +997,7 @@
                     "Hysteresis": 0,
                     "Label": "curr1",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 5.4
                 },
                 {
@@ -1005,7 +1005,7 @@
                     "Hysteresis": 0,
                     "Label": "curr1",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 4.51
                 },
                 {
@@ -1013,7 +1013,7 @@
                     "Hysteresis": 0,
                     "Label": "curr1",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 4.305
                 },
                 {
@@ -1021,7 +1021,7 @@
                     "Hysteresis": 0,
                     "Label": "power1",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 67.5
                 },
                 {
@@ -1029,7 +1029,7 @@
                     "Hysteresis": 0,
                     "Label": "power1",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 56.375
                 },
                 {
@@ -1037,7 +1037,7 @@
                     "Hysteresis": 0,
                     "Label": "power1",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 53.8125
                 },
                 {
@@ -1045,7 +1045,7 @@
                     "Hysteresis": 0,
                     "Label": "in1",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 14.333
                 },
                 {
@@ -1053,7 +1053,7 @@
                     "Hysteresis": 0,
                     "Label": "in1",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 13.176
                 },
                 {
@@ -1061,7 +1061,7 @@
                     "Hysteresis": 0,
                     "Label": "in1",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 13.054
                 },
                 {
@@ -1069,7 +1069,7 @@
                     "Hysteresis": 0,
                     "Label": "in1",
                     "Name": "lower non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 11.346
                 },
                 {
@@ -1077,7 +1077,7 @@
                     "Hysteresis": 0,
                     "Label": "in1",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 11.224
                 },
                 {
@@ -1085,7 +1085,7 @@
                     "Hysteresis": 0,
                     "Label": "in1",
                     "Name": "lower non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 10.091
                 }
             ],
@@ -1128,14 +1128,14 @@
                     "Direction": "greater than",
                     "Hysteresis": 0,
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 150
                 },
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 60
                 }
             ],
@@ -1150,14 +1150,14 @@
                     "Direction": "greater than",
                     "Hysteresis": 0,
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 150
                 },
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 60
                 }
             ],

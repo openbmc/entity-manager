@@ -29,13 +29,13 @@
                 {
                     "Direction": "less than",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 3900
                 },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 42000
                 }
             ],
@@ -64,13 +64,13 @@
                 {
                     "Direction": "less than",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 3800
                 },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 41000
                 }
             ],
@@ -99,13 +99,13 @@
                 {
                     "Direction": "less than",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 3900
                 },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 42000
                 }
             ],
@@ -134,13 +134,13 @@
                 {
                     "Direction": "less than",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 3800
                 },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 41000
                 }
             ],
@@ -169,13 +169,13 @@
                 {
                     "Direction": "less than",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 3900
                 },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 42000
                 }
             ],
@@ -204,13 +204,13 @@
                 {
                     "Direction": "less than",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 3800
                 },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 41000
                 }
             ],
@@ -239,13 +239,13 @@
                 {
                     "Direction": "less than",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 3900
                 },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 42000
                 }
             ],
@@ -274,13 +274,13 @@
                 {
                     "Direction": "less than",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 3800
                 },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 41000
                 }
             ],
@@ -309,13 +309,13 @@
                 {
                     "Direction": "less than",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 3900
                 },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 42000
                 }
             ],
@@ -344,13 +344,13 @@
                 {
                     "Direction": "less than",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 3800
                 },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 41000
                 }
             ],
@@ -372,63 +372,63 @@
                     "Direction": "greater than",
                     "Label": "iout1",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 87.5
                 },
                 {
                     "Direction": "greater than",
                     "Label": "iout1",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 113
                 },
                 {
                     "Direction": "greater than",
                     "Label": "pin",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 5000
                 },
                 {
                     "Direction": "greater than",
                     "Label": "temp1",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 110
                 },
                 {
                     "Direction": "greater than",
                     "Label": "temp1",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 125
                 },
                 {
                     "Direction": "less than",
                     "Label": "vin",
                     "Name": "lower non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 32.8
                 },
                 {
                     "Direction": "less than",
                     "Label": "vin",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 40
                 },
                 {
                     "Direction": "greater than",
                     "Label": "vin",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 60
                 },
                 {
                     "Direction": "greater than",
                     "Label": "vin",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 64
                 }
             ],
@@ -455,63 +455,63 @@
                     "Direction": "greater than",
                     "Label": "iout1",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 87.5
                 },
                 {
                     "Direction": "greater than",
                     "Label": "iout1",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 113
                 },
                 {
                     "Direction": "greater than",
                     "Label": "pin",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 5000
                 },
                 {
                     "Direction": "greater than",
                     "Label": "temp1",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 110
                 },
                 {
                     "Direction": "greater than",
                     "Label": "temp1",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 125
                 },
                 {
                     "Direction": "less than",
                     "Label": "vin",
                     "Name": "lower non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 32.8
                 },
                 {
                     "Direction": "less than",
                     "Label": "vin",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 40
                 },
                 {
                     "Direction": "greater than",
                     "Label": "vin",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 60
                 },
                 {
                     "Direction": "greater than",
                     "Label": "vin",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 64
                 }
             ],
@@ -538,63 +538,63 @@
                     "Direction": "greater than",
                     "Label": "iout1",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 45
                 },
                 {
                     "Direction": "greater than",
                     "Label": "iout1",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 56
                 },
                 {
                     "Direction": "greater than",
                     "Label": "pin",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 2000
                 },
                 {
                     "Direction": "greater than",
                     "Label": "temp1",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 110
                 },
                 {
                     "Direction": "greater than",
                     "Label": "temp1",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 125
                 },
                 {
                     "Direction": "less than",
                     "Label": "vin",
                     "Name": "lower non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 32.8
                 },
                 {
                     "Direction": "less than",
                     "Label": "vin",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 40
                 },
                 {
                     "Direction": "greater than",
                     "Label": "vin",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 60
                 },
                 {
                     "Direction": "greater than",
                     "Label": "vin",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 64
                 }
             ],
@@ -621,77 +621,77 @@
                     "Direction": "greater than",
                     "Label": "iout1",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 60
                 },
                 {
                     "Direction": "greater than",
                     "Label": "iout1",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 108
                 },
                 {
                     "Direction": "greater than",
                     "Label": "iout1",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 130
                 },
                 {
                     "Direction": "greater than",
                     "Label": "temp1",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 130
                 },
                 {
                     "Direction": "less than",
                     "Label": "vin",
                     "Name": "lower non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 38
                 },
                 {
                     "Direction": "less than",
                     "Label": "vin",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 40
                 },
                 {
                     "Direction": "greater than",
                     "Label": "vin",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 60
                 },
                 {
                     "Direction": "greater than",
                     "Label": "vin",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 65
                 },
                 {
                     "Direction": "less than",
                     "Label": "vout1",
                     "Name": "lower non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 11.52
                 },
                 {
                     "Direction": "greater than",
                     "Label": "vout1",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 12.48
                 },
                 {
                     "Direction": "greater than",
                     "Label": "vout1",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 14.2
                 }
             ],
@@ -712,42 +712,42 @@
                     "Direction": "less than",
                     "Index": 1,
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 0
                 },
                 {
                     "Direction": "greater than",
                     "Index": 1,
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 85
                 },
                 {
                     "Direction": "less than",
                     "Index": 2,
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 0
                 },
                 {
                     "Direction": "greater than",
                     "Index": 2,
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 85
                 },
                 {
                     "Direction": "less than",
                     "Index": 3,
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 0
                 },
                 {
                     "Direction": "greater than",
                     "Index": 3,
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 85
                 }
             ],
@@ -761,13 +761,13 @@
                 {
                     "Direction": "less than",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 0
                 },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 75
                 }
             ],
