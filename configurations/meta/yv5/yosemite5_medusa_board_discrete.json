@@ -1007,12 +1007,10 @@
             "Labels": [
                 "vin",
                 "vout1",
-                "iin",
                 "iout1",
                 "temp1",
                 "temp2",
-                "pout1",
-                "pin"
+                "pout1"
             ],
             "Name": "PDB_DISCRETE",
             "Thresholds": [
@@ -1047,14 +1045,6 @@
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 13
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 1.772,
-                    "Label": "iin",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 88.6
                 },
                 {
                     "Direction": "greater than",
@@ -1111,20 +1101,10 @@
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 4680
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 99.24,
-                    "Label": "pin",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 4962
                 }
             ],
             "Type": "RAA228006",
-            "iin_Name": "PDB_DISCRETE_IIN_CURR_A",
             "iout1_Name": "PDB_DISCRETE_IOUT_CURR_A",
-            "pin_Name": "PDB_DISCRETE_PIN_PWR_W",
             "pout1_Name": "PDB_DISCRETE_POUT_PWR_W",
             "temp1_Name": "PDB_DISCRETE_EXTERNAL_TEMP_C",
             "temp2_Name": "PDB_DISCRETE_INTERNAL_TEMP_C",
