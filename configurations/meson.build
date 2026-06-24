@@ -328,6 +328,7 @@ configs = [
     'meta/yv5/yosemite5_medusa_board_discrete_hsc_xdp.json',
     'meta/yv5/yosemite5_rio_grande_adc_sgy.json',
     'meta/yv5/yosemite5_rio_grande_adc_ti.json',
+    'meta/yv5/yosemite5_rio_grande_ssd.json',
     'meta/yv5/yosemite5_scm.json',
     'meta/yv5/yosemite5_scm_2700.json',
     'micron/7450.json',
