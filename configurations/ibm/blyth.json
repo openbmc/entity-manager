@@ -10,14 +10,14 @@
                     "Direction": "greater than",
                     "Index": 1,
                     "Name": "Ambient Upper Critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 100
                 },
                 {
                     "Direction": "less than",
                     "Index": 1,
                     "Name": "Ambient Lower Critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 0
                 }
             ],
@@ -39,21 +39,21 @@
                     "Direction": "greater than",
                     "Hysteresis": 3,
                     "Name": "HardShutdown",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 58
                 },
                 {
                     "Direction": "greater than",
                     "Hysteresis": 3,
                     "Name": "SoftShutdown",
-                    "Severity": 3,
+                    "Severity": "SoftShutdown",
                     "Value": 53
                 },
                 {
                     "Direction": "greater than",
                     "Hysteresis": 3,
                     "Name": "Warning",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 45
                 }
             ],
@@ -70,14 +70,14 @@
                     "Direction": "greater than",
                     "Index": 1,
                     "Name": "Ambient Upper Critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 100
                 },
                 {
                     "Direction": "less than",
                     "Index": 1,
                     "Name": "Ambient Lower Critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 0
                 }
             ],
@@ -92,13 +92,13 @@
                 {
                     "Direction": "greater than",
                     "Name": "Ambient Upper Critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 100
                 },
                 {
                     "Direction": "less than",
                     "Name": "Ambient Lower Critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 0
                 }
             ],

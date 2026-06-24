@@ -13,7 +13,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage0",
                     "Name": "upper non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 13.74
                 },
                 {
@@ -21,7 +21,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage0",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 13.176
                 },
                 {
@@ -29,7 +29,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage0",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 13.054
                 },
                 {
@@ -37,7 +37,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage0",
                     "Name": "lower non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 1.346
                 },
                 {
@@ -45,7 +45,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage0",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 1.224
                 },
                 {
@@ -53,7 +53,7 @@
                     "Hysteresis": 0,
                     "Label": "in_voltage0",
                     "Name": "lower non recoverable",
-                    "Severity": 4,
+                    "Severity": "HardShutdown",
                     "Value": 1.32
                 }
             ],
@@ -84,13 +84,13 @@
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 36300
                 },
                 {
                     "Direction": "less than",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 2550
                 }
             ],
@@ -114,13 +114,13 @@
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 33000
                 },
                 {
                     "Direction": "less than",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 1960
                 }
             ],
@@ -144,13 +144,13 @@
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 36300
                 },
                 {
                     "Direction": "less than",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 2550
                 }
             ],
@@ -174,13 +174,13 @@
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 33000
                 },
                 {
                     "Direction": "less than",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 1960
                 }
             ],
@@ -204,13 +204,13 @@
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 36300
                 },
                 {
                     "Direction": "less than",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 2550
                 }
             ],
@@ -234,13 +234,13 @@
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 33000
                 },
                 {
                     "Direction": "less than",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 1960
                 }
             ],
@@ -264,13 +264,13 @@
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 36300
                 },
                 {
                     "Direction": "less than",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 2550
                 }
             ],
@@ -294,13 +294,13 @@
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 33000
                 },
                 {
                     "Direction": "less than",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity": "Critical",
                     "Value": 1960
                 }
             ],
