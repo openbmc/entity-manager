@@ -511,10 +511,10 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 2,
+                    "Hysteresis": 1.6,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 100
+                    "Value": 80.0
                 },
                 {
                     "Direction": "less than",
@@ -533,10 +533,10 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 2,
+                    "Hysteresis": 1.6,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 100
+                    "Value": 80.0
                 },
                 {
                     "Direction": "less than",

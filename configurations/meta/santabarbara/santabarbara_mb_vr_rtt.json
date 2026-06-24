@@ -971,6 +971,8 @@
                 "vout2",
                 "iout1",
                 "iout2",
+                "temp1",
+                "temp2",
                 "pout1",
                 "pout2"
             ],
@@ -1041,6 +1043,22 @@
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 355.5
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2,
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2,
+                    "Label": "temp2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100.0
                 }
             ],
             "Type": "RAA228228",
@@ -1048,6 +1066,8 @@
             "iout2_Name": "MB_VR_CPU_PVDDIO_MEM_S3_CURR_A",
             "pout1_Name": "MB_VR_CPU_PVDDCR_CPU0_PWR_W",
             "pout2_Name": "MB_VR_CPU_PVDDIO_MEM_S3_PWR_W",
+            "temp1_Name": "MB_VR_CPU_PVDDCR_CPU0_TEMP_C",
+            "temp2_Name": "MB_VR_CPU_PVDDIO_MEM_S3_TEMP_C",
             "vout1_Name": "MB_VR_CPU_PVDDCR_CPU0_VOLT_V",
             "vout2_Name": "MB_VR_CPU_PVDDIO_MEM_S3_VOLT_V"
         },
@@ -1057,6 +1077,7 @@
             "Labels": [
                 "vout1",
                 "iout1",
+                "temp1",
                 "pout1"
             ],
             "Name": "PVDDCR_CPU1_P0",
@@ -1093,11 +1114,20 @@
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 690
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2,
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100.0
                 }
             ],
             "Type": "RAA228228",
             "iout1_Name": "MB_VR_CPU_PVDDCR_CPU1_CURR_A",
             "pout1_Name": "MB_VR_CPU_PVDDCR_CPU1_PWR_W",
+            "temp1_Name": "MB_VR_CPU_PVDDCR_CPU1_TEMP_C",
             "vout1_Name": "MB_VR_CPU_PVDDCR_CPU1_VOLT_V"
         },
         {
@@ -1108,6 +1138,8 @@
                 "vout2",
                 "iout1",
                 "iout2",
+                "temp1",
+                "temp2",
                 "pout1",
                 "pout2"
             ],
@@ -1178,6 +1210,22 @@
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 67.12
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2,
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2,
+                    "Label": "temp2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100.0
                 }
             ],
             "Type": "RAA228228",
@@ -1185,6 +1233,8 @@
             "iout2_Name": "MB_VR_CPU_PVDDIO_CURR_A",
             "pout1_Name": "MB_VR_CPU_PVDDCR_SOC_PWR_W",
             "pout2_Name": "MB_VR_CPU_PVDDIO_PWR_W",
+            "temp1_Name": "MB_VR_CPU_PVDDCR_SOC_TEMP_C",
+            "temp2_Name": "MB_VR_CPU_PVDDIO_TEMP_C",
             "vout1_Name": "MB_VR_CPU_PVDDCR_SOC_VOLT_V",
             "vout2_Name": "MB_VR_CPU_PVDDIO_VOLT_V"
         },
@@ -1397,131 +1447,131 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 2,
+                    "Hysteresis": 1.7,
                     "Label": "temp1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 100.0
+                    "Value": 85.0
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 2,
+                    "Hysteresis": 1.7,
                     "Label": "temp2",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 100.0
+                    "Value": 85.0
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 2,
+                    "Hysteresis": 1.7,
                     "Label": "temp3",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 100.0
+                    "Value": 85.0
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 2,
+                    "Hysteresis": 1.7,
                     "Label": "temp4",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 100.0
+                    "Value": 85.0
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 2,
+                    "Hysteresis": 1.7,
                     "Label": "temp5",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 100.0
+                    "Value": 85.0
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 2,
+                    "Hysteresis": 1.7,
                     "Label": "temp6",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 100.0
+                    "Value": 85.0
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 2,
+                    "Hysteresis": 1.7,
                     "Label": "temp7",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 100.0
+                    "Value": 85.0
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 2,
+                    "Hysteresis": 1.7,
                     "Label": "temp8",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 100.0
+                    "Value": 85.0
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 2,
+                    "Hysteresis": 1.7,
                     "Label": "temp9",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 100.0
+                    "Value": 85.0
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 2,
+                    "Hysteresis": 1.7,
                     "Label": "temp10",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 100.0
+                    "Value": 85.0
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 2,
+                    "Hysteresis": 1.7,
                     "Label": "temp11",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 100.0
+                    "Value": 85.0
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 2,
+                    "Hysteresis": 1.7,
                     "Label": "temp12",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 100.0
+                    "Value": 85.0
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 2,
+                    "Hysteresis": 1.7,
                     "Label": "temp13",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 100.0
+                    "Value": 85.0
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 2,
+                    "Hysteresis": 1.7,
                     "Label": "temp14",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 100.0
+                    "Value": 85.0
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 2,
+                    "Hysteresis": 1.7,
                     "Label": "temp15",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 100.0
+                    "Value": 85.0
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 2,
+                    "Hysteresis": 1.7,
                     "Label": "temp16",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 100.0
+                    "Value": 85.0
                 }
             ],
             "Type": "SBRMI",
@@ -1574,7 +1624,7 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 2.0,
+                    "Hysteresis": 2,
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 100.0
@@ -1644,6 +1694,7 @@
             "Labels": [
                 "iout1",
                 "vout1",
+                "temp1",
                 "pout1"
             ],
             "Name": "MB_VR_PVDD18_S5",
@@ -1680,11 +1731,20 @@
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 46.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2,
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100.0
                 }
             ],
             "Type": "TDA38640",
             "iout1_Name": "MB_VR_PVDD18_S5_CURR_A",
             "pout1_Name": "MB_VR_PVDD18_S5_PWR_W",
+            "temp1_Name": "MB_VR_PVDD18_S5_TEMP_C",
             "vout1_Name": "MB_VR_PVDD18_S5_VOLT_V"
         },
         {
@@ -1711,10 +1771,10 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 1.5,
+                    "Hysteresis": 1.6,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 75.0
+                    "Value": 80.0
                 }
             ],
             "Type": "TMP75"
@@ -1733,10 +1793,10 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 1.4,
+                    "Hysteresis": 1.6,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 70.0
+                    "Value": 80.0
                 }
             ],
             "Type": "TMP75"
