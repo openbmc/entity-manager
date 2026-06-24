@@ -670,10 +670,10 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 2,
+                    "Hysteresis": 1.8,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 100
+                    "Value": 90.0
                 },
                 {
                     "Direction": "less than",

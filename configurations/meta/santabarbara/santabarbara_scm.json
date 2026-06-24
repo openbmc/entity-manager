@@ -504,10 +504,10 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 0.8,
+                    "Hysteresis": 1.2,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 40
+                    "Value": 60.0
                 }
             ],
             "Type": "TMP75"
