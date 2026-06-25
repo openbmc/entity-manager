@@ -164,6 +164,30 @@
       },
       "revId": "32e9e25a0c9476ddf376264611d700706952a8cb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c71a0d1_8a1ce313",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 744,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-25T10:21:42Z",
+      "side": 1,
+      "message": "\u003e Adding these to the required array in legacy.json will enforce these \nfields globally on all existing platform JSON configurations, causing \nmassive validation failures across upstream platforms that do not use \ncalibration.\n\nwould `\"Offset\": 0` and `\"ScaleValue\": 1.0` be sane defaults to set for those configs?\n\n\u003e Is it possible to keep them optional in the EM schema?\n\nYes, but EM should still expose them on D-Bus. That would require code changes in EM such that it exposes some default value in case the property is not configured.\n\nAlternatively you could also add the properties as required in config. That would introduce some amount of bloat to existing configs, but it would be explicit and not break spec.\n\nIf you make the property as optional in EM config schema without changing code, it will break PDI/sdbusplus generated clients and those clients will not be able to use the interface. That\u0027s probably already the case but we don\u0027t have to make the problem worse.",
+      "parentUuid": "fcd4b4a3_3075b79f",
+      "range": {
+        "startLine": 739,
+        "startChar": 16,
+        "endLine": 744,
+        "endChar": 17
+      },
+      "revId": "32e9e25a0c9476ddf376264611d700706952a8cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
