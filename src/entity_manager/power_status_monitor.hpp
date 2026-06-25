@@ -18,7 +18,7 @@ class PowerStatusMonitor
     void getInitialPowerStatus(sdbusplus::asio::connection& conn);
 
     bool powerStatusOn = false;
-    sdbusplus::bus::match_t powerMatch;
+    sdbusplus::match powerMatch;
 };
 
 } // namespace power

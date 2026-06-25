@@ -1462,7 +1462,7 @@ int main()
             }
         };
 
-    sdbusplus::bus::match_t powerMatch = sdbusplus::bus::match_t(
+    sdbusplus::match powerMatch = sdbusplus::match(
         static_cast<sdbusplus::bus_t&>(*systemBus),
         "type='signal',interface='org.freedesktop.DBus.Properties',path='/xyz/"
         "openbmc_project/state/"
