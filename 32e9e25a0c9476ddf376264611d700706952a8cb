@@ -140,6 +140,30 @@
       },
       "revId": "32e9e25a0c9476ddf376264611d700706952a8cb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcd4b4a3_3075b79f",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 744,
+      "author": {
+        "id": 1002720
+      },
+      "writtenOn": "2026-06-25T06:32:01Z",
+      "side": 1,
+      "message": "Adding these to the required array in legacy.json will enforce these fields globally on all existing platform JSON configurations, causing massive validation failures across upstream platforms that do not use calibration.\n\nI previously tried to add these two items, but it caused the OpenBMC CI build to fail. Is it possible to keep them optional in the EM schema? If I misunderstood your meaning, please correct me.",
+      "parentUuid": "90659d70_2bccca51",
+      "range": {
+        "startLine": 739,
+        "startChar": 16,
+        "endLine": 744,
+        "endChar": 17
+      },
+      "revId": "32e9e25a0c9476ddf376264611d700706952a8cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
