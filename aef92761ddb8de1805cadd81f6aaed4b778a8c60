@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d60b0a5_cd2c234d",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-26T12:58:29Z",
+      "side": 1,
+      "message": "from what i have seen so far it is some kind of workaround to still expose buggy configs that duplicate a name of an already exposed config.\n\n```\n\ncommit 0735e67d0987ba98e960752d0cb44cfda5f0b7df\nAuthor: Yang Chen \u003cyang.chen@quantatw.com\u003e\nDate:   Wed Apr 23 09:47:59 2025 +0800\n\n    configurations: minerva: change fan board probe condition\n    \n    We found that the old probe condition causes a \"Duplicate found\"\n    error, as shown in the logs below:\n    \n\n    May 02 01:45:23 bmc entity-manager[10222]: Duplicates found, replacing $bus - 15 with fou\nnd device index.\n    May 02 01:45:23 bmc entity-manager[10222]:  Consider fixing template to not have duplicat\nes\n    May 02 01:45:23 bmc entity-manager[10222]: Duplicates found, replacing $bus - 15 with fou\nnd device index.\n    May 02 01:45:23 bmc entity-manager[10222]:  Consider fixing template to not have duplicat\nes\n    May 02 01:45:23 bmc entity-manager[10222]: Duplicates found, replacing $bus - 15 with fou\nnd device index.\n    May 02 01:45:23 bmc entity-manager[10222]:  Consider fixing template to not have duplicat\nes\n    May 02 01:45:23 bmc entity-manager[10222]: Duplicates found, replacing $bus - 15 with fou\nnd device index.\n    May 02 01:45:23 bmc entity-manager[10222]:  Consider fixing template to not have duplicat\nes\n    May 02 01:45:23 bmc entity-manager[10222]: Duplicates found, replacing $bus - 15 with fou\nnd device index.\n    May 02 01:45:23 bmc entity-manager[10222]:  Consider fixing template to not have duplicat\nes\n    May 02 01:45:23 bmc entity-manager[10222]: Duplicates found, replacing $bus - 15 with found device index.\n    May 02 01:45:23 bmc entity-manager[10222]:  Consider fixing template to not have duplicates\n\n    \n    To resolve this, we expanded the probe conditions to explicitly handle\n    each fan board, including both 1st/2nd source.\n    \n    Additionally, we use BOARD_PART_NUMBER for the DVT1 boards and a new\n    field (BOARD_INFO_AM4) starting from the DVT2 stage to distinguish\n    between different sources of the fan board.\n    \n    Change-Id: I46d05f78a1de3202941418aea7be49396f686e54\n    Signed-off-by: Yang Chen \u003cyang.chen@quantatw.com\u003e\n```\n\nInteresting related changes digged up in this area\n\n8f05a3a18b288c6a8897c4b42facc98db156c2e1 (JinFuLin)\n\ndabee98aeb1f55fd9f857c1c2464668e03c1ce86 (Andrew Jeffery)\n4d0b12ef94ee38f1b0f55b7deb681f202f79f62a (Andrew Jeffery)\n47af65a5266453153e6f96bc93798a1bc6c0a81c (Andrew Jeffery)\n\n\n```\n35f5e0e3dff9364b7813cca42b1ef29de3535181\nAuthor: James Feist \u003cjames.feist@linux.intel.com\u003e\nDate:   Mon Mar 16 14:02:27 2020 -0700\n\n    EM: On duplicates use device index\n    \n    For some platforms the PSU have the same address\n    but a different bus. To fix this, change the duplicate\n    names over to using index.\n    \n    Tested: EM had no duplicate PSU numbers\n    \n    Change-Id: Ibf9c7fe1b75a6420c858de194346433781d8f389\n    Signed-off-by: James Feist \u003cjames.feist@linux.intel.com\u003e\n```\n\nso the true source of this feature has been found.\n\n\nSo it appears that it is not `$index` which is replaced, at least that does not seem to have been the intent.",
+      "parentUuid": "9b4fa02e_8f0d71c0",
+      "range": {
+        "startLine": 329,
+        "startChar": 7,
+        "endLine": 329,
+        "endChar": 60
+      },
+      "revId": "aef92761ddb8de1805cadd81f6aaed4b778a8c60",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b0eece3e_1fbf89b7",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-06-25T22:06:00Z",
       "side": 1,
       "message": "unused",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 32
+      },
+      "revId": "aef92761ddb8de1805cadd81f6aaed4b778a8c60",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4374ae82_43f2edee",
+        "filename": "test/entity_manager/test_entity-manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-26T12:58:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b0eece3e_1fbf89b7",
       "range": {
         "startLine": 21,
         "startChar": 0,
