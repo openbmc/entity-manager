@@ -16,6 +16,52 @@
       "message": "Thanks for all these changes, from my side it looks good now 👍",
       "revId": "aaf4eb41f81aacd5b19c11b911dfdcdbfb20715b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfab2a87_c09d6a07",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 1442,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2026-06-29T20:23:23Z",
+      "side": 1,
+      "message": "nit: looks like you have a constant for this in your neard header.  can you just use it here?",
+      "range": {
+        "startLine": 1442,
+        "startChar": 30,
+        "endLine": 1442,
+        "endChar": 48
+      },
+      "revId": "aaf4eb41f81aacd5b19c11b911dfdcdbfb20715b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3341e303_9a7f12b9",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 1580,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2026-06-29T20:23:23Z",
+      "side": 1,
+      "message": "How about using the helper functions in sdbusplus\u0027s match.hpp so you don\u0027t need to create the raw match string?",
+      "range": {
+        "startLine": 1577,
+        "startChar": 0,
+        "endLine": 1580,
+        "endChar": 35
+      },
+      "revId": "aaf4eb41f81aacd5b19c11b911dfdcdbfb20715b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
