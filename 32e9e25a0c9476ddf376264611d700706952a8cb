@@ -188,6 +188,30 @@
       },
       "revId": "32e9e25a0c9476ddf376264611d700706952a8cb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5e7403d_37b06710",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 744,
+      "author": {
+        "id": 1002720
+      },
+      "writtenOn": "2026-06-29T01:26:09Z",
+      "side": 1,
+      "message": "I have implemented the latest patch set: the schema properties remain optional to prevent massive validation failures across existing upstream configs, but the Entity-Manager now dynamically populates `OffsetValue: 0.0` and `ScaleValue: 1.0` as fallback defaults on D-Bus when omitted from the JSON.",
+      "parentUuid": "2c71a0d1_8a1ce313",
+      "range": {
+        "startLine": 739,
+        "startChar": 16,
+        "endLine": 744,
+        "endChar": 17
+      },
+      "revId": "32e9e25a0c9476ddf376264611d700706952a8cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
