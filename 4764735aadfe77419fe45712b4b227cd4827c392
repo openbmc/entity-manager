@@ -16,6 +16,24 @@
       "message": "from my perspective both the `Severity` and `Direction` field here duplicate information from the `Name` field.\n\nI don\u0027t get why we need to duplicate things here.\n\nCan we not generate both `Direction` and `Severity` automatically from `Name` and delete both `Severity` and `Direction` from the schema and all configs?\n\nOr alternatively generate `Name` from `Severity` and `Direction` ?\n\nThat way we do not have any magic numbers in the EM config and the API remains stable. Let me know if i missed anything.\n\n\nOverall not in favor of further bloating the Threshold configuration.",
       "revId": "4764735aadfe77419fe45712b4b227cd4827c392",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22aae566_9f5056fd",
+        "filename": "CONFIG_FORMAT.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-06-29T04:36:30Z",
+      "side": 1,
+      "message": "Thanks for highlighting duplication concerns. I agree the current shape can allow mismatches. I asked maintainers for alignment because this touches EM model semantics. Based on feedback, I’ll avoid hidden runtime derivation in EM for now. I plan to keep explicit threshold fields, move to readable severity enums (no magic numbers), and add schema-level consistency validation between Name and Direction/Severity to prevent invalid combinations. If maintainers later agree on a canonical derived model, we can follow up in a separate change.",
+      "parentUuid": "54efdb1d_1e2641a1",
+      "revId": "4764735aadfe77419fe45712b4b227cd4827c392",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
