@@ -16,6 +16,24 @@
       "message": "These changes are not approved in schema yet.",
       "revId": "fea5f4e0a093b548905647ae7f1914990bf13a7a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d75223a_6a84ad67",
+        "filename": "configurations/meta/santabarbara/santabarbara_pcie_switch_board_aeb.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 1002581
+      },
+      "writtenOn": "2026-06-30T00:58:21Z",
+      "side": 1,
+      "message": "Yes, this depends on the pending schema change: extend MCTP target member (https://gerrit.openbmc.org/c/openbmc/entity-manager/+/86156).",
+      "parentUuid": "fa8501b4_f1590062",
+      "revId": "fea5f4e0a093b548905647ae7f1914990bf13a7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
