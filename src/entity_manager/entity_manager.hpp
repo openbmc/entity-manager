@@ -77,9 +77,9 @@ class EntityManager
     void handleCurrentConfigurationJson();
 
   private:
-    std::unique_ptr<sdbusplus::bus::match_t> nameOwnerChangedMatch = nullptr;
-    std::unique_ptr<sdbusplus::bus::match_t> interfacesAddedMatch = nullptr;
-    std::unique_ptr<sdbusplus::bus::match_t> interfacesRemovedMatch = nullptr;
+    std::unique_ptr<sdbusplus::match> nameOwnerChangedMatch = nullptr;
+    std::unique_ptr<sdbusplus::match> interfacesAddedMatch = nullptr;
+    std::unique_ptr<sdbusplus::match> interfacesRemovedMatch = nullptr;
 
     bool scannedPowerOff = false;
     bool scannedPowerOn = false;
@@ -88,8 +88,7 @@ class EntityManager
     boost::asio::steady_timer propertiesChangedTimer;
     size_t propertiesChangedInstance = 0;
 
-    std::flat_map<std::string, sdbusplus::bus::match_t, std::less<>>
-        dbusMatches;
+    std::flat_map<std::string, sdbusplus::match, std::less<>> dbusMatches;
 
     void startRemovedTimer(boost::asio::steady_timer& timer);
 

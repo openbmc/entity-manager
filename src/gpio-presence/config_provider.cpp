@@ -79,7 +79,7 @@ auto ConfigProvider::getConfig(AddedCallback addConfig)
     }
 }
 
-namespace rules_intf = sdbusplus::bus::match::rules;
+namespace rules_intf = sdbusplus::match_rules;
 
 const auto senderRule = rules_intf::sender("xyz.openbmc_project.EntityManager");
 
