@@ -95,6 +95,10 @@
                     "description": "The index of the SPI device connected to that controller",
                     "type": "number"
                 },
+                "Partition": {
+                    "description": "The name of the partition to update. Leave empty if there is only a single partiion without a name.",
+                    "type": "string"
+                },
                 "MuxOutputs": {
                     "$ref": "#/$defs/MuxOutputs"
                 },
