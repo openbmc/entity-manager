@@ -1,0 +1,27 @@
+{
+    "Exposes": [
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "PM9D3a $index FRU",
+            "Type": "EEPROM"
+        },
+        {
+            "Address": "0x6a",
+            "Bus": "$bus",
+            "Name": "PM9D3a $index Temp",
+            "PowerState": "On",
+            "Type": "NVME1000"
+        }
+
+    ],
+    "Name": "PM9D3a $index",
+    "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'PM9D3a', 'PRODUCT_MANUFACTURER': 'Samsung'})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$PRODUCT_MANUFACTURER",
+        "Model": "$PRODUCT_PRODUCT_NAME",
+        "PartNumber": "$PRODUCT_PART_NUMBER",
+        "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+    }
+}
