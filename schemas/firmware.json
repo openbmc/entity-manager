@@ -102,6 +102,12 @@
                     "description": "The index of the SPI device connected to that controller",
                     "type": "number"
                 },
+                "Offset": {
+                    "description": "The start of the MTD partition to update, in bytes from the beginning of the SPI flash. Omit to use the default MTD device selection.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 18446744073709551615
+                },
                 "MuxOutputs": {
                     "$ref": "#/$defs/MuxOutputs"
                 },
