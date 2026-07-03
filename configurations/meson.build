@@ -230,6 +230,7 @@ configs = [
     'meta/ventura2/ventura2_come.json',
     'meta/ventura2/ventura2_fan_max.json',
     'meta/ventura2/ventura2_fan_tic.json',
+    'meta/ventura2/ventura2_leak_canbus.json',
     'meta/ventura2/ventura2_leak_legacy.json',
     'meta/ventura2/ventura2_management.json',
     'meta/ventura2/ventura2_minisas_bottom.json',
