@@ -289,6 +289,22 @@
                 "Type": "GPIODeviceDetect"
             },
             {
+                "FirmwareInfo": {
+                    "CompatibleHardware": "com.meta.Hardware.Harma.SPI.Host",
+                    "VendorIANA": 40981
+                },
+                "MuxOutputs": [
+                    {
+                        "Name": "bmc-spi-mux-select-0",
+                        "Polarity": "High"
+                    }
+                ],
+                "Name": "Harma_BIOS",
+                "SPIControllerIndex": 3,
+                "SPIDeviceIndex": 0,
+                "Type": "HOSTSPIFlash"
+            },
+            {
                 "Address": "0x45",
                 "Bus": 23,
                 "Labels": [
@@ -1270,22 +1286,6 @@
                     }
                 ],
                 "Type": "SBTSI"
-            },
-            {
-                "FirmwareInfo": {
-                    "CompatibleHardware": "com.meta.Hardware.Harma.SPI.Host",
-                    "VendorIANA": 40981
-                },
-                "MuxOutputs": [
-                    {
-                        "Name": "bmc-spi-mux-select-0",
-                        "Polarity": "High"
-                    }
-                ],
-                "Name": "Harma_BIOS",
-                "SPIControllerIndex": 3,
-                "SPIDeviceIndex": 0,
-                "Type": "SPIFlash"
             },
             {
                 "Address": "0x49",

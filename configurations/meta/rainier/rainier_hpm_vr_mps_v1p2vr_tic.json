@@ -233,6 +233,22 @@
             "Type": "GPIODeviceDetect"
         },
         {
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Rainier.SPI.Host",
+                "VendorIANA": 40981
+            },
+            "MuxOutputs": [
+                {
+                    "Name": "FM_BMC_MUX1_SEL_R",
+                    "Polarity": "High"
+                }
+            ],
+            "Name": "Rainier_BIOS",
+            "SPIControllerIndex": 1,
+            "SPIDeviceIndex": 0,
+            "Type": "HOSTSPIFlash"
+        },
+        {
             "Address": "0x40",
             "Bus": 11,
             "Labels": [
@@ -472,22 +488,6 @@
             "Bus": "3",
             "Name": "CPU0",
             "Type": "MCTPI3CTarget"
-        },
-        {
-            "FirmwareInfo": {
-                "CompatibleHardware": "com.meta.Hardware.Rainier.SPI.Host",
-                "VendorIANA": 40981
-            },
-            "MuxOutputs": [
-                {
-                    "Name": "FM_BMC_MUX1_SEL_R",
-                    "Polarity": "High"
-                }
-            ],
-            "Name": "Rainier_BIOS",
-            "SPIControllerIndex": 1,
-            "SPIDeviceIndex": 0,
-            "Type": "SPIFlash"
         }
     ],
     "Name": "Rainier HPM",
