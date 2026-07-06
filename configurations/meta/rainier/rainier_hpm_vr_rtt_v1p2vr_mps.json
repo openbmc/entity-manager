@@ -233,6 +233,22 @@
             "Type": "GPIODeviceDetect"
         },
         {
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Rainier.SPI.Host",
+                "VendorIANA": 40981
+            },
+            "MuxOutputs": [
+                {
+                    "Name": "FM_BMC_MUX1_SEL_R",
+                    "Polarity": "High"
+                }
+            ],
+            "Name": "Rainier_BIOS",
+            "SPIControllerIndex": 1,
+            "SPIDeviceIndex": 0,
+            "Type": "IntelHostSPIFlash"
+        },
+        {
             "Address": "0x40",
             "Bus": 11,
             "Labels": [
@@ -532,22 +548,6 @@
             },
             "Name": "MB_VR_CPU_V0P75_PCIE_VDDQ_Firmware",
             "Type": "RAA22XGen3p5Firmware"
-        },
-        {
-            "FirmwareInfo": {
-                "CompatibleHardware": "com.meta.Hardware.Rainier.SPI.Host",
-                "VendorIANA": 40981
-            },
-            "MuxOutputs": [
-                {
-                    "Name": "FM_BMC_MUX1_SEL_R",
-                    "Polarity": "High"
-                }
-            ],
-            "Name": "Rainier_BIOS",
-            "SPIControllerIndex": 1,
-            "SPIDeviceIndex": 0,
-            "Type": "SPIFlash"
         }
     ],
     "Name": "Rainier HPM",

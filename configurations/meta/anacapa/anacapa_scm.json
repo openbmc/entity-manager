@@ -334,16 +334,6 @@
             "Type": "GPIOLeakDetector"
         },
         {
-            "Address": "0x40",
-            "Bus": 7,
-            "FirmwareInfo": {
-                "CompatibleHardware": "com.meta.Hardware.Anacapa.CPLD.LCMXO3D_9400_scm",
-                "VendorIANA": 40981
-            },
-            "Name": "Anacapa_SCM_CPLD",
-            "Type": "LatticeLCMXO3D_9400Firmware"
-        },
-        {
             "FirmwareInfo": {
                 "CompatibleHardware": "com.meta.Hardware.Anacapa.SPI.Host",
                 "VendorIANA": 40981
@@ -357,7 +347,17 @@
             "Name": "Anacapa_BIOS",
             "SPIControllerIndex": 1,
             "SPIDeviceIndex": 0,
-            "Type": "SPIFlash"
+            "Type": "IntelHostSPIFlash"
+        },
+        {
+            "Address": "0x40",
+            "Bus": 7,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Anacapa.CPLD.LCMXO3D_9400_scm",
+                "VendorIANA": 40981
+            },
+            "Name": "Anacapa_SCM_CPLD",
+            "Type": "LatticeLCMXO3D_9400Firmware"
         },
         {
             "Address": "0x4b",

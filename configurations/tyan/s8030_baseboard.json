@@ -304,6 +304,22 @@
             "Type": "ADC"
         },
         {
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.tyan.Hardware.S8030.SPI.Host",
+                "VendorIANA": 6653
+            },
+            "MuxOutputs": [
+                {
+                    "Name": "BMC_SPI_SEL",
+                    "Polarity": "High"
+                }
+            ],
+            "Name": "HostSPIFlash",
+            "SPIControllerIndex": 1,
+            "SPIDeviceIndex": 0,
+            "Type": "IntelHostSPIFlash"
+        },
+        {
             "Name": "Sys FAN Connector 1",
             "Pwm": 2,
             "Status": "enabled",
@@ -457,22 +473,6 @@
             "Name": "GenericPowerPort",
             "PortType": "powered_by",
             "Type": "Port"
-        },
-        {
-            "FirmwareInfo": {
-                "CompatibleHardware": "com.tyan.Hardware.S8030.SPI.Host",
-                "VendorIANA": 6653
-            },
-            "MuxOutputs": [
-                {
-                    "Name": "BMC_SPI_SEL",
-                    "Polarity": "High"
-                }
-            ],
-            "Name": "HostSPIFlash",
-            "SPIControllerIndex": 1,
-            "SPIDeviceIndex": 0,
-            "Type": "SPIFlash"
         },
         {
             "Address": "0x4c",
