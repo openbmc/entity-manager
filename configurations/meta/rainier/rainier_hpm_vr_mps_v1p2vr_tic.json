@@ -411,6 +411,22 @@
             "power1_Name": "MB_PMON_NIC_P12V_PWR_W"
         },
         {
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Rainier.SPI.Host",
+                "VendorIANA": 40981
+            },
+            "MuxOutputs": [
+                {
+                    "Name": "FM_BMC_MUX1_SEL_R",
+                    "Polarity": "High"
+                }
+            ],
+            "Name": "Rainier_BIOS",
+            "SPIControllerIndex": 1,
+            "SPIDeviceIndex": 0,
+            "Type": "IntelHostSPIFlash"
+        },
+        {
             "Address": "0x48",
             "Bus": 13,
             "Name": "MB_INLET_TEMP_C",
@@ -472,22 +488,6 @@
             "Bus": "3",
             "Name": "CPU0",
             "Type": "MCTPI3CTarget"
-        },
-        {
-            "FirmwareInfo": {
-                "CompatibleHardware": "com.meta.Hardware.Rainier.SPI.Host",
-                "VendorIANA": 40981
-            },
-            "MuxOutputs": [
-                {
-                    "Name": "FM_BMC_MUX1_SEL_R",
-                    "Polarity": "High"
-                }
-            ],
-            "Name": "Rainier_BIOS",
-            "SPIControllerIndex": 1,
-            "SPIDeviceIndex": 0,
-            "Type": "SPIFlash"
         }
     ],
     "Name": "Rainier HPM",

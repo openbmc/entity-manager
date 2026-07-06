@@ -466,6 +466,22 @@
             "power1_Name": "SCM_PMON_P12V_PWR_W"
         },
         {
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Santabarbara.SPI.Host",
+                "VendorIANA": 40981
+            },
+            "MuxOutputs": [
+                {
+                    "Name": "FM_MUX1_SEL_R",
+                    "Polarity": "High"
+                }
+            ],
+            "Name": "Santabarbara_BIOS",
+            "SPIControllerIndex": 1,
+            "SPIDeviceIndex": 0,
+            "Type": "IntelHostSPIFlash"
+        },
+        {
             "Address": "0x40",
             "Bus": 7,
             "FirmwareInfo": {
@@ -480,22 +496,6 @@
             ],
             "Name": "Santabarbara_SCM_CPLD",
             "Type": "LatticeLCMXO3D_9400Firmware"
-        },
-        {
-            "FirmwareInfo": {
-                "CompatibleHardware": "com.meta.Hardware.Santabarbara.SPI.Host",
-                "VendorIANA": 40981
-            },
-            "MuxOutputs": [
-                {
-                    "Name": "FM_MUX1_SEL_R",
-                    "Polarity": "High"
-                }
-            ],
-            "Name": "Santabarbara_BIOS",
-            "SPIControllerIndex": 1,
-            "SPIDeviceIndex": 0,
-            "Type": "SPIFlash"
         },
         {
             "Address": "0x4b",

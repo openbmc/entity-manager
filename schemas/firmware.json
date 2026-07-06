@@ -74,14 +74,14 @@
             },
             "required": ["Name", "Type", "Bus", "Address", "FirmwareInfo"]
         },
-        "BIOS": {
+        "SPIFlashFirmware": {
             "description": "Required information to complete the host fw update process.",
             "type": "object",
             "additionalProperties": false,
             "properties": {
                 "Type": {
                     "description": "The type of configuration object. IntelSPIFlash implies Intel Flash Descriptor.",
-                    "enum": ["IntelSPIFlash", "SPIFlash"]
+                    "enum": ["IntelSPIFlash", "IntelHostSPIFlash"]
                 },
                 "Name": {
                     "description": "The name of the firmware.",

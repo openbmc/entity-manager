@@ -415,6 +415,22 @@
                 "power1_Name": "NIC1_OCP_P12V_PWR_W"
             },
             {
+                "FirmwareInfo": {
+                    "CompatibleHardware": "com.meta.Hardware.Harma.SPI.Host",
+                    "VendorIANA": 40981
+                },
+                "MuxOutputs": [
+                    {
+                        "Name": "bmc-spi-mux-select-0",
+                        "Polarity": "High"
+                    }
+                ],
+                "Name": "Harma_BIOS",
+                "SPIControllerIndex": 3,
+                "SPIDeviceIndex": 0,
+                "Type": "IntelHostSPIFlash"
+            },
+            {
                 "Address": "0x40",
                 "Bus": 5,
                 "FirmwareInfo": {
@@ -907,22 +923,6 @@
                     }
                 ],
                 "Type": "SBTSI"
-            },
-            {
-                "FirmwareInfo": {
-                    "CompatibleHardware": "com.meta.Hardware.Harma.SPI.Host",
-                    "VendorIANA": 40981
-                },
-                "MuxOutputs": [
-                    {
-                        "Name": "bmc-spi-mux-select-0",
-                        "Polarity": "High"
-                    }
-                ],
-                "Name": "Harma_BIOS",
-                "SPIControllerIndex": 3,
-                "SPIDeviceIndex": 0,
-                "Type": "SPIFlash"
             },
             {
                 "Address": "0x49",

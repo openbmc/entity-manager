@@ -1,6 +1,22 @@
 {
     "Exposes": [
         {
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Ventura2.SPI.Host",
+                "VendorIANA": 40981
+            },
+            "MuxOutputs": [
+                {
+                    "Name": "FM_MUX1_SEL_R",
+                    "Polarity": "High"
+                }
+            ],
+            "Name": "Ventura2_BIOS",
+            "SPIControllerIndex": 1,
+            "SPIDeviceIndex": 0,
+            "Type": "IntelHostSPIFlash"
+        },
+        {
             "Address": "0x76",
             "Bus": 34,
             "Labels": [
@@ -192,22 +208,6 @@
                 }
             ],
             "Type": "NVME1000"
-        },
-        {
-            "FirmwareInfo": {
-                "CompatibleHardware": "com.meta.Hardware.Ventura2.SPI.Host",
-                "VendorIANA": 40981
-            },
-            "MuxOutputs": [
-                {
-                    "Name": "FM_MUX1_SEL_R",
-                    "Polarity": "High"
-                }
-            ],
-            "Name": "Ventura2_BIOS",
-            "SPIControllerIndex": 1,
-            "SPIDeviceIndex": 0,
-            "Type": "SPIFlash"
         },
         {
             "Address": "0x48",
