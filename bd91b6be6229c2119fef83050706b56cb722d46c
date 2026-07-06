@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "07384a08_8f1618be",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-06T07:48:43Z",
+      "side": 1,
+      "message": "yes. supporting HPE ProLiant DL.* gen11 machines\n\nhttps://github.com/canopybmc/canopybmc/tree/main/meta-canopy/meta-hpe/meta-common/recipes-phosphor/configuration/entity-manager\n\n\nShall i make this topic as work-in-progress until an upstream user of host side spi  flash partitions shows up?",
+      "parentUuid": "14614423_716df22d",
+      "range": {
+        "startLine": 48,
+        "startChar": 46,
+        "endLine": 48,
+        "endChar": 64
+      },
+      "revId": "bd91b6be6229c2119fef83050706b56cb722d46c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7bd0c817_38182342",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -37,6 +61,24 @@
       "writtenOn": "2026-07-03T12:14:11Z",
       "side": 1,
       "message": "wondering if \n\n`configurations/hpe/dl360g12_baseboard.json`\n\nalso has this partitioned host SPI setup",
+      "revId": "bd91b6be6229c2119fef83050706b56cb722d46c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "152e70ec_fdc5dff6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-06T07:48:43Z",
+      "side": 1,
+      "message": "couldn\u0027t find any info on that on their website.",
+      "parentUuid": "7bd0c817_38182342",
       "revId": "bd91b6be6229c2119fef83050706b56cb722d46c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -54,6 +96,30 @@
       "writtenOn": "2026-07-01T19:59:04Z",
       "side": 1,
       "message": "why not just make it optional?",
+      "range": {
+        "startLine": 114,
+        "startChar": 15,
+        "endLine": 114,
+        "endChar": 28
+      },
+      "revId": "bd91b6be6229c2119fef83050706b56cb722d46c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "758d0054_7187aa13",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-06T07:48:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de0f7384_4d59cae8",
       "range": {
         "startLine": 114,
         "startChar": 15,
