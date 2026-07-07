@@ -236,6 +236,30 @@
       },
       "revId": "32e9e25a0c9476ddf376264611d700706952a8cb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a76e7082_b6b897c3",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 744,
+      "author": {
+        "id": 1002720
+      },
+      "writtenOn": "2026-07-07T01:17:40Z",
+      "side": 1,
+      "message": "To prevent breaking backward compatibility and causing validation failures across existing platform configurations, I have kept both `OffsetValue` and `ScaleValue` as optional fields in `legacy.json`.\n\nInstead of making them required in the schema, I updated the `dbus_interface.cpp` to dynamically parse `legacy.json` at runtime, extract all valid `TempSensor` types from the schema\u0027s enum list, and inject sane defaults (`0.0` for offset, `1.0` for scale) onto D-Bus if they are omitted from the platform\u0027s system JSON.\n\nI specifically wanted to avoid hardcoding or manually maintaining a static list of temperature sensor types in the code. By loading and parsing the schema dynamically, the implementation remains completely data-driven and automatically supports any future temperature devices added to the schema without requiring further code modifications.\n\nThis ensures PDI/sdbusplus generated clients can always safely consume these properties without bloating or breaking existing platform configs. Please let me know if this approach is acceptable to you.",
+      "parentUuid": "558fda28_d96ca22f",
+      "range": {
+        "startLine": 739,
+        "startChar": 16,
+        "endLine": 744,
+        "endChar": 17
+      },
+      "revId": "32e9e25a0c9476ddf376264611d700706952a8cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
