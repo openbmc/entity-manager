@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cfbfdc3_909908c7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2026-07-07T21:54:34Z",
+      "side": 1,
+      "message": "Doesn\u0027t the dbus sensors reactor already have to handle these not being present anyway?   Some systems have tons of temp sensors, I\u0027m not necessarily a fan of adding default properties to D-Bus for each one that we know aren\u0027t even used, because if they were it would be in the JSON.",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 53
+      },
+      "revId": "7e549e7635246a6b4ce742de3f4742aaa6925bdf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
