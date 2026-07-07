@@ -2,6 +2,22 @@
     {
         "Exposes": [
             {
+                "FirmwareInfo": {
+                    "CompatibleHardware": "com.meta.Hardware.Ventura2.SPI.E810",
+                    "VendorIANA": 40981
+                },
+                "MuxOutputs": [
+                    {
+                        "Name": "FM_E810_MUX_SEL_R",
+                        "Polarity": "Low"
+                    }
+                ],
+                "Name": "Ventura2_E810",
+                "SPIControllerIndex": 1,
+                "SPIDeviceIndex": 1,
+                "Type": "E810SPIFlash"
+            },
+            {
                 "Address": "$address",
                 "Bus": "$bus",
                 "Name": "Ventura2 MB FRU",
