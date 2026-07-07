@@ -81,7 +81,11 @@
             "properties": {
                 "Type": {
                     "description": "The type of configuration object. IntelSPIFlash implies Intel Flash Descriptor.",
-                    "enum": ["IntelSPIFlash", "IntelHostSPIFlash"]
+                    "enum": [
+                        "IntelSPIFlash",
+                        "IntelHostSPIFlash",
+                        "IntelE810SPIFlash"
+                    ]
                 },
                 "Name": {
                     "description": "The name of the firmware.",
