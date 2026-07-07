@@ -206,6 +206,22 @@
             "Type": "ADC"
         },
         {
+            "Address": "0x31",
+            "Bus": 7,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Catalina.CPLD.MAX10_10M16_scm",
+                "VendorIANA": 40981
+            },
+            "MuxOutputs": [
+                {
+                    "Name": "USBDBG_IPMI_EN_L",
+                    "Polarity": "High"
+                }
+            ],
+            "Name": "Catalina_SCM_CPLD",
+            "Type": "AlteraMAX10_10M16Firmware"
+        },
+        {
             "Name": "BMC",
             "Type": "BMC"
         },
