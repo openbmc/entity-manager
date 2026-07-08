@@ -1,6 +1,25 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$defs": {
+        "VRFirmwareTypes": {
+            "description": "The types of VR firmware",
+            "enum": [
+                "XDPE1X2XXFirmware",
+                "ISL69269Firmware",
+                "MP2X6XXFirmware",
+                "MP292XFirmware",
+                "MP297XFirmware",
+                "MP5998Firmware",
+                "MP994XFirmware",
+                "MPQ87XXFirmware",
+                "RAA22XGen2Firmware",
+                "RAA22XGen3p5Firmware",
+                "RS31390Firmware",
+                "TDA38640AFirmware",
+                "TPS25990Firmware",
+                "XDP71XFirmware"
+            ]
+        },
         "FirmwareInfoDef": {
             "description": "This indicates the properties which apply to all firmwares",
             "type": "object",
@@ -44,23 +63,7 @@
                     "type": "string"
                 },
                 "Type": {
-                    "description": "The type of configuration object",
-                    "enum": [
-                        "XDPE1X2XXFirmware",
-                        "ISL69269Firmware",
-                        "MP2X6XXFirmware",
-                        "MP292XFirmware",
-                        "MP297XFirmware",
-                        "MP5998Firmware",
-                        "MP994XFirmware",
-                        "MPQ87XXFirmware",
-                        "RAA22XGen2Firmware",
-                        "RAA22XGen3p5Firmware",
-                        "RS31390Firmware",
-                        "TDA38640AFirmware",
-                        "TPS25990Firmware",
-                        "XDP71XFirmware"
-                    ]
+                    "$ref": "#/$defs/VRFirmwareTypes"
                 },
                 "Bus": {
                     "$ref": "legacy.json#/$defs/Types/Bus"

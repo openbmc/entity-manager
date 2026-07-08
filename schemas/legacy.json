@@ -1052,6 +1052,16 @@
                         "XDPE132G5C",
                         "XDPE152C4"
                     ]
+                },
+                "FirmwareName": {
+                    "description": "Firmware object name; pauses sensor monitoring during firmware updates to prevent I2C bus contention.",
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "FirmwareType": {
+                    "$ref": "firmware.json#/$defs/VRFirmwareTypes"
+                },
+                "FirmwareInfo": {
+                    "$ref": "firmware.json#/$defs/FirmwareInfoDef"
                 }
             },
             "required": ["Name", "Type"],
