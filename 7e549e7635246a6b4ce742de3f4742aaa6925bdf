@@ -70,6 +70,30 @@
       },
       "revId": "7e549e7635246a6b4ce742de3f4742aaa6925bdf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "331a76b9_fc8d6e4d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-08T17:36:38Z",
+      "side": 1,
+      "message": "\u003e What makes these properties different than all the other optional properties in the schema?\n\nno particular difference\n\n\u003e I\u0027m not sure how that\u0027s relevant for hwmontempsensor that wouldn\u0027t use them anyway event after this change.\n\nfallback default values could grow into a generic EM feature starting with this patch, which would allow applying it to other schemas as well.\n\nIt\u0027s not that unreasonable to allow for default values in a configuration solution.\n\nIt simplifies the reactor code and moves us closer in terms of compatibility with D-Bus and generated codes.\n\nIf dbus-sensors doesn\u0027t want to unit test their configuration code path then that\u0027s their choice and they can continue to rely on the manual testing someone did 3 revisions ago that passed with their specific EM config.\n\nFor me the main points are\n\n- internal compatibility with structured interface definitions\n  and generated codes\n- documenting the actual property type through the fallback default value (useful for writing clients)\n- enabling better testing for reactors (via generated codes)\n\nand i have been looking at this more from overall feature perspective rather than in context of a specific schema or reactor.\n\nI can understand if you don\u0027t want this feature now because of lack of test coverage of the code being modified,\n\nbut i find the feature conceptually to probably be quite useful long term as it removes one concern (default values) from *N* reactor implementations into one place (EM)\n\nSo i will stick with my opinion but i am ok to revisit this later if it\u0027s too much features for code that doesn\u0027t have test coverage.",
+      "parentUuid": "e8f46116_f2c6333e",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 53
+      },
+      "revId": "7e549e7635246a6b4ce742de3f4742aaa6925bdf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
