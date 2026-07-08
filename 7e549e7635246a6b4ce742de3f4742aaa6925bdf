@@ -22,6 +22,30 @@
       },
       "revId": "7e549e7635246a6b4ce742de3f4742aaa6925bdf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c54cbfe_d5205e6d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-08T07:55:38Z",
+      "side": 1,
+      "message": "\u003e Doesn\u0027t the dbus sensors reactor already have to handle these not being present anyway?\n\nYes, the linked patch treats these as optional. If EM provides default values, that is not necessary and no need to check for missing property.\n\n\u003e Some systems have tons of temp sensors, I\u0027m not necessarily a fan of \nadding default properties to D-Bus for each one that we know aren\u0027t even\n used, because if they were it would be in the JSON.\n\nHas the overhead of passing configuration via D-Bus ever been a bottleneck from your experience ? I have never benchmarked that so it would be interesting to know if that has been a problem for larger systems.\n\nWhat is the tradeoff of having a few extra bytes passed via D-Bus versus\nnot being able to test the configuration parsing code on the reactor side because there is no machine readable interface definition -\u003e no generated server.",
+      "parentUuid": "6cfbfdc3_909908c7",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 53
+      },
+      "revId": "7e549e7635246a6b4ce742de3f4742aaa6925bdf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
