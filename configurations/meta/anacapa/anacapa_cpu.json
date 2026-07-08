@@ -1,0 +1,16 @@
+{
+    "Exposes": [],
+    "Name": "CPU0",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Anacapa MB *', 'BOARD_MANUFACTURER': '(Inventec|Wiwynn)'})",
+        "AND",
+        "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'CPU0'})"
+    ],
+    "Type": "Cpu",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "AMD",
+        "Model": "AMD EPYC Venice SP7",
+        "PartNumber": "NOT_SUPPORTED",
+        "SerialNumber": "NOT_SUPPORTED"
+    }
+}
