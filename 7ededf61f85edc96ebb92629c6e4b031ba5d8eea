@@ -22,6 +22,30 @@
       },
       "revId": "7ededf61f85edc96ebb92629c6e4b031ba5d8eea",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "878d81d4_38dbab39",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-07-08T01:26:05Z",
+      "side": 1,
+      "message": "Previously, using \"BIOS\" wasn\u0027t intuitive enough, so we shifted towards SPI flash terminology. However, since we now have multiple SPI devices, we use specific types like HOSTSPIFlash and IntelSPIFlash to distinguish them.\n\nThe core reason is that each SPI device requires a different method to retrieve its firmware version. The software update daemon uses this Type field to determine which specific getVersion() implementation to invoke. Without this differentiation, the daemon wouldn\u0027t know how to correctly query and populate the software version on D-Bus.",
+      "parentUuid": "bcb2205b_ac4fa119",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 36
+      },
+      "revId": "7ededf61f85edc96ebb92629c6e4b031ba5d8eea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
