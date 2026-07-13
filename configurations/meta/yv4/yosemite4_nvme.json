@@ -1,0 +1,38 @@
+{
+    "Exposes": [
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "kioxia ssd vpd",
+            "Type": "EEPROM"
+        },
+        {
+            "Name": "DrivePort 1",
+            "PortType": "contained_by",
+            "Type": "Port"
+        }
+    ],
+    "Name": "Kioxia ssd $bus * 100 + $address",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'PRODUCT_PART_NUMBER': 'KIOXIA KCD8AAAAAAAA'})"
+    ],
+    "Type": "Drive",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$PRODUCT_BUILD_DATE",
+        "Manufacturer": "$PRODUCT_MANUFACTURER",
+        "Model": "$PRODUCT_PRODUCT_NAME",
+        "PartNumber": "$PRODUCT_PART_NUMBER",
+        "SerialNumber": "$PRODUCT_SERIAL_NUMBER",
+        "SparePartNumber": "$PRODUCT_SPARE_PART_NUMBER",
+        "SubModel": "$PRODUCT_SUB_MODEL"
+    },
+    "xyz.openbmc_project.Inventory.Item.Drive": {
+        "Capacity": "0",
+        "EncryptionStatus": "Unknown",
+        "LockedStatus": "Unknown",
+        "PredictedMediaLifeLeftPercent": "100",
+        "Protocol": "NVMe",
+        "Resettable": "false",
+        "Type": "SSD"
+    }
+}

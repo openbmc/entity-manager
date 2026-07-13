@@ -143,6 +143,15 @@
                             },
                             "type": "object"
                         },
+                        "Drive": {
+                            "additionalProperties": false,
+                            "properties": {
+                                "Type": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
                         "NetworkInterface": {
                             "additionalProperties": false,
                             "properties": {
