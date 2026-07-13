@@ -273,6 +273,7 @@ configs = [
     'meta/yv4/yosemite4_chassis.json',
     'meta/yv4/yosemite4_cpu.json',
     'meta/yv4/yosemite4_floatingfalls.json',
+    'meta/yv4/yosemite4_nvme.json',
     'meta/yv4/yosemite4_sentineldome_chassis.json',
     'meta/yv4/yosemite4_sentineldome_t1.json',
     'meta/yv4/yosemite4_sentineldome_t1_retimer.json',
