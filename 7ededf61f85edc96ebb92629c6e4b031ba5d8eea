@@ -70,6 +70,47 @@
       },
       "revId": "7ededf61f85edc96ebb92629c6e4b031ba5d8eea",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72b3b529_7c7b0b0a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-07-13T18:30:10Z",
+      "side": 1,
+      "message": "Every spi flash is laid out differently.  The original intent here was to capture that so that partial updates, verification, and decommissioning could be done.\n\nAgreed, \"BIOS\" is too generic of a term, as is \"HOST\".  I suspect we need to follow the existing pattern here with \u003cmanufacturername\u003eSpiFlash.",
+      "parentUuid": "65191724_61f8a6cd",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 36
+      },
+      "revId": "7ededf61f85edc96ebb92629c6e4b031ba5d8eea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "629c6caf_73c73041",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-07-13T18:30:10Z",
+      "side": 1,
+      "message": "The intent here was to differentiate between the various types of SPI flash.  Intel spi flash is laid out differently than AMD, is laid out differently than an FPGA.  The intent is that we could differentiate and add things like validity checks in the future.\n\nI suspect you want to change this to \u003cHostSOCManufacturer\u003eSpiFlash",
+      "revId": "7ededf61f85edc96ebb92629c6e4b031ba5d8eea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
