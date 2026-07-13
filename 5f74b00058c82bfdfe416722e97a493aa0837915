@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46448504_3c183304",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-13T15:46:23Z",
+      "side": 1,
+      "message": "some nitpicks about commit message:\n\nCan you post some logs as part of the commit message?\n\nWhich commands have you tried (e.g. `busctl tree xyz.openbmc_project.EntityManager`) and how did the output look like?\n\nIs it possible there is a type mismatch with what bemcweb expects?\n\nAre the D-bus property types the same as defined in PDI?\n\nAre there any debug logs from when it tried to read those properties?\n\nCan you add part of the `busctl` output for object mapper showing how it associates the drive with the chassis.\n\nIf something is not working it helps to have a bunch of logs.\n\nIn case we get it working later, we can always remove those extra logs from the commit message again if it piles up too much.\n\nSee for example commits\n260fdc80c3fec4fae6654923d5f216de39c00eef\nand \n32f4b3bb013b88095950b553a897e1eeae14d9f6\n\nthose have detailed logs for their testing",
+      "range": {
+        "startLine": 10,
+        "startChar": 1,
+        "endLine": 11,
+        "endChar": 113
+      },
+      "revId": "5f74b00058c82bfdfe416722e97a493aa0837915",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "668c3d8a_8fc1138e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-13T15:46:23Z",
+      "side": 1,
+      "message": "Thanks for pushing this 👍",
+      "revId": "5f74b00058c82bfdfe416722e97a493aa0837915",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70457be9_e6586fb2",
+        "filename": "configurations/meta/yv4/yosemite4_nvme.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-13T15:46:23Z",
+      "side": 1,
+      "message": "I did not spot a matching `containing` record, is this one needed?",
+      "range": {
+        "startLine": 14,
+        "startChar": 8,
+        "endLine": 18,
+        "endChar": 9
+      },
+      "revId": "5f74b00058c82bfdfe416722e97a493aa0837915",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a2ed5c4_eb9685e4",
+        "filename": "configurations/meta/yv4/yosemite4_nvme.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-13T15:46:23Z",
+      "side": 1,
+      "message": "nit:\n\n```suggestion\n    \"Name\": \"Kioxia ssd $bus * 100 + $address\",\n```\n\nor similar construction involving the probed properties, considering there may be multiple drives which should have some structured name.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 2
+      },
+      "revId": "5f74b00058c82bfdfe416722e97a493aa0837915",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c8ca1ca_198427b3",
+        "filename": "configurations/meta/yv4/yosemite4_nvme.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-13T15:46:23Z",
+      "side": 1,
+      "message": "Is there like a `PRODUCT_PART_NUMBER` we can add to the probe? Otherwise this would match on all KIOXIA products",
+      "range": {
+        "startLine": 22,
+        "startChar": 7,
+        "endLine": 22,
+        "endChar": 75
+      },
+      "revId": "5f74b00058c82bfdfe416722e97a493aa0837915",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e850fbab_0e512a74",
+        "filename": "configurations/meta/yv4/yosemite4_nvme.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-13T15:46:23Z",
+      "side": 1,
+      "message": "This is not what\u0027s defined in PDI, there are properties missing such as `BuildDate`, `SubModel`, ...",
+      "range": {
+        "startLine": 25,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 6
+      },
+      "revId": "5f74b00058c82bfdfe416722e97a493aa0837915",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3a83b3f_1c47e498",
+        "filename": "configurations/meta/yv4/yosemite4_nvme.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-13T15:46:23Z",
+      "side": 1,
+      "message": "Missing `Resettable` property",
+      "range": {
+        "startLine": 31,
+        "startChar": 40,
+        "endLine": 31,
+        "endChar": 45
+      },
+      "revId": "5f74b00058c82bfdfe416722e97a493aa0837915",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19948254_297e4774",
+        "filename": "configurations/meta/yv4/yosemite4_nvme.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-13T15:46:23Z",
+      "side": 1,
+      "message": "```suggestion\n        \"LockedStatus\": \"Unknown\",\n```",
+      "range": {
+        "startLine": 36,
+        "startChar": 9,
+        "endLine": 36,
+        "endChar": 15
+      },
+      "revId": "5f74b00058c82bfdfe416722e97a493aa0837915",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
