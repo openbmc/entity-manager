@@ -16,6 +16,24 @@
       "message": "Please verify that the FRU name update is reflected in the corresponding inventory object path and that FRU discovery continues to work correctly after this change",
       "revId": "9c7f98f09fabbe23a41f8892b847765691125aa3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e41123b2_d7877703",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002918
+      },
+      "writtenOn": "2026-07-13T10:03:22Z",
+      "side": 1,
+      "message": "Verified on P3809 hardware:\n$ busctl tree xyz.openbmc_project.EntityManager | grep -i fru\n  .../inventory/system/board/BMC/BMC_FRU\n$ busctl tree xyz.openbmc_project.FruDevice\n  .../FruDevice/P3809",
+      "parentUuid": "a3a9738a_ecd9f628",
+      "revId": "9c7f98f09fabbe23a41f8892b847765691125aa3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
