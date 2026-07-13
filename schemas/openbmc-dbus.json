@@ -26,6 +26,9 @@
                                 },
                                 "SerialNumber": {
                                     "type": "string"
+                                },
+                                "SubModel": {
+                                    "type": "string"
                                 }
                             },
                             "required": [
@@ -138,6 +141,33 @@
                             "additionalProperties": false,
                             "properties": {
                                 "Type": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "Drive": {
+                            "additionalProperties": false,
+                            "properties": {
+                                "Capacity": {
+                                    "type": "string"
+                                },
+                                "Protocol": {
+                                    "type": "string"
+                                },
+                                "Type": {
+                                    "type": "string"
+                                },
+                                "EncryptionStatus": {
+                                    "type": "string"
+                                },
+                                "LockedStatus": {
+                                    "type": "string"
+                                },
+                                "PredictedMediaLifeLeftPercent": {
+                                    "type": "string"
+                                },
+                                "Resettable": {
                                     "type": "string"
                                 }
                             },
