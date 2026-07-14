@@ -44,6 +44,25 @@
                 },
                 "PollRate": {
                     "$ref": "legacy.json#/$defs/Types/PollRate"
+                },
+                "RegisterPollRates": {
+                    "description": "The per-register poll rate, as some registers may need to be polled at a different cadence than the device PollRate.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "Name": {
+                                "description": "The name of the register.",
+                                "type": "string"
+                            },
+                            "PollRate": {
+                                "description": "The poll rate for the register.",
+                                "$ref": "legacy.json#/$defs/Types/PollRate"
+                            }
+                        },
+                        "required": ["Name", "PollRate"]
+                    }
                 }
             },
             "required": ["Name", "Type", "Address", "SerialPort"]
