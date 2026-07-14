@@ -122,6 +122,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4d2ac474_d31a4a91",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-07-14T01:53:05Z",
+      "side": 1,
+      "message": "Hi @patrick@stwcx.xyz and @ed@tanous.net, thanks for the feedback.\n\nRegarding CPLDs, the current schema handles them by explicitly defining every supported vendor and chip in the Type enum using a \u003cvendor\u003e\u003cchip\u003eFirmware pattern (e.g., \"LatticeLCMXO3D_4300Firmware\", \"AlteraMAX10_10M16Firmware\").\n\nI completely agree that \"HOST\" and \"BIOS\" are too generic to capture the specific flash layouts and validation logic required for different devices.\n\nShould we follow the highly specific structure currently used by CPLDs and add \u003cManufacturer\u003eSpiFlash directly to the schema enum?\n\nCurrently, We rely on the explicit Type enum to lock onto specific devices and trigger customized behaviors such as version get.",
+      "parentUuid": "b51f50f0_78085941",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 36
+      },
+      "revId": "7ededf61f85edc96ebb92629c6e4b031ba5d8eea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "629c6caf_73c73041",
         "filename": "schemas/firmware.json",
         "patchSetId": 2
@@ -133,6 +157,24 @@
       "writtenOn": "2026-07-13T18:30:10Z",
       "side": 1,
       "message": "The intent here was to differentiate between the various types of SPI flash.  Intel spi flash is laid out differently than AMD, is laid out differently than an FPGA.  The intent is that we could differentiate and add things like validity checks in the future.\n\nI suspect you want to change this to \u003cHostSOCManufacturer\u003eSpiFlash",
+      "revId": "7ededf61f85edc96ebb92629c6e4b031ba5d8eea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c3c7156_cb4e6e74",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-07-14T01:53:05Z",
+      "side": 1,
+      "message": "I agree that we need a way to accurately capture the specific flash layout for partial updates and validation. I have replied in the main commit thread to discuss whether we should follow the CPLD enum pattern.",
+      "parentUuid": "629c6caf_73c73041",
       "revId": "7ededf61f85edc96ebb92629c6e4b031ba5d8eea",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
