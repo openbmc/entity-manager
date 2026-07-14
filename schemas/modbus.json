@@ -63,6 +63,10 @@
                         },
                         "required": ["Name", "PollRate"]
                     }
+                },
+                "Thresholds": {
+                    "description": "Threshold values used to set and clear alarms",
+                    "$ref": "legacy.json#/$defs/Types/Thresholds"
                 }
             },
             "required": ["Name", "Type", "Address", "SerialPort"]
