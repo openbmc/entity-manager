@@ -146,6 +146,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "047833c0_47815dcb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-07-14T02:07:32Z",
+      "side": 1,
+      "message": "@patrick@stwcx.xyz The compatible is there for comparing the PLDM image compatible image only. For general flows we rely on the EM type, so its better to follow the similar approach here.\n\n@Kyle.Hsieh@quantatw.com We need a way to check if this a Host SPI Flash or something else, for example Intel NIC one you are trying to add (as FW version read logic can vary depending on chip not just manufacturer) so its better if we use the \u003cvendor\u003e\u003cchip\u003eSpiFlash nomenclature format here. For BIOS, you can replace the Chip with Host for clarity.",
+      "parentUuid": "4d2ac474_d31a4a91",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 36
+      },
+      "revId": "7ededf61f85edc96ebb92629c6e4b031ba5d8eea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "629c6caf_73c73041",
         "filename": "schemas/firmware.json",
         "patchSetId": 2
