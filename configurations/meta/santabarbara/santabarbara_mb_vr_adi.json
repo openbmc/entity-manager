@@ -1,0 +1,1886 @@
+{
+    "Exposes": [
+        {
+            "BridgeGpio": [
+                {
+                    "Name": "rtc-battery-voltage-read-enable",
+                    "Polarity": "High",
+                    "SetupTime": 1
+                }
+            ],
+            "Index": 7,
+            "Name": "MB_P3V_BAT_VOLT_V",
+            "PollRate": 86400,
+            "ScaleFactor": 0.333333333,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.068,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.4
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.052,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.6
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 19,
+            "Labels": [
+                "in0",
+                "in1",
+                "in3",
+                "in4",
+                "in5",
+                "in6",
+                "in7"
+            ],
+            "Name": "MB_ADC0",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0669,
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.345
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0627,
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.135
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0693,
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.465
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0627,
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.135
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0692,
+                    "Label": "in3",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.46
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0626,
+                    "Label": "in3",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.13
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0373,
+                    "Label": "in4",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.865
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0336,
+                    "Label": "in4",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.68
+                }
+            ],
+            "Type": "ADS7830",
+            "in0_Name": "MB_P3V3_OCP_SFF_VOLT_V",
+            "in0_Scale": 410.6776,
+            "in1_Name": "MB_P3V3_E1S0_VOLT_V",
+            "in1_Scale": 410.6776,
+            "in3_Name": "MB_PVDD33_S5_VOLT_V",
+            "in3_Scale": 410.6776,
+            "in4_Name": "MB_PVDD18_S5_VOLT_V",
+            "in4_Scale": 750.469,
+            "in5_Name": "MB_MCIO_1A_CARD_VOLT_V",
+            "in6_Name": "MB_MCIO_1B_CARD_VOLT_V",
+            "in7_Name": "MB_MCIO_0A_CARD_VOLT_V"
+        },
+        {
+            "Address": "0x4a",
+            "Bus": 19,
+            "Labels": [
+                "in0",
+                "in1",
+                "in2",
+                "in3",
+                "in4",
+                "in5"
+            ],
+            "Name": "MB_ADC1",
+            "Type": "ADS7830",
+            "in0_Name": "MB_MCIO_2A_CARD_VOLT_V",
+            "in1_Name": "MB_MCIO_2B_CARD_VOLT_V",
+            "in2_Name": "MB_MCIO_3A_CARD_VOLT_V",
+            "in3_Name": "MB_MCIO_3B_CARD_VOLT_V",
+            "in4_Name": "MB_MCIO_4A_CARD_VOLT_V",
+            "in5_Name": "MB_MCIO_4B_CARD_VOLT_V"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 22,
+            "Labels": [
+                "in0",
+                "in1",
+                "in2",
+                "in3",
+                "in4"
+            ],
+            "Name": "MB_ADC2",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.2566,
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 12.83
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.2278,
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.39
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.1052,
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 5.26
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0948,
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 4.74
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0696,
+                    "Label": "in2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.48
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0624,
+                    "Label": "in2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.12
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0378,
+                    "Label": "in3",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.89
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0348,
+                    "Label": "in3",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.74
+                }
+            ],
+            "Type": "ADS7830",
+            "in0_Name": "MB_P12V_AUX_VOLT_V",
+            "in0_Scale": 112.3596,
+            "in1_Name": "MB_P5V_AUX_VOLT_V",
+            "in1_Scale": 271.7391,
+            "in2_Name": "MB_P3V3_AUX_VOLT_V",
+            "in2_Scale": 410.6776,
+            "in3_Name": "MB_P1V8_LDO_VOLT_V",
+            "in3_Scale": 750.469,
+            "in4_Name": "MB_P1V_LDO_VOLT_V"
+        },
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "MB FRU",
+            "Type": "EEPROM"
+        },
+        {
+            "Name": "E1SBP_Cable_Power",
+            "PresencePinNames": [
+                "FM_CBL_PRSNT_OSFP_A_N",
+                "FM_CBL_PRSNT_OSFP_B_N"
+            ],
+            "PresencePinValues": [
+                0,
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "MB_E1S0",
+            "PresencePinNames": [
+                "E1S_0_PRSNT_R_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "MB_FAN0",
+            "PresencePinNames": [
+                "FAN_0_PRSNT_R1_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "MB_FAN1",
+            "PresencePinNames": [
+                "FAN_1_PRSNT_R1_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "MB_FAN2",
+            "PresencePinNames": [
+                "FAN_2_PRSNT_R1_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "MB_FAN3",
+            "PresencePinNames": [
+                "FAN_3_PRSNT_R1_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "MB_CPU0",
+            "PresencePinNames": [
+                "FM_PRSNT_CPU0_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Address": "0x21",
+            "Bus": 1,
+            "Connector": {
+                "Name": "MB_FAN0_TACH_IL",
+                "Pwm": 2,
+                "PwmName": "MB_FAN_PWM_PCT",
+                "Tachs": [
+                    0
+                ]
+            },
+            "Index": 0,
+            "Name": "MB_FAN0_TACH_IL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 800,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 40000
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 20,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1000
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x21",
+            "Bus": 1,
+            "Connector": {
+                "Name": "MB_FAN0_TACH_OL",
+                "Pwm": 2,
+                "PwmName": "MB_FAN_PWM_PCT",
+                "Tachs": [
+                    1
+                ]
+            },
+            "Index": 1,
+            "Name": "MB_FAN0_TACH_OL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 700,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 35000
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 20,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1000
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x21",
+            "Bus": 1,
+            "Connector": {
+                "Name": "MB_FAN1_TACH_IL",
+                "Pwm": 2,
+                "PwmName": "MB_FAN_PWM_PCT",
+                "Tachs": [
+                    2
+                ]
+            },
+            "Index": 2,
+            "Name": "MB_FAN1_TACH_IL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 800,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 40000
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 20,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1000
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x21",
+            "Bus": 1,
+            "Connector": {
+                "Name": "MB_FAN1_TACH_OL",
+                "Pwm": 2,
+                "PwmName": "MB_FAN_PWM_PCT",
+                "Tachs": [
+                    3
+                ]
+            },
+            "Index": 3,
+            "Name": "MB_FAN1_TACH_OL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 700,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 35000
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 20,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1000
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x21",
+            "Bus": 1,
+            "Connector": {
+                "Name": "MB_FAN2_TACH_IL",
+                "Pwm": 2,
+                "PwmName": "MB_FAN_PWM_PCT",
+                "Tachs": [
+                    4
+                ]
+            },
+            "Index": 4,
+            "Name": "MB_FAN2_TACH_IL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 800,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 40000
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 20,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1000
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x21",
+            "Bus": 1,
+            "Connector": {
+                "Name": "MB_FAN2_TACH_OL",
+                "Pwm": 2,
+                "PwmName": "MB_FAN_PWM_PCT",
+                "Tachs": [
+                    5
+                ]
+            },
+            "Index": 5,
+            "Name": "MB_FAN2_TACH_OL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 700,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 35000
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 20,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1000
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x21",
+            "Bus": 1,
+            "Connector": {
+                "Name": "MB_FAN3_TACH_IL",
+                "Pwm": 2,
+                "PwmName": "MB_FAN_PWM_PCT",
+                "Tachs": [
+                    6
+                ]
+            },
+            "Index": 6,
+            "Name": "MB_FAN3_TACH_IL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 800,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 40000
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 20,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1000
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x21",
+            "Bus": 1,
+            "Connector": {
+                "Name": "MB_FAN3_TACH_OL",
+                "Pwm": 2,
+                "PwmName": "MB_FAN_PWM_PCT",
+                "Tachs": [
+                    7
+                ]
+            },
+            "Index": 7,
+            "Name": "MB_FAN3_TACH_OL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 700,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 35000
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 20,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1000
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x42",
+            "Bus": 19,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "MB_P12V_E1S0",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.264,
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.216,
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.04,
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.5,
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 25
+                }
+            ],
+            "Type": "INA230",
+            "curr1_Name": "MB_P12V_E1S0_CURR_A",
+            "curr1_Scale": 1016.260162602,
+            "in1_Name": "MB_P12V_E1S0_VOLT_V",
+            "power1_Name": "MB_P12V_E1S0_PWR_W",
+            "power1_Scale": 1016260.162602
+        },
+        {
+            "Address": "0x44",
+            "Bus": 19,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "MB_P12V_OCP_SFF",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.264,
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.216,
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.1452,
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 7.26
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7424,
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 87.12
+                }
+            ],
+            "Type": "INA230",
+            "curr1_Name": "MB_P12V_OCP_SFF_CURR_A",
+            "curr1_Scale": 1098.901098901,
+            "in1_Name": "MB_P12V_OCP_SFF_VOLT_V",
+            "power1_Name": "MB_P12V_OCP_SFF_PWR_W",
+            "power1_Scale": 1098901.098901
+        },
+        {
+            "Address": "0x40",
+            "Bus": 22,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "MB_P12V_FAN0",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.264,
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.216,
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.126,
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 6.3
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.6632,
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 83.16
+                }
+            ],
+            "Type": "INA230",
+            "curr1_Name": "MB_P12V_FAN0_CURR_A",
+            "curr1_Scale": 1063.829787234,
+            "in1_Name": "MB_P12V_FAN0_VOLT_V",
+            "power1_Name": "MB_P12V_FAN0_PWR_W",
+            "power1_Scale": 1063829.787234
+        },
+        {
+            "Address": "0x42",
+            "Bus": 22,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "MB_P12V_FAN1",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.264,
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.216,
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.126,
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 6.3
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.6632,
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 83.16
+                }
+            ],
+            "Type": "INA230",
+            "curr1_Name": "MB_P12V_FAN1_CURR_A",
+            "curr1_Scale": 1141.552511416,
+            "in1_Name": "MB_P12V_FAN1_VOLT_V",
+            "power1_Name": "MB_P12V_FAN1_PWR_W",
+            "power1_Scale": 1141552.511416
+        },
+        {
+            "Address": "0x44",
+            "Bus": 22,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "MB_P12V_FAN2",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.264,
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.216,
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.126,
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 6.3
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.6632,
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 83.16
+                }
+            ],
+            "Type": "INA230",
+            "curr1_Name": "MB_P12V_FAN2_CURR_A",
+            "curr1_Scale": 1079.913606911,
+            "in1_Name": "MB_P12V_FAN2_VOLT_V",
+            "power1_Name": "MB_P12V_FAN2_PWR_W",
+            "power1_Scale": 1079913.606911
+        },
+        {
+            "Address": "0x46",
+            "Bus": 22,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "MB_P12V_FAN3",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.264,
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.216,
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.126,
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 6.3
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.6632,
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 83.16
+                }
+            ],
+            "Type": "INA230",
+            "curr1_Name": "MB_P12V_FAN3_CURR_A",
+            "curr1_Scale": 1144.164759725,
+            "in1_Name": "MB_P12V_FAN3_VOLT_V",
+            "power1_Name": "MB_P12V_FAN3_PWR_W",
+            "power1_Scale": 1144164.759725
+        },
+        {
+            "Address": "0x60",
+            "Bus": 0,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Santabarbara.CPLD.LFMXO5_25_mb",
+                "VendorIANA": 40981
+            },
+            "Name": "Santabarbara_MB_CPLD",
+            "Type": "LatticeLFMXO5_25Firmware"
+        },
+        {
+            "Address": "0x46",
+            "Bus": "18",
+            "Labels": [
+                "iout1",
+                "vout1",
+                "temp1",
+                "pout1"
+            ],
+            "Name": "MB_VR_PVDD18_S5",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0336,
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.68
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0373,
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.865
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.506,
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 25.3
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.936,
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 46.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2,
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100.0
+                }
+            ],
+            "Type": "MP9945",
+            "iout1_Name": "MB_VR_PVDD18_S5_CURR_A",
+            "pout1_Name": "MB_VR_PVDD18_S5_PWR_W",
+            "temp1_Name": "MB_VR_PVDD18_S5_TEMP_C",
+            "vout1_Name": "MB_VR_PVDD18_S5_VOLT_V"
+        },
+        {
+            "Address": "0x46",
+            "Bus": 18,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Santabarbara.VR.MP9945_pvdd18_s5",
+                "VendorIANA": 40981
+            },
+            "Name": "Santabarbara_MB_VR_pvdd18_s5",
+            "Type": "MP994XFirmware"
+        },
+        {
+            "Address": "0x6a",
+            "Bus": 20,
+            "Name": "MB_E1S0_TEMP_C",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.4,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 70.0
+                }
+            ],
+            "Type": "NVME1000"
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 1.0,
+            "FFOffCoefficient": 0.0,
+            "FailSafePercent": 100.0,
+            "ICoefficient": 0.0,
+            "ILimitMax": 0.0,
+            "ILimitMin": 0.0,
+            "Inputs": [
+                "MB_FAN0_TACH_OL_SPEED_RPM",
+                "MB_FAN0_TACH_IL_SPEED_RPM",
+                "MB_FAN1_TACH_OL_SPEED_RPM",
+                "MB_FAN1_TACH_IL_SPEED_RPM",
+                "MB_FAN2_TACH_OL_SPEED_RPM",
+                "MB_FAN2_TACH_IL_SPEED_RPM",
+                "MB_FAN3_TACH_OL_SPEED_RPM",
+                "MB_FAN3_TACH_IL_SPEED_RPM",
+                "PDB2_FAN4_TACH_OL_SPEED_RPM",
+                "PDB2_FAN4_TACH_IL_SPEED_RPM",
+                "PDB2_FAN5_TACH_OL_SPEED_RPM",
+                "PDB2_FAN5_TACH_IL_SPEED_RPM",
+                "PDB2_FAN6_TACH_OL_SPEED_RPM",
+                "PDB2_FAN6_TACH_IL_SPEED_RPM",
+                "PDB2_FAN7_TACH_OL_SPEED_RPM",
+                "PDB2_FAN7_TACH_IL_SPEED_RPM"
+            ],
+            "Name": "All Fan",
+            "OutLimitMax": 100.0,
+            "OutLimitMin": 0.0,
+            "Outputs": [
+                "MB_FAN_PWM_PCT",
+                "MB_FAN_PWM_PCT",
+                "MB_FAN_PWM_PCT",
+                "MB_FAN_PWM_PCT",
+                "MB_FAN_PWM_PCT",
+                "MB_FAN_PWM_PCT",
+                "MB_FAN_PWM_PCT",
+                "MB_FAN_PWM_PCT",
+                "PDB2_FAN4_PWM_PCT",
+                "PDB2_FAN4_PWM_PCT",
+                "PDB2_FAN5_PWM_PCT",
+                "PDB2_FAN5_PWM_PCT",
+                "PDB2_FAN6_PWM_PCT",
+                "PDB2_FAN6_PWM_PCT",
+                "PDB2_FAN7_PWM_PCT",
+                "PDB2_FAN7_PWM_PCT"
+            ],
+            "PCoefficient": 0.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "CheckHysteresisWithSetpoint": true,
+            "Class": "temp",
+            "DCoefficient": -1.0,
+            "FFGainCoefficient": 0.0,
+            "FFOffCoefficient": 0.0,
+            "ICoefficient": -0.5,
+            "ILimitMax": 100,
+            "ILimitMin": 0,
+            "Inputs": [
+                "MB_E1S0_TEMP_C"
+            ],
+            "Name": "PID_MB_E1S0",
+            "NegativeHysteresis": 2.0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 0,
+            "PCoefficient": -5.0,
+            "PositiveHysteresis": 0.0,
+            "SetPoint": 65.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "CheckHysteresisWithSetpoint": true,
+            "Class": "temp",
+            "DCoefficient": -1.0,
+            "FFGainCoefficient": 0.0,
+            "FFOffCoefficient": 0.0,
+            "ICoefficient": -0.5,
+            "ILimitMax": 100,
+            "ILimitMin": 0,
+            "Inputs": [
+                "E1S_BP_E1S0_TEMP_C",
+                "E1S_BP_E1S1_TEMP_C",
+                "E1S_BP_E1S2_TEMP_C",
+                "E1S_BP_E1S3_TEMP_C"
+            ],
+            "Name": "PID_E1S_BP_E1S",
+            "NegativeHysteresis": 2.0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 0,
+            "PCoefficient": -5.0,
+            "PositiveHysteresis": 0.0,
+            "SetPoint": 65.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "CheckHysteresisWithSetpoint": true,
+            "Class": "temp",
+            "DCoefficient": -1.0,
+            "FFGainCoefficient": 0.0,
+            "FFOffCoefficient": 0.0,
+            "ICoefficient": -0.5,
+            "ILimitMax": 100,
+            "ILimitMin": 0,
+            "Inputs": [
+                "MB_VR_PVDD18_S5_TEMP_C"
+            ],
+            "Name": "PID_MB_VR",
+            "NegativeHysteresis": 2.0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 0,
+            "PCoefficient": -5.0,
+            "PositiveHysteresis": 0.0,
+            "SetPoint": 85.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "CheckHysteresisWithSetpoint": true,
+            "Class": "temp",
+            "DCoefficient": -1.0,
+            "FFGainCoefficient": 0.0,
+            "FFOffCoefficient": 0.0,
+            "ICoefficient": -0.5,
+            "ILimitMax": 100,
+            "ILimitMin": 0,
+            "Inputs": [
+                "MB_CPU_DIMM_A0_TEMP_C",
+                "MB_CPU_DIMM_A1_TEMP_C",
+                "MB_CPU_DIMM_A2_TEMP_C",
+                "MB_CPU_DIMM_A3_TEMP_C",
+                "MB_CPU_DIMM_A4_TEMP_C",
+                "MB_CPU_DIMM_A5_TEMP_C",
+                "MB_CPU_DIMM_A6_TEMP_C",
+                "MB_CPU_DIMM_A7_TEMP_C",
+                "MB_CPU_DIMM_A8_TEMP_C",
+                "MB_CPU_DIMM_A9_TEMP_C",
+                "MB_CPU_DIMM_A10_TEMP_C",
+                "MB_CPU_DIMM_A11_TEMP_C",
+                "MB_CPU_DIMM_A12_TEMP_C",
+                "MB_CPU_DIMM_A13_TEMP_C",
+                "MB_CPU_DIMM_A14_TEMP_C",
+                "MB_CPU_DIMM_A15_TEMP_C"
+            ],
+            "Name": "PID_MB_DIMM",
+            "NegativeHysteresis": 2.0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 0,
+            "PCoefficient": -5.0,
+            "PositiveHysteresis": 0.0,
+            "SetPoint": 78.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "AccumulateSetPoint": true,
+            "CycleIntervalTimeMS": 1000,
+            "FailSafePercent": 100.0,
+            "MinThermalOutput": 15.0,
+            "Name": "Zone 0",
+            "Type": "Pid.Zone",
+            "UpdateThermalsTimeMS": 1000,
+            "ZoneIndex": 0
+        },
+        {
+            "Address": "0x3c",
+            "Bus": 3,
+            "Labels": [
+                "power1",
+                "power2",
+                "power3",
+                "power4",
+                "power5",
+                "power6",
+                "power7",
+                "power8",
+                "power9",
+                "power10",
+                "power11",
+                "power12",
+                "power13",
+                "power14",
+                "power15",
+                "power16",
+                "power17",
+                "temp1",
+                "temp2",
+                "temp3",
+                "temp4",
+                "temp5",
+                "temp6",
+                "temp7",
+                "temp8",
+                "temp9",
+                "temp10",
+                "temp11",
+                "temp12",
+                "temp13",
+                "temp14",
+                "temp15",
+                "temp16"
+            ],
+            "Name": "SBRMI",
+            "PowerState": "BiosPost",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 11,
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 550.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.296,
+                    "Label": "power2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 14.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.296,
+                    "Label": "power3",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 14.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.296,
+                    "Label": "power4",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 14.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.296,
+                    "Label": "power5",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 14.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.296,
+                    "Label": "power6",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 14.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.296,
+                    "Label": "power7",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 14.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.296,
+                    "Label": "power8",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 14.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.296,
+                    "Label": "power9",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 14.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.296,
+                    "Label": "power10",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 14.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.296,
+                    "Label": "power11",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 14.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.296,
+                    "Label": "power12",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 14.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.296,
+                    "Label": "power13",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 14.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.296,
+                    "Label": "power14",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 14.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.296,
+                    "Label": "power15",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 14.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.296,
+                    "Label": "power16",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 14.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.296,
+                    "Label": "power17",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 14.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7,
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7,
+                    "Label": "temp2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7,
+                    "Label": "temp3",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7,
+                    "Label": "temp4",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7,
+                    "Label": "temp5",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7,
+                    "Label": "temp6",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7,
+                    "Label": "temp7",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7,
+                    "Label": "temp8",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7,
+                    "Label": "temp9",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7,
+                    "Label": "temp10",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7,
+                    "Label": "temp11",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7,
+                    "Label": "temp12",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7,
+                    "Label": "temp13",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7,
+                    "Label": "temp14",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7,
+                    "Label": "temp15",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7,
+                    "Label": "temp16",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85.0
+                }
+            ],
+            "Type": "SBRMI",
+            "power10_Name": "MB_CPU_DIMM_A8_PWR_W",
+            "power11_Name": "MB_CPU_DIMM_A9_PWR_W",
+            "power12_Name": "MB_CPU_DIMM_A10_PWR_W",
+            "power13_Name": "MB_CPU_DIMM_A11_PWR_W",
+            "power14_Name": "MB_CPU_DIMM_A12_PWR_W",
+            "power15_Name": "MB_CPU_DIMM_A13_PWR_W",
+            "power16_Name": "MB_CPU_DIMM_A14_PWR_W",
+            "power17_Name": "MB_CPU_DIMM_A15_PWR_W",
+            "power1_Name": "MB_CPU_PKG_PWR_W",
+            "power2_Name": "MB_CPU_DIMM_A0_PWR_W",
+            "power3_Name": "MB_CPU_DIMM_A1_PWR_W",
+            "power4_Name": "MB_CPU_DIMM_A2_PWR_W",
+            "power5_Name": "MB_CPU_DIMM_A3_PWR_W",
+            "power6_Name": "MB_CPU_DIMM_A4_PWR_W",
+            "power7_Name": "MB_CPU_DIMM_A5_PWR_W",
+            "power8_Name": "MB_CPU_DIMM_A6_PWR_W",
+            "power9_Name": "MB_CPU_DIMM_A7_PWR_W",
+            "temp10_Name": "MB_CPU_DIMM_A9_TEMP_C",
+            "temp11_Name": "MB_CPU_DIMM_A10_TEMP_C",
+            "temp12_Name": "MB_CPU_DIMM_A11_TEMP_C",
+            "temp13_Name": "MB_CPU_DIMM_A12_TEMP_C",
+            "temp14_Name": "MB_CPU_DIMM_A13_TEMP_C",
+            "temp15_Name": "MB_CPU_DIMM_A14_TEMP_C",
+            "temp16_Name": "MB_CPU_DIMM_A15_TEMP_C",
+            "temp1_Name": "MB_CPU_DIMM_A0_TEMP_C",
+            "temp2_Name": "MB_CPU_DIMM_A1_TEMP_C",
+            "temp3_Name": "MB_CPU_DIMM_A2_TEMP_C",
+            "temp4_Name": "MB_CPU_DIMM_A3_TEMP_C",
+            "temp5_Name": "MB_CPU_DIMM_A4_TEMP_C",
+            "temp6_Name": "MB_CPU_DIMM_A5_TEMP_C",
+            "temp7_Name": "MB_CPU_DIMM_A6_TEMP_C",
+            "temp8_Name": "MB_CPU_DIMM_A7_TEMP_C",
+            "temp9_Name": "MB_CPU_DIMM_A8_TEMP_C"
+        },
+        {
+            "Address": "0x4c",
+            "Bus": 3,
+            "Name": "MB_CPU_TEMP_C",
+            "PowerState": "BiosPost",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.02,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": -1.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.9,
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 95.0
+                }
+            ],
+            "Type": "SBTSI"
+        },
+        {
+            "Class": "temp",
+            "Inputs": [
+                "E1S_BP_E1S0_TEMP_C",
+                "E1S_BP_E1S1_TEMP_C",
+                "E1S_BP_E1S2_TEMP_C",
+                "E1S_BP_E1S3_TEMP_C"
+            ],
+            "Name": "Stepwise_E1S_BP_E1S",
+            "NegativeHysteresis": 1.0,
+            "Output": [
+                30.0,
+                31.0,
+                32.0,
+                33.0,
+                34.0,
+                35.0,
+                100.0
+            ],
+            "PositiveHysteresis": 0.0,
+            "Reading": [
+                55.0,
+                56.0,
+                57.0,
+                58.0,
+                59.0,
+                60.0,
+                70.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "Inputs": [
+                "MB_E1S0_TEMP_C"
+            ],
+            "Name": "Stepwise_MB_E1S0",
+            "NegativeHysteresis": 1.0,
+            "Output": [
+                30.0,
+                31.0,
+                32.0,
+                33.0,
+                34.0,
+                35.0,
+                100.0
+            ],
+            "PositiveHysteresis": 0.0,
+            "Reading": [
+                55.0,
+                56.0,
+                57.0,
+                58.0,
+                59.0,
+                60.0,
+                70.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "Inputs": [
+                "MB_VR_PVDD18_S5_TEMP_C"
+            ],
+            "Name": "Stepwise_MB_VR",
+            "NegativeHysteresis": 1.0,
+            "Output": [
+                30.0,
+                31.0,
+                32.0,
+                33.0,
+                34.0,
+                35.0,
+                100.0
+            ],
+            "PositiveHysteresis": 0.0,
+            "Reading": [
+                75.0,
+                76.0,
+                77.0,
+                78.0,
+                79.0,
+                80.0,
+                100.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "Inputs": [
+                "MB_CPU_DIMM_A0_TEMP_C",
+                "MB_CPU_DIMM_A1_TEMP_C",
+                "MB_CPU_DIMM_A2_TEMP_C",
+                "MB_CPU_DIMM_A3_TEMP_C",
+                "MB_CPU_DIMM_A4_TEMP_C",
+                "MB_CPU_DIMM_A5_TEMP_C",
+                "MB_CPU_DIMM_A6_TEMP_C",
+                "MB_CPU_DIMM_A7_TEMP_C",
+                "MB_CPU_DIMM_A8_TEMP_C",
+                "MB_CPU_DIMM_A9_TEMP_C",
+                "MB_CPU_DIMM_A10_TEMP_C",
+                "MB_CPU_DIMM_A11_TEMP_C",
+                "MB_CPU_DIMM_A12_TEMP_C",
+                "MB_CPU_DIMM_A13_TEMP_C",
+                "MB_CPU_DIMM_A14_TEMP_C",
+                "MB_CPU_DIMM_A15_TEMP_C"
+            ],
+            "Name": "Stepwise_MB_DIMM",
+            "NegativeHysteresis": 1.0,
+            "Output": [
+                30.0,
+                31.0,
+                32.0,
+                33.0,
+                34.0,
+                35.0,
+                100.0
+            ],
+            "PositiveHysteresis": 0.0,
+            "Reading": [
+                69.0,
+                70.0,
+                71.0,
+                72.0,
+                73.0,
+                74.0,
+                85.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "Inputs": [
+                "FIOBOARD_REMOTE_INLET_TEMP_C"
+            ],
+            "Name": "Stepwise_FIOBOARD_IL",
+            "NegativeHysteresis": 0.0,
+            "Output": [
+                30.0,
+                31.0,
+                32.0,
+                33.0,
+                34.0,
+                35.0,
+                37.0,
+                39.0,
+                41.0,
+                43.0,
+                45.0,
+                50.0,
+                60.0,
+                70.0,
+                80.0,
+                90.0
+            ],
+            "PositiveHysteresis": 0.0,
+            "Reading": [
+                25.0,
+                26.0,
+                27.0,
+                28.0,
+                29.0,
+                30.0,
+                31.0,
+                32.0,
+                33.0,
+                34.0,
+                35.0,
+                36.0,
+                37.0,
+                38.0,
+                39.0,
+                40.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "Inputs": [
+                "PDB1_P52V_HSC1_TEMP_C",
+                "PDB1_P52V_HSC2_TEMP_C"
+            ],
+            "Name": "Stepwise_PDB1_P52V_HSC",
+            "NegativeHysteresis": 1.0,
+            "Output": [
+                0.0,
+                30.0,
+                35.0,
+                40.0,
+                45.0,
+                50.0,
+                55.0,
+                60.0,
+                65.0,
+                70.0,
+                75.0,
+                80.0,
+                85.0,
+                90.0,
+                95.0,
+                100.0
+            ],
+            "PositiveHysteresis": 0.0,
+            "Reading": [
+                80.0,
+                82.0,
+                84.0,
+                86.0,
+                88.0,
+                90.0,
+                91.0,
+                92.0,
+                93.0,
+                94.0,
+                95.0,
+                96.0,
+                97.0,
+                98.0,
+                99.0,
+                100.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "Inputs": [
+                "PDB2_P12V_BRICK0_TEMP_C",
+                "PDB2_P12V_BRICK1_TEMP_C"
+            ],
+            "Name": "Stepwise_PDB2_P12V_BRICK",
+            "NegativeHysteresis": 1.0,
+            "Output": [
+                0.0,
+                30.0,
+                35.0,
+                40.0,
+                45.0,
+                50.0,
+                55.0,
+                60.0,
+                65.0,
+                70.0,
+                75.0,
+                80.0,
+                85.0,
+                90.0,
+                95.0,
+                100.0
+            ],
+            "PositiveHysteresis": 0.0,
+            "Reading": [
+                80.0,
+                82.0,
+                84.0,
+                86.0,
+                88.0,
+                90.0,
+                91.0,
+                92.0,
+                93.0,
+                94.0,
+                95.0,
+                96.0,
+                97.0,
+                98.0,
+                99.0,
+                100.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Address": "0x4c",
+            "Bus": 19,
+            "Name": "MB_OUTLET_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.6,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 80.0
+                }
+            ],
+            "Type": "TMP75"
+        },
+        {
+            "Address": "0x4e",
+            "Bus": 19,
+            "Name": "MB_INLET_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.6,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 80.0
+                }
+            ],
+            "Type": "TMP75"
+        }
+    ],
+    "Name": "Santa Barbara MB",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara MB', 'BOARD_MANUFACTURER': 'Quanta', 'PRODUCT_VERSION': '^(?!EVT1).*', 'BOARD_INFO_AM4': 'vr-adi'})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$BOARD_MANUFACTURE_DATE",
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER",
+        "SparePartNumber": "$BOARD_INFO_AM1"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Compatible": {
+        "Names": [
+            "com.meta.Hardware.Santabarbara.Boards.MB"
+        ]
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Revision": {
+        "Version": "$PRODUCT_VERSION"
+    }
+}
