@@ -242,6 +242,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f5ec0341_9214fb7b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-07-15T17:39:48Z",
+      "side": 1,
+      "message": "\u003e Can this be broken out? For example by having a VersionBehavior property that determines how the version is supposed to be obtained.\n\nI would prefer not to make any such changes and let the backend decide what to do based on EM Type, which is being done for other updaters too. These topics have been discussed in past with EM maintainers (No Subtypes, type needs to carry relevant information) and its being done this way for that reason.\n\n\n\u003e I have updated the schema in the latest patchset. I kept the existing IntelSPIFlash to avoid any breaking changes for current users, and added IntelHostSPIFlash following your \u003cvendor\u003eHostSpiFlash format.\n\n@Kyle.Hsieh@quantatw.com We don\u0027t need IntelSPIFlash. You can change it to IntelHostSPIFlash. I don\u0027t see anyone using it in EM Configs. But you will need to update it in backend where the right tools get selected.",
+      "parentUuid": "4f538b21_d9f2a784",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 36
+      },
+      "revId": "7ededf61f85edc96ebb92629c6e4b031ba5d8eea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "629c6caf_73c73041",
         "filename": "schemas/firmware.json",
         "patchSetId": 2
