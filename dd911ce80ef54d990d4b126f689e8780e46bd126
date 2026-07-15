@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bc869c8_bce7266d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-15T12:06:06Z",
+      "side": 1,
+      "message": "How does your patch help to differentiate between types?\n\nThe number of types is 2, exactly same as before.\n\nWith the end result that we do not have a type anymore for generic SPI flash (without intel specific flash descriptor)",
+      "range": {
+        "startLine": 8,
+        "startChar": 1,
+        "endLine": 11,
+        "endChar": 41
+      },
+      "revId": "dd911ce80ef54d990d4b126f689e8780e46bd126",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47935f7e_4a3ac548",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-15T12:06:06Z",
+      "side": 1,
+      "message": "The current behavior when using Type `SPIFlash` is complete chip overwrite without special handling of any flash regions or headers.\n\nWhen using your new `IntelHostSPIFlash` type, will it be the same behavior?\n\nIn that case, what does it have to do with intel?\n\n\n\nThe flash layout (and descriptors) are separate (with some overlap) from flash partitions.\n\nThose 2 concepts are themselves still separate from the purpose of the contents.\n\nIn the end result we have 3 concepts all of which can probably be configured as separate properties.\n\n- flash descriptors (intel with IFD or none (generic)). That was covered by `{IntelSPIFlash, SPIFlash}`\n- flash partitions (my pending PR)\n- purpose (BIOS fw, BMC fw, CPLD fw, VR fw, ... whatever)",
+      "range": {
+        "startLine": 84,
+        "startChar": 47,
+        "endLine": 84,
+        "endChar": 64
+      },
+      "revId": "dd911ce80ef54d990d4b126f689e8780e46bd126",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

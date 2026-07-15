@@ -218,6 +218,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4f538b21_d9f2a784",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-15T12:06:06Z",
+      "side": 1,
+      "message": "\u003e to lock onto specific devices and trigger customized behaviors such as version get.\n\nCan this be broken out? For example by having a `VersionBehavior` property that determines how the version is supposed to be obtained.\n\n\u003e Should we handle that through Compatible?\n\nThis is how compatbiles look like:\n```\n\nanacapa/anacapa_mb_evt1.json\n\"CompatibleHardware\": \"com.meta.Hardware.Anacapa.CPLD.LFMXO5_15D_mb_evt1\",\n\"CompatibleHardware\": \"com.meta.Hardware.Anacapa.VR.MP2869_pvddcr_cpu0_p0\",\n\"CompatibleHardware\": \"com.meta.Hardware.Anacapa.VR.MP29612_pvddcr_cpu1_p0\",\n\"CompatibleHardware\": \"com.meta.Hardware.Anacapa.VR.MP29612_pvddcr_soc_p0\",\n```\n\nSo as a result we would be making platform specific lookup tables in the reactor or do string manipulations to extract something from the compatible string which could have been a separate configuration property (avoiding the need for string manipulations)\n\nNot saying it can\u0027t be done but having a separate property to cover the specific use-case (how to query the version) would be simpler.",
+      "parentUuid": "a93e42c2_36b9dbce",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 36
+      },
+      "revId": "7ededf61f85edc96ebb92629c6e4b031ba5d8eea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "629c6caf_73c73041",
         "filename": "schemas/firmware.json",
         "patchSetId": 2
