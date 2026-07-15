@@ -1422,6 +1422,7 @@
             "ICoefficient": -0.5,
             "ILimitMax": 100,
             "ILimitMin": 0,
+            "InputUnavailableAsFailed": false,
             "Inputs": [
                 "MB_CPU_DIMM_A0_TEMP_C",
                 "MB_CPU_DIMM_A1_TEMP_C",
@@ -1458,7 +1459,7 @@
             "AccumulateSetPoint": false,
             "CycleIntervalTimeMS": 1000,
             "FailSafePercent": 100.0,
-            "MinThermalOutput": 15.0,
+            "MinThermalOutput": 30.0,
             "Name": "Zone 0",
             "Type": "Pid.Zone",
             "UpdateThermalsTimeMS": 1000,
@@ -1938,6 +1939,7 @@
         },
         {
             "Class": "temp",
+            "InputUnavailableAsFailed": false,
             "Inputs": [
                 "MB_CPU_DIMM_A0_TEMP_C",
                 "MB_CPU_DIMM_A1_TEMP_C",
