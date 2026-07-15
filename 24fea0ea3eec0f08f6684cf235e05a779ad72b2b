@@ -16,6 +16,24 @@
       "message": "Is there a corresponding dbus-sensors commit yet?",
       "revId": "24fea0ea3eec0f08f6684cf235e05a779ad72b2b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be0d5901_ce9c4d55",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002071
+      },
+      "writtenOn": "2026-07-15T13:37:18Z",
+      "side": 1,
+      "message": "No need for a modification in dbus-sensors, the code to handle this is already there. \n\nSee https://github.com/openbmc/dbus-sensors/blob/e09c58c3a6949f58091f24a59883f93932552c72/src/Thresholds.cpp#L56",
+      "parentUuid": "b51cbcb0_351e763a",
+      "revId": "24fea0ea3eec0f08f6684cf235e05a779ad72b2b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
