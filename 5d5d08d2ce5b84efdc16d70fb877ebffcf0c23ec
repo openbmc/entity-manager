@@ -16,6 +16,24 @@
       "message": "Is there a reason we\u0027re ending up with fan control information on the DC-SCM for sensors that are on the MB?",
       "revId": "5d5d08d2ce5b84efdc16d70fb877ebffcf0c23ec",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "170dd4eb_c6f25723",
+        "filename": "configurations/meta/rainier/rainier_scm_2600.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1002705
+      },
+      "writtenOn": "2026-07-15T07:17:29Z",
+      "side": 1,
+      "message": "This follows the approach agreed with the Yosemite V5 team. The PDB is shared across platforms, while the MB and SCM are platform-specific. Therefore, only PDB-related FSC entries remain in the PDB config, and the other platform-specific entries, including those for MB sensors, are kept in the SCM config. This is consistent with the YV5 change https://gerrit.openbmc.org/c/openbmc/entity-manager/+/90794 .",
+      "parentUuid": "3ae4b9cb_dbbd1f3e",
+      "revId": "5d5d08d2ce5b84efdc16d70fb877ebffcf0c23ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
