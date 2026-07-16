@@ -266,6 +266,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4f75eb0a_95b70c2c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-07-16T02:41:22Z",
+      "side": 1,
+      "message": "\u003e @Kyle.Hsieh@quantatw.com We don\u0027t need IntelSPIFlash. You can change it to IntelHostSPIFlash. I don\u0027t see anyone using it in EM Configs. But you will need to update it in backend where the right tools get selected.\n\nI have updated the patchset accordingly:\n1. Replaced `IntelSPIFlash` with `IntelHostSPIFlash` in the schema.\n2. Updated all existing configurations that used `SPIFlash` to use `HostSPIFlash`.",
+      "parentUuid": "f5ec0341_9214fb7b",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 36
+      },
+      "revId": "7ededf61f85edc96ebb92629c6e4b031ba5d8eea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "629c6caf_73c73041",
         "filename": "schemas/firmware.json",
         "patchSetId": 2

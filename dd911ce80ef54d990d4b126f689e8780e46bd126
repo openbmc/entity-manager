@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2553eb7_17216c36",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-07-16T02:41:22Z",
+      "side": 1,
+      "message": "The generic SPIFlash type is too broad because a system can have multiple different SPI devices that require different update or version get behaviors.\n\nBy adopting a \u003cVendor\u003e\u003cChip/Device\u003e naming pattern—similar to how CPLDs are currently handled in EM—we improve scalability and maintainability. This ensures the backend can easily differentiate and scale for future SPI devices.",
+      "parentUuid": "8bc869c8_bce7266d",
+      "range": {
+        "startLine": 8,
+        "startChar": 1,
+        "endLine": 11,
+        "endChar": 41
+      },
+      "revId": "dd911ce80ef54d990d4b126f689e8780e46bd126",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "47935f7e_4a3ac548",
@@ -60,6 +84,48 @@
       "writtenOn": "2026-07-15T17:39:48Z",
       "side": 1,
       "message": "Should be IntelHostSPIFlash, HostSPIFlash\n\nwhere Intel one can help to cover the right backend selections as before and HostSPIFlash as an exception (covers rest).",
+      "revId": "dd911ce80ef54d990d4b126f689e8780e46bd126",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4ded7ab_0e69791c",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-07-16T02:41:22Z",
+      "side": 1,
+      "message": "Done, I\u0027ve adjust to `IntelHostSPIFlash` and `HostSPIFlash`",
+      "parentUuid": "ad32f999_5122110a",
+      "revId": "dd911ce80ef54d990d4b126f689e8780e46bd126",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e2456f1_3700acf1",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-07-16T02:41:22Z",
+      "side": 1,
+      "message": "To clarify the behavior: `IntelHostSPIFlash` does not do a simple full chip overwrite. It maps to `flashrom` in the backend, which handles the Intel Flash Descriptor and specific regions. The generic `HostSPIFlash` maps to `flashcp`. Therefore, the \"Intel\" prefix is functionally required right now to select the correct backend tool.\n\nFurthermore, adopting the `\u003cVendor\u003e\u003cChip/Device\u003e` pattern accommodates more than just the flashing method. A major difference also lies in the reading mechanisms. The backend needs to cleanly differentiate how to read the version from a Host BIOS versus how to interact with a peripheral device.",
+      "parentUuid": "47935f7e_4a3ac548",
+      "range": {
+        "startLine": 84,
+        "startChar": 47,
+        "endLine": 84,
+        "endChar": 64
+      },
       "revId": "dd911ce80ef54d990d4b126f689e8780e46bd126",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
