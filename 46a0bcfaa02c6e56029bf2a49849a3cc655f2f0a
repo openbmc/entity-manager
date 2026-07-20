@@ -22,6 +22,30 @@
       },
       "revId": "46a0bcfaa02c6e56029bf2a49849a3cc655f2f0a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4699b856_f5248549",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000416
+      },
+      "writtenOn": "2026-07-20T07:33:52Z",
+      "side": 1,
+      "message": "So your specific devices are programmed to provide hwmon sensors? What about ones that aren\u0027t? \n\n[ANS] it is a CPLD device which defined registers to control Fan device via pwm/tacho ports. BMC read/write those registers to control Fan. \"BMC \u003c-i2c-\u003e CPLD \u003c-\u003e Fans\"\n \nHow can there be a hwmon driver in the kernel for an FPGA that is guaranteed to work if someone isn\u0027t using your image?\n\n[ANS] If user implement this kernel driver and CPLD is located on i2c-XX/0xXX, he/she can guarantee to work by manual command in their BMC console\n\n1. echo lcmx03lf 0xXX \u003e /sys/bus/i2c/devices/i2c-XX/new_device\n2. ls -l /sys/bus/i2c/devices/XX-00XX\n3. cat /sys/bus/i2c/devices/XX-00XX/hwmon/hwmon*/fan1_input   # tach\n4. cat /sys/bus/i2c/devices/XX-00XX/hwmon/hwmon*/pwm1",
+      "parentUuid": "cac42d6f_d08f3bce",
+      "range": {
+        "startLine": 9,
+        "startChar": 4,
+        "endLine": 11,
+        "endChar": 70
+      },
+      "revId": "46a0bcfaa02c6e56029bf2a49849a3cc655f2f0a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
