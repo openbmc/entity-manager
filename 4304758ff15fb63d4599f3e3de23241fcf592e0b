@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61fdf86b_0bd50da6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-07-21T10:27:24Z",
+      "side": 1,
+      "message": "Done. Split into two patches: this one now only extracts parseProbeCommand from run(), and restorePersistedConfigurations is extracted separately in https://gerrit.openbmc.org/c/openbmc/entity-manager/+/92550.",
+      "parentUuid": "8c00b1f9_2d798860",
+      "range": {
+        "startLine": 9,
+        "startChar": 21,
+        "endLine": 11,
+        "endChar": 38
+      },
+      "revId": "4304758ff15fb63d4599f3e3de23241fcf592e0b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7ad6c5c2_0221c37c",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-07-21T08:12:01Z",
       "side": 1,
       "message": "nit: looks ok as is, but can we use an empty `std::vector` as the error condition?\n\nAlthough the schema permits it, i assume that\u0027s an error in the schema that the probe array can be empty.\n\nUsing an empty vector as the error condition would make this code more compact and less variables.\n\nMight make sense to fixup the schema aswell\n\n(see https://json-schema.org/draft/2020-12/json-schema-validation#name-minitems)",
+      "range": {
+        "startLine": 773,
+        "startChar": 8,
+        "endLine": 779,
+        "endChar": 66
+      },
+      "revId": "4304758ff15fb63d4599f3e3de23241fcf592e0b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b02483e_1e7c5bb3",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 779,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-07-21T10:27:24Z",
+      "side": 1,
+      "message": "Done and thanks for the info.",
+      "parentUuid": "7ad6c5c2_0221c37c",
       "range": {
         "startLine": 773,
         "startChar": 8,
