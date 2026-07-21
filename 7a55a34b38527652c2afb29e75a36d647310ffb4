@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36e49a60_40a04fb7",
+        "filename": "docs/platform_configuration.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-21T13:04:06Z",
+      "side": 1,
+      "message": "Being able to find an object path from `Name` property presumes knowing the  implementation details of EM object path encoding.\n\nTraditionally EM has created associations between the inventory items it creates to help other reactors understand those relationships and locate other D-Bus objects.\n\nThat is the generic mechanism, why does it not work in this case?\n\nThis is not intended to be blocking comment but rather i would like to understand why it cannot be done with associations.",
+      "range": {
+        "startLine": 34,
+        "startChar": 60,
+        "endLine": 35,
+        "endChar": 58
+      },
+      "revId": "7a55a34b38527652c2afb29e75a36d647310ffb4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
