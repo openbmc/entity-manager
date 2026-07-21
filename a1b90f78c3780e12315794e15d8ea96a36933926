@@ -89,6 +89,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "13f30a4d_e281324b",
+        "filename": "platform_configurations/nvidia/mgx_connectx8_supernic_switch_server.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-07-21T10:33:08Z",
+      "side": 1,
+      "message": "Today each referenced board (GPU or switch) exposes exactly one NvidiaMctpVdm config, so dbus-sensors resolves it unambiguously by board name and a plain-string Board is sufficient. If a board ever needs multiple NvidiaMctpVdm configs, we\u0027ll switch Board (and BridgedEndpoints) to an {Entity, Name} object and update dbus-sensors to select the config by Name instead of taking the first match.",
+      "parentUuid": "e8931720_3b87e70b",
+      "revId": "a1b90f78c3780e12315794e15d8ea96a36933926",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "65526f34_8f9cefaa",
@@ -174,6 +192,30 @@
       "side": 1,
       "message": "What if we make Board property an array that lists all supported Entities RTX6000, RTX5000 etc ?",
       "parentUuid": "f35b973a_a307f425",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 55
+      },
+      "revId": "a1b90f78c3780e12315794e15d8ea96a36933926",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd0e8237_6de49e02",
+        "filename": "platform_configurations/nvidia/mgx_connectx8_supernic_switch_server.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-07-21T10:33:08Z",
+      "side": 1,
+      "message": "Thanks. Two parts:\n\nDocumentation. Board is now defined in schemas/platform/mctp.json and documented in docs/platform_configuration.md. In short it names the board inventory object this MCTP-over-USB device is associated with; consumers (dbus-sensors) use it to resolve that board\u0027s NvidiaMctpVdm configuration and associate the device\u0027s sensors with the correct board/chassis. And yes — the referenced board is a FOUND(...) precondition in the platform Probe (e.g. FOUND(\u0027Nvidia RTX PRO 6000 Blackwell 1\u0027)), so it does appear in the probe.\n\nPluggability / RTX5000. Today this config assumes an all-RTX6000 population. rtx6000_pro.json probes on BOARD_PRODUCT_NAME: \u0027RTXPRO6000Blackwell...\u0027, so an RTX5000 in a slot would not produce a ...Blackwell N board. The platform Probe AND\u0027s FOUND(\u0027...Blackwell 1\u0027..\u00278\u0027), so that one missing board makes the whole platform config fail to match and nothing is exposed — i.e. mixed / non-RTX6000 SKUs are not handled yet. Making the SMA→board association SKU-agnostic — binding it to the physical slot/location instead of a hard-coded board name, or Board as an array of supported entities (per Harshit\u0027s suggestion) — is a larger design change I\u0027d prefer to land as a follow-up rather than fold into this config commit. Happy to align on the preferred direction first.",
+      "parentUuid": "0a4c6ad9_27d061bc",
       "range": {
         "startLine": 36,
         "startChar": 0,
