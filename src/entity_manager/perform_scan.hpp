@@ -11,6 +11,7 @@
 #include <flat_map>
 #include <functional>
 #include <list>
+#include <set>
 #include <vector>
 
 namespace scan
@@ -39,6 +40,10 @@ struct PerformScan final : std::enable_shared_from_this<PerformScan>
     std::vector<std::string> passedProbes;
 
   private:
+    void restorePersistedConfigurations(
+        FoundDevices& foundDevices, const std::string& probeName,
+        std::set<nlohmann::json>& usedNames, std::list<size_t>& indexes);
+
     nlohmann::json& _missingConfigurations;
     std::vector<nlohmann::json> _configurations;
     std::function<void()> _callback;
