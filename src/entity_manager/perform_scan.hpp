@@ -54,6 +54,11 @@ namespace detail
 std::vector<std::string> collectConfiguredNames(
     const nlohmann::json& systemConfiguration);
 
+// Parse a config "Probe" field (an array of statements, or a single statement
+// string) into a list of probe statements. Returns an empty vector on error (a
+// non-string statement); a valid probe is never empty.
+std::vector<std::string> parseProbeCommand(const nlohmann::json& probeField);
+
 void pruneMissingByName(nlohmann::json& missingConfigurations,
                         const std::vector<std::string>& names);
 } // namespace detail
