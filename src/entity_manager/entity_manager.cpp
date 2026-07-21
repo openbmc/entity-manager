@@ -165,20 +165,18 @@ void EntityManager::postBoardToDBus(
             sdbusplus::common::xyz::openbmc_project::inventory::Item::interface,
             boardNameOrig);
 
+    dbus_interface.createAddObjectMethod(jsonPointerPath, boardPath,
+                                         systemConfiguration, boardNameOrig);
+
+    std::string jsonPointerPath1 = jsonPointerPath;
+    jsonPointerPath += "/";
+
+    std::shared_ptr<sdbusplus::asio::dbus_interface> boardIface;
     const std::string invItemIntf = std::format(
         "{}.{}",
         sdbusplus::common::xyz::openbmc_project::inventory::Item::interface,
         boardType);
 
-    std::shared_ptr<sdbusplus::asio::dbus_interface> boardIface =
-        dbus_interface.createInterface(boardPath, invItemIntf, boardNameOrig);
-
-    dbus_interface.createAddObjectMethod(jsonPointerPath, boardPath,
-                                         systemConfiguration, boardNameOrig);
-
-    dbus_interface.populateInterfaceFromJson(
-        systemConfiguration, jsonPointerPath, boardIface, boardValues);
-    jsonPointerPath += "/";
     // iterate through board properties
     for (const auto& [propName, propValue] : boardValues.items())
     {
@@ -187,11 +185,23 @@ void EntityManager::postBoardToDBus(
             std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
                 dbus_interface.createInterface(boardPath, propName,
                                                boardNameOrig);
+            if (propName == invItemIntf)
+            {
+                boardIface = iface;
+            }
 
             dbus_interface.populateInterfaceFromJson(
                 systemConfiguration, jsonPointerPath + propName, iface,
                 propValue);
         }
+    }
+
+    if (boardIface == nullptr)
+    {
+        boardIface = dbus_interface.createInterface(boardPath, invItemIntf,
+                                                    boardNameOrig);
+        dbus_interface.populateInterfaceFromJson(
+            systemConfiguration, jsonPointerPath1, boardIface, boardValues);
     }
 
     nlohmann::json::iterator exposes = boardValues.find("Exposes");
