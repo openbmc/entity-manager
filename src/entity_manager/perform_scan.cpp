@@ -671,6 +671,38 @@ std::vector<std::string> scan::detail::collectConfiguredNames(
     return names;
 }
 
+std::vector<std::string> scan::detail::parseProbeCommand(
+    const nlohmann::json& probeField)
+{
+    std::vector<std::string> probeCommand;
+    const nlohmann::json::array_t* probeCommandArrayPtr =
+        probeField.get_ptr<const nlohmann::json::array_t*>();
+    if (probeCommandArrayPtr != nullptr)
+    {
+        for (const auto& probe : *probeCommandArrayPtr)
+        {
+            const std::string* probeStr = probe.get_ptr<const std::string*>();
+            if (probeStr == nullptr)
+            {
+                lg2::error("Probe statement wasn't a string, can't parse");
+                return {};
+            }
+            probeCommand.push_back(*probeStr);
+        }
+    }
+    else
+    {
+        const std::string* probeStr = probeField.get_ptr<const std::string*>();
+        if (probeStr == nullptr)
+        {
+            lg2::error("Probe statement wasn't a string, can't parse");
+            return {};
+        }
+        probeCommand.push_back(*probeStr);
+    }
+    return probeCommand;
+}
+
 void scan::PerformScan::run()
 {
     // Seed from systemConfiguration so we don't prune configs that are
@@ -726,33 +758,11 @@ void scan::PerformScan::run()
         }
 
         nlohmann::json& recordRef = *it;
-        std::vector<std::string> probeCommand;
-        nlohmann::json::array_t* probeCommandArrayPtr =
-            findProbe->get_ptr<nlohmann::json::array_t*>();
-        if (probeCommandArrayPtr != nullptr)
+        std::vector<std::string> probeCommand =
+            detail::parseProbeCommand(*findProbe);
+        if (probeCommand.empty())
         {
-            for (const auto& probe : *probeCommandArrayPtr)
-            {
-                const std::string* probeStr =
-                    probe.get_ptr<const std::string*>();
-                if (probeStr == nullptr)
-                {
-                    lg2::error("Probe statement wasn't a string, can't parse");
-                    return;
-                }
-                probeCommand.push_back(*probeStr);
-            }
-        }
-        else
-        {
-            const std::string* probeStr =
-                findProbe->get_ptr<const std::string*>();
-            if (probeStr == nullptr)
-            {
-                lg2::error("Probe statement wasn't a string, can't parse");
-                return;
-            }
-            probeCommand.push_back(*probeStr);
+            return;
         }
 
         // store reference to this to children to makes sure we don't get
