@@ -8,7 +8,7 @@
         }
     ],
     "Name": "NVIDIA Cable Cartridge $bus + 1 % 2 * 2 + $address % 2",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': '18x1RU CBL Cartridge', 'BOARD_MANUFACTURER': 'Nvidia'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': '18x1RU CBL Cartridge', 'BOARD_MANUFACTURER': '(Nvidia|NVIDIA)'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
