@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e72b9ea0_0175ffad",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-21T08:27:39Z",
+      "side": 1,
+      "message": "`Name` is always a string. That should be checked at configuration parsing stage and then never again. It is also a required property on every config.\n\nSo these checks should be in the configuration parsing code (rejecting invalid configs) instead of duplicating them all throughout the code.",
+      "range": {
+        "startLine": 670,
+        "startChar": 5,
+        "endLine": 672,
+        "endChar": 58
+      },
+      "revId": "3c613b920e84720f78dca89b1c342abd6a69e5fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4709564d_5fde9c4f",
+        "filename": "test/entity_manager/test_perform_scan.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-21T08:27:39Z",
+      "side": 1,
+      "message": "This is somewhat misrepresenting system configuration. \n\nThe keys are all numbers (hashes?) at least on my systems.\n\nYou can see `/var/configuration/system.json` for how it looks like.",
+      "range": {
+        "startLine": 30,
+        "startChar": 10,
+        "endLine": 30,
+        "endChar": 14
+      },
+      "revId": "3c613b920e84720f78dca89b1c342abd6a69e5fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78652631_0b41de4f",
+        "filename": "test/entity_manager/test_perform_scan.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-21T08:27:39Z",
+      "side": 1,
+      "message": "Same comment i already wrote here https://gerrit.openbmc.org/c/openbmc/entity-manager/+/87463/comment/c23a91eb_6f0f4fb3/\n\nThere is no way that EM should ever get to the point of holding a system configuration where there is no `Name` property.\n\nIf there is away that can happen then IMO the proper fix would be to reject that configuration at the config parsing stage, and not to sprinkle checks for `Name` all throughout the codebase and start testing for it.\n\nIt\u0027s not a feature and not intended to be handled i guess so no need to test for it except when testing config parsing code.",
+      "range": {
+        "startLine": 44,
+        "startChar": 59,
+        "endLine": 48,
+        "endChar": 61
+      },
+      "revId": "3c613b920e84720f78dca89b1c342abd6a69e5fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
