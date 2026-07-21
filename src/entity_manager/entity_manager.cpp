@@ -165,19 +165,10 @@ void EntityManager::postBoardToDBus(
             sdbusplus::common::xyz::openbmc_project::inventory::Item::interface,
             boardNameOrig);
 
-    const std::string invItemIntf = std::format(
-        "{}.{}",
-        sdbusplus::common::xyz::openbmc_project::inventory::Item::interface,
-        boardType);
-
-    std::shared_ptr<sdbusplus::asio::dbus_interface> boardIface =
-        dbus_interface.createInterface(boardPath, invItemIntf, boardNameOrig);
-
     dbus_interface.createAddObjectMethod(jsonPointerPath, boardPath,
                                          systemConfiguration, boardNameOrig);
 
-    dbus_interface.populateInterfaceFromJson(
-        systemConfiguration, jsonPointerPath, boardIface, boardValues);
+    std::string jsonPointerPath1 = jsonPointerPath;
     jsonPointerPath += "/";
     // iterate through board properties
     for (const auto& [propName, propValue] : boardValues.items())
@@ -193,6 +184,17 @@ void EntityManager::postBoardToDBus(
                 propValue);
         }
     }
+
+    const std::string invItemIntf = std::format(
+        "{}.{}",
+        sdbusplus::common::xyz::openbmc_project::inventory::Item::interface,
+        boardType);
+
+    std::shared_ptr<sdbusplus::asio::dbus_interface> boardIface =
+        dbus_interface.createInterface(boardPath, invItemIntf, boardNameOrig);
+
+    dbus_interface.populateInterfaceFromJson(
+        systemConfiguration, jsonPointerPath1, boardIface, boardValues);
 
     nlohmann::json::iterator exposes = boardValues.find("Exposes");
     if (exposes == boardValues.end())
