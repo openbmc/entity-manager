@@ -3,6 +3,7 @@
 #include <nlohmann/json.hpp>
 
 #include <algorithm>
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -74,4 +75,30 @@ TEST(SeedAndPrune, RescanKeepsAppliedTemplatedConfig)
     EXPECT_EQ(missing.size(), 1);
     EXPECT_FALSE(missing.contains("gpu1"));
     EXPECT_TRUE(missing.contains("other"));
+}
+
+// parseProbeCommand turns an array "Probe" field into a list of statements.
+TEST(ParseProbeCommand, ParsesArrayOfStrings)
+{
+    json probe = json::array({"FOUND('A')", "FOUND('B')"});
+    const std::optional<std::vector<std::string>> expected =
+        std::vector<std::string>{"FOUND('A')", "FOUND('B')"};
+    EXPECT_EQ(scan::detail::parseProbeCommand(probe), expected);
+}
+
+// A single-string "Probe" field yields a one-element list.
+TEST(ParseProbeCommand, ParsesSingleString)
+{
+    json probe = "TRUE";
+    const std::optional<std::vector<std::string>> expected =
+        std::vector<std::string>{"TRUE"};
+    EXPECT_EQ(scan::detail::parseProbeCommand(probe), expected);
+}
+
+// A non-string statement in the array is rejected (nullopt).
+TEST(ParseProbeCommand, ReturnsNulloptOnNonStringElement)
+{
+    json probe = json::array({"FOUND('A')", 42});
+    auto result = scan::detail::parseProbeCommand(probe);
+    EXPECT_FALSE(result.has_value());
 }

@@ -481,19 +481,12 @@ static void applyTemplateAndExposeActions(
     }
 };
 
-void scan::PerformScan::updateSystemConfiguration(
-    const nlohmann::json& recordRef, const std::string& probeName,
-    FoundDevices& foundDevices)
+void scan::PerformScan::restorePersistedConfigurations(
+    FoundDevices& foundDevices, const std::string& probeName,
+    std::set<nlohmann::json>& usedNames, std::list<size_t>& indexes)
 {
-    _passed = true;
-    passedProbes.push_back(probeName);
-
-    std::set<nlohmann::json> usedNames;
-    std::list<size_t> indexes(foundDevices.size());
-    std::iota(indexes.begin(), indexes.end(), 1);
-
-    // copy over persisted configurations and make sure we remove
-    // indexes that are already used
+    // Copy over persisted configurations and make sure we remove indexes
+    // that are already used.
     for (auto itr = foundDevices.begin(); itr != foundDevices.end();)
     {
         std::string recordName = getRecordName(itr->interface, probeName);
@@ -514,11 +507,24 @@ void scan::PerformScan::updateSystemConfiguration(
         }
         _missingConfigurations.erase(recordName);
 
-        // We've processed the device, remove it and advance the
-        // iterator
+        // We've processed the device, remove it and advance the iterator.
         itr = foundDevices.erase(itr);
         recordDiscoveredIdentifiers(usedNames, indexes, probeName, *record);
     }
+}
+
+void scan::PerformScan::updateSystemConfiguration(
+    const nlohmann::json& recordRef, const std::string& probeName,
+    FoundDevices& foundDevices)
+{
+    _passed = true;
+    passedProbes.push_back(probeName);
+
+    std::set<nlohmann::json> usedNames;
+    std::list<size_t> indexes(foundDevices.size());
+    std::iota(indexes.begin(), indexes.end(), 1);
+
+    restorePersistedConfigurations(foundDevices, probeName, usedNames, indexes);
 
     std::optional<std::string> replaceStr;
 
@@ -677,6 +683,38 @@ std::vector<std::string> scan::detail::collectConfiguredNames(
     return names;
 }
 
+std::optional<std::vector<std::string>> scan::detail::parseProbeCommand(
+    const nlohmann::json& probeField)
+{
+    std::vector<std::string> probeCommand;
+    const nlohmann::json::array_t* probeCommandArrayPtr =
+        probeField.get_ptr<const nlohmann::json::array_t*>();
+    if (probeCommandArrayPtr != nullptr)
+    {
+        for (const auto& probe : *probeCommandArrayPtr)
+        {
+            const std::string* probeStr = probe.get_ptr<const std::string*>();
+            if (probeStr == nullptr)
+            {
+                lg2::error("Probe statement wasn't a string, can't parse");
+                return std::nullopt;
+            }
+            probeCommand.push_back(*probeStr);
+        }
+    }
+    else
+    {
+        const std::string* probeStr = probeField.get_ptr<const std::string*>();
+        if (probeStr == nullptr)
+        {
+            lg2::error("Probe statement wasn't a string, can't parse");
+            return std::nullopt;
+        }
+        probeCommand.push_back(*probeStr);
+    }
+    return probeCommand;
+}
+
 void scan::PerformScan::run()
 {
     // Seed from systemConfiguration so we don't prune configs that are
@@ -732,34 +770,13 @@ void scan::PerformScan::run()
         }
 
         nlohmann::json& recordRef = *it;
-        std::vector<std::string> probeCommand;
-        nlohmann::json::array_t* probeCommandArrayPtr =
-            findProbe->get_ptr<nlohmann::json::array_t*>();
-        if (probeCommandArrayPtr != nullptr)
+        std::optional<std::vector<std::string>> probeCommandOpt =
+            detail::parseProbeCommand(*findProbe);
+        if (!probeCommandOpt)
         {
-            for (const auto& probe : *probeCommandArrayPtr)
-            {
-                const std::string* probeStr =
-                    probe.get_ptr<const std::string*>();
-                if (probeStr == nullptr)
-                {
-                    lg2::error("Probe statement wasn't a string, can't parse");
-                    return;
-                }
-                probeCommand.push_back(*probeStr);
-            }
+            return;
         }
-        else
-        {
-            const std::string* probeStr =
-                findProbe->get_ptr<const std::string*>();
-            if (probeStr == nullptr)
-            {
-                lg2::error("Probe statement wasn't a string, can't parse");
-                return;
-            }
-            probeCommand.push_back(*probeStr);
-        }
+        std::vector<std::string>& probeCommand = *probeCommandOpt;
 
         // store reference to this to children to makes sure we don't get
         // destroyed too early
