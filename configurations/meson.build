@@ -281,6 +281,7 @@ configs = [
     'meta/yv4/yosemite4_sentineldome_t2.json',
     'meta/yv4/yosemite4_sentineldome_t2_retimer.json',
     'meta/yv4/yosemite4_wailuafalls.json',
+    'meta/yv4/yosemite4_wailuafalls_without_asic.json',
     'meta/yv4/yosemite4n.json',
     'meta/yv5/yosemite5_1kw_paddle_board_hsc_mps.json',
     'meta/yv5/yosemite5_1kw_paddle_board_hsc_rds.json',
