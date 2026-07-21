@@ -481,19 +481,12 @@ static void applyTemplateAndExposeActions(
     }
 };
 
-void scan::PerformScan::updateSystemConfiguration(
-    const nlohmann::json& recordRef, const std::string& probeName,
-    FoundDevices& foundDevices)
+void scan::PerformScan::restorePersistedConfigurations(
+    FoundDevices& foundDevices, const std::string& probeName,
+    std::set<nlohmann::json>& usedNames, std::list<size_t>& indexes)
 {
-    _passed = true;
-    passedProbes.push_back(probeName);
-
-    std::set<nlohmann::json> usedNames;
-    std::list<size_t> indexes(foundDevices.size());
-    std::iota(indexes.begin(), indexes.end(), 1);
-
-    // copy over persisted configurations and make sure we remove
-    // indexes that are already used
+    // Copy over persisted configurations and make sure we remove indexes
+    // that are already used.
     for (auto itr = foundDevices.begin(); itr != foundDevices.end();)
     {
         std::string recordName = getRecordName(itr->interface, probeName);
@@ -514,11 +507,24 @@ void scan::PerformScan::updateSystemConfiguration(
         }
         _missingConfigurations.erase(recordName);
 
-        // We've processed the device, remove it and advance the
-        // iterator
+        // We've processed the device, remove it and advance the iterator.
         itr = foundDevices.erase(itr);
         recordDiscoveredIdentifiers(usedNames, indexes, probeName, *record);
     }
+}
+
+void scan::PerformScan::updateSystemConfiguration(
+    const nlohmann::json& recordRef, const std::string& probeName,
+    FoundDevices& foundDevices)
+{
+    _passed = true;
+    passedProbes.push_back(probeName);
+
+    std::set<nlohmann::json> usedNames;
+    std::list<size_t> indexes(foundDevices.size());
+    std::iota(indexes.begin(), indexes.end(), 1);
+
+    restorePersistedConfigurations(foundDevices, probeName, usedNames, indexes);
 
     std::optional<std::string> replaceStr;
 
