@@ -287,6 +287,24 @@
       "parentUuid": "3e81117b_c842f723",
       "revId": "ad18b0e975b0f8a6bbbe3892702e4b307fc8a0f3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5eec12e_399ab6fa",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 22
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-21T14:30:15Z",
+      "side": 1,
+      "message": "Since the broken out change is merged now, only this function here is added now and also added some tests for it. It is more or less the same as the one taking json as input but gets separate tests for consistency.\n\nLet me know in case you would rather have a template since the other function looks very similar\n\n```\n  std::optional\u003cstd::string\u003e templateCharReplace(\n      nlohmann::json\u0026 value, const DBusObject\u0026 object, const size_t index,\n      const std::optional\u003cstd::string\u003e\u0026 replaceStr, bool handleLeftOver)\n  {\n      for (const auto\u0026 [_, interface] : object)\n      {   \n          auto ret \u003d templateCharReplace(value, interface, index, replaceStr);\n          if (ret)\n          {   \n              if (handleLeftOver)\n              {   \n                  handleLeftOverTemplateVars(value);\n              }   \n              return ret;\n          }   \n      }   \n      if (handleLeftOver)\n      {   \n          handleLeftOverTemplateVars(value);\n      }   \n      return std::nullopt;\n  }\n```",
+      "parentUuid": "95cee290_4906133f",
+      "revId": "ad18b0e975b0f8a6bbbe3892702e4b307fc8a0f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
