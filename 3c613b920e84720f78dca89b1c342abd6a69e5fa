@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5774ef21_847f8233",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-07-21T10:23:30Z",
+      "side": 1,
+      "message": "Done. Removed the Name/is_string checks from `collectConfiguredNames` and `pruneMissingByName`; they now assume Name is the required string it\u0027s guaranteed to be.",
+      "parentUuid": "e72b9ea0_0175ffad",
+      "range": {
+        "startLine": 670,
+        "startChar": 5,
+        "endLine": 672,
+        "endChar": 58
+      },
+      "revId": "3c613b920e84720f78dca89b1c342abd6a69e5fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4709564d_5fde9c4f",
@@ -47,6 +71,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "72c62cfe_e28399d7",
+        "filename": "test/entity_manager/test_perform_scan.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-07-21T10:23:30Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "4709564d_5fde9c4f",
+      "range": {
+        "startLine": 30,
+        "startChar": 10,
+        "endLine": 30,
+        "endChar": 14
+      },
+      "revId": "3c613b920e84720f78dca89b1c342abd6a69e5fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "78652631_0b41de4f",
@@ -60,6 +108,30 @@
       "writtenOn": "2026-07-21T08:27:39Z",
       "side": 1,
       "message": "Same comment i already wrote here https://gerrit.openbmc.org/c/openbmc/entity-manager/+/87463/comment/c23a91eb_6f0f4fb3/\n\nThere is no way that EM should ever get to the point of holding a system configuration where there is no `Name` property.\n\nIf there is away that can happen then IMO the proper fix would be to reject that configuration at the config parsing stage, and not to sprinkle checks for `Name` all throughout the codebase and start testing for it.\n\nIt\u0027s not a feature and not intended to be handled i guess so no need to test for it except when testing config parsing code.",
+      "range": {
+        "startLine": 44,
+        "startChar": 59,
+        "endLine": 48,
+        "endChar": 61
+      },
+      "revId": "3c613b920e84720f78dca89b1c342abd6a69e5fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d63fe1e_815e733c",
+        "filename": "test/entity_manager/test_perform_scan.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-07-21T10:23:30Z",
+      "side": 1,
+      "message": "Done. Dropped the missing-Name test; that case shouldn\u0027t occur and belongs to config-parsing validation, not here.",
+      "parentUuid": "78652631_0b41de4f",
       "range": {
         "startLine": 44,
         "startChar": 59,
