@@ -393,13 +393,6 @@
                 {
                     "Direction": "greater than",
                     "Label": "temp1",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 100
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "temp1",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 110
@@ -410,13 +403,6 @@
                     "Name": "upper non recoverable",
                     "Severity": 4,
                     "Value": 125
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "temp2",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 100
                 },
                 {
                     "Direction": "greater than",
@@ -565,13 +551,6 @@
                 {
                     "Direction": "greater than",
                     "Label": "temp1",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 100
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "temp1",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 110
@@ -695,13 +674,6 @@
                 {
                     "Direction": "greater than",
                     "Label": "temp1",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 100
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "temp1",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 110
@@ -712,13 +684,6 @@
                     "Name": "upper non recoverable",
                     "Severity": 4,
                     "Value": 125
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "temp2",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 100
                 },
                 {
                     "Direction": "greater than",
@@ -904,14 +869,14 @@
                     "Label": "temp1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 125
+                    "Value": 110
                 },
                 {
                     "Direction": "greater than",
                     "Label": "temp1",
                     "Name": "upper non recoverable",
                     "Severity": 4,
-                    "Value": 140
+                    "Value": 125
                 },
                 {
                     "Direction": "less than",
@@ -1049,14 +1014,14 @@
                     "Label": "temp1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 125
+                    "Value": 110
                 },
                 {
                     "Direction": "greater than",
                     "Label": "temp1",
                     "Name": "upper non recoverable",
                     "Severity": 4,
-                    "Value": 140
+                    "Value": 125
                 },
                 {
                     "Direction": "less than",
@@ -1915,7 +1880,13 @@
                     "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 94
+                    "Value": 90
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 95
                 }
             ],
             "Type": "SBTSI"
