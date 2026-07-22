@@ -46,6 +46,7 @@ std::optional<std::string> gzipInflate(std::span<uint8_t> compressedBytes)
         }
         if (err != Z_OK)
         {
+	    inflateEnd(&strm);
             return std::nullopt;
         }
     }
