@@ -47,6 +47,7 @@ configs = [
     'foxconn-industrial-internet/mori_motherboard.json',
     'gigabyte/msx4_mg1.json',
     'gospower/g1136-1300wna_psu.json',
+    'hpe/dl360g11_baseboard.json',
     'hpe/dl360g12_baseboard.json',
     'ibm/balcones.json',
     'ibm/bellavista.json',
