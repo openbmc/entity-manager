@@ -47,4 +47,12 @@ struct PerformScan final : std::enable_shared_from_this<PerformScan>
     boost::asio::io_context& io;
 };
 
+namespace detail
+{
+// Parse a config "Probe" field (an array of statements, or a single statement
+// string) into a list of probe statements. Returns an empty vector on error (a
+// non-string statement); a valid probe is never empty.
+std::vector<std::string> parseProbeCommand(const nlohmann::json& probeField);
+} // namespace detail
+
 } // namespace scan
