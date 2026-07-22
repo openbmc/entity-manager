@@ -68,6 +68,9 @@ static std::flat_map<std::pair<size_t, size_t>,
                      std::shared_ptr<sdbusplus::asio::dbus_interface>>
     foundDevices;
 
+static std::flat_map<std::pair<size_t, size_t>, std::vector<uint8_t>>
+    publishedFru;
+
 static std::flat_map<size_t, std::flat_set<size_t>> failedAddresses;
 static std::flat_map<size_t, std::flat_set<size_t>> fruAddresses;
 
@@ -1225,30 +1228,69 @@ void rescanOneBus(
         i2cBuses, busmap, powerIsOn, objServer, addressBlocklist,
         [busNum, &busmap, &dbusInterfaceMap, &unknownBusObjectCount, &powerIsOn,
          &objServer, &addressBlocklist]() {
-            for (auto busIface = dbusInterfaceMap.begin();
-                 busIface != dbusInterfaceMap.end();)
+            auto found = busmap.find(busNum);
+            DeviceMap* devs =
+                (found != busmap.end()) ? found->second.get() : nullptr;
+
+            std::set<size_t> nowPresent;
+            if (devs != nullptr)
             {
-                if (busIface->first.first == static_cast<size_t>(busNum))
+                for (auto device : *devs)
                 {
-                    objServer.remove_interface(busIface->second);
-                    busIface = dbusInterfaceMap.erase(busIface);
+                    nowPresent.emplace(device.first);
+                }
+            }
+
+            for (auto it = dbusInterfaceMap.begin();
+                 it != dbusInterfaceMap.end();)
+            {
+                if (it->first.first == static_cast<size_t>(busNum) &&
+                    !nowPresent.contains(it->first.second))
+                {
+                    objServer.remove_interface(it->second);
+                    publishedFru.erase(it->first);
+                    it = dbusInterfaceMap.erase(it);
                 }
                 else
                 {
-                    busIface++;
+                    ++it;
                 }
             }
-            auto found = busmap.find(busNum);
-            if (found == busmap.end() || found->second == nullptr)
+
+            if (devs == nullptr)
             {
                 return;
             }
-            for (auto device : *(found->second))
+
+            for (auto device : *devs)
             {
+                std::pair<size_t, size_t> key(
+                    static_cast<size_t>(busNum),
+                    static_cast<size_t>(device.first));
+                auto cached = publishedFru.find(key);
+                if (cached != publishedFru.end() &&
+                    cached->second == device.second)
+                {
+                    continue;
+                }
+                auto old = dbusInterfaceMap.find(key);
+                if (old != dbusInterfaceMap.end())
+                {
+                    objServer.remove_interface(old->second);
+                    dbusInterfaceMap.erase(old);
+                }
                 addFruObjectToDbus(device.second, dbusInterfaceMap,
                                    static_cast<uint32_t>(busNum), device.first,
                                    unknownBusObjectCount, powerIsOn,
                                    addressBlocklist, objServer);
+                if (dbusInterfaceMap.contains(key))
+                {
+                    publishedFru[key] = device.second;
+                }
+                else
+                {
+                    publishedFru.erase(key);
+                }
             }
         });
     scan->run();
@@ -1303,14 +1345,6 @@ void rescanBusses(
 
         auto scan = std::make_shared<FindDevicesWithCallback>(
             i2cBuses, busmap, powerIsOn, objServer, addressBlocklist, [&]() {
-                for (auto busIface : dbusInterfaceMap)
-                {
-                    objServer.remove_interface(busIface.second);
-                }
-
-                dbusInterfaceMap.clear();
-                unknownBusObjectCount = 0;
-
                 // todo, get this from a more sensable place
                 std::vector<uint8_t> baseboardFRU;
                 if (readBaseboardFRU(baseboardFRU))
@@ -1320,14 +1354,61 @@ void rescanBusses(
                         busmap.try_emplace(0, std::make_shared<DeviceMap>());
                     bus0.first->second->emplace(0, baseboardFRU);
                 }
+
+                std::set<std::pair<size_t, size_t>> nowPresent;
                 for (auto devicemap : busmap)
                 {
                     for (auto device : *devicemap.second)
                     {
+                        nowPresent.emplace(devicemap.first, device.first);
+                    }
+                }
+
+                for (auto it = dbusInterfaceMap.begin();
+                     it != dbusInterfaceMap.end();)
+                {
+                    if (!nowPresent.contains(it->first))
+                    {
+                        objServer.remove_interface(it->second);
+                        publishedFru.erase(it->first);
+                        it = dbusInterfaceMap.erase(it);
+                    }
+                    else
+                    {
+                        ++it;
+                    }
+                }
+
+                for (auto devicemap : busmap)
+                {
+                    for (auto device : *devicemap.second)
+                    {
+                        std::pair<size_t, size_t> key(
+                            devicemap.first, static_cast<size_t>(device.first));
+                        auto cached = publishedFru.find(key);
+                        if (cached != publishedFru.end() &&
+                            cached->second == device.second)
+                        {
+                            continue;
+                        }
+                        auto old = dbusInterfaceMap.find(key);
+                        if (old != dbusInterfaceMap.end())
+                        {
+                            objServer.remove_interface(old->second);
+                            dbusInterfaceMap.erase(old);
+                        }
                         addFruObjectToDbus(device.second, dbusInterfaceMap,
                                            devicemap.first, device.first,
                                            unknownBusObjectCount, powerIsOn,
                                            addressBlocklist, objServer);
+                        if (dbusInterfaceMap.contains(key))
+                        {
+                            publishedFru[key] = device.second;
+                        }
+                        else
+                        {
+                            publishedFru.erase(key);
+                        }
                     }
                 }
             });
