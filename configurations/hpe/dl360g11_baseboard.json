@@ -1,0 +1,294 @@
+{
+    "Exposes": [
+        {
+            "Connector": {
+                "Name": "Fan Connector 1",
+                "Pwm": 0,
+                "Tachs": []
+            },
+            "Index": 0,
+            "Name": "Fan 1",
+            "Presence": {
+                "MonitorType": "Polling",
+                "PinName": "fan1-installed",
+                "Polarity": "High"
+            },
+            "Type": "HPEFan"
+        },
+        {
+            "Connector": {
+                "Name": "Fan Connector 2",
+                "Pwm": 1,
+                "Tachs": []
+            },
+            "Index": 1,
+            "Name": "Fan 2",
+            "Presence": {
+                "MonitorType": "Polling",
+                "PinName": "fan2-installed",
+                "Polarity": "High"
+            },
+            "Type": "HPEFan"
+        },
+        {
+            "Connector": {
+                "Name": "Fan Connector 3",
+                "Pwm": 2,
+                "Tachs": []
+            },
+            "Index": 3,
+            "Name": "Fan 3",
+            "Presence": {
+                "MonitorType": "Polling",
+                "PinName": "fan3-installed",
+                "Polarity": "High"
+            },
+            "Type": "HPEFan"
+        },
+        {
+            "Connector": {
+                "Name": "Fan Connector 4",
+                "Pwm": 3,
+                "Tachs": []
+            },
+            "Index": 3,
+            "Name": "Fan 4",
+            "Presence": {
+                "MonitorType": "Polling",
+                "PinName": "fan4-installed",
+                "Polarity": "High"
+            },
+            "Type": "HPEFan"
+        },
+        {
+            "Connector": {
+                "Name": "Fan Connector 5",
+                "Pwm": 4,
+                "Tachs": []
+            },
+            "Index": 4,
+            "Name": "Fan 5",
+            "Presence": {
+                "MonitorType": "Polling",
+                "PinName": "fan5-installed",
+                "Polarity": "High"
+            },
+            "Type": "HPEFan"
+        },
+        {
+            "Connector": {
+                "Name": "Fan Connector 6",
+                "Pwm": 5,
+                "Tachs": []
+            },
+            "Index": 5,
+            "Name": "Fan 6",
+            "Presence": {
+                "MonitorType": "Polling",
+                "PinName": "fan6-installed",
+                "Polarity": "High"
+            },
+            "Type": "HPEFan"
+        },
+        {
+            "Connector": {
+                "Name": "Fan Connector 7",
+                "Pwm": 6,
+                "Tachs": []
+            },
+            "Index": 6,
+            "Name": "Fan 7",
+            "Presence": {
+                "MonitorType": "Polling",
+                "PinName": "fan7-installed",
+                "Polarity": "High"
+            },
+            "Type": "HPEFan"
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 1,
+            "FFOffCoefficient": 0,
+            "ICoefficient": 0,
+            "ILimitMax": 0,
+            "ILimitMin": 0,
+            "Inputs": [
+                "Pwm 1",
+                "Pwm 2",
+                "Pwm 3",
+                "Pwm 4",
+                "Pwm 5",
+                "Pwm 6",
+                "Pwm 7"
+            ],
+            "Name": "Fan 1-7",
+            "NegativeHysteresis": 0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 10,
+            "Outputs": [
+                "Pwm 1",
+                "Pwm 2",
+                "Pwm 3",
+                "Pwm 4",
+                "Pwm 5",
+                "Pwm 6",
+                "Pwm 7"
+            ],
+            "PCoefficient": 0,
+            "PositiveHysteresis": 0,
+            "SlewNeg": -5,
+            "SlewPos": 5,
+            "Type": "Pid",
+            "Zones": [
+                "Zone 1"
+            ]
+        },
+        {
+            "FailSafePercent": 90,
+            "MinThermalOutput": 0,
+            "Name": "Zone 1",
+            "Type": "Pid.Zone"
+        },
+        {
+            "Name": "GenericPowerPort",
+            "PortType": "powered_by",
+            "Type": "Port"
+        },
+        {
+            "Name": "GenericContainPort",
+            "PortType": "containing",
+            "Type": "Port"
+        },
+        {
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.hpe.Hardware.ProLiantDL360G11.SPI.Host",
+                "VendorIANA": 47196
+            },
+            "MuxOutputs": [],
+            "Name": "UEFIPrimary",
+            "SPIControllerIndex": 1,
+            "SPIDeviceIndex": 1,
+            "Type": "SPIFlash"
+        },
+        {
+            "Class": "temp",
+            "IgnoreFailIfHostOff": true,
+            "Inputs": [
+                "Die CPU1"
+            ],
+            "Name": "Stepwise_CPU1",
+            "NegativeHysteresis": 1.0,
+            "Output": [
+                15.0,
+                25.0,
+                30.0,
+                45.0,
+                60.0,
+                70.0,
+                85.0,
+                100.0
+            ],
+            "PositiveHysteresis": 1.0,
+            "Reading": [
+                35.0,
+                40.0,
+                45.0,
+                55.0,
+                65.0,
+                75.0,
+                85.0,
+                95.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 1"
+            ]
+        },
+        {
+            "Class": "temp",
+            "IgnoreFailIfHostOff": true,
+            "InputUnavailableAsFailed": false,
+            "Inputs": [
+                "Die CPU2"
+            ],
+            "Name": "Stepwise_CPU2",
+            "NegativeHysteresis": 1.0,
+            "Output": [
+                15.0,
+                25.0,
+                30.0,
+                45.0,
+                60.0,
+                70.0,
+                85.0,
+                100.0
+            ],
+            "PositiveHysteresis": 1.0,
+            "Reading": [
+                35.0,
+                40.0,
+                45.0,
+                55.0,
+                65.0,
+                75.0,
+                85.0,
+                95.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 1"
+            ]
+        },
+        {
+            "Address": "0x30",
+            "Bus": 0,
+            "CpuID": 1,
+            "DtsCritOffset": -2,
+            "Name": "CPU 1",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "DIMM",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 99
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "DIMM",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 89
+                }
+            ],
+            "Type": "XeonCPU"
+        },
+        {
+            "Address": "0x31",
+            "Bus": 0,
+            "CpuID": 2,
+            "DtsCritOffset": -2,
+            "Name": "CPU 2",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "DIMM",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 99
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "DIMM",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 89
+                }
+            ],
+            "Type": "XeonCPU"
+        }
+    ],
+    "Name": "HPE ProLiant DL360 Gen11",
+    "Probe": "xyz.openbmc_project.Inventory.Decorator.Asset({'Model': 'HPE ProLiant DL360 Gen11'})",
+    "Type": "Chassis"
+}
