@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a68585f3_d2f00f22",
+        "filename": "schemas/global.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-22T10:14:15Z",
+      "side": 1,
+      "message": "my query: Why `PlatformExposes` and not just `Exposes` ?\n\nFrom looking at this patch and some patches down the relation chain i did not see any code doing special handling of these records depending on if they came from `Exposes` or `PlatformExposes`.\n\nIf there is no special handling required you could just change it to `Exposes` and avoid changing the code in lots of places to handle `PlatformExposes` key.",
+      "range": {
+        "startLine": 121,
+        "startChar": 17,
+        "endLine": 121,
+        "endChar": 32
+      },
+      "revId": "66540277c1d04deff48e2e929956d34e711237c3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e3f9152_2e134458",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-22T10:14:15Z",
+      "side": 1,
+      "message": "idea:\n\n```suggestion\n    const std::string exposesKey \u003d (boardType \u003d\u003d \"Platform\") ? \"PlatformExposes\" : \"Exposes\";\n```\n\nthen you can deleete the extra function",
+      "range": {
+        "startLine": 197,
+        "startChar": 35,
+        "endLine": 197,
+        "endChar": 72
+      },
+      "revId": "66540277c1d04deff48e2e929956d34e711237c3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
