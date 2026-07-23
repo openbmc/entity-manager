@@ -16,6 +16,24 @@
       "message": "```\n\u003e\u003e\u003e 800-714\n86\n```\n\nplease refer\n\nhttps://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#f3-keep-functions-short-and-simple\n\nas this function is already overly long and performing various nontrivial logic and nested loops.\n\nconcrete solution idea (to avoid non-constructive feedback):\n\n- break out the inner part of the loop starting line 732 or line 784 into a separate function \n  and rebase on that",
       "revId": "92a9df0630c72fdb70688922151700d7653a50c5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3483bf36_059978ff",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 714,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-07-23T15:09:58Z",
+      "side": 1,
+      "message": "Done in a separate follow-up, same as the earlier parseProbeCommand extraction https://gerrit.openbmc.org/c/openbmc/entity-manager/+/92665. \nOnce that merges I\u0027ll rebase this change on top so run() here is shorter.",
+      "parentUuid": "8205fcec_bd9e0ee9",
+      "revId": "92a9df0630c72fdb70688922151700d7653a50c5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
