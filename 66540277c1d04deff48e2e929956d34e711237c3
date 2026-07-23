@@ -48,6 +48,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "670ea012_cfcd40d2",
+        "filename": "schemas/global.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-23T12:36:23Z",
+      "side": 1,
+      "message": "Not sure what Matt thinks on this but from my perspective it would be simpler to go with `Exposes` instead of `PlatformExposes` to avoid adding extra code it various place that does not provide any functional benefit.\n\nAs you said the `\"Type\": \"Platform\"` already tells us that is a platform config and sufficient for schema validation to work.",
+      "parentUuid": "16934313_6a3a6a73",
+      "range": {
+        "startLine": 121,
+        "startChar": 17,
+        "endLine": 121,
+        "endChar": 32
+      },
+      "revId": "66540277c1d04deff48e2e929956d34e711237c3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e3f9152_2e134458",
