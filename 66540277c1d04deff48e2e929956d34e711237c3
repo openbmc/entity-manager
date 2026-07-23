@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "16934313_6a3a6a73",
+        "filename": "schemas/global.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-07-23T05:35:10Z",
+      "side": 1,
+      "message": "Our thinking here: the original reason for a separate key was schema isolation — to guarantee the regular Exposes schema (exposes_record.json, which carries many fields irrelevant to a platform) is never applied to platform records, only the platform schema.\n\nThat said, the isolation really comes from the Type discriminator rather than the key name (a Type: \"Platform\" config only matches EMPlatformConfig -\u003e platform schema, never EMConfig). So if you still think a single Exposes key is fine, we\u0027re happy to rename it and drop getExposesKey() / the autojson.py change",
+      "parentUuid": "a68585f3_d2f00f22",
+      "range": {
+        "startLine": 121,
+        "startChar": 17,
+        "endLine": 121,
+        "endChar": 32
+      },
+      "revId": "66540277c1d04deff48e2e929956d34e711237c3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e3f9152_2e134458",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-07-22T10:14:15Z",
       "side": 1,
       "message": "idea:\n\n```suggestion\n    const std::string exposesKey \u003d (boardType \u003d\u003d \"Platform\") ? \"PlatformExposes\" : \"Exposes\";\n```\n\nthen you can deleete the extra function",
+      "range": {
+        "startLine": 197,
+        "startChar": 35,
+        "endLine": 197,
+        "endChar": 72
+      },
+      "revId": "66540277c1d04deff48e2e929956d34e711237c3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "430bbae7_b58fa463",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-07-23T05:35:10Z",
+      "side": 1,
+      "message": "Holding this one until that\u0027s settled.",
+      "parentUuid": "4e3f9152_2e134458",
       "range": {
         "startLine": 197,
         "startChar": 35,
