@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39eafa69_ab324671",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-23T11:53:29Z",
+      "side": 1,
+      "message": "overall agree that this is an issue and we should not send `InterfacesAdded` / `InterfacesRemoved` when the eeprom content is unchanged.\n\nThanks for tackling this issue 👍",
+      "range": {
+        "startLine": 13,
+        "startChar": 1,
+        "endLine": 25,
+        "endChar": 24
+      },
+      "revId": "ca1b895d401bb811116c247ce43b7625f5a22d9c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebd55a2e_b3e43d24",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-23T11:53:29Z",
+      "side": 1,
+      "message": "nit: please add a comment as to what is the key and value of this map, i assume it\u0027s `{bus, address} -\u003e contents` ?",
+      "revId": "ca1b895d401bb811116c247ce43b7625f5a22d9c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf323abc_bfcb6451",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-23T11:53:29Z",
+      "side": 1,
+      "message": "Let\u0027s not add new mutable global variables.\n\nhttps://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#i2-avoid-non-const-global-variables\n\n\nexample solution ideas: (to avoid non-constructive feedback):\n\n- create the map in `main` function and pass references/shared_ptr to wherever needed.",
+      "revId": "ca1b895d401bb811116c247ce43b7625f5a22d9c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "444cb754_24e00bd6",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1231,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-23T11:53:29Z",
+      "side": 1,
+      "message": "please refer to\n\nhttps://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#f3-keep-functions-short-and-simple\n\n\nconcrete solution idea (to avoid non-constructive feedback):\n\n\nbreak out the inline lambda here into a named function in a separate patch and re-base this patch on that one.",
+      "revId": "ca1b895d401bb811116c247ce43b7625f5a22d9c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec123cd1_bd3ec776",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1358,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-23T11:53:29Z",
+      "side": 1,
+      "message": "please refer to \n\nhttps://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#f3-keep-functions-short-and-simple\n\nand avoid creating super long functions\n\nconcrete solution idea (to avoid non-constructive feedback):\n\nbreak out the inline lambda here into a named function in a separate patch and re-base this patch on that one.",
+      "revId": "ca1b895d401bb811116c247ce43b7625f5a22d9c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
