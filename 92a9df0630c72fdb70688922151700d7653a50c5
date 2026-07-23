@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8205fcec_bd9e0ee9",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 714,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-23T12:53:22Z",
+      "side": 1,
+      "message": "```\n\u003e\u003e\u003e 800-714\n86\n```\n\nplease refer\n\nhttps://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#f3-keep-functions-short-and-simple\n\nas this function is already overly long and performing various nontrivial logic and nested loops.\n\nconcrete solution idea (to avoid non-constructive feedback):\n\n- break out the inner part of the loop starting line 732 or line 784 into a separate function \n  and rebase on that",
+      "revId": "92a9df0630c72fdb70688922151700d7653a50c5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
