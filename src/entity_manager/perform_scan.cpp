@@ -672,6 +672,29 @@ std::vector<std::string> scan::detail::parseProbeCommand(
     return probeCommand;
 }
 
+// From a config's parsed probe statements, collect the D-Bus interface names
+// that need to be probed (discarding non-D-Bus probe types) and record that
+// this config's PerformProbe cares about each of them.
+static void collectDbusProbes(
+    const std::vector<std::string>& probeCommand,
+    const std::shared_ptr<probe::PerformProbe>& probePointer,
+    std::flat_set<std::string, std::less<>>& dbusProbeInterfaces,
+    std::vector<std::shared_ptr<probe::PerformProbe>>& dbusProbePointers)
+{
+    for (const std::string& probe : probeCommand)
+    {
+        if (probe::findProbeType(probe))
+        {
+            continue;
+        }
+        // syntax requires probe before first open brace
+        auto findStart = probe.find('(');
+        std::string interface = probe.substr(0, findStart);
+        dbusProbeInterfaces.emplace(interface);
+        dbusProbePointers.emplace_back(probePointer);
+    }
+}
+
 void scan::PerformScan::run()
 {
     std::flat_set<std::string, std::less<>> dbusProbeInterfaces;
@@ -729,18 +752,8 @@ void scan::PerformScan::run()
 
         // parse out dbus probes by discarding other probe types, store in a
         // map
-        for (const std::string& probe : probeCommand)
-        {
-            if (probe::findProbeType(probe))
-            {
-                continue;
-            }
-            // syntax requires probe before first open brace
-            auto findStart = probe.find('(');
-            std::string interface = probe.substr(0, findStart);
-            dbusProbeInterfaces.emplace(interface);
-            dbusProbePointers.emplace_back(probePointer);
-        }
+        collectDbusProbes(probeCommand, probePointer, dbusProbeInterfaces,
+                          dbusProbePointers);
         it++;
     }
 
