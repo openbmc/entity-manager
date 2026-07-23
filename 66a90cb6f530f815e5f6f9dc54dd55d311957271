@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9082fc5e_61f85cab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-23T09:54:57Z",
+      "side": 1,
+      "message": "Thanks for your input, where does it go then?\n\nHow do i configure the firmware updater to target the A/B partition of my host SPI flash ?",
+      "parentUuid": "41d0f958_5ed19d3d",
+      "revId": "66a90cb6f530f815e5f6f9dc54dd55d311957271",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6047621d_b6633e04",
         "filename": "schemas/firmware.json",
         "patchSetId": 2
@@ -31,6 +49,30 @@
       "writtenOn": "2026-07-22T18:44:47Z",
       "side": 1,
       "message": "This would be the name from device tree, which ties DTS details (system specific) into a system agnostic file.",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 18
+      },
+      "revId": "66a90cb6f530f815e5f6f9dc54dd55d311957271",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abecd348_420f2a5a",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-23T09:54:57Z",
+      "side": 1,
+      "message": "### DTS details are not necessarily system specific\n\nIn case of `.dtsi` they can describe hardware (such as the aspeed SoCs) which may be shared between various final `.dts` files.\n\nThe final `.dts` files may be more or less system specific, depending on who is maintaining them for which purpose and which part of it you are looking at.\n\nTo summarize:\n\n- `.dtsi` files usually cover shared hardware-specific details\n- `.dts` files are mostly hardware-specific\n- `.dts` files may contain system-specific details\n\n### e.g. EM baseboard configs already depend on DTS details\n\nAll baseboard configs which use non-templated `Bus` numbers in their configurations also rely on the DTS configuration of i2c buses not changing.\n\nFor example `SPIDeviceIndex` also matches DTS details in case the driver is already probed.\n\nTherefore many of those EM files are **directly coupled to the DTS details** and not agnostic.\n\nThe same goes for `BridgeGpio` and `MuxOutputs` and `PresencePinNames` which reference GPIO names that are often coming directly from the devicetree.\n\n### considering alternatives for configuring SPI flash partitions\n\nWhile the SPI flash usually exists as part of the baseboard, the partitioning used may depend on SoC logic (baseboard specific) and/or bootloader / host firmware logic (system / platform specific).\n\nSo there could be cases where for the same baseboard, one system uses spi flash partitions while another one does not.\n\n```\n                                                    \n  ┌───────────────────┐    ┌─────────────────────┐  \n  │    baseboard C    │    │    baseboard C      │  \n  │ ┌───────────────┐ │    │ ┌─────────────────┐ │  \n  │ │    host spi   │ │    │ │     host spi    │ │  \n  │ │┌─────────────┐│ │    │ │┌───────────────┐│ │  \n  │ ││             ││ │    │ ││               ││ │  \n  │ ││      A      ││ │    │ ││               ││ │  \n  │ ││             ││ │    │ ││               ││ │  \n  │ │├─────────────┤│ │    │ ││      A        ││ │  \n  │ ││             ││ │    │ ││               ││ │  \n  │ ││      B      ││ │    │ ││               ││ │  \n  │ ││             ││ │    │ ││               ││ │  \n  │ │└─────────────┘│ │    │ │└───────────────┘│ │  \n  │ └───────────────┘ │    │ └─────────────────┘ │  \n  └───────────────────┘    └─────────────────────┘  \n      platform 1               platform 2           \n```\n\nRather than splitting up the config to represent the hardware (SPI flash) and overlayed logic (A/B partitioned host fw) separately, i chose to add it to the existing config schema.\n\nI don\u0027t personally know of any upstream system that has a baseboard that\u0027s used with both A/B host firmware and single host firmware.\n\nIf that case ever happens then we might have to re-design this schema and separate the configuration for hardware and system specific logic.\n\nRather than over-complicating things now to cover use-cases that do not currently exist i would prefer to use this existing schema.\n\nThis is in line with how it\u0027s done in device-tree where spi flash partitions are also part of the spi flash configuration record.\n\n\nDo you agree with this tradeoff or should we go with a separate schema to configure partitions and then merge them in the reactor?\n\nplease outline your expectation for how to solve this use-case.\n\nAlso would appreciate input from fw-update maintainers on how to best represent this partition information.",
+      "parentUuid": "6047621d_b6633e04",
       "range": {
         "startLine": 98,
         "startChar": 0,
