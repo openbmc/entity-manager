@@ -74,14 +74,19 @@ static std::flat_map<size_t, std::flat_set<size_t>> fruAddresses;
 boost::asio::io_context io;
 // NOLINTEND(cppcoreguidelines-avoid-non-const-global-variables)
 
+// Cache of the FRU contents currently published on dbus.
+// Key: pair(bus number, address). Value: the FRU bytes last published for it.
+using PublishedFruMap =
+    std::flat_map<std::pair<size_t, size_t>, std::vector<uint8_t>>;
+
 bool updateFruProperty(
     const std::string& propertyValue, uint32_t bus, uint32_t address,
     const std::string& propertyName,
     std::flat_map<std::pair<size_t, size_t>,
                   std::shared_ptr<sdbusplus::asio::dbus_interface>>&
         dbusInterfaceMap,
-    size_t& unknownBusObjectCount, const bool& powerIsOn,
-    const std::set<size_t>& addressBlocklist,
+    PublishedFruMap& publishedFru, size_t& unknownBusObjectCount,
+    const bool& powerIsOn, const std::set<size_t>& addressBlocklist,
     sdbusplus::asio::object_server& objServer);
 
 // Given a bus/address, produce the path in sysfs for an eeprom.
@@ -878,8 +883,9 @@ void addFruObjectToDbus(
     std::flat_map<std::pair<size_t, size_t>,
                   std::shared_ptr<sdbusplus::asio::dbus_interface>>&
         dbusInterfaceMap,
-    uint32_t bus, uint32_t address, size_t& unknownBusObjectCount,
-    const bool& powerIsOn, const std::set<size_t>& addressBlocklist,
+    PublishedFruMap& publishedFru, uint32_t bus, uint32_t address,
+    size_t& unknownBusObjectCount, const bool& powerIsOn,
+    const std::set<size_t>& addressBlocklist,
     sdbusplus::asio::object_server& objServer)
 {
     std::flat_map<std::string, std::string, std::less<>> formattedFRU;
@@ -910,13 +916,14 @@ void addFruObjectToDbus(
     {
         iface->register_method(
             "UpdateFruField",
-            [bus, address, &dbusInterfaceMap, &unknownBusObjectCount,
-             &powerIsOn, &objServer, addressBlocklist](
+            [bus, address, &dbusInterfaceMap, &publishedFru,
+             &unknownBusObjectCount, &powerIsOn, &objServer, addressBlocklist](
                 const std::string& fieldName, const std::string& fieldValue) {
                 // Update the property
                 if (!updateFruProperty(fieldValue, bus, address, fieldName,
-                                       dbusInterfaceMap, unknownBusObjectCount,
-                                       powerIsOn, addressBlocklist, objServer))
+                                       dbusInterfaceMap, publishedFru,
+                                       unknownBusObjectCount, powerIsOn,
+                                       addressBlocklist, objServer))
                 {
                     lg2::debug(
                         "Failed to Add Field: Name = {NAME}, Value = {VALUE}",
@@ -945,14 +952,14 @@ void addFruObjectToDbus(
             std::string propertyName = property.first;
             iface->register_property(
                 key, property.second + '\0',
-                [bus, address, propertyName, &dbusInterfaceMap,
+                [bus, address, propertyName, &dbusInterfaceMap, &publishedFru,
                  &unknownBusObjectCount, &powerIsOn, &objServer,
                  &addressBlocklist](const std::string& req, std::string& resp) {
                     if (strcmp(req.c_str(), resp.c_str()) != 0)
                     {
                         // call the method which will update
                         if (updateFruProperty(req, bus, address, propertyName,
-                                              dbusInterfaceMap,
+                                              dbusInterfaceMap, publishedFru,
                                               unknownBusObjectCount, powerIsOn,
                                               addressBlocklist, objServer))
                         {
@@ -1189,34 +1196,69 @@ static void publishFrusOnBus(
     std::flat_map<std::pair<size_t, size_t>,
                   std::shared_ptr<sdbusplus::asio::dbus_interface>>&
         dbusInterfaceMap,
-    size_t& unknownBusObjectCount, const bool& powerIsOn,
-    const std::set<size_t>& addressBlocklist,
+    PublishedFruMap& publishedFru, size_t& unknownBusObjectCount,
+    const bool& powerIsOn, const std::set<size_t>& addressBlocklist,
     sdbusplus::asio::object_server& objServer)
 {
-    for (auto busIface = dbusInterfaceMap.begin();
-         busIface != dbusInterfaceMap.end();)
+    auto found = busmap.find(busNum);
+    DeviceMap* devs = (found != busmap.end()) ? found->second.get() : nullptr;
+
+    std::set<size_t> nowPresent;
+    if (devs != nullptr)
     {
-        if (busIface->first.first == static_cast<size_t>(busNum))
+        for (auto device : *devs)
         {
-            objServer.remove_interface(busIface->second);
-            busIface = dbusInterfaceMap.erase(busIface);
+            nowPresent.emplace(device.first);
+        }
+    }
+
+    for (auto it = dbusInterfaceMap.begin(); it != dbusInterfaceMap.end();)
+    {
+        if (it->first.first == static_cast<size_t>(busNum) &&
+            !nowPresent.contains(it->first.second))
+        {
+            objServer.remove_interface(it->second);
+            publishedFru.erase(it->first);
+            it = dbusInterfaceMap.erase(it);
         }
         else
         {
-            busIface++;
+            ++it;
         }
     }
-    auto found = busmap.find(busNum);
-    if (found == busmap.end() || found->second == nullptr)
+
+    if (devs == nullptr)
     {
         return;
     }
-    for (auto device : *(found->second))
+
+    for (auto device : *devs)
     {
-        addFruObjectToDbus(device.second, dbusInterfaceMap,
+        std::pair<size_t, size_t> key(static_cast<size_t>(busNum),
+                                      static_cast<size_t>(device.first));
+        auto cached = publishedFru.find(key);
+        if (cached != publishedFru.end() && cached->second == device.second)
+        {
+            continue;
+        }
+        auto old = dbusInterfaceMap.find(key);
+        if (old != dbusInterfaceMap.end())
+        {
+            objServer.remove_interface(old->second);
+            dbusInterfaceMap.erase(old);
+        }
+        addFruObjectToDbus(device.second, dbusInterfaceMap, publishedFru,
                            static_cast<uint32_t>(busNum), device.first,
-                           unknownBusObjectCount, powerIsOn,
-                           addressBlocklist, objServer);
+                           unknownBusObjectCount, powerIsOn, addressBlocklist,
+                           objServer);
+        if (dbusInterfaceMap.contains(key))
+        {
+            publishedFru[key] = device.second;
+        }
+        else
+        {
+            publishedFru.erase(key);
+        }
     }
 }
 
@@ -1225,35 +1267,72 @@ static void publishAllFrus(
     std::flat_map<std::pair<size_t, size_t>,
                   std::shared_ptr<sdbusplus::asio::dbus_interface>>&
         dbusInterfaceMap,
-    size_t& unknownBusObjectCount, const bool& powerIsOn,
-    const std::set<size_t>& addressBlocklist,
+    PublishedFruMap& publishedFru, size_t& unknownBusObjectCount,
+    const bool& powerIsOn, const std::set<size_t>& addressBlocklist,
     sdbusplus::asio::object_server& objServer)
 {
-    for (auto busIface : dbusInterfaceMap)
-    {
-        objServer.remove_interface(busIface.second);
-    }
-
-    dbusInterfaceMap.clear();
-    unknownBusObjectCount = 0;
-
     // todo, get this from a more sensable place
     std::vector<uint8_t> baseboardFRU;
     if (readBaseboardFRU(baseboardFRU))
     {
         // If no device on i2c bus 0, the insertion will happen.
-        auto bus0 =
-            busmap.try_emplace(0, std::make_shared<DeviceMap>());
+        auto bus0 = busmap.try_emplace(0, std::make_shared<DeviceMap>());
         bus0.first->second->emplace(0, baseboardFRU);
     }
+
+    std::set<std::pair<size_t, size_t>> nowPresent;
     for (auto devicemap : busmap)
     {
         for (auto device : *devicemap.second)
         {
-            addFruObjectToDbus(device.second, dbusInterfaceMap,
+            nowPresent.emplace(static_cast<size_t>(devicemap.first),
+                               static_cast<size_t>(device.first));
+        }
+    }
+
+    for (auto it = dbusInterfaceMap.begin(); it != dbusInterfaceMap.end();)
+    {
+        if (!nowPresent.contains(it->first))
+        {
+            objServer.remove_interface(it->second);
+            publishedFru.erase(it->first);
+            it = dbusInterfaceMap.erase(it);
+        }
+        else
+        {
+            ++it;
+        }
+    }
+
+    for (auto devicemap : busmap)
+    {
+        for (auto device : *devicemap.second)
+        {
+            std::pair<size_t, size_t> key(static_cast<size_t>(devicemap.first),
+                                          static_cast<size_t>(device.first));
+            auto cached = publishedFru.find(key);
+            if (cached != publishedFru.end() && cached->second == device.second)
+            {
+                continue;
+            }
+            auto old = dbusInterfaceMap.find(key);
+            if (old != dbusInterfaceMap.end())
+            {
+                objServer.remove_interface(old->second);
+                dbusInterfaceMap.erase(old);
+            }
+            addFruObjectToDbus(device.second, dbusInterfaceMap, publishedFru,
                                devicemap.first, device.first,
                                unknownBusObjectCount, powerIsOn,
                                addressBlocklist, objServer);
+            if (dbusInterfaceMap.contains(key))
+            {
+                publishedFru[key] = device.second;
+            }
+            else
+            {
+                publishedFru.erase(key);
+            }
         }
     }
 }
@@ -1263,8 +1342,8 @@ void rescanOneBus(
     std::flat_map<std::pair<size_t, size_t>,
                   std::shared_ptr<sdbusplus::asio::dbus_interface>>&
         dbusInterfaceMap,
-    bool dbusCall, size_t& unknownBusObjectCount, const bool& powerIsOn,
-    const std::set<size_t>& addressBlocklist,
+    PublishedFruMap& publishedFru, bool dbusCall, size_t& unknownBusObjectCount,
+    const bool& powerIsOn, const std::set<size_t>& addressBlocklist,
     sdbusplus::asio::object_server& objServer)
 {
     for (auto device = foundDevices.begin(); device != foundDevices.end();)
@@ -1297,11 +1376,11 @@ void rescanOneBus(
 
     auto scan = std::make_shared<FindDevicesWithCallback>(
         i2cBuses, busmap, powerIsOn, objServer, addressBlocklist,
-        [busNum, &busmap, &dbusInterfaceMap, &unknownBusObjectCount, &powerIsOn,
-         &objServer, &addressBlocklist]() {
-            publishFrusOnBus(busmap, busNum, dbusInterfaceMap,
-                             unknownBusObjectCount, powerIsOn,
-                             addressBlocklist, objServer);
+        [busNum, &busmap, &dbusInterfaceMap, &publishedFru,
+         &unknownBusObjectCount, &powerIsOn, &objServer, &addressBlocklist]() {
+            publishFrusOnBus(busmap, busNum, dbusInterfaceMap, publishedFru,
+                             unknownBusObjectCount, powerIsOn, addressBlocklist,
+                             objServer);
         });
     scan->run();
 }
@@ -1311,8 +1390,8 @@ void rescanBusses(
     std::flat_map<std::pair<size_t, size_t>,
                   std::shared_ptr<sdbusplus::asio::dbus_interface>>&
         dbusInterfaceMap,
-    size_t& unknownBusObjectCount, const bool& powerIsOn,
-    const std::set<size_t>& addressBlocklist,
+    PublishedFruMap& publishedFru, size_t& unknownBusObjectCount,
+    const bool& powerIsOn, const std::set<size_t>& addressBlocklist,
     sdbusplus::asio::object_server& objServer)
 {
     static boost::asio::steady_timer timer(io);
@@ -1355,7 +1434,7 @@ void rescanBusses(
 
         auto scan = std::make_shared<FindDevicesWithCallback>(
             i2cBuses, busmap, powerIsOn, objServer, addressBlocklist, [&]() {
-                publishAllFrus(busmap, dbusInterfaceMap,
+                publishAllFrus(busmap, dbusInterfaceMap, publishedFru,
                                unknownBusObjectCount, powerIsOn,
                                addressBlocklist, objServer);
             });
@@ -1369,8 +1448,8 @@ bool updateFruProperty(
     std::flat_map<std::pair<size_t, size_t>,
                   std::shared_ptr<sdbusplus::asio::dbus_interface>>&
         dbusInterfaceMap,
-    size_t& unknownBusObjectCount, const bool& powerIsOn,
-    const std::set<size_t>& addressBlocklist,
+    PublishedFruMap& publishedFru, size_t& unknownBusObjectCount,
+    const bool& powerIsOn, const std::set<size_t>& addressBlocklist,
     sdbusplus::asio::object_server& objServer)
 {
     lg2::debug(
@@ -1401,8 +1480,8 @@ bool updateFruProperty(
         return false;
     }
 
-    rescanBusses(busMap, dbusInterfaceMap, unknownBusObjectCount, powerIsOn,
-                 addressBlocklist, objServer);
+    rescanBusses(busMap, dbusInterfaceMap, publishedFru, unknownBusObjectCount,
+                 powerIsOn, addressBlocklist, objServer);
     return true;
 }
 
@@ -1436,18 +1515,24 @@ int main()
                   std::shared_ptr<sdbusplus::asio::dbus_interface>>
         dbusInterfaceMap;
 
+    // cache of the FRU contents currently published on dbus, used to skip
+    // republishing FRUs whose contents have not changed
+    PublishedFruMap publishedFru;
+
     std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
         objServer.add_interface("/xyz/openbmc_project/FruDevice",
                                 "xyz.openbmc_project.FruDeviceManager");
 
     iface->register_method("ReScan", [&]() {
-        rescanBusses(busMap, dbusInterfaceMap, unknownBusObjectCount, powerIsOn,
-                     addressBlocklist, objServer);
+        rescanBusses(busMap, dbusInterfaceMap, publishedFru,
+                     unknownBusObjectCount, powerIsOn, addressBlocklist,
+                     objServer);
     });
 
     iface->register_method("ReScanBus", [&](uint16_t bus) {
-        rescanOneBus(busMap, bus, dbusInterfaceMap, true, unknownBusObjectCount,
-                     powerIsOn, addressBlocklist, objServer);
+        rescanOneBus(busMap, bus, dbusInterfaceMap, publishedFru, true,
+                     unknownBusObjectCount, powerIsOn, addressBlocklist,
+                     objServer);
     });
 
     iface->register_method("GetRawFru", getFRUInfo);
@@ -1461,8 +1546,9 @@ int main()
                 return;
             }
             // schedule rescan on success
-            rescanBusses(busMap, dbusInterfaceMap, unknownBusObjectCount,
-                         powerIsOn, addressBlocklist, objServer);
+            rescanBusses(busMap, dbusInterfaceMap, publishedFru,
+                         unknownBusObjectCount, powerIsOn, addressBlocklist,
+                         objServer);
         });
     iface->initialize();
 
@@ -1485,8 +1571,9 @@ int main()
 
             if (powerIsOn)
             {
-                rescanBusses(busMap, dbusInterfaceMap, unknownBusObjectCount,
-                             powerIsOn, addressBlocklist, objServer);
+                rescanBusses(busMap, dbusInterfaceMap, publishedFru,
+                             unknownBusObjectCount, powerIsOn, addressBlocklist,
+                             objServer);
             }
         };
 
@@ -1535,14 +1622,14 @@ int main()
                             int rootBus = getRootBus(bus);
                             if (rootBus >= 0)
                             {
-                                rescanOneBus(busMap,
-                                             static_cast<uint16_t>(rootBus),
-                                             dbusInterfaceMap, false,
-                                             unknownBusObjectCount, powerIsOn,
-                                             addressBlocklist, objServer);
+                                rescanOneBus(
+                                    busMap, static_cast<uint16_t>(rootBus),
+                                    dbusInterfaceMap, publishedFru, false,
+                                    unknownBusObjectCount, powerIsOn,
+                                    addressBlocklist, objServer);
                             }
                             rescanOneBus(busMap, static_cast<uint16_t>(bus),
-                                         dbusInterfaceMap, false,
+                                         dbusInterfaceMap, publishedFru, false,
                                          unknownBusObjectCount, powerIsOn,
                                          addressBlocklist, objServer);
                         }
@@ -1560,8 +1647,8 @@ int main()
 
     dirWatch.async_read_some(boost::asio::buffer(readBuffer), watchI2cBusses);
     // run the initial scan
-    rescanBusses(busMap, dbusInterfaceMap, unknownBusObjectCount, powerIsOn,
-                 addressBlocklist, objServer);
+    rescanBusses(busMap, dbusInterfaceMap, publishedFru, unknownBusObjectCount,
+                 powerIsOn, addressBlocklist, objServer);
 
     io.run();
     return 0;
