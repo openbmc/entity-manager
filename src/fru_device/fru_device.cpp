@@ -64,9 +64,7 @@ constexpr const char* fruDevice16BitDetectMode = FRU_DEVICE_16BITDETECTMODE;
 static std::flat_map<size_t, std::optional<std::flat_set<size_t>>> busBlocklist;
 struct FindDevicesWithCallback;
 
-static std::flat_map<std::pair<size_t, size_t>,
-                     std::shared_ptr<sdbusplus::asio::dbus_interface>>
-    foundDevices;
+static DBusIntfMap foundDevices;
 
 static std::flat_map<size_t, std::flat_set<size_t>> failedAddresses;
 static std::flat_map<size_t, std::flat_set<size_t>> fruAddresses;
@@ -74,15 +72,12 @@ static std::flat_map<size_t, std::flat_set<size_t>> fruAddresses;
 boost::asio::io_context io;
 // NOLINTEND(cppcoreguidelines-avoid-non-const-global-variables)
 
-bool updateFruProperty(
-    const std::string& propertyValue, uint32_t bus, uint32_t address,
-    const std::string& propertyName,
-    std::flat_map<std::pair<size_t, size_t>,
-                  std::shared_ptr<sdbusplus::asio::dbus_interface>>&
-        dbusInterfaceMap,
-    size_t& unknownBusObjectCount, const bool& powerIsOn,
-    const std::set<size_t>& addressBlocklist,
-    sdbusplus::asio::object_server& objServer);
+bool updateFruProperty(const std::string& propertyValue, uint32_t bus,
+                       uint32_t address, const std::string& propertyName,
+                       DBusIntfMap& dbusInterfaceMap,
+                       size_t& unknownBusObjectCount, const bool& powerIsOn,
+                       const std::set<size_t>& addressBlocklist,
+                       sdbusplus::asio::object_server& objServer);
 
 // Given a bus/address, produce the path in sysfs for an eeprom.
 static std::string getEepromPath(size_t bus, size_t address)
@@ -874,12 +869,9 @@ struct FindDevicesWithCallback :
 };
 
 void addFruObjectToDbus(
-    std::vector<uint8_t>& device,
-    std::flat_map<std::pair<size_t, size_t>,
-                  std::shared_ptr<sdbusplus::asio::dbus_interface>>&
-        dbusInterfaceMap,
-    uint32_t bus, uint32_t address, size_t& unknownBusObjectCount,
-    const bool& powerIsOn, const std::set<size_t>& addressBlocklist,
+    std::vector<uint8_t>& device, DBusIntfMap& dbusInterfaceMap, uint32_t bus,
+    uint32_t address, size_t& unknownBusObjectCount, const bool& powerIsOn,
+    const std::set<size_t>& addressBlocklist,
     sdbusplus::asio::object_server& objServer)
 {
     std::flat_map<std::string, std::string, std::less<>> formattedFRU;
@@ -1184,14 +1176,11 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
     return true;
 }
 
-void rescanOneBus(
-    BusMap& busmap, uint16_t busNum,
-    std::flat_map<std::pair<size_t, size_t>,
-                  std::shared_ptr<sdbusplus::asio::dbus_interface>>&
-        dbusInterfaceMap,
-    bool dbusCall, size_t& unknownBusObjectCount, const bool& powerIsOn,
-    const std::set<size_t>& addressBlocklist,
-    sdbusplus::asio::object_server& objServer)
+void rescanOneBus(BusMap& busmap, uint16_t busNum,
+                  DBusIntfMap& dbusInterfaceMap, bool dbusCall,
+                  size_t& unknownBusObjectCount, const bool& powerIsOn,
+                  const std::set<size_t>& addressBlocklist,
+                  sdbusplus::asio::object_server& objServer)
 {
     for (auto device = foundDevices.begin(); device != foundDevices.end();)
     {
@@ -1254,14 +1243,10 @@ void rescanOneBus(
     scan->run();
 }
 
-void rescanBusses(
-    BusMap& busmap,
-    std::flat_map<std::pair<size_t, size_t>,
-                  std::shared_ptr<sdbusplus::asio::dbus_interface>>&
-        dbusInterfaceMap,
-    size_t& unknownBusObjectCount, const bool& powerIsOn,
-    const std::set<size_t>& addressBlocklist,
-    sdbusplus::asio::object_server& objServer)
+void rescanBusses(BusMap& busmap, DBusIntfMap& dbusInterfaceMap,
+                  size_t& unknownBusObjectCount, const bool& powerIsOn,
+                  const std::set<size_t>& addressBlocklist,
+                  sdbusplus::asio::object_server& objServer)
 {
     static boost::asio::steady_timer timer(io);
     timer.expires_after(std::chrono::seconds(1));
@@ -1335,15 +1320,12 @@ void rescanBusses(
     });
 }
 
-bool updateFruProperty(
-    const std::string& propertyValue, uint32_t bus, uint32_t address,
-    const std::string& propertyName,
-    std::flat_map<std::pair<size_t, size_t>,
-                  std::shared_ptr<sdbusplus::asio::dbus_interface>>&
-        dbusInterfaceMap,
-    size_t& unknownBusObjectCount, const bool& powerIsOn,
-    const std::set<size_t>& addressBlocklist,
-    sdbusplus::asio::object_server& objServer)
+bool updateFruProperty(const std::string& propertyValue, uint32_t bus,
+                       uint32_t address, const std::string& propertyName,
+                       DBusIntfMap& dbusInterfaceMap,
+                       size_t& unknownBusObjectCount, const bool& powerIsOn,
+                       const std::set<size_t>& addressBlocklist,
+                       sdbusplus::asio::object_server& objServer)
 {
     lg2::debug(
         "updateFruProperty called: FieldName = {NAME}, FieldValue = {VALUE}",
@@ -1404,9 +1386,7 @@ int main()
 
     // this is a map with keys of pair(bus number, address) and values of
     // the object on dbus
-    std::flat_map<std::pair<size_t, size_t>,
-                  std::shared_ptr<sdbusplus::asio::dbus_interface>>
-        dbusInterfaceMap;
+    DBusIntfMap dbusInterfaceMap;
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
         objServer.add_interface("/xyz/openbmc_project/FruDevice",
