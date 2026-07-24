@@ -1597,11 +1597,8 @@ bool copyRestFRUArea(std::vector<uint8_t>& fruData,
 // Get all device dbus path and match path with product name using
 // regular expression and find the device index for all devices.
 
-std::optional<int> findIndexForFRU(
-    std::flat_map<std::pair<size_t, size_t>,
-                  std::shared_ptr<sdbusplus::asio::dbus_interface>>&
-        dbusInterfaceMap,
-    std::string& productName)
+std::optional<int> findIndexForFRU(DBusIntfMap& dbusInterfaceMap,
+                                   std::string& productName)
 {
     int highest = -1;
     bool found = false;
