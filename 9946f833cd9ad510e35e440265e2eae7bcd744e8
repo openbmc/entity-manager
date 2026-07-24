@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f38d94cc_a90a5f43",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1188,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-07-24T09:19:11Z",
+      "side": 1,
+      "message": "Minor suggestion: if publishFrusOnBus() only uses find() and doesn\u0027t modify busmap, marking it as const BusMap\u0026 could better express the intended usage.",
+      "revId": "9946f833cd9ad510e35e440265e2eae7bcd744e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
