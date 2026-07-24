@@ -24,6 +24,10 @@ constexpr size_t fruBlockSize = 8;
 
 using DeviceMap = std::flat_map<int, std::vector<uint8_t>>;
 using BusMap = std::flat_map<int, std::shared_ptr<DeviceMap>>;
+// key type: {bus, address}
+using DBusIntfMap =
+    std::flat_map<std::pair<size_t, size_t>,
+                  std::shared_ptr<sdbusplus::asio::dbus_interface>>;
 
 // NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
 inline BusMap busMap;
@@ -195,11 +199,8 @@ bool copyRestFRUArea(std::vector<uint8_t>& fruData,
 /// \param productName - fru device product name.
 /// \return optional<int> highest index for fru device on success, return
 /// nullopt on failure.
-std::optional<int> findIndexForFRU(
-    std::flat_map<std::pair<size_t, size_t>,
-                  std::shared_ptr<sdbusplus::asio::dbus_interface>>&
-        dbusInterfaceMap,
-    std::string& productName);
+std::optional<int> findIndexForFRU(DBusIntfMap& dbusInterfaceMap,
+                                   std::string& productName);
 
 /// \brief It does format fru data and find productName in the formatted
 /// fru data and return productName.
