@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bbb5467_20258176",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-24T09:54:40Z",
+      "side": 1,
+      "message": "you can express this through a relation chain in gerrit and base this patch on top of that fix.\n\nIMO then there is no need to note the dependency in that case as the fix should go first and people can see that this change is a special-case of what you fixed.",
+      "range": {
+        "startLine": 7,
+        "startChar": 44,
+        "endLine": 12,
+        "endChar": 1
+      },
+      "revId": "79d2d6d710f5fac087f57f5c06061ec0d844b7ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "344d6285_743c98c6",
+        "filename": "configurations/meta/yv4/yosemite4_nvme.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-24T09:54:40Z",
+      "side": 1,
+      "message": "This should go in `configurations/kioxia` probably. The configurations are organized by manufacturer.",
+      "revId": "79d2d6d710f5fac087f57f5c06061ec0d844b7ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "147109df_d5808513",
+        "filename": "configurations/meta/yv4/yosemite4_nvme.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-24T09:54:40Z",
+      "side": 1,
+      "message": "Can you add a `*_MANUFACTURER` to the probe? Maintainers did required that in the past and IMO it makes sense.",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 2
+      },
+      "revId": "79d2d6d710f5fac087f57f5c06061ec0d844b7ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
