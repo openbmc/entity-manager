@@ -16,6 +16,29 @@
       "message": "Thanks for breaking out the functions 👍",
       "revId": "b1160726aab31fb7c942b9334bc2e594d53af455",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4c34331_b389f923",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1536,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-24T10:58:37Z",
+      "side": 1,
+      "message": "see\n\nhttps://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#i23-keep-the-number-of-function-arguments-low\n\nbefore it was 8 parameters (already very high) and now it\u0027s 9.\n\nA number of these parameters seem to always be passed together so idk why we always pass each one separately.\n\nconcrete change idea to avoid nonconstructive feedback:\n\n`publishedFru` and `dbusInterfaceMap` seem to always be passed together.\n\nWe could have a separate fix (preceding this change) to pass \n`dbusInterfaceMap`, `unknownBusObjectCount`, `powerIsOn` and `addressBlockList`\n\nin a single struct. These have very similar lifetime (all declared here in main function) and seem to be passed together.\n\nExample idea:\n\n```\nstruct FruDetails {\n\tsize_t unknownBusObjectCount \u003d 0;\n\tbool powerIsOn \u003d false;\n\tAddressBlocklistResult addressBlocklist;\n\n\tstd::flat_map\u003cstd::pair\u003csize_t, size_t\u003e, std::shared_ptr\u003csdbusplus::asio::dbus_interface\u003e\u003e \n        dbusInterfaceMap;\n};\n```\n\nThen in this patch you could simply add `PublishedFruMap` to that struct and avoid further increasing the parameter count.\n\n\n\nI do realize making the cutoff here (at your patch) is kind of arbitrary but we have to stop at some point otherwise one day people will start passing 20 or 30 parameters to a function call. \n\nCore guidelines seems to recommend us to consider alternatives if more than 4 individual parameters are passed.",
+      "range": {
+        "startLine": 1532,
+        "startChar": 4,
+        "endLine": 1536,
+        "endChar": 7
+      },
+      "revId": "b1160726aab31fb7c942b9334bc2e594d53af455",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
