@@ -81,6 +81,30 @@
       },
       "revId": "66a90cb6f530f815e5f6f9dc54dd55d311957271",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3c67527_e047b057",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-24T15:10:26Z",
+      "side": 1,
+      "message": "\u003e This would be the name from device tree, which ties DTS details (system specific) into a system agnostic file.\n\nnot my idea, but does it work for you if we use byte `Offset` instead of a partition name?\n\nThat would be hardware-specific without depending on DTS details.",
+      "parentUuid": "abecd348_420f2a5a",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 18
+      },
+      "revId": "66a90cb6f530f815e5f6f9dc54dd55d311957271",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
