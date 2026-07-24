@@ -339,7 +339,10 @@ std::optional<sdbusplus::object_path> EntityManager::postExposesRecordsToDBus(
     // cannot be published.
     const std::string recordIface =
         schema_dbus_types::recordInterface(itemType);
-    if (!dbus_interface.convertSchemaTypes(recordIface, item))
+    const auto effectiveItem = dbus_interface.schemaDefaults.exposes(item);
+    const auto& effectiveObject =
+        effectiveItem.get_ref<const nlohmann::json::object_t&>();
+    if (!dbus_interface.convertSchemaTypes(recordIface, effectiveObject))
     {
         lg2::error("Leaving out {NAME} of {BOARD}", "NAME", itemName, "BOARD",
                    configNameOrig);
@@ -386,8 +389,8 @@ std::optional<sdbusplus::object_path> EntityManager::postExposesRecordsToDBus(
         dbus_interface.createInterface(ifacePath, recordIface, configNameOrig);
 
     dbus_interface.populateInterfaceFromJson(
-        systemConfiguration, configPointerPath, itemIface, item, recordIface,
-        getPermission(itemType));
+        systemConfiguration, configPointerPath, itemIface, effectiveObject,
+        recordIface, getPermission(itemType));
 
     topology.addBoard(objectPath, configType, item);
 

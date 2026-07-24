@@ -1,4 +1,33 @@
 test(
+    'test_schema_defaults',
+    executable(
+        'test_schema_defaults',
+        'test_schema_defaults.cpp',
+        '../../src/entity_manager/schema_defaults.cpp',
+        dependencies: [gtest, nlohmann_json_dep, phosphor_logging_dep],
+        include_directories: test_include_dir,
+    ),
+)
+
+dbus_run_session = find_program('dbus-run-session', required: false)
+if dbus_run_session.found()
+    schema_defaults_dbus_test = executable(
+        'test_schema_defaults_dbus',
+        'test_schema_defaults_dbus.cpp',
+        cpp_args: test_boost_args,
+        dependencies: em_deps + [gtest],
+        link_with: [entity_manager_lib, utils_lib],
+        include_directories: test_include_dir,
+    )
+    test(
+        'test_schema_defaults_dbus',
+        dbus_run_session,
+        args: ['--', schema_defaults_dbus_test],
+        timeout: 60,
+    )
+endif
+
+test(
     'test_entity_manager',
     executable(
         'test_entity_manager',

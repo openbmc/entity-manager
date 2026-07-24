@@ -142,3 +142,26 @@ bool ConfigPointer::write(const nlohmann::json& value,
     *target = value;
     return true;
 }
+
+bool ConfigPointer::writeProperty(const std::string& name,
+                                  const nlohmann::json& value,
+                                  nlohmann::json& systemConfiguration) const
+{
+    if (!exposesIndex || propertyName || arrayIndex || memberName)
+    {
+        return withName(name).write(value, systemConfiguration);
+    }
+
+    auto board = systemConfiguration.find(boardId);
+    if (board == systemConfiguration.end())
+    {
+        return false;
+    }
+    auto* record = findRecord(*board);
+    if (record == nullptr || !record->is_object())
+    {
+        return false;
+    }
+    (*record)[name] = value;
+    return true;
+}

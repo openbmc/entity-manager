@@ -4,6 +4,7 @@
 #include "config_pointer.hpp"
 #include "configuration.hpp"
 #include "schema_dbus_types.hpp"
+#include "schema_defaults.hpp"
 
 #include <boost/asio/io_context.hpp>
 #include <nlohmann/json.hpp>
@@ -80,6 +81,8 @@ class EMDBusInterface
     // went with them
     void removeDeviceInterfaces(const nlohmann::json& device);
 
+    const SchemaDefaults schemaDefaults;
+
   protected:
     void addObject(
         const std::flat_map<std::string, JsonVariantType, std::less<>>& data,
@@ -117,13 +120,46 @@ class EMDBusInterface
     std::map<sdbusplus::object_path, ConfigObjectRecords> configObjects;
 
     const std::filesystem::path schemaDirectory;
-
     // The D-Bus types the schemas name for record properties.
     const schema_dbus_types::SchemaDBusTypes schemaDBusTypes;
 };
 
 void tryIfaceInitialize(
     std::shared_ptr<sdbusplus::asio::dbus_interface>& iface);
+
+template <typename PropertyType>
+int setConfigurationProperty(nlohmann::json& systemConfiguration,
+                             ConfigCache& configCache,
+                             const ConfigPointer& path, const std::string& name,
+                             const PropertyType& newValue, PropertyType& value)
+{
+    value = newValue;
+    if (!path.writeProperty(name, value, systemConfiguration))
+    {
+        lg2::error("error setting json field");
+        return -1;
+    }
+    if (!configCache.writeJsonFiles(systemConfiguration))
+    {
+        lg2::error("error setting json file");
+        return -1;
+    }
+    return 1;
+}
+
+template <typename PropertyType>
+void addWritableProperty(
+    const std::string& name, const PropertyType& value,
+    sdbusplus::asio::dbus_interface* iface, nlohmann::json& systemConfiguration,
+    const ConfigPointer& configPtr, ConfigCache& configCache)
+{
+    // Registration copies the setter into message and value callbacks.
+    // Keep it const so neither copy can move away the other's path.
+    const auto setter = std::bind_front(setConfigurationProperty<PropertyType>,
+                                        std::ref(systemConfiguration),
+                                        std::ref(configCache), configPtr, name);
+    iface->register_property(name, value, setter);
+}
 
 template <typename PropertyType>
 void addArrayToDbus(const std::string& name, const nlohmann::json& array,
@@ -135,11 +171,8 @@ void addArrayToDbus(const std::string& name, const nlohmann::json& array,
     std::vector<PropertyType> values;
     for (const auto& property : array)
     {
-        auto ptr = property.get_ptr<const PropertyType*>();
-        if (ptr != nullptr)
-        {
-            values.emplace_back(*ptr);
-        }
+        // Writable numeric arrays use doubles even when JSON contains integers.
+        values.emplace_back(property.get<PropertyType>());
     }
 
     if (permission == sdbusplus::asio::PropertyPermission::readOnly)
@@ -148,25 +181,8 @@ void addArrayToDbus(const std::string& name, const nlohmann::json& array,
     }
     else
     {
-        iface->register_property(
-            name, values,
-            [&systemConfiguration, &configCache, name,
-             configPtr](const std::vector<PropertyType>& newVal,
-                        std::vector<PropertyType>& val) {
-                val = newVal;
-                if (!setJsonFromPointer(configPtr.withName(name), val,
-                                        systemConfiguration))
-                {
-                    lg2::error("error setting json field");
-                    return -1;
-                }
-                if (!configCache.writeJsonFiles(systemConfiguration))
-                {
-                    lg2::error("error setting json file");
-                    return -1;
-                }
-                return 1;
-            });
+        addWritableProperty(name, values, iface, systemConfiguration, configPtr,
+                            configCache);
     }
 }
 
@@ -183,24 +199,8 @@ void addProperty(const std::string& name, const PropertyType& value,
         iface->register_property(name, value);
         return;
     }
-    iface->register_property(
-        name, value,
-        [&systemConfiguration, &configCache, configPtr,
-         name](const PropertyType& newVal, PropertyType& val) {
-            val = newVal;
-            if (!setJsonFromPointer(configPtr.withName(name), val,
-                                    systemConfiguration))
-            {
-                lg2::error("error setting json field");
-                return -1;
-            }
-            if (!configCache.writeJsonFiles(systemConfiguration))
-            {
-                lg2::error("error setting json file");
-                return -1;
-            }
-            return 1;
-        });
+    addWritableProperty(name, value, iface, systemConfiguration, configPtr,
+                        configCache);
 }
 
 template <typename PropertyType>

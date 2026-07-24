@@ -31,6 +31,7 @@ entity_manager_lib = static_library(
     'perform_scan.cpp',
     'perform_probe.cpp',
     'schema_dbus_types.cpp',
+    'schema_defaults.cpp',
     'object_mapper.cpp',
     'probe_lexer.cpp',
     'probe_parser.cpp',
@@ -53,4 +54,3 @@ executable(
     install: true,
     install_dir: installdir,
 )
-

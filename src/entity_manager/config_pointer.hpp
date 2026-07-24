@@ -39,6 +39,10 @@ struct ConfigPointer
     bool write(const nlohmann::json& value,
                nlohmann::json& systemConfiguration) const;
 
+    // Writing a published Exposes property can materialize a schema default.
+    bool writeProperty(const std::string& name, const nlohmann::json& value,
+                       nlohmann::json& systemConfiguration) const;
+
     // This will be an hash (integer) in almost all cases
     std::string boardId;
 

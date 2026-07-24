@@ -33,8 +33,9 @@ using ConfigObject =
 EMDBusInterface::EMDBusInterface(
     boost::asio::io_context& io, sdbusplus::asio::object_server& objServer,
     const std::filesystem::path& schemaDirectory, ConfigCache& configCache) :
-    io(io), objServer(objServer), configCache(configCache),
-    schemaDirectory(schemaDirectory), schemaDBusTypes(schemaDirectory)
+    schemaDefaults(schemaDirectory), io(io), objServer(objServer),
+    configCache(configCache), schemaDirectory(schemaDirectory),
+    schemaDBusTypes(schemaDirectory)
 {}
 
 void tryIfaceInitialize(std::shared_ptr<sdbusplus::asio::dbus_interface>& iface)
@@ -482,10 +483,13 @@ void EMDBusInterface::addObjectJson(
     }
 
     const std::string recordIface = schema_dbus_types::recordInterface(*type);
+    const auto effectiveData = schemaDefaults.exposes(newData);
+    const auto& effectiveObject =
+        effectiveData.get_ref<const nlohmann::json::object_t&>();
 
     // Checked before the record is stored, so that a record that could not
     // be published is rejected rather than saved and then left out.
-    if (!convertSchemaTypes(recordIface, newData))
+    if (!convertSchemaTypes(recordIface, effectiveObject))
     {
         throw std::invalid_argument(
             "A property cannot be published as the D-Bus type its schema names");
@@ -517,7 +521,8 @@ void EMDBusInterface::addObjectJson(
     // runtime modifiable
     populateInterfaceFromJson(
         systemConfiguration, ConfigPointer(boardId, lastIndex), interface,
-        newData, recordIface, sdbusplus::asio::PropertyPermission::readWrite);
+        effectiveObject, recordIface,
+        sdbusplus::asio::PropertyPermission::readWrite);
 
     if (interface->is_initialized())
     {
