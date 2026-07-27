@@ -72,6 +72,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "16f3f65e_3417dc9e",
+        "filename": "schemas/global.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-07-27T05:30:42Z",
+      "side": 1,
+      "message": "Done. Switched to a single Exposes key. Type: \"Platform\" alone routes the config to EMPlatformConfig (its Type enum is [\"Platform\"], disjoint from EMConfig\u0027s), so platform records are still validated only against the platform schema. \nDropped getExposesKey() and reverted the entity_manager.cpp / autojson.py changes — the schema is now the only delta.",
+      "parentUuid": "670ea012_cfcd40d2",
+      "range": {
+        "startLine": 121,
+        "startChar": 17,
+        "endLine": 121,
+        "endChar": 32
+      },
+      "revId": "66540277c1d04deff48e2e929956d34e711237c3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e3f9152_2e134458",
