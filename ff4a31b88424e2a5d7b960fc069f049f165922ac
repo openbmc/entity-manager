@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a7e98ab_72b772ab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-07-27T16:55:23Z",
+      "side": 1,
+      "message": "There is at least a merge conflict that needs to be resolved, but I don\u0027t understand why the tag itself is showing up as a FruDevice.",
+      "revId": "ff4a31b88424e2a5d7b960fc069f049f165922ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7d6bfb4_3dee8033",
+        "filename": "configurations/meta/anacapa/anacapa_nfc_tag.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-07-27T16:55:23Z",
+      "side": 1,
+      "message": "I don\u0027t understand how the tag shows up as a FruDevice?  Can you show `busctl tree xyz.openbmc_project.FruDevice` as part of the test plan?",
+      "revId": "ff4a31b88424e2a5d7b960fc069f049f165922ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
