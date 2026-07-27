@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b5ded32_e97025b4",
+        "filename": "configurations/meta/yv5/yosemite5_3kw_paddle_board_hsc_mps.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 979,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-07-27T20:34:07Z",
+      "side": 1,
+      "message": "Is adding the \"T22\" really necessary?  It seems like the other paddle boards are more generic:\n\n```\n105:    \"Probe\": \"xyz.openbmc_project.FruDevice({\u0027PRODUCT_PRODUCT_NAME\u0027: \u0027(Yosemite V5|Rainier) .*\u0027, \u0027BOARD_PRODUCT_NAME\u0027: \u00271KW paddle BD\u0027, \u0027BOARD_MANUFACTURER\u0027: \u0027(Quanta|Wiwynn)\u0027, \u0027BOARD_INFO_AM4\u0027: \u0027HSC-TIC\u0027})\",\n```\n\nIf we later on decide there is a \"high power config\" of Yv5 that needs a 3kw paddle board we shouldn\u0027t need to make a code change.",
+      "range": {
+        "startLine": 979,
+        "startChar": 77,
+        "endLine": 979,
+        "endChar": 80
+      },
+      "revId": "316f58ed4ea40e4718258fa2a4b0054ba21447cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcf7d2f7_1cffa541",
+        "filename": "configurations/meta/yv5/yosemite5_rio_grande_adc_sgy.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 2855,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-07-27T20:34:07Z",
+      "side": 1,
+      "message": "This is entirely not useful as a \"name\".  Can we describe this thing rather than using a code name?",
+      "range": {
+        "startLine": 2855,
+        "startChar": 23,
+        "endLine": 2855,
+        "endChar": 35
+      },
+      "revId": "316f58ed4ea40e4718258fa2a4b0054ba21447cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
