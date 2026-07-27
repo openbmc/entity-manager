@@ -314,6 +314,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2c13f852_ac12ebff",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-27T10:30:53Z",
+      "side": 1,
+      "message": "@Kyle.Hsieh@quantatw.com see above, my feedback has already been discarded / dismissed.\n\n\u003e I would prefer not to make any such changes\n\nSo i already looked into this and provided my feedback. It\u0027s fine to discard the feedback since i am not a maintainer here and it seems like there was some previous discussion with maintainers.\n\nTo clarify further, i cannot approve your patch.\n\nI appear here as `+2` but that\u0027s probably due to me being member of a specific gerrit group. I can give `+2` but it does not satisfy the submit requirement and you won\u0027t be able to merge it. It\u0027s confusing and somewhat misleading but that\u0027s how our gerrit works here.\n\nYou need `OWNER`\u0027s `+2` and can refer to `OWNERS` file to find out who can approve your patch.\n\n```\n$ head -n 39 OWNERS | tail -n 7\n\nowners:\n- ed@tanous.net\n- spinler@us.ibm.com\n- vernon.mauery@gmail.com\n- zhikui.ren@intel.com\n```",
+      "parentUuid": "f5b17772_9eb5c484",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 36
+      },
+      "revId": "7ededf61f85edc96ebb92629c6e4b031ba5d8eea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "629c6caf_73c73041",
         "filename": "schemas/firmware.json",
         "patchSetId": 2
