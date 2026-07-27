@@ -311,12 +311,12 @@
                 "MB_CPU_TEMP_C"
             ],
             "Name": "PID_MB_CPU",
-            "NegativeHysteresis": 2.0,
+            "NegativeHysteresis": 3.0,
             "OutLimitMax": 100,
             "OutLimitMin": 0,
-            "PCoefficient": -5.0,
+            "PCoefficient": -4.5,
             "PositiveHysteresis": 0.0,
-            "SetPoint": 76.0,
+            "SetPoint": 78.0,
             "SlewNeg": 0.0,
             "SlewPos": 0.0,
             "Type": "Pid",
@@ -418,7 +418,7 @@
             "OutLimitMin": 0,
             "PCoefficient": -3.0,
             "PositiveHysteresis": 0.0,
-            "SetPoint": 100.0,
+            "SetPoint": 93.0,
             "SlewNeg": 0.0,
             "SlewPos": 0.0,
             "Type": "Pid",
@@ -444,7 +444,7 @@
             "OutLimitMin": 0,
             "PCoefficient": -3.0,
             "PositiveHysteresis": 0.0,
-            "SetPoint": 100.0,
+            "SetPoint": 93.0,
             "SlewNeg": 0.0,
             "SlewPos": 0.0,
             "Type": "Pid",
@@ -503,7 +503,7 @@
             "OutLimitMin": 0,
             "PCoefficient": -3.0,
             "PositiveHysteresis": 0.0,
-            "SetPoint": 95.0,
+            "SetPoint": 97.0,
             "SlewNeg": 0.0,
             "SlewPos": 0.0,
             "Type": "Pid",
@@ -529,7 +529,9 @@
             "Name": "Stepwise_SCM_INLET",
             "NegativeHysteresis": 2.0,
             "Output": [
-                22.0,
+                14.0,
+                18.0,
+                23.0,
                 28.0,
                 34.0,
                 40.0,
@@ -538,10 +540,12 @@
             "PositiveHysteresis": 0.0,
             "Reading": [
                 25.0,
-                30.0,
-                35.0,
+                28.0,
+                31.0,
+                34.0,
+                37.0,
                 40.0,
-                45.0
+                44.0
             ],
             "Type": "Stepwise",
             "Zones": [
@@ -556,12 +560,13 @@
             "Name": "Stepwise_MB_CPU",
             "NegativeHysteresis": 3.0,
             "Output": [
-                22.0,
-                34.0,
-                38.0,
-                42.0,
-                46.0,
-                50.0,
+                14.0,
+                18.0,
+                21.0,
+                24.0,
+                27.0,
+                30.0,
+                33.0,
                 95.0
             ],
             "PositiveHysteresis": 0.0,
@@ -572,7 +577,8 @@
                 71.0,
                 73.0,
                 75.0,
-                82.0
+                77.0,
+                87.0
             ],
             "Type": "Stepwise",
             "Zones": [
@@ -602,16 +608,16 @@
             "Name": "Stepwise_MB_DIMM",
             "NegativeHysteresis": 2.0,
             "Output": [
-                22.0,
+                14.0,
+                20.0,
+                25.0,
                 30.0,
-                40.0,
-                45.0,
                 95.0
             ],
             "PositiveHysteresis": 0.0,
             "Reading": [
-                56.0,
-                58.0,
+                55.0,
+                60.0,
                 65.0,
                 70.0,
                 82.0
@@ -633,8 +639,8 @@
             "Name": "Stepwise_MB_E1S",
             "NegativeHysteresis": 2.0,
             "Output": [
-                22.0,
-                30.0,
+                14.0,
+                20.0,
                 95.0
             ],
             "PositiveHysteresis": 0.0,
@@ -661,15 +667,15 @@
             "Name": "Stepwise_MB_VR",
             "NegativeHysteresis": 2.0,
             "Output": [
-                22.0,
-                30.0,
+                14.0,
+                20.0,
                 95.0
             ],
             "PositiveHysteresis": 0.0,
             "Reading": [
                 80.0,
                 90.0,
-                115.0
+                96.0
             ],
             "Type": "Stepwise",
             "Zones": [
@@ -684,15 +690,15 @@
             "Name": "Stepwise_Paddle_HSC",
             "NegativeHysteresis": 2.0,
             "Output": [
-                22.0,
-                30.0,
+                14.0,
+                20.0,
                 95.0
             ],
             "PositiveHysteresis": 0.0,
             "Reading": [
                 80.0,
                 90.0,
-                115.0
+                96.0
             ],
             "Type": "Stepwise",
             "Zones": [
@@ -714,8 +720,8 @@
             "Name": "Stepwise_E1S_EB_E1S0",
             "NegativeHysteresis": 2.0,
             "Output": [
-                22.0,
-                30.0,
+                14.0,
+                20.0,
                 95.0
             ],
             "PositiveHysteresis": 0.0,
@@ -737,15 +743,15 @@
             "Name": "Stepwise_NIC",
             "NegativeHysteresis": 2.0,
             "Output": [
-                22.0,
-                30.0,
+                14.0,
+                20.0,
                 95.0
             ],
             "PositiveHysteresis": 0.0,
             "Reading": [
                 80.0,
                 90.0,
-                100.0
+                101.0
             ],
             "Type": "Stepwise",
             "Zones": [
