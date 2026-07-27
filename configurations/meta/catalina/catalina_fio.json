@@ -13,17 +13,24 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 0.9,
+                    "Hysteresis": 0.84,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 45
+                    "Value": 42
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.74,
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 37.0
                 },
                 {
                     "Direction": "less than",
-                    "Hysteresis": 0.1,
+                    "Hysteresis": 0.04,
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 5
+                    "Value": -2
                 }
             ],
             "Type": "TMP75"
@@ -35,17 +42,24 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 0.9,
+                    "Hysteresis": 0.84,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 45
+                    "Value": 42
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.74,
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 37.0
                 },
                 {
                     "Direction": "less than",
-                    "Hysteresis": 0.1,
+                    "Hysteresis": 0.04,
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 5
+                    "Value": -2
                 }
             ],
             "Type": "TMP75"
