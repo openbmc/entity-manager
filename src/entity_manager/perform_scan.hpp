@@ -9,10 +9,17 @@
 #include <sdbusplus/asio/object_server.hpp>
 
 #include <flat_map>
+#include <flat_set>
 #include <functional>
 #include <list>
+#include <memory>
 #include <set>
 #include <vector>
+
+namespace probe
+{
+struct PerformProbe;
+}
 
 namespace scan
 {
@@ -43,6 +50,15 @@ struct PerformScan final : std::enable_shared_from_this<PerformScan>
     void restorePersistedConfigurations(
         FoundDevices& foundDevices, const std::string& probeName,
         std::set<nlohmann::json>& usedNames, std::list<size_t>& indexes);
+
+    // Walk _configurations, dropping malformed or already-probed entries and
+    // starting a PerformProbe for each remaining one. Collects the D-Bus
+    // interfaces to look up into dbusProbeInterfaces / dbusProbePointers.
+    // Returns false if a config had an unparsable Probe, in which case the
+    // scan must not continue.
+    bool processConfigurations(
+        std::flat_set<std::string, std::less<>>& dbusProbeInterfaces,
+        std::vector<std::shared_ptr<probe::PerformProbe>>& dbusProbePointers);
 
     nlohmann::json& _missingConfigurations;
     std::vector<nlohmann::json> _configurations;

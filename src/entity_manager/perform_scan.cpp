@@ -695,11 +695,10 @@ static void collectDbusProbes(
     }
 }
 
-void scan::PerformScan::run()
+bool scan::PerformScan::processConfigurations(
+    std::flat_set<std::string, std::less<>>& dbusProbeInterfaces,
+    std::vector<std::shared_ptr<probe::PerformProbe>>& dbusProbePointers)
 {
-    std::flat_set<std::string, std::less<>> dbusProbeInterfaces;
-    std::vector<std::shared_ptr<probe::PerformProbe>> dbusProbePointers;
-
     for (auto it = _configurations.begin(); it != _configurations.end();)
     {
         // check for poorly formatted fields, probe must be an array
@@ -741,7 +740,7 @@ void scan::PerformScan::run()
             detail::parseProbeCommand(*findProbe);
         if (probeCommand.empty())
         {
-            return;
+            return false;
         }
 
         // store reference to this to children to makes sure we don't get
@@ -755,6 +754,19 @@ void scan::PerformScan::run()
         collectDbusProbes(probeCommand, probePointer, dbusProbeInterfaces,
                           dbusProbePointers);
         it++;
+    }
+
+    return true;
+}
+
+void scan::PerformScan::run()
+{
+    std::flat_set<std::string, std::less<>> dbusProbeInterfaces;
+    std::vector<std::shared_ptr<probe::PerformProbe>> dbusProbePointers;
+
+    if (!processConfigurations(dbusProbeInterfaces, dbusProbePointers))
+    {
+        return;
     }
 
     // probe vector stores a shared_ptr to each PerformProbe that cares
