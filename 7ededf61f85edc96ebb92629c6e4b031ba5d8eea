@@ -288,6 +288,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5b17772_9eb5c484",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-07-27T08:37:09Z",
+      "side": 1,
+      "message": "Hi @ed@tanous.net, @alexander.hansen@9elements.com,\n\nTo align with the current EM design intent, this patchset follows the existing CPLD pattern in EM. Just as CPLDs use the \u003cVendor\u003e\u003cDevice\u003e format to distinguish customized behaviors (like specific version get mechanisms for different chips), using IntelHostSPIFlash and HostSPIFlash as top-level types allows the backend to naturally route to the correct flash tools and read methods.\n\n@paligill@gmail.com has already reviewed and +1\u0027d this base patch. Could you please take a look when you have a chance? If this approach looks good, I\u0027d appreciate your approval so we can move forward. Thanks!",
+      "parentUuid": "4f75eb0a_95b70c2c",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 36
+      },
+      "revId": "7ededf61f85edc96ebb92629c6e4b031ba5d8eea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "629c6caf_73c73041",
