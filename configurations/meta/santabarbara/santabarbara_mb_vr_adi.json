@@ -1151,6 +1151,36 @@
             "vout2_Name": "MB_VR_CPU_PVDDIO_MEM_S3_VOLT_V"
         },
         {
+            "Address": "0x3d",
+            "Bus": 18,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Santabarbara.VR.MAX20912_pvddcr_soc_p0",
+                "VendorIANA": 40981
+            },
+            "Name": "Santabarbara_MB_VR_pvddcr_soc_p0",
+            "Type": "MAX209XXFirmware"
+        },
+        {
+            "Address": "0x3e",
+            "Bus": 18,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Santabarbara.VR.MAX20912_pvddcr_cpu1_p0",
+                "VendorIANA": 40981
+            },
+            "Name": "Santabarbara_MB_VR_pvddcr_cpu1_p0",
+            "Type": "MAX209XXFirmware"
+        },
+        {
+            "Address": "0x3f",
+            "Bus": 18,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Santabarbara.VR.MAX20916_pvddcr_cpu0_p0",
+                "VendorIANA": 40981
+            },
+            "Name": "Santabarbara_MB_VR_pvddcr_cpu0_p0",
+            "Type": "MAX209XXFirmware"
+        },
+        {
             "Address": "0x46",
             "Bus": "18",
             "Labels": [
