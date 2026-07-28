@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a26db132_17473b25",
+        "filename": "schemas/global.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-07-28T20:41:20Z",
+      "side": 1,
+      "message": "\u003e @paligill@gmail.com - This commit is kind of buggy though.  You made non-documented interfaces when we already had an interface for Cables.\n\nI agree that i forgot to document/commit this change in PDI.\n\nFor the other part about existing interface we did had a discussion on that. The current interface was originally for old inventory manager, thats why properties reside as part of interface itself. With the EM to expose specific properties of an item we use decorators and thats the reason this interface was created.\n\nDuring review of this patch we also went through the exercise to keep the property names same as existing one for documentation purpose https://gerrit.openbmc.org/c/openbmc/entity-manager/+/75618/comment/3fe23bd6_01c9c20b/ .",
+      "parentUuid": "6027e343_e5683998",
+      "range": {
+        "startLine": 118,
+        "startChar": 11,
+        "endLine": 118,
+        "endChar": 63
+      },
+      "revId": "19ecfb3b9c3ff841c55c65b50f8ff84653b95907",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "476f9222_79232537",
         "filename": "schemas/openbmc-dbus.json",
         "patchSetId": 9
