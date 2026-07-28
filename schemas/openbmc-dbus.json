@@ -9,22 +9,28 @@
                         "Asset": {
                             "additionalProperties": false,
                             "properties": {
-                                "BuildDate": {
+                                "PartNumber": {
                                     "type": "string"
                                 },
-                                "SparePartNumber": {
+                                "SerialNumber": {
                                     "type": "string"
                                 },
                                 "Manufacturer": {
                                     "type": "string"
                                 },
+                                "BuildDate": {
+                                    "type": "string"
+                                },
                                 "Model": {
                                     "type": "string"
                                 },
-                                "PartNumber": {
+                                "SubModel": {
                                     "type": "string"
                                 },
-                                "SerialNumber": {
+                                "SparePartNumber": {
+                                    "type": "string"
+                                },
+                                "SKU": {
                                     "type": "string"
                                 }
                             },
@@ -172,6 +178,15 @@
                         "Accelerator": {
                             "additionalProperties": false,
                             "properties": {
+                                "BaseSpeedInHz": {
+                                    "type": "string"
+                                },
+                                "MaxSpeedInHz": {
+                                    "type": "string"
+                                },
+                                "MinSpeedInHz": {
+                                    "type": "string"
+                                },
                                 "Type": {
                                     "type": "string"
                                 }
@@ -181,6 +196,53 @@
                         },
                         "Dimm": {
                             "additionalProperties": false,
+                            "properties": {
+                                "MemoryDataWidth": {
+                                    "type": "string"
+                                },
+                                "MemorySizeInKB": {
+                                    "type": "string"
+                                },
+                                "MemoryDeviceLocator": {
+                                    "type": "string"
+                                },
+                                "MemoryType": {
+                                    "type": "string"
+                                },
+                                "MemoryTypeDetail": {
+                                    "type": "string"
+                                },
+                                "MaxMemorySpeedInMhz": {
+                                    "type": "string"
+                                },
+                                "MemoryAttributes": {
+                                    "type": "string"
+                                },
+                                "MemoryConfiguredSpeedInMhz": {
+                                    "type": "string"
+                                },
+                                "ECC": {
+                                    "type": "string"
+                                },
+                                "CASLatencies": {
+                                    "type": "string"
+                                },
+                                "RevisionCode": {
+                                    "type": "string"
+                                },
+                                "FormFactor": {
+                                    "type": "string"
+                                },
+                                "MemoryTotalWidth": {
+                                    "type": "string"
+                                },
+                                "AllowedSpeedsMT": {
+                                    "type": "string"
+                                },
+                                "MemoryMedia": {
+                                    "type": "string"
+                                }
+                            },
                             "type": "object"
                         },
                         "Valve": {
