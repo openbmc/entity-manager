@@ -70,19 +70,6 @@
                             "required": ["HostIndex"],
                             "type": "object"
                         },
-                        "Cable": {
-                            "additionalProperties": false,
-                            "properties": {
-                                "Length": {
-                                    "type": "number"
-                                },
-                                "Type": {
-                                    "enum": ["Optical", "Copper", "Unknown"]
-                                }
-                            },
-                            "required": ["Length", "Type"],
-                            "type": "object"
-                        },
                         "Replaceable": {
                             "additionalProperties": false,
                             "properties": {
@@ -133,6 +120,19 @@
                                 "additionalProperties": false,
                                 "type": "object"
                             }
+                        },
+                        "Cable": {
+                            "additionalProperties": false,
+                            "properties": {
+                                "Length": {
+                                    "type": "number"
+                                },
+                                "CableTypeDescription": {
+                                    "enum": ["Optical", "Copper", "Unknown"]
+                                }
+                            },
+                            "required": ["Length", "CableTypeDescription"],
+                            "type": "object"
                         },
                         "Chassis": {
                             "additionalProperties": false,

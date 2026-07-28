@@ -56,9 +56,6 @@
                 "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
                     "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Inventory/Decorator/AssetTag"
                 },
-                "xyz.openbmc_project.Inventory.Decorator.Cable": {
-                    "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Inventory/Decorator/Cable"
-                },
                 "xyz.openbmc_project.Inventory.Decorator.Compatible": {
                     "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Inventory/Decorator/Compatible"
                 },
@@ -79,6 +76,9 @@
                 },
                 "xyz.openbmc_project.Inventory.Item.Board.Motherboard": {
                     "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Inventory/Item/Board/Motherboard"
+                },
+                "xyz.openbmc_project.Inventory.Item.Cable": {
+                    "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Inventory/Item/Cable"
                 },
                 "xyz.openbmc_project.Inventory.Item.Chassis": {
                     "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Inventory/Item/Chassis"
