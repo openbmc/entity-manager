@@ -144,6 +144,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6407fd85_14e5d261",
+        "filename": "schemas/global.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-07-28T21:54:42Z",
+      "side": 1,
+      "message": "\u003e I guess I don\u0027t remember it being discussed as \"different\".  The comments in this commit were about matching PDI so I assumed it was the same interface but I must have missed that.\n\u003e \n\u003e For EM configs we typically allow \"Configuration\" and not \"Decorator\" to be documented as-is from EM.\n\u003e \n\u003e \u003e The current interface was originally for old inventory manager, thats why properties reside as part of interface itself. With the EM to expose specific properties of an item we use decorators and thats the reason this interface was created.\n\u003e \n\u003e I really don\u0027t know what you mean by this.  Sure, all the PDI interfaces were originally written for PIM, but most of them are available in EM.  We should have plenty of cases where EM makes an [mostly] compliant inventory item just like the PDI interfaces are documented.  This goes for \u0027boards\u0027 and \u0027chassis\u0027 and even \u0027drives\u0027.  This is why, for example, the BSMs have `Inventory.Item.Storage` expose records.\n\nI went through https://github.com/openbmc/entity-manager/blob/master/schemas/openbmc-dbus.json again and now i see what i did wrong at that time. Sorry for that. It should have been under Item and not Decorator, which was incorrect. I have raised https://gerrit.openbmc.org/c/openbmc/entity-manager/+/92848 to take care of this.",
+      "parentUuid": "317e277e_94b12986",
+      "range": {
+        "startLine": 118,
+        "startChar": 11,
+        "endLine": 118,
+        "endChar": 63
+      },
+      "revId": "19ecfb3b9c3ff841c55c65b50f8ff84653b95907",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "476f9222_79232537",
