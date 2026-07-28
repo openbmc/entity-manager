@@ -1243,6 +1243,67 @@ void rescanOneBus(BusMap& busmap, uint16_t busNum,
     scan->run();
 }
 
+static void rescanBussesCallback(
+    BusMap& busmap, DBusIntfMap& dbusInterfaceMap,
+    size_t& unknownBusObjectCount, const bool& powerIsOn,
+    const std::set<size_t>& addressBlocklist,
+    sdbusplus::asio::object_server& objServer)
+{
+    auto devDir = fs::path("/dev/");
+    std::vector<fs::path> i2cBuses;
+
+    std::flat_map<size_t, fs::path> busPaths;
+    if (!getI2cDevicePaths(devDir, busPaths))
+    {
+        lg2::error("unable to find i2c devices");
+        return;
+    }
+
+    for (const auto& busPath : busPaths)
+    {
+        i2cBuses.emplace_back(busPath.second);
+    }
+
+    busmap.clear();
+    for (auto [pair, interface] : foundDevices)
+    {
+        objServer.remove_interface(interface);
+    }
+    foundDevices.clear();
+
+    auto scan = std::make_shared<FindDevicesWithCallback>(
+        i2cBuses, busmap, powerIsOn, objServer, addressBlocklist, [&]() {
+            for (auto busIface : dbusInterfaceMap)
+            {
+                objServer.remove_interface(busIface.second);
+            }
+
+            dbusInterfaceMap.clear();
+            unknownBusObjectCount = 0;
+
+            // todo, get this from a more sensable place
+            std::vector<uint8_t> baseboardFRU;
+            if (readBaseboardFRU(baseboardFRU))
+            {
+                // If no device on i2c bus 0, the insertion will happen.
+                auto bus0 =
+                    busmap.try_emplace(0, std::make_shared<DeviceMap>());
+                bus0.first->second->emplace(0, baseboardFRU);
+            }
+            for (auto devicemap : busmap)
+            {
+                for (auto device : *devicemap.second)
+                {
+                    addFruObjectToDbus(device.second, dbusInterfaceMap,
+                                       devicemap.first, device.first,
+                                       unknownBusObjectCount, powerIsOn,
+                                       addressBlocklist, objServer);
+                }
+            }
+        });
+    scan->run();
+}
+
 void rescanBusses(BusMap& busmap, DBusIntfMap& dbusInterfaceMap,
                   size_t& unknownBusObjectCount, const bool& powerIsOn,
                   const std::set<size_t>& addressBlocklist,
@@ -1264,59 +1325,8 @@ void rescanBusses(BusMap& busmap, DBusIntfMap& dbusInterfaceMap,
             return;
         }
 
-        auto devDir = fs::path("/dev/");
-        std::vector<fs::path> i2cBuses;
-
-        std::flat_map<size_t, fs::path> busPaths;
-        if (!getI2cDevicePaths(devDir, busPaths))
-        {
-            lg2::error("unable to find i2c devices");
-            return;
-        }
-
-        for (const auto& busPath : busPaths)
-        {
-            i2cBuses.emplace_back(busPath.second);
-        }
-
-        busmap.clear();
-        for (auto [pair, interface] : foundDevices)
-        {
-            objServer.remove_interface(interface);
-        }
-        foundDevices.clear();
-
-        auto scan = std::make_shared<FindDevicesWithCallback>(
-            i2cBuses, busmap, powerIsOn, objServer, addressBlocklist, [&]() {
-                for (auto busIface : dbusInterfaceMap)
-                {
-                    objServer.remove_interface(busIface.second);
-                }
-
-                dbusInterfaceMap.clear();
-                unknownBusObjectCount = 0;
-
-                // todo, get this from a more sensable place
-                std::vector<uint8_t> baseboardFRU;
-                if (readBaseboardFRU(baseboardFRU))
-                {
-                    // If no device on i2c bus 0, the insertion will happen.
-                    auto bus0 =
-                        busmap.try_emplace(0, std::make_shared<DeviceMap>());
-                    bus0.first->second->emplace(0, baseboardFRU);
-                }
-                for (auto devicemap : busmap)
-                {
-                    for (auto device : *devicemap.second)
-                    {
-                        addFruObjectToDbus(device.second, dbusInterfaceMap,
-                                           devicemap.first, device.first,
-                                           unknownBusObjectCount, powerIsOn,
-                                           addressBlocklist, objServer);
-                    }
-                }
-            });
-        scan->run();
+        rescanBussesCallback(busmap, dbusInterfaceMap, unknownBusObjectCount,
+                             powerIsOn, addressBlocklist, objServer);
     });
 }
 
