@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "529c1c7b_19ec84ee",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-07-28T02:56:37Z",
+      "side": 1,
+      "message": "You\u0027re right, and my commit message example was wrong here. \nEntity-manager creates the Inventory.Item object but never calls initialize() on it, so it is never published on D-Bus.",
+      "parentUuid": "b725c692_3b2a8aa1",
+      "revId": "3b9c6b1a0352b3244f1a6a303b9ed63c8dc93c4a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aaadccff_f5000a63",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-07-27T20:37:45Z",
       "side": 1,
       "message": "There is no such dbus interface.  We agreed we were not adding new one-off entity-manager only dbus interfaces.",
+      "revId": "3b9c6b1a0352b3244f1a6a303b9ed63c8dc93c4a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57ab9127_58d18a35",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-07-28T02:56:37Z",
+      "side": 1,
+      "message": "Happy to drop it — nothing on our side depends on it. The consumers only look up the Configuration.\u003cType\u003e records under the platform object; the Inventory.Item.Platform interface itself is unused (FOUND() matches against the in-memory passedProbes list rather than D-Bus, and AddObject is initialized separately).\n\nOne question on scope: this comes from entity-manager creating Inventory.Item.\u003cType\u003e for every config unconditionally, and the Type enum already has values with no PDI interface behind them — NVMe is used by four in-tree configs and produces xyz.openbmc_project.Inventory.Item.NVMe today. Is that the same problem (just grandfathered)? It decides whether this belongs in this series or is a general entity-manager cleanup.\n\nThe catch is that dropping it needs a Type \u003d\u003d \"Platform\" special case in postBoardToDBus() — the schema can\u0027t influence this, since entity-manager only reads the Type string.",
+      "parentUuid": "aaadccff_f5000a63",
       "revId": "3b9c6b1a0352b3244f1a6a303b9ed63c8dc93c4a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
