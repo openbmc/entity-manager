@@ -89,6 +89,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "e844a675_76504ab7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-28T13:26:36Z",
+      "side": 1,
+      "message": "\u003e would you mind weighing in?\n\nsure, i gave this exact same feedback to Deepak for patchset 3\n\n\u003e As written EM would create an interface xyz.openbmc_project.Inventory.Item.Platform which\n is not documented, i cannot find it currently. Do you want to document \nsuch an interface or alternatively prevent EM from creating it.\n\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/87415/comment/a27c8b1f_19e4997b/\n\nIt was marked resolved so i assumed there was some side channel resolution with maintainers since no one followed up there.\n\nAlso there is a PDI review to add the platform interface\n\nhttps://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/89339\n\nwhich did not get any maintainer review for 3 months so i assumed there was some offline resolution for that one.\n\n\u003e One question on scope: this comes from entity-manager creating Inventory.Item.\u003cType\u003e for every config unconditionally, and the \nType enum already has values with no PDI interface behind them — NVMe is\n used by four in-tree configs and produces \nxyz.openbmc_project.Inventory.Item.NVMe today. Is that the same problem \n(just grandfathered)? It decides whether this belongs in this series or \nis a general entity-manager cleanup.\n\nIt seems like the same problem.\nBut this could prove difficult to cleanup as there seems to be already some code depending on this interface\n\nhttps://github.com/openbmc/s2600wf-misc/blob/ed4c97df285cf38def98919ff9ede05586468685/subprojects/hsbp-manager/src/hsbp_manager.cpp#L51\n\ni would not expect you to cleanup that mess, unless you see some easy solution there.\n\nTo answer your question, i would be ok with having a special case for platform configuration to not have any toplevel interface. It would be good to implement that as a **whitelist approach** - only the existing `Type` members should be listed and have interfaces created, not like the current implementation where EM just creates `xyz.openbmc_project.Inventory.Item.${Type}` without checking if that even exists.\n\n\n\nFor example\n```\nstd::flat_map\u003cstd::string, std::string\u003e typeToIntf \u003d {\n  {\"Board\", \"xyz.openbmc_project.Inventory.Item.Board\"},\n  {\"Chassis\", \"xyz.openbmc_project.Inventory.Item.Chassis\"},\n  // ...\n};\n```\nand then `Platform` will not be found there and not have any toplevel interface created.\n\nThat way someone will have to explicitly add the interface to a list of things that can be created rather than only modifying json schemas and maybe not even realizing the impact.\n\nIf you check only for `Platform` (**blacklist approach**) this leaves a loophole open where any future schema changes may result in broken interface creation.\n\n\u003e You had me remove a similar special case (getExposesKey()) from this \npatch, so I\u0027d like to make sure the two of you are happy with the shape \nbefore I add one here.\n\nyeah i gave that feedback because the special case, as of that patchset revision had no functional difference in the code. Apologize for the extra iterations this may have caused. But i assumed since deepak resolved my comment that the issue with the nonexistent interface was actually resolved.",
+      "parentUuid": "162b8621_50ca050e",
+      "revId": "3b9c6b1a0352b3244f1a6a303b9ed63c8dc93c4a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "c4198daa_6e3ddfa9",
