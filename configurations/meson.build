@@ -187,6 +187,7 @@ configs = [
     'meta/rainier/rainier_hpm_vr_rtt_v1p2vr_mps.json',
     'meta/rainier/rainier_mb_ssd.json',
     'meta/rainier/rainier_scm_2600.json',
+    'meta/rainier/rainier_scm_2700.json',
     'meta/sanmiguel/sanmiguel_fio.json',
     'meta/sanmiguel/sanmiguel_pdb.json',
     'meta/sanmiguel/sanmiguel_scm.json',
