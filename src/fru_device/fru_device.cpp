@@ -72,11 +72,17 @@ static std::flat_map<size_t, std::flat_set<size_t>> fruAddresses;
 boost::asio::io_context io;
 // NOLINTEND(cppcoreguidelines-avoid-non-const-global-variables)
 
+// Cache of the FRU contents currently published on dbus.
+// Key: pair(bus number, address). Value: the FRU bytes last published for it.
+using PublishedFruMap =
+    std::flat_map<std::pair<size_t, size_t>, std::vector<uint8_t>>;
+
 // Runtime state shared by the fru-device scan/publish paths. All members
 // share the same lifetime (owned by main()) and are always passed together.
 struct FruDetails
 {
     DBusIntfMap dbusInterfaceMap;
+    PublishedFruMap publishedFru;
     size_t unknownBusObjectCount = 0;
     bool powerIsOn = false;
     std::set<size_t> addressBlocklist;
@@ -1181,58 +1187,135 @@ static void publishFrusOnBus(const BusMap& busmap, uint16_t busNum,
                              FruDetails& fruDetails,
                              sdbusplus::asio::object_server& objServer)
 {
-    for (auto busIface = fruDetails.dbusInterfaceMap.begin();
-         busIface != fruDetails.dbusInterfaceMap.end();)
+    auto found = busmap.find(busNum);
+    DeviceMap* devs = (found != busmap.end()) ? found->second.get() : nullptr;
+
+    std::set<size_t> nowPresent;
+    if (devs != nullptr)
     {
-        if (busIface->first.first == static_cast<size_t>(busNum))
+        for (auto device : *devs)
         {
-            objServer.remove_interface(busIface->second);
-            busIface = fruDetails.dbusInterfaceMap.erase(busIface);
+            nowPresent.emplace(device.first);
+        }
+    }
+
+    for (auto it = fruDetails.dbusInterfaceMap.begin();
+         it != fruDetails.dbusInterfaceMap.end();)
+    {
+        if (it->first.first == static_cast<size_t>(busNum) &&
+            !nowPresent.contains(it->first.second))
+        {
+            objServer.remove_interface(it->second);
+            fruDetails.publishedFru.erase(it->first);
+            it = fruDetails.dbusInterfaceMap.erase(it);
         }
         else
         {
-            busIface++;
+            ++it;
         }
     }
-    auto found = busmap.find(busNum);
-    if (found == busmap.end() || found->second == nullptr)
+
+    if (devs == nullptr)
     {
         return;
     }
-    for (auto device : *(found->second))
+
+    for (auto device : *devs)
     {
+        std::pair<size_t, size_t> key(static_cast<size_t>(busNum),
+                                      static_cast<size_t>(device.first));
+        auto cached = fruDetails.publishedFru.find(key);
+        if (cached != fruDetails.publishedFru.end() &&
+            cached->second == device.second)
+        {
+            continue;
+        }
+        auto old = fruDetails.dbusInterfaceMap.find(key);
+        if (old != fruDetails.dbusInterfaceMap.end())
+        {
+            objServer.remove_interface(old->second);
+            fruDetails.dbusInterfaceMap.erase(old);
+        }
         addFruObjectToDbus(device.second, fruDetails,
                            static_cast<uint32_t>(busNum), device.first,
                            objServer);
+        if (fruDetails.dbusInterfaceMap.contains(key))
+        {
+            fruDetails.publishedFru[key] = device.second;
+        }
+        else
+        {
+            fruDetails.publishedFru.erase(key);
+        }
     }
 }
 
 static void publishAllFrus(BusMap& busmap, FruDetails& fruDetails,
                            sdbusplus::asio::object_server& objServer)
 {
-    for (auto busIface : fruDetails.dbusInterfaceMap)
-    {
-        objServer.remove_interface(busIface.second);
-    }
-
-    fruDetails.dbusInterfaceMap.clear();
-    fruDetails.unknownBusObjectCount = 0;
-
     // todo, get this from a more sensable place
     std::vector<uint8_t> baseboardFRU;
     if (readBaseboardFRU(baseboardFRU))
     {
         // If no device on i2c bus 0, the insertion will happen.
-        auto bus0 =
-            busmap.try_emplace(0, std::make_shared<DeviceMap>());
+        auto bus0 = busmap.try_emplace(0, std::make_shared<DeviceMap>());
         bus0.first->second->emplace(0, baseboardFRU);
     }
+
+    std::set<std::pair<size_t, size_t>> nowPresent;
     for (auto devicemap : busmap)
     {
         for (auto device : *devicemap.second)
         {
+            nowPresent.emplace(static_cast<size_t>(devicemap.first),
+                               static_cast<size_t>(device.first));
+        }
+    }
+
+    for (auto it = fruDetails.dbusInterfaceMap.begin();
+         it != fruDetails.dbusInterfaceMap.end();)
+    {
+        if (!nowPresent.contains(it->first))
+        {
+            objServer.remove_interface(it->second);
+            fruDetails.publishedFru.erase(it->first);
+            it = fruDetails.dbusInterfaceMap.erase(it);
+        }
+        else
+        {
+            ++it;
+        }
+    }
+
+    for (auto devicemap : busmap)
+    {
+        for (auto device : *devicemap.second)
+        {
+            std::pair<size_t, size_t> key(
+                static_cast<size_t>(devicemap.first),
+                static_cast<size_t>(device.first));
+            auto cached = fruDetails.publishedFru.find(key);
+            if (cached != fruDetails.publishedFru.end() &&
+                cached->second == device.second)
+            {
+                continue;
+            }
+            auto old = fruDetails.dbusInterfaceMap.find(key);
+            if (old != fruDetails.dbusInterfaceMap.end())
+            {
+                objServer.remove_interface(old->second);
+                fruDetails.dbusInterfaceMap.erase(old);
+            }
             addFruObjectToDbus(device.second, fruDetails, devicemap.first,
                                device.first, objServer);
+            if (fruDetails.dbusInterfaceMap.contains(key))
+            {
+                fruDetails.publishedFru[key] = device.second;
+            }
+            else
+            {
+                fruDetails.publishedFru.erase(key);
+            }
         }
     }
 }
