@@ -1279,6 +1279,38 @@ void rescanOneBus(BusMap& busmap, uint16_t busNum, FruDetails& fruDetails,
     scan->run();
 }
 
+static void rescanBussesCallback(BusMap& busmap, FruDetails& fruDetails,
+                                 sdbusplus::asio::object_server& objServer)
+{
+    auto devDir = fs::path("/dev/");
+    std::vector<fs::path> i2cBuses;
+
+    std::flat_map<size_t, fs::path> busPaths;
+    if (!getI2cDevicePaths(devDir, busPaths))
+    {
+        lg2::error("unable to find i2c devices");
+        return;
+    }
+
+    for (const auto& busPath : busPaths)
+    {
+        i2cBuses.emplace_back(busPath.second);
+    }
+
+    busmap.clear();
+    for (auto [pair, interface] : foundDevices)
+    {
+        objServer.remove_interface(interface);
+    }
+    foundDevices.clear();
+
+    auto scan = std::make_shared<FindDevicesWithCallback>(
+        i2cBuses, busmap, fruDetails.powerIsOn, objServer,
+        fruDetails.addressBlocklist,
+        [&]() { publishAllFrus(busmap, fruDetails, objServer); });
+    scan->run();
+}
+
 void rescanBusses(BusMap& busmap, FruDetails& fruDetails,
                   sdbusplus::asio::object_server& objServer)
 {
@@ -1298,33 +1330,7 @@ void rescanBusses(BusMap& busmap, FruDetails& fruDetails,
             return;
         }
 
-        auto devDir = fs::path("/dev/");
-        std::vector<fs::path> i2cBuses;
-
-        std::flat_map<size_t, fs::path> busPaths;
-        if (!getI2cDevicePaths(devDir, busPaths))
-        {
-            lg2::error("unable to find i2c devices");
-            return;
-        }
-
-        for (const auto& busPath : busPaths)
-        {
-            i2cBuses.emplace_back(busPath.second);
-        }
-
-        busmap.clear();
-        for (auto [pair, interface] : foundDevices)
-        {
-            objServer.remove_interface(interface);
-        }
-        foundDevices.clear();
-
-        auto scan = std::make_shared<FindDevicesWithCallback>(
-            i2cBuses, busmap, fruDetails.powerIsOn, objServer,
-            fruDetails.addressBlocklist,
-            [&]() { publishAllFrus(busmap, fruDetails, objServer); });
-        scan->run();
+        rescanBussesCallback(busmap, fruDetails, objServer);
     });
 }
 
