@@ -33,6 +33,24 @@
       "message": "I don\u0027t understand how the tag shows up as a FruDevice?  Can you show `busctl tree xyz.openbmc_project.FruDevice` as part of the test plan?",
       "revId": "ff4a31b88424e2a5d7b960fc069f049f165922ac",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67b0c588_e6114370",
+        "filename": "configurations/meta/anacapa/anacapa_nfc_tag.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1002728
+      },
+      "writtenOn": "2026-07-28T05:26:20Z",
+      "side": 1,
+      "message": "Based on the previous discussion, NFC tag contains IPMI FRU hex data. entity-manager uses FruDevice to detect and parse the FRU data read from the TAG through neard, and then exposes the parsed information as a D-Bus object under xyz.openbmc_project.FruDevice [1].\n\n[1] https://gerrit.openbmc.org/c/openbmc/entity-manager/+/90529\n\nBelow is NFC tag information in FruDevice.\n```\nroot@bmc:~# busctl tree xyz.openbmc_project.FruDevice\n└─ /xyz\n  └─ /xyz/openbmc_project\n    └─ /xyz/openbmc_project/FruDevice\n      ├─ /xyz/openbmc_project/FruDevice/5_80\n      ├─ /xyz/openbmc_project/FruDevice/5_81\n      ├─ /xyz/openbmc_project/FruDevice/5_82\n      ├─ /xyz/openbmc_project/FruDevice/5_83\n      ├─ /xyz/openbmc_project/FruDevice/7_84\n      ├─ /xyz/openbmc_project/FruDevice/AMD_Instinct_MI455X_AMC\n      ├─ /xyz/openbmc_project/FruDevice/Anacapa_BMC_Storage_Module_DVT\n      ├─ /xyz/openbmc_project/FruDevice/Anacapa_LBB_DVT\n      ├─ /xyz/openbmc_project/FruDevice/Anacapa_LPDB_DVT\n      ├─ /xyz/openbmc_project/FruDevice/Anacapa_MB_DVT\n      ├─ /xyz/openbmc_project/FruDevice/Anacapa_RBB_DVT\n      ├─ /xyz/openbmc_project/FruDevice/Anacapa_RPDB_DVT\n      ├─ /xyz/openbmc_project/FruDevice/Anacapa_SCM_DVT\n      ├─ /xyz/openbmc_project/FruDevice/Anacapa_Tag_DVT\n      ├─ /xyz/openbmc_project/FruDevice/PM9D3a\n      └─ /xyz/openbmc_project/FruDevice/PM9D3a_0\nroot@bmc:~# busctl introspect xyz.openbmc_project.FruDevice /xyz/openbmc_project/FruDevice/Anacapa_Tag_DVT\nNAME                                TYPE      SIGNATURE RESULT/VALUE       FLAGS\norg.freedesktop.DBus.Introspectable interface -         -                  -\n.Introspect                         method    -         s                  -\norg.freedesktop.DBus.Peer           interface -         -                  -\n.GetMachineId                       method    -         s                  -\n.Ping                               method    -         -                  -\norg.freedesktop.DBus.Properties     interface -         -                  -\n.Get                                method    ss        v                  -\n.GetAll                             method    s         a{sv}              -\n.Set                                method    ssv       -                  -\n.PropertiesChanged                  signal    sa{sv}as  -                  -\nxyz.openbmc_project.FruDevice       interface -         -                  -\n.UpdateFruField                     method    ss        b                  -\n.ADDRESS                            property  u         0                  emits-change\n.BOARD_FRU_VERSION_ID               property  s         \"FRU Ver 0.01\"     emits-change writable\n.BOARD_INFO_AM1                     property  s         \"C01\"              emits-change writable\n.BOARD_LANGUAGE_CODE                property  s         \"25\"               emits-change\n.BOARD_MANUFACTURER                 property  s         \"AMD\"              emits-change writable\n.BOARD_MANUFACTURE_DATE             property  s         \"20271124T201600Z\" emits-change\n.BOARD_PART_NUMBER                  property  s         \"PN\"               emits-change writable\n.BOARD_PRODUCT_NAME                 property  s         \"Anacapa Tag DVT\"  emits-change writable\n.BOARD_SERIAL_NUMBER                property  s         \"SN\"               emits-change writable\n.BUS                                property  u         4294967295         emits-change\n.Common_Format_Version              property  s         \"1\"                emits-change\n```",
+      "parentUuid": "b7d6bfb4_3dee8033",
+      "revId": "ff4a31b88424e2a5d7b960fc069f049f165922ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
