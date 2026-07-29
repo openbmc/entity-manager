@@ -165,19 +165,35 @@ void EntityManager::postBoardToDBus(
             sdbusplus::common::xyz::openbmc_project::inventory::Item::interface,
             boardNameOrig);
 
-    const std::string invItemIntf = std::format(
-        "{}.{}",
-        sdbusplus::common::xyz::openbmc_project::inventory::Item::interface,
-        boardType);
-
-    std::shared_ptr<sdbusplus::asio::dbus_interface> boardIface =
-        dbus_interface.createInterface(boardPath, invItemIntf, boardNameOrig);
-
     dbus_interface.createAddObjectMethod(jsonPointerPath, boardPath,
                                          systemConfiguration, boardNameOrig);
 
-    dbus_interface.populateInterfaceFromJson(
-        systemConfiguration, jsonPointerPath, boardIface, boardValues);
+    // A configuration type only gets a top-level inventory interface if it is
+    // listed here. Adding a type to the schema is therefore not enough to make
+    // entity-manager claim an interface for it, which keeps us from exporting
+    // interfaces that aren't defined in phosphor-dbus-interfaces.
+    static const std::flat_map<std::string, std::string> typeToInterface = {
+        {"Board", "xyz.openbmc_project.Inventory.Item.Board"},
+        {"Cable", "xyz.openbmc_project.Inventory.Item.Cable"},
+        {"Chassis", "xyz.openbmc_project.Inventory.Item.Chassis"},
+        {"Cpu", "xyz.openbmc_project.Inventory.Item.Cpu"},
+        // NVMe has no phosphor-dbus-interfaces definition, but is exported
+        // today and consumers rely on it.
+        {"NVMe", "xyz.openbmc_project.Inventory.Item.NVMe"},
+        {"PowerSupply", "xyz.openbmc_project.Inventory.Item.PowerSupply"},
+        {"Valve", "xyz.openbmc_project.Inventory.Item.Valve"},
+    };
+
+    auto findInterface = typeToInterface.find(boardType);
+    if (findInterface != typeToInterface.end())
+    {
+        std::shared_ptr<sdbusplus::asio::dbus_interface> boardIface =
+            dbus_interface.createInterface(boardPath, findInterface->second,
+                                           boardNameOrig);
+
+        dbus_interface.populateInterfaceFromJson(
+            systemConfiguration, jsonPointerPath, boardIface, boardValues);
+    }
     jsonPointerPath += "/";
     // iterate through board properties
     for (const auto& [propName, propValue] : boardValues.items())
