@@ -170,11 +170,27 @@ void EntityManager::postBoardToDBus(
     std::string jsonPointerPath1 = jsonPointerPath;
     jsonPointerPath += "/";
 
+    // A configuration type only gets a top-level inventory interface if it is
+    // listed here. Adding a type to the schema is therefore not enough to make
+    // entity-manager claim an interface for it, which keeps us from exporting
+    // interfaces that aren't defined in phosphor-dbus-interfaces.
+    static const std::flat_map<std::string, std::string> typeToInterface = {
+        {"Board", "xyz.openbmc_project.Inventory.Item.Board"},
+        {"Cable", "xyz.openbmc_project.Inventory.Item.Cable"},
+        {"Chassis", "xyz.openbmc_project.Inventory.Item.Chassis"},
+        {"Cpu", "xyz.openbmc_project.Inventory.Item.Cpu"},
+        // NVMe has no phosphor-dbus-interfaces definition, but is exported
+        // today and consumers rely on it.
+        {"NVMe", "xyz.openbmc_project.Inventory.Item.NVMe"},
+        {"PowerSupply", "xyz.openbmc_project.Inventory.Item.PowerSupply"},
+        {"Valve", "xyz.openbmc_project.Inventory.Item.Valve"},
+    };
+
     std::shared_ptr<sdbusplus::asio::dbus_interface> typeIface;
-    const std::string invItemIntf = std::format(
-        "{}.{}",
-        sdbusplus::common::xyz::openbmc_project::inventory::Item::interface,
-        configType);
+    auto findInterface = typeToInterface.find(configType);
+    const std::string invItemIntf = findInterface != typeToInterface.end()
+                                        ? findInterface->second
+                                        : std::string{};
 
     // iterate through configuration properties
     for (const auto& [propName, propValue] : configValues.items())
@@ -195,7 +211,7 @@ void EntityManager::postBoardToDBus(
         }
     }
 
-    if (typeIface == nullptr)
+    if (typeIface == nullptr && !invItemIntf.empty())
     {
         typeIface = dbus_interface.createInterface(objectPath, invItemIntf,
                                                    configNameOrig);
