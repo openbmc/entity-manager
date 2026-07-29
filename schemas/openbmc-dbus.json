@@ -26,6 +26,9 @@
                                 },
                                 "SerialNumber": {
                                     "type": "string"
+                                },
+                                "SubModel": {
+                                    "type": "string"
                                 }
                             },
                             "required": [
@@ -141,6 +144,42 @@
                                     "type": "string"
                                 }
                             },
+                            "type": "object"
+                        },
+                        "Drive": {
+                            "additionalProperties": false,
+                            "properties": {
+                                "Capacity": {
+                                    "type": "string"
+                                },
+                                "Protocol": {
+                                    "type": "string"
+                                },
+                                "Type": {
+                                    "type": "string"
+                                },
+                                "EncryptionStatus": {
+                                    "type": "string"
+                                },
+                                "LockedStatus": {
+                                    "type": "string"
+                                },
+                                "PredictedMediaLifeLeftPercent": {
+                                    "type": "string"
+                                },
+                                "Resettable": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "Capacity",
+                                "Protocol",
+                                "Type",
+                                "EncryptionStatus",
+                                "LockedStatus",
+                                "PredictedMediaLifeLeftPercent",
+                                "Resettable"
+                            ],
                             "type": "object"
                         },
                         "NetworkInterface": {
