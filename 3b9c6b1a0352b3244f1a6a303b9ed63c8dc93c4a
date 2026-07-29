@@ -109,6 +109,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "a9fe9f7b_d7b1cc9f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-07-29T06:14:55Z",
+      "side": 1,
+      "message": "Thanks for the detailed reply. The context on the earlier thread and the PDI change is really helpful, and no apology needed at all; the feedback was right for that revision.\n\nAgreed the whitelist is the better shape, so I\u0027ve implemented it that way as a separate commit at the bottom of the series: https://gerrit.openbmc.org/c/openbmc/entity-manager/+/92864.\n\nI kept FlowMeter and NVMe in the list so nothing regresses as you say, hsbp-manager depends on Item.NVMe, so I\u0027ve left that alone.\n\nHi @patrick@stwcx.xyz, ps16: dropped Inventory.Item.Platform from the commit message example.",
+      "parentUuid": "e844a675_76504ab7",
+      "revId": "3b9c6b1a0352b3244f1a6a303b9ed63c8dc93c4a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "c4198daa_6e3ddfa9",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 13
