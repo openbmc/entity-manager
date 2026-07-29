@@ -2,6 +2,7 @@
 // SPDX-FileCopyrightText: Copyright 2018 Intel Corporation
 
 #pragma once
+#include "../i2c.hpp"
 #include "fru_reader.hpp"
 
 #include <sdbusplus/asio/object_server.hpp>
@@ -22,11 +23,15 @@ extern "C"
 
 constexpr size_t fruBlockSize = 8;
 
+// maps i2c address -> eeprom content
 using DeviceMap = std::flat_map<int, std::vector<uint8_t>>;
-using BusMap = std::flat_map<int, std::shared_ptr<DeviceMap>>;
+
+// maps i2c bus -> device map
+using BusMap = std::flat_map<I2cBusNum, std::shared_ptr<DeviceMap>>;
+
 // key type: {bus, address}
 using DBusIntfMap =
-    std::flat_map<std::pair<size_t, size_t>,
+    std::flat_map<std::pair<I2cBusNum, size_t>,
                   std::shared_ptr<sdbusplus::asio::dbus_interface>>;
 
 // NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
@@ -115,7 +120,7 @@ resCodes formatIPMIFRU(
     std::span<const uint8_t> fruBytes,
     std::flat_map<std::string, std::string, std::less<>>& result);
 
-std::vector<uint8_t>& getFRUInfo(const uint16_t& bus, const uint8_t& address);
+std::vector<uint8_t>& getFRUInfo(uint16_t bus, const uint8_t& address);
 
 uint8_t calculateChecksum(std::span<const uint8_t>::const_iterator iter,
                           std::span<const uint8_t>::const_iterator end);
@@ -214,9 +219,9 @@ std::optional<int> findIndexForFRU(DBusIntfMap& dbusInterfaceMap,
 std::optional<std::string> getProductName(
     std::vector<uint8_t>& device,
     std::flat_map<std::string, std::string, std::less<>>& formattedFRU,
-    uint32_t bus, uint32_t address, size_t& unknownBusObjectCount);
+    I2cBusNum bus, uint32_t address, size_t& unknownBusObjectCount);
 
-bool getFruData(std::vector<uint8_t>& fruData, uint32_t bus, uint32_t address);
+bool getFruData(std::vector<uint8_t>& fruData, I2cBusNum bus, uint32_t address);
 
 bool isFieldEditable(std::string_view fieldName);
 

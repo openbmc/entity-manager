@@ -4,6 +4,7 @@
 #include "fru_utils.hpp"
 
 #include "../dbus_util.hpp"
+#include "../i2c.hpp"
 #include "gzip_utils.hpp"
 
 #include <phosphor-logging/lg2.hpp>
@@ -976,7 +977,8 @@ unsigned int getHeaderAreaFieldOffset(fruAreas area)
     return static_cast<unsigned int>(area) + 1;
 }
 
-std::vector<uint8_t>& getFRUInfo(const uint16_t& bus, const uint8_t& address)
+std::vector<uint8_t>& getFRUInfoImpl(const I2cBusNum bus,
+                                     const uint8_t& address)
 {
     auto deviceMap = busMap.find(bus);
     if (deviceMap == busMap.end())
@@ -991,6 +993,12 @@ std::vector<uint8_t>& getFRUInfo(const uint16_t& bus, const uint8_t& address)
     std::vector<uint8_t>& ret = device->second;
 
     return ret;
+}
+
+// wrapper for use on D-Bus
+std::vector<uint8_t>& getFRUInfo(uint16_t bus, const uint8_t& address)
+{
+    return getFRUInfoImpl(I2cBusNum{bus}, address);
 }
 
 static bool updateHeaderChecksum(std::vector<uint8_t>& fruData)
@@ -1642,7 +1650,7 @@ std::optional<int> findIndexForFRU(DBusIntfMap& dbusInterfaceMap,
 std::optional<std::string> getProductName(
     std::vector<uint8_t>& device,
     std::flat_map<std::string, std::string, std::less<>>& formattedFRU,
-    uint32_t bus, uint32_t address, size_t& unknownBusObjectCount)
+    I2cBusNum bus, uint32_t address, size_t& unknownBusObjectCount)
 {
     std::string productName;
 
@@ -1650,14 +1658,14 @@ std::optional<std::string> getProductName(
     if (res == resCodes::resErr)
     {
         lg2::error("failed to parse FRU for device at bus {BUS} address {ADDR}",
-                   "BUS", bus, "ADDR", address);
+                   "BUS", bus.get(), "ADDR", address);
         return std::nullopt;
     }
     if (res == resCodes::resWarn)
     {
         lg2::error(
             "Warnings while parsing FRU for device at bus {BUS} address {ADDR}",
-            "BUS", bus, "ADDR", address);
+            "BUS", bus.get(), "ADDR", address);
     }
 
     auto productNameFind = formattedFRU.find("BOARD_PRODUCT_NAME");
@@ -1682,12 +1690,11 @@ std::optional<std::string> getProductName(
     return productName;
 }
 
-bool getFruData(std::vector<uint8_t>& fruData, uint32_t bus, uint32_t address)
+bool getFruData(std::vector<uint8_t>& fruData, I2cBusNum bus, uint32_t address)
 {
     try
     {
-        fruData = getFRUInfo(static_cast<uint16_t>(bus),
-                             static_cast<uint8_t>(address));
+        fruData = getFRUInfoImpl(bus, static_cast<uint8_t>(address));
     }
     catch (const std::invalid_argument& e)
     {

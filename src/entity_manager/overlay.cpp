@@ -4,6 +4,7 @@
 #include "overlay.hpp"
 
 #include "../dbus_util.hpp"
+#include "../i2c.hpp"
 #include "../utils.hpp"
 #include "devices.hpp"
 #include "utils.hpp"
@@ -43,15 +44,15 @@ std::string jsonToString(const nlohmann::json& in)
     return in.dump();
 }
 
-static std::string deviceDirName(uint64_t bus, uint64_t address)
+static std::string deviceDirName(I2cBusNum bus, uint64_t address)
 {
     std::ostringstream name;
-    name << bus << "-" << std::hex << std::setw(4) << std::setfill('0')
+    name << bus.get() << "-" << std::hex << std::setw(4) << std::setfill('0')
          << address;
     return name.str();
 }
 
-void linkMux(std::string_view muxName, uint64_t busIndex, uint64_t address,
+void linkMux(std::string_view muxName, I2cBusNum busIndex, uint64_t address,
              const std::vector<std::string>& channelNames)
 {
     std::error_code ec;
@@ -129,7 +130,7 @@ static int createDevice(std::string_view busPath, std::string_view parameters,
     return 0;
 }
 
-static bool deviceIsCreated(std::string_view busPath, uint64_t bus,
+static bool deviceIsCreated(std::string_view busPath, I2cBusNum bus,
                             uint64_t address,
                             const devices::createsHWMon hasHWMonDir)
 {
@@ -147,7 +148,7 @@ static bool deviceIsCreated(std::string_view busPath, uint64_t bus,
 
 static int buildDevice(
     std::string_view name, std::string_view busPath,
-    std::string_view parameters, uint64_t bus, uint64_t address,
+    std::string_view parameters, I2cBusNum bus, uint64_t address,
     std::string_view constructor, std::string_view destructor,
     const devices::createsHWMon hasHWMonDir,
     std::vector<std::string> channelNames, boost::asio::io_context& io,
@@ -159,7 +160,7 @@ static int buildDevice(
     }
 
     lg2::debug("try to build device {NAME} at bus={BUS}, address={ADDR}",
-               "NAME", name, "BUS", bus, "ADDR", address);
+               "NAME", name, "BUS", bus.get(), "ADDR", address);
 
     // If it's already instantiated, we don't need to create it again.
     if (!deviceIsCreated(busPath, bus, address, hasHWMonDir))
@@ -214,7 +215,7 @@ void exportDevice(const devices::ExportTemplate& exportTemplate,
     std::string_view destructor = exportTemplate.remove;
     devices::createsHWMon hasHWMonDir = exportTemplate.hasHWMonDir;
     std::string name = "unknown";
-    std::optional<uint64_t> bus;
+    std::optional<I2cBusNum> bus;
     std::optional<uint64_t> address;
     std::vector<std::string> channels;
 
@@ -237,7 +238,7 @@ void exportDevice(const devices::ExportTemplate& exportTemplate,
 
         if (keyPair.key() == "Bus")
         {
-            bus = keyPair.value().get<uint64_t>();
+            bus = I2cBusNum{keyPair.value().get<size_t>()};
         }
         else if (keyPair.key() == "Address")
         {
