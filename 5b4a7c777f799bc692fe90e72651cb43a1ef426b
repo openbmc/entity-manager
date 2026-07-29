@@ -22,6 +22,30 @@
       },
       "revId": "5b4a7c777f799bc692fe90e72651cb43a1ef426b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04a35fb8_4c4bf3bc",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 1319,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-29T17:02:23Z",
+      "side": 1,
+      "message": "okay, maybe i was somewhat confused - your patch is about not clearing the interfaces in case nothing has changed, sorry for mixing up things.\n\n\nThe difference as to why `ReScan` is not doing `ReScanBus` in a loop is that it\u0027s clearing the interfaces all at once, right?\n\nIs there any functional requirement as to why they all need to be cleared at once before re-publishing? If there is no such requirement then we could change it so that `ReScan` just calls `ReScanBus` for all buses and simplify things.\n\n@spinler@us.ibm.com do you know if there is any requirement on the ordering of rescan logic?",
+      "parentUuid": "b9a5745b_31faa773",
+      "range": {
+        "startLine": 1298,
+        "startChar": 12,
+        "endLine": 1319,
+        "endChar": 13
+      },
+      "revId": "5b4a7c777f799bc692fe90e72651cb43a1ef426b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
