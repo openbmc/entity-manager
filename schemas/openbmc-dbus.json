@@ -26,6 +26,9 @@
                                 },
                                 "SerialNumber": {
                                     "type": "string"
+                                },
+                                "SubModel": {
+                                    "type": "string"
                                 }
                             },
                             "required": [
@@ -43,7 +46,9 @@
                                     "type": "string"
                                 }
                             },
-                            "required": ["AssetTag"],
+                            "required": [
+                                "AssetTag"
+                            ],
                             "type": "object"
                         },
                         "Compatible": {
@@ -56,7 +61,9 @@
                                     }
                                 }
                             },
-                            "required": ["Names"],
+                            "required": [
+                                "Names"
+                            ],
                             "type": "object"
                         },
                         "ManagedHost": {
@@ -64,10 +71,15 @@
                             "additionalProperties": false,
                             "properties": {
                                 "HostIndex": {
-                                    "type": ["string", "number"]
+                                    "type": [
+                                        "string",
+                                        "number"
+                                    ]
                                 }
                             },
-                            "required": ["HostIndex"],
+                            "required": [
+                                "HostIndex"
+                            ],
                             "type": "object"
                         },
                         "Cable": {
@@ -77,10 +89,17 @@
                                     "type": "number"
                                 },
                                 "Type": {
-                                    "enum": ["Optical", "Copper", "Unknown"]
+                                    "enum": [
+                                        "Optical",
+                                        "Copper",
+                                        "Unknown"
+                                    ]
                                 }
                             },
-                            "required": ["Length", "Type"],
+                            "required": [
+                                "Length",
+                                "Type"
+                            ],
                             "type": "object"
                         },
                         "Replaceable": {
@@ -93,17 +112,25 @@
                                     "type": "boolean"
                                 }
                             },
-                            "required": ["FieldReplaceable", "HotPluggable"],
+                            "required": [
+                                "FieldReplaceable",
+                                "HotPluggable"
+                            ],
                             "type": "object"
                         },
                         "Slot": {
                             "additionalProperties": false,
                             "properties": {
                                 "SlotNumber": {
-                                    "type": ["string", "number"]
+                                    "type": [
+                                        "string",
+                                        "number"
+                                    ]
                                 }
                             },
-                            "required": ["SlotNumber"],
+                            "required": [
+                                "SlotNumber"
+                            ],
                             "type": "object"
                         },
                         "Revision": {
@@ -113,7 +140,9 @@
                                     "type": "string"
                                 }
                             },
-                            "required": ["Version"],
+                            "required": [
+                                "Version"
+                            ],
                             "type": "object"
                         },
                         "LocationCode": {
@@ -123,7 +152,9 @@
                                     "type": "string"
                                 }
                             },
-                            "required": ["LocationCode"],
+                            "required": [
+                                "LocationCode"
+                            ],
                             "type": "object"
                         }
                     },
@@ -143,6 +174,42 @@
                             },
                             "type": "object"
                         },
+                        "Drive": {
+                            "additionalProperties": false,
+                            "properties": {
+                                "Capacity": {
+                                    "type": "string"
+                                },
+                                "Protocol": {
+                                    "type": "string"
+                                },
+                                "Type": {
+                                    "type": "string"
+                                },
+                                "EncryptionStatus": {
+                                    "type": "string"
+                                },
+                                "LockedStatus": {
+                                    "type": "string"
+                                },
+                                "PredictedMediaLifeLeftPercent": {
+                                    "type": "string"
+                                },
+                                "Resettable": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "Capacity",
+                                "Protocol",
+                                "Type",
+                                "EncryptionStatus",
+                                "LockedStatus",
+                                "PredictedMediaLifeLeftPercent",
+                                "Resettable"
+                            ],
+                            "type": "object"
+                        },
                         "NetworkInterface": {
                             "additionalProperties": false,
                             "properties": {
@@ -150,7 +217,9 @@
                                     "type": "string"
                                 }
                             },
-                            "required": ["MACAddress"],
+                            "required": [
+                                "MACAddress"
+                            ],
                             "type": "object"
                         },
                         "Panel": {
@@ -176,7 +245,9 @@
                                     "type": "string"
                                 }
                             },
-                            "required": ["Type"],
+                            "required": [
+                                "Type"
+                            ],
                             "type": "object"
                         },
                         "Dimm": {
@@ -194,7 +265,9 @@
                                     ]
                                 }
                             },
-                            "required": ["Direction"],
+                            "required": [
+                                "Direction"
+                            ],
                             "type": "object"
                         }
                     }
@@ -207,7 +280,9 @@
                                 "type": "string"
                             }
                         },
-                        "required": ["UUID"],
+                        "required": [
+                            "UUID"
+                        ],
                         "type": "object"
                     }
                 }
