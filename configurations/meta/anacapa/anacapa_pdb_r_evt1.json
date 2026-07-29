@@ -68,13 +68,15 @@
                     "Direction": "less than",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 3900
+                    "Value": 3900,
+                    "Hysteresis": 2375
                 },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 47500
+                    "Value": 47500,
+                    "Hysteresis": 2375
                 }
             ],
             "Type": "I2CFan"
@@ -99,13 +101,15 @@
                     "Direction": "less than",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 3800
+                    "Value": 3800,
+                    "Hysteresis": 2225
                 },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 44500
+                    "Value": 44500,
+                    "Hysteresis": 2225
                 }
             ],
             "Type": "I2CFan"
@@ -130,13 +134,15 @@
                     "Direction": "less than",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 3900
+                    "Value": 3900,
+                    "Hysteresis": 2375
                 },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 47500
+                    "Value": 47500,
+                    "Hysteresis": 2375
                 }
             ],
             "Type": "I2CFan"
@@ -161,13 +167,15 @@
                     "Direction": "less than",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 3800
+                    "Value": 3800,
+                    "Hysteresis": 2225
                 },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 44500
+                    "Value": 44500,
+                    "Hysteresis": 2225
                 }
             ],
             "Type": "I2CFan"
@@ -192,13 +200,15 @@
                     "Direction": "less than",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 3900
+                    "Value": 3900,
+                    "Hysteresis": 2375
                 },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 47500
+                    "Value": 47500,
+                    "Hysteresis": 2375
                 }
             ],
             "Type": "I2CFan"
@@ -223,13 +233,15 @@
                     "Direction": "less than",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 3800
+                    "Value": 3800,
+                    "Hysteresis": 2225
                 },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 44500
+                    "Value": 44500,
+                    "Hysteresis": 2225
                 }
             ],
             "Type": "I2CFan"
@@ -254,13 +266,15 @@
                     "Direction": "less than",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 3900
+                    "Value": 3900,
+                    "Hysteresis": 2375
                 },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 47500
+                    "Value": 47500,
+                    "Hysteresis": 2375
                 }
             ],
             "Type": "I2CFan"
@@ -285,13 +299,15 @@
                     "Direction": "less than",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 3800
+                    "Value": 3800,
+                    "Hysteresis": 2225
                 },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 44500
+                    "Value": 44500,
+                    "Hysteresis": 2225
                 }
             ],
             "Type": "I2CFan"
@@ -313,14 +329,16 @@
                     "Label": "iout1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 45
+                    "Value": 45,
+                    "Hysteresis": 2.25
                 },
                 {
                     "Direction": "greater than",
                     "Label": "iout1",
                     "Name": "upper non recoverable",
                     "Severity": 4,
-                    "Value": 56
+                    "Value": 56,
+                    "Hysteresis": 2.25
                 },
                 {
                     "Direction": "greater than",
@@ -334,42 +352,48 @@
                     "Label": "temp1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 110
+                    "Value": 110,
+                    "Hysteresis": 5.5
                 },
                 {
                     "Direction": "greater than",
                     "Label": "temp1",
                     "Name": "upper non recoverable",
                     "Severity": 4,
-                    "Value": 125
+                    "Value": 125,
+                    "Hysteresis": 5.5
                 },
                 {
                     "Direction": "less than",
                     "Label": "vin",
                     "Name": "lower non recoverable",
                     "Severity": 4,
-                    "Value": 32.8
+                    "Value": 32.8,
+                    "Hysteresis": 3
                 },
                 {
                     "Direction": "less than",
                     "Label": "vin",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 40
+                    "Value": 40,
+                    "Hysteresis": 3
                 },
                 {
                     "Direction": "greater than",
                     "Label": "vin",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 60
+                    "Value": 60,
+                    "Hysteresis": 3
                 },
                 {
                     "Direction": "greater than",
                     "Label": "vin",
                     "Name": "upper non recoverable",
                     "Severity": 4,
-                    "Value": 64
+                    "Value": 64,
+                    "Hysteresis": 3
                 }
             ],
             "Type": "LTC4287",
@@ -396,14 +420,16 @@
                     "Label": "iout1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 87.5
+                    "Value": 87.5,
+                    "Hysteresis": 4.375
                 },
                 {
                     "Direction": "greater than",
                     "Label": "iout1",
                     "Name": "upper non recoverable",
                     "Severity": 4,
-                    "Value": 113
+                    "Value": 113,
+                    "Hysteresis": 4.375
                 },
                 {
                     "Direction": "greater than",
@@ -417,42 +443,48 @@
                     "Label": "temp1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 110
+                    "Value": 110,
+                    "Hysteresis": 5.5
                 },
                 {
                     "Direction": "greater than",
                     "Label": "temp1",
                     "Name": "upper non recoverable",
                     "Severity": 4,
-                    "Value": 125
+                    "Value": 125,
+                    "Hysteresis": 5.5
                 },
                 {
                     "Direction": "less than",
                     "Label": "vin",
                     "Name": "lower non recoverable",
                     "Severity": 4,
-                    "Value": 32.8
+                    "Value": 32.8,
+                    "Hysteresis": 3
                 },
                 {
                     "Direction": "less than",
                     "Label": "vin",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 40
+                    "Value": 40,
+                    "Hysteresis": 3
                 },
                 {
                     "Direction": "greater than",
                     "Label": "vin",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 60
+                    "Value": 60,
+                    "Hysteresis": 3
                 },
                 {
                     "Direction": "greater than",
                     "Label": "vin",
                     "Name": "upper non recoverable",
                     "Severity": 4,
-                    "Value": 64
+                    "Value": 64,
+                    "Hysteresis": 3
                 }
             ],
             "Type": "LTC4287",
@@ -480,14 +512,16 @@
                     "Label": "iout1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 87.5
+                    "Value": 87.5,
+                    "Hysteresis": 4.375
                 },
                 {
                     "Direction": "greater than",
                     "Label": "iout1",
                     "Name": "upper non recoverable",
                     "Severity": 4,
-                    "Value": 113
+                    "Value": 113,
+                    "Hysteresis": 4.375
                 },
                 {
                     "Direction": "greater than",
@@ -501,42 +535,48 @@
                     "Label": "temp1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 110
+                    "Value": 110,
+                    "Hysteresis": 5.5
                 },
                 {
                     "Direction": "greater than",
                     "Label": "temp1",
                     "Name": "upper non recoverable",
                     "Severity": 4,
-                    "Value": 125
+                    "Value": 125,
+                    "Hysteresis": 5.5
                 },
                 {
                     "Direction": "less than",
                     "Label": "vin",
                     "Name": "lower non recoverable",
                     "Severity": 4,
-                    "Value": 32.8
+                    "Value": 32.8,
+                    "Hysteresis": 3
                 },
                 {
                     "Direction": "less than",
                     "Label": "vin",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 40
+                    "Value": 40,
+                    "Hysteresis": 3
                 },
                 {
                     "Direction": "greater than",
                     "Label": "vin",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 60
+                    "Value": 60,
+                    "Hysteresis": 3
                 },
                 {
                     "Direction": "greater than",
                     "Label": "vin",
                     "Name": "upper non recoverable",
                     "Severity": 4,
-                    "Value": 64
+                    "Value": 64,
+                    "Hysteresis": 3
                 }
             ],
             "Type": "LTC4287",
@@ -564,14 +604,16 @@
                     "Label": "iout1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 58
+                    "Value": 58,
+                    "Hysteresis": 2.9
                 },
                 {
                     "Direction": "greater than",
                     "Label": "iout1",
                     "Name": "upper non recoverable",
                     "Severity": 4,
-                    "Value": 72
+                    "Value": 72,
+                    "Hysteresis": 2.9
                 },
                 {
                     "Direction": "greater than",
@@ -585,42 +627,48 @@
                     "Label": "temp1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 110
+                    "Value": 110,
+                    "Hysteresis": 5.5
                 },
                 {
                     "Direction": "greater than",
                     "Label": "temp1",
                     "Name": "upper non recoverable",
                     "Severity": 4,
-                    "Value": 125
+                    "Value": 125,
+                    "Hysteresis": 5.5
                 },
                 {
                     "Direction": "less than",
                     "Label": "vin",
                     "Name": "lower non recoverable",
                     "Severity": 4,
-                    "Value": 32.8
+                    "Value": 32.8,
+                    "Hysteresis": 3
                 },
                 {
                     "Direction": "less than",
                     "Label": "vin",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 40
+                    "Value": 40,
+                    "Hysteresis": 3
                 },
                 {
                     "Direction": "greater than",
                     "Label": "vin",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 60
+                    "Value": 60,
+                    "Hysteresis": 3
                 },
                 {
                     "Direction": "greater than",
                     "Label": "vin",
                     "Name": "upper non recoverable",
                     "Severity": 4,
-                    "Value": 64
+                    "Value": 64,
+                    "Hysteresis": 3
                 }
             ],
             "Type": "LTC4287",
@@ -643,42 +691,48 @@
                     "Index": 1,
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 0
+                    "Value": 0,
+                    "Hysteresis": 4.25
                 },
                 {
                     "Direction": "greater than",
                     "Index": 1,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 85
+                    "Value": 85,
+                    "Hysteresis": 4.25
                 },
                 {
                     "Direction": "less than",
                     "Index": 2,
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 0
+                    "Value": 0,
+                    "Hysteresis": 4.25
                 },
                 {
                     "Direction": "greater than",
                     "Index": 2,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 85
+                    "Value": 85,
+                    "Hysteresis": 4.25
                 },
                 {
                     "Direction": "less than",
                     "Index": 3,
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 0
+                    "Value": 0,
+                    "Hysteresis": 4.25
                 },
                 {
                     "Direction": "greater than",
                     "Index": 3,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 85
+                    "Value": 85,
+                    "Hysteresis": 4.25
                 }
             ],
             "Type": "TMP432"
@@ -692,13 +746,15 @@
                     "Direction": "less than",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 0
+                    "Value": 0,
+                    "Hysteresis": 4.25
                 },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 85
+                    "Value": 85,
+                    "Hysteresis": 4.25
                 }
             ],
             "Type": "TMP75"

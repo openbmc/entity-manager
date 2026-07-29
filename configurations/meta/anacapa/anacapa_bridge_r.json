@@ -59,19 +59,22 @@
                     "Direction": "less than",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 0
+                    "Value": 0,
+                    "Hysteresis": 5
                 },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 100
+                    "Value": 100,
+                    "Hysteresis": 5
                 },
                 {
                     "Direction": "greater than",
                     "Name": "upper non recoverable",
                     "Severity": 4,
-                    "Value": 105
+                    "Value": 105,
+                    "Hysteresis": 5
                 }
             ],
             "Type": "PT5161L"
@@ -88,42 +91,48 @@
                     "Index": 1,
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 0
+                    "Value": 0,
+                    "Hysteresis": 4.25
                 },
                 {
                     "Direction": "greater than",
                     "Index": 1,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 85
+                    "Value": 85,
+                    "Hysteresis": 4.25
                 },
                 {
                     "Direction": "less than",
                     "Index": 2,
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 0
+                    "Value": 0,
+                    "Hysteresis": 4.25
                 },
                 {
                     "Direction": "greater than",
                     "Index": 2,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 85
+                    "Value": 85,
+                    "Hysteresis": 4.25
                 },
                 {
                     "Direction": "less than",
                     "Index": 3,
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 0
+                    "Value": 0,
+                    "Hysteresis": 4.25
                 },
                 {
                     "Direction": "greater than",
                     "Index": 3,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 85
+                    "Value": 85,
+                    "Hysteresis": 4.25
                 }
             ],
             "Type": "TMP432"
@@ -140,42 +149,48 @@
                     "Index": 1,
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 0
+                    "Value": 0,
+                    "Hysteresis": 3.75
                 },
                 {
                     "Direction": "greater than",
                     "Index": 1,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 75
+                    "Value": 75,
+                    "Hysteresis": 3.75
                 },
                 {
                     "Direction": "less than",
                     "Index": 2,
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 0
+                    "Value": 0,
+                    "Hysteresis": 3.75
                 },
                 {
                     "Direction": "greater than",
                     "Index": 2,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 75
+                    "Value": 75,
+                    "Hysteresis": 3.75
                 },
                 {
                     "Direction": "less than",
                     "Index": 3,
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 0
+                    "Value": 0,
+                    "Hysteresis": 3.75
                 },
                 {
                     "Direction": "greater than",
                     "Index": 3,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 75
+                    "Value": 75,
+                    "Hysteresis": 3.75
                 }
             ],
             "Type": "TMP432"
