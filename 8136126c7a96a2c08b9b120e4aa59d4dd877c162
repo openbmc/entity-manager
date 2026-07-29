@@ -16,6 +16,24 @@
       "message": "Can we avoid using duplicate registration failures as fallback control flow here? A conditional fallback when type-specific properties are missing would be safer and cleaner than relying on expected “already exists” errors.",
       "revId": "8136126c7a96a2c08b9b120e4aa59d4dd877c162",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e39587a2_c93a3ed1",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1002954
+      },
+      "writtenOn": "2026-07-29T12:24:38Z",
+      "side": 1,
+      "message": "I agree, let\u0027s not waste cycles if we don\u0027t have to. I was actually incorrect, these calls do not produce errors. Regardless, I implemented the conditional. Thanks for your comment!",
+      "parentUuid": "64053702_19b9ddb7",
+      "revId": "8136126c7a96a2c08b9b120e4aa59d4dd877c162",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
