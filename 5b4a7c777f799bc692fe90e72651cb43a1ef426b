@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9a5745b_31faa773",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 1319,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-29T15:45:21Z",
+      "side": 1,
+      "message": "This logic looks duplicated with what you wrote for `publishFrusOnBus`,\n\nis there any chance we can stack a patch below this one to implement `publishAllFrus` to call `publishFrusOnBus` in a loop (for each bus) or something like that?\n\n\nThere are some subtle differences like that `publishAllFrus` clears the interface maps first and then publishes and `publishFrusOnBus` only clears for one bus.\n\nBut if we make sure that `publishFrusOnBus` only tries to clear (and does not throw on failing to do so) then it might be safe to call it in a loop from `publishAllFrus` even if the maps are already cleared beforehand.\n\n\nIs there anything preventing us from doing it like that and implementing `ReScan` in terms of multiple (internal) calls to the `ReScanBus` implementation?\n\nThat way you would only need to implement your feature in a single function and we can avoid having to manually test two different code paths.",
+      "range": {
+        "startLine": 1298,
+        "startChar": 12,
+        "endLine": 1319,
+        "endChar": 13
+      },
+      "revId": "5b4a7c777f799bc692fe90e72651cb43a1ef426b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
