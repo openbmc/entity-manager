@@ -110,6 +110,7 @@ configs = [
     'intel/stp_baseboard.json',
     'intel/stp_p4000_chassis.json',
     'intel/wft_baseboard.json',
+    'kioxia/cd8_nvme.json',
     'mbx_systems/1_57_chassis.json',
     'mbx_systems/1_60_chassis.json',
     'mellanox/connectx-6.json',
