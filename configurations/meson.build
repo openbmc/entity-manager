@@ -190,6 +190,8 @@ configs = [
     'meta/rainier/rainier_scm_2700.json',
     'meta/sanmiguel/sanmiguel_fio.json',
     'meta/sanmiguel/sanmiguel_pdb.json',
+    'meta/sanmiguel/sanmiguel_pdb_ti.json',
+    'meta/sanmiguel/sanmiguel_pdb_mps.json',
     'meta/sanmiguel/sanmiguel_scm.json',
     'meta/sanmiguel/sanmiguel_smm_carrier.json',
     'meta/sanmiguel/sanmiguel_smm_extender.json',
