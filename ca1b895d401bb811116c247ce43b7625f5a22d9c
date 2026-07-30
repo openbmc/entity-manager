@@ -94,6 +94,42 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f59e246b_e9695dc6",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1002470
+      },
+      "writtenOn": "2026-07-30T07:40:01Z",
+      "side": 1,
+      "message": "Done, and your assumption was right. Added a named alias with a comment:\n\n  // Cache of the FRU contents currently published on dbus.\n  // Key: pair(bus number, address). Value: the FRU bytes last published\n  // for it.\n  using PublishedFruMap \u003d\n      std::flat_map\u003cstd::pair\u003csize_t, size_t\u003e, std::vector\u003cuint8_t\u003e\u003e;",
+      "parentUuid": "ebd55a2e_b3e43d24",
+      "revId": "ca1b895d401bb811116c247ce43b7625f5a22d9c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8729d5af_faf15d81",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1002470
+      },
+      "writtenOn": "2026-07-30T07:40:01Z",
+      "side": 1,
+      "message": "Done. The map is now created in main() and passed by reference to the\nfunctions that need it.\n\nNote this cascades a bit: addFruObjectToDbus() and updateFruProperty()\nalso gained the parameter, since updateFruProperty() calls rescanBusses().",
+      "parentUuid": "cf323abc_bfcb6451",
+      "revId": "ca1b895d401bb811116c247ce43b7625f5a22d9c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "444cb754_24e00bd6",
@@ -129,6 +165,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f52c3a2_6eabe188",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1231,
+      "author": {
+        "id": 1002470
+      },
+      "writtenOn": "2026-07-30T07:40:01Z",
+      "side": 1,
+      "message": "Done. Split out into a preceding change:\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/92687\n\"fru-device: extract rescan completion handlers\", which moves both inline\nlambdas into publishFrusOnBus() and publishAllFrus() with no functional\nchange. This change is now rebased on top of it.",
+      "parentUuid": "444cb754_24e00bd6",
+      "revId": "ca1b895d401bb811116c247ce43b7625f5a22d9c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec123cd1_bd3ec776",
@@ -159,6 +213,24 @@
       "writtenOn": "2026-07-24T08:33:29Z",
       "side": 1,
       "message": "Done",
+      "parentUuid": "ec123cd1_bd3ec776",
+      "revId": "ca1b895d401bb811116c247ce43b7625f5a22d9c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3eb451a7_f120ca58",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1358,
+      "author": {
+        "id": 1002470
+      },
+      "writtenOn": "2026-07-30T07:40:01Z",
+      "side": 1,
+      "message": "Done, same preceding change:\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/92687",
       "parentUuid": "ec123cd1_bd3ec776",
       "revId": "ca1b895d401bb811116c247ce43b7625f5a22d9c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"

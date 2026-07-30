@@ -70,6 +70,30 @@
       },
       "revId": "5b4a7c777f799bc692fe90e72651cb43a1ef426b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dab62383_ffe94892",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 1319,
+      "author": {
+        "id": 1002470
+      },
+      "writtenOn": "2026-07-30T07:40:01Z",
+      "side": 1,
+      "message": "I looked into this. A few findings:\n\nOn mux behaviour: there\u0027s effectively no difference between the\nall-buses and single-bus paths. `FindDevicesWithCallback::run()` just\ncalls `findI2CDevices()` with whatever bus list it\u0027s given; mux child\nbuses are already separate /dev/i2c-N nodes and are scanned like any\nother bus (`getRootBus()` + per-bus blocklist works the same either way).\nSo looping wouldn\u0027t change mux handling.\n\nOn feasibility: it\u0027s doable but not a trivial 1:1, mainly because\n`rescanBusses()` does a few once-per-rescan things that `rescanOneBus()`\ndoesn\u0027t:\n\n- bus 0 baseboard FRU: `readBaseboardFRU()` reads the baseboard FRU from\n  a file and injects it into busmap[0]. `rescanOneBus()` has no such\n  step, so a naive loop would drop the baseboard FRU unless bus 0 is\n  special-cased.\n- unknownBusObjectCount is reset to 0 once per full rescan.\n- the 1s debounce timer wraps the whole rescan, not each bus.\n\nNone of these is a hard blocker, but they mean the \"`ReScan` \u003d\u003d loop of\n`ReScanBus`\" refactor needs those once-only steps relocated, which is a\nnon-trivial change of its own. I\u0027d prefer to land the bugfix first and\ndo that consolidation as a follow-up.\n\nRe ordering: I don\u0027t see any requirement that interfaces be cleared in\na specific order or all at once, but I can\u0027t prove that from history so\nI wouldn\u0027t assert it as a guarantee.",
+      "parentUuid": "5ba98ab8_472285bd",
+      "range": {
+        "startLine": 1298,
+        "startChar": 12,
+        "endLine": 1319,
+        "endChar": 13
+      },
+      "revId": "5b4a7c777f799bc692fe90e72651cb43a1ef426b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
