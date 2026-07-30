@@ -354,13 +354,6 @@
             "PowerState": "On",
             "Thresholds": [
                 {
-                    "Direction": "less than",
-                    "Hysteresis": 0.1,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5.0
-                },
-                {
                     "Direction": "greater than",
                     "Hysteresis": 1.4,
                     "Name": "upper critical",
@@ -376,13 +369,6 @@
             "Name": "E1S_BP_E1S1_TEMP_C",
             "PowerState": "On",
             "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.1,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5.0
-                },
                 {
                     "Direction": "greater than",
                     "Hysteresis": 1.4,
@@ -400,13 +386,6 @@
             "PowerState": "On",
             "Thresholds": [
                 {
-                    "Direction": "less than",
-                    "Hysteresis": 0.1,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5.0
-                },
-                {
                     "Direction": "greater than",
                     "Hysteresis": 1.4,
                     "Name": "upper critical",
@@ -422,13 +401,6 @@
             "Name": "E1S_BP_E1S3_TEMP_C",
             "PowerState": "On",
             "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.1,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5.0
-                },
                 {
                     "Direction": "greater than",
                     "Hysteresis": 1.4,
@@ -446,10 +418,10 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 1.64,
+                    "Hysteresis": 1.4,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 82
+                    "Value": 70.0
                 }
             ],
             "Type": "TMP75"

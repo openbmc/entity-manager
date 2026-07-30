@@ -951,13 +951,6 @@
             "PowerState": "On",
             "Thresholds": [
                 {
-                    "Direction": "less than",
-                    "Hysteresis": 0.1,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5.0
-                },
-                {
                     "Direction": "greater than",
                     "Hysteresis": 1.4,
                     "Name": "upper critical",
@@ -971,7 +964,7 @@
             "Class": "fan",
             "FFGainCoefficient": 1.0,
             "FFOffCoefficient": 0.0,
-            "FailSafePercent": 100.0,
+            "FailSafePercent": 65.0,
             "ICoefficient": 0.0,
             "ILimitMax": 0.0,
             "ILimitMin": 0.0,
@@ -1174,7 +1167,7 @@
         {
             "AccumulateSetPoint": true,
             "CycleIntervalTimeMS": 1000,
-            "FailSafePercent": 100.0,
+            "FailSafePercent": 65.0,
             "MinThermalOutput": 30.0,
             "Name": "Zone 0",
             "Type": "Pid.Zone",
@@ -1529,25 +1522,11 @@
             "PowerState": "BiosPost",
             "Thresholds": [
                 {
-                    "Direction": "less than",
-                    "Hysteresis": 0.02,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": -1.0
-                },
-                {
                     "Direction": "greater than",
                     "Hysteresis": 2,
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 100.0
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 1.9,
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 95.0
                 }
             ],
             "Type": "SBTSI"
@@ -1881,13 +1860,6 @@
             "Name": "MB_OUTLET_TEMP_C",
             "Thresholds": [
                 {
-                    "Direction": "less than",
-                    "Hysteresis": 0.1,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5.0
-                },
-                {
                     "Direction": "greater than",
                     "Hysteresis": 1.6,
                     "Name": "upper critical",
@@ -1902,13 +1874,6 @@
             "Bus": 19,
             "Name": "MB_INLET_TEMP_C",
             "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.1,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5.0
-                },
                 {
                     "Direction": "greater than",
                     "Hysteresis": 1.6,
