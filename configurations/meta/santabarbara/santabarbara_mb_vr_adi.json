@@ -951,13 +951,6 @@
             "PowerState": "On",
             "Thresholds": [
                 {
-                    "Direction": "less than",
-                    "Hysteresis": 0.1,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5.0
-                },
-                {
                     "Direction": "greater than",
                     "Hysteresis": 1.4,
                     "Name": "upper critical",
@@ -1529,25 +1522,11 @@
             "PowerState": "BiosPost",
             "Thresholds": [
                 {
-                    "Direction": "less than",
-                    "Hysteresis": 0.02,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": -1.0
-                },
-                {
                     "Direction": "greater than",
                     "Hysteresis": 2,
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 100.0
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 1.9,
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 95.0
                 }
             ],
             "Type": "SBTSI"
@@ -1881,13 +1860,6 @@
             "Name": "MB_OUTLET_TEMP_C",
             "Thresholds": [
                 {
-                    "Direction": "less than",
-                    "Hysteresis": 0.1,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5.0
-                },
-                {
                     "Direction": "greater than",
                     "Hysteresis": 1.6,
                     "Name": "upper critical",
@@ -1902,13 +1874,6 @@
             "Bus": 19,
             "Name": "MB_INLET_TEMP_C",
             "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.1,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5.0
-                },
                 {
                     "Direction": "greater than",
                     "Hysteresis": 1.6,
