@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f3cbb97_9a9db0ab",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 16
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-30T12:00:57Z",
+      "side": 1,
+      "message": "\u003e Don\u0027t you generally at least want some way to debug by seeing your probe statements? \n\nCurrently EM squeezes `Probe` property into other interfaces so i don\u0027t think anyone can rely on the feature as it currently exists because it\u0027s obviously broken.\n\n```\nxyz.openbmc_project.Inventory.Item.Chassis    interface -         -                                        -\n    .Name                                         property  s         \"Heat Exchanger 12 DevTTYUSB0\"           emits-change\n    .Probe                                        property  s         \"xyz.openbmc_project.Inventory.Source.M… emits-change\n    .Type                                         property  s         \"Chassis\"                                emits-change\n```\n\nSince it\u0027s a broken debug? feature i would hope we are not adding it to anything newly developed.\n\n\u003e I\u0027m slightly surprised we\u0027re not introducing a Configuration.Platform \n\nWhat would `Configuration.Platform` contain as properties?\n\nWhat about `Configuration.Probe` as a way to have some interface to show `Name`, `Probe` and `Type` ?\n\nThat would allow us to still expose `Probe`, `Type` and `Name` as properties and finally fixing this broken \u0027feature\u0027.\n\n\u003e or requiring a platform to have a Inventory.Decorator.Compatible or \nsomething to know it exists.\n\nBut inventory decorators go on objects that have inventory interfaces, right?",
+      "parentUuid": "ac489468_3e3e2c68",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 55
+      },
+      "revId": "5cab6267ccd873ae3ffcf6e1059fe9ed58990afe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "bee913d6_47871c84",
