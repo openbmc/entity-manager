@@ -185,16 +185,21 @@ void EntityManager::postBoardToDBus(
         {"Valve", "xyz.openbmc_project.Inventory.Item.Valve"},
     };
 
+    // A type that isn't an inventory item still needs its configuration on
+    // D-Bus, so fall back to entity-manager's own Configuration namespace,
+    // the same one the exposes records are published under.
     auto findInterface = typeToInterface.find(boardType);
-    if (findInterface != typeToInterface.end())
-    {
-        std::shared_ptr<sdbusplus::asio::dbus_interface> boardIface =
-            dbus_interface.createInterface(boardPath, findInterface->second,
-                                           boardNameOrig);
+    const std::string boardInterface =
+        findInterface != typeToInterface.end()
+            ? findInterface->second
+            : "xyz.openbmc_project.Configuration." + boardType;
 
-        dbus_interface.populateInterfaceFromJson(
-            systemConfiguration, jsonPointerPath, boardIface, boardValues);
-    }
+    std::shared_ptr<sdbusplus::asio::dbus_interface> boardIface =
+        dbus_interface.createInterface(boardPath, boardInterface,
+                                       boardNameOrig);
+
+    dbus_interface.populateInterfaceFromJson(
+        systemConfiguration, jsonPointerPath, boardIface, boardValues);
     jsonPointerPath += "/";
     // iterate through board properties
     for (const auto& [propName, propValue] : boardValues.items())
