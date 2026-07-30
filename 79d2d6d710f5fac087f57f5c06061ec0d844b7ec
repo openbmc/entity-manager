@@ -85,6 +85,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b847b6e3_b961f000",
+        "filename": "configurations/meta/yv4/yosemite4_nvme.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-30T09:39:16Z",
+      "side": 1,
+      "message": "\u003e i changed the mfg to meta, so it can stay\n\nMaybe i misunderstood something.  I thought you got this FRU content from an actual kioxia drive?\n\nIn which case it can go under `configurations/kioxia`?\n\n\u003e it is only virtual, for testing purposes.\n\nI don\u0027t understand this part. I am not aware of any upstream configurations that are there for testing purposes, all of the configurations seem to represent actual hardware that someone added at some point.",
+      "parentUuid": "7d32296c_ea282218",
+      "revId": "79d2d6d710f5fac087f57f5c06061ec0d844b7ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "147109df_d5808513",
         "filename": "configurations/meta/yv4/yosemite4_nvme.json",
         "patchSetId": 5
