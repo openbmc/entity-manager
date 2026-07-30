@@ -94,6 +94,30 @@
       },
       "revId": "5b4a7c777f799bc692fe90e72651cb43a1ef426b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0390bbae_30422a2d",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 1319,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-30T14:02:26Z",
+      "side": 1,
+      "message": "First of all thanks for digging through the code and detailed explainer 👍\n\n\u003e needs those once-only steps relocated, which is a\nnon-trivial change of its own. I\u0027d prefer to land the bugfix first and\ndo that consolidation as a follow-up.\n\nWe have 1 problem (full rescan not implement as a loop of per-bus rescan, requiring similar but slightly different code paths and duplicating code). The origin of why it was done like this seems to be unknown.\n\nwhich now introduces a second problem - \n\nyour fix/optimization has to be implemented twice, maintained twice and also tested twice in the future if anyone wants to make further changes. Despite it being a feature which should work the same for each FRU instance.\n\nSo with your suggestion we would have an increased amount of problems which you agreed yourself is not trivial to fix.\n\nIf you do not want to attempt a 3rd cleanup patch right now i can understand - it\u0027s tough to work with this legacy code where it\u0027s unclear how it was intended to work and integration tests are nowhere to be found. Also the first 2 patches are not yet merged which further risks potentially wasted time.\n\ni would be fine to attempt to consolidate/merge the two code paths myself once your 2 cleanups are merged. If i cannot get the problem fixed within a week of your 2 cleanup patches going in - then i have no right to block your change for that reason.",
+      "parentUuid": "dab62383_ffe94892",
+      "range": {
+        "startLine": 1298,
+        "startChar": 12,
+        "endLine": 1319,
+        "endChar": 13
+      },
+      "revId": "5b4a7c777f799bc692fe90e72651cb43a1ef426b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
