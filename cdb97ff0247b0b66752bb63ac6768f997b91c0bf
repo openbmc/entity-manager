@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c32a9f4e_686d9b5f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-30T13:15:11Z",
+      "side": 1,
+      "message": "As per our schema all configuration files have these properties.\n\nI don\u0027t fully understand why we are creating `N` different interfaces to expose the same 3 properties..\n\nWhat about calling `xyz.openbmc_project.Configuration.Probe` since we are exposing the `Name` and `Type` of what we probed, and the `Probe` statement itself.\n\nWe could expose this interface unconditionally as these properties will always be present.",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 26
+      },
+      "revId": "cdb97ff0247b0b66752bb63ac6768f997b91c0bf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
