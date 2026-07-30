@@ -46,6 +46,30 @@
       },
       "revId": "cdb97ff0247b0b66752bb63ac6768f997b91c0bf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a112ccd_f699b67a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-30T14:53:49Z",
+      "side": 1,
+      "message": "\u003e This is existing entity-manager behaviour, the top-level interface has always carried these three properties,\n\nyes, probably it has been broken and out of spec from the very beginning.\n\n\u003e So Item.\u003cType\u003e remains the inventory marker and its associations, and Name/Type/Probe move to Configuration.Probe. Does that match what you had in mind?\n\nYes exactly!\n\n\nThat way it will still be broken but much less broken than before and easier to fully clean up later.",
+      "parentUuid": "6435faa0_cdb57f44",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 26
+      },
+      "revId": "cdb97ff0247b0b66752bb63ac6768f997b91c0bf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
