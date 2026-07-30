@@ -74,6 +74,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "0a056fab_980d9733",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 16
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-07-30T16:36:46Z",
+      "side": 1,
+      "message": "\u003e What about Configuration.Probe as a way to have some interface to show Name, Probe and Type ?\n\nYes, ideally we\u0027d split those properties out into their own Configuration.Probe interface.  That\u0027d be a totally separate commit though.\n\n\u003e What would Configuration.Platform contain as properties?\n\nMaybe none?  Just knowing that it is a thing that exists is useful.\n\n\u003e But inventory decorators go on objects that have inventory interfaces, right?\n\nNot strictly, but typically, yes.  We also put it on firmwares I think when we do the probing to figure out what they are?",
+      "parentUuid": "4b5f0e9e_9e0a423d",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 55
+      },
+      "revId": "5cab6267ccd873ae3ffcf6e1059fe9ed58990afe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "bee913d6_47871c84",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 16
