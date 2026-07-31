@@ -299,11 +299,24 @@ static void templateCharReplaceArray(
 // @returns uint64_t number if it can be parsed as such
 static std::optional<uint64_t> parseAsNumber(std::string_view strView)
 {
+    if (strView.empty())
+    {
+        return std::nullopt;
+    }
+
     int base = 10;
     if (strView.starts_with("0x"))
     {
         strView.remove_prefix(2);
         base = 16;
+    }
+    else
+    {
+        // zeroed out FRU fields are not seen as numbers
+        if (strView.starts_with("00"))
+        {
+            return std::nullopt;
+        }
     }
 
     uint64_t temp = 0;
