@@ -338,6 +338,9 @@ void EMDBusInterface::addObjectJson(
         lastIndex++;
     }
 
+    bool isDynamic = newData.value(dynamicKey, false);
+    newData.erase(dynamicKey);
+
     addObjectRuntimeValidateJson(newData, type, schemaDirectory);
 
     if (foundNull)
@@ -348,7 +351,11 @@ void EMDBusInterface::addObjectJson(
     {
         findExposes->push_back(newData);
     }
-    if (!writeJsonFiles(systemConfiguration))
+    if (isDynamic)
+    {
+        (*findExposes)[lastIndex][dynamicKey] = true;
+    }
+    else if (!writeJsonFiles(systemConfiguration))
     {
         lg2::error("Error writing json files");
     }
