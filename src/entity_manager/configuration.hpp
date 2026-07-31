@@ -6,6 +6,7 @@
 #include <vector>
 
 constexpr const char* currentConfiguration = "/var/configuration/system.json";
+constexpr const char* dynamicKey = "_dynamic";
 
 class Configuration
 {
