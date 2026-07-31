@@ -146,6 +146,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "be746db8_a8a6f247",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 16
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-07-31T09:12:44Z",
+      "side": 1,
+      "message": "Done as separate commits as you suggested, and I\u0027ve sent PDI definitions for both: Configuration.Probe (93031) and Configuration.Platform (93030). \n\nOn the Probe signature, Alexander had it right, the schema allows a single string or an array; entity-manager now always exports an array so the property can be defined.",
+      "parentUuid": "cd85d410_2b48cca5",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 55
+      },
+      "revId": "5cab6267ccd873ae3ffcf6e1059fe9ed58990afe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "bee913d6_47871c84",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 16
