@@ -56,6 +56,10 @@ class EntityManager
                                  boost::asio::steady_timer& timer,
                                  nlohmann::json newConfiguration);
     void postToDbus(const nlohmann::json& newConfiguration);
+    void postProbeConfig(const sdbusplus::object_path& boardPath,
+                         const std::string& boardName,
+                         const std::string& boardType,
+                         const nlohmann::json& probe);
     void postBoardToDBus(
         const std::string& boardId, const nlohmann::json::object_t& boardConfig,
         std::map<sdbusplus::object_path, std::string>& newBoards);
