@@ -6,6 +6,7 @@
 #include <vector>
 
 constexpr const char* currentConfiguration = "/var/configuration/system.json";
+constexpr const char* dynamicKey = "_dynamic";
 
 class Configuration
 {
@@ -28,6 +29,7 @@ class Configuration
     std::vector<std::filesystem::path> configurationDirectories;
 };
 
+nlohmann::json filterDynamicEntries(nlohmann::json out);
 bool writeJsonFiles(const nlohmann::json& systemConfiguration);
 
 template <typename JsonType>
