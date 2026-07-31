@@ -195,10 +195,9 @@ void EntityManager::postBoardToDBus(
     dbus_interface.createAddObjectMethod(jsonPointerPath, boardPath,
                                          systemConfiguration, boardNameOrig);
 
-    // A configuration type only gets a top-level inventory interface if it is
-    // listed here. Adding a type to the schema is therefore not enough to make
-    // entity-manager claim an interface for it, which keeps us from exporting
-    // interfaces that don't exist.
+    // A configuration type only gets a top-level interface if it is listed
+    // here. Adding a type to the schema is therefore not enough to make
+    // entity-manager claim an interface for it.
     static const std::flat_map<std::string, std::string> typeToInterface = {
         {"Board", "xyz.openbmc_project.Inventory.Item.Board"},
         {"Cable", "xyz.openbmc_project.Inventory.Item.Cable"},
@@ -209,6 +208,9 @@ void EntityManager::postBoardToDBus(
         {"NVMe", "xyz.openbmc_project.Inventory.Item.NVMe"},
         {"PowerSupply", "xyz.openbmc_project.Inventory.Item.PowerSupply"},
         {"Valve", "xyz.openbmc_project.Inventory.Item.Valve"},
+        // A platform is not an inventory item, so it is named under the
+        // Configuration namespace instead.
+        {"Platform", "xyz.openbmc_project.Configuration.Platform"},
     };
 
     auto findInterface = typeToInterface.find(boardType);
