@@ -49,7 +49,33 @@ Entity objects describe pieces of physical hardware.
 
 `unsigned int num_children`: Number of configurations under this entity.
 
-`std::string name`: name of the inventory item
+The interface says what the object is, not how entity-manager came to create it,
+so the configuration's own `Name`, `Type` and `Probe` are not on it. They are on
+`xyz.openbmc_project.Configuration.Probe` instead.
+
+#### `xyz.openbmc_project.Configuration.Probe`
+
+How entity-manager matched the configuration that created this object.
+
+##### Properties
+
+`std::string Name`: the configuration's name, with any template substitution
+already applied. The object path is this name with the characters a path segment
+cannot hold replaced.
+
+`std::string Type`: the configuration's type, for example `Board`.
+
+`array[string] Probe`: the probe statements the configuration was matched with.
+
+**Example**:
+
+```text
+path: /xyz/openbmc_project/inventory/system/board/Intel_Front_Panel
+Interface: xyz.openbmc_project.Configuration.Probe
+    string Name = "Intel Front Panel"
+    string Type = "Board"
+    array[string] Probe = ["xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Front Panel'})"]
+```
 
 #### `xyz.openbmc_project.Configuration`
 

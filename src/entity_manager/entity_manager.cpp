@@ -114,6 +114,33 @@ void EntityManager::postToDbus(const nlohmann::json& newConfiguration)
     }
 }
 
+void EntityManager::postProbeConfig(
+    const sdbusplus::object_path& objectPath, const std::string& configName,
+    const std::string& configType, const nlohmann::json& probe)
+{
+    std::vector<std::string> probeStatements;
+    const std::string* single = probe.get_ptr<const std::string*>();
+    if (single != nullptr)
+    {
+        // one statement, but the property is always an array
+        probeStatements.emplace_back(*single);
+    }
+    else
+    {
+        probeStatements = probe.get<std::vector<std::string>>();
+    }
+
+    std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
+        dbus_interface.createInterface(
+            objectPath, "xyz.openbmc_project.Configuration.Probe", configName);
+
+    iface->register_property("Name", configName);
+    iface->register_property("Type", configType);
+    iface->register_property("Probe", probeStatements);
+
+    dbus_interface::tryIfaceInitialize(iface);
+}
+
 void EntityManager::postBoardToDBus(
     const std::string& configId, const nlohmann::json::object_t& configObject,
     std::map<sdbusplus::object_path, std::string>& newObjects)
@@ -167,7 +194,6 @@ void EntityManager::postBoardToDBus(
     dbus_interface.createAddObjectMethod(jsonPointerPath, objectPath,
                                          systemConfiguration, configNameOrig);
 
-    std::string jsonPointerPath1 = jsonPointerPath;
     jsonPointerPath += "/";
 
     // A configuration type only gets a top-level inventory interface if it is
@@ -192,6 +218,12 @@ void EntityManager::postBoardToDBus(
                                         ? findInterface->second
                                         : std::string{};
 
+    auto findProbe = configValues.find("Probe");
+    if (findProbe != configValues.end())
+    {
+        postProbeConfig(objectPath, configNameOrig, configType, *findProbe);
+    }
+
     // iterate through configuration properties
     for (const auto& [propName, propValue] : configValues.items())
     {
@@ -213,10 +245,11 @@ void EntityManager::postBoardToDBus(
 
     if (typeIface == nullptr && !invItemIntf.empty())
     {
+        // Name, Type and Probe say how the configuration was matched and
+        // are published on Configuration.Probe.
         typeIface = dbus_interface.createInterface(objectPath, invItemIntf,
                                                    configNameOrig);
-        dbus_interface.populateInterfaceFromJson(
-            systemConfiguration, jsonPointerPath1, typeIface, configValues);
+        dbus_interface::tryIfaceInitialize(typeIface);
     }
 
     nlohmann::json::iterator exposes = configValues.find("Exposes");
