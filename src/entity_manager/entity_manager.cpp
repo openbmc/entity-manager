@@ -184,15 +184,19 @@ void EntityManager::postBoardToDBus(
         {"Valve", "xyz.openbmc_project.Inventory.Item.Valve"},
     };
 
+    // A type that is not an inventory item is still worth naming, so that it
+    // can be found the same way, so mark it under the Configuration
+    // namespace instead. Neither interface carries properties of its own.
     auto findInterface = typeToInterface.find(boardType);
-    if (findInterface != typeToInterface.end())
-    {
-        std::shared_ptr<sdbusplus::asio::dbus_interface> boardIface =
-            dbus_interface.createInterface(boardPath, findInterface->second,
-                                           boardNameOrig);
+    const std::string typeInterface =
+        findInterface != typeToInterface.end()
+            ? findInterface->second
+            : "xyz.openbmc_project.Configuration." + boardType;
 
-        dbus_interface::tryIfaceInitialize(boardIface);
-    }
+    std::shared_ptr<sdbusplus::asio::dbus_interface> boardIface =
+        dbus_interface.createInterface(boardPath, typeInterface, boardNameOrig);
+
+    dbus_interface::tryIfaceInitialize(boardIface);
 
     // A probe statement may be written as a single string, but the property
     // has to have one signature, so always export it as an array.
