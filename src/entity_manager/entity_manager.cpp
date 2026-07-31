@@ -197,8 +197,8 @@ void EntityManager::postBoardToDBus(
     std::string jsonPointerPath1 = jsonPointerPath;
     jsonPointerPath += "/";
 
-    // A configuration type only gets a top-level inventory interface if it is
-    // listed here. Adding a type to the schema is therefore not enough to make
+    // A configuration type only gets a top-level interface if it is listed
+    // here. Adding a type to the schema is therefore not enough to make
     // entity-manager claim an interface for it, which keeps us from exporting
     // interfaces that aren't defined in phosphor-dbus-interfaces.
     static const std::flat_map<std::string, std::string> typeToInterface = {
@@ -211,6 +211,9 @@ void EntityManager::postBoardToDBus(
         {"NVMe", "xyz.openbmc_project.Inventory.Item.NVMe"},
         {"PowerSupply", "xyz.openbmc_project.Inventory.Item.PowerSupply"},
         {"Valve", "xyz.openbmc_project.Inventory.Item.Valve"},
+        // A platform is not an inventory item, so it is named under the
+        // Configuration namespace instead.
+        {"Platform", "xyz.openbmc_project.Configuration.Platform"},
     };
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> boardIface;
