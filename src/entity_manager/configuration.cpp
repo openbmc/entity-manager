@@ -214,12 +214,29 @@ bool writeJsonFiles(const nlohmann::json& systemConfiguration)
     lg2::debug("writing system configuration to {PATH}", "PATH",
                currentConfiguration);
 
+    nlohmann::json out = systemConfiguration;
+    for (auto& [boardId, board] : out.items())
+    {
+        auto exposesIt = board.find("Exposes");
+        if (exposesIt == board.end())
+        {
+            continue;
+        }
+        for (auto& expose : *exposesIt)
+        {
+            if (expose.is_object() && expose.value(dynamicKey, false))
+            {
+                expose = nullptr;
+            }
+        }
+    }
+
     std::ofstream output(currentConfiguration);
     if (!output.good())
     {
         return false;
     }
-    output << systemConfiguration.dump(4);
+    output << out.dump(4);
     output.close();
     return true;
 }
