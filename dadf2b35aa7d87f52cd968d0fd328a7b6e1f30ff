@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a31eeb94_c697230c",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-31T13:46:13Z",
+      "side": 1,
+      "message": "```suggestion\n            : \"xyz.openbmc_project.Configuration.Platform\";\n```\n\n\notherwise with any misconfiguration by the user this will be dynamic interface creation and could collide with existing types in legacy configuration schemas like `xyz.openbmc_project.Configuration.ADC` (while having no properties) and reactors could crash when they find that via the mapper and try to access properties.\n\n\nOverall i would like to avoid any kind of dynamic interface name creation if possible. EM creates lots of interface names dynamically but with this change we have a choice and can implement it to be known at compile time and keep the code searchable for developers.\n\nA separate lookup table could also work or adding it to the above `typeToInterface` table (and adjusting the comment to change the \u0027inventory\u0027 specific wording).\n\nIf the user misconfigures toplevel `\"Type\": \"ADC\"` or similar then the failure mode should be better - they get a platform configuration interface (which does not have properties anyways) instead of possibly crashing reactors.\n\nMaybe in your perspective mistakenly getting a platform configuration interface even though it was not intended is the worse failure mode - i don\u0027t know.\n\nWe could also just `lg2::error` and `return` on misconfiguration as is already done at the start of this function.\n\nThis would be the easiest error handling as the configurations should already have gone through the validator beforehand , but could be annoying for developers if nothing shows up in case of a small typo.\n\nWhichever way we end up going, let\u0027s avoid dynamically creating new interface names in new code if possible.",
+      "range": {
+        "startLine": 194,
+        "startChar": 14,
+        "endLine": 194,
+        "endChar": 63
+      },
+      "revId": "dadf2b35aa7d87f52cd968d0fd328a7b6e1f30ff",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
