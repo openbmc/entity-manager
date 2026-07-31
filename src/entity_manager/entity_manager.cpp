@@ -115,6 +115,33 @@ void EntityManager::postToDbus(const nlohmann::json& newConfiguration)
     }
 }
 
+void EntityManager::postProbeConfig(
+    const sdbusplus::object_path& boardPath, const std::string& boardName,
+    const std::string& boardType, const nlohmann::json& probe)
+{
+    std::vector<std::string> probeStatements;
+    const std::string* single = probe.get_ptr<const std::string*>();
+    if (single != nullptr)
+    {
+        // one statement, but the property is always an array
+        probeStatements.emplace_back(*single);
+    }
+    else
+    {
+        probeStatements = probe.get<std::vector<std::string>>();
+    }
+
+    std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
+        dbus_interface.createInterface(
+            boardPath, "xyz.openbmc_project.Configuration.Probe", boardName);
+
+    iface->register_property("Name", boardName);
+    iface->register_property("Type", boardType);
+    iface->register_property("Probe", probeStatements);
+
+    dbus_interface::tryIfaceInitialize(iface);
+}
+
 void EntityManager::postBoardToDBus(
     const std::string& boardId, const nlohmann::json::object_t& boardConfig,
     std::map<sdbusplus::object_path, std::string>& newBoards)
@@ -191,8 +218,13 @@ void EntityManager::postBoardToDBus(
             dbus_interface.createInterface(boardPath, findInterface->second,
                                            boardNameOrig);
 
-        dbus_interface.populateInterfaceFromJson(
-            systemConfiguration, jsonPointerPath, boardIface, boardValues);
+        dbus_interface::tryIfaceInitialize(boardIface);
+    }
+
+    auto findProbe = boardValues.find("Probe");
+    if (findProbe != boardValues.end())
+    {
+        postProbeConfig(boardPath, boardNameOrig, boardType, *findProbe);
     }
     jsonPointerPath += "/";
     // iterate through board properties
