@@ -293,6 +293,50 @@ void EMDBusInterface::addObject(
     addObjectJson(newData, systemConfiguration, jsonPointerPath, path, board);
 }
 
+// Finds the insertion index in exposes, reusing a null slot if present.
+// Throws if name+type already exists. Returns the index of the inserted entry.
+static size_t insertIntoExposes(
+    nlohmann::json& exposes, nlohmann::json& newData, const std::string& name,
+    const std::string& type, bool isDynamic)
+{
+    bool foundNull = false;
+    size_t lastIndex = 0;
+    for (const auto& expose : exposes)
+    {
+        if (expose.is_null())
+        {
+            foundNull = true;
+            continue;
+        }
+
+        if (expose["Name"] == name && expose["Type"] == type)
+        {
+            throw std::invalid_argument("Field already in JSON, not adding");
+        }
+
+        if (foundNull)
+        {
+            continue;
+        }
+
+        lastIndex++;
+    }
+
+    if (foundNull)
+    {
+        exposes.at(lastIndex) = newData;
+    }
+    else
+    {
+        exposes.push_back(newData);
+    }
+    if (isDynamic)
+    {
+        exposes[lastIndex][dynamicKey] = true;
+    }
+    return lastIndex;
+}
+
 void EMDBusInterface::addObjectJson(
     nlohmann::json& newData, nlohmann::json& systemConfiguration,
     const std::string& jsonPointerPath, const sdbusplus::object_path& path,
@@ -314,41 +358,15 @@ void EMDBusInterface::addObjectJson(
         throw std::invalid_argument("Type and Name must be a string.");
     }
 
-    bool foundNull = false;
-    size_t lastIndex = 0;
-    // we add in the "exposes"
-    for (const auto& expose : *findExposes)
-    {
-        if (expose.is_null())
-        {
-            foundNull = true;
-            continue;
-        }
-
-        if (expose["Name"] == *name && expose["Type"] == *type)
-        {
-            throw std::invalid_argument("Field already in JSON, not adding");
-        }
-
-        if (foundNull)
-        {
-            continue;
-        }
-
-        lastIndex++;
-    }
+    bool isDynamic = newData.value(dynamicKey, false);
+    newData.erase(dynamicKey);
 
     addObjectRuntimeValidateJson(newData, type, schemaDirectory);
 
-    if (foundNull)
-    {
-        findExposes->at(lastIndex) = newData;
-    }
-    else
-    {
-        findExposes->push_back(newData);
-    }
-    if (!writeJsonFiles(systemConfiguration))
+    size_t lastIndex =
+        insertIntoExposes(*findExposes, newData, *name, *type, isDynamic);
+
+    if (!isDynamic && !writeJsonFiles(systemConfiguration))
     {
         lg2::error("Error writing json files");
     }
