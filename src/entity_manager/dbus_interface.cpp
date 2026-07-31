@@ -14,10 +14,11 @@
 namespace dbus_interface
 {
 
-EMDBusInterface::EMDBusInterface(boost::asio::io_context& io,
-                                 sdbusplus::asio::object_server& objServer,
-                                 const std::filesystem::path& schemaDirectory) :
-    io(io), objServer(objServer), schemaDirectory(schemaDirectory)
+EMDBusInterface::EMDBusInterface(
+    boost::asio::io_context& io, sdbusplus::asio::object_server& objServer,
+    const std::filesystem::path& schemaDirectory, ConfigCache& configCache) :
+    io(io), objServer(objServer), configCache(configCache),
+    schemaDirectory(schemaDirectory)
 {}
 
 void tryIfaceInitialize(std::shared_ptr<sdbusplus::asio::dbus_interface>& iface)
@@ -86,7 +87,7 @@ void EMDBusInterface::createDeleteObjectMethod(
                 objServer.remove_interface(dbusInterface);
             });
 
-            if (!writeJsonFiles(systemConfiguration))
+            if (!configCache.writeJsonFiles(systemConfiguration))
             {
                 lg2::error("error setting json file");
                 throw DBusInternalError();
@@ -145,7 +146,7 @@ static void populateInterfacePropertyFromJson(
     const std::string& key, const nlohmann::json& value,
     nlohmann::json::value_t type,
     std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
-    sdbusplus::asio::PropertyPermission permission)
+    sdbusplus::asio::PropertyPermission permission, ConfigCache& configCache)
 {
     const auto modifiedType = getDBusType(value, type, permission);
 
@@ -154,31 +155,31 @@ static void populateInterfacePropertyFromJson(
         case (nlohmann::json::value_t::boolean):
         {
             addValueToDBus<bool>(key, value, *iface, permission,
-                                 systemConfiguration, path);
+                                 systemConfiguration, path, configCache);
             break;
         }
         case (nlohmann::json::value_t::number_integer):
         {
             addValueToDBus<int64_t>(key, value, *iface, permission,
-                                    systemConfiguration, path);
+                                    systemConfiguration, path, configCache);
             break;
         }
         case (nlohmann::json::value_t::number_unsigned):
         {
             addValueToDBus<uint64_t>(key, value, *iface, permission,
-                                     systemConfiguration, path);
+                                     systemConfiguration, path, configCache);
             break;
         }
         case (nlohmann::json::value_t::number_float):
         {
             addValueToDBus<double>(key, value, *iface, permission,
-                                   systemConfiguration, path);
+                                   systemConfiguration, path, configCache);
             break;
         }
         case (nlohmann::json::value_t::string):
         {
             addValueToDBus<std::string>(key, value, *iface, permission,
-                                        systemConfiguration, path);
+                                        systemConfiguration, path, configCache);
             break;
         }
         default:
@@ -222,7 +223,7 @@ void EMDBusInterface::populateInterfaceFromJson(
         path.append("/").append(key);
 
         populateInterfacePropertyFromJson(systemConfiguration, path, key, value,
-                                          type, iface, permission);
+                                          type, iface, permission, configCache);
     }
     if (permission == sdbusplus::asio::PropertyPermission::readWrite)
     {
@@ -267,7 +268,8 @@ static void addObjectRuntimeValidateJson(
 void EMDBusInterface::addObject(
     const std::flat_map<std::string, JsonVariantType, std::less<>>& data,
     nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,
-    const sdbusplus::object_path& path, const std::string& board)
+    const sdbusplus::object_path& path, const std::string& board,
+    bool isDynamic)
 {
     nlohmann::json::json_pointer ptr(jsonPointerPath);
     nlohmann::json& base = systemConfiguration[ptr];
@@ -290,13 +292,67 @@ void EMDBusInterface::addObject(
             item.second);
     }
 
-    addObjectJson(newData, systemConfiguration, jsonPointerPath, path, board);
+    addObjectJson(newData, systemConfiguration, jsonPointerPath, path, board,
+                  isDynamic);
+}
+
+void EMDBusInterface::addObjectDynamic(
+    const std::flat_map<std::string, JsonVariantType, std::less<>>& data,
+    nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,
+    const sdbusplus::object_path& path, const std::string& board)
+{
+    addObject(data, systemConfiguration, jsonPointerPath, path, board,
+              /*isDynamic=*/true);
+}
+
+// Finds the insertion index in exposes, reusing a null slot if present.
+// Throws if name+type already exists. Returns the index of the inserted entry.
+static size_t insertIntoExposes(
+    nlohmann::json::array_t& exposes, nlohmann::json::object_t& newData,
+    const std::string& name, const std::string& type, bool isDynamic)
+{
+    bool foundNull = false;
+    size_t lastIndex = 0;
+    for (const auto& expose : exposes)
+    {
+        if (expose.is_null())
+        {
+            foundNull = true;
+            continue;
+        }
+
+        if (expose["Name"] == name && expose["Type"] == type)
+        {
+            throw std::invalid_argument("Field already in JSON, not adding");
+        }
+
+        if (foundNull)
+        {
+            continue;
+        }
+
+        lastIndex++;
+    }
+
+    if (foundNull)
+    {
+        exposes.at(lastIndex) = newData;
+    }
+    else
+    {
+        exposes.emplace_back(newData);
+    }
+    if (isDynamic)
+    {
+        exposes[lastIndex][dynamicKey] = true;
+    }
+    return lastIndex;
 }
 
 void EMDBusInterface::addObjectJson(
     nlohmann::json& newData, nlohmann::json& systemConfiguration,
     const std::string& jsonPointerPath, const sdbusplus::object_path& path,
-    const std::string& board)
+    const std::string& board, bool isDynamic)
 {
     nlohmann::json::json_pointer ptr(jsonPointerPath);
     nlohmann::json& base = systemConfiguration[ptr];
@@ -314,41 +370,13 @@ void EMDBusInterface::addObjectJson(
         throw std::invalid_argument("Type and Name must be a string.");
     }
 
-    bool foundNull = false;
-    size_t lastIndex = 0;
-    // we add in the "exposes"
-    for (const auto& expose : *findExposes)
-    {
-        if (expose.is_null())
-        {
-            foundNull = true;
-            continue;
-        }
-
-        if (expose["Name"] == *name && expose["Type"] == *type)
-        {
-            throw std::invalid_argument("Field already in JSON, not adding");
-        }
-
-        if (foundNull)
-        {
-            continue;
-        }
-
-        lastIndex++;
-    }
-
     addObjectRuntimeValidateJson(newData, type, schemaDirectory);
 
-    if (foundNull)
-    {
-        findExposes->at(lastIndex) = newData;
-    }
-    else
-    {
-        findExposes->push_back(newData);
-    }
-    if (!writeJsonFiles(systemConfiguration))
+    size_t lastIndex = insertIntoExposes(
+        findExposes->get_ref<nlohmann::json::array_t&>(),
+        newData.get_ref<nlohmann::json::object_t&>(), *name, *type, isDynamic);
+
+    if (!isDynamic && !configCache.writeJsonFiles(systemConfiguration))
     {
         lg2::error("Error writing json files");
     }
@@ -381,6 +409,16 @@ void EMDBusInterface::createAddObjectMethod(
          this](const std::flat_map<std::string, JsonVariantType, std::less<>>&
                    data) {
             addObject(data, systemConfiguration, jsonPointerPath, path, board);
+        });
+
+    iface->register_method(
+        "AddObjectDynamic",
+        [&systemConfiguration, jsonPointerPath{std::string(jsonPointerPath)},
+         path{path}, board{std::string(board)},
+         this](const std::flat_map<std::string, JsonVariantType, std::less<>>&
+                   data) {
+            addObjectDynamic(data, systemConfiguration, jsonPointerPath, path,
+                             board);
         });
     tryIfaceInitialize(iface);
 }
