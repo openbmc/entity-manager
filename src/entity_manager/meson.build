@@ -14,6 +14,7 @@ em_deps = [boost, nlohmann_json_dep, phosphor_logging_dep, sdbusplus, valijson]
 entity_manager_lib = static_library(
     'entity-manager',
     'entity_manager.cpp',
+    'config_cache.cpp',
     'configuration.cpp',
     'expression.cpp',
     'dbus_interface.cpp',
