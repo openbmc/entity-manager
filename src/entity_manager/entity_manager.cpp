@@ -191,9 +191,26 @@ void EntityManager::postBoardToDBus(
             dbus_interface.createInterface(boardPath, findInterface->second,
                                            boardNameOrig);
 
-        dbus_interface.populateInterfaceFromJson(
-            systemConfiguration, jsonPointerPath, boardIface, boardValues);
+        dbus_interface::tryIfaceInitialize(boardIface);
     }
+
+    // A probe statement may be written as a single string, but the property
+    // has to have one signature, so always export it as an array.
+    auto findProbe = boardValues.find("Probe");
+    if (findProbe != boardValues.end() && findProbe->is_string())
+    {
+        *findProbe = nlohmann::json::array({*findProbe});
+    }
+
+    // What was probed for and what matched it. Every configuration has these,
+    // so the interface is the same for all of them.
+    std::shared_ptr<sdbusplus::asio::dbus_interface> probeIface =
+        dbus_interface.createInterface(
+            boardPath, "xyz.openbmc_project.Configuration.Probe",
+            boardNameOrig);
+
+    dbus_interface.populateInterfaceFromJson(
+        systemConfiguration, jsonPointerPath, probeIface, boardValues);
     jsonPointerPath += "/";
     // iterate through board properties
     for (const auto& [propName, propValue] : boardValues.items())
