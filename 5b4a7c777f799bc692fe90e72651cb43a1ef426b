@@ -118,6 +118,30 @@
       },
       "revId": "5b4a7c777f799bc692fe90e72651cb43a1ef426b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2272b0d_f4de05df",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 1319,
+      "author": {
+        "id": 1002470
+      },
+      "writtenOn": "2026-07-31T09:37:46Z",
+      "side": 1,
+      "message": "Thanks, that\u0027s a fair point and I appreciate the pragmatic offer.\n\nAgreed that landing my fix on two near-duplicate paths adds maintenance\nand test surface for something that should behave identically per FRU.\nI don\u0027t want to expand this series into the ReScan/ReScanBus\nconsolidation right now, mainly because the first two cleanups aren\u0027t\nmerged yet and the consolidation (esp. the bus-0 baseboard injection and\nthe once-per-rescan state) is non-trivial in this untested legacy code.\n\nYour plan works for me: let\u0027s land the three patches here, and I\u0027m glad\nto have you take the consolidation once they\u0027re in. I\u0027m also happy to\nhelp review/test that follow-up on Ventura hardware when you get to it.",
+      "parentUuid": "0390bbae_30422a2d",
+      "range": {
+        "startLine": 1298,
+        "startChar": 12,
+        "endLine": 1319,
+        "endChar": 13
+      },
+      "revId": "5b4a7c777f799bc692fe90e72651cb43a1ef426b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
