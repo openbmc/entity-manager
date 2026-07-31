@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9bb05475_16b739f8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-31T14:15:20Z",
+      "side": 1,
+      "message": "This patch looks like a major feature with some non-trivial details,\n\nit would be good to have a full  integration test to see this `AddObject` API works over D-Bus with both dynamic and persistent configuration records.\n\ne.g. initializing EM, calling the `AddObject` API and observing configuration being persisted or not persisted (via test code inspecting the `system.json`)",
+      "range": {
+        "startLine": 29,
+        "startChar": 1,
+        "endLine": 32,
+        "endChar": 61
+      },
+      "revId": "f803f7ad45ba016ce744e1b0a529de641cac25e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd4cd22d_eeb919ac",
+        "filename": "src/entity_manager/configuration.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-31T14:15:20Z",
+      "side": 1,
+      "message": "why are we always triple checking our own internal data structures?\n\nThis `Exposes` field always exists, it should be checked on configuration parsing and then never again.",
+      "range": {
+        "startLine": 219,
+        "startChar": 5,
+        "endLine": 221,
+        "endChar": 37
+      },
+      "revId": "f803f7ad45ba016ce744e1b0a529de641cac25e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8312580e_9ca22c63",
+        "filename": "src/entity_manager/configuration.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-31T14:15:20Z",
+      "side": 1,
+      "message": "Is there ever a case where it is not an object?\n\nIMO this should be checked at configuration parsing, not when writing json.",
+      "range": {
+        "startLine": 227,
+        "startChar": 12,
+        "endLine": 227,
+        "endChar": 35
+      },
+      "revId": "f803f7ad45ba016ce744e1b0a529de641cac25e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6542d1fa_f4840ed2",
+        "filename": "src/entity_manager/dbus_interface.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-31T14:15:20Z",
+      "side": 1,
+      "message": "Can we pass this `isDynamic` as a separate parameter to the D-Bus method?\n\ni think it\u0027s cleaner to pass it separately from the json input itself since it is not part of the configuration record and IMO should be passed separately.",
+      "range": {
+        "startLine": 340,
+        "startChar": 1,
+        "endLine": 342,
+        "endChar": 30
+      },
+      "revId": "f803f7ad45ba016ce744e1b0a529de641cac25e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c7258a2_f452c614",
+        "filename": "src/entity_manager/dbus_interface.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-31T14:15:20Z",
+      "side": 1,
+      "message": "i believe \n\nhttps://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#f3-keep-functions-short-and-simple\n\napplies here since you are further extending this function, so it might be better to break out a function before extending it further",
+      "range": {
+        "startLine": 337,
+        "startChar": 1,
+        "endLine": 361,
+        "endChar": 5
+      },
+      "revId": "f803f7ad45ba016ce744e1b0a529de641cac25e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
