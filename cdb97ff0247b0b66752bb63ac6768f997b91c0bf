@@ -70,6 +70,30 @@
       },
       "revId": "cdb97ff0247b0b66752bb63ac6768f997b91c0bf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c19cf2cf_14ece082",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-07-31T09:10:57Z",
+      "side": 1,
+      "message": "Done. Split into two: Configuration.Probe carries Name/Type/Probe for every configuration (new change, refs PDI 93031), and this one now just marks the type with Configuration.\u003cType\u003e and no properties (refs PDI 93030). \nItem.\u003cType\u003e is untouched apart from those properties moving off it. \nProbe is always exported as an array now so the signature is stable.",
+      "parentUuid": "0a112ccd_f699b67a",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 26
+      },
+      "revId": "cdb97ff0247b0b66752bb63ac6768f997b91c0bf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
