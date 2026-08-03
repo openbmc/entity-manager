@@ -16,6 +16,24 @@
       "message": "small suggestion here:\n\nThis uses `boardValues` which contains all toplevel properties.\n\nSo if someone adds anything besides `Name`, `Probe`, `Type` to the top-level schema or even to their configuration file then it will get added to the interface as well and it will no longer be as per the interface definition.\n\nWould suggest to create a new `nlohmann::json` object, and adding only the 3 properties we need to it (using the variables `boardName`, `boardType`, `*findProbe`), then directly registering the properties via `iface-\u003eregister_property(name, value);` and then `dbus_interface::tryIfaceInitialize(boardIface);`\ninstead of going through `populateInterfacePropertyFromJson`, `addValueToDBus`, and `addProperty`.\n\nSince this interface will be readonly this also avoids passing `systemConfiguration` and `jsonPointerPath` as parameters which will not be used.\n\nConsidering that the function here is getting too long anyways we might as well perform this logic in a separate function e.g. `postProbeConfig`\n\n\nThat being said i do think this patch is an improvent even in its current form, so +1 from me 👍",
       "revId": "6db6a4d4f2ff9fdd89178c632d91e9d17e8fec9f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7eeaf8e0_6df33af4",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-08-03T02:53:53Z",
+      "side": 1,
+      "message": "Good catch, done. Pulled it out into `postProbeConfig()` and register the three properties directly instead of going through `populateInterfaceFromJson`.",
+      "parentUuid": "3e214f9d_2237ad35",
+      "revId": "6db6a4d4f2ff9fdd89178c632d91e9d17e8fec9f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
