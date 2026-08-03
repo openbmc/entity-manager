@@ -16,6 +16,24 @@
       "message": "In the example there were fields that started with 10 also.  Will those be handled correctly?\n\n.PRODUCT_SERIAL_NUMBER  property s         \"10000000000000\"            emits-change writable",
       "revId": "272bc6a371a6bd0ad6ceef9fb1ab372e6f665241",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a400216e_cdd94049",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-03T14:57:42Z",
+      "side": 1,
+      "message": "EM does duck-typing. It has no clue about the type that is needed in the end.\n\nIf you pass \"10000000000000\" it will probably succeed in parsing that as a number.\n\nIt\u0027s not sufficient to know the intended type for the D-Bus property either, as conversion to integer will result in incorrect evaluation (e.g. converting to number, then adding to another number instead of converting that number to string and then concatenating strings)\n\nWhat\u0027s needed for EM to work properly is to have a proper lexer, parser, AST and then evaluate the typed AST, and as a last step, try to convert that into the intended property type. That\u0027s the standard solution that works for all kinds of programming languages today and results in correct semantics, order of evaluation and operator precedence.\n\nTrying to do it otherwise is just workarounds for something that never truly worked and was broken from the day it was first implemented.",
+      "parentUuid": "4fd4062e_1aca7536",
+      "revId": "272bc6a371a6bd0ad6ceef9fb1ab372e6f665241",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
