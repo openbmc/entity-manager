@@ -16,6 +16,24 @@
       "message": "Why are calling these CANBus related cables? Seems like they are IT Tray leak related cables.",
       "revId": "07589a1f72a4f105d2e500e8a1f415a050adc971",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3755a130_fca3ab99",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1002532
+      },
+      "writtenOn": "2026-08-03T21:54:52Z",
+      "side": 1,
+      "message": "They are leak-related cables. I used “CAN Bus related cables” only to distinguish them from the legacy cable previously supported by ventura2, since these cables communicate via the CAN Bus protocol. I\u0027m fine with using a different term if \"leak-related cables\" is clearer.",
+      "parentUuid": "127e464b_120b3c64",
+      "revId": "07589a1f72a4f105d2e500e8a1f415a050adc971",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
