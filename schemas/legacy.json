@@ -736,6 +736,9 @@
                 "MaxValue": {
                     "$ref": "#/$defs/Types/MaxValue"
                 },
+                "ThermistorAdcChannel": {
+                    "$ref": "#/$defs/Types/ThermistorAdcChannel"
+                },
                 "Thresholds": {
                     "$ref": "#/$defs/Types/Thresholds"
                 },
@@ -777,11 +780,16 @@
                         "TMP464",
                         "TMP468",
                         "TMP75",
-                        "W83773G"
+                        "W83773G",
+                        "NTCThermistor"
                     ]
                 }
             },
-            "required": ["Name", "Type", "Bus", "Address"],
+            "required": ["Name", "Type"],
+            "anyOf": [
+                { "required": ["Bus", "Address"] },
+                { "required": ["ThermistorAdcChannel"] }
+            ],
             "type": "object"
         },
         "NVME1000": {
@@ -1411,6 +1419,9 @@
                     "type": ["number", "string"]
                 },
                 "type": "array"
+            },
+            "ThermistorAdcChannel": {
+                "type": "number"
             },
             "Thresholds": {
                 "items": {
