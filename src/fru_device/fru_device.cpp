@@ -1131,6 +1131,7 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
     if (!is16Bit.has_value())
     {
         lg2::error("failed to detect if device is 8 or 16 bits");
+	close(file);
         return false;
     }
 
