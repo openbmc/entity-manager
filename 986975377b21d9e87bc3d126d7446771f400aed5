@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fa8ee80_44adde2b",
+        "filename": "configurations/kioxia/yosemite4_nvme.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-03T08:45:28Z",
+      "side": 1,
+      "message": "The filename seems odd. How do you know it\u0027s used in yosemite4? I thought it\u0027s a generic drive.",
+      "revId": "986975377b21d9e87bc3d126d7446771f400aed5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b838dd7a_3e772eaa",
+        "filename": "configurations/kioxia/yosemite4_nvme.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-03T08:45:28Z",
+      "side": 1,
+      "message": "why `DrivePort 1` ? Are there multiple?\n\nWhat would be `DrivePort 2`?",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 2
+      },
+      "revId": "986975377b21d9e87bc3d126d7446771f400aed5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aba7a1f9_dc94e3d5",
+        "filename": "configurations/kioxia/yosemite4_nvme.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-03T08:45:28Z",
+      "side": 1,
+      "message": "These two are empty in your log output, do these fields actually exist in the FRU?\n\nIf not, and in case fru-device does not expose those properties i believe it would be best to leave those as empty strings to avoid confusing people.",
+      "range": {
+        "startLine": 26,
+        "startChar": 8,
+        "endLine": 27,
+        "endChar": 40
+      },
+      "revId": "986975377b21d9e87bc3d126d7446771f400aed5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eafba538_9cc44763",
+        "filename": "schemas/global.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-03T08:45:28Z",
+      "side": 1,
+      "message": "FlowMeter was removed recently so you can remove it here as well.",
+      "range": {
+        "startLine": 45,
+        "startChar": 24,
+        "endLine": 45,
+        "endChar": 36
+      },
+      "revId": "986975377b21d9e87bc3d126d7446771f400aed5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
