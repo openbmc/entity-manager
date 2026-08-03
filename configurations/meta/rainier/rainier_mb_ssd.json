@@ -86,7 +86,7 @@
         "Probe": [
             "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'MB_E1S0', 'Compatible': 'com.meta.Hardware.Rainier.Boards.MB'})",
             "AND",
-            "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Rainier .*', 'BOARD_PRODUCT_NAME': 'Motherboard', 'BOARD_INFO_AM4': 'VR-RTT V1P2VR-MPS', 'BOARD_MANUFACTURER': 'Quanta'})",
+            "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Rainier .*', 'BOARD_PRODUCT_NAME': 'Motherboard'})",
             "MATCH_ONE"
         ],
         "Type": "Board",
@@ -185,7 +185,7 @@
         "Probe": [
             "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'MB_E1S1', 'Compatible': 'com.meta.Hardware.Rainier.Boards.MB'})",
             "AND",
-            "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Rainier .*', 'BOARD_PRODUCT_NAME': 'Motherboard', 'BOARD_INFO_AM4': 'VR-RTT V1P2VR-MPS', 'BOARD_MANUFACTURER': 'Quanta'})",
+            "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Rainier .*', 'BOARD_PRODUCT_NAME': 'Motherboard'})",
             "MATCH_ONE"
         ],
         "Type": "Board",
