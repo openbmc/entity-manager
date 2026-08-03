@@ -343,7 +343,7 @@
                 "MB_VR_CPU_CPU1_TEMP_C",
                 "MB_VR_CPU_MEM1_TEMP_C",
                 "MB_VR_CPU_SYS1_TEMP_C",
-                "MB_VR_CPU_SOC0_TEMP_C"
+                "MB_VR_CPU_SOC1_TEMP_C"
             ],
             "Name": "PID_MB_VR",
             "NegativeHysteresis": 2.0,
@@ -555,7 +555,7 @@
                 "MB_VR_CPU_CPU1_TEMP_C",
                 "MB_VR_CPU_MEM1_TEMP_C",
                 "MB_VR_CPU_SYS1_TEMP_C",
-                "MB_VR_CPU_SOC0_TEMP_C"
+                "MB_VR_CPU_SOC1_TEMP_C"
             ],
             "Name": "Stepwise_MB_VR",
             "NegativeHysteresis": 2.0,
@@ -661,7 +661,7 @@
     ],
     "Name": "Rainier SCM",
     "Probe": [
-        "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Rainier .*', 'BOARD_PRODUCT_NAME': 'SCM board', 'BOARD_MANUFACTURER': 'Quanta'})"
+        "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Rainier .*', 'BOARD_PRODUCT_NAME': 'SCM board(?!.*2700).*', 'BOARD_MANUFACTURER': 'Quanta'})"
     ],
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
