@@ -119,6 +119,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "25b4503b_1612329e",
+        "filename": "src/entity_manager/dbus_interface.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-03T09:26:50Z",
+      "side": 1,
+      "message": "i meant creating a separate API like `AddObjectDynamic` and then either pass `true` or `false` as an additional parameter. Preferably documenting this new API in PDI also.\n\nThen in the future existing callers of `AddObject` can migrate to the new API.\n\n\nTunneling D-Bus parameters over json is not the conventional implementation and in this case it\u0027s not required for the implementation.\n\n\u003e OpenBMC has quite a modular structure, consisting of small daemons with a\nlimited set of responsibilities. These communicate over D-Bus with other\ncomponents, to implement the complete BMC system.\n\nThis is from toplevel documentation https://github.com/openbmc/docs/blob/master/CONTRIBUTING.md#structure\n\nand i interpret that to mean \u0027prefer D-Bus communication over other forms of interfacing\u0027 which would include files, tunneling via json, ...\n\n\nLet\u0027s hear what Matt Spinler has to say on the overall direction, i don\u0027t want to give you any useless feedback which might be overturned anyways.",
+      "parentUuid": "40f4b6ab_d520c254",
+      "range": {
+        "startLine": 340,
+        "startChar": 1,
+        "endLine": 342,
+        "endChar": 30
+      },
+      "revId": "f803f7ad45ba016ce744e1b0a529de641cac25e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0c7258a2_f452c614",
         "filename": "src/entity_manager/dbus_interface.cpp",
         "patchSetId": 5
