@@ -261,17 +261,18 @@ static bool templateCharReplaceOneProperty(
     return false;
 }
 
-static void templateCharReplaceLoop(std::string& str,
-                                    const DBusInterface& interface,
-                                    std::optional<std::string>& ret)
+static std::optional<DBusValueVariant> templateCharReplaceLoop(
+    std::string& str, const DBusInterface& interface,
+    std::optional<std::string>& ret)
 {
     for (const auto& [propName, propValue] : interface)
     {
         if (templateCharReplaceOneProperty(str, propName, propValue, ret))
         {
-            return;
+            return propValue;
         }
     }
+    return std::nullopt;
 }
 
 static void templateCharReplaceObj(
@@ -318,7 +319,7 @@ static std::optional<uint64_t> parseAsNumber(std::string_view strView)
     return std::nullopt;
 }
 
-static std::optional<std::string> templateCharReplaceStr(
+static std::optional<DBusValueVariant> templateCharReplaceStr(
     std::string& str, const DBusInterface& interface, const size_t index,
     const std::optional<std::string>& replaceStr)
 {
@@ -330,9 +331,8 @@ static std::optional<std::string> templateCharReplaceStr(
     }
 
     templateCharReplaceOneProperty(str, "index", index, ret);
-    templateCharReplaceLoop(str, interface, ret);
 
-    return ret;
+    return templateCharReplaceLoop(str, interface, ret);
 }
 
 // finds the template character (currently set to $) and replaces the value with
@@ -368,7 +368,13 @@ std::optional<std::string> templateCharReplace(
 
     std::string str = *strPtr;
 
-    templateCharReplaceStr(str, interface, index, replaceStr);
+    auto exactVariant =
+        templateCharReplaceStr(str, interface, index, replaceStr);
+    if (exactVariant.has_value())
+    {
+        std::visit([&value](auto&& val) { value = val; }, *exactVariant);
+        return ret;
+    }
 
     const std::optional<uint64_t> optNum = parseAsNumber(str);
     if (optNum.has_value())
