@@ -81,6 +81,18 @@ TEST(TemplateCharReplace, replaceLastStr)
     EXPECT_EQ(expected, j["foo"]);
 }
 
+TEST(TemplateCharReplace, replaceNumericStrAsStr)
+{
+    nlohmann::json j = {{"foo", "$BOARD_SERIAL_NUMBER"}};
+    DBusInterface data;
+    data["BOARD_SERIAL_NUMBER"] = std::string("1234567890");
+
+    em_utils::templateCharReplace(j, data, 0);
+
+    EXPECT_TRUE(j["foo"].is_string());
+    EXPECT_EQ("1234567890", j["foo"]);
+}
+
 TEST(TemplateCharReplace, increment)
 {
     nlohmann::json j = {{"foo", "3 plus 1 equals $TEST + 1"}};
