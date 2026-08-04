@@ -22,6 +22,30 @@
       },
       "revId": "f3719708627ed40ab2561a7637d6896b9897221c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7f959a0_7e20f673",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-08-04T03:25:53Z",
+      "side": 1,
+      "message": "It does mean two edits instead of one, but I\u0027d argue that is the point rather than the cost.\n\nToday the interface name is derived from the schema type, so adding a value to the enum silently claims a D-Bus interface and nothing checks that it exists. That is how xyz.openbmc_project.Inventory.Item.NVMe ended up on the bus with no phosphor-dbus-interfaces definition: nothing in that schema diff tells you an interface was created, so there is nothing for a reviewer to object to. The table doesn\u0027t mechanically guarantee a definition exists, NVMe is still listed without one, but it does put the question in front of the reviewer.\n\nThe other reason is that the mapping doesn\u0027t have to be the identity: https://gerrit.openbmc.org/c/openbmc/entity-manager/+/92929 needs Type: \"Platform\" to map to xyz.openbmc_project.Configuration.Platform, since a platform is not an inventory item. That can\u0027t be expressed while the name is built by appending the type.\n\nI\u0027ll fold this into the commit message.",
+      "parentUuid": "23894876_9533fb5c",
+      "range": {
+        "startLine": 18,
+        "startChar": 30,
+        "endLine": 20,
+        "endChar": 0
+      },
+      "revId": "f3719708627ed40ab2561a7637d6896b9897221c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
