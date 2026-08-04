@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "883a1cd4_71aa9766",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-04T10:01:45Z",
+      "side": 1,
+      "message": "see https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#f3-keep-functions-short-and-simple\n\nand let\u0027s extract some functions from `updateSystemConfiguration` before adding further logic here.\n\nFor example the body of the loop starting at line 537.",
+      "range": {
+        "startLine": 583,
+        "startChar": 1,
+        "endLine": 586,
+        "endChar": 43
+      },
+      "revId": "ff922c648a402802a30bdcf1b9ba488d24067ec0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d50199ef_7eb558b2",
+        "filename": "test/entity_manager/test_perform_scan.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-04T10:01:45Z",
+      "side": 1,
+      "message": "to me it looks like these tests here only cover helper functions and not e.g. the changes done to\n\n`void scan::PerformScan::run()`\nand\n`void scan::PerformScan::updateSystemConfiguration(...)`\n\nit would be great if the functions which have been modified were also covered by tests.",
+      "revId": "ff922c648a402802a30bdcf1b9ba488d24067ec0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
