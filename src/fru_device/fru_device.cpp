@@ -1180,14 +1180,19 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
     return true;
 }
 
-static void publishFrusOnBus(const BusMap& busmap, uint16_t busNum,
-                             FruDetails& fruDetails,
-                             sdbusplus::asio::object_server& objServer)
+static void clearDBusInterfacesForBus(
+    uint16_t busNum, const std::set<uint8_t>& skipAddresses,
+    FruDetails& fruDetails, sdbusplus::asio::object_server& objServer)
 {
     for (auto busIface = fruDetails.dbusInterfaceMap.begin();
          busIface != fruDetails.dbusInterfaceMap.end();)
     {
-        if (busIface->first.first == static_cast<size_t>(busNum))
+        const auto key = busIface->first;
+        const auto ifaceBus = key.first;
+        const auto ifaceAddress = key.second;
+
+        if (ifaceBus == static_cast<size_t>(busNum) &&
+            !(skipAddresses.contains(ifaceAddress)))
         {
             objServer.remove_interface(busIface->second);
             busIface = fruDetails.dbusInterfaceMap.erase(busIface);
@@ -1197,45 +1202,133 @@ static void publishFrusOnBus(const BusMap& busmap, uint16_t busNum,
             busIface++;
         }
     }
-    auto found = busmap.find(busNum);
-    if (found == busmap.end() || found->second == nullptr)
+}
+
+static void publishFrusOnBusAddress(
+    std::vector<uint8_t>& device, uint16_t busNum, uint8_t address,
+    FruDetails& fruDetails, sdbusplus::asio::object_server& objServer)
+{
+    // clear our interface here if there is any
+
+    const std::pair<size_t, size_t> key = {busNum, address};
+
+    auto iface = fruDetails.dbusInterfaceMap.find(key);
+
+    if (iface != fruDetails.dbusInterfaceMap.end())
+    {
+        objServer.remove_interface(iface->second);
+        fruDetails.dbusInterfaceMap.erase(iface);
+    }
+
+    addFruObjectToDbus(device, fruDetails, static_cast<uint32_t>(busNum),
+                       address, objServer);
+}
+
+static std::set<uint8_t> getCoveredAddresses(const BusMap& busmap,
+                                             uint16_t busNum)
+{
+    std::set<uint8_t> addressesCovered;
+
+    if (busmap.contains(busNum))
+    {
+        for (auto device : *busmap.at(busNum))
+        {
+            addressesCovered.insert(device.first);
+        }
+    }
+    return addressesCovered;
+}
+
+static void publishFrusOnBusCommon(BusMap& busmap, uint16_t busNum,
+                                   FruDetails& fruDetails,
+                                   sdbusplus::asio::object_server& objServer)
+{
+    std::set<uint8_t> addressesCovered = getCoveredAddresses(busmap, busNum);
+
+    // clear interfaces for all other addresses on this bus which do not
+    // get republished
+    clearDBusInterfacesForBus(busNum, addressesCovered, fruDetails, objServer);
+
+    if (!busmap.contains(busNum))
     {
         return;
     }
-    for (auto device : *(found->second))
+
+    for (auto device : *busmap.at(busNum))
     {
-        addFruObjectToDbus(device.second, fruDetails,
-                           static_cast<uint32_t>(busNum), device.first,
-                           objServer);
+        const uint8_t address = device.first;
+        publishFrusOnBusAddress(device.second, busNum, address, fruDetails,
+                                objServer);
     }
+}
+
+static void publishFrusOnBus(BusMap& busmap, uint16_t busNum,
+                             FruDetails& fruDetails,
+                             sdbusplus::asio::object_server& objServer)
+{
+    if (busNum == 0)
+    {
+        std::vector<uint8_t> baseboardFRU;
+        if (readBaseboardFRU(baseboardFRU))
+        {
+            // If no device on i2c bus 0, the insertion will happen.
+            auto bus0 = busmap.try_emplace(0, std::make_shared<DeviceMap>());
+            bus0.first->second->emplace(0, baseboardFRU);
+        }
+    }
+
+    publishFrusOnBusCommon(busMap, busNum, fruDetails, objServer);
+}
+
+static std::set<uint8_t> getCoveredBuses(const BusMap& busmap)
+{
+    std::set<uint8_t> busesCovered;
+    for (auto devicemap : busmap)
+    {
+        const uint16_t busNum = devicemap.first;
+        busesCovered.insert(busNum);
+    }
+    busesCovered.insert(0);
+    return busesCovered;
 }
 
 static void publishAllFrus(BusMap& busmap, FruDetails& fruDetails,
                            sdbusplus::asio::object_server& objServer)
 {
-    for (auto busIface : fruDetails.dbusInterfaceMap)
-    {
-        objServer.remove_interface(busIface.second);
-    }
-
-    fruDetails.dbusInterfaceMap.clear();
     fruDetails.unknownBusObjectCount = 0;
 
-    // todo, get this from a more sensable place
-    std::vector<uint8_t> baseboardFRU;
-    if (readBaseboardFRU(baseboardFRU))
+    std::set<uint8_t> busesCovered = getCoveredBuses(busmap);
+
+    // clear all interfaces on buses which are not republished
+    for (auto busIface = fruDetails.dbusInterfaceMap.begin();
+         busIface != fruDetails.dbusInterfaceMap.end();)
     {
-        // If no device on i2c bus 0, the insertion will happen.
-        auto bus0 = busmap.try_emplace(0, std::make_shared<DeviceMap>());
-        bus0.first->second->emplace(0, baseboardFRU);
+        const auto key = busIface->first;
+        const auto ifaceBus = key.first;
+
+        if (!(busesCovered.contains(ifaceBus)))
+        {
+            objServer.remove_interface(busIface->second);
+            busIface = fruDetails.dbusInterfaceMap.erase(busIface);
+        }
+        else
+        {
+            busIface++;
+        }
     }
+
+    // make sure baseboard fru rescan happens
+    publishFrusOnBus(busmap, 0, fruDetails, objServer);
+
     for (auto devicemap : busmap)
     {
-        for (auto device : *devicemap.second)
+        const uint16_t busNum = devicemap.first;
+
+        if (busNum == 0)
         {
-            addFruObjectToDbus(device.second, fruDetails, devicemap.first,
-                               device.first, objServer);
+            continue;
         }
+        publishFrusOnBus(busmap, busNum, fruDetails, objServer);
     }
 }
 
