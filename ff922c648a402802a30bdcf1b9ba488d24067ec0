@@ -63,6 +63,24 @@
       "message": "to me it looks like these tests here only cover helper functions and not e.g. the changes done to\n\n`void scan::PerformScan::run()`\nand\n`void scan::PerformScan::updateSystemConfiguration(...)`\n\nit would be great if the functions which have been modified were also covered by tests.",
       "revId": "ff922c648a402802a30bdcf1b9ba488d24067ec0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bff8af5a_81bc5743",
+        "filename": "test/entity_manager/test_perform_scan.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-08-05T13:51:52Z",
+      "side": 1,
+      "message": "You\u0027re right that the `SeedAndPrune` test mirrors what `run()` does rather than calling it, so it would still pass if `run()` stopped doing either step. The `passedProbes.push_back()` of the resolved name in `updateSystemConfiguration` isn\u0027t covered either.\n\nTesting those directly needs a fixture for PerformScan, which takes an EntityManager and so a live sdbusplus connection, and nothing under test/entity_manager constructs either yet today. \n\nHowever, I don\u0027t think that should block this change: it is worth doing, but it is a larger piece of work than the bugfix and it would let the rest of PerformScan be tested too, so I think it stands on its own.\n\nWould you be OK with it as follow-up?",
+      "parentUuid": "d50199ef_7eb558b2",
+      "revId": "ff922c648a402802a30bdcf1b9ba488d24067ec0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
