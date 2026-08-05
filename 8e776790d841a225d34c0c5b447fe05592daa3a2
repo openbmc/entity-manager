@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d73ae2b3_6d8e5cd5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-05T14:01:31Z",
+      "side": 1,
+      "message": "Thanks for reviewing 😊\n\n\u003e Is that the intended ordering?\n\nyes. That way we have two patches, with less behavior changes per patch and easier to bisect in case of problems.",
+      "parentUuid": "0cf43282_bf8a2867",
+      "revId": "8e776790d841a225d34c0c5b447fe05592daa3a2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cff79704_2ba80adc",
@@ -31,6 +49,30 @@
       "writtenOn": "2026-08-05T12:44:47Z",
       "side": 1,
       "message": "std::set\u003cuint8_t\u003e busesCovered — bus numbers can exceed 255 (mux child\nbuses); inserting a uint16_t busNum truncates and two buses could collide\n(e.g. 5 and 261). Suggest uint16_t/size_t to match the rest. (address as\nuint8_t is fine, it\u0027s 7-bit.)",
+      "range": {
+        "startLine": 1283,
+        "startChar": 0,
+        "endLine": 1294,
+        "endChar": 0
+      },
+      "revId": "8e776790d841a225d34c0c5b447fe05592daa3a2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "303a48dc_690fb551",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1294,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-05T14:01:31Z",
+      "side": 1,
+      "message": "thanks for finding this, fixed it 👍",
+      "parentUuid": "cff79704_2ba80adc",
       "range": {
         "startLine": 1283,
         "startChar": 0,
