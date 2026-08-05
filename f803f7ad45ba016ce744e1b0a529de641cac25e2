@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5e9d1114_16a846fb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-05T10:14:03Z",
+      "side": 1,
+      "message": "\u003e there is no existing unit test which verify system.json\n\nyes, some major features have no test coverage. Which makes it harder on anyone who wants to patch things as they have to take all these undocumented untested behaviors into account.\n\n\u003e Do you have any suggessions on how to unit test this ?\n\nYes.\n\nWe did work some time ago to separate `EntityManager` class from the `int main()` function so it should be possible to create an instance of it in a testcase.\n\nThere are at least two issues making it  difficult to write unit tests, which are D-Bus calls to object mapper and timers in general.\n\nSo we may need to restructure some codes if you run into any of that when writing a test.\n\nI would suggest to first create an instance of `EntityManager` in the testcase and then perform your `AddObject` call and then observe the result in `system.json`\n\nSince \n```\nconstexpr const char* currentConfiguration \u003d \"/var/configuration/system.json\";\n```\n\nis hardcoded that probably needs to be passed as a parameter to the implementation instead, to be able to run EM in temporary directories, without carrying any state from previous runs or introducing race condition when tests are run in parallel.\n\nI already passed through these things in this abandoned change\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/85473/17\n\nso that\u0027s some example of how it can be done. Would suggest to pass through these paths in a separate change preceding this change.\n\nThen after that change the existing `AddObject` behavior could be unit tested. Both these patches should be somewhat uncontroversial since you are adding test coverage for existing features.\n\nThen this patch (third patch?) introducing this AddObject dynamic feature would only need a single testcase added.",
+      "parentUuid": "3e05f8af_130e0768",
+      "range": {
+        "startLine": 29,
+        "startChar": 1,
+        "endLine": 32,
+        "endChar": 61
+      },
+      "revId": "f803f7ad45ba016ce744e1b0a529de641cac25e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dd4cd22d_eeb919ac",
         "filename": "src/entity_manager/configuration.cpp",
         "patchSetId": 5
