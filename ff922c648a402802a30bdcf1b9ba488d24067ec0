@@ -81,6 +81,24 @@
       "parentUuid": "d50199ef_7eb558b2",
       "revId": "ff922c648a402802a30bdcf1b9ba488d24067ec0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "250127a7_c6d97f69",
+        "filename": "test/entity_manager/test_perform_scan.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-05T16:12:37Z",
+      "side": 1,
+      "message": "\u003e Testing those directly needs a fixture for PerformScan, which takes an EntityManager and so a live sdbusplus connection, and nothing under test/entity_manager constructs either yet today. \n\nyes, the code is not properly unit tested, and each feature bolted on top might make it more difficult to do so. As you suggested, there is strong coupling between core EM logic, D-Bus logic, mapper calls and timers.\n\n\u003e Would you be OK with it as follow-up?\n\nIt\u0027s kind of unfair to expect you to write tests for everything when no one else did who patched the code before.\n\nHowever at some point the code becomes too complicated and needs written tests.\n\nOnce the 2 cleanup patches you made land and this change is rebased, it will hopefully all be a bit simpler to see what\u0027s going on and i will try my best again to sink some time to understand it.\n\nSince Matt already gave a `+1` it seems like he understood the code and patch enough to approve, so i don\u0027t have any issue with it going first and the testcase as a follow-up.",
+      "parentUuid": "bff8af5a_81bc5743",
+      "revId": "ff922c648a402802a30bdcf1b9ba488d24067ec0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
