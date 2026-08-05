@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cf43282_bf8a2867",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002470
+      },
+      "writtenOn": "2026-08-05T12:44:47Z",
+      "side": 1,
+      "message": "Thanks for taking this on — the structure looks right (bus-0 baseboard\nmoved into publishFrusOnBus, per-bus loop, and clearing interfaces for\nbuses no longer present).\n\nMain thing to confirm on stacking: this change drops the publishedFru\ncontent-comparison from 92584 — publishFrusOnBusAddress() now\nunconditionally remove_interface() + addFruObjectToDbus() for every\naddress on every rescan, which is exactly the churn my fix avoids (the\nunconditional remove/add is what made EntityManager tear down the SCM\nsubtree and re-emit the cooling events).\n\nIf the plan is for this consolidation to land first as a no-functional-\nchange refactor and then rebase 92584 on top, that\u0027s great — it makes my\nfix simpler, since I\u0027d only add the content check in the single\npublishFrusOnBusAddress() rather than in two places. Is that the intended\nordering?",
+      "revId": "8e776790d841a225d34c0c5b447fe05592daa3a2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cff79704_2ba80adc",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1294,
+      "author": {
+        "id": 1002470
+      },
+      "writtenOn": "2026-08-05T12:44:47Z",
+      "side": 1,
+      "message": "std::set\u003cuint8_t\u003e busesCovered — bus numbers can exceed 255 (mux child\nbuses); inserting a uint16_t busNum truncates and two buses could collide\n(e.g. 5 and 261). Suggest uint16_t/size_t to match the rest. (address as\nuint8_t is fine, it\u0027s 7-bit.)",
+      "range": {
+        "startLine": 1283,
+        "startChar": 0,
+        "endLine": 1294,
+        "endChar": 0
+      },
+      "revId": "8e776790d841a225d34c0c5b447fe05592daa3a2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
