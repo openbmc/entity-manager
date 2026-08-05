@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cee01bf_1f62e8b4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-05T08:53:32Z",
+      "side": 1,
+      "message": "Thanks for fixing and the extra testcase 👍",
+      "revId": "93ae577d24df8b421dd2c10f168f5cf791abb636",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ccf3ace_d7ae35dc",
+        "filename": "test/entity_manager/test_entity-manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-05T08:53:32Z",
+      "side": 1,
+      "message": "nit, i think it will be clearer to use a realistic template variable for readers\nto understand what would be an example use-case for this behavior\n\nand why it is needed.\n\n```suggestion\n{\n    nlohmann::json j \u003d {{\"SerialNumber\", \"$BOARD_SERIAL_NUMBER\"}};\n    DBusInterface data;\n    data[\"BOARD_SERIAL_NUMBER\"] \u003d std::string(\"1234567890\");\n```\n\nFrom my experience people tend to delete testcases if it\u0027s not fully clear why the code would behave this way.\n\nSomeone else might say \"this is clearly a number\" and subsequently delete the testcase.",
+      "range": {
+        "startLine": 85,
+        "startChar": 1,
+        "endLine": 88,
+        "endChar": 52
+      },
+      "revId": "93ae577d24df8b421dd2c10f168f5cf791abb636",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
