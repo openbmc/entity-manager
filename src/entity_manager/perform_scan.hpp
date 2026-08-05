@@ -13,6 +13,7 @@
 #include <functional>
 #include <list>
 #include <memory>
+#include <optional>
 #include <set>
 #include <vector>
 
@@ -50,6 +51,11 @@ struct PerformScan final : std::enable_shared_from_this<PerformScan>
     void restorePersistedConfigurations(
         FoundDevices& foundDevices, const std::string& probeName,
         std::set<nlohmann::json>& usedNames, std::list<size_t>& indexes);
+
+    void updateSystemConfigurationForDevice(
+        const nlohmann::json& recordRef, const std::string& probeName,
+        const DBusDeviceDescriptor& device, std::set<nlohmann::json>& usedNames,
+        std::list<size_t>& indexes, std::optional<std::string>& replaceStr);
 
     // Walk _configurations, dropping malformed or already-probed entries and
     // starting a PerformProbe for each remaining one. Collects the D-Bus
