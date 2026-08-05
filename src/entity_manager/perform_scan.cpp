@@ -733,6 +733,32 @@ static void collectDbusProbes(
     }
 }
 
+static const std::string* pendingProbeName(
+    const nlohmann::json& config, const std::vector<std::string>& passedProbes)
+{
+    auto findName = config.find("Name");
+    if (findName == config.end())
+    {
+        lg2::error("configuration file missing name:\n {JSON}", "JSON", config);
+        return nullptr;
+    }
+
+    const std::string* probeName = findName->get_ptr<const std::string*>();
+    if (probeName == nullptr)
+    {
+        lg2::error("Name wasn't a string? {JSON}", "JSON", config);
+        return nullptr;
+    }
+
+    if (std::find(passedProbes.begin(), passedProbes.end(), *probeName) !=
+        passedProbes.end())
+    {
+        return nullptr;
+    }
+
+    return probeName;
+}
+
 bool scan::PerformScan::processConfigurations(
     std::flat_set<std::string, std::less<>>& dbusProbeInterfaces,
     std::vector<std::shared_ptr<probe::PerformProbe>>& dbusProbePointers)
@@ -749,25 +775,8 @@ bool scan::PerformScan::processConfigurations(
             continue;
         }
 
-        auto findName = it->find("Name");
-        if (findName == it->end())
-        {
-            lg2::error("configuration file missing name:\n {JSON}", "JSON",
-                       *it);
-            it = _configurations.erase(it);
-            continue;
-        }
-
-        const std::string* probeName = findName->get_ptr<const std::string*>();
+        const std::string* probeName = pendingProbeName(*it, passedProbes);
         if (probeName == nullptr)
-        {
-            lg2::error("Name wasn't a string? {JSON}", "JSON", *it);
-            it = _configurations.erase(it);
-            continue;
-        }
-
-        if (std::find(passedProbes.begin(), passedProbes.end(), *probeName) !=
-            passedProbes.end())
         {
             it = _configurations.erase(it);
             continue;
