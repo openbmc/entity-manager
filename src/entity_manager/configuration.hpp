@@ -25,6 +25,10 @@ class Configuration
   private:
     void loadSingleConfigFile(const std::filesystem::path& jsonPath,
                               const nlohmann::json& schema);
+
+    void loadSingleConfig(const std::filesystem::path& jsonPath,
+                          const nlohmann::json& emConfig);
+
     std::vector<std::filesystem::path> configurationDirectories;
 };
 

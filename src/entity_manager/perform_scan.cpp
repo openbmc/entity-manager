@@ -629,6 +629,18 @@ void scan::PerformScan::updateSystemConfiguration(
         {
             auto boardType = record.find("Type")->second.get<std::string>();
             auto boardName = record.find("Name")->second.get<std::string>();
+
+            if (boardName.empty())
+            {
+                lg2::error("configuration with empty 'Name'");
+                continue;
+            }
+            if (boardType.empty())
+            {
+                lg2::error("configuration with empty 'Type'");
+                continue;
+            }
+
             std::string boardInventoryPath =
                 em_utils::buildInventorySystemPath(boardName, boardType);
             _em.topology.addProbePath(boardInventoryPath, path);

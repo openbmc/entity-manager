@@ -35,6 +35,8 @@ std::optional<std::string> templateCharReplace(
     nlohmann::json& value, const DBusInterface& interface, size_t index,
     const std::optional<std::string>& replaceStr = std::nullopt);
 
+// @precondition boardName.size() > 0
+// @precondition boardType.size() > 0
 sdbusplus::object_path buildInventorySystemPath(std::string& boardName,
                                                 const std::string& boardType);
 
