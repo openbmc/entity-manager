@@ -14,11 +14,14 @@
 using DBusValueVariant =
     std::variant<std::string, int64_t, uint64_t, double, int32_t, uint32_t,
                  int16_t, uint16_t, uint8_t, bool, std::vector<uint8_t>,
-                 std::vector<std::string>>;
+                 std::vector<std::string>, sdbusplus::object_path>;
 using DBusInterface = std::flat_map<std::string, DBusValueVariant, std::less<>>;
 using DBusObject = std::flat_map<std::string, DBusInterface, std::less<>>;
 using MapperGetSubTreeResponse =
     std::flat_map<std::string, DBusObject, std::less<>>;
+using DBusManagedObjectsType =
+    std::map<sdbusplus::object_path,
+             std::map<std::string, std::map<std::string, DBusValueVariant>>>;
 using FirstIndex = size_t;
 using LastIndex = size_t;
 
