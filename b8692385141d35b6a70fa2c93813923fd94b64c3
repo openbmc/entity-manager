@@ -213,6 +213,24 @@
       "parentUuid": "bbdc4e52_d8cef805",
       "revId": "b8692385141d35b6a70fa2c93813923fd94b64c3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97c6bb59_4a2b5df2",
+        "filename": "src/usb_device/usb_device_monitor.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-08-06T00:20:22Z",
+      "side": 1,
+      "message": "if we\u0027re following what fru-device does, it makes everything available, not just a particular class.  I\u0027d really like to avoid a config file here, because that would make this daemon less portable between systems.",
+      "parentUuid": "5a3ada09_f71d0dd1",
+      "revId": "b8692385141d35b6a70fa2c93813923fd94b64c3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
