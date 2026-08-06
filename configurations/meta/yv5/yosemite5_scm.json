@@ -683,31 +683,6 @@
             ]
         },
         {
-            "Class": "temp",
-            "Inputs": [
-                "MB_INLET_TEMP_C",
-                "MB_OUTLET_TEMP_C",
-                "PDB_L_TEMP_C",
-                "PDB_R_TEMP_C",
-                "E1S_EB_TEMP_C",
-                "CXL_INLET_TEMP_C",
-                "CXL_OUTLET_TEMP_C"
-            ],
-            "Name": "Stepwise_OTHERS",
-            "NegativeHysteresis": 0.0,
-            "Output": [
-                10.0
-            ],
-            "PositiveHysteresis": 0.0,
-            "Reading": [
-                5.0
-            ],
-            "Type": "Stepwise",
-            "Zones": [
-                "Zone 1"
-            ]
-        },
-        {
             "Address": "0x4B",
             "Bus": 9,
             "Name": "SCM_INLET_TEMP_C",
