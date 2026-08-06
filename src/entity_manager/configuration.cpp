@@ -11,6 +11,7 @@
 #include <valijson/schema_parser.hpp>
 #include <valijson/validator.hpp>
 
+#include <array>
 #include <filesystem>
 #include <fstream>
 #include <string>
@@ -24,6 +25,36 @@ Configuration::Configuration(
 {
     loadConfigurations();
     filterProbeInterfaces();
+}
+
+static bool isPropertyMissing(const std::filesystem::path& jsonPath,
+                              const nlohmann::json& emConfig,
+                              const char* property)
+{
+    if (!emConfig.contains(property))
+    {
+        lg2::error(
+            "configuration in file {PATH} missing '{PROPERTY}', discarding.",
+            "PATH", jsonPath, "PROPERTY", property);
+        return true;
+    }
+    return false;
+}
+
+void Configuration::loadSingleConfig(const std::filesystem::path& jsonPath,
+                                     const nlohmann::json& emConfig)
+{
+    static constexpr std::array requiredProperties{"Name", "Probe", "Type"};
+
+    for (const char* property : requiredProperties)
+    {
+        if (isPropertyMissing(jsonPath, emConfig, property))
+        {
+            return;
+        }
+    }
+
+    configurations.emplace_back(emConfig);
 }
 
 void Configuration::loadSingleConfigFile(const std::filesystem::path& jsonPath,
@@ -52,12 +83,12 @@ void Configuration::loadSingleConfigFile(const std::filesystem::path& jsonPath,
     {
         for (auto& d : data)
         {
-            configurations.emplace_back(d);
+            loadSingleConfig(jsonPath, d);
         }
     }
     else
     {
-        configurations.emplace_back(data);
+        loadSingleConfig(jsonPath, data);
     }
 }
 

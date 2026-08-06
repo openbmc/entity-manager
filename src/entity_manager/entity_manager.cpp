@@ -133,6 +133,11 @@ void EntityManager::postBoardToDBus(
         return;
     }
     std::string boardName = *boardNamePtr;
+    if (boardName.empty())
+    {
+        lg2::error("Name for {BOARD} was empty", "BOARD", boardId);
+        return;
+    }
     std::string boardNameOrig = *boardNamePtr;
     std::string jsonPointerPath = "/" + boardId;
     // loop through newConfiguration, but use values from system
@@ -145,12 +150,17 @@ void EntityManager::postBoardToDBus(
     {
         boardType = dbus_util::sanitizeForDBusPathSegment(
             findBoardType->get<std::string>());
+
+        if (boardType.empty())
+        {
+            lg2::error("Type  for {BOARD} was empty", "BOARD", boardName);
+            return;
+        }
     }
     else
     {
-        lg2::error("Unable to find type for {BOARD} reverting to Chassis.",
-                   "BOARD", boardName);
-        boardType = "Chassis";
+        lg2::error("Unable to find 'Type' for {BOARD}", "BOARD", boardName);
+        return;
     }
 
     lg2::debug("post {TYPE} '{NAME}' to DBus", "TYPE", boardType, "NAME",
@@ -257,6 +267,14 @@ void EntityManager::postExposesRecordsToDBus(
 
     const std::string itemName =
         dbus_util::sanitizeForDBusPathSegment(findName->get<std::string>());
+
+    if (itemName.empty())
+    {
+        lg2::error(
+            "empty exposes record name below {PATH}, skipping this record",
+            "PATH", boardPath);
+        return;
+    }
 
     const sdbusplus::object_path ifacePath = boardPath / itemName;
 
