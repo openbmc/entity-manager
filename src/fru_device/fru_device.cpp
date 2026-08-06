@@ -1460,6 +1460,46 @@ static void handleNfcTagAdded(
         });
 }
 
+static void handleNfcTagRemoved(FruDetails& fruDetails,
+                                sdbusplus::asio::object_server& objServer,
+                                sdbusplus::message_t& message)
+{
+    sdbusplus::object_path path;
+    std::vector<std::string> interfaces;
+
+    message.read(path, interfaces);
+
+    auto it =
+        std::find(interfaces.begin(), interfaces.end(), neardTagInterface);
+    if (it == interfaces.end())
+    {
+        return;
+    }
+
+    auto ifaceIt = fruDetails.dbusInterfaceMap.find(
+        {static_cast<size_t>(nfcBus), static_cast<size_t>(nfcAddr)});
+    if (ifaceIt != fruDetails.dbusInterfaceMap.end())
+    {
+        objServer.remove_interface(ifaceIt->second);
+        fruDetails.dbusInterfaceMap.erase(ifaceIt);
+        lg2::error("NFC FRU object removed");
+    }
+}
+
+static void queryNeardObjects(
+    const std::shared_ptr<sdbusplus::asio::connection>& systemBus,
+    FruDetails& fruDetails, sdbusplus::asio::object_server& objServer)
+{
+    queryNeardObjectsAsync(systemBus, [systemBus, &fruDetails, &objServer](
+                                          const sdbusplus::object_path& path) {
+        getMimePayloadAsync(
+            systemBus, path,
+            [&fruDetails, &objServer](std::vector<uint8_t> payload) {
+                handleNfcPayload(payload, fruDetails, objServer);
+            });
+    });
+}
+
 int main()
 {
     using namespace sdbusplus::bus::match::rules;
@@ -1553,6 +1593,21 @@ int main()
             interface("org.freedesktop.DBus.ObjectManager") +
             member("InterfacesAdded"),
         nfcTagAddedHandler);
+
+    auto nfcTagRemovedHandler =
+        [&fruDetails, &objServer](sdbusplus::message_t& message) {
+            handleNfcTagRemoved(fruDetails, objServer, message);
+        };
+
+    sdbusplus::bus::match_t nfcTagRemovedMatch = sdbusplus::bus::match_t(
+        static_cast<sdbusplus::bus_t&>(*systemBus),
+        type::signal() + sender("org.neard") +
+            interface("org.freedesktop.DBus.ObjectManager") +
+            member("InterfacesRemoved"),
+        nfcTagRemovedHandler);
+
+    // Query neard for NFC tags already present at startup.
+    queryNeardObjects(systemBus, fruDetails, objServer);
 
     int fd = inotify_init();
     inotify_add_watch(fd, i2CDevLocation, IN_CREATE | IN_MOVED_TO | IN_DELETE);
