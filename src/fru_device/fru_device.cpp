@@ -2,8 +2,10 @@
 // SPDX-FileCopyrightText: Copyright 2018 Intel Corporation
 
 #include "../utils.hpp"
+#include "fru_device.hpp"
 #include "fru_utils.hpp"
 #include "neard_dbus.hpp"
+#include "nfc.hpp"
 
 #include <fcntl.h>
 #include <sys/inotify.h>
@@ -51,11 +53,6 @@ constexpr size_t maxFruSize = 512;
 constexpr size_t maxEepromPageIndex = 255;
 constexpr size_t busTimeoutSeconds = 10;
 
-// Use a reserved bus value for NFC-based FRU objects.
-// These are not associated with any physical I2C device.
-constexpr uint32_t nfcBus = std::numeric_limits<uint32_t>::max();
-constexpr uint32_t nfcAddr = 0;
-
 constexpr const char* blocklistPath = PACKAGE_DIR "blacklist.json";
 
 const static constexpr char* baseboardFruLocation =
@@ -78,27 +75,10 @@ static std::flat_map<size_t, std::flat_set<size_t>> fruAddresses;
 boost::asio::io_context io;
 // NOLINTEND(cppcoreguidelines-avoid-non-const-global-variables)
 
-// Runtime state shared by the fru-device scan/publish paths. All members
-// share the same lifetime (owned by main()) and are always passed together.
-struct FruDetails
-{
-    DBusIntfMap dbusInterfaceMap;
-    size_t unknownBusObjectCount = 0;
-    bool powerIsOn = false;
-    std::set<size_t> addressBlocklist;
-};
-
 bool updateFruProperty(const std::string& propertyValue, uint32_t bus,
                        uint32_t address, const std::string& propertyName,
                        FruDetails& fruDetails,
                        sdbusplus::asio::object_server& objServer);
-
-// Identify NFC-based FRU objects using the reserved bus/address.
-// This is used to preserve them during I2C rescan.
-static bool isNfcFru(uint32_t bus, uint32_t address)
-{
-    return bus == nfcBus && address == nfcAddr;
-}
 
 // Given a bus/address, produce the path in sysfs for an eeprom.
 static std::string getEepromPath(size_t bus, size_t address)
@@ -1226,7 +1206,9 @@ static void publishFrusOnBus(const BusMap& busmap, uint16_t busNum,
 static void publishAllFrus(BusMap& busmap, FruDetails& fruDetails,
                            sdbusplus::asio::object_server& objServer)
 {
-    std::shared_ptr<sdbusplus::asio::dbus_interface> nfcIface;
+    std::vector<std::pair<std::pair<size_t, size_t>,
+                          std::shared_ptr<sdbusplus::asio::dbus_interface>>>
+        nfcIfaces;
 
     for (auto busIface : fruDetails.dbusInterfaceMap)
     {
@@ -1235,9 +1217,9 @@ static void publishAllFrus(BusMap& busmap, FruDetails& fruDetails,
         // Preserve NFC-based FRU objects during bus rescan.
         // These are not discovered via I2C and would otherwise be
         // removed
-        if (isNfcFru(bus, addr))
+        if (isNfcFru(bus))
         {
-            nfcIface = busIface.second;
+            nfcIfaces.emplace_back(busIface.first, busIface.second);
             continue;
         }
 
@@ -1247,12 +1229,9 @@ static void publishAllFrus(BusMap& busmap, FruDetails& fruDetails,
     fruDetails.dbusInterfaceMap.clear();
     fruDetails.unknownBusObjectCount = 0;
 
-    if (nfcIface != nullptr)
+    for (auto& [key, iface] : nfcIfaces)
     {
-        fruDetails.dbusInterfaceMap.emplace(
-            std::make_pair(static_cast<size_t>(nfcBus),
-                           static_cast<size_t>(nfcAddr)),
-            std::move(nfcIface));
+        fruDetails.dbusInterfaceMap.emplace(key, std::move(iface));
     }
 
     // todo, get this from a more sensable place
@@ -1399,67 +1378,6 @@ bool updateFruProperty(const std::string& propertyValue, uint32_t bus,
     return true;
 }
 
-static void handleNfcPayload(std::vector<uint8_t>& payload,
-                             FruDetails& fruDetails,
-                             sdbusplus::asio::object_server& objServer)
-{
-    if (payload.empty())
-    {
-        lg2::warning("Empty payload");
-        return;
-    }
-
-    addFruObjectToDbus(payload, fruDetails, nfcBus, nfcAddr, objServer);
-}
-
-static void handleNfcTagAdded(
-    const std::shared_ptr<sdbusplus::asio::connection>& systemBus,
-    FruDetails& fruDetails, sdbusplus::asio::object_server& objServer,
-    sdbusplus::message_t& message)
-{
-    sdbusplus::object_path path;
-
-    std::map<
-        std::string,
-        std::map<std::string, std::variant<std::string, std::vector<uint8_t>>>>
-        interfaces;
-
-    message.read(path, interfaces);
-
-    auto it = interfaces.find(neardRecordInterface);
-    if (it == interfaces.end())
-    {
-        return;
-    }
-
-    const auto& props = it->second;
-
-    auto typeIt = props.find("Type");
-    if (typeIt == props.end())
-    {
-        return;
-    }
-
-    const auto* type = std::get_if<std::string>(&typeIt->second);
-    if (type == nullptr)
-    {
-        lg2::error("Invalid Type property value");
-        return;
-    }
-
-    if (*type != "MIME")
-    {
-        lg2::warning("Ignoring non-MIME record, Type={TYPE}", "TYPE", *type);
-        return;
-    }
-
-    getMimePayloadAsync(
-        systemBus, path,
-        [&fruDetails, &objServer](std::vector<uint8_t> payload) {
-            handleNfcPayload(payload, fruDetails, objServer);
-        });
-}
-
 int main()
 {
     using namespace sdbusplus::bus::match::rules;
@@ -1542,17 +1460,11 @@ int main()
         "host0',arg0='xyz.openbmc_project.State.Host'",
         eventHandler);
 
-    auto nfcTagAddedHandler =
-        [systemBus, &fruDetails, &objServer](sdbusplus::message_t& message) {
-            handleNfcTagAdded(systemBus, fruDetails, objServer, message);
-        };
-
-    sdbusplus::bus::match_t nfcTagAddedMatch = sdbusplus::bus::match_t(
-        static_cast<sdbusplus::bus_t&>(*systemBus),
-        type::signal() + sender("org.neard") +
-            interface("org.freedesktop.DBus.ObjectManager") +
-            member("InterfacesAdded"),
-        nfcTagAddedHandler);
+    // Monitor NFC tag add/remove signals and initialize existing NFC tags.
+    std::optional<sdbusplus::bus::match_t> nfcTagAddedMatch;
+    std::optional<sdbusplus::bus::match_t> nfcTagRemovedMatch;
+    setupNfcMonitor(systemBus, fruDetails, objServer,
+                    nfcTagAddedMatch, nfcTagRemovedMatch);
 
     int fd = inotify_init();
     inotify_add_watch(fd, i2CDevLocation, IN_CREATE | IN_MOVED_TO | IN_DELETE);

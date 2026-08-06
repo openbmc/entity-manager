@@ -18,6 +18,7 @@ executable(
     'fru_utils.cpp',
     'gzip_utils.cpp',
     'neard_dbus.cpp',
+    'nfc.cpp',
     cpp_args: cpp_args_fd,
     dependencies: [
         boost,
