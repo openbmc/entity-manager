@@ -20,14 +20,14 @@
             "Address": "0x42",
             "Bus": 45,
             "Labels": [
-                "in0"
+                "in1"
             ],
             "Name": "PDB1_P52V_SENSE",
             "Thresholds": [
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0.02,
-                    "Label": "in0",
+                    "Label": "in1",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 1
@@ -35,29 +35,29 @@
                 {
                     "Direction": "less than",
                     "Hysteresis": 0.02,
-                    "Label": "in0",
+                    "Label": "in1",
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": -1
                 }
             ],
-            "Type": "INA238",
-            "in0_Max": 1,
-            "in0_Min": -1,
-            "in0_Name": "PDB1_P52V_SENSE_VOLT_V"
+            "Type": "ISL28022",
+            "in1_Max": 1,
+            "in1_Min": -1,
+            "in1_Name": "PDB1_P52V_SENSE_VOLT_V"
         },
         {
             "Address": "0x43",
             "Bus": 45,
             "Labels": [
-                "in0"
+                "in1"
             ],
             "Name": "PDB1_GND_SENSE",
             "Thresholds": [
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0.02,
-                    "Label": "in0",
+                    "Label": "in1",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 1
@@ -65,16 +65,16 @@
                 {
                     "Direction": "less than",
                     "Hysteresis": 0.02,
-                    "Label": "in0",
+                    "Label": "in1",
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": -1
                 }
             ],
-            "Type": "INA238",
-            "in0_Max": 1,
-            "in0_Min": -1,
-            "in0_Name": "PDB1_GND_SENSE_VOLT_V"
+            "Type": "ISL28022",
+            "in1_Max": 1,
+            "in1_Min": -1,
+            "in1_Name": "PDB1_GND_SENSE_VOLT_V"
         },
         {
             "Address": "0x4c",
@@ -83,11 +83,11 @@
                 "curr1"
             ],
             "Name": "PDB1_BUSBAR_TSENSE_P1",
-            "Type": "INA238",
+            "Type": "ISL28022",
             "curr1_Max": 0.1,
             "curr1_Min": 0,
             "curr1_Name": "PDB1_BUSBAR_TSENSE_P1_CURR_A",
-            "curr1_Scale": 200000
+            "curr1_Scale": 50000
         },
         {
             "Address": "0x4d",
@@ -96,17 +96,17 @@
                 "curr1"
             ],
             "Name": "PDB1_BUSBAR_TSENSE_P2",
-            "Type": "INA238",
+            "Type": "ISL28022",
             "curr1_Max": 0.1,
             "curr1_Min": 0,
             "curr1_Name": "PDB1_BUSBAR_TSENSE_P2_CURR_A",
-            "curr1_Scale": 200000
+            "curr1_Scale": 50000
         },
         {
             "Address": "0x45",
             "Bus": 46,
             "Labels": [
-                "in1",
+                "in0",
                 "curr1",
                 "power1"
             ],
@@ -115,7 +115,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 1.12,
-                    "Label": "in1",
+                    "Label": "in0",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 56
@@ -123,7 +123,7 @@
                 {
                     "Direction": "less than",
                     "Hysteresis": 0.92,
-                    "Label": "in1",
+                    "Label": "in0",
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 46
@@ -145,20 +145,20 @@
                     "Value": 1900.0
                 }
             ],
-            "Type": "INA238",
+            "Type": "ISL28022",
             "curr1_Name": "PDB1_P52V_ASIC0_SENSE_CURR_A",
-            "curr1_Offset": 0.0382,
-            "curr1_Scale": 199.948013516,
-            "in1_Name": "PDB1_P52V_ASIC0_SENSE_VOLT_V",
+            "curr1_Offset": 0.0113,
+            "curr1_Scale": 49.48045522,
+            "in0_Name": "PDB1_P52V_ASIC0_SENSE_VOLT_V",
             "power1_Name": "PDB1_P52V_ASIC0_SENSE_PWR_W",
-            "power1_Offset": 3.4139,
-            "power1_Scale": 200803.212851406
+            "power1_Offset": 0.8917,
+            "power1_Scale": 50792.360828931
         },
         {
             "Address": "0x44",
             "Bus": 46,
             "Labels": [
-                "in1",
+                "in0",
                 "curr1",
                 "power1"
             ],
@@ -167,7 +167,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 1.12,
-                    "Label": "in1",
+                    "Label": "in0",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 56
@@ -175,7 +175,7 @@
                 {
                     "Direction": "less than",
                     "Hysteresis": 0.92,
-                    "Label": "in1",
+                    "Label": "in0",
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 46
@@ -197,20 +197,20 @@
                     "Value": 1900.0
                 }
             ],
-            "Type": "INA238",
+            "Type": "ISL28022",
             "curr1_Name": "PDB1_P52V_ASIC1_SENSE_CURR_A",
-            "curr1_Offset": 0.0382,
-            "curr1_Scale": 199.948013516,
-            "in1_Name": "PDB1_P52V_ASIC1_SENSE_VOLT_V",
+            "curr1_Offset": 0.0113,
+            "curr1_Scale": 49.48045522,
+            "in0_Name": "PDB1_P52V_ASIC1_SENSE_VOLT_V",
             "power1_Name": "PDB1_P52V_ASIC1_SENSE_PWR_W",
-            "power1_Offset": 3.4139,
-            "power1_Scale": 200803.212851406
+            "power1_Offset": 0.8917,
+            "power1_Scale": 50792.360828931
         },
         {
             "Address": "0x41",
             "Bus": 46,
             "Labels": [
-                "in1",
+                "in0",
                 "curr1",
                 "power1"
             ],
@@ -219,7 +219,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 1.12,
-                    "Label": "in1",
+                    "Label": "in0",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 56
@@ -227,7 +227,7 @@
                 {
                     "Direction": "less than",
                     "Hysteresis": 0.92,
-                    "Label": "in1",
+                    "Label": "in0",
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 46
@@ -249,20 +249,20 @@
                     "Value": 1900.0
                 }
             ],
-            "Type": "INA238",
+            "Type": "ISL28022",
             "curr1_Name": "PDB1_P52V_ASIC2_SENSE_CURR_A",
-            "curr1_Offset": 0.0382,
-            "curr1_Scale": 199.948013516,
-            "in1_Name": "PDB1_P52V_ASIC2_SENSE_VOLT_V",
+            "curr1_Offset": 0.0113,
+            "curr1_Scale": 49.48045522,
+            "in0_Name": "PDB1_P52V_ASIC2_SENSE_VOLT_V",
             "power1_Name": "PDB1_P52V_ASIC2_SENSE_PWR_W",
-            "power1_Offset": 3.4139,
-            "power1_Scale": 200803.212851406
+            "power1_Offset": 0.8917,
+            "power1_Scale": 50792.360828931
         },
         {
             "Address": "0x40",
             "Bus": 46,
             "Labels": [
-                "in1",
+                "in0",
                 "curr1",
                 "power1"
             ],
@@ -271,7 +271,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 1.12,
-                    "Label": "in1",
+                    "Label": "in0",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 56
@@ -279,7 +279,7 @@
                 {
                     "Direction": "less than",
                     "Hysteresis": 0.92,
-                    "Label": "in1",
+                    "Label": "in0",
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 46
@@ -301,14 +301,14 @@
                     "Value": 1900.0
                 }
             ],
-            "Type": "INA238",
+            "Type": "ISL28022",
             "curr1_Name": "PDB1_P52V_ASIC3_SENSE_CURR_A",
-            "curr1_Offset": 0.0382,
-            "curr1_Scale": 199.948013516,
-            "in1_Name": "PDB1_P52V_ASIC3_SENSE_VOLT_V",
+            "curr1_Offset": 0.0113,
+            "curr1_Scale": 49.48045522,
+            "in0_Name": "PDB1_P52V_ASIC3_SENSE_VOLT_V",
             "power1_Name": "PDB1_P52V_ASIC3_SENSE_PWR_W",
-            "power1_Offset": 3.4139,
-            "power1_Scale": 200803.212851406
+            "power1_Offset": 0.8917,
+            "power1_Scale": 50792.360828931
         },
         {
             "Address": "0x43",
@@ -502,7 +502,7 @@
         }
     ],
     "Name": "Santa Barbara PDB1",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara PDB1', 'BOARD_MANUFACTURER': 'Quanta', 'BOARD_INFO_AM4': '^vr-adv$'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara PDB1', 'BOARD_MANUFACTURER': 'Quanta', 'BOARD_INFO_AM4': '^vr-adv efu-tos$'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
