@@ -233,22 +233,30 @@
                 }
             ],
             "Type": "ADC128D818",
-            "in0_Max": 10,
+            "in0_Max": 3.6,
             "in0_Min": 0,
             "in0_Name": "PDB_ADC_FAN3_52V_IMON_VOLT_V",
-            "in1_Max": 10,
+            "in1_Max": 3.6,
             "in1_Min": 0,
             "in1_Name": "PDB_ADC_FAN2_52V_IMON_VOLT_V",
-            "in2_Max": 10,
+            "in2_Max": 3.6,
             "in2_Min": 0,
             "in2_Name": "PDB_ADC_FAN1_52V_IMON_VOLT_V",
-            "in3_Max": 10,
+            "in3_Max": 3.6,
             "in3_Min": 0,
             "in3_Name": "PDB_ADC_FAN0_52V_IMON_VOLT_V",
+            "in4_Max": 3.6,
+            "in4_Min": 0,
             "in4_Name": "PDB_ADC_P1V_STBY_VOLT_V",
+            "in5_Max": 3.6,
+            "in5_Min": 0,
             "in5_Name": "PDB_ADC_P1V8_STBY_VOLT_V",
+            "in6_Max": 5.5,
+            "in6_Min": 0,
             "in6_Name": "PDB_ADC_P3V3_STBY_VOLT_V",
             "in6_Scale": 500,
+            "in7_Max": 16,
+            "in7_Min": 0,
             "in7_Name": "PDB_ADC_P12V_AUX_VOLT_V",
             "in7_Scale": 90.909090909
         },
@@ -270,6 +278,8 @@
                 ]
             },
             "Index": 0,
+            "MaxReading": 17500,
+            "MinReading": 0,
             "Name": "PDB_FAN0_TACH_IL_SPEED_RPM",
             "PowerState": "Always",
             "Presence": {
@@ -307,6 +317,8 @@
                 ]
             },
             "Index": 1,
+            "MaxReading": 16400,
+            "MinReading": 0,
             "Name": "PDB_FAN0_TACH_OL_SPEED_RPM",
             "PowerState": "Always",
             "Presence": {
@@ -344,6 +356,8 @@
                 ]
             },
             "Index": 2,
+            "MaxReading": 17500,
+            "MinReading": 0,
             "Name": "PDB_FAN1_TACH_IL_SPEED_RPM",
             "PowerState": "Always",
             "Presence": {
@@ -381,6 +395,8 @@
                 ]
             },
             "Index": 3,
+            "MaxReading": 16400,
+            "MinReading": 0,
             "Name": "PDB_FAN1_TACH_OL_SPEED_RPM",
             "PowerState": "Always",
             "Presence": {
@@ -418,6 +434,8 @@
                 ]
             },
             "Index": 4,
+            "MaxReading": 17500,
+            "MinReading": 0,
             "Name": "PDB_FAN2_TACH_IL_SPEED_RPM",
             "PowerState": "Always",
             "Presence": {
@@ -455,6 +473,8 @@
                 ]
             },
             "Index": 5,
+            "MaxReading": 16400,
+            "MinReading": 0,
             "Name": "PDB_FAN2_TACH_OL_SPEED_RPM",
             "PowerState": "Always",
             "Presence": {
@@ -492,6 +512,8 @@
                 ]
             },
             "Index": 6,
+            "MaxReading": 17500,
+            "MinReading": 0,
             "Name": "PDB_FAN3_TACH_IL_SPEED_RPM",
             "PowerState": "Always",
             "Presence": {
@@ -529,6 +551,8 @@
                 ]
             },
             "Index": 7,
+            "MaxReading": 16400,
+            "MinReading": 0,
             "Name": "PDB_FAN3_TACH_OL_SPEED_RPM",
             "PowerState": "Always",
             "Presence": {
@@ -580,8 +604,8 @@
                 }
             ],
             "Type": "INA238",
-            "in0_Max": 1,
-            "in0_Min": -1,
+            "in0_Max": 0.16384,
+            "in0_Min": -0.16384,
             "in0_Name": "PDB_ADC_52V_SENSE_VOLT_V"
         },
         {
@@ -610,8 +634,8 @@
                 }
             ],
             "Type": "INA238",
-            "in0_Max": 1,
-            "in0_Min": -1,
+            "in0_Max": 0.16384,
+            "in0_Min": -0.008,
             "in0_Name": "PDB_ADC_GND_SENSE_VOLT_V"
         },
         {
@@ -640,8 +664,8 @@
                 }
             ],
             "Type": "INA238",
-            "in0_Max": 1,
-            "in0_Min": -1,
+            "in0_Max": 0.16384,
+            "in0_Min": 0,
             "in0_Name": "PDB_ADC_P52V_TMP_SENSE_VOLT_V"
         },
         {
@@ -670,8 +694,8 @@
                 }
             ],
             "Type": "INA238",
-            "in0_Max": 1,
-            "in0_Min": -1,
+            "in0_Max": 0.16384,
+            "in0_Min": 0,
             "in0_Name": "PDB_ADC_GND_TMP_SENSE_VOLT_V"
         },
         {
@@ -700,8 +724,8 @@
                 }
             ],
             "Type": "ISL28022",
-            "in1_Max": 1,
-            "in1_Min": -1,
+            "in1_Max": 0.16384,
+            "in1_Min": -0.16384,
             "in1_Name": "PDB_ADC_52V_SENSE_VOLT_V"
         },
         {
@@ -730,8 +754,8 @@
                 }
             ],
             "Type": "ISL28022",
-            "in1_Max": 1,
-            "in1_Min": -1,
+            "in1_Max": 0.16384,
+            "in1_Min": -0.008,
             "in1_Name": "PDB_ADC_GND_SENSE_VOLT_V"
         },
         {
@@ -760,8 +784,8 @@
                 }
             ],
             "Type": "ISL28022",
-            "in1_Max": 1,
-            "in1_Min": -1,
+            "in1_Max": 0.16384,
+            "in1_Min": 0,
             "in1_Name": "PDB_ADC_P52V_TMP_SENSE_VOLT_V"
         },
         {
@@ -790,8 +814,8 @@
                 }
             ],
             "Type": "ISL28022",
-            "in1_Max": 1,
-            "in1_Min": -1,
+            "in1_Max": 0.16384,
+            "in1_Min": 0,
             "in1_Name": "PDB_ADC_GND_TMP_SENSE_VOLT_V"
         },
         {
@@ -888,12 +912,22 @@
                 }
             ],
             "Type": "LTC4287",
+            "iout1_Max": 160,
+            "iout1_Min": 0,
             "iout1_Name": "PDB_HSC_CURR_A",
             "iout1_Scale": 1068.718606391,
+            "pin_Max": 8160,
+            "pin_Min": 0,
             "pin_Name": "PDB_HSC_PWR_W",
             "pin_Scale": 1069175.665561852,
+            "temp1_Max": 125,
+            "temp1_Min": -55,
             "temp1_Name": "PDB_HSC_TEMP_C",
+            "vin_Max": 60.37,
+            "vin_Min": 39.64,
             "vin_Name": "PDB_HSC_VIN_VOLT_V",
+            "vout1_Max": 60.37,
+            "vout1_Min": 39.64,
             "vout1_Name": "PDB_HSC_VOUT_VOLT_V"
         },
         {
@@ -1104,11 +1138,23 @@
                 }
             ],
             "Type": "RAA228006",
+            "iout1_Max": 407,
+            "iout1_Min": 0,
             "iout1_Name": "PDB_DISCRETE_IOUT_CURR_A",
+            "pout1_Max": 4965,
+            "pout1_Min": 0,
             "pout1_Name": "PDB_DISCRETE_POUT_PWR_W",
+            "temp1_Max": 125,
+            "temp1_Min": -40,
             "temp1_Name": "PDB_DISCRETE_EXTERNAL_TEMP_C",
+            "temp2_Max": 125,
+            "temp2_Min": -40,
             "temp2_Name": "PDB_DISCRETE_INTERNAL_TEMP_C",
+            "vin_Max": 62.5,
+            "vin_Min": 38,
             "vin_Name": "PDB_DISCRETE_VIN_VOLT_V",
+            "vout1_Max": 14.5,
+            "vout1_Min": 10,
             "vout1_Name": "PDB_DISCRETE_VOUT_VOLT_V"
         },
         {
@@ -1306,14 +1352,24 @@
                 }
             ],
             "Type": "XDP710",
+            "iout1_Max": 160,
+            "iout1_Min": 0,
             "iout1_Name": "PDB_HSC_CURR_A",
             "iout1_Offset": -0.2159,
             "iout1_Scale": 357.640999964,
+            "pin_Max": 8160,
+            "pin_Min": 0,
             "pin_Name": "PDB_HSC_PWR_W",
             "pin_Offset": -11.349,
             "pin_Scale": 358281.681057648,
+            "temp1_Max": 125,
+            "temp1_Min": -55,
             "temp1_Name": "PDB_HSC_TEMP_C",
+            "vin_Max": 60.37,
+            "vin_Min": 39.64,
             "vin_Name": "PDB_HSC_VIN_VOLT_V",
+            "vout1_Max": 60.37,
+            "vout1_Min": 39.64,
             "vout1_Name": "PDB_HSC_VOUT_VOLT_V"
         },
         {
