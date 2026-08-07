@@ -155,7 +155,7 @@
             "Address": "0x41",
             "Bus": 30,
             "Labels": [
-                "in1",
+                "in0",
                 "curr1",
                 "power1"
             ],
@@ -164,7 +164,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0.264,
-                    "Label": "in1",
+                    "Label": "in0",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 13.2
@@ -172,7 +172,7 @@
                 {
                     "Direction": "less than",
                     "Hysteresis": 0.216,
-                    "Label": "in1",
+                    "Label": "in0",
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 10.8
@@ -194,20 +194,20 @@
                     "Value": 25
                 }
             ],
-            "Type": "INA230",
+            "Type": "ISL28022",
             "curr1_Name": "E1S_BP_P12V_E1S0_CURR_A",
-            "curr1_Offset": 0.006,
-            "curr1_Scale": 200.144103755,
-            "in1_Name": "E1S_BP_P12V_E1S0_VOLT_V",
+            "curr1_Offset": 0.012,
+            "curr1_Scale": 198.212126618,
+            "in0_Name": "E1S_BP_P12V_E1S0_VOLT_V",
             "power1_Name": "E1S_BP_P12V_E1S0_PWR_W",
-            "power1_Offset": 0.0671,
-            "power1_Scale": 199107.996177126
+            "power1_Offset": 0.0452,
+            "power1_Scale": 211095.161698894
         },
         {
             "Address": "0x40",
             "Bus": 30,
             "Labels": [
-                "in1",
+                "in0",
                 "curr1",
                 "power1"
             ],
@@ -216,7 +216,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0.264,
-                    "Label": "in1",
+                    "Label": "in0",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 13.2
@@ -224,7 +224,7 @@
                 {
                     "Direction": "less than",
                     "Hysteresis": 0.216,
-                    "Label": "in1",
+                    "Label": "in0",
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 10.8
@@ -246,20 +246,20 @@
                     "Value": 25
                 }
             ],
-            "Type": "INA230",
+            "Type": "ISL28022",
             "curr1_Name": "E1S_BP_P12V_E1S1_CURR_A",
-            "curr1_Offset": 0.006,
-            "curr1_Scale": 200.144103755,
-            "in1_Name": "E1S_BP_P12V_E1S1_VOLT_V",
+            "curr1_Offset": 0.003,
+            "curr1_Scale": 200.00400008,
+            "in0_Name": "E1S_BP_P12V_E1S1_VOLT_V",
             "power1_Name": "E1S_BP_P12V_E1S1_PWR_W",
-            "power1_Offset": 0.0671,
-            "power1_Scale": 199107.996177126
+            "power1_Offset": 0.1253,
+            "power1_Scale": 208785.702355103
         },
         {
             "Address": "0x45",
             "Bus": 30,
             "Labels": [
-                "in1",
+                "in0",
                 "curr1",
                 "power1"
             ],
@@ -268,7 +268,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0.264,
-                    "Label": "in1",
+                    "Label": "in0",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 13.2
@@ -276,7 +276,7 @@
                 {
                     "Direction": "less than",
                     "Hysteresis": 0.216,
-                    "Label": "in1",
+                    "Label": "in0",
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 10.8
@@ -298,20 +298,20 @@
                     "Value": 25
                 }
             ],
-            "Type": "INA230",
+            "Type": "ISL28022",
             "curr1_Name": "E1S_BP_P12V_E1S2_CURR_A",
-            "curr1_Offset": 0.006,
-            "curr1_Scale": 200.144103755,
-            "in1_Name": "E1S_BP_P12V_E1S2_VOLT_V",
+            "curr1_Offset": 0.0053,
+            "curr1_Scale": 197.032687723,
+            "in0_Name": "E1S_BP_P12V_E1S2_VOLT_V",
             "power1_Name": "E1S_BP_P12V_E1S2_PWR_W",
-            "power1_Offset": 0.0671,
-            "power1_Scale": 199107.996177126
+            "power1_Offset": -0.1601,
+            "power1_Scale": 205579.425611085
         },
         {
             "Address": "0x44",
             "Bus": 30,
             "Labels": [
-                "in1",
+                "in0",
                 "curr1",
                 "power1"
             ],
@@ -320,7 +320,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0.264,
-                    "Label": "in1",
+                    "Label": "in0",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 13.2
@@ -328,7 +328,7 @@
                 {
                     "Direction": "less than",
                     "Hysteresis": 0.216,
-                    "Label": "in1",
+                    "Label": "in0",
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 10.8
@@ -350,14 +350,14 @@
                     "Value": 25
                 }
             ],
-            "Type": "INA230",
+            "Type": "ISL28022",
             "curr1_Name": "E1S_BP_P12V_E1S3_CURR_A",
-            "curr1_Offset": 0.006,
-            "curr1_Scale": 200.144103755,
-            "in1_Name": "E1S_BP_P12V_E1S3_VOLT_V",
+            "curr1_Offset": 0.0122,
+            "curr1_Scale": 196.163050728,
+            "in0_Name": "E1S_BP_P12V_E1S3_VOLT_V",
             "power1_Name": "E1S_BP_P12V_E1S3_PWR_W",
-            "power1_Offset": 0.0671,
-            "power1_Scale": 199107.996177126
+            "power1_Offset": 0.2396,
+            "power1_Scale": 203628.662770572
         },
         {
             "Address": "0x6a",
@@ -440,7 +440,7 @@
         }
     ],
     "Name": "Santa Barbara E1.S BP",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara E1.S BP', 'BOARD_MANUFACTURER': 'Quanta', 'BOARD_INFO_AM4': 'vr-rds'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara E1.S BP', 'BOARD_MANUFACTURER': 'Quanta', 'BOARD_INFO_AM4': 'vr-tos'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
