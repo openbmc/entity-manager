@@ -316,7 +316,7 @@
             "Address": "0x40",
             "Bus": 41,
             "Labels": [
-                "in1",
+                "in0",
                 "curr1",
                 "power1"
             ],
@@ -325,7 +325,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0.264,
-                    "Label": "in1",
+                    "Label": "in0",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 13.2
@@ -333,7 +333,7 @@
                 {
                     "Direction": "less than",
                     "Hysteresis": 0.216,
-                    "Label": "in1",
+                    "Label": "in0",
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 10.8
@@ -355,20 +355,20 @@
                     "Value": 83.16
                 }
             ],
-            "Type": "INA230",
+            "Type": "ISL28022",
             "curr1_Name": "PDB2_P12V_FAN4_CURR_A",
-            "curr1_Offset": -0.0079,
-            "curr1_Scale": 198.894148534,
-            "in1_Name": "PDB2_P12V_FAN4_VOLT_V",
+            "curr1_Offset": -0.0018,
+            "curr1_Scale": 203.115796315,
+            "in0_Name": "PDB2_P12V_FAN4_VOLT_V",
             "power1_Name": "PDB2_P12V_FAN4_PWR_W",
-            "power1_Offset": -0.0869,
-            "power1_Scale": 198467.828365022
+            "power1_Offset": 0.0988,
+            "power1_Scale": 207723.146590225
         },
         {
             "Address": "0x43",
             "Bus": 41,
             "Labels": [
-                "in1",
+                "in0",
                 "curr1",
                 "power1"
             ],
@@ -377,7 +377,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0.264,
-                    "Label": "in1",
+                    "Label": "in0",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 13.2
@@ -385,7 +385,7 @@
                 {
                     "Direction": "less than",
                     "Hysteresis": 0.216,
-                    "Label": "in1",
+                    "Label": "in0",
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 10.8
@@ -407,20 +407,20 @@
                     "Value": 83.16
                 }
             ],
-            "Type": "INA230",
+            "Type": "ISL28022",
             "curr1_Name": "PDB2_P12V_FAN5_CURR_A",
-            "curr1_Offset": -0.0079,
-            "curr1_Scale": 198.894148534,
-            "in1_Name": "PDB2_P12V_FAN5_VOLT_V",
+            "curr1_Offset": -0.0018,
+            "curr1_Scale": 203.115796315,
+            "in0_Name": "PDB2_P12V_FAN5_VOLT_V",
             "power1_Name": "PDB2_P12V_FAN5_PWR_W",
-            "power1_Offset": -0.0869,
-            "power1_Scale": 198467.828365022
+            "power1_Offset": 0.0988,
+            "power1_Scale": 207723.146590225
         },
         {
             "Address": "0x44",
             "Bus": 41,
             "Labels": [
-                "in1",
+                "in0",
                 "curr1",
                 "power1"
             ],
@@ -429,7 +429,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0.264,
-                    "Label": "in1",
+                    "Label": "in0",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 13.2
@@ -437,7 +437,7 @@
                 {
                     "Direction": "less than",
                     "Hysteresis": 0.216,
-                    "Label": "in1",
+                    "Label": "in0",
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 10.8
@@ -459,20 +459,20 @@
                     "Value": 83.16
                 }
             ],
-            "Type": "INA230",
+            "Type": "ISL28022",
             "curr1_Name": "PDB2_P12V_FAN6_CURR_A",
-            "curr1_Offset": -0.0079,
-            "curr1_Scale": 198.894148534,
-            "in1_Name": "PDB2_P12V_FAN6_VOLT_V",
+            "curr1_Offset": -0.0018,
+            "curr1_Scale": 203.115796315,
+            "in0_Name": "PDB2_P12V_FAN6_VOLT_V",
             "power1_Name": "PDB2_P12V_FAN6_PWR_W",
-            "power1_Offset": -0.0869,
-            "power1_Scale": 198467.828365022
+            "power1_Offset": 0.0988,
+            "power1_Scale": 207723.146590225
         },
         {
             "Address": "0x47",
             "Bus": 41,
             "Labels": [
-                "in1",
+                "in0",
                 "curr1",
                 "power1"
             ],
@@ -481,7 +481,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0.264,
-                    "Label": "in1",
+                    "Label": "in0",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 13.2
@@ -489,7 +489,7 @@
                 {
                     "Direction": "less than",
                     "Hysteresis": 0.216,
-                    "Label": "in1",
+                    "Label": "in0",
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 10.8
@@ -511,14 +511,14 @@
                     "Value": 83.16
                 }
             ],
-            "Type": "INA230",
+            "Type": "ISL28022",
             "curr1_Name": "PDB2_P12V_FAN7_CURR_A",
-            "curr1_Offset": -0.0079,
-            "curr1_Scale": 198.894148534,
-            "in1_Name": "PDB2_P12V_FAN7_VOLT_V",
+            "curr1_Offset": -0.0018,
+            "curr1_Scale": 203.115796315,
+            "in0_Name": "PDB2_P12V_FAN7_VOLT_V",
             "power1_Name": "PDB2_P12V_FAN7_PWR_W",
-            "power1_Offset": -0.0869,
-            "power1_Scale": 198467.828365022
+            "power1_Offset": 0.0988,
+            "power1_Scale": 207723.146590225
         },
         {
             "Address": "0x4a",
@@ -631,7 +631,7 @@
             "vout1_Name": "PDB2_P12V_AUX_HSC_VOUT_VOLT_V"
         },
         {
-            "Address": "0x69",
+            "Address": "0x61",
             "Bus": 42,
             "Labels": [
                 "iout1",
@@ -689,7 +689,7 @@
             "vout1_Name": "PDB2_P12V_BRICK0_VOUT_VOLT_V"
         },
         {
-            "Address": "0x60",
+            "Address": "0x64",
             "Bus": 42,
             "Labels": [
                 "iout1",
@@ -748,7 +748,7 @@
         }
     ],
     "Name": "Santa Barbara PDB2",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara PDB2', 'BOARD_MANUFACTURER': 'Quanta', 'BOARD_INFO_AM4': '^vr-ti$|^vr-ti brick-dta$'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara PDB2', 'BOARD_MANUFACTURER': 'Quanta', 'BOARD_INFO_AM4': 'vr-ti brick-lux'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
