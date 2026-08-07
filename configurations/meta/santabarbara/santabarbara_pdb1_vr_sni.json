@@ -42,6 +42,8 @@
                 }
             ],
             "Type": "INA238",
+            "in0_Max": 1,
+            "in0_Min": -1,
             "in0_Name": "PDB1_P52V_SENSE_VOLT_V"
         },
         {
@@ -70,6 +72,8 @@
                 }
             ],
             "Type": "INA238",
+            "in0_Max": 1,
+            "in0_Min": -1,
             "in0_Name": "PDB1_GND_SENSE_VOLT_V"
         },
         {
@@ -143,12 +147,12 @@
             ],
             "Type": "INA238",
             "curr1_Name": "PDB1_P52V_ASIC0_SENSE_CURR_A",
-            "curr1_Offset": -0.0203,
-            "curr1_Scale": 994.629003382,
+            "curr1_Offset": 0.0382,
+            "curr1_Scale": 199.948013516,
             "in1_Name": "PDB1_P52V_ASIC0_SENSE_VOLT_V",
             "power1_Name": "PDB1_P52V_ASIC0_SENSE_PWR_W",
-            "power1_Offset": -1.2513,
-            "power1_Scale": 992161.920825
+            "power1_Offset": 3.4139,
+            "power1_Scale": 200803.212851406
         },
         {
             "Address": "0x44",
@@ -195,12 +199,12 @@
             ],
             "Type": "INA238",
             "curr1_Name": "PDB1_P52V_ASIC1_SENSE_CURR_A",
-            "curr1_Offset": 0.035,
-            "curr1_Scale": 1000.200040008,
+            "curr1_Offset": 0.0382,
+            "curr1_Scale": 199.948013516,
             "in1_Name": "PDB1_P52V_ASIC1_SENSE_VOLT_V",
             "power1_Name": "PDB1_P52V_ASIC1_SENSE_PWR_W",
-            "power1_Offset": 1.9937,
-            "power1_Scale": 1003814.495081
+            "power1_Offset": 3.4139,
+            "power1_Scale": 200803.212851406
         },
         {
             "Address": "0x41",
@@ -247,12 +251,12 @@
             ],
             "Type": "INA238",
             "curr1_Name": "PDB1_P52V_ASIC2_SENSE_CURR_A",
-            "curr1_Offset": 0.0355,
-            "curr1_Scale": 1001.50225338,
+            "curr1_Offset": 0.0382,
+            "curr1_Scale": 199.948013516,
             "in1_Name": "PDB1_P52V_ASIC2_SENSE_VOLT_V",
             "power1_Name": "PDB1_P52V_ASIC2_SENSE_PWR_W",
-            "power1_Offset": 2.0714,
-            "power1_Scale": 1004217.7144
+            "power1_Offset": 3.4139,
+            "power1_Scale": 200803.212851406
         },
         {
             "Address": "0x40",
@@ -299,12 +303,12 @@
             ],
             "Type": "INA238",
             "curr1_Name": "PDB1_P52V_ASIC3_SENSE_CURR_A",
-            "curr1_Offset": 0.0115,
-            "curr1_Scale": 996.909580301,
+            "curr1_Offset": 0.0382,
+            "curr1_Scale": 199.948013516,
             "in1_Name": "PDB1_P52V_ASIC3_SENSE_VOLT_V",
             "power1_Name": "PDB1_P52V_ASIC3_SENSE_PWR_W",
-            "power1_Offset": 0.0115,
-            "power1_Scale": 1000300.090027
+            "power1_Offset": 3.4139,
+            "power1_Scale": 200803.212851406
         },
         {
             "Address": "0x4a",
@@ -498,7 +502,7 @@
         }
     ],
     "Name": "Santa Barbara PDB1",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara PDB1', 'BOARD_MANUFACTURER': 'Quanta', 'BOARD_INFO_AM4': 'vr-sni'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara PDB1', 'BOARD_MANUFACTURER': 'Quanta', 'BOARD_INFO_AM4': '^vr-sni$'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
