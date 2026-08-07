@@ -196,12 +196,12 @@
             ],
             "Type": "INA230",
             "curr1_Name": "E1S_BP_P12V_E1S0_CURR_A",
-            "curr1_Offset": 0.006,
-            "curr1_Scale": 200.144103755,
+            "curr1_Offset": 0.0034,
+            "curr1_Scale": 197.460655964,
             "in1_Name": "E1S_BP_P12V_E1S0_VOLT_V",
             "power1_Name": "E1S_BP_P12V_E1S0_PWR_W",
-            "power1_Offset": 0.0671,
-            "power1_Scale": 199107.996177126
+            "power1_Offset": 0.0581,
+            "power1_Scale": 198255.352894528
         },
         {
             "Address": "0x40",
@@ -248,12 +248,12 @@
             ],
             "Type": "INA230",
             "curr1_Name": "E1S_BP_P12V_E1S1_CURR_A",
-            "curr1_Offset": 0.006,
-            "curr1_Scale": 200.144103755,
+            "curr1_Offset": 0.0043,
+            "curr1_Scale": 200.044009682,
             "in1_Name": "E1S_BP_P12V_E1S1_VOLT_V",
             "power1_Name": "E1S_BP_P12V_E1S1_PWR_W",
-            "power1_Offset": 0.0671,
-            "power1_Scale": 199107.996177126
+            "power1_Offset": 0.0755,
+            "power1_Scale": 201865.234769268
         },
         {
             "Address": "0x45",
@@ -300,12 +300,12 @@
             ],
             "Type": "INA230",
             "curr1_Name": "E1S_BP_P12V_E1S2_CURR_A",
-            "curr1_Offset": 0.006,
-            "curr1_Scale": 200.144103755,
+            "curr1_Offset": 0.0036,
+            "curr1_Scale": 197.573793812,
             "in1_Name": "E1S_BP_P12V_E1S2_VOLT_V",
             "power1_Name": "E1S_BP_P12V_E1S2_PWR_W",
-            "power1_Offset": 0.0671,
-            "power1_Scale": 199107.996177126
+            "power1_Offset": 0.0675,
+            "power1_Scale": 200642.054574639
         },
         {
             "Address": "0x44",
@@ -352,12 +352,12 @@
             ],
             "Type": "INA230",
             "curr1_Name": "E1S_BP_P12V_E1S3_CURR_A",
-            "curr1_Offset": 0.006,
-            "curr1_Scale": 200.144103755,
+            "curr1_Offset": 0.0056,
+            "curr1_Scale": 197.090937759,
             "in1_Name": "E1S_BP_P12V_E1S3_VOLT_V",
             "power1_Name": "E1S_BP_P12V_E1S3_PWR_W",
-            "power1_Offset": 0.0671,
-            "power1_Scale": 199107.996177126
+            "power1_Offset": 0.0942,
+            "power1_Scale": 199167.479933876
         },
         {
             "Address": "0x6a",
@@ -440,7 +440,7 @@
         }
     ],
     "Name": "Santa Barbara E1.S BP",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara E1.S BP', 'BOARD_MANUFACTURER': 'Quanta', 'BOARD_INFO_AM4': 'vr-rds'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara E1.S BP', 'BOARD_MANUFACTURER': 'Quanta', 'BOARD_INFO_AM4': 'vr-ti'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
