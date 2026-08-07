@@ -41,7 +41,7 @@
                     "Value": -1
                 }
             ],
-            "Type": "INA238",
+            "Type": "SQ52206",
             "in0_Max": 1,
             "in0_Min": -1,
             "in0_Name": "PDB1_P52V_SENSE_VOLT_V"
@@ -71,7 +71,7 @@
                     "Value": -1
                 }
             ],
-            "Type": "INA238",
+            "Type": "SQ52206",
             "in0_Max": 1,
             "in0_Min": -1,
             "in0_Name": "PDB1_GND_SENSE_VOLT_V"
@@ -83,7 +83,7 @@
                 "curr1"
             ],
             "Name": "PDB1_BUSBAR_TSENSE_P1",
-            "Type": "INA238",
+            "Type": "SQ52206",
             "curr1_Max": 0.1,
             "curr1_Min": 0,
             "curr1_Name": "PDB1_BUSBAR_TSENSE_P1_CURR_A",
@@ -96,7 +96,7 @@
                 "curr1"
             ],
             "Name": "PDB1_BUSBAR_TSENSE_P2",
-            "Type": "INA238",
+            "Type": "SQ52206",
             "curr1_Max": 0.1,
             "curr1_Min": 0,
             "curr1_Name": "PDB1_BUSBAR_TSENSE_P2_CURR_A",
@@ -145,7 +145,7 @@
                     "Value": 1900.0
                 }
             ],
-            "Type": "INA238",
+            "Type": "SQ52206",
             "curr1_Name": "PDB1_P52V_ASIC0_SENSE_CURR_A",
             "curr1_Offset": 0.0382,
             "curr1_Scale": 199.948013516,
@@ -197,7 +197,7 @@
                     "Value": 1900.0
                 }
             ],
-            "Type": "INA238",
+            "Type": "SQ52206",
             "curr1_Name": "PDB1_P52V_ASIC1_SENSE_CURR_A",
             "curr1_Offset": 0.0382,
             "curr1_Scale": 199.948013516,
@@ -249,7 +249,7 @@
                     "Value": 1900.0
                 }
             ],
-            "Type": "INA238",
+            "Type": "SQ52206",
             "curr1_Name": "PDB1_P52V_ASIC2_SENSE_CURR_A",
             "curr1_Offset": 0.0382,
             "curr1_Scale": 199.948013516,
@@ -301,7 +301,7 @@
                     "Value": 1900.0
                 }
             ],
-            "Type": "INA238",
+            "Type": "SQ52206",
             "curr1_Name": "PDB1_P52V_ASIC3_SENSE_CURR_A",
             "curr1_Offset": 0.0382,
             "curr1_Scale": 199.948013516,
@@ -311,7 +311,37 @@
             "power1_Scale": 200803.212851406
         },
         {
-            "Address": "0x43",
+            "Address": "0x4a",
+            "Bus": 44,
+            "Name": "PDB1_TOP_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.6,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 80.0
+                }
+            ],
+            "Type": "TMP75"
+        },
+        {
+            "Address": "0x4e",
+            "Bus": 44,
+            "Name": "PDB1_BOT_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.6,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 80.0
+                }
+            ],
+            "Type": "TMP75"
+        },
+        {
+            "Address": "0x14",
             "Bus": 47,
             "Labels": [
                 "iout1",
@@ -379,19 +409,19 @@
                     "Value": 6120
                 }
             ],
-            "Type": "LTC4287",
+            "Type": "XDP710",
             "iout1_Name": "PDB1_P52V_HSC1_CURR_A",
-            "iout1_Offset": 0.3,
-            "iout1_Scale": 1020.408163265,
+            "iout1_Offset": 0.14,
+            "iout1_Scale": 806.451612903,
             "pin_Name": "PDB1_P52V_HSC1_PWR_W",
-            "pin_Offset": 18.8,
-            "pin_Scale": 1030927.835052,
+            "pin_Offset": 6,
+            "pin_Scale": 806451.612903226,
             "temp1_Name": "PDB1_P52V_HSC1_TEMP_C",
             "vin_Name": "PDB1_P52V_HSC1_VIN_VOLT_V",
             "vout1_Name": "PDB1_P52V_HSC1_VOUT_VOLT_V"
         },
         {
-            "Address": "0x41",
+            "Address": "0x16",
             "Bus": 47,
             "Labels": [
                 "iout1",
@@ -459,50 +489,20 @@
                     "Value": 8670
                 }
             ],
-            "Type": "LTC4287",
+            "Type": "XDP710",
             "iout1_Name": "PDB1_P52V_HSC2_CURR_A",
-            "iout1_Offset": 0.11,
-            "iout1_Scale": 1086.956521739,
+            "iout1_Offset": -0.12,
+            "iout1_Scale": 510.204081633,
             "pin_Name": "PDB1_P52V_HSC2_PWR_W",
-            "pin_Offset": 8.47,
-            "pin_Scale": 1098901.098901,
+            "pin_Offset": -6,
+            "pin_Scale": 512820.512820513,
             "temp1_Name": "PDB1_P52V_HSC2_TEMP_C",
             "vin_Name": "PDB1_P52V_HSC2_VIN_VOLT_V",
             "vout1_Name": "PDB1_P52V_HSC2_VOUT_VOLT_V"
-        },
-        {
-            "Address": "0x4a",
-            "Bus": 44,
-            "Name": "PDB1_TOP_TEMP_C",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 1.6,
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 80.0
-                }
-            ],
-            "Type": "TMP75"
-        },
-        {
-            "Address": "0x4e",
-            "Bus": 44,
-            "Name": "PDB1_BOT_TEMP_C",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 1.6,
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 80.0
-                }
-            ],
-            "Type": "TMP75"
         }
     ],
     "Name": "Santa Barbara PDB1",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara PDB1', 'BOARD_MANUFACTURER': 'Quanta', 'BOARD_INFO_AM4': '^vr-adv$'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara PDB1', 'BOARD_MANUFACTURER': 'Quanta', 'BOARD_INFO_AM4': '^vr-sni efu-rds$'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
