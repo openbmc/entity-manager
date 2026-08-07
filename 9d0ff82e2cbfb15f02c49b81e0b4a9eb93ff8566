@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d7bb50f_8009b8c0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-07T13:57:27Z",
+      "side": 1,
+      "message": "see\n```\n      auto perfScan \u003d std::make_shared\u003cscan::PerformScan\u003e(\n          *this, *missingConfigurations, configuration.configurations, io, \n          [this, count, oldConfiguration, missingConfigurations]() {\n              // this is something that since ac has been applied to the\n              // bmc we saw, and we no longer see it\n              bool powerOff \u003d !powerStatus.isPowerOn();\n              for (const auto\u0026 [name, device] : missingConfigurations-\u003eitems())\n              {\n                  pruneConfiguration(powerOff, name, device);\n              }   \n              nlohmann::json newConfiguration \u003d systemConfiguration;\n  \n              deriveNewConfiguration(oldConfiguration, newConfiguration);\n  \n              for (const auto\u0026 [_, device] : newConfiguration.items())\n              {   \n                  logDeviceAdded(device);\n              }   \n  \n              propertiesChangedInProgress \u003d false;\n  \n              boost::asio::post(io, [this, newConfiguration, count] {\n                  publishNewConfiguration(std::ref(propertiesChangedInstance),\n                                          count, std::ref(propertiesChangedTimer),\n                                          newConfiguration);\n              }); \n          }); \n      perfScan-\u003erun();\n  }\n```\n\nThe logs are emitted before configurations are published on D-Bus. So there is some possible amount of mismatch between what\u0027s logged and D-Bus.\n\nIdeally the validation would happen before the log is emitted, D-Bus publish and the journal log would happen back to back without possible failure in-between.\n\nThere is a relation chain (starting with https://gerrit.openbmc.org/c/openbmc/entity-manager/+/86564) which can solve this by using classes which can represent both system configuration and own D-Bus objects.",
+      "parentUuid": "3b05b267_ba3f0120",
+      "revId": "9d0ff82e2cbfb15f02c49b81e0b4a9eb93ff8566",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "95052eee_00944f1d",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-08-07T10:59:48Z",
       "side": 1,
       "message": "loadSingleConfig currently validates only key presence. Could we also validate types here (Name and Type as non-empty strings, Probe as string or array of strings)? That would prevent downstream get failures and make parse-time rejection deterministic.",
+      "revId": "9d0ff82e2cbfb15f02c49b81e0b4a9eb93ff8566",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcf0122b_807c8b1b",
+        "filename": "src/entity_manager/configuration.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-07T13:57:27Z",
+      "side": 1,
+      "message": "i already did that in another patch. please review those patches before suggesting me to make changes that i already proposed elsewhere.\n\nsee https://gerrit.openbmc.org/c/openbmc/entity-manager/+/86564\n\nAs the linked patch has been stuck for a long time, i am proposing a more simple and half-baked fix here, which will obviously not cover all cases.\n\nIf you want to see the full fix and proper configuration parsing i would suggest you to review 86564 and help to move it along.",
+      "parentUuid": "95052eee_00944f1d",
       "revId": "9d0ff82e2cbfb15f02c49b81e0b4a9eb93ff8566",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc720e3f_9ecf4a7a",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-07T13:57:27Z",
+      "side": 1,
+      "message": "i have much larger changes and also integration tests which in the end went nowhere. So i would prefer to keep this change small and focused.\n\n\nI doubt that anyone in the future will be insane enough to map \u0027no Type\u0027 to \u0027we found a chassis\u0027.",
+      "parentUuid": "04099af4_9c8dce7c",
+      "revId": "9d0ff82e2cbfb15f02c49b81e0b4a9eb93ff8566",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99b4222b_fb388a86",
@@ -65,6 +119,24 @@
       "writtenOn": "2026-08-07T10:59:48Z",
       "side": 1,
       "message": "Empty expose-name guard is useful. Please add a negative test for names that sanitize to empty so this behavior stays protected.",
+      "revId": "9d0ff82e2cbfb15f02c49b81e0b4a9eb93ff8566",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e831925b_8f7a9285",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-07T13:57:27Z",
+      "side": 1,
+      "message": "i already had integration tests very similar to what you are proposing but in the end they received a lot of pushback and went nowhere\n\nSee https://gerrit.openbmc.org/c/openbmc/entity-manager/+/85478/18 and the whole chain below.\n\nHappy to see you tackle this issue and push changes.",
+      "parentUuid": "99b4222b_fb388a86",
       "revId": "9d0ff82e2cbfb15f02c49b81e0b4a9eb93ff8566",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -86,6 +158,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87826950_4a1b4fae",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 633,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-07T13:57:27Z",
+      "side": 1,
+      "message": "i dropped the check and diff here due to the possible data structure corruption you pointed out.\n\n\u003e Could we erase _em.systemConfiguration[recordName] before continuing so malformed entries are fully discarded?\n\nI don\u0027t think this is the right fix, if we need to erase it here then we should have never inserted it in the first place.\n\nSince the function is already quite large we can tackle this issue in another patch.",
+      "parentUuid": "a7443d4c_65db23a7",
+      "revId": "9d0ff82e2cbfb15f02c49b81e0b4a9eb93ff8566",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fac6615e_e8693d7d",
@@ -99,6 +189,24 @@
       "writtenOn": "2026-08-07T10:59:48Z",
       "side": 1,
       "message": "Similar concern for empty Type: this continues path may leave an invalid record in runtime configuration state. Please consider explicit cleanup before continuing.",
+      "revId": "9d0ff82e2cbfb15f02c49b81e0b4a9eb93ff8566",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e2aeafd_fd191715",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 639,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-07T13:57:27Z",
+      "side": 1,
+      "message": "ack, dropped this diff.",
+      "parentUuid": "fac6615e_e8693d7d",
       "revId": "9d0ff82e2cbfb15f02c49b81e0b4a9eb93ff8566",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
