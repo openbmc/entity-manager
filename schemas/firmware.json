@@ -155,6 +155,43 @@
                 "FirmwareInfo"
             ]
         },
+        "OCPRecoveryFirmware": {
+            "description": "Required information to recover a device via the OCP Secure Firmware Recovery protocol over I2C",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Name": {
+                    "description": "Unique identifier or label for the recovery-capable device",
+                    "type": "string"
+                },
+                "Type": {
+                    "description": "The type of configuration object",
+                    "enum": ["OCPRecoveryFirmware"]
+                },
+                "Bus": {
+                    "$ref": "legacy.json#/$defs/Types/Bus"
+                },
+                "Address": {
+                    "$ref": "legacy.json#/$defs/Types/Address"
+                },
+                "ChunkSize": {
+                    "description": "INDIRECT_DATA payload bytes per SMBus block write, 1-252. Use 32 behind CP2112-class USB-I2C bridges.",
+                    "type": "number"
+                },
+                "MemoryWindow": {
+                    "description": "The component memory space (CMS) index the recovery image is written to",
+                    "type": "number"
+                },
+                "ForceRecoveryTimeoutSeconds": {
+                    "description": "How long to wait for the device to enter recovery mode after a forced reset",
+                    "type": "number"
+                },
+                "FirmwareInfo": {
+                    "$ref": "#/$defs/FirmwareInfoDef"
+                }
+            },
+            "required": ["Name", "Type", "Bus", "Address", "FirmwareInfo"]
+        },
         "TPMFirmware": {
             "description": "Required information to complete the TPM firmware update process",
             "type": "object",
