@@ -5,6 +5,16 @@
             "Bus": "$bus",
             "Name": "Nvidia RTX PRO 6000 FRU",
             "Type": "EEPROM"
+        },
+        {
+            "Address": "0x69",
+            "Bus": "$bus",
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.nvidia.Hardware.Alon8.GPU",
+                "VendorIANA": 5703
+            },
+            "Name": "GPU_OCP_Recovery",
+            "Type": "OCPRecoveryFirmware"
         }
     ],
     "Name": "Nvidia RTX PRO 6000 Blackwell $index",
