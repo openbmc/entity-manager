@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9d1d4214_cb25a069",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-10T15:27:41Z",
+      "side": 1,
+      "message": "Thanks for adding the UT 👍\n\nSince the patch has grown quite a bit and mixes testing of existing features, function extraction and new features, i would suggest to split it into 3 patches.\n\nOne patch to extract `insertIntoExposes` function, one to test the existing `AddObject` feature, and the the last patch with your new feature and additional testcases for dynamic AddObject.\n\nThat should make it easier on reviewers and things like adding testcases and extracting functions are less controversial - they tend to go in faster.\n\nAs a result your feature patch will be smaller and easier to review.",
+      "parentUuid": "701a7915_ded797f1",
+      "range": {
+        "startLine": 29,
+        "startChar": 1,
+        "endLine": 32,
+        "endChar": 61
+      },
+      "revId": "f803f7ad45ba016ce744e1b0a529de641cac25e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dd4cd22d_eeb919ac",
         "filename": "src/entity_manager/configuration.cpp",
         "patchSetId": 5
