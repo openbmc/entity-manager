@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81cca728_6d829fa3",
+        "filename": "schemas/openbmc-dbus.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-08-10T09:38:19Z",
+      "side": 1,
+      "message": "Thanks for syncing these properties. One mismatch I noticed: in phosphor-dbus-interfaces, Accelerator BaseSpeedInHz / MaxSpeedInHz / MinSpeedInHz are uint64, but this schema defines them as string. Since this patch is a PDI sync, could we align these property types with PDI?",
+      "revId": "856cdfc90ae8886096a1af73e46d30717957f4b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5b76e8c_cfff21fe",
+        "filename": "schemas/openbmc-dbus.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-08-10T09:38:19Z",
+      "side": 1,
+      "message": "Could we re-check Dimm type mappings against PDI? This block currently uses string for many fields, but PDI defines mixed types (for example uint16 / size / enum / array[uint16], such as MemoryDataWidth, MaxMemorySpeedInMhz, ECC, AllowedSpeedsMT). It would be good to keep schema types aligned with the interface contract.",
+      "revId": "856cdfc90ae8886096a1af73e46d30717957f4b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
