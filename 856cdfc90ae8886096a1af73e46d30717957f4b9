@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a004302_b6d16fd9",
+        "filename": "schemas/openbmc-dbus.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-10T14:45:55Z",
+      "side": 1,
+      "message": "If we constrain it to be a number we will get a number but that pretty much disables the template var feature.\n\nSo if we do it as you suggested then there will be no way for users to populate these fields from the interface they are probing on.\n\nIf we want to achieve a particular D-Bus type we would have to implement that separately anyways since the schema does not take effect at runtime (it is by default only run in CI).",
+      "parentUuid": "81cca728_6d829fa3",
+      "revId": "856cdfc90ae8886096a1af73e46d30717957f4b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e5b76e8c_cfff21fe",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-08-10T09:38:19Z",
       "side": 1,
       "message": "Could we re-check Dimm type mappings against PDI? This block currently uses string for many fields, but PDI defines mixed types (for example uint16 / size / enum / array[uint16], such as MemoryDataWidth, MaxMemorySpeedInMhz, ECC, AllowedSpeedsMT). It would be good to keep schema types aligned with the interface contract.",
+      "revId": "856cdfc90ae8886096a1af73e46d30717957f4b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "085cc09b_3b3f5c86",
+        "filename": "schemas/openbmc-dbus.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-10T14:45:55Z",
+      "side": 1,
+      "message": "If we constrain it to be a number we will get a number but that pretty \nmuch disables the template var feature.\n\nSo if we do it as you suggested then there will be no way for users to \npopulate these fields from the interface they are probing on.\n\nIf we want to achieve a particular D-Bus type we would have to implement\n that separately anyways since the schema does not take effect at \nruntime (it is by default only run in CI).",
+      "parentUuid": "e5b76e8c_cfff21fe",
       "revId": "856cdfc90ae8886096a1af73e46d30717957f4b9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
