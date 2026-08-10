@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d33266be_44ffa1f5",
+        "filename": "configurations/kioxia/yosemite4_nvme.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002954
+      },
+      "writtenOn": "2026-08-10T13:50:37Z",
+      "side": 1,
+      "message": "it is, filename to be corrected.",
+      "parentUuid": "9fa8ee80_44adde2b",
+      "revId": "986975377b21d9e87bc3d126d7446771f400aed5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b838dd7a_3e772eaa",
@@ -31,6 +49,30 @@
       "writtenOn": "2026-08-03T08:45:28Z",
       "side": 1,
       "message": "why `DrivePort 1` ? Are there multiple?\n\nWhat would be `DrivePort 2`?",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 2
+      },
+      "revId": "986975377b21d9e87bc3d126d7446771f400aed5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4d96d22_c90669bb",
+        "filename": "configurations/kioxia/yosemite4_nvme.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1002954
+      },
+      "writtenOn": "2026-08-10T13:50:37Z",
+      "side": 1,
+      "message": "yes, each host has a drive port, this way you can choose which host to connect the drive to.",
+      "parentUuid": "b838dd7a_3e772eaa",
       "range": {
         "startLine": 10,
         "startChar": 0,
@@ -64,6 +106,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f12ade2_e5114748",
+        "filename": "configurations/kioxia/yosemite4_nvme.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1002954
+      },
+      "writtenOn": "2026-08-10T13:50:37Z",
+      "side": 1,
+      "message": "they do not exist. to be corrected to \"\"",
+      "parentUuid": "aba7a1f9_dc94e3d5",
+      "range": {
+        "startLine": 26,
+        "startChar": 8,
+        "endLine": 27,
+        "endChar": 40
+      },
+      "revId": "986975377b21d9e87bc3d126d7446771f400aed5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eafba538_9cc44763",
@@ -77,6 +143,30 @@
       "writtenOn": "2026-08-03T08:45:28Z",
       "side": 1,
       "message": "FlowMeter was removed recently so you can remove it here as well.",
+      "range": {
+        "startLine": 45,
+        "startChar": 24,
+        "endLine": 45,
+        "endChar": 36
+      },
+      "revId": "986975377b21d9e87bc3d126d7446771f400aed5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4ccb864_264398e7",
+        "filename": "schemas/global.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1002954
+      },
+      "writtenOn": "2026-08-10T13:50:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eafba538_9cc44763",
       "range": {
         "startLine": 45,
         "startChar": 24,
