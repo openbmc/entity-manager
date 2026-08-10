@@ -50,6 +50,93 @@
       "message": "Non-blocking: Object removal on normal tag detach looks like expected lifecycle behavior, so error may be too strong and could create false alarms. Would info or debug be more appropriate here?",
       "revId": "a869166abeac3bd79ffe2f321eae86ae0430c010",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b62ab4dd_27ab74bd",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1485,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-10T09:10:24Z",
+      "side": 1,
+      "message": "+1, i don\u0027t understand why this is an error",
+      "parentUuid": "d7b3c32d_1f5aa1bc",
+      "revId": "a869166abeac3bd79ffe2f321eae86ae0430c010",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "191aface_db684dcf",
+        "filename": "src/fru_device/neard_dbus.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-10T09:10:24Z",
+      "side": 1,
+      "message": "can we use `std::bind_front` or something like that here to avoid creating inline lambdas.\n\nThat would reduce the indentation and avoid future formatting problems while also giving us a named function which could be re-used in the future.\n\ne.g. \n```\nvoid getManagedObjectsCallback(\n\tconst std::function\u003cvoid(const sdbusplus::object_path\u0026)\u003e onMimeRecord,\n\tconst boost::system::error_code\u0026 ec,\nconst NeardManagedObjectsType\u0026 objects)\n```",
+      "range": {
+        "startLine": 27,
+        "startChar": 1,
+        "endLine": 30,
+        "endChar": 64
+      },
+      "revId": "a869166abeac3bd79ffe2f321eae86ae0430c010",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fd30b09_1ba4a370",
+        "filename": "src/fru_device/neard_dbus.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-10T09:10:24Z",
+      "side": 1,
+      "message": "Can you use the existing type `DBusValueVariant` and simply expand that with `sdbusplus::object_path`? \n\nD-Bus variant is not further defined from what i have seen so we can use an existing larger variant to avoid problems when mapping it.\n\nFrom my perspective we do not need multiple `std::variant` types to represent a D-Bus variant type, what do you think about this, do we need it?",
+      "range": {
+        "startLine": 16,
+        "startChar": 58,
+        "endLine": 20,
+        "endChar": 63
+      },
+      "revId": "a869166abeac3bd79ffe2f321eae86ae0430c010",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6da69e1_a7fbe9ad",
+        "filename": "src/fru_device/neard_dbus.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-10T09:10:24Z",
+      "side": 1,
+      "message": "```suggestion\nusing ManagedObjectsType \u003d\n```\n\ni don\u0027t think this is neard-specific API so we can make this a generic type\n\nhttps://dbus.freedesktop.org/doc/dbus-specification.html#standard-interfaces-objectmanager\n\nAlso we should probably not put this into a neard-specific header, instead we could put it in an existing util header like `src/utils.hpp`\n\nWould you agree with this suggestion?",
+      "range": {
+        "startLine": 21,
+        "startChar": 6,
+        "endLine": 21,
+        "endChar": 29
+      },
+      "revId": "a869166abeac3bd79ffe2f321eae86ae0430c010",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
