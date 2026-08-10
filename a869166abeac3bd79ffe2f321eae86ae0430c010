@@ -16,6 +16,40 @@
       "message": "Hi Patrick,\nI updated the code to support handling the initial state of neard already running and InterfacesRemoved signal.\nCould you please help review it? Thanks!",
       "revId": "a869166abeac3bd79ffe2f321eae86ae0430c010",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b84c54d1_ef4d4206",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1479,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-08-10T06:22:20Z",
+      "side": 1,
+      "message": "handleNfcTagRemoved removes the FRU object using a single fixed key (nfcBus, nfcAddr) for any InterfacesRemoved event. If multiple NFC tags/records can exist, this may remove the wrong object or leave stale state. Could we map neard object path (or tag UID) -\u003e created FRU interface and remove by that exact key here?",
+      "revId": "a869166abeac3bd79ffe2f321eae86ae0430c010",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7b3c32d_1f5aa1bc",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1485,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-08-10T06:22:20Z",
+      "side": 1,
+      "message": "Non-blocking: Object removal on normal tag detach looks like expected lifecycle behavior, so error may be too strong and could create false alarms. Would info or debug be more appropriate here?",
+      "revId": "a869166abeac3bd79ffe2f321eae86ae0430c010",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
