@@ -106,6 +106,17 @@
             "Type": "HPEFan"
         },
         {
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.hpe.Hardware.ProLiantDL360G11.SPI.Host",
+                "VendorIANA": 47196
+            },
+            "MuxOutputs": [],
+            "Name": "UEFIPrimary",
+            "SPIControllerIndex": 1,
+            "SPIDeviceIndex": 1,
+            "Type": "HostSPIFlash"
+        },
+        {
             "Class": "fan",
             "FFGainCoefficient": 1,
             "FFOffCoefficient": 0,
@@ -158,17 +169,6 @@
             "Name": "GenericContainPort",
             "PortType": "containing",
             "Type": "Port"
-        },
-        {
-            "FirmwareInfo": {
-                "CompatibleHardware": "com.hpe.Hardware.ProLiantDL360G11.SPI.Host",
-                "VendorIANA": 47196
-            },
-            "MuxOutputs": [],
-            "Name": "UEFIPrimary",
-            "SPIControllerIndex": 1,
-            "SPIDeviceIndex": 1,
-            "Type": "SPIFlash"
         },
         {
             "Class": "temp",
