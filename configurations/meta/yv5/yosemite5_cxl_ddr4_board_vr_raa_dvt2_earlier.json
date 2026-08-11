@@ -302,7 +302,7 @@
                 "CXL_VR_PVDD_CORE_TEMP_C",
                 "CXL_VR_P1V2_VDD_DDR02_TEMP_C",
                 "CXL_VR_P1V2_VDD_DDR13_TEMP_C",
-                "CXL_VR_P0V75_VDD_DIG_DDR_TEMP_C"
+                "CXL_VR_P0V75_VDD_DIG_TEMP_C"
             ],
             "Name": "PID_CXL_VR",
             "NegativeHysteresis": 2.0,
@@ -399,43 +399,27 @@
             "Thresholds": [
                 {
                     "Direction": "less than",
-                    "Hysteresis": 0.012,
-                    "Label": "vout1",
-                    "Name": "lower non recoverable",
-                    "Severity": 4,
-                    "Value": 0.6
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.014,
+                    "Hysteresis": 0.0134,
                     "Label": "vout1",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 0.7
+                    "Value": 0.67
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 0.0187,
+                    "Hysteresis": 0.0192,
                     "Label": "vout1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 0.935
+                    "Value": 0.959
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 0.019,
-                    "Label": "vout1",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 0.95
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.84,
+                    "Hysteresis": 0.92,
                     "Label": "iout1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 42
+                    "Value": 46
                 },
                 {
                     "Direction": "greater than",
@@ -532,25 +516,25 @@
             "iout1_Name": "CXL_VR_PVDD_CORE_CURR_A",
             "iout2_Max": 90,
             "iout2_Min": 0,
-            "iout2_Name": "CXL_VR_P0V75_VDD_DIG_DDR_CURR_A",
+            "iout2_Name": "CXL_VR_P0V75_VDD_DIG_CURR_A",
             "pout1_Max": 90,
             "pout1_Min": 0,
             "pout1_Name": "CXL_VR_PVDD_CORE_PWR_W",
             "pout2_Max": 90,
             "pout2_Min": 0,
-            "pout2_Name": "CXL_VR_P0V75_VDD_DIG_DDR_PWR_W",
+            "pout2_Name": "CXL_VR_P0V75_VDD_DIG_PWR_W",
             "temp1_Max": 125,
             "temp1_Min": -40,
             "temp1_Name": "CXL_VR_PVDD_CORE_TEMP_C",
             "temp2_Max": 125,
             "temp2_Min": -40,
-            "temp2_Name": "CXL_VR_P0V75_VDD_DIG_DDR_TEMP_C",
+            "temp2_Name": "CXL_VR_P0V75_VDD_DIG_TEMP_C",
             "vout1_Max": 0.96,
             "vout1_Min": -0.3,
             "vout1_Name": "CXL_VR_PVDD_CORE_VOLT_V",
             "vout2_Max": 0.96,
             "vout2_Min": -0.3,
-            "vout2_Name": "CXL_VR_P0V75_VDD_DIG_DDR_VOLT_V"
+            "vout2_Name": "CXL_VR_P0V75_VDD_DIG_VOLT_V"
         },
         {
             "Address": "0x61",
@@ -770,7 +754,7 @@
                 "CXL_VR_PVDD_CORE_TEMP_C",
                 "CXL_VR_P1V2_VDD_DDR02_TEMP_C",
                 "CXL_VR_P1V2_VDD_DDR13_TEMP_C",
-                "CXL_VR_P0V75_VDD_DIG_DDR_TEMP_C"
+                "CXL_VR_P0V75_VDD_DIG_TEMP_C"
             ],
             "Name": "Stepwise_CXL_VR",
             "NegativeHysteresis": 2.0,
