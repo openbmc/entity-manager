@@ -146,6 +146,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "69b2f1ae_563ef358",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-11T10:30:26Z",
+      "side": 1,
+      "message": "reviewed it, looks awesome!\n\nCan you rebase your feature change on top of the test for the existing code?\n\nOtherwise we will have the test code in two different gerrit changes which might confuse people as to which change they are supposed to review the test code in.",
+      "parentUuid": "4c6d9025_3518f866",
+      "range": {
+        "startLine": 29,
+        "startChar": 1,
+        "endLine": 32,
+        "endChar": 61
+      },
+      "revId": "f803f7ad45ba016ce744e1b0a529de641cac25e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dd4cd22d_eeb919ac",
         "filename": "src/entity_manager/configuration.cpp",
         "patchSetId": 5
