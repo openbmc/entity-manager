@@ -5,8 +5,6 @@
 #include <unordered_set>
 #include <vector>
 
-constexpr const char* currentConfiguration = "/var/configuration/system.json";
-
 class Configuration
 {
   public:
@@ -27,8 +25,6 @@ class Configuration
                               const nlohmann::json& schema);
     std::vector<std::filesystem::path> configurationDirectories;
 };
-
-bool writeJsonFiles(const nlohmann::json& systemConfiguration);
 
 template <typename JsonType>
 bool setJsonFromPointer(const std::string& ptrStr, const JsonType& value,
