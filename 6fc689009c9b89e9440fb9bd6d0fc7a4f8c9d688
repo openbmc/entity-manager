@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbab86c1_eb6fa1e8",
+        "filename": "test/entity_manager/test_add_object.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-11T10:27:43Z",
+      "side": 1,
+      "message": "Here\u0027s a diff that avoids going across D-Bus.\nIt makes the test weaker since we\u0027re not using D-Bus but avoids running the io context for an arbitrary amount of seconds:\n\n```\ndiff --git a/src/entity_manager/dbus_interface.hpp b/src/entity_manager/dbus_interface.hpp\nindex e6c0d2f..dfb09bc 100644\n--- a/src/entity_manager/dbus_interface.hpp\n+++ b/src/entity_manager/dbus_interface.hpp\n@@ -52,12 +52,12 @@ class EMDBusInterface\n         const std::shared_ptr\u003csdbusplus::asio::dbus_interface\u003e\u0026 iface,\n         nlohmann::json\u0026 systemConfiguration);\n \n-  private:\n     void addObject(\n         const std::flat_map\u003cstd::string, JsonVariantType, std::less\u003c\u003e\u003e\u0026 data,\n         nlohmann::json\u0026 systemConfiguration, const std::string\u0026 jsonPointerPath,\n         const sdbusplus::object_path\u0026 path, const std::string\u0026 board);\n \n+  private:\n     // @brief: same as \u0027addObject\u0027, but operates on json\n     void addObjectJson(nlohmann::json\u0026 newData,\n                        nlohmann::json\u0026 systemConfiguration,\ndiff --git a/test/entity_manager/test_add_object.cpp b/test/entity_manager/test_add_object.cpp\nindex 4d260e6..cffbe4b 100644\n--- a/test/entity_manager/test_add_object.cpp\n+++ b/test/entity_manager/test_add_object.cpp\n@@ -77,21 +77,16 @@ TEST_F(AddObjectTest, AddObjectViaDBusCall)\n     const sdbusplus::object_path boardPath{\n         \"/xyz/openbmc_project/inventory/system/baseboard/TestBoard\"};\n \n-    using Params \u003d std::map\u003cstd::string, dbus_interface::JsonVariantType\u003e;\n-    bool done \u003d false;\n-    bus-\u003easync_method_call(\n-        [\u0026done, \u0026io \u003d io](boost::system::error_code ec) {\n-            EXPECT_FALSE(ec) \u003c\u003c ec.message();\n-            done \u003d true;\n-            io.stop();\n-        },\n-        kTestService, boardPath, \"xyz.openbmc_project.AddObject\", \"AddObject\",\n-        Params{{\"Name\", std::string{\"Sensor1\"}},\n+    using Params \u003d std::flat_map\u003cstd::string, dbus_interface::JsonVariantType, std::less\u003c\u003e\u003e;\n+\n+    auto param \u003d Params{{\"Name\", std::string{\"Sensor1\"}},\n                {\"Type\", std::string{\"Temperature\"}},\n-               {\"Address\", uint64_t{0x41}}});\n+               {\"Address\", uint64_t{0x41}}};\n+\n+    std::string jsonPointerPath \u003d \"/\";\n+    jsonPointerPath +\u003d kBoardId;\n \n-    io.run_for(std::chrono::seconds(5));\n-    ASSERT_TRUE(done) \u003c\u003c \"AddObject D-Bus call did not complete\";\n+    em-\u003edbus_interface.addObject(param, em-\u003esystemConfiguration, jsonPointerPath, boardPath, \"TestBoard\");\n \n     const auto\u0026 exposes \u003d em-\u003esystemConfiguration[kBoardId][\"Exposes\"];\n     ASSERT_FALSE(exposes.empty());\n```\n\ni will mark this as resolved, i am fine either way, this looks like a great  patch to improve test coverage :thumbsup:",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 40
+      },
+      "revId": "6fc689009c9b89e9440fb9bd6d0fc7a4f8c9d688",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
