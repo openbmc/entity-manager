@@ -6,10 +6,8 @@
 #include <nlohmann/json.hpp>
 #include <sdbusplus/asio/connection.hpp>
 
-constexpr const char* configurationOutDir = "/var/configuration/";
 constexpr const char* emDbusName = "xyz.openbmc_project.EntityManager";
 constexpr const char* emDbusPath = "/xyz/openbmc_project/EntityManager";
-constexpr const char* versionHashFile = "/var/configuration/version";
 constexpr const char* versionFile = "/etc/os-release";
 
 namespace em_utils
@@ -21,7 +19,8 @@ constexpr const char* interface = "org.freedesktop.DBus.Properties";
 constexpr const char* get = "Get";
 } // namespace properties
 
-bool fwVersionIsSame();
+bool fwVersionIsSame(const std::filesystem::path& configurationOutDir,
+                     const std::filesystem::path& versionHashFile);
 
 void handleLeftOverTemplateVars(nlohmann::json& value);
 void handleLeftOverTemplateVars(nlohmann::json::object_t& value);
