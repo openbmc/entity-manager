@@ -158,6 +158,24 @@
       "parentUuid": "cb87e12f_93f09baa",
       "revId": "07589a1f72a4f105d2e500e8a1f415a050adc971",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64c6cd74_f1860572",
+        "filename": "configurations/meta/ventura2/ventura2_leak_canbus.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 6660,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-11T16:35:43Z",
+      "side": 1,
+      "message": "@Michael.Kao@quantatw.com Thats my question -\n1. Why did we even do this for legacy way. Looks like u r creating a fake board and connecting these detectors to that, isn\u0027t it ?\n2. If #1 is correct, then what is the reason for creating that fake board and not add these configs to the existing hardware inventory board exposes record ? (FYI: The associations will end up getting created to fake boards in dbus-sensors.)\n3. How did we do this on Ventura?",
+      "parentUuid": "b3139b88_0a266ac0",
+      "revId": "07589a1f72a4f105d2e500e8a1f415a050adc971",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
