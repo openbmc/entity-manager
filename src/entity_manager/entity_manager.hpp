@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include "config_cache.hpp"
 #include "configuration.hpp"
 #include "dbus_interface.hpp"
 #include "power_status_monitor.hpp"
@@ -22,7 +23,8 @@ class EntityManager
         std::shared_ptr<sdbusplus::asio::connection>& systemBus,
         boost::asio::io_context& io,
         const std::vector<std::filesystem::path>& configurationDirectories,
-        const std::filesystem::path& schemaDirectory);
+        const std::filesystem::path& schemaDirectory,
+        std::filesystem::path configCacheDir = "/var/configuration");
 
     // disable copy
     EntityManager(const EntityManager&) = delete;
@@ -42,6 +44,7 @@ class EntityManager
     nlohmann::json systemConfiguration;
     Topology topology;
     boost::asio::io_context& io;
+    ConfigCache configCache;
 
     dbus_interface::EMDBusInterface dbus_interface;
 
