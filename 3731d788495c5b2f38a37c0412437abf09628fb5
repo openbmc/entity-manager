@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9385c606_7521fad2",
+        "filename": "configurations/kioxia/cd8_nvme.json",
+        "patchSetId": 12
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-11T09:15:19Z",
+      "side": 1,
+      "message": "`DrivePort 1` implies only one blade chassis can contain these drives, which is probably not true?\n\n(on the chassis json you used `DrivePort $bus %15`)\n\nMaybe we can determine the drive port and containing chassis based on the i2c bus or address of the drive?\n\nIf this is unclear from the dts or other sources we may need a hint from Patrick.",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 2
+      },
+      "revId": "3731d788495c5b2f38a37c0412437abf09628fb5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
