@@ -16,6 +16,24 @@
       "message": "Could you add a brief Tested note confirming this config passes entity-manager schema validation and runtime load on DL360 Gen11 with Type set to HostSPIFlash?",
       "revId": "b344be21070b3fdf04edbcb8aef4a82cdfca1e25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13edc7be_724eb5e7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001906
+      },
+      "writtenOn": "2026-08-11T08:05:54Z",
+      "side": 1,
+      "message": "I have updated the Tested: note in the commit message to confirm that ./scripts/validate_configs.py passes. \nSince I don\u0027t have access to a physical DL360 Gen11 machine, hardware runtime testing could not be performed.",
+      "parentUuid": "7c31329e_073b3b16",
+      "revId": "b344be21070b3fdf04edbcb8aef4a82cdfca1e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
