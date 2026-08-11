@@ -72,6 +72,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af54d0cf_4fb2e683",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1002532
+      },
+      "writtenOn": "2026-08-11T02:49:44Z",
+      "side": 1,
+      "message": "It will only one at a time.\nWe have 4 SKUs (SKU1, SKU4, SKU1c, SKU4c), for SKU1 and SKU1c, they will use legacy one, for the other two SKUs (SKU4, SKU4c) will use this CAN Bus one.",
+      "parentUuid": "547b95eb_9497d8db",
+      "revId": "07589a1f72a4f105d2e500e8a1f415a050adc971",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "96dbe77f_4034b98b",
@@ -89,6 +107,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d9697a1_9dda6e2b",
+        "filename": "configurations/meta/ventura2/ventura2_leak_canbus.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 6653,
+      "author": {
+        "id": 1002532
+      },
+      "writtenOn": "2026-08-11T02:49:44Z",
+      "side": 1,
+      "message": "According to the RMCv2 specification \"CAN Bus Cables\" Chapter:\n\n\u003eFor CAN Bus, RMCv2 uses a custom 1-to-32 daisy-cahin RJ45 cable. This cable below provides a multi-drop bus where RMCv2 can be connected to 32 endpoint trays per port. With 8 ports on RMCv2, this gives access to 256 endpoints.",
+      "parentUuid": "96dbe77f_4034b98b",
+      "revId": "07589a1f72a4f105d2e500e8a1f415a050adc971",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb87e12f_93f09baa",
@@ -102,6 +138,24 @@
       "writtenOn": "2026-08-10T23:18:56Z",
       "side": 1,
       "message": "What is this board for  as it carries name Leak ?",
+      "revId": "07589a1f72a4f105d2e500e8a1f415a050adc971",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3139b88_0a266ac0",
+        "filename": "configurations/meta/ventura2/ventura2_leak_canbus.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 6660,
+      "author": {
+        "id": 1002532
+      },
+      "writtenOn": "2026-08-11T02:49:44Z",
+      "side": 1,
+      "message": "This board is mainly used to expose leak sensors. We did not define them in https://github.com/openbmc/entity-manager/blob/master/configurations/meta/ventura2/ventura2_canbus.json in order to maintain consistency with the legacy one, so that both configs expose to the same D-Bus and Redfish paths.",
+      "parentUuid": "cb87e12f_93f09baa",
       "revId": "07589a1f72a4f105d2e500e8a1f415a050adc971",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
