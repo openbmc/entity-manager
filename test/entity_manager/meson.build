@@ -54,3 +54,25 @@ test(
         include_directories: test_include_dir,
     ),
 )
+
+test(
+    'test_add_object',
+    executable(
+        'test_add_object',
+        'test_add_object.cpp',
+        cpp_args: test_boost_args + [
+            '-DSCHEMA_DIR="' + packagedir / 'schemas' + '"',
+            '-DEM_CACHE_CONFIGURATION=true',
+        ],
+        dependencies: [
+            boost,
+            gtest,
+            nlohmann_json_dep,
+            phosphor_logging_dep,
+            sdbusplus,
+            valijson,
+        ],
+        link_with: [entity_manager_lib, utils_lib],
+        include_directories: test_include_dir,
+    ),
+)
