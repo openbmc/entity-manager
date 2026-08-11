@@ -2684,27 +2684,6 @@
             "temp9_Name": "MB_DIMM_A8_TEMP_C"
         },
         {
-            "Address": "0x118",
-            "Bus": 0,
-            "Name": "MB_CPU_TEMP_C",
-            "PowerState": "BiosPost",
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 94
-                }
-            ],
-            "Type": "SBTSI"
-        },
-        {
             "Address": "0x22400000119",
             "Bus": 0,
             "Name": "MB_CPU_TEMP_C",
