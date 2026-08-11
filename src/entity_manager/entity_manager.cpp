@@ -52,14 +52,16 @@ EntityManager::EntityManager(
     std::shared_ptr<sdbusplus::asio::connection>& systemBus,
     boost::asio::io_context& io,
     const std::vector<std::filesystem::path>& configurationDirectories,
-    const std::filesystem::path& schemaDirectory) :
+    const std::filesystem::path& schemaDirectory,
+    std::filesystem::path configCacheDir) :
     systemBus(systemBus),
     objServer(sdbusplus::asio::object_server(systemBus, /*skipManager=*/true)),
     configuration(configurationDirectories, schemaDirectory),
     lastJson(nlohmann::json::object()),
     systemConfiguration(nlohmann::json::object()), io(io),
-    dbus_interface(io, objServer, schemaDirectory), powerStatus(*systemBus),
-    propertiesChangedTimer(io)
+    configCache(std::move(configCacheDir)),
+    dbus_interface(io, objServer, schemaDirectory, configCache),
+    powerStatus(*systemBus), propertiesChangedTimer(io)
 {
     // All other objects that EntityManager currently support are under the
     // inventory subtree.
@@ -491,7 +493,7 @@ void EntityManager::publishNewConfiguration(
     loadOverlays(newConfiguration, io);
 
     boost::asio::post(io, [this]() {
-        if (!writeJsonFiles(systemConfiguration))
+        if (!configCache.writeJsonFiles(systemConfiguration))
         {
             lg2::error("Error writing json files");
         }
@@ -605,15 +607,18 @@ static bool irContainsProbeInterface(
 
 void EntityManager::handleCurrentConfigurationJson()
 {
-    if (EM_CACHE_CONFIGURATION && em_utils::fwVersionIsSame())
+    if (EM_CACHE_CONFIGURATION &&
+        em_utils::fwVersionIsSame(configCache.configurationOutDir,
+                                  configCache.versionHashFile))
     {
-        if (std::filesystem::is_regular_file(currentConfiguration))
+        if (std::filesystem::is_regular_file(configCache.currentConfiguration))
         {
             // this file could just be deleted, but it's nice for debug
             std::filesystem::create_directory(tempConfigDir);
             std::filesystem::remove(lastConfiguration);
-            std::filesystem::copy(currentConfiguration, lastConfiguration);
-            std::filesystem::remove(currentConfiguration);
+            std::filesystem::copy(configCache.currentConfiguration,
+                                  lastConfiguration);
+            std::filesystem::remove(configCache.currentConfiguration);
 
             std::ifstream jsonStream(lastConfiguration);
             if (jsonStream.good())
@@ -640,7 +645,7 @@ void EntityManager::handleCurrentConfigurationJson()
         // not an error, just logging at this level to make it in the journal
         std::error_code ec;
         lg2::error("Clearing previous configuration");
-        std::filesystem::remove(currentConfiguration, ec);
+        std::filesystem::remove(configCache.currentConfiguration, ec);
     }
 }
 
