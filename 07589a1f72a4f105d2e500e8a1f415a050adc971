@@ -176,6 +176,24 @@
       "parentUuid": "b3139b88_0a266ac0",
       "revId": "07589a1f72a4f105d2e500e8a1f415a050adc971",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f4df6ad_f68163a7",
+        "filename": "configurations/meta/ventura2/ventura2_leak_canbus.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 6660,
+      "author": {
+        "id": 1002532
+      },
+      "writtenOn": "2026-08-12T02:19:33Z",
+      "side": 1,
+      "message": "@paligill@gmail.com\n1. Yes we are creating fake board for all leak sensors.\n2. As I mentioned above, we did this for consistency. With the current approach, all leak sensors will end up being associated with Ventura2_Leak. From the user\u0027s perspective, they don\u0027t need to worry about which SKUs they are currently using. If they\u0027re looking for leak sensors, they can just check `/redfish/v1/Chassis/Ventura2_Leak/Sensors`.\n3. On Ventura, leak sensors are defined on scm board. However we didn\u0027t do the same thing on Ventura2 since we need to monitor different GPIO pins for different SKUs.\n\nIf we don\u0027t want to use a fake board for these detectors, adding these sensors into their corresponding boards is probably the best way to handle it. In that case leak detectors would follow the hardware, both fake board and probe issues would not exist anymore. But the downside for this is that when user tries to retrieve leak sensors through redfish, the redfish path won\u0027t stay the same on both cases, either `/redfish/v1/Chassis/Ventura2_AALC_Module/Sensors` or `/redfish/v1/Chassis/Ventura2_CANBus_Module/Sensors`, it depends on which SKUs they are using.\n\nWhich approach would you recommend? Or is there a better way to handle this?",
+      "parentUuid": "64c6cd74_f1860572",
+      "revId": "07589a1f72a4f105d2e500e8a1f415a050adc971",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
