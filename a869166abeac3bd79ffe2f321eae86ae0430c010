@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9b403116_f6be0ff9",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1479,
+      "author": {
+        "id": 1002728
+      },
+      "writtenOn": "2026-08-12T02:09:04Z",
+      "side": 1,
+      "message": "Thanks for your suggestion. I will try this method. Thanks.",
+      "parentUuid": "b84c54d1_ef4d4206",
+      "revId": "a869166abeac3bd79ffe2f321eae86ae0430c010",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d7b3c32d_1f5aa1bc",
         "filename": "src/fru_device/fru_device.cpp",
         "patchSetId": 2
@@ -72,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "37f92164_bfc76afe",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1485,
+      "author": {
+        "id": 1002728
+      },
+      "writtenOn": "2026-08-12T02:09:04Z",
+      "side": 1,
+      "message": "Will change to lg2::info. Thanks.",
+      "parentUuid": "b62ab4dd_27ab74bd",
+      "revId": "a869166abeac3bd79ffe2f321eae86ae0430c010",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "191aface_db684dcf",
         "filename": "src/fru_device/neard_dbus.cpp",
         "patchSetId": 2
@@ -83,6 +119,30 @@
       "writtenOn": "2026-08-10T09:10:24Z",
       "side": 1,
       "message": "can we use `std::bind_front` or something like that here to avoid creating inline lambdas.\n\nThat would reduce the indentation and avoid future formatting problems while also giving us a named function which could be re-used in the future.\n\ne.g. \n```\nvoid getManagedObjectsCallback(\n\tconst std::function\u003cvoid(const sdbusplus::object_path\u0026)\u003e onMimeRecord,\n\tconst boost::system::error_code\u0026 ec,\nconst NeardManagedObjectsType\u0026 objects)\n```",
+      "range": {
+        "startLine": 27,
+        "startChar": 1,
+        "endLine": 30,
+        "endChar": 64
+      },
+      "revId": "a869166abeac3bd79ffe2f321eae86ae0430c010",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6357cc17_6c2700b8",
+        "filename": "src/fru_device/neard_dbus.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1002728
+      },
+      "writtenOn": "2026-08-12T02:09:04Z",
+      "side": 1,
+      "message": "OK. I will follow your suggestion and make this change. Thanks.",
+      "parentUuid": "191aface_db684dcf",
       "range": {
         "startLine": 27,
         "startChar": 1,
@@ -118,6 +178,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c9d6e51d_3615fec1",
+        "filename": "src/fru_device/neard_dbus.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1002728
+      },
+      "writtenOn": "2026-08-12T02:09:04Z",
+      "side": 1,
+      "message": "OK. I will follow your suggestion and make this change. Thanks.",
+      "parentUuid": "2fd30b09_1ba4a370",
+      "range": {
+        "startLine": 16,
+        "startChar": 58,
+        "endLine": 20,
+        "endChar": 63
+      },
+      "revId": "a869166abeac3bd79ffe2f321eae86ae0430c010",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a6da69e1_a7fbe9ad",
         "filename": "src/fru_device/neard_dbus.hpp",
         "patchSetId": 2
@@ -129,6 +213,30 @@
       "writtenOn": "2026-08-10T09:10:24Z",
       "side": 1,
       "message": "```suggestion\nusing ManagedObjectsType \u003d\n```\n\ni don\u0027t think this is neard-specific API so we can make this a generic type\n\nhttps://dbus.freedesktop.org/doc/dbus-specification.html#standard-interfaces-objectmanager\n\nAlso we should probably not put this into a neard-specific header, instead we could put it in an existing util header like `src/utils.hpp`\n\nWould you agree with this suggestion?",
+      "range": {
+        "startLine": 21,
+        "startChar": 6,
+        "endLine": 21,
+        "endChar": 29
+      },
+      "revId": "a869166abeac3bd79ffe2f321eae86ae0430c010",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cb98c3c_0e34578d",
+        "filename": "src/fru_device/neard_dbus.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1002728
+      },
+      "writtenOn": "2026-08-12T02:09:04Z",
+      "side": 1,
+      "message": "OK. I will follow your suggestion and make this change. Thanks.",
+      "parentUuid": "a6da69e1_a7fbe9ad",
       "range": {
         "startLine": 21,
         "startChar": 6,
