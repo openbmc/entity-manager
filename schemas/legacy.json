@@ -873,13 +873,13 @@
                 "in(1[0-7]|[0-9])_PowerState$": {
                     "$ref": "#/$defs/Types/PowerState"
                 },
-                "(in|vout|in_voltage)(1[0-7]|[0-9])_(Min|Max)$": {
+                "(in|vout|in_voltage|in_current)(1[0-7]|[0-9])_(Min|Max)$": {
                     "$ref": "#/$defs/Types/MinMaxType"
                 },
                 "(iin|vin|vmon|curr|iout|pin|pout|temp)(1[0-7]|[1-9])?_(Min|Max)$": {
                     "$ref": "#/$defs/Types/MinMaxType"
                 },
-                "power(1[0-7]|[1-9])?_Max$": {
+                "(power|in_power)(1[0-7]|[1-9])?_Max$": {
                     "$ref": "#/$defs/Types/MinMaxType"
                 },
                 "fan1_(Min|Max)$": {
