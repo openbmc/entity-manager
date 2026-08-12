@@ -212,6 +212,24 @@
       "parentUuid": "3f4df6ad_f68163a7",
       "revId": "07589a1f72a4f105d2e500e8a1f415a050adc971",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "254ad7ab_b6a25f79",
+        "filename": "configurations/meta/ventura2/ventura2_leak_canbus.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 6660,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-12T18:57:59Z",
+      "side": 1,
+      "message": "\u003e adding these sensors into their corresponding boards is probably the best way to handle it.\n\nThis means u r already exposing the SKU info to user (by using a different inventory name for each SKU), isn\u0027t it? Or are you naming the boards consistently irrespective of SKU ?\n\n\u003e But the downside for this is that when user tries to retrieve leak sensors through redfish, the redfish path won\u0027t stay the same on both cases, either /redfish/v1/Chassis/Ventura2_AALC_Module/Sensors or /redfish/v1/Chassis/Ventura2_CANBus_Module/Sensors, it depends on which SKUs they are using.\n\nThe leak detectors don\u0027t end up showing under sensors, they will show in ThermalSubsystem. I am not asking you to expose the SKU info to user, so lets take a step back to clarify few things -\n1. What is this specific SKU? Is this SCM SKU ?\n2. Does \"Ventura2 Leak\" actually represent that SKU Type in #1 above, irrespective of SKU# ?\n\n\nPS: By fake inventory item i mean there is no actual Board backed by it.",
+      "parentUuid": "9d3d4755_9fb9174f",
+      "revId": "07589a1f72a4f105d2e500e8a1f415a050adc971",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
