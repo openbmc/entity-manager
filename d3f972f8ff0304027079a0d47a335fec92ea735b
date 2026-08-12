@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a04c1b2_436a11fa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-08-12T13:55:46Z",
+      "side": 1,
+      "message": "Only did a very surface level review so far.",
+      "revId": "d3f972f8ff0304027079a0d47a335fec92ea735b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49228efb_b81c2d6b",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 1712,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-08-12T13:55:46Z",
+      "side": 1,
+      "message": "```suggestion\n        interfacesRemoved() + sender(\"org.neard\")\n```",
+      "range": {
+        "startLine": 1710,
+        "startChar": 0,
+        "endLine": 1712,
+        "endChar": 40
+      },
+      "revId": "d3f972f8ff0304027079a0d47a335fec92ea735b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
