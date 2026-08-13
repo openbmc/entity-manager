@@ -230,6 +230,24 @@
       "parentUuid": "9d3d4755_9fb9174f",
       "revId": "07589a1f72a4f105d2e500e8a1f415a050adc971",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1187ba7a_a1a6ca71",
+        "filename": "configurations/meta/ventura2/ventura2_leak_canbus.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 6660,
+      "author": {
+        "id": 1002532
+      },
+      "writtenOn": "2026-08-13T02:45:20Z",
+      "side": 1,
+      "message": "\u003e This means u r already exposing the SKU info to user (by using a different inventory name for each SKU), isn\u0027t it? Or are you naming the boards consistently irrespective of SKU ?\n\nYes, u r right. We use different module boards on different SKUs and the board naming states itself. That means the SKU type can also be inferred from the installed module board.\n\n\n\n\n\u003e The leak detectors don\u0027t end up showing under sensors, they will show in ThermalSubsystem. I am not asking you to expose the SKU info to user, so lets take a step back to clarify few things -\n\n\nThanks for the correction. I should have double checked this before answering your question.\n\nJust FYI, RMCv2 is built with multiple module boards. Different RMCv2 SKUs will have different module boards installed.\nFor RMCv2 SKU1 / SKU1c, we install miniSAS boards (Legacy).\nFor RMCv2 SKU4 / SKU4c, we install CAN Bus board.\n\n\u003e 1. What is this specific SKU? Is this SCM SKU ?\n\n1. No, this is not SCM SKU. The SKU I mentioned here refers to the RMCv2 platform SKU. This config is for RMCv2 SKU4 / SKU4c, which has the CAN Bus module board installed.\n\n\n\u003e 2. Does \"Ventura2 Leak\" actually represent that SKU Type in #1 above, irrespective of SKU# ?\n\n2. No, \"Ventura2 Leak\" doesn\u0027t represent the SKU type. We identify the RMCv2 SKU through RMC board\u0027s FRU data `PRODUCT_INFO_AM1`.\n\n\n\u003e PS: By fake inventory item i mean there is no actual Board backed by it.\n\n\nWe don\u0027t have a physical board/module called \"Leak Board\". So yes, we are creating a fake board and connecting the detectors to it. The purpose of using this fake board is just to have all leak detectors defined under the same inventory, regardless of which RMCv2 SKU we are using.",
+      "parentUuid": "254ad7ab_b6a25f79",
+      "revId": "07589a1f72a4f105d2e500e8a1f415a050adc971",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
