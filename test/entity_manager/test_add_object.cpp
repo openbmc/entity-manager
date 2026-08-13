@@ -88,3 +88,87 @@ TEST_F(AddObjectTest, AddObject)
     EXPECT_EQ(onDisk[kBoardId]["Exposes"][0]["Type"], "Temperature");
     EXPECT_EQ(onDisk[kBoardId]["Exposes"][0]["Address"], uint64_t{0x41});
 }
+
+class AddObjectExposesTest : public AddObjectTest
+{
+  protected:
+    nlohmann::json sysConfig;
+    const sdbusplus::object_path boardPath{
+        "/xyz/openbmc_project/inventory/system/baseboard/TestBoard"};
+
+    void setExposes(const nlohmann::json& exposes)
+    {
+        sysConfig[kBoardId] = {
+            {"Name", kBoardId}, {"Type", "Baseboard"}, {"Exposes", exposes}};
+    }
+
+    void add(const std::string& name)
+    {
+        using Params =
+            std::flat_map<std::string, dbus_interface::JsonVariantType,
+                          std::less<>>;
+        iface->addObject(
+            Params{{"Name", name}, {"Type", std::string{"Temperature"}}},
+            sysConfig, "/" + std::string{kBoardId}, boardPath, kBoardId);
+    }
+
+    const nlohmann::json& exposes()
+    {
+        return sysConfig[kBoardId]["Exposes"];
+    }
+};
+
+static nlohmann::json expose(const std::string& name)
+{
+    return {{"Name", name}, {"Type", "Temperature"}};
+}
+
+TEST_F(AddObjectExposesTest, AppendsWhenNoNullSlot)
+{
+    setExposes({expose("A"), expose("B")});
+
+    add("C");
+
+    ASSERT_EQ(exposes().size(), 3U);
+    EXPECT_EQ(exposes()[0]["Name"], "A");
+    EXPECT_EQ(exposes()[1]["Name"], "B");
+    EXPECT_EQ(exposes()[2]["Name"], "C");
+}
+
+TEST_F(AddObjectExposesTest, ReusesFirstNullSlot)
+{
+    setExposes({expose("A"), nullptr, expose("B"), nullptr});
+
+    add("C");
+
+    ASSERT_EQ(exposes().size(), 4U);
+    EXPECT_EQ(exposes()[0]["Name"], "A");
+    EXPECT_EQ(exposes()[1]["Name"], "C");
+    EXPECT_EQ(exposes()[2]["Name"], "B");
+    EXPECT_TRUE(exposes()[3].is_null());
+
+    add("D");
+
+    ASSERT_EQ(exposes().size(), 4U);
+    EXPECT_EQ(exposes()[3]["Name"], "D");
+}
+
+TEST_F(AddObjectExposesTest, ReusesLeadingNullSlot)
+{
+    setExposes({nullptr, expose("A")});
+
+    add("B");
+
+    ASSERT_EQ(exposes().size(), 2U);
+    EXPECT_EQ(exposes()[0]["Name"], "B");
+    EXPECT_EQ(exposes()[1]["Name"], "A");
+}
+
+TEST_F(AddObjectExposesTest, DuplicateAfterNullSlotThrows)
+{
+    setExposes({nullptr, expose("A")});
+
+    EXPECT_THROW(add("A"), std::invalid_argument);
+    EXPECT_TRUE(exposes()[0].is_null());
+    EXPECT_EQ(exposes().size(), 2U);
+}
