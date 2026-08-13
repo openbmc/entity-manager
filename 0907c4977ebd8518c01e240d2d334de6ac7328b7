@@ -16,6 +16,24 @@
       "message": "Have you validated this change on the SanMiguel platform? If so, could you please update the commit description/PR with the test results and any verification steps performed?",
       "revId": "0907c4977ebd8518c01e240d2d334de6ac7328b7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26a3c454_b45d889b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002462
+      },
+      "writtenOn": "2026-08-13T06:07:10Z",
+      "side": 1,
+      "message": "Yes, this change has been validated on the SanMiguel platform. Here are the test results and verification steps:\n\n1. D-Bus Object Verification\nConfirmed that the leak detector objects are successfully instantiated on D-Bus:\n```\nroot@bmc:~# busctl tree xyz.openbmc_project.leakdetector\n└─ /xyz\n  └─ /xyz/openbmc_project\n    └─ /xyz/openbmc_project/state\n      └─ /xyz/openbmc_project/state/leak\n        └─ /xyz/openbmc_project/state/leak/detector\n          ├─ /xyz/openbmc_project/state/leak/detector/Hpm0LeakDetector\n          ├─ /xyz/openbmc_project/state/leak/detector/Hpm0LeakDetectorFault\n          ├─ /xyz/openbmc_project/state/leak/detector/Hpm1LeakDetector\n          └─ /xyz/openbmc_project/state/leak/detector/Hpm1LeakDetectorFault\n```\n2. Redfish Event Log Verification\nConfirmed that when a leak is detected, the event log is properly logged:\n```\n{\n  \"@odata.id\": \"/redfish/v1/Managers/bmc/LogServices/EventLog/Entries/{ENTRY_ID}\",\n  \"@odata.type\": \"#LogEntry.v1_9_0.LogEntry\",\n  \"AdditionalDataURI\": \"/redfish/v1/Managers/bmc/LogServices/EventLog/Entries/{ENTRY_ID}/attachment\",\n  \"Created\": \"2026-03-25T12:50:39.841+00:00\",\n  \"EntryType\": \"Event\",\n  \"Id\": \"{ENTRY_ID}\",\n  \"Message\": \"Leak detector \u0027/xyz/openbmc_project/state/leak/detector/Hpm0LeakDetector\u0027 reports a critical level leak.\",\n  \"MessageArgs\": [\n    \"/xyz/openbmc_project/state/leak/detector/Hpm0LeakDetector\"\n  ],\n  \"MessageId\": \"Environmental.1.1.LeakDetectedCritical\",\n  \"Modified\": \"2026-03-25T12:50:39.841+00:00\",\n  \"Name\": \"Manager Event Log Entry\",\n  \"Resolution\": \"Check the condition of the resource listed in OriginOfCondition.\",\n  \"Resolved\": false,\n  \"Severity\": \"Critical\"\n}\n```",
+      "parentUuid": "96435951_d7ce2c79",
+      "revId": "0907c4977ebd8518c01e240d2d334de6ac7328b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
