@@ -269,6 +269,9 @@ def validate_single_config(
             is_invalid = True
             if args.verbose:
                 print(f"Validation Error for {filename}: {e}")
+                print("****** CONTEXT clues ******")
+                for sub in e.context:
+                    print(sub.message)
 
     return (is_invalid, is_unexpected_pass)
 
