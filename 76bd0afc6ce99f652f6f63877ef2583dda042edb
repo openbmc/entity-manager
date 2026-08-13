@@ -33,6 +33,24 @@
       "message": "Making a function public purely for testing purpose sounds like a bad idea that breaks encapsulation.\n\nI had a similar case that can help as reference for an alternative way to do this:\nhttps://gerrit.openbmc.org/c/openbmc/pldm/+/90954\n\nOther pldm samples:\nhttps://github.com/search?q\u003drepo%3Aopenbmc%2Fpldm+FirmwareInventoryTest\u0026type\u003dcode",
       "revId": "76bd0afc6ce99f652f6f63877ef2583dda042edb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22c81806_5172d4e5",
+        "filename": "src/entity_manager/dbus_interface.hpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2026-08-13T15:49:50Z",
+      "side": 1,
+      "message": "i\u0027ve also seen trying to add friend classes just for testing get shot down, so I\u0027m not sure that\u0027s better.",
+      "parentUuid": "87b1098d_20d7967d",
+      "revId": "76bd0afc6ce99f652f6f63877ef2583dda042edb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
