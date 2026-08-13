@@ -33,6 +33,42 @@
       "message": "please confirm whether T22 platforms were verified",
       "revId": "d0d0a6cace77508dd9c36c5ca899a4710806757e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "285dfe43_1bdf99ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002763
+      },
+      "writtenOn": "2026-08-13T08:07:24Z",
+      "side": 1,
+      "message": "Yes, the scale factor is derived from the same Rimon value that\nwas previously set in the device tree.\n\nThe board\u0027s actual Rimon is 430 ohms, which used to be passed to the driver via \nti,rimon-micro-ohms \u003d \u003c430000000\u003e\n(https://github.com/facebook/openbmc/commit/6e24cd91865a78584261da4c2071472fe077b451).\n\nAfter the DTS nodes were removed to support the T22 variant, the tps25990 driver falls back to its default Rimon of 1 kOhm (TPS25990_DEFAULT_RIMON, https://github.com/torvalds/linux/blob/3d6d817622b0a9721e3cc404df3469171582be13/drivers/hwmon/pmbus/tps25990.c#L56).\n\nThe driver scales the PMBus current/power coefficients linearly by Rimon,\nso with the 1 kOhm default the reported IIN/PIN are low by a factor of 430/1000.\nSetting iin_Scale: 430 and pin_Scale: 430000 in the EM config makes dbus-sensors divide the raw hwmon values by 430 (mA) / 430000 (uW) instead of the default 1000 / 1000000,\nwhich multiplies the readings by 1000/430 and restores the correct values. This matches the Rimon population on the 1kW paddle board schematic.",
+      "parentUuid": "b10cc8de_7d846128",
+      "revId": "d0d0a6cace77508dd9c36c5ca899a4710806757e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddcce167_29d53323",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002763
+      },
+      "writtenOn": "2026-08-13T08:07:24Z",
+      "side": 1,
+      "message": "T22 platforms do not use the 1kW paddle board, so these two configs will never be probed on T22. This change is therefore a no-op for T22.\n\nThe reason the scale factors are needed is that T2 and T22 share a unified device tree:\nthe TPS25990 nodes at 0x47/0x4b were removed from the shared DTS to resolve address conflicts with T22, so the Rimon value can no longer be passed to the driver on T2. This EM config change compensates for that on T2 only.",
+      "parentUuid": "e5d7ae35_33d2a543",
+      "revId": "d0d0a6cace77508dd9c36c5ca899a4710806757e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
