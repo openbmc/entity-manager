@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3dc2478_ce56923a",
+        "filename": "src/entity_manager/dbus_interface.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1002607
+      },
+      "writtenOn": "2026-08-13T09:53:10Z",
+      "side": 1,
+      "message": "we might need something like \n\nhttps://github.com/openbmc/entity-manager/blob/4631d02725a60f8b77de7feb48639eda75fd8c07/src/entity_manager/dbus_interface.cpp#L276\n\nsince addObjectJson is a public function now, it can be called out of addObject bypassing that check.",
+      "revId": "76bd0afc6ce99f652f6f63877ef2583dda042edb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
