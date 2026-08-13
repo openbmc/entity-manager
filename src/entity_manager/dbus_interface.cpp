@@ -294,6 +294,49 @@ void EMDBusInterface::addObject(
     addObjectJson(newData, systemConfiguration, jsonPointerPath, path, board);
 }
 
+// Reuses the first null slot or appends; returns the index of the inserted
+// entry.
+static size_t insertIntoExposes(
+    nlohmann::json& exposes, const std::string& name, const std::string& type,
+    const nlohmann::json& newData, const std::filesystem::path& schemaDirectory)
+{
+    bool foundNull = false;
+    size_t lastIndex = 0;
+    for (const auto& expose : exposes)
+    {
+        if (expose.is_null())
+        {
+            foundNull = true;
+            continue;
+        }
+
+        if (expose["Name"] == name && expose["Type"] == type)
+        {
+            throw std::invalid_argument("Field already in JSON, not adding");
+        }
+
+        if (foundNull)
+        {
+            continue;
+        }
+
+        lastIndex++;
+    }
+
+    addObjectRuntimeValidateJson(newData, &type, schemaDirectory);
+
+    if (foundNull)
+    {
+        exposes.at(lastIndex) = newData;
+    }
+    else
+    {
+        exposes.push_back(newData);
+    }
+
+    return lastIndex;
+}
+
 void EMDBusInterface::addObjectJson(
     nlohmann::json& newData, nlohmann::json& systemConfiguration,
     const std::string& jsonPointerPath, const sdbusplus::object_path& path,
@@ -315,39 +358,17 @@ void EMDBusInterface::addObjectJson(
         throw std::invalid_argument("Type and Name must be a string.");
     }
 
-    bool foundNull = false;
     size_t lastIndex = 0;
-    // we add in the "exposes"
-    for (const auto& expose : *findExposes)
+    try
     {
-        if (expose.is_null())
-        {
-            foundNull = true;
-            continue;
-        }
-
-        if (expose["Name"] == *name && expose["Type"] == *type)
-        {
-            throw std::invalid_argument("Field already in JSON, not adding");
-        }
-
-        if (foundNull)
-        {
-            continue;
-        }
-
-        lastIndex++;
+        lastIndex = insertIntoExposes(*findExposes, *name, *type, newData,
+                                      schemaDirectory);
     }
-
-    addObjectRuntimeValidateJson(newData, type, schemaDirectory);
-
-    if (foundNull)
+    catch (const std::exception& e)
     {
-        findExposes->at(lastIndex) = newData;
-    }
-    else
-    {
-        findExposes->push_back(newData);
+        lg2::error("Failed to add {NAME} of type {TYPE} to Exposes: {ERR}",
+                   "NAME", *name, "TYPE", *type, "ERR", e);
+        throw;
     }
 
     if (!configCache.writeJsonFiles(systemConfiguration))
