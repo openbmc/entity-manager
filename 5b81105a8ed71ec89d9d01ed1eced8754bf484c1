@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b35de566_2a1c48dd",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-14T12:41:56Z",
+      "side": 1,
+      "message": "should we have a wrapper type for Uid ? \n\ne.g. some class `class NFCUID` that does not implicitly convert from and to string such that conversions are visible when looking at the code.\n\nCurrently the code is using a lot of strings which can lead to confusion among keys, values, property names, ... since they will all implicitly convert to and from each other.",
+      "range": {
+        "startLine": 85,
+        "startChar": 50,
+        "endLine": 85,
+        "endChar": 65
+      },
+      "revId": "5b81105a8ed71ec89d9d01ed1eced8754bf484c1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ba746fd_ecdda04c",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-14T12:41:56Z",
+      "side": 1,
+      "message": "you are mixing 3 NFC specific data structures/members with generic fru device things.\n\nCan we have the NFC specific members in some separate struct ?",
+      "revId": "5b81105a8ed71ec89d9d01ed1eced8754bf484c1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8845183_455b6846",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 1441,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-14T12:41:56Z",
+      "side": 1,
+      "message": "why are you casting bus and address when passing these to internal APIs?\n\nDo we represent an i2c address as `size_t`, `uint32_t`, or `uint8_t` when passing it through **internal** APIs?\n\nLet\u0027s make a choice here and use a single type internally to represent an i2c bus and a single type to represent an i2c address. \n\nNo need to cast this at every call site.",
+      "range": {
+        "startLine": 1437,
+        "startChar": 1,
+        "endLine": 1441,
+        "endChar": 72
+      },
+      "revId": "5b81105a8ed71ec89d9d01ed1eced8754bf484c1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70f031f9_cdb1e8e0",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 1455,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-14T12:41:56Z",
+      "side": 1,
+      "message": "i assume it\u0027s an NFC specific function, should it go into an nfc-specific cpp file?\n\nFrom the naming it\u0027s hard to tell since `tag` and `record` can mean a lot of things so for the reader it could be confusing to find this function here.",
+      "range": {
+        "startLine": 1454,
+        "startChar": 1,
+        "endLine": 1455,
+        "endChar": 70
+      },
+      "revId": "5b81105a8ed71ec89d9d01ed1eced8754bf484c1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f285a869_3e066c34",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 1712,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-14T12:41:56Z",
+      "side": 1,
+      "message": "see https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#f3-keep-functions-short-and-simple\n\nand let\u0027s please extract a function here first before adding further code onto this main function.\n\nconcrete change idea: extract the inotify callback into a separate function",
+      "range": {
+        "startLine": 1696,
+        "startChar": 10,
+        "endLine": 1712,
+        "endChar": 56
+      },
+      "revId": "5b81105a8ed71ec89d9d01ed1eced8754bf484c1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
