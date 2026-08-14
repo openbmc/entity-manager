@@ -56,15 +56,20 @@ class EMDBusInterface
   protected:
     void addObject(
         const std::flat_map<std::string, JsonVariantType, std::less<>>& data,
-        nlohmann::json& systemConfiguration, const std::string& boardId,
-        const sdbusplus::object_path& path, const std::string& board);
+        nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,
+        const sdbusplus::object_path& path, const std::string& board,
+        bool isDynamic = false);
 
-    // @brief: same as 'addObject', but operates on json
     void addObjectJson(nlohmann::json& newData,
                        nlohmann::json& systemConfiguration,
                        const std::string& boardId,
                        const sdbusplus::object_path& path,
-                       const std::string& board);
+                       const std::string& board, bool isDynamic = false);
+
+    void addObjectDynamic(
+        const std::flat_map<std::string, JsonVariantType, std::less<>>& data,
+        nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,
+        const sdbusplus::object_path& path, const std::string& board);
 
   private:
     boost::asio::io_context& io;
