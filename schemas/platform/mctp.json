@@ -1,8 +1,31 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$defs": {
+        "MCTPBridgedEndpoint": {
+            "properties": {
+                "Board": {
+                    "description": "Name of the board inventory object this device is on. The named board must be present, so it is expected as a FOUND precondition in the platform Probe. Optional; if absent, the bridge's own board is used.",
+                    "type": "string"
+                },
+                "Name": {
+                    "description": "Name of the bridged device. It must match the InventoryName of the MCTP VDM configuration that device's board exposes for it, which is how the two are paired up.",
+                    "type": "string"
+                }
+            },
+            "required": ["Name"],
+            "additionalProperties": false,
+            "type": "object"
+        },
         "MCTPUSBDevice": {
             "properties": {
+                "BridgedEndpoints": {
+                    "description": "The devices reachable through this device acting as an MCTP bridge, in EID pool order: the Nth entry is assigned PoolStart + N. The order matters only where the pool holds more than one EID, since with a pool of one there is a single candidate and nothing to order. Which device a bridge gives a given pool EID to is the bridge's own behaviour and cannot be checked from a reply, so a consumer can verify the number of entries against the pool but not their order.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/MCTPBridgedEndpoint"
+                    },
+                    "minItems": 1
+                },
                 "Board": {
                     "description": "Name of the board inventory object this device is on. Consumers use it to find the configuration that board exposes for the device, and to associate the resulting sensors with the correct board or chassis. The named board must be present, so it is expected as a FOUND precondition in the platform Probe.",
                     "type": "string"
