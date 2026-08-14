@@ -1,9 +1,17 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$defs": {
-        "NvidiaMctpVdm": {
-            "description": "Nvidia device that implements an MCTP VDM protocol to provide sensor readings - implemented in dbus-sensors",
+        "NvidiaMctpVdmGpu": {
+            "description": "An Nvidia GPU that implements an MCTP VDM protocol to provide sensor readings - implemented in dbus-sensors",
             "properties": {
+                "DeviceName": {
+                    "description": "The name the device is given on D-Bus and Redfish. It can carry what the device is part of, such as the platform, so that devices of one kind on different systems are told apart. When omitted the device is named by its PlatformConfigName.",
+                    "type": "string"
+                },
+                "PlatformConfigName": {
+                    "description": "The identifier this board gives the device. A platform configuration refers to the device by it, which pairs the device with this record.",
+                    "type": "string"
+                },
                 "Name": {
                     "description": "A recognisable name for the device",
                     "type": "string"
@@ -14,10 +22,71 @@
                 },
                 "Type": {
                     "type": "string",
-                    "const": "NvidiaMctpVdm"
+                    "const": "NvidiaMctpVdmGpu"
                 }
             },
-            "required": ["Name", "Type"],
+            "required": ["PlatformConfigName", "Name", "Type"],
+            "additionalProperties": false,
+            "type": "object"
+        },
+        "NvidiaMctpVdmSma": {
+            "description": "An Nvidia SMA that implements an MCTP VDM protocol to provide sensor readings - implemented in dbus-sensors",
+            "properties": {
+                "DeviceName": {
+                    "description": "The name the device is given on D-Bus and Redfish. It can carry what the device is part of, such as the platform, so that devices of one kind on different systems are told apart. When omitted the device is named by its PlatformConfigName.",
+                    "type": "string"
+                },
+                "PlatformConfigName": {
+                    "description": "The identifier this board gives the device. A platform configuration refers to the device by it, which pairs the device with this record.",
+                    "type": "string"
+                },
+                "Name": {
+                    "description": "A recognisable name for the device",
+                    "type": "string"
+                },
+                "PollRate": {
+                    "description": "Poll the device at this rate, specified in milliseconds, to fetch sensors",
+                    "type": "number"
+                },
+                "Type": {
+                    "type": "string",
+                    "const": "NvidiaMctpVdmSma"
+                }
+            },
+            "required": ["PlatformConfigName", "Name", "Type"],
+            "additionalProperties": false,
+            "type": "object"
+        },
+        "NvidiaMctpVdmCx": {
+            "description": "An Nvidia ConnectX device that implements an MCTP VDM protocol to provide sensor readings - implemented in dbus-sensors",
+            "properties": {
+                "DeviceName": {
+                    "description": "The name the device is given on D-Bus and Redfish. It can carry what the device is part of, such as the platform, so that devices of one kind on different systems are told apart. When omitted the device is named by its PlatformConfigName.",
+                    "type": "string"
+                },
+                "PlatformConfigName": {
+                    "description": "The identifier this board gives the device. A platform configuration refers to the device by it, which pairs the device with this record.",
+                    "type": "string"
+                },
+                "Name": {
+                    "description": "A recognisable name for the device",
+                    "type": "string"
+                },
+                "PollRate": {
+                    "description": "Poll the device at this rate, specified in milliseconds, to fetch sensors",
+                    "type": "number"
+                },
+                "PortCount": {
+                    "description": "The number of network ports on the device",
+                    "type": "number"
+                },
+                "Type": {
+                    "type": "string",
+                    "const": "NvidiaMctpVdmCx"
+                }
+            },
+            "required": ["PlatformConfigName", "Name", "Type"],
+            "additionalProperties": false,
             "type": "object"
         }
     }
