@@ -28,3 +28,5 @@ class ConfigCache
     // Last content written to currentConfiguration.
     std::string lastWritten;
 };
+
+inline constexpr std::string_view dynamicKey = "_dynamic";
