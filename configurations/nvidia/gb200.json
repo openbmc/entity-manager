@@ -8,7 +8,8 @@
         },
         {
             "Name": "NVIDIA GB200 GPU",
-            "Type": "NvidiaMctpVdm"
+            "PlatformConfigName": "GPU_$bus + 1 % 2",
+            "Type": "NvidiaMctpVdmGpu"
         }
     ],
     "Name": "NVIDIA GB200 $bus + 1 % 2",
