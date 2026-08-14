@@ -38,3 +38,12 @@ configuration that board exposes for the device, and to associate the resulting
 sensors with the correct board or chassis. Because the board must already exist
 for this to resolve, it is expected as a `FOUND(...)` precondition in the
 platform `Probe`.
+
+## Describing the devices behind an MCTP bridge
+
+An `MCTPUSBDevice` that acts as an MCTP bridge lists the devices reachable
+through it in `BridgedEndpoints`. Each entry is a record in its own right and
+may name a `Board` of its own, because a bridge and the devices behind it are
+not necessarily on the same board; an entry that names none is on the bridge's.
+The order matters: the Nth entry is assigned the Nth EID of the bridge's pool,
+so entries must be listed in pool order.
