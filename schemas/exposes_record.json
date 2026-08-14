@@ -160,7 +160,13 @@
                     "$ref": "firmware.json#/$defs/SPIFlashFirmware"
                 },
                 {
-                    "$ref": "nvidia.json#/$defs/NvidiaMctpVdm"
+                    "$ref": "nvidia.json#/$defs/NvidiaMctpVdmGpu"
+                },
+                {
+                    "$ref": "nvidia.json#/$defs/NvidiaMctpVdmSma"
+                },
+                {
+                    "$ref": "nvidia.json#/$defs/NvidiaMctpVdmCx"
                 },
                 {
                     "$ref": "cpld.json#/$defs/CPLDFirmware"
