@@ -23,3 +23,5 @@ class ConfigCache
     const std::filesystem::path currentConfiguration;
     const std::filesystem::path versionHashFile;
 };
+
+inline constexpr std::string_view dynamicKey = "_dynamic";
