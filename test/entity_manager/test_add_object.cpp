@@ -21,6 +21,8 @@
 #endif
 
 static constexpr const char* kBoardId = "TestBoard";
+static constexpr const char* kBoardDbusPath =
+    "/xyz/openbmc_project/inventory/system/baseboard/TestBoard";
 
 class AddObjectTest : public ::testing::Test
 {
@@ -103,4 +105,104 @@ TEST_F(AddObjectTest, AddObjectViaDBusCall)
     EXPECT_EQ(onDisk[kBoardId]["Exposes"][0]["Name"], "Sensor1");
     EXPECT_EQ(onDisk[kBoardId]["Exposes"][0]["Type"], "Temperature");
     EXPECT_EQ(onDisk[kBoardId]["Exposes"][0]["Address"], uint64_t{0x41});
+}
+
+TEST_F(AddObjectTest, AddObjectPersists)
+{
+    static constexpr const char* kTestService =
+        "xyz.openbmc_project.EntityManager.Test.Persist";
+    bus->request_name(kTestService);
+
+    auto em = makeEM();
+
+    std::map<sdbusplus::object_path, std::string> newBoards;
+    em->postBoardToDBus(kBoardId,
+                        em->systemConfiguration[kBoardId]
+                            .get_ref<const nlohmann::json::object_t&>(),
+                        newBoards);
+
+    const sdbusplus::object_path boardPath{kBoardDbusPath};
+
+    using Params = std::map<std::string, dbus_interface::JsonVariantType>;
+    bool done = false;
+    bus->async_method_call(
+        [&done, &io = io](boost::system::error_code ec) {
+            EXPECT_FALSE(ec) << ec.message();
+            done = true;
+            io.stop();
+        },
+        kTestService, boardPath, "xyz.openbmc_project.AddObject", "AddObject",
+        Params{{"Name", std::string{"Sensor0"}},
+               {"Type", std::string{"Temperature"}},
+               {"Address", uint64_t{0x40}}});
+
+    io.run_for(std::chrono::seconds(5));
+    ASSERT_TRUE(done) << "AddObject D-Bus call did not complete";
+
+    std::ifstream f{tmpDir / "system.json"};
+    ASSERT_TRUE(f.is_open()) << "system.json not created by AddObject";
+    auto onDisk = nlohmann::json::parse(f);
+    const auto& entry = onDisk[kBoardId]["Exposes"][0];
+    EXPECT_EQ(entry["Name"], "Sensor0");
+    EXPECT_EQ(entry["Type"], "Temperature");
+    EXPECT_EQ(entry["Address"], uint64_t{0x40});
+}
+
+TEST_F(AddObjectTest, AddObjectDynamicDoesNotPersist)
+{
+    static constexpr const char* kTestService =
+        "xyz.openbmc_project.EntityManager.Test.Dynamic";
+    bus->request_name(kTestService);
+
+    auto em = makeEM();
+
+    std::map<sdbusplus::object_path, std::string> newBoards;
+    em->postBoardToDBus(kBoardId,
+                        em->systemConfiguration[kBoardId]
+                            .get_ref<const nlohmann::json::object_t&>(),
+                        newBoards);
+
+    const sdbusplus::object_path boardPath{kBoardDbusPath};
+
+    using Params = std::map<std::string, dbus_interface::JsonVariantType>;
+
+    // Seed system.json with a static entry so the file exists before the
+    // dynamic call.
+    bool done = false;
+    bus->async_method_call(
+        [&done](boost::system::error_code ec) {
+            EXPECT_FALSE(ec) << ec.message();
+            done = true;
+        },
+        kTestService, boardPath, "xyz.openbmc_project.AddObject", "AddObject",
+        Params{{"Name", std::string{"StaticSensor"}},
+               {"Type", std::string{"Temperature"}}});
+    io.run_for(std::chrono::seconds(5));
+    ASSERT_TRUE(done) << "AddObject D-Bus call did not complete";
+
+    done = false;
+    bus->async_method_call(
+        [&done, &io = io](boost::system::error_code ec) {
+            EXPECT_FALSE(ec) << ec.message();
+            done = true;
+            io.stop();
+        },
+        kTestService, boardPath, "xyz.openbmc_project.AddObject",
+        "AddObjectDynamic",
+        Params{{"Name", std::string{"DynSensor"}},
+               {"Type", std::string{"Humidity"}}});
+    io.run_for(std::chrono::seconds(5));
+    ASSERT_TRUE(done) << "AddObjectDynamic D-Bus call did not complete";
+
+    std::ifstream f{tmpDir / "system.json"};
+    if (!f.is_open())
+    {
+        return; // nothing persisted — dynamic entry absent
+    }
+    auto onDisk = nlohmann::json::parse(f);
+    const auto& exposes = onDisk[kBoardId]["Exposes"];
+    bool dynFound = std::ranges::any_of(exposes, [](const auto& e) {
+        return !e.is_null() && e.value("Name", "") == "DynSensor";
+    });
+    EXPECT_FALSE(dynFound) << "dynamic entry must not appear in system.json";
 }
