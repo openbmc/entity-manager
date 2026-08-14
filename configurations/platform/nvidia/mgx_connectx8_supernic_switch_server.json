@@ -1,0 +1,234 @@
+{
+    "Exposes": [
+        {
+            "Board": "Nvidia IMGX ConnectX8 SuperNIC Switch",
+            "BridgedEndpoints": [
+                {
+                    "Board": "Nvidia RTX PRO 6000 Blackwell 1",
+                    "Name": "GPU 0"
+                }
+            ],
+            "Configuration": 1,
+            "Interface": 0,
+            "Name": "GPU 0 SMA",
+            "Port": [
+                1,
+                2,
+                1
+            ],
+            "RootHubPosition": 0,
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Board": "Nvidia IMGX ConnectX8 SuperNIC Switch",
+            "BridgedEndpoints": [
+                {
+                    "Board": "Nvidia RTX PRO 6000 Blackwell 3",
+                    "Name": "GPU 2"
+                }
+            ],
+            "Configuration": 1,
+            "Interface": 0,
+            "Name": "GPU 2 SMA",
+            "Port": [
+                1,
+                4,
+                1
+            ],
+            "RootHubPosition": 0,
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Board": "Nvidia IMGX ConnectX8 SuperNIC Switch",
+            "BridgedEndpoints": [
+                {
+                    "Board": "Nvidia RTX PRO 6000 Blackwell 2",
+                    "Name": "GPU 1"
+                }
+            ],
+            "Configuration": 1,
+            "Interface": 0,
+            "Name": "GPU 1 SMA",
+            "Port": [
+                1,
+                1,
+                2,
+                1
+            ],
+            "RootHubPosition": 0,
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Board": "Nvidia IMGX ConnectX8 SuperNIC Switch",
+            "BridgedEndpoints": [
+                {
+                    "Board": "Nvidia RTX PRO 6000 Blackwell 5",
+                    "Name": "GPU 4"
+                }
+            ],
+            "Configuration": 1,
+            "Interface": 0,
+            "Name": "GPU 4 SMA",
+            "Port": [
+                1,
+                1,
+                4,
+                1
+            ],
+            "RootHubPosition": 0,
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Board": "Nvidia IMGX ConnectX8 SuperNIC Switch",
+            "BridgedEndpoints": [
+                {
+                    "Board": "Nvidia RTX PRO 6000 Blackwell 4",
+                    "Name": "GPU 3"
+                }
+            ],
+            "Configuration": 1,
+            "Interface": 0,
+            "Name": "GPU 3 SMA",
+            "Port": [
+                1,
+                2,
+                2
+            ],
+            "RootHubPosition": 0,
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Board": "Nvidia IMGX ConnectX8 SuperNIC Switch",
+            "BridgedEndpoints": [
+                {
+                    "Board": "Nvidia RTX PRO 6000 Blackwell 7",
+                    "Name": "GPU 6"
+                }
+            ],
+            "Configuration": 1,
+            "Interface": 0,
+            "Name": "GPU 6 SMA",
+            "Port": [
+                1,
+                4,
+                2
+            ],
+            "RootHubPosition": 0,
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Board": "Nvidia IMGX ConnectX8 SuperNIC Switch",
+            "BridgedEndpoints": [
+                {
+                    "Board": "Nvidia RTX PRO 6000 Blackwell 6",
+                    "Name": "GPU 5"
+                }
+            ],
+            "Configuration": 1,
+            "Interface": 0,
+            "Name": "GPU 5 SMA",
+            "Port": [
+                1,
+                1,
+                2,
+                2
+            ],
+            "RootHubPosition": 0,
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Board": "Nvidia IMGX ConnectX8 SuperNIC Switch",
+            "BridgedEndpoints": [
+                {
+                    "Board": "Nvidia RTX PRO 6000 Blackwell 8",
+                    "Name": "GPU 7"
+                }
+            ],
+            "Configuration": 1,
+            "Interface": 0,
+            "Name": "GPU 7 SMA",
+            "Port": [
+                1,
+                1,
+                4,
+                2
+            ],
+            "RootHubPosition": 0,
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Board": "Nvidia IMGX ConnectX8 SuperNIC Switch",
+            "BridgedEndpoints": [
+                {
+                    "Board": "Nvidia IMGX ConnectX8 SuperNIC Switch",
+                    "Name": "CX8 0"
+                },
+                {
+                    "Board": "Nvidia IMGX ConnectX8 SuperNIC Switch",
+                    "Name": "CX8 1"
+                }
+            ],
+            "Configuration": 1,
+            "Interface": 0,
+            "Name": "CX8 SMA 0",
+            "Port": [
+                1,
+                2,
+                3
+            ],
+            "RootHubPosition": 0,
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Board": "Nvidia IMGX ConnectX8 SuperNIC Switch",
+            "BridgedEndpoints": [
+                {
+                    "Board": "Nvidia IMGX ConnectX8 SuperNIC Switch",
+                    "Name": "CX8 2"
+                },
+                {
+                    "Board": "Nvidia IMGX ConnectX8 SuperNIC Switch",
+                    "Name": "CX8 3"
+                }
+            ],
+            "Configuration": 1,
+            "Interface": 0,
+            "Name": "CX8 SMA 1",
+            "Port": [
+                1,
+                1,
+                2,
+                3
+            ],
+            "RootHubPosition": 0,
+            "Type": "MCTPUSBDevice"
+        }
+    ],
+    "Name": "Nvidia MGX ConnectX8 SuperNIC Server",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'ConnectX-8 Alon', 'BOARD_MANUFACTURER': 'Nvidia', 'PRODUCT_PRODUCT_NAME': 'ConnectX-8 Alon'})",
+        "OR",
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'MSX4-MG1-000'})",
+        "AND",
+        "FOUND('Nvidia Alon8 HPM')",
+        "AND",
+        "FOUND('Nvidia IMGX ConnectX8 SuperNIC Switch')",
+        "AND",
+        "FOUND('Nvidia RTX PRO 6000 Blackwell 1')",
+        "AND",
+        "FOUND('Nvidia RTX PRO 6000 Blackwell 2')",
+        "AND",
+        "FOUND('Nvidia RTX PRO 6000 Blackwell 3')",
+        "AND",
+        "FOUND('Nvidia RTX PRO 6000 Blackwell 4')",
+        "AND",
+        "FOUND('Nvidia RTX PRO 6000 Blackwell 5')",
+        "AND",
+        "FOUND('Nvidia RTX PRO 6000 Blackwell 6')",
+        "AND",
+        "FOUND('Nvidia RTX PRO 6000 Blackwell 7')",
+        "AND",
+        "FOUND('Nvidia RTX PRO 6000 Blackwell 8')"
+    ],
+    "Type": "Platform"
+}
