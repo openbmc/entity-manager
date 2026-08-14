@@ -1,9 +1,13 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$defs": {
-        "NvidiaMctpVdm": {
-            "description": "Nvidia device that implements an MCTP VDM protocol to provide sensor readings - implemented in dbus-sensors",
+        "NvidiaMctpVdmGpu": {
+            "description": "An Nvidia GPU that implements an MCTP VDM protocol to provide sensor readings - implemented in dbus-sensors",
             "properties": {
+                "InventoryName": {
+                    "description": "Name this device is given on D-Bus. A platform configuration names the device with the same string, which is how a device described by a platform is paired with the configuration its board exposes for it.",
+                    "type": "string"
+                },
                 "Name": {
                     "description": "A recognisable name for the device",
                     "type": "string"
@@ -14,10 +18,63 @@
                 },
                 "Type": {
                     "type": "string",
-                    "const": "NvidiaMctpVdm"
+                    "const": "NvidiaMctpVdmGpu"
                 }
             },
-            "required": ["Name", "Type"],
+            "required": ["InventoryName", "Name", "Type"],
+            "additionalProperties": false,
+            "type": "object"
+        },
+        "NvidiaMctpVdmSma": {
+            "description": "An Nvidia SMA that implements an MCTP VDM protocol to provide sensor readings - implemented in dbus-sensors",
+            "properties": {
+                "InventoryName": {
+                    "description": "Name this device is given on D-Bus. A platform configuration names the device with the same string, which is how a device described by a platform is paired with the configuration its board exposes for it.",
+                    "type": "string"
+                },
+                "Name": {
+                    "description": "A recognisable name for the device",
+                    "type": "string"
+                },
+                "PollRate": {
+                    "description": "Poll the device at this rate, specified in milliseconds, to fetch sensors",
+                    "type": "number"
+                },
+                "Type": {
+                    "type": "string",
+                    "const": "NvidiaMctpVdmSma"
+                }
+            },
+            "required": ["InventoryName", "Name", "Type"],
+            "additionalProperties": false,
+            "type": "object"
+        },
+        "NvidiaMctpVdmCx": {
+            "description": "An Nvidia ConnectX device that implements an MCTP VDM protocol to provide sensor readings - implemented in dbus-sensors",
+            "properties": {
+                "InventoryName": {
+                    "description": "Name this device is given on D-Bus. A platform configuration names the device with the same string, which is how a device described by a platform is paired with the configuration its board exposes for it.",
+                    "type": "string"
+                },
+                "Name": {
+                    "description": "A recognisable name for the device",
+                    "type": "string"
+                },
+                "PollRate": {
+                    "description": "Poll the device at this rate, specified in milliseconds, to fetch sensors",
+                    "type": "number"
+                },
+                "PortCount": {
+                    "description": "The number of network ports on the device",
+                    "type": "number"
+                },
+                "Type": {
+                    "type": "string",
+                    "const": "NvidiaMctpVdmCx"
+                }
+            },
+            "required": ["InventoryName", "Name", "Type"],
+            "additionalProperties": false,
             "type": "object"
         }
     }

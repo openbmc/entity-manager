@@ -47,3 +47,17 @@ may name a `Board` of its own, because a bridge and the devices behind it are
 not necessarily on the same board; an entry that names none is on the bridge's.
 The order matters: the Nth entry is assigned the Nth EID of the bridge's pool,
 so entries must be listed in pool order.
+
+## Pairing a device with the configuration its board exposes
+
+`Board` says which board to look in, and the record's name says which of that
+board's records to use. A board describes each of its devices with a record
+carrying an `InventoryName`, and a platform names the same device with that
+string: `Name` for the device itself, and the entry's `Name` for a bridged one.
+A board can carry several records a consumer cannot otherwise tell apart, so the
+name is what identifies one of them.
+
+That name is also what the device is called on D-Bus. Keeping it in the board's
+configuration rather than the platform's means a platform does not have to be
+edited when a device is renamed, and a board that is instantiated more than once
+can template it.
