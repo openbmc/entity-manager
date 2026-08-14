@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42c321ea_616898b6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-08-14T06:24:38Z",
+      "side": 1,
+      "message": "Could you add a Tested section describing what was validated (including duplicate rejection and invalid payload cases)?",
+      "revId": "ee2629792a2ba0d90ff160ca302b5c2b709bd857",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e607a2df_e8b7cb3f",
+        "filename": "src/entity_manager/dbus_interface.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-08-14T06:24:38Z",
+      "side": 1,
+      "message": "Please add or extend tests to confirm first-null-slot reuse and insertion index semantics are preserved.",
+      "revId": "ee2629792a2ba0d90ff160ca302b5c2b709bd857",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "524832d9_91a84aee",
+        "filename": "src/entity_manager/dbus_interface.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-08-14T06:24:38Z",
+      "side": 1,
+      "message": "Refactor looks clean, but validation now appears to run before duplicate detection (via helper call). If this patch is intended to be no behavior change, can we keep previous ordering (duplicate check first)?",
+      "revId": "ee2629792a2ba0d90ff160ca302b5c2b709bd857",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4517c1f_c3695088",
+        "filename": "src/entity_manager/dbus_interface.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-08-14T06:24:38Z",
+      "side": 1,
+      "message": "With this order, a duplicate plus schema-invalid request may return a different first error than before. Could you confirm whether that change is intended?",
+      "revId": "ee2629792a2ba0d90ff160ca302b5c2b709bd857",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
