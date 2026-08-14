@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$defs": {
         "NvidiaMctpVdm": {
-            "description": "Nvidia device that implements an MCTP VDM protocol to provide sensor readings - implemented in dbus-sensors",
+            "description": "Nvidia device that implements an MCTP VDM protocol to provide sensor readings - implemented in dbus-sensors. Deprecated in favour of the per device kind types, which let a board describe more than one kind of device.",
             "properties": {
                 "Name": {
                     "description": "A recognisable name for the device",
@@ -18,6 +18,82 @@
                 }
             },
             "required": ["Name", "Type"],
+            "type": "object"
+        },
+        "NvidiaMctpVdmGpu": {
+            "description": "An Nvidia GPU that implements an MCTP VDM protocol to provide sensor readings - implemented in dbus-sensors",
+            "properties": {
+                "MctpConfigName": {
+                    "description": "Name of the MCTP device configuration this record belongs to. Only needed when a board carries more than one record of this type, in which case consumers cannot tell them apart otherwise.",
+                    "type": "string"
+                },
+                "Name": {
+                    "description": "A recognisable name for the device",
+                    "type": "string"
+                },
+                "PollRate": {
+                    "description": "Poll the device at this rate, specified in milliseconds, to fetch sensors",
+                    "type": "number"
+                },
+                "Type": {
+                    "type": "string",
+                    "const": "NvidiaMctpVdmGpu"
+                }
+            },
+            "required": ["Name", "Type"],
+            "additionalProperties": false,
+            "type": "object"
+        },
+        "NvidiaMctpVdmSma": {
+            "description": "An Nvidia SMA that implements an MCTP VDM protocol to provide sensor readings - implemented in dbus-sensors",
+            "properties": {
+                "MctpConfigName": {
+                    "description": "Name of the MCTP device configuration this record belongs to. Only needed when a board carries more than one record of this type, in which case consumers cannot tell them apart otherwise.",
+                    "type": "string"
+                },
+                "Name": {
+                    "description": "A recognisable name for the device",
+                    "type": "string"
+                },
+                "PollRate": {
+                    "description": "Poll the device at this rate, specified in milliseconds, to fetch sensors",
+                    "type": "number"
+                },
+                "Type": {
+                    "type": "string",
+                    "const": "NvidiaMctpVdmSma"
+                }
+            },
+            "required": ["Name", "Type"],
+            "additionalProperties": false,
+            "type": "object"
+        },
+        "NvidiaMctpVdmCx": {
+            "description": "An Nvidia ConnectX device that implements an MCTP VDM protocol to provide sensor readings - implemented in dbus-sensors",
+            "properties": {
+                "MctpConfigName": {
+                    "description": "Name of the MCTP device configuration this record belongs to. Only needed when a board carries more than one record of this type, in which case consumers cannot tell them apart otherwise.",
+                    "type": "string"
+                },
+                "Name": {
+                    "description": "A recognisable name for the device",
+                    "type": "string"
+                },
+                "PollRate": {
+                    "description": "Poll the device at this rate, specified in milliseconds, to fetch sensors",
+                    "type": "number"
+                },
+                "PortCount": {
+                    "description": "The number of network ports on the device",
+                    "type": "number"
+                },
+                "Type": {
+                    "type": "string",
+                    "const": "NvidiaMctpVdmCx"
+                }
+            },
+            "required": ["Name", "Type"],
+            "additionalProperties": false,
             "type": "object"
         }
     }
