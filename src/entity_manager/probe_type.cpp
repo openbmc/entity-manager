@@ -22,7 +22,9 @@ FoundProbeTypeT findProbeType(const std::string& probe)
     for (probeType = probeTypes.begin(); probeType != probeTypes.end();
          ++probeType)
     {
-        if (probe.find(probeType->first) != std::string::npos)
+        const auto start = probe.find_first_not_of(" \t");
+        if (start != std::string::npos &&
+            probe.find(probeType->first, start) == start)
         {
             return probeType->second;
         }
