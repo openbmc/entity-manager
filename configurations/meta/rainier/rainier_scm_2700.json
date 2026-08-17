@@ -316,7 +316,7 @@
             "OutLimitMin": 0,
             "PCoefficient": -5.0,
             "PositiveHysteresis": 0.0,
-            "SetPoint": 76.0,
+            "SetPoint": 85.0,
             "SlewNeg": 0.0,
             "SlewPos": 0.0,
             "Type": "Pid",
@@ -461,7 +461,7 @@
             "ILimitMax": 100,
             "ILimitMin": -50,
             "Inputs": [
-                "NIC_Temp_4"
+                "NIC_(TEMP|Temp)_4"
             ],
             "Name": "PID_NIC",
             "NegativeHysteresis": 2.0,
@@ -496,9 +496,9 @@
             "NegativeHysteresis": 2.0,
             "Output": [
                 22.0,
-                28.0,
+                26.0,
+                30.0,
                 34.0,
-                40.0,
                 95.0
             ],
             "PositiveHysteresis": 0.0,
@@ -523,11 +523,9 @@
             "NegativeHysteresis": 3.0,
             "Output": [
                 22.0,
+                26.0,
+                30.0,
                 34.0,
-                38.0,
-                42.0,
-                46.0,
-                50.0,
                 95.0
             ],
             "PositiveHysteresis": 0.0,
@@ -536,9 +534,7 @@
                 67.0,
                 69.0,
                 71.0,
-                73.0,
-                75.0,
-                82.0
+                91.0
             ],
             "Type": "Stepwise",
             "Zones": [
@@ -667,7 +663,7 @@
         {
             "Class": "temp",
             "Inputs": [
-                "NIC_Temp_4"
+                "NIC_(TEMP|Temp)_4"
             ],
             "Name": "Stepwise_NIC",
             "NegativeHysteresis": 2.0,
@@ -681,28 +677,6 @@
                 80.0,
                 90.0,
                 100.0
-            ],
-            "Type": "Stepwise",
-            "Zones": [
-                "Zone 1"
-            ]
-        },
-        {
-            "Class": "temp",
-            "Inputs": [
-                "MB_INLET_TEMP_C",
-                "MB_OUTLET_TEMP_C",
-                "PDB_L_TEMP_C",
-                "PDB_R_TEMP_C"
-            ],
-            "Name": "Stepwise_OTHERS",
-            "NegativeHysteresis": 0.0,
-            "Output": [
-                10.0
-            ],
-            "PositiveHysteresis": 0.0,
-            "Reading": [
-                5.0
             ],
             "Type": "Stepwise",
             "Zones": [
