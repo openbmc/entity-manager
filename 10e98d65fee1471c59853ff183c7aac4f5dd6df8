@@ -16,6 +16,29 @@
       "message": "start is loop-invariant; hoist it before the for loop.",
       "revId": "10e98d65fee1471c59853ff183c7aac4f5dd6df8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f636211e_1c7fc86f",
+        "filename": "src/entity_manager/probe_type.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-17T11:00:11Z",
+      "side": 1,
+      "message": "i don\u0027t think it\u0027s doing us any good to put band-aids on this implementation.\n\nThere are no tests here and no guarantees that it will work well with the other call sites of this function at runtime.\n\nIt\u0027s not clear how it\u0027s better than what was there before or which other edge cases it might introduce. It\u0027s just fishing for tokens in a string.\n\nThere is a very simple and straight-forward solutions to fix these issues.\n\n1. define proper ENBF grammar for the entity-manager probe statement\n2. generate a lexer for that or use some existing library\n3. hand-write or generate a recursive descent parser\n4. at this point you have a proper AST\n5. writing some tests to check that it is parsing things as intended.\n\nThen you can do any other processing as required from that AST, including evaluation and other visitor logic.\n\nOnce you have a proper parser like that you cannot run into problems like here anymore.\n\nhttps://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form\n\nAs a first step i would suggest writing down a grammar of what we actually want to parse.",
+      "range": {
+        "startLine": 9,
+        "startChar": 1,
+        "endLine": 34,
+        "endChar": 1
+      },
+      "revId": "10e98d65fee1471c59853ff183c7aac4f5dd6df8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
