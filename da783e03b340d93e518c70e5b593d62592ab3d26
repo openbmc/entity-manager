@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e7b6d53_428266f7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 15
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2026-08-17T14:18:32Z",
+      "side": 1,
+      "message": "nit: Could be helpful to run busctl with `-l` option to see the full object path of the chassis",
+      "revId": "da783e03b340d93e518c70e5b593d62592ab3d26",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41dad809_5253916c",
+        "filename": "configurations/meta/yv4/yosemite4_sentineldome_chassis.json",
+        "patchSetId": 15
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2026-08-17T14:18:32Z",
+      "side": 1,
+      "message": "So with the current configs we only associate chassis 1 with the drive?",
+      "revId": "da783e03b340d93e518c70e5b593d62592ab3d26",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed5b3cb7_2ca75407",
+        "filename": "schemas/openbmc-dbus.json",
+        "patchSetId": 15
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2026-08-17T14:18:32Z",
+      "side": 1,
+      "message": "Adding `SubModel` to the schema should be a separate patch, especially since you are not really using it in your config (set to emtpy string).",
+      "range": {
+        "startLine": 30,
+        "startChar": 32,
+        "endLine": 32,
+        "endChar": 33
+      },
+      "revId": "da783e03b340d93e518c70e5b593d62592ab3d26",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
