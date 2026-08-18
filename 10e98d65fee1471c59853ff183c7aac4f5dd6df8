@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "da040281_5568f3a5",
+        "filename": "src/entity_manager/probe_type.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1003117
+      },
+      "writtenOn": "2026-08-18T05:02:46Z",
+      "side": 1,
+      "message": "In the latest patchset the function was reworked to exact-match the keywords, and the whitespace position is now computed once before the loop rather than inside it, so this loop-invariant recomputation is gone.",
+      "parentUuid": "33e2e878_bab9a35a",
+      "revId": "10e98d65fee1471c59853ff183c7aac4f5dd6df8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f636211e_1c7fc86f",
