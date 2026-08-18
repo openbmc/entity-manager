@@ -266,6 +266,24 @@
       "parentUuid": "1187ba7a_a1a6ca71",
       "revId": "07589a1f72a4f105d2e500e8a1f415a050adc971",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3423198_90f7cbc3",
+        "filename": "configurations/meta/ventura2/ventura2_leak_canbus.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 6660,
+      "author": {
+        "id": 1002532
+      },
+      "writtenOn": "2026-08-18T02:46:25Z",
+      "side": 1,
+      "message": "\u003e Does these different boards show up in inventory depending on the SKU type ?\n\nYes, they should. The only concern here is that these boards probe the FRU by themselves. If someone manually installs a CAN Bus module board into a SKU1 system, the CAN Bus Module board will definitely show up in the inventory, which is not expected.\n\nI can move these detectors into their corresponding boards and enhance the probe condition to check both board FRU and SKU type.\n\nDo you think this is feasible or do we need more discussion on this topic?",
+      "parentUuid": "5498ab5d_a5326f4a",
+      "revId": "07589a1f72a4f105d2e500e8a1f415a050adc971",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
