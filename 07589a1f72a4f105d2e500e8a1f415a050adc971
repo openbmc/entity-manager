@@ -284,6 +284,24 @@
       "parentUuid": "5498ab5d_a5326f4a",
       "revId": "07589a1f72a4f105d2e500e8a1f415a050adc971",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51a4f318_1529699c",
+        "filename": "configurations/meta/ventura2/ventura2_leak_canbus.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 6660,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-18T21:41:44Z",
+      "side": 1,
+      "message": "\u003e \u003e Does these different boards show up in inventory depending on the SKU type ?\n\u003e \n\u003e Yes, they should. The only concern here is that these boards probe the FRU by themselves. If someone manually installs a CAN Bus module board into a SKU1 system, the CAN Bus Module board will definitely show up in the inventory, which is not expected.\n\u003e \n\u003e I can move these detectors into their corresponding boards and enhance the probe condition to check both board FRU and SKU type.\n\u003e \n\u003e Do you think this is feasible or do we need more discussion on this topic?\n\nYou have the CANBus Board/FRU in EM configuration https://github.com/openbmc/entity-manager/blob/master/configurations/meta/ventura2/ventura2_canbus.json#L10, which will be exposed to tooling.\n\nAnd similarly you have miniSAS boards/FRU in EM configuration too -\nhttps://github.com/openbmc/entity-manager/blob/master/configurations/meta/ventura2/ventura2_minisas_top.json\nhttps://github.com/openbmc/entity-manager/blob/master/configurations/meta/ventura2/ventura2_minisas_bottom.json\n\nSo, i really don\u0027t understand why u r not using these to expose the right configuration records rather than creating a fake board \"Ventura2 Leak\" and exposing things off that ?",
+      "parentUuid": "c3423198_90f7cbc3",
+      "revId": "07589a1f72a4f105d2e500e8a1f415a050adc971",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
