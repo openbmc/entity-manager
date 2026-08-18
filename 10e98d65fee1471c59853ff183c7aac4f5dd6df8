@@ -81,6 +81,30 @@
       },
       "revId": "10e98d65fee1471c59853ff183c7aac4f5dd6df8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4da1db91_5e511d8c",
+        "filename": "src/entity_manager/probe_type.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-18T20:44:32Z",
+      "side": 1,
+      "message": "underscorified some things for clarity, thanks for formalizing it 👍\n\nThis would be great to put in some markdown docs in EM repo..\n\n```\nprobe            \u003d operand , { binary_op , operand } , [ match_modifier ] ;\noperand          \u003d boolean_literal | found_probe | dbus_probe ;\nbinary_op        \u003d \"AND\" | \"OR\" ;\nmatch_modifier   \u003d \"MATCH_ONE\" ;\nboolean_literal  \u003d \"TRUE\" | \"FALSE\" ;\nfound_probe      \u003d \"FOUND\" , \"(\" , quoted_string , \")\" ;\ndbus_probe       \u003d interface_name , \"(\" , match_object , \")\" ;\ninterface_name   \u003d identifier , { \".\" , identifier } ;\nidentifier       \u003d ( letter | \"\" ) , { letter | digit | \"\" } ;\nmatch_object     \u003d \"{\" , [ match_pair , { \",\" , match_pair } ] , \"}\" ;\nmatch_pair       \u003d quoted_string , \":\" , match_value ;\nmatch_value      \u003d quoted_string | number | json | boolean_literal ;\nquoted_string    \u003d \"\u0027\" , { character - \"\u0027\" } , \"\u0027\" ;\n```\n\ni did not find any mistake yet, thanks for putting in this work!\n\n\u003e Evaluation semantics to preserve:\n\nThanks for digging these up\n\n\u003e My recommendation is (a), keeping this refactor behavior-preserving, and treating precedence + grouping as a separate opt-in change if ever desired. Which would you prefer?\n\nI would agree with you to go for behavior-preserving changes (option (a)) for now since we do not have testcases yet. Then at some point in the future we can more easily change the behavior once we have a proper parser and testcases.\n\n\u003e Keep the JSON array-of-statements surface form (all existing configs use it)?\n\nMaybe this feature was a readability thing. probe statements can get quite long so putting it in an array could improve readability for long probe statements once json formatting kicks in.\n\nFYI (unrelated to probes) i tried before to remove the array-of-em-configs edge case but that went nowhere.\n\nFor our parser we can concatenate the array members with a single whitespace in between (just before parsing) and simply parse that to have a single entry point and avoid edge cases.\n\n\u003e New probe_parser.{hpp,cpp} producing an AST, with doProbe becoming an AST evaluator — does that placement work?\n\nIt works for me but i am not the maintainer so you can ask Matt what he likes better.\n\n\u003e Proposed phasing (separate changes):\n\nIf you build up some code without initial users (beyond tests) then that\u0027s a reason someone can raise a comment about merging \u0027dead code\u0027.\n\nIs it possible to first implement a lexer + tests only and make the existing probe machinery operate on tokens instead of strings?\n\nOperating on tokens should be simpler and already avoid one case you were meaning to fix - boolean operators mistakenly found inside strings.\n\nThen if someone finds some nitpick to block it at least you didn\u0027t waste time making a full series.\n\nOverall it would be great if you could check this whole idea with Matt Spinler since he is currently the only one able to merge things :)\n\nOtherwise you might end up sinking a bunch of time based on ideas you got from some random reviewer :D",
+      "parentUuid": "fce04133_ea241ce3",
+      "range": {
+        "startLine": 9,
+        "startChar": 1,
+        "endLine": 34,
+        "endChar": 1
+      },
+      "revId": "10e98d65fee1471c59853ff183c7aac4f5dd6df8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
