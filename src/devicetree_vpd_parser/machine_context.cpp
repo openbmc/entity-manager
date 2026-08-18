@@ -22,6 +22,20 @@ void MachineContext::populateFromDeviceTree()
         MachineContext::Asset::serial_number(nodeVal);
         vpdStream.close();
     }
+
+    vpdStream.open(nodeBasePath + std::string("part-number"));
+    if (vpdStream && std::getline(vpdStream, nodeVal))
+    {
+        MachineContext::Asset::part_number(nodeVal);
+        vpdStream.close();
+    }
+
+    vpdStream.open(nodeBasePath + std::string("manufacturer"));
+    if (vpdStream && std::getline(vpdStream, nodeVal))
+    {
+        MachineContext::Asset::manufacturer(nodeVal);
+        vpdStream.close();
+    }
 };
 
 bool MachineContext::keyNodeExists()
