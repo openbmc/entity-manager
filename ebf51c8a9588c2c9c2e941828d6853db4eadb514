@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1535a52b_b38c6c1a",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-18T09:32:52Z",
+      "side": 1,
+      "message": "since `FruDetails` and `NfcFruState` are often passed together and their lifetimes are almost the same, what if we make the nfc specific struct a member of the overall fru details struct?\n\nThat way we avoid passing 2 parameters each time. Do you think it would help?\n\n```suggestion\n    std::set\u003csize_t\u003e addressBlocklist;\n\n    NfcFruState nfcFruState;\n```",
+      "revId": "ebf51c8a9588c2c9c2e941828d6853db4eadb514",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2679cc63_eae01c80",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-18T09:32:52Z",
+      "side": 1,
+      "message": "nit, if fru key were a proper abstraction, we would probably at least have a type alias for it.\n\n```suggestion\n    // maps NfcUid -\u003e {i2c bus, i2c address}\n    std::map\u003cNfcUid, std::pair\u003cuint32_t, uint32_t\u003e\u003e uidToFruKey;\n```\n\notherwise we could also define a type alias\n`using FruKey \u003d std::pair\u003cuint32_t, uint32_t\u003e;` and use that throughout  but that would be another cleanup patch.",
+      "range": {
+        "startLine": 116,
+        "startChar": 4,
+        "endLine": 116,
+        "endChar": 63
+      },
+      "revId": "ebf51c8a9588c2c9c2e941828d6853db4eadb514",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ee5af5e_6cd385ca",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-18T09:32:52Z",
+      "side": 1,
+      "message": "can this go into `neard_dbus.hpp` or `nfc.hpp` or another nfc specific header file?\n\nThat way we can keep `fru_device.cpp` focused on generic fru device logic",
+      "range": {
+        "startLine": 89,
+        "startChar": 1,
+        "endLine": 118,
+        "endChar": 2
+      },
+      "revId": "ebf51c8a9588c2c9c2e941828d6853db4eadb514",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c38f4e29_083a216e",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 1561,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-18T09:32:52Z",
+      "side": 1,
+      "message": "these 3 functions \n\n- handleNfcTagRemoved\n- queryNeardObjects\n- setupNfcMonitor\n\nlook nfc specific and not core fru-device logic. Is there a reason why they have to go into `fru_device.cpp` ?\n\nIs there some `nfc.cpp` or similar file we could have with these functions?",
+      "revId": "ebf51c8a9588c2c9c2e941828d6853db4eadb514",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
