@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "37e3074e_0b1f7b96",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1002728
+      },
+      "writtenOn": "2026-08-18T05:57:09Z",
+      "side": 1,
+      "message": "Done. Added NfcUid as an explicit wrapper type and now use it in NFC maps/flows to make UID conversions explicit and avoid string mix-ups.",
+      "parentUuid": "b35de566_2a1c48dd",
+      "range": {
+        "startLine": 85,
+        "startChar": 50,
+        "endLine": 85,
+        "endChar": 65
+      },
+      "revId": "5b81105a8ed71ec89d9d01ed1eced8754bf484c1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6ba746fd_ecdda04c",
@@ -41,6 +65,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a255ae5_43a37673",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1002728
+      },
+      "writtenOn": "2026-08-18T05:57:09Z",
+      "side": 1,
+      "message": "Done. Moved NFC-specific runtime data into NfcFruState and kept FruDetails focused on generic FRU scan/publish state.",
+      "parentUuid": "6ba746fd_ecdda04c",
+      "revId": "5b81105a8ed71ec89d9d01ed1eced8754bf484c1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f8845183_455b6846",
@@ -54,6 +96,30 @@
       "writtenOn": "2026-08-14T12:41:56Z",
       "side": 1,
       "message": "why are you casting bus and address when passing these to internal APIs?\n\nDo we represent an i2c address as `size_t`, `uint32_t`, or `uint8_t` when passing it through **internal** APIs?\n\nLet\u0027s make a choice here and use a single type internally to represent an i2c bus and a single type to represent an i2c address. \n\nNo need to cast this at every call site.",
+      "range": {
+        "startLine": 1437,
+        "startChar": 1,
+        "endLine": 1441,
+        "endChar": 72
+      },
+      "revId": "5b81105a8ed71ec89d9d01ed1eced8754bf484c1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd3e8173_a573db7b",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 1441,
+      "author": {
+        "id": 1002728
+      },
+      "writtenOn": "2026-08-18T05:57:09Z",
+      "side": 1,
+      "message": "Done. NFC bus/address now consistently use uint32_t.",
+      "parentUuid": "f8845183_455b6846",
       "range": {
         "startLine": 1437,
         "startChar": 1,
@@ -87,6 +153,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "32c5fcd6_da5e9af2",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 1455,
+      "author": {
+        "id": 1002728
+      },
+      "writtenOn": "2026-08-18T05:57:09Z",
+      "side": 1,
+      "message": "Done. Move function to neard_dbus.cpp/neard_dbus.hpp",
+      "parentUuid": "70f031f9_cdb1e8e0",
+      "range": {
+        "startLine": 1454,
+        "startChar": 1,
+        "endLine": 1455,
+        "endChar": 70
+      },
+      "revId": "5b81105a8ed71ec89d9d01ed1eced8754bf484c1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f285a869_3e066c34",
@@ -100,6 +190,30 @@
       "writtenOn": "2026-08-14T12:41:56Z",
       "side": 1,
       "message": "see https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#f3-keep-functions-short-and-simple\n\nand let\u0027s please extract a function here first before adding further code onto this main function.\n\nconcrete change idea: extract the inotify callback into a separate function",
+      "range": {
+        "startLine": 1696,
+        "startChar": 10,
+        "endLine": 1712,
+        "endChar": 56
+      },
+      "revId": "5b81105a8ed71ec89d9d01ed1eced8754bf484c1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b7e4a4d_60a88180",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 1712,
+      "author": {
+        "id": 1002728
+      },
+      "writtenOn": "2026-08-18T05:57:09Z",
+      "side": 1,
+      "message": "Done. NFC monitoring setup has been extracted from main into a helper (setupNfcMonitor).",
+      "parentUuid": "f285a869_3e066c34",
       "range": {
         "startLine": 1696,
         "startChar": 10,
