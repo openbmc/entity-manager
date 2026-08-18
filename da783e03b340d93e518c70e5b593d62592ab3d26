@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cbb6701_1a2cd7f7",
+        "filename": "configurations/meta/yv4/yosemite4_sentineldome_chassis.json",
+        "patchSetId": 15
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1002954
+      },
+      "writtenOn": "2026-08-18T11:22:09Z",
+      "side": 1,
+      "message": "yes, it says DrivePort 1 in the kioxia config, \u003d\u003e it goes under chassis 1.",
+      "parentUuid": "41dad809_5253916c",
+      "revId": "da783e03b340d93e518c70e5b593d62592ab3d26",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ed5b3cb7_2ca75407",
@@ -48,6 +66,30 @@
       "writtenOn": "2026-08-17T14:18:32Z",
       "side": 1,
       "message": "Adding `SubModel` to the schema should be a separate patch, especially since you are not really using it in your config (set to emtpy string).",
+      "range": {
+        "startLine": 30,
+        "startChar": 32,
+        "endLine": 32,
+        "endChar": 33
+      },
+      "revId": "da783e03b340d93e518c70e5b593d62592ab3d26",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "453a2195_537f632c",
+        "filename": "schemas/openbmc-dbus.json",
+        "patchSetId": 15
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1002954
+      },
+      "writtenOn": "2026-08-18T11:22:09Z",
+      "side": 1,
+      "message": "i agree.",
+      "parentUuid": "ed5b3cb7_2ca75407",
       "range": {
         "startLine": 30,
         "startChar": 32,
