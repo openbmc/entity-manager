@@ -57,6 +57,30 @@
       },
       "revId": "10e98d65fee1471c59853ff183c7aac4f5dd6df8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fce04133_ea241ce3",
+        "filename": "src/entity_manager/probe_type.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1003117
+      },
+      "writtenOn": "2026-08-18T13:13:14Z",
+      "side": 1,
+      "message": "Thank you for the feedback — I agree that a proper grammar with a lexer/parser/AST is the right long-term direction, and that this warrants a design change rather than a targeted fix. I\u0027ll draft that as a separate change series.\n\nAs the suggested first step, I\u0027ve written down the grammar of what we currently parse, along with the evaluation semantics, so we can align on the design before implementing.\n\nGrammar (ISO/IEC 14977 EBNF):\n\nprobe            \u003d operand , { binary op , operand } , [ match modifier ] ;\noperand          \u003d boolean literal | found probe | dbus probe ;\nbinary op        \u003d \"AND\" | \"OR\" ;\nmatch modifier   \u003d \"MATCH_ONE\" ;\nboolean literal  \u003d \"TRUE\" | \"FALSE\" ;\nfound probe      \u003d \"FOUND\" , \"(\" , quoted string , \")\" ;\ndbus probe       \u003d interface name , \"(\" , match object , \")\" ;\ninterface name   \u003d identifier , { \".\" , identifier } ;\nidentifier       \u003d ( letter | \"_\" ) , { letter | digit | \"_\" } ;\nmatch object     \u003d \"{\" , [ match pair , { \",\" , match pair } ] , \"}\" ;\nmatch pair       \u003d quoted string , \":\" , match value ;\nmatch value      \u003d quoted string | number | json boolean ;\nquoted string    \u003d \"\u0027\" , { character - \"\u0027\" } , \"\u0027\" ;\n\nEvaluation semantics to preserve:\n- Operands (TRUE/FALSE, FOUND(\u0027x\u0027), iface({...})) each yield a bool.\n- MATCH_ONE keeps only the last matched device.\n- A true-but-empty result emits one empty device record.\n\nDesign question — operator precedence:\nThe current implementation combines operators strictly left-to-right with no precedence. An audit of configurations/ found 13 probes that mix AND and OR (Ampere Mt.Jade/Jefferson/Mitchell, Meta Harma, Meta Minerva), all of the form:\n  `A OR B [OR C] AND FOUND(\u0027SomeBoard\u0027)`\n\nThe two options are:\n- (a) Preserve left-to-right / no precedence — today these mean `(A OR B OR C) AND FOUND(...)`.\n- (b) Introduce conventional precedence (AND over OR) — these would become `A OR B OR (C AND FOUND(...))`.\n\nOption (b) changes the meaning of all 13 configs. Since the language currently has no grouping/parentheses syntax, config authors couldn\u0027t rewrite them to restore original intent without us also adding grouping and migrating configs. \n\nMy recommendation is (a), keeping this refactor behavior-preserving, and treating precedence + grouping as a separate opt-in change if ever desired. Which would you prefer?\n\nOther questions:\n1. Keep the JSON array-of-statements surface form (all existing configs use it)?\n2. New probe_parser.{hpp,cpp} producing an AST, with doProbe becoming an AST evaluator — does that placement work?\n\nProposed phasing (separate changes):\n1. Lexer + parser + AST + unit tests (no behavior change).\n2. Switch doProbe to the AST + equivalence tests across configs.\n3. Remove the old string-matching path.\n\nI\u0027ll keep this current patch open as a reference for the bug fix while I work on the new parser series. Once the new parser changes are reviewed and merged, I will abandon this patch.\n\nPlease let me know if this proposed direction and phasing look good to you, or if you have any suggestions",
+      "parentUuid": "f636211e_1c7fc86f",
+      "range": {
+        "startLine": 9,
+        "startChar": 1,
+        "endLine": 34,
+        "endChar": 1
+      },
+      "revId": "10e98d65fee1471c59853ff183c7aac4f5dd6df8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
