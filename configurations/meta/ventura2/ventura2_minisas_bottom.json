@@ -1,6 +1,526 @@
 {
     "Exposes": [
         {
+            "Name": "LeakPort5",
+            "PresencePinNames": [
+                "TRAY_PRSNT5_N_BUF_R"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "LeakPort6",
+            "PresencePinNames": [
+                "TRAY_PRSNT6_N_BUF_R"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "LeakPort7",
+            "PresencePinNames": [
+                "TRAY_PRSNT7_N_BUF_R"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "LeakPort8",
+            "PresencePinNames": [
+                "TRAY_PRSNT8_N_BUF_R"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "LeakPort13",
+            "PresencePinNames": [
+                "TRAY_PRSNT13_N_BUF_R"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "LeakPort14",
+            "PresencePinNames": [
+                "TRAY_PRSNT14_N_BUF_R"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "LeakPort15",
+            "PresencePinNames": [
+                "TRAY_PRSNT15_N_BUF_R"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "LeakPort16",
+            "PresencePinNames": [
+                "TRAY_PRSNT16_N_BUF_R"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "LeakPort21",
+            "PresencePinNames": [
+                "TRAY_PRSNT21_N_BUF_R"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "LeakPort22",
+            "PresencePinNames": [
+                "TRAY_PRSNT22_N_BUF_R"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "LeakPort23",
+            "PresencePinNames": [
+                "TRAY_PRSNT23_N_BUF_R"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "LeakPort24",
+            "PresencePinNames": [
+                "TRAY_PRSNT24_N_BUF_R"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "LeakPort29",
+            "PresencePinNames": [
+                "TRAY_PRSNT29_N_BUF_R"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "LeakPort30",
+            "PresencePinNames": [
+                "TRAY_PRSNT30_N_BUF_R"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "LeakPort31",
+            "PresencePinNames": [
+                "TRAY_PRSNT31_N_BUF_R"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "LeakPort32",
+            "PresencePinNames": [
+                "TRAY_PRSNT32_N_BUF_R"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "LeakPort37",
+            "PresencePinNames": [
+                "TRAY_PRSNT37_N_BUF_R"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "LeakPort38",
+            "PresencePinNames": [
+                "TRAY_PRSNT38_N_BUF_R"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "LeakPort39",
+            "PresencePinNames": [
+                "TRAY_PRSNT39_N_BUF_R"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "LeakPort40",
+            "PresencePinNames": [
+                "TRAY_PRSNT40_N_BUF_R"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort5_Big",
+            "PinName": "TRAY_LEAK_DETECT5_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort6_Big",
+            "PinName": "TRAY_LEAK_DETECT6_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort7_Big",
+            "PinName": "TRAY_LEAK_DETECT7_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort8_Big",
+            "PinName": "TRAY_LEAK_DETECT8_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort13_Big",
+            "PinName": "TRAY_LEAK_DETECT13_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort14_Big",
+            "PinName": "TRAY_LEAK_DETECT14_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort15_Big",
+            "PinName": "TRAY_LEAK_DETECT15_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort16_Big",
+            "PinName": "TRAY_LEAK_DETECT16_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort21_Big",
+            "PinName": "TRAY_LEAK_DETECT21_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort22_Big",
+            "PinName": "TRAY_LEAK_DETECT22_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort23_Big",
+            "PinName": "TRAY_LEAK_DETECT23_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort24_Big",
+            "PinName": "TRAY_LEAK_DETECT24_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort29_Big",
+            "PinName": "TRAY_LEAK_DETECT29_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort30_Big",
+            "PinName": "TRAY_LEAK_DETECT30_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort31_Big",
+            "PinName": "TRAY_LEAK_DETECT31_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort32_Big",
+            "PinName": "TRAY_LEAK_DETECT32_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort37_Big",
+            "PinName": "TRAY_LEAK_DETECT37_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort38_Big",
+            "PinName": "TRAY_LEAK_DETECT38_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort39_Big",
+            "PinName": "TRAY_LEAK_DETECT39_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort40_Big",
+            "PinName": "TRAY_LEAK_DETECT40_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort5_Small",
+            "PinName": "TRAY_SMALL_LEAK5_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort6_Small",
+            "PinName": "TRAY_SMALL_LEAK6_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort7_Small",
+            "PinName": "TRAY_SMALL_LEAK7_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort8_Small",
+            "PinName": "TRAY_SMALL_LEAK8_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort13_Small",
+            "PinName": "TRAY_SMALL_LEAK13_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort14_Small",
+            "PinName": "TRAY_SMALL_LEAK14_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort15_Small",
+            "PinName": "TRAY_SMALL_LEAK15_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort16_Small",
+            "PinName": "TRAY_SMALL_LEAK16_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort21_Small",
+            "PinName": "TRAY_SMALL_LEAK21_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort22_Small",
+            "PinName": "TRAY_SMALL_LEAK22_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort23_Small",
+            "PinName": "TRAY_SMALL_LEAK23_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort24_Small",
+            "PinName": "TRAY_SMALL_LEAK24_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort29_Small",
+            "PinName": "TRAY_SMALL_LEAK29_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort30_Small",
+            "PinName": "TRAY_SMALL_LEAK30_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort31_Small",
+            "PinName": "TRAY_SMALL_LEAK31_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort32_Small",
+            "PinName": "TRAY_SMALL_LEAK32_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort37_Small",
+            "PinName": "TRAY_SMALL_LEAK37_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort38_Small",
+            "PinName": "TRAY_SMALL_LEAK38_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort39_Small",
+            "PinName": "TRAY_SMALL_LEAK39_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakPort40_Small",
+            "PinName": "TRAY_SMALL_LEAK40_N_BUF_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
             "Address": "$address",
             "Bus": "$bus",
             "Name": "Ventura2 miniSAS Module bottom FRU",
@@ -8,8 +528,17 @@
         }
     ],
     "Name": "Ventura2 miniSAS Module bottom",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_MANUFACTURER': 'Quanta', 'BOARD_PRODUCT_NAME': 'Ventura2 miniSAS bottom'})",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'BOARD_MANUFACTURER': 'Quanta', 'BOARD_PRODUCT_NAME': 'Ventura2 miniSAS bottom'})",
+        "AND",
+        "xyz.openbmc_project.FruDevice({'BOARD_MANUFACTURER': 'Quanta', 'BOARD_PRODUCT_NAME': 'Ventura2 RMC', 'PRODUCT_INFO_AM1': '[Ss][Kk][Uu][ ]*(3$|1[Cc]?$)'})"
+    ],
     "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Compatible": {
+        "Names": [
+            "com.meta.Hardware.BMC.Model.Ventura2"
+        ]
+    },
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
         "Manufacturer": "$BOARD_MANUFACTURER",
