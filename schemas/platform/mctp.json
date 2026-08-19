@@ -8,8 +8,8 @@
                     "type": "string"
                 },
                 "RootHubPosition": {
-                    "description": "Which of the SOC's USB root hubs the device is reached through, counting from zero. Only the host controllers count: a companion controller serving the same ports at a lower speed is not a root hub of its own. The bus number the kernel gives that hub is not fixed, so it is read from sysfs rather than named here.",
-                    "type": "number"
+                    "description": "Which of the SOC's USB root hubs the device is reached through, counting from zero. Only the host controllers count: a companion controller serving the same ports at a lower speed is not a root hub of its own. The bus number the kernel gives that hub is not fixed, so it is read from sysfs rather than named here. Or, the root hub's absolute sysfs platform-device path for controllers not covered by the positional index.",
+                    "type": ["number", "string"]
                 },
                 "Port": {
                     "description": "The hub ports to follow from the root hub down to the device, outermost first, so the length is the number of hops. With the root hub's bus number this names the device in sysfs: [1, 2, 1] is /sys/bus/usb/devices/<bus>-1.2.1.",
