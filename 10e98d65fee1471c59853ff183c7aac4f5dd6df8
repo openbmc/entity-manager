@@ -129,6 +129,30 @@
       },
       "revId": "10e98d65fee1471c59853ff183c7aac4f5dd6df8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ef0ed55_e7e8df46",
+        "filename": "src/entity_manager/probe_type.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1003117
+      },
+      "writtenOn": "2026-08-19T07:50:44Z",
+      "side": 1,
+      "message": "Thanks for the pointer to 36517 — that\u0027s really helpful context.\n\nAfter reviewing it, it looks like there are two related-but-distinct sub-languages in Entity Manager:\n\n- Template / name expressions — arithmetic and $ variable substitution (e.g., \"PowerSupply$ADDRESS % 80\"), which 36517 tackles using boost::spirit::x3 with operator precedence.\n- Probe expressions — the boolean language (AND / OR / FOUND / D-Bus probes) where this bug lives. 36517 doesn\u0027t cover this grammar.\n\nThe probe grammar I wrote is meant to complement 36517 rather than overlap with it. Since 36517 is still active, I\u0027d rather align with your direction there than build something separate — so before writing any parser code, I\u0027d appreciate your guidance:\n\n1. Tooling: For the probe parser, would you prefer boost::spirit::x3 (to stay consistent with 36517), or is a small hand-written lexer/parser acceptable for this grammar?\n2. Scope: Should this remain probe-focused, or eventually converge with the ongoing general expression parser from 36517 into a single framework?\n3. Incremental approach: Would a lexer-only change — retrofitting the existing probe machinery to operate on tokens instead of raw strings — be a welcome first step? It fixes the original substring-matching bug with minimal code changes.\n\nMatt Spinler/ Ed Tanous — please let me know your preferred direction whenever you have a moment. I\u0027m happy to align with the 36517 approach or whichever path you feel is best.",
+      "parentUuid": "6980479f_af37b36b",
+      "range": {
+        "startLine": 9,
+        "startChar": 1,
+        "endLine": 34,
+        "endChar": 1
+      },
+      "revId": "10e98d65fee1471c59853ff183c7aac4f5dd6df8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
