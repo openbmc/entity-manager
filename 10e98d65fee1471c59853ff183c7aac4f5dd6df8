@@ -153,6 +153,30 @@
       },
       "revId": "10e98d65fee1471c59853ff183c7aac4f5dd6df8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee4b8240_78d789c3",
+        "filename": "src/entity_manager/probe_type.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2026-08-19T16:13:34Z",
+      "side": 1,
+      "message": "My thoughts:\nAs https://gerrit.openbmc.org/c/openbmc/entity-manager/+/36517 has sat around for 6 years already, if you can do something here that would help that case, that would be ideal, since it would be great to get better $var expression parsing as well.\n\nI\u0027m not really sure about boost vs hand rolled.\n\nAs for incremental, as long as there isn\u0027t much throwaway code, seems OK to me.",
+      "parentUuid": "0ef0ed55_e7e8df46",
+      "range": {
+        "startLine": 9,
+        "startChar": 1,
+        "endLine": 34,
+        "endChar": 1
+      },
+      "revId": "10e98d65fee1471c59853ff183c7aac4f5dd6df8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
