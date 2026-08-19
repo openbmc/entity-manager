@@ -95,7 +95,7 @@
         "Probe": [
             "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'MB_E1S0', 'Compatible': 'com.meta.Hardware.Yosemite5.Boards.MB'})",
             "AND",
-            "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 EVT', 'BOARD_PRODUCT_NAME': 'Motherboard'})",
+            "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': '(Yosemite V5 EVT|Yosemite V5 T22 .*)', 'BOARD_PRODUCT_NAME': 'Motherboard'})",
             "MATCH_ONE"
         ],
         "Type": "Board",
