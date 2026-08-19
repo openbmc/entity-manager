@@ -1,6 +1,44 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$defs": {
+        "MCTPBridgeChild": {
+            "description": "A device reachable through an MCTP bridge's downstream EID pool, identified by its offset within that pool rather than a literal EID (which is assigned dynamically and can change across boots).",
+            "properties": {
+                "Name": {
+                    "description": "A recognisable name for the device",
+                    "type": "string"
+                },
+                "NetworkId": {
+                    "description": "The MCTP network ID the device's EID belongs to.",
+                    "type": "number"
+                },
+                "PoolOffset": {
+                    "description": "The device's EID, expressed as an offset from the bridge's own downstream pool start.",
+                    "type": "number"
+                },
+                "PLDMSensors": {
+                    "items": {
+                        "properties": {
+                            "ID": {
+                                "type": "integer"
+                            },
+                            "Name": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["ID", "Name"],
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "Type": {
+                    "type": "string",
+                    "enum": ["MCTPBridgeChild"]
+                }
+            },
+            "required": ["Name", "Type"],
+            "type": "object"
+        },
         "MCTPI2CTarget": {
             "properties": {
                 "Address": {
