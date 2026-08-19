@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb985a4e_9ec756d6",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1207,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2026-08-19T15:49:53Z",
+      "side": 1,
+      "message": "Just \u0027Fru\u0027 instead of \u0027Frus\u0027 since just one?",
+      "range": {
+        "startLine": 1207,
+        "startChar": 19,
+        "endLine": 1207,
+        "endChar": 23
+      },
+      "revId": "d2176b8dc976f7c33df127c5384fb77cd6c08fbc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "766f7056_27b74ac3",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1234,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2026-08-19T15:49:53Z",
+      "side": 1,
+      "message": "correct signature to reduce copies?  or std::ranges::transform, for_each, etc",
+      "range": {
+        "startLine": 1234,
+        "startChar": 13,
+        "endLine": 1234,
+        "endChar": 17
+      },
+      "revId": "d2176b8dc976f7c33df127c5384fb77cd6c08fbc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1b172c8_63552eed",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1257,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2026-08-19T15:49:53Z",
+      "side": 1,
+      "message": "correct signature to reduce unnecessary copies?",
+      "range": {
+        "startLine": 1257,
+        "startChar": 9,
+        "endLine": 1257,
+        "endChar": 14
+      },
+      "revId": "d2176b8dc976f7c33df127c5384fb77cd6c08fbc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3123bbb3_f36ef7c4",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1260,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2026-08-19T15:49:53Z",
+      "side": 1,
+      "message": "a bit inconsistent with the device member handling.  Either make a var for each or for neither I would suggest.",
+      "range": {
+        "startLine": 1259,
+        "startChar": 8,
+        "endLine": 1260,
+        "endChar": 75
+      },
+      "revId": "d2176b8dc976f7c33df127c5384fb77cd6c08fbc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "908d02dc_56395e0d",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1283,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2026-08-19T15:49:53Z",
+      "side": 1,
+      "message": "nit: how about a comment on what this does, as it doesn\u0027t quite just extract out bus numbers",
+      "range": {
+        "startLine": 1283,
+        "startChar": 26,
+        "endLine": 1283,
+        "endChar": 41
+      },
+      "revId": "d2176b8dc976f7c33df127c5384fb77cd6c08fbc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c69f3249_dac13f7b",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1286,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2026-08-19T15:49:53Z",
+      "side": 1,
+      "message": "\"const auto\u0026\" at least, or std::for_each or std::ranges::keys  or std::ranges::transform or std::ranges::to",
+      "range": {
+        "startLine": 1286,
+        "startChar": 9,
+        "endLine": 1286,
+        "endChar": 13
+      },
+      "revId": "d2176b8dc976f7c33df127c5384fb77cd6c08fbc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0f44ec9_4c2e258b",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1291,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2026-08-19T15:49:53Z",
+      "side": 1,
+      "message": "maybe a comment on why this is done?",
+      "range": {
+        "startLine": 1291,
+        "startChar": 3,
+        "endLine": 1291,
+        "endChar": 27
+      },
+      "revId": "d2176b8dc976f7c33df127c5384fb77cd6c08fbc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a3518d9_936101d8",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1323,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2026-08-19T15:49:53Z",
+      "side": 1,
+      "message": "can be auto\u0026 ?",
+      "range": {
+        "startLine": 1323,
+        "startChar": 9,
+        "endLine": 1323,
+        "endChar": 14
+      },
+      "revId": "d2176b8dc976f7c33df127c5384fb77cd6c08fbc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49905d43_1dd8ba4a",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1327,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2026-08-19T15:49:53Z",
+      "side": 1,
+      "message": "a comment here would be nice",
+      "range": {
+        "startLine": 1327,
+        "startChar": 7,
+        "endLine": 1327,
+        "endChar": 24
+      },
+      "revId": "d2176b8dc976f7c33df127c5384fb77cd6c08fbc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
