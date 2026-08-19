@@ -190,6 +190,30 @@
       },
       "revId": "5b4a7c777f799bc692fe90e72651cb43a1ef426b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4840feb_6f8e8499",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 1319,
+      "author": {
+        "id": 1002470
+      },
+      "writtenOn": "2026-08-19T03:06:29Z",
+      "side": 1,
+      "message": "@alexander.hansen@9elements.com — friendly ping on the dependency here. My idempotent fix (this change) is planned to rebase on top of your consolidation 93166, which we agreed lands first. 93166 has been up for about two weeks without further review, so this change is blocked behind it.\n\nWould you be able to check on 93166\u0027s review status, or suggest who else could take a look? Happy to rebase and re-verify on Ventura hardware as soon as it merges. Thanks!",
+      "parentUuid": "c49259c6_bdfcd7f4",
+      "range": {
+        "startLine": 1298,
+        "startChar": 12,
+        "endLine": 1319,
+        "endChar": 13
+      },
+      "revId": "5b4a7c777f799bc692fe90e72651cb43a1ef426b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
