@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2d1ab4f_65b0d861",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1002728
+      },
+      "writtenOn": "2026-08-19T08:14:46Z",
+      "side": 1,
+      "message": "Great suggestion, agreed. I updated the code so NfcFruState is now a member of FruDetails.",
+      "parentUuid": "1535a52b_b38c6c1a",
+      "revId": "ebf51c8a9588c2c9c2e941828d6853db4eadb514",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2679cc63_eae01c80",
@@ -31,6 +49,30 @@
       "writtenOn": "2026-08-18T09:32:52Z",
       "side": 1,
       "message": "nit, if fru key were a proper abstraction, we would probably at least have a type alias for it.\n\n```suggestion\n    // maps NfcUid -\u003e {i2c bus, i2c address}\n    std::map\u003cNfcUid, std::pair\u003cuint32_t, uint32_t\u003e\u003e uidToFruKey;\n```\n\notherwise we could also define a type alias\n`using FruKey \u003d std::pair\u003cuint32_t, uint32_t\u003e;` and use that throughout  but that would be another cleanup patch.",
+      "range": {
+        "startLine": 116,
+        "startChar": 4,
+        "endLine": 116,
+        "endChar": 63
+      },
+      "revId": "ebf51c8a9588c2c9c2e941828d6853db4eadb514",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc24561c_dc70bea4",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1002728
+      },
+      "writtenOn": "2026-08-19T08:14:46Z",
+      "side": 1,
+      "message": "Done. Add the suggested comment. Thanks.",
+      "parentUuid": "2679cc63_eae01c80",
       "range": {
         "startLine": 116,
         "startChar": 4,
@@ -64,6 +106,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f721912_2c97538e",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1002728
+      },
+      "writtenOn": "2026-08-19T08:14:46Z",
+      "side": 1,
+      "message": "Done. I moved NFC struct out of fru_device.cpp into nfc.hpp.\nI also introduced a new shared header src/fru_device/fru_device.hpp and moved the shared FRU-side definitions/declarations there, including the FruDetails struct fields (dbusInterfaceMap, unknownBusObjectCount, powerIsOn, addressBlocklist, nfcFruState) and addFruObjectToDbus declaration.",
+      "parentUuid": "7ee5af5e_6cd385ca",
+      "range": {
+        "startLine": 89,
+        "startChar": 1,
+        "endLine": 118,
+        "endChar": 2
+      },
+      "revId": "ebf51c8a9588c2c9c2e941828d6853db4eadb514",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c38f4e29_083a216e",
@@ -77,6 +143,24 @@
       "writtenOn": "2026-08-18T09:32:52Z",
       "side": 1,
       "message": "these 3 functions \n\n- handleNfcTagRemoved\n- queryNeardObjects\n- setupNfcMonitor\n\nlook nfc specific and not core fru-device logic. Is there a reason why they have to go into `fru_device.cpp` ?\n\nIs there some `nfc.cpp` or similar file we could have with these functions?",
+      "revId": "ebf51c8a9588c2c9c2e941828d6853db4eadb514",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f5daaa7_075204d6",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 1561,
+      "author": {
+        "id": 1002728
+      },
+      "writtenOn": "2026-08-19T08:14:46Z",
+      "side": 1,
+      "message": "Done. NFC specific functions were moved out of fru_device.cpp into nfc.cpp, with declarations in nfc.hpp, so fru_device.cpp stays focused on core FRU scan/publish flow.",
+      "parentUuid": "c38f4e29_083a216e",
       "revId": "ebf51c8a9588c2c9c2e941828d6853db4eadb514",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
