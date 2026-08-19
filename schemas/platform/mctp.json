@@ -8,8 +8,8 @@
                     "type": "string"
                 },
                 "RootHubPosition": {
-                    "description": "The position of the root port on the SOC (0 is first).",
-                    "type": "number"
+                    "description": "The position of the root port on the SOC (0 is first), or the root hub's absolute sysfs platform-device path for controllers not covered by the positional index.",
+                    "type": ["number", "string"]
                 },
                 "Port": {
                     "description": "The port hierarchy starting at the root hub to which the device is attached.",
