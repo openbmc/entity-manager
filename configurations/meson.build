@@ -252,6 +252,7 @@ configs = [
     'meta/ventura2/ventura2_rmcv2_mb_sku1.json',
     'meta/ventura2/ventura2_rmcv2_mb_sku2.json',
     'meta/ventura2/ventura2_scm.json',
+    'meta/ventura2/ventura2_scm_2700.json',
     'meta/ventura2/ventura2_valve.json',
     'meta/ventura2/ventura2_vt1_2.json',
     'meta/ventura2/ventura2_vt3.json',
