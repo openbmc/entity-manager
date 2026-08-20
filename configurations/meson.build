@@ -332,6 +332,7 @@ configs = [
     'nvidia/p3809-hmc.json',
     'nvidia/p4764-hmc.json',
     'nvidia/rtx6000_pro.json',
+    'nvidia/vr_chassis.json',
     'ocp/cx7_ocp.json',
     'ocp/cx8_ocp.json',
     'samsung/pm9d3a.json',
