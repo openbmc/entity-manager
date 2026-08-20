@@ -1,0 +1,1875 @@
+{
+    "Exposes": [
+        {
+            "Index": 0,
+            "Name": "SCM_P12V_VOLT_V",
+            "ScaleFactor": 0.112359551,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 1,
+            "Name": "SCM_P5V_VOLT_V",
+            "ScaleFactor": 0.27173913,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 5.25
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 4.75
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 2,
+            "Name": "SCM_P3V3_VOLT_V",
+            "ScaleFactor": 0.410677618,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.465
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.135
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 3,
+            "Name": "SCM_P2V5_VOLT_V",
+            "ScaleFactor": 0.54200542,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.625
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.375
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 4,
+            "Name": "SCM_P1V8_VOLT_V",
+            "ScaleFactor": 0.750469043,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.89
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.71
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 5,
+            "Name": "SCM_PGPPA_VOLT_V",
+            "ScaleFactor": 0.410677618,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.465
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.135
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 6,
+            "Name": "SCM_P1V2_VOLT_V",
+            "ScaleFactor": 1,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.26
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.14
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "BridgeGpio": [
+                {
+                    "Name": "BATTERY_DETECT",
+                    "Polarity": "High",
+                    "SetupTime": 1
+                }
+            ],
+            "Index": 7,
+            "Name": "SCM_P3V_BAT_VOLT_V",
+            "PollRate": 86400,
+            "ScaleFactor": 0.333333333,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.4
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.6
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 8,
+            "Name": "SCM_P1V0_VOLT_V",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.05
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.95
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Address": "0x90",
+            "Name": "PSU_1_1",
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000552480000PowerSupplyUnit"
+        },
+        {
+            "Address": "0x91",
+            "Name": "PSU_1_2",
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000552480000PowerSupplyUnit"
+        },
+        {
+            "Address": "0x92",
+            "Name": "PSU_1_3",
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000552480000PowerSupplyUnit"
+        },
+        {
+            "Address": "0x93",
+            "Name": "PSU_1_4",
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000552480000PowerSupplyUnit"
+        },
+        {
+            "Address": "0x94",
+            "Name": "PSU_1_5",
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000552480000PowerSupplyUnit"
+        },
+        {
+            "Address": "0x95",
+            "Name": "PSU_1_6",
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000552480000PowerSupplyUnit"
+        },
+        {
+            "Address": "0x9A",
+            "Name": "PSU_2_1",
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000552480000PowerSupplyUnit"
+        },
+        {
+            "Address": "0x9B",
+            "Name": "PSU_2_2",
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000552480000PowerSupplyUnit"
+        },
+        {
+            "Address": "0x9C",
+            "Name": "PSU_2_3",
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000552480000PowerSupplyUnit"
+        },
+        {
+            "Address": "0x9D",
+            "Name": "PSU_2_4",
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000552480000PowerSupplyUnit"
+        },
+        {
+            "Address": "0x9E",
+            "Name": "PSU_2_5",
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000552480000PowerSupplyUnit"
+        },
+        {
+            "Address": "0x9F",
+            "Name": "PSU_2_6",
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000552480000PowerSupplyUnit"
+        },
+        {
+            "Address": "0xAA",
+            "Name": "PSU_3_1",
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000552480000PowerSupplyUnit"
+        },
+        {
+            "Address": "0xAB",
+            "Name": "PSU_3_2",
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000552480000PowerSupplyUnit"
+        },
+        {
+            "Address": "0xAC",
+            "Name": "PSU_3_3",
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000552480000PowerSupplyUnit"
+        },
+        {
+            "Address": "0xAD",
+            "Name": "PSU_3_4",
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000552480000PowerSupplyUnit"
+        },
+        {
+            "Address": "0xAE",
+            "Name": "PSU_3_5",
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000552480000PowerSupplyUnit"
+        },
+        {
+            "Address": "0xAF",
+            "Name": "PSU_3_6",
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000552480000PowerSupplyUnit"
+        },
+        {
+            "Address": "0xBA",
+            "Name": "PSU_4_1",
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000552480000PowerSupplyUnit"
+        },
+        {
+            "Address": "0xBB",
+            "Name": "PSU_4_2",
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000552480000PowerSupplyUnit"
+        },
+        {
+            "Address": "0xBC",
+            "Name": "PSU_4_3",
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000552480000PowerSupplyUnit"
+        },
+        {
+            "Address": "0xBD",
+            "Name": "PSU_4_4",
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000552480000PowerSupplyUnit"
+        },
+        {
+            "Address": "0xBE",
+            "Name": "PSU_4_5",
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000552480000PowerSupplyUnit"
+        },
+        {
+            "Address": "0xBF",
+            "Name": "PSU_4_6",
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000552480000PowerSupplyUnit"
+        },
+        {
+            "Address": "0x20",
+            "Name": "PSU_SHELF_1",
+            "PollRate": 3,
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000552531000PowerShelf"
+        },
+        {
+            "Address": "0x21",
+            "Name": "PSU_SHELF_2",
+            "PollRate": 3,
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000552531000PowerShelf"
+        },
+        {
+            "Address": "0x22",
+            "Name": "PSU_SHELF_3",
+            "PollRate": 3,
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000552531000PowerShelf"
+        },
+        {
+            "Address": "0x23",
+            "Name": "PSU_SHELF_4",
+            "PollRate": 3,
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000552531000PowerShelf"
+        },
+        {
+            "Address": "0x20",
+            "Name": "PSU_PMM_1",
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000555240000PowerMonitorModule"
+        },
+        {
+            "Address": "0x21",
+            "Name": "PSU_PMM_2",
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000555240000PowerMonitorModule"
+        },
+        {
+            "Address": "0x22",
+            "Name": "PSU_PMM_3",
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000555240000PowerMonitorModule"
+        },
+        {
+            "Address": "0x23",
+            "Name": "PSU_PMM_4",
+            "SerialPort": "ttyRS485-1",
+            "Type": "Artesyn7000555240000PowerMonitorModule"
+        },
+        {
+            "Name": "BMC",
+            "Type": "BMC"
+        },
+        {
+            "Address": "0x10",
+            "Name": "BBU_PMM_1",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaBBUBC100AE000PowerMonitorModule"
+        },
+        {
+            "Address": "0x11",
+            "Name": "BBU_PMM_2",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaBBUBC100AE000PowerMonitorModule"
+        },
+        {
+            "Address": "0x12",
+            "Name": "BBU_PMM_3",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaBBUBC100AE000PowerMonitorModule"
+        },
+        {
+            "Address": "0x13",
+            "Name": "BBU_PMM_4",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaBBUBC100AE000PowerMonitorModule"
+        },
+        {
+            "Address": "0x10",
+            "Name": "BBU_SHELF_1",
+            "PollRate": 3,
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaBBUBS723AE000PowerShelf"
+        },
+        {
+            "Address": "0x11",
+            "Name": "BBU_SHELF_2",
+            "PollRate": 3,
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaBBUBS723AE000PowerShelf"
+        },
+        {
+            "Address": "0x12",
+            "Name": "BBU_SHELF_3",
+            "PollRate": 3,
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaBBUBS723AE000PowerShelf"
+        },
+        {
+            "Address": "0x13",
+            "Name": "BBU_SHELF_4",
+            "PollRate": 3,
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaBBUBS723AE000PowerShelf"
+        },
+        {
+            "Address": "0x30",
+            "Name": "BBU_1_1",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaBBUBU123AE000BatteryBackupUnit"
+        },
+        {
+            "Address": "0x31",
+            "Name": "BBU_1_2",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaBBUBU123AE000BatteryBackupUnit"
+        },
+        {
+            "Address": "0x32",
+            "Name": "BBU_1_3",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaBBUBU123AE000BatteryBackupUnit"
+        },
+        {
+            "Address": "0x33",
+            "Name": "BBU_1_4",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaBBUBU123AE000BatteryBackupUnit"
+        },
+        {
+            "Address": "0x34",
+            "Name": "BBU_1_5",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaBBUBU123AE000BatteryBackupUnit"
+        },
+        {
+            "Address": "0x35",
+            "Name": "BBU_1_6",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaBBUBU123AE000BatteryBackupUnit"
+        },
+        {
+            "Address": "0x3A",
+            "Name": "BBU_2_1",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaBBUBU123AE000BatteryBackupUnit"
+        },
+        {
+            "Address": "0x3B",
+            "Name": "BBU_2_2",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaBBUBU123AE000BatteryBackupUnit"
+        },
+        {
+            "Address": "0x3C",
+            "Name": "BBU_2_3",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaBBUBU123AE000BatteryBackupUnit"
+        },
+        {
+            "Address": "0x3D",
+            "Name": "BBU_2_4",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaBBUBU123AE000BatteryBackupUnit"
+        },
+        {
+            "Address": "0x3E",
+            "Name": "BBU_2_5",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaBBUBU123AE000BatteryBackupUnit"
+        },
+        {
+            "Address": "0x3F",
+            "Name": "BBU_2_6",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaBBUBU123AE000BatteryBackupUnit"
+        },
+        {
+            "Address": "0x5A",
+            "Name": "BBU_3_1",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaBBUBU123AE000BatteryBackupUnit"
+        },
+        {
+            "Address": "0x5B",
+            "Name": "BBU_3_2",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaBBUBU123AE000BatteryBackupUnit"
+        },
+        {
+            "Address": "0x5C",
+            "Name": "BBU_3_3",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaBBUBU123AE000BatteryBackupUnit"
+        },
+        {
+            "Address": "0x5D",
+            "Name": "BBU_3_4",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaBBUBU123AE000BatteryBackupUnit"
+        },
+        {
+            "Address": "0x5E",
+            "Name": "BBU_3_5",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaBBUBU123AE000BatteryBackupUnit"
+        },
+        {
+            "Address": "0x5F",
+            "Name": "BBU_3_6",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaBBUBU123AE000BatteryBackupUnit"
+        },
+        {
+            "Address": "0x6A",
+            "Name": "BBU_4_1",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaBBUBU123AE000BatteryBackupUnit"
+        },
+        {
+            "Address": "0x6B",
+            "Name": "BBU_4_2",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaBBUBU123AE000BatteryBackupUnit"
+        },
+        {
+            "Address": "0x6C",
+            "Name": "BBU_4_3",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaBBUBU123AE000BatteryBackupUnit"
+        },
+        {
+            "Address": "0x6D",
+            "Name": "BBU_4_4",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaBBUBU123AE000BatteryBackupUnit"
+        },
+        {
+            "Address": "0x6E",
+            "Name": "BBU_4_5",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaBBUBU123AE000BatteryBackupUnit"
+        },
+        {
+            "Address": "0x6F",
+            "Name": "BBU_4_6",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaBBUBU123AE000BatteryBackupUnit"
+        },
+        {
+            "Address": "0x90",
+            "Name": "PSU_1_1",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD17020037PowerSupplyUnit"
+        },
+        {
+            "Address": "0x91",
+            "Name": "PSU_1_2",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD17020037PowerSupplyUnit"
+        },
+        {
+            "Address": "0x92",
+            "Name": "PSU_1_3",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD17020037PowerSupplyUnit"
+        },
+        {
+            "Address": "0x93",
+            "Name": "PSU_1_4",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD17020037PowerSupplyUnit"
+        },
+        {
+            "Address": "0x94",
+            "Name": "PSU_1_5",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD17020037PowerSupplyUnit"
+        },
+        {
+            "Address": "0x95",
+            "Name": "PSU_1_6",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD17020037PowerSupplyUnit"
+        },
+        {
+            "Address": "0x9A",
+            "Name": "PSU_2_1",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD17020037PowerSupplyUnit"
+        },
+        {
+            "Address": "0x9B",
+            "Name": "PSU_2_2",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD17020037PowerSupplyUnit"
+        },
+        {
+            "Address": "0x9C",
+            "Name": "PSU_2_3",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD17020037PowerSupplyUnit"
+        },
+        {
+            "Address": "0x9D",
+            "Name": "PSU_2_4",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD17020037PowerSupplyUnit"
+        },
+        {
+            "Address": "0x9E",
+            "Name": "PSU_2_5",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD17020037PowerSupplyUnit"
+        },
+        {
+            "Address": "0x9F",
+            "Name": "PSU_2_6",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD17020037PowerSupplyUnit"
+        },
+        {
+            "Address": "0xAA",
+            "Name": "PSU_3_1",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD17020037PowerSupplyUnit"
+        },
+        {
+            "Address": "0xAB",
+            "Name": "PSU_3_2",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD17020037PowerSupplyUnit"
+        },
+        {
+            "Address": "0xAC",
+            "Name": "PSU_3_3",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD17020037PowerSupplyUnit"
+        },
+        {
+            "Address": "0xAD",
+            "Name": "PSU_3_4",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD17020037PowerSupplyUnit"
+        },
+        {
+            "Address": "0xAE",
+            "Name": "PSU_3_5",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD17020037PowerSupplyUnit"
+        },
+        {
+            "Address": "0xAF",
+            "Name": "PSU_3_6",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD17020037PowerSupplyUnit"
+        },
+        {
+            "Address": "0xBA",
+            "Name": "PSU_4_1",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD17020037PowerSupplyUnit"
+        },
+        {
+            "Address": "0xBB",
+            "Name": "PSU_4_2",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD17020037PowerSupplyUnit"
+        },
+        {
+            "Address": "0xBC",
+            "Name": "PSU_4_3",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD17020037PowerSupplyUnit"
+        },
+        {
+            "Address": "0xBD",
+            "Name": "PSU_4_4",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD17020037PowerSupplyUnit"
+        },
+        {
+            "Address": "0xBE",
+            "Name": "PSU_4_5",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD17020037PowerSupplyUnit"
+        },
+        {
+            "Address": "0xBF",
+            "Name": "PSU_4_6",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD17020037PowerSupplyUnit"
+        },
+        {
+            "Address": "0x36",
+            "Name": "CBU_1_1",
+            "SerialPort": "ttyRS485-3",
+            "Type": "DeltaECD27010006CapacitorBankUnit"
+        },
+        {
+            "Address": "0x37",
+            "Name": "CBU_1_2",
+            "SerialPort": "ttyRS485-3",
+            "Type": "DeltaECD27010006CapacitorBankUnit"
+        },
+        {
+            "Address": "0x38",
+            "Name": "CBU_1_3",
+            "SerialPort": "ttyRS485-3",
+            "Type": "DeltaECD27010006CapacitorBankUnit"
+        },
+        {
+            "Address": "0x46",
+            "Name": "CBU_2_1",
+            "SerialPort": "ttyRS485-3",
+            "Type": "DeltaECD27010006CapacitorBankUnit"
+        },
+        {
+            "Address": "0x47",
+            "Name": "CBU_2_2",
+            "SerialPort": "ttyRS485-3",
+            "Type": "DeltaECD27010006CapacitorBankUnit"
+        },
+        {
+            "Address": "0x48",
+            "Name": "CBU_2_3",
+            "SerialPort": "ttyRS485-3",
+            "Type": "DeltaECD27010006CapacitorBankUnit"
+        },
+        {
+            "Address": "0x56",
+            "Name": "CBU_3_1",
+            "SerialPort": "ttyRS485-3",
+            "Type": "DeltaECD27010006CapacitorBankUnit"
+        },
+        {
+            "Address": "0x57",
+            "Name": "CBU_3_2",
+            "SerialPort": "ttyRS485-3",
+            "Type": "DeltaECD27010006CapacitorBankUnit"
+        },
+        {
+            "Address": "0x58",
+            "Name": "CBU_3_3",
+            "SerialPort": "ttyRS485-3",
+            "Type": "DeltaECD27010006CapacitorBankUnit"
+        },
+        {
+            "Address": "0x66",
+            "Name": "CBU_4_1",
+            "SerialPort": "ttyRS485-3",
+            "Type": "DeltaECD27010006CapacitorBankUnit"
+        },
+        {
+            "Address": "0x67",
+            "Name": "CBU_4_2",
+            "SerialPort": "ttyRS485-3",
+            "Type": "DeltaECD27010006CapacitorBankUnit"
+        },
+        {
+            "Address": "0x68",
+            "Name": "CBU_4_3",
+            "SerialPort": "ttyRS485-3",
+            "Type": "DeltaECD27010006CapacitorBankUnit"
+        },
+        {
+            "Address": "0x36",
+            "Name": "CBU_5_1",
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD27010006CapacitorBankUnit"
+        },
+        {
+            "Address": "0x37",
+            "Name": "CBU_5_2",
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD27010006CapacitorBankUnit"
+        },
+        {
+            "Address": "0x38",
+            "Name": "CBU_5_3",
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD27010006CapacitorBankUnit"
+        },
+        {
+            "Address": "0x46",
+            "Name": "CBU_6_1",
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD27010006CapacitorBankUnit"
+        },
+        {
+            "Address": "0x47",
+            "Name": "CBU_6_2",
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD27010006CapacitorBankUnit"
+        },
+        {
+            "Address": "0x48",
+            "Name": "CBU_6_3",
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD27010006CapacitorBankUnit"
+        },
+        {
+            "Address": "0x56",
+            "Name": "CBU_7_1",
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD27010006CapacitorBankUnit"
+        },
+        {
+            "Address": "0x57",
+            "Name": "CBU_7_2",
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD27010006CapacitorBankUnit"
+        },
+        {
+            "Address": "0x58",
+            "Name": "CBU_7_3",
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD27010006CapacitorBankUnit"
+        },
+        {
+            "Address": "0x66",
+            "Name": "CBU_8_1",
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD27010006CapacitorBankUnit"
+        },
+        {
+            "Address": "0x67",
+            "Name": "CBU_8_2",
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD27010006CapacitorBankUnit"
+        },
+        {
+            "Address": "0x68",
+            "Name": "CBU_8_3",
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD27010006CapacitorBankUnit"
+        },
+        {
+            "Address": "0x76",
+            "Name": "CBU_9_1",
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD27010006CapacitorBankUnit"
+        },
+        {
+            "Address": "0x77",
+            "Name": "CBU_9_2",
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD27010006CapacitorBankUnit"
+        },
+        {
+            "Address": "0x78",
+            "Name": "CBU_9_3",
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD27010006CapacitorBankUnit"
+        },
+        {
+            "Address": "0x86",
+            "Name": "CBU_10_1",
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD27010006CapacitorBankUnit"
+        },
+        {
+            "Address": "0x87",
+            "Name": "CBU_10_2",
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD27010006CapacitorBankUnit"
+        },
+        {
+            "Address": "0x88",
+            "Name": "CBU_10_3",
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD27010006CapacitorBankUnit"
+        },
+        {
+            "Address": "0xF0",
+            "Name": "CBU_SHELF_1",
+            "PollRate": 3,
+            "SerialPort": "ttyRS485-3",
+            "Type": "DeltaECD68000047PowerShelf"
+        },
+        {
+            "Address": "0xF1",
+            "Name": "CBU_SHELF_2",
+            "PollRate": 3,
+            "SerialPort": "ttyRS485-3",
+            "Type": "DeltaECD68000047PowerShelf"
+        },
+        {
+            "Address": "0xF2",
+            "Name": "CBU_SHELF_3",
+            "PollRate": 3,
+            "SerialPort": "ttyRS485-3",
+            "Type": "DeltaECD68000047PowerShelf"
+        },
+        {
+            "Address": "0xF3",
+            "Name": "CBU_SHELF_4",
+            "PollRate": 3,
+            "SerialPort": "ttyRS485-3",
+            "Type": "DeltaECD68000047PowerShelf"
+        },
+        {
+            "Address": "0xF0",
+            "Name": "CBU_SHELF_5",
+            "PollRate": 3,
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD68000047PowerShelf"
+        },
+        {
+            "Address": "0xF1",
+            "Name": "CBU_SHELF_6",
+            "PollRate": 3,
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD68000047PowerShelf"
+        },
+        {
+            "Address": "0xF2",
+            "Name": "CBU_SHELF_7",
+            "PollRate": 3,
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD68000047PowerShelf"
+        },
+        {
+            "Address": "0xF3",
+            "Name": "CBU_SHELF_8",
+            "PollRate": 3,
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD68000047PowerShelf"
+        },
+        {
+            "Address": "0xF4",
+            "Name": "CBU_SHELF_9",
+            "PollRate": 3,
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD68000047PowerShelf"
+        },
+        {
+            "Address": "0xF5",
+            "Name": "CBU_SHELF_10",
+            "PollRate": 3,
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD68000047PowerShelf"
+        },
+        {
+            "Address": "0x20",
+            "Name": "PSU_SHELF_1",
+            "PollRate": 3,
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD68000049PowerShelf"
+        },
+        {
+            "Address": "0x21",
+            "Name": "PSU_SHELF_2",
+            "PollRate": 3,
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD68000049PowerShelf"
+        },
+        {
+            "Address": "0x22",
+            "Name": "PSU_SHELF_3",
+            "PollRate": 3,
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD68000049PowerShelf"
+        },
+        {
+            "Address": "0x23",
+            "Name": "PSU_SHELF_4",
+            "PollRate": 3,
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD68000049PowerShelf"
+        },
+        {
+            "Address": "0x20",
+            "Name": "PSU_PMM_1",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD70000017PowerMonitorModule"
+        },
+        {
+            "Address": "0x21",
+            "Name": "PSU_PMM_2",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD70000017PowerMonitorModule"
+        },
+        {
+            "Address": "0x22",
+            "Name": "PSU_PMM_3",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD70000017PowerMonitorModule"
+        },
+        {
+            "Address": "0x23",
+            "Name": "PSU_PMM_4",
+            "SerialPort": "ttyRS485-1",
+            "Type": "DeltaECD70000017PowerMonitorModule"
+        },
+        {
+            "Address": "0xF0",
+            "Name": "CBU_PMM_1",
+            "SerialPort": "ttyRS485-3",
+            "Type": "DeltaECD70000020PowerMonitorModule"
+        },
+        {
+            "Address": "0xF1",
+            "Name": "CBU_PMM_2",
+            "SerialPort": "ttyRS485-3",
+            "Type": "DeltaECD70000020PowerMonitorModule"
+        },
+        {
+            "Address": "0xF2",
+            "Name": "CBU_PMM_3",
+            "SerialPort": "ttyRS485-3",
+            "Type": "DeltaECD70000020PowerMonitorModule"
+        },
+        {
+            "Address": "0xF3",
+            "Name": "CBU_PMM_4",
+            "SerialPort": "ttyRS485-3",
+            "Type": "DeltaECD70000020PowerMonitorModule"
+        },
+        {
+            "Address": "0xF0",
+            "Name": "CBU_PMM_5",
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD70000020PowerMonitorModule"
+        },
+        {
+            "Address": "0xF1",
+            "Name": "CBU_PMM_6",
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD70000020PowerMonitorModule"
+        },
+        {
+            "Address": "0xF2",
+            "Name": "CBU_PMM_7",
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD70000020PowerMonitorModule"
+        },
+        {
+            "Address": "0xF3",
+            "Name": "CBU_PMM_8",
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD70000020PowerMonitorModule"
+        },
+        {
+            "Address": "0xF4",
+            "Name": "CBU_PMM_9",
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD70000020PowerMonitorModule"
+        },
+        {
+            "Address": "0xF5",
+            "Name": "CBU_PMM_10",
+            "SerialPort": "ttyRS485-2",
+            "Type": "DeltaECD70000020PowerMonitorModule"
+        },
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "Ventura2 SCM FRU",
+            "Type": "EEPROM"
+        },
+        {
+            "Name": "Cable_FANBP_PWR",
+            "PresencePinNames": [
+                "PRSNT_FANBP_0_PWR_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "Cable_FANBP_SIG",
+            "PresencePinNames": [
+                "PRSNT_FANBP_0_SIG_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "Cable_POE_PWR",
+            "PresencePinNames": [
+                "PRSNT_POE_PWR_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "Cable_POE_SIG",
+            "PresencePinNames": [
+                "PRSNT_POE_SIG_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "Cable_MGMT_J54",
+            "PresencePinNames": [
+                "PRSNT_MGMT_J54_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "Cable_RACKMON_J47",
+            "PresencePinNames": [
+                "PRSNT_RACKMON_J47_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "Cable_MGMT_J53",
+            "PresencePinNames": [
+                "PRSNT_MGMT_DEBUG_J53_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "Cable_MINISAS_TOP_J49",
+            "PresencePinNames": [
+                "PRSNT_MINISAS_TOP_J49_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "Cable_MINISAS_TOP_J50",
+            "PresencePinNames": [
+                "PRSNT_MINISAS_TOP_J50_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "Cable_MINISAS_BOT_J51",
+            "PresencePinNames": [
+                "PRSNT_MINISAS_BOT_J51_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "Cable_MINISAS_BOT_J52",
+            "PresencePinNames": [
+                "PRSNT_MINISAS_BOT_J52_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "Cable_CAN1_MCIO",
+            "PresencePinNames": [
+                "PRSNT_CAN1_MCIO_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "Cable_CAN2_MCIO",
+            "PresencePinNames": [
+                "PRSNT_CAN2_MCIO_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "Cable_AALC_MCIO",
+            "PresencePinNames": [
+                "PRSNT_AALC_MCIO_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "Cable_RACKMON",
+            "PresencePinNames": [
+                "PRSNT_RACKMON_MCIO_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "Cable_RIO_RACKMON",
+            "PresencePinNames": [
+                "PRSNT_RIO_RACKMON_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "PRSNT_COMe",
+            "PresencePinNames": [
+                "PRSNT_COME_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RackDripPanPort1",
+            "PresencePinNames": [
+                "PRSNT_LEAK0_SENSOR_R_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RackDripPanPort2",
+            "PresencePinNames": [
+                "PRSNT_LEAK1_SENSOR_R_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RackLeakSparePort1",
+            "PresencePinNames": [
+                "PRSNT_LEAK2_SENSOR_R_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RackLeakSparePort2",
+            "PresencePinNames": [
+                "PRSNT_LEAK3_SENSOR_R_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RackLeakSparePort3",
+            "PresencePinNames": [
+                "PRSNT_LEAK4_SENSOR_R_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RackFloorLeakPort1",
+            "PresencePinNames": [
+                "PRSNT_LEAK5_SENSOR_R_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RackFloorLeakPort2",
+            "PresencePinNames": [
+                "PRSNT_LEAK6_SENSOR_R_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RackFloorLeakPort3",
+            "PresencePinNames": [
+                "PRSNT_LEAK7_SENSOR_R_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RackVerticalColdManifoldLeakPort",
+            "PresencePinNames": [
+                "PRSNT_LEAK8_SENSOR_R_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RackVerticalHotManifoldLeakPort",
+            "PresencePinNames": [
+                "PRSNT_LEAK9_SENSOR_R_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RackHorizontalColdManifoldLeakPort",
+            "PresencePinNames": [
+                "PRSNT_LEAK10_SENSOR_R_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RackHorizontalHotManifoldLeakPort",
+            "PresencePinNames": [
+                "PRSNT_LEAK11_SENSOR_R_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RPUPort1",
+            "PresencePinNames": [
+                "IT_GEAR_RPU_LINK_PRSNT_N_R"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RPUPort2",
+            "PresencePinNames": [
+                "IT_GEAR_RPU_LINK_PRSNT_SPARE_N_"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RPUPort3",
+            "PresencePinNames": [
+                "IT_GEAR_RPU_2_LINK_PRSNT_N_R"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RPUPort4",
+            "PresencePinNames": [
+                "IT_GEAR_RPU_2_LINK_PRSNT_SPARE_"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "ReturnValve_1",
+            "PresencePinNames": [
+                "PRSNT1_RETURN_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "SupplyValve_1",
+            "PresencePinNames": [
+                "PRSNT1_SUPPLY_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "ReturnValve_2",
+            "PresencePinNames": [
+                "PRSNT2_RETURN_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "SupplyValve_2",
+            "PresencePinNames": [
+                "PRSNT2_SUPPLY_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "ReturnValve_3",
+            "PresencePinNames": [
+                "PRSNT3_RETURN_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "SupplyValve_3",
+            "PresencePinNames": [
+                "PRSNT3_SUPPLY_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "SupplyValve2_1",
+            "PresencePinNames": [
+                "PRSNT1_VT2_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "SupplyValve2_2",
+            "PresencePinNames": [
+                "PRSNT2_VT2_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "SupplyValve2_3",
+            "PresencePinNames": [
+                "PRSNT3_VT2_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Level": "Critical",
+            "Name": "RackDripPan1",
+            "PinName": "CHASSIS0_LEAK_Q_N_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "RackDripPan2",
+            "PinName": "CHASSIS1_LEAK_Q_N_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "RackLeakSpare1",
+            "PinName": "CHASSIS2_LEAK_Q_N_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "RackLeakSpare2",
+            "PinName": "CHASSIS3_LEAK_Q_N_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "RackLeakSpare3",
+            "PinName": "CHASSIS4_LEAK_Q_N_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "RackFloorLeak1",
+            "PinName": "CHASSIS5_LEAK_Q_N_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "RackFloorLeak2",
+            "PinName": "CHASSIS6_LEAK_Q_N_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "RackFloorLeak3",
+            "PinName": "CHASSIS7_LEAK_Q_N_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "RackVerticalColdManifoldLeak",
+            "PinName": "CHASSIS8_LEAK_Q_N_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "RackVerticalHotManifoldLeak",
+            "PinName": "CHASSIS9_LEAK_Q_N_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "RackHorizontalColdManifoldLeak",
+            "PinName": "CHASSIS10_LEAK_Q_N_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "RackHorizontalHotManifoldLeak",
+            "PinName": "CHASSIS11_LEAK_Q_N_R",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Address": "0x40",
+            "Bus": 7,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Ventura2.CPLD.LCMXO3D_9400_scm",
+                "VendorIANA": 40981
+            },
+            "Name": "Ventura2_SCM_CPLD",
+            "Type": "LatticeLCMXO3D_9400Firmware"
+        },
+        {
+            "Address": "0x30",
+            "Name": "BBU_1_1",
+            "SerialPort": "ttyRS485-1",
+            "Type": "PanasonicBJA3C0002ABatteryBackupUnit"
+        },
+        {
+            "Address": "0x31",
+            "Name": "BBU_1_2",
+            "SerialPort": "ttyRS485-1",
+            "Type": "PanasonicBJA3C0002ABatteryBackupUnit"
+        },
+        {
+            "Address": "0x32",
+            "Name": "BBU_1_3",
+            "SerialPort": "ttyRS485-1",
+            "Type": "PanasonicBJA3C0002ABatteryBackupUnit"
+        },
+        {
+            "Address": "0x33",
+            "Name": "BBU_1_4",
+            "SerialPort": "ttyRS485-1",
+            "Type": "PanasonicBJA3C0002ABatteryBackupUnit"
+        },
+        {
+            "Address": "0x34",
+            "Name": "BBU_1_5",
+            "SerialPort": "ttyRS485-1",
+            "Type": "PanasonicBJA3C0002ABatteryBackupUnit"
+        },
+        {
+            "Address": "0x35",
+            "Name": "BBU_1_6",
+            "SerialPort": "ttyRS485-1",
+            "Type": "PanasonicBJA3C0002ABatteryBackupUnit"
+        },
+        {
+            "Address": "0x3A",
+            "Name": "BBU_2_1",
+            "SerialPort": "ttyRS485-1",
+            "Type": "PanasonicBJA3C0002ABatteryBackupUnit"
+        },
+        {
+            "Address": "0x3B",
+            "Name": "BBU_2_2",
+            "SerialPort": "ttyRS485-1",
+            "Type": "PanasonicBJA3C0002ABatteryBackupUnit"
+        },
+        {
+            "Address": "0x3C",
+            "Name": "BBU_2_3",
+            "SerialPort": "ttyRS485-1",
+            "Type": "PanasonicBJA3C0002ABatteryBackupUnit"
+        },
+        {
+            "Address": "0x3D",
+            "Name": "BBU_2_4",
+            "SerialPort": "ttyRS485-1",
+            "Type": "PanasonicBJA3C0002ABatteryBackupUnit"
+        },
+        {
+            "Address": "0x3E",
+            "Name": "BBU_2_5",
+            "SerialPort": "ttyRS485-1",
+            "Type": "PanasonicBJA3C0002ABatteryBackupUnit"
+        },
+        {
+            "Address": "0x3F",
+            "Name": "BBU_2_6",
+            "SerialPort": "ttyRS485-1",
+            "Type": "PanasonicBJA3C0002ABatteryBackupUnit"
+        },
+        {
+            "Address": "0x5A",
+            "Name": "BBU_3_1",
+            "SerialPort": "ttyRS485-1",
+            "Type": "PanasonicBJA3C0002ABatteryBackupUnit"
+        },
+        {
+            "Address": "0x5B",
+            "Name": "BBU_3_2",
+            "SerialPort": "ttyRS485-1",
+            "Type": "PanasonicBJA3C0002ABatteryBackupUnit"
+        },
+        {
+            "Address": "0x5C",
+            "Name": "BBU_3_3",
+            "SerialPort": "ttyRS485-1",
+            "Type": "PanasonicBJA3C0002ABatteryBackupUnit"
+        },
+        {
+            "Address": "0x5D",
+            "Name": "BBU_3_4",
+            "SerialPort": "ttyRS485-1",
+            "Type": "PanasonicBJA3C0002ABatteryBackupUnit"
+        },
+        {
+            "Address": "0x5E",
+            "Name": "BBU_3_5",
+            "SerialPort": "ttyRS485-1",
+            "Type": "PanasonicBJA3C0002ABatteryBackupUnit"
+        },
+        {
+            "Address": "0x5F",
+            "Name": "BBU_3_6",
+            "SerialPort": "ttyRS485-1",
+            "Type": "PanasonicBJA3C0002ABatteryBackupUnit"
+        },
+        {
+            "Address": "0x6A",
+            "Name": "BBU_4_1",
+            "SerialPort": "ttyRS485-1",
+            "Type": "PanasonicBJA3C0002ABatteryBackupUnit"
+        },
+        {
+            "Address": "0x6B",
+            "Name": "BBU_4_2",
+            "SerialPort": "ttyRS485-1",
+            "Type": "PanasonicBJA3C0002ABatteryBackupUnit"
+        },
+        {
+            "Address": "0x6C",
+            "Name": "BBU_4_3",
+            "SerialPort": "ttyRS485-1",
+            "Type": "PanasonicBJA3C0002ABatteryBackupUnit"
+        },
+        {
+            "Address": "0x6D",
+            "Name": "BBU_4_4",
+            "SerialPort": "ttyRS485-1",
+            "Type": "PanasonicBJA3C0002ABatteryBackupUnit"
+        },
+        {
+            "Address": "0x6E",
+            "Name": "BBU_4_5",
+            "SerialPort": "ttyRS485-1",
+            "Type": "PanasonicBJA3C0002ABatteryBackupUnit"
+        },
+        {
+            "Address": "0x6F",
+            "Name": "BBU_4_6",
+            "SerialPort": "ttyRS485-1",
+            "Type": "PanasonicBJA3C0002ABatteryBackupUnit"
+        },
+        {
+            "Address": "0x10",
+            "Name": "BBU_PMM_1",
+            "SerialPort": "ttyRS485-1",
+            "Type": "PanasonicBJBPM103APowerMonitorModule"
+        },
+        {
+            "Address": "0x11",
+            "Name": "BBU_PMM_2",
+            "SerialPort": "ttyRS485-1",
+            "Type": "PanasonicBJBPM103APowerMonitorModule"
+        },
+        {
+            "Address": "0x12",
+            "Name": "BBU_PMM_3",
+            "SerialPort": "ttyRS485-1",
+            "Type": "PanasonicBJBPM103APowerMonitorModule"
+        },
+        {
+            "Address": "0x13",
+            "Name": "BBU_PMM_4",
+            "SerialPort": "ttyRS485-1",
+            "Type": "PanasonicBJBPM103APowerMonitorModule"
+        },
+        {
+            "Address": "0x10",
+            "Name": "BBU_SHELF_1",
+            "PollRate": 3,
+            "SerialPort": "ttyRS485-1",
+            "Type": "PanasonicBJBSB103APowerShelf"
+        },
+        {
+            "Address": "0x11",
+            "Name": "BBU_SHELF_2",
+            "PollRate": 3,
+            "SerialPort": "ttyRS485-1",
+            "Type": "PanasonicBJBSB103APowerShelf"
+        },
+        {
+            "Address": "0x12",
+            "Name": "BBU_SHELF_3",
+            "PollRate": 3,
+            "SerialPort": "ttyRS485-1",
+            "Type": "PanasonicBJBSB103APowerShelf"
+        },
+        {
+            "Address": "0x13",
+            "Name": "BBU_SHELF_4",
+            "PollRate": 3,
+            "SerialPort": "ttyRS485-1",
+            "Type": "PanasonicBJBSB103APowerShelf"
+        },
+        {
+            "Address": "0x4b",
+            "Bus": 9,
+            "Name": "SCM_INLET_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 60
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                }
+            ],
+            "Type": "TMP75"
+        },
+        {
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Ventura2.TPM.BMC",
+                "VendorIANA": 40981
+            },
+            "Name": "Ventura2_TPM",
+            "TPMIndex": 0,
+            "Type": "TPM2Firmware"
+        }
+    ],
+    "Name": "Ventura2 SCM 2700",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_MANUFACTURER': 'Quanta', 'BOARD_PRODUCT_NAME': 'Ventura2 SCM 2700.*'})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$BOARD_MANUFACTURE_DATE",
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER",
+        "SparePartNumber": "$BOARD_INFO_AM1"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Compatible": {
+        "Names": [
+            "com.meta.Hardware.BMC.Model.Ventura2a7"
+        ]
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Revision": {
+        "Version": "$PRODUCT_VERSION"
+    },
+    "xyz.openbmc_project.Inventory.Item.NetworkInterface": {
+        "MACAddress": "$CHASSIS_INFO_AM2"
+    }
+}
