@@ -89,6 +89,7 @@
                         "Chassis",
                         "Cpu",
                         "Dimm",
+                        "Drive",
                         "NVMe",
                         "PowerSupply",
                         "Valve"
@@ -144,6 +145,9 @@
                 },
                 "xyz.openbmc_project.Inventory.Item.Storage": {
                     "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Inventory/Item/Storage"
+                },
+                "xyz.openbmc_project.Inventory.Item.Drive": {
+                    "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Inventory/Item/Drive"
                 },
                 "xyz.openbmc_project.Inventory.Item.Accelerator": {
                     "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Inventory/Item/Accelerator"
