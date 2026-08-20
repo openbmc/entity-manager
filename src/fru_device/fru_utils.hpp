@@ -131,7 +131,7 @@ ssize_t getFieldLength(uint8_t fruFieldTypeLenValue);
 struct FruSections
 {
     off_t IpmiFruOffset = 0;
-    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> ipmiFruBlock;
+    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> ipmiFruBlock{};
 
     off_t GigabyteXmlOffset = 0;
 };
