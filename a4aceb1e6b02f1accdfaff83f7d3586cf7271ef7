@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "a00d70e6_1961d8d8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-08-20T08:20:39Z",
+      "side": 1,
+      "message": "Thanks.",
+      "parentUuid": "69dd2f91_254e71fa",
+      "revId": "a4aceb1e6b02f1accdfaff83f7d3586cf7271ef7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "16eca609_3efee00c",
         "filename": "src/entity_manager/entity_manager.cpp",
         "patchSetId": 3
@@ -31,6 +49,30 @@
       "writtenOn": "2026-08-06T21:44:19Z",
       "side": 1,
       "message": "slightly misleading since it may not be a board, but that\u0027s how the existing code was.",
+      "range": {
+        "startLine": 138,
+        "startChar": 36,
+        "endLine": 138,
+        "endChar": 42
+      },
+      "revId": "a4aceb1e6b02f1accdfaff83f7d3586cf7271ef7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "957468f4_65b4e413",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-08-20T08:20:39Z",
+      "side": 1,
+      "message": "I made a patch to change these name.\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/93758",
+      "parentUuid": "16eca609_3efee00c",
       "range": {
         "startLine": 138,
         "startChar": 36,
