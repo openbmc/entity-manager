@@ -3,12 +3,20 @@
         {
             "Address": "$address",
             "Bus": "$bus",
-            "Name": "NVIDIA VR NVL72 IO Board $bus - 73 FRU",
+            "Name": "NVIDIA VR NVL72 IO Board $bus FRU",
             "Type": "EEPROM"
+        },
+        {
+            "Name": "NVIDIA VR NVL72 IO Board CX",
+            "Type": "NvidiaMctpVdmCx"
+        },
+        {
+            "Name": "NVIDIA VR NVL72 IO Board SMA",
+            "Type": "NvidiaMctpVdmSma"
         }
     ],
-    "Name": "NVIDIA VR NVL72 IO Board $bus - 73",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'ConnectX-9 800GE 2P NIC', 'BOARD_MANUFACTURER': '(Nvidia|NVIDIA)'})",
+    "Name": "NVIDIA VR NVL72 IO Board $bus",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'ConnectX-9 (800GE|2x400GE) 2P NIC', 'BOARD_MANUFACTURER': '(Nvidia|NVIDIA)'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
