@@ -205,6 +205,7 @@ void EntityManager::postBoardToDBus(
         // NVMe has no phosphor-dbus-interfaces definition, but is exported
         // today and consumers rely on it.
         {"NVMe", "xyz.openbmc_project.Inventory.Item.NVMe"},
+        {"Drive", "xyz.openbmc_project.Inventory.Item.Drive"},
         {"PowerSupply", "xyz.openbmc_project.Inventory.Item.PowerSupply"},
         {"Valve", "xyz.openbmc_project.Inventory.Item.Valve"},
         // A platform is not an inventory item, so it is named under the
