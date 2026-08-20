@@ -13,7 +13,7 @@
         ],
         "Name": "$Name",
         "Probe": [
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^SupplyValve_1$', 'Compatible': '^com.meta.Hardware.BMC.Model.Ventura2$'})"
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^SupplyValve_1$', 'Compatible': '^com.meta.Hardware.BMC.Model.Ventura2.*$'})"
         ],
         "Type": "Valve",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
@@ -41,7 +41,7 @@
         ],
         "Name": "$Name",
         "Probe": [
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^ReturnValve_1$', 'Compatible': '^com.meta.Hardware.BMC.Model.Ventura2$'})"
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^ReturnValve_1$', 'Compatible': '^com.meta.Hardware.BMC.Model.Ventura2.*$'})"
         ],
         "Type": "Valve",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
@@ -69,7 +69,7 @@
         ],
         "Name": "$Name",
         "Probe": [
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^SupplyValve_2$', 'Compatible': '^com.meta.Hardware.BMC.Model.Ventura2$'})"
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^SupplyValve_2$', 'Compatible': '^com.meta.Hardware.BMC.Model.Ventura2.*$'})"
         ],
         "Type": "Valve",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
@@ -97,7 +97,7 @@
         ],
         "Name": "$Name",
         "Probe": [
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^ReturnValve_2$', 'Compatible': '^com.meta.Hardware.BMC.Model.Ventura2$'})"
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^ReturnValve_2$', 'Compatible': '^com.meta.Hardware.BMC.Model.Ventura2.*$'})"
         ],
         "Type": "Valve",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
@@ -125,7 +125,7 @@
         ],
         "Name": "$Name",
         "Probe": [
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^SupplyValve_3$', 'Compatible': '^com.meta.Hardware.BMC.Model.Ventura2$'})"
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^SupplyValve_3$', 'Compatible': '^com.meta.Hardware.BMC.Model.Ventura2.*$'})"
         ],
         "Type": "Valve",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
@@ -153,7 +153,7 @@
         ],
         "Name": "$Name",
         "Probe": [
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^ReturnValve_3$', 'Compatible': '^com.meta.Hardware.BMC.Model.Ventura2$'})"
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^ReturnValve_3$', 'Compatible': '^com.meta.Hardware.BMC.Model.Ventura2.*$'})"
         ],
         "Type": "Valve",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
@@ -212,7 +212,7 @@
         "Probe": [
             "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Ventura2 RMC', 'PRODUCT_VERSION': '^(?!EVT).+'})",
             "AND",
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^SupplyValve2_1$', 'Compatible': '^com.meta.Hardware.BMC.Model.Ventura2$'})",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^SupplyValve2_1$', 'Compatible': '^com.meta.Hardware.BMC.Model.Ventura2.*$'})",
             "MATCH_ONE"
         ],
         "Type": "Valve",
@@ -272,7 +272,7 @@
         "Probe": [
             "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Ventura2 RMC', 'PRODUCT_VERSION': '^(?!EVT).+'})",
             "AND",
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^SupplyValve2_2$', 'Compatible': '^com.meta.Hardware.BMC.Model.Ventura2$'})",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^SupplyValve2_2$', 'Compatible': '^com.meta.Hardware.BMC.Model.Ventura2.*$'})",
             "MATCH_ONE"
         ],
         "Type": "Valve",
@@ -332,7 +332,7 @@
         "Probe": [
             "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Ventura2 RMC', 'PRODUCT_VERSION': '^(?!EVT).+'})",
             "AND",
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^SupplyValve2_3$', 'Compatible': '^com.meta.Hardware.BMC.Model.Ventura2$'})",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^SupplyValve2_3$', 'Compatible': '^com.meta.Hardware.BMC.Model.Ventura2.*$'})",
             "MATCH_ONE"
         ],
         "Type": "Valve",
@@ -392,7 +392,7 @@
         "Probe": [
             "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Ventura2 RMC', 'PRODUCT_VERSION': 'EVT'})",
             "AND",
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^SupplyValve2_1$', 'Compatible': '^com.meta.Hardware.BMC.Model.Ventura2$'})",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^SupplyValve2_1$', 'Compatible': '^com.meta.Hardware.BMC.Model.Ventura2.*$'})",
             "MATCH_ONE"
         ],
         "Type": "Valve",
@@ -452,7 +452,7 @@
         "Probe": [
             "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Ventura2 RMC', 'PRODUCT_VERSION': 'EVT'})",
             "AND",
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^SupplyValve2_2$', 'Compatible': '^com.meta.Hardware.BMC.Model.Ventura2$'})",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^SupplyValve2_2$', 'Compatible': '^com.meta.Hardware.BMC.Model.Ventura2.*$'})",
             "MATCH_ONE"
         ],
         "Type": "Valve",
@@ -512,7 +512,7 @@
         "Probe": [
             "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Ventura2 RMC', 'PRODUCT_VERSION': 'EVT'})",
             "AND",
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^SupplyValve2_3$', 'Compatible': '^com.meta.Hardware.BMC.Model.Ventura2$'})",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^SupplyValve2_3$', 'Compatible': '^com.meta.Hardware.BMC.Model.Ventura2.*$'})",
             "MATCH_ONE"
         ],
         "Type": "Valve",
