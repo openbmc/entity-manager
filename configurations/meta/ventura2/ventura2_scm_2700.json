@@ -1847,8 +1847,8 @@
             "Type": "TPM2Firmware"
         }
     ],
-    "Name": "Ventura2 SCM",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_MANUFACTURER': 'Quanta', 'BOARD_PRODUCT_NAME': 'Ventura2 SCM(?!.*2700).*'})",
+    "Name": "Ventura2 SCM 2700",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_MANUFACTURER': 'Quanta', 'BOARD_PRODUCT_NAME': 'Ventura2 SCM 2700'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
@@ -1863,7 +1863,7 @@
     },
     "xyz.openbmc_project.Inventory.Decorator.Compatible": {
         "Names": [
-            "com.meta.Hardware.BMC.Model.Ventura2"
+            "com.meta.Hardware.BMC.Model.Ventura2a7"
         ]
     },
     "xyz.openbmc_project.Inventory.Decorator.Revision": {
