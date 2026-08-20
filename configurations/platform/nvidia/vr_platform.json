@@ -1,0 +1,264 @@
+{
+    "Name": "Nvidia VR NVL",
+    "Probe": [
+        "FOUND('HGX ProcessorModule 0')",
+        "OR",
+        "FOUND('HGX ProcessorModule 1')"
+    ],
+    "Type": "Platform",
+    "Exposes": [
+        {
+            "Configuration": 1,
+            "Interface": 2,
+            "Name": "VR MCTP USB CPU0",
+            "Port": [
+                1,
+                3,
+                1,
+                2
+            ],
+            "RootHubPosition": 0,
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Configuration": 1,
+            "Interface": 2,
+            "Name": "VR MCTP USB CPU1",
+            "Port": [
+                1,
+                3,
+                2,
+                2
+            ],
+            "RootHubPosition": 0,
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Board": "NVIDIA ConnectX-9 800GE 2P NIC",
+            "BridgedEndpoints": [
+                {
+                    "Name": "CX9 0"
+                },
+                {
+                    "Name": "CX9 1"
+                },
+                {
+                    "Name": "CX9 2"
+                },
+                {
+                    "Name": "CX9 3"
+                },
+                {
+                    "Name": "CX9 4"
+                }
+            ],
+            "Configuration": 1,
+            "Interface": 0,
+            "Name": "VR MCTP USB CX9 IOB0",
+            "Port": [
+                1,
+                2,
+                1,
+                4,
+                1
+            ],
+            "RootHubPosition": 0,
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Board": "NVIDIA ConnectX-9 800GE 2P NIC",
+            "BridgedEndpoints": [
+                {
+                    "Name": "CX9 5"
+                },
+                {
+                    "Name": "CX9 6"
+                },
+                {
+                    "Name": "CX9 7"
+                },
+                {
+                    "Name": "CX9 8"
+                },
+                {
+                    "Name": "CX9 9"
+                }
+            ],
+            "Configuration": 1,
+            "Interface": 0,
+            "Name": "VR MCTP USB CX9 IOB1",
+            "Port": [
+                1,
+                2,
+                1,
+                3,
+                1
+            ],
+            "RootHubPosition": 0,
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Board": "NVIDIA ConnectX-9 800GE 2P NIC",
+            "BridgedEndpoints": [
+                {
+                    "Name": "CX9 10"
+                },
+                {
+                    "Name": "CX9 11"
+                },
+                {
+                    "Name": "CX9 12"
+                },
+                {
+                    "Name": "CX9 13"
+                },
+                {
+                    "Name": "CX9 14"
+                }
+            ],
+            "Configuration": 1,
+            "Interface": 0,
+            "Name": "VR MCTP USB CX9 IOB2",
+            "Port": [
+                1,
+                2,
+                2,
+                3,
+                1
+            ],
+            "RootHubPosition": 0,
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Board": "NVIDIA ConnectX-9 800GE 2P NIC",
+            "BridgedEndpoints": [
+                {
+                    "Name": "CX9 15"
+                },
+                {
+                    "Name": "CX9 16"
+                },
+                {
+                    "Name": "CX9 17"
+                },
+                {
+                    "Name": "CX9 18"
+                },
+                {
+                    "Name": "CX9 19"
+                }
+            ],
+            "Configuration": 1,
+            "Interface": 0,
+            "Name": "VR MCTP USB CX9 IOB3",
+            "Port": [
+                1,
+                2,
+                2,
+                4,
+                1
+            ],
+            "RootHubPosition": 0,
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Board": "Chassis_0",
+            "BridgedEndpoints": [
+                {
+                    "Name": "BF4 DPU 0"
+                },
+                {
+                    "Name": "BF4 DPU 1"
+                },
+                {
+                    "Name": "BF4 DPU 2"
+                }
+            ],
+            "Configuration": 1,
+            "Interface": 0,
+            "Name": "VR MCTP USB BF4",
+            "Port": [
+                1,
+                1,
+                4,
+                1
+            ],
+            "RootHubPosition": 0,
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Board": "HGX ProcessorModule 0",
+            "BridgedEndpoints": [
+                {
+                    "Name": "GPU 0"
+                }
+            ],
+            "Configuration": 1,
+            "Interface": 0,
+            "Name": "VR MCTP USB HPM0 SMA",
+            "Port": [
+                1,
+                2,
+                1,
+                1
+            ],
+            "RootHubPosition": 0,
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Board": "HGX ProcessorModule 1",
+            "BridgedEndpoints": [
+                {
+                    "Name": "GPU 1"
+                }
+            ],
+            "Configuration": 1,
+            "Interface": 0,
+            "Name": "VR MCTP USB HPM1 SMA",
+            "Port": [
+                1,
+                2,
+                2,
+                1
+            ],
+            "RootHubPosition": 0,
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Board": "HGX ProcessorModule 0",
+            "Configuration": 1,
+            "Interface": 0,
+            "Name": "VR MCTP USB 7",
+            "Port": [
+                1,
+                3,
+                1,
+                1
+            ],
+            "RootHubPosition": 0,
+            "Type": "MCTPUSBDevice"
+        },
+        {
+            "Board": "HGX ProcessorModule 1",
+            "BridgedEndpoints": [
+                {
+                    "Name": "GPU 2"
+                },
+                {
+                    "Name": "GPU 3"
+                }
+            ],
+            "Configuration": 1,
+            "Interface": 0,
+            "Name": "VR MCTP USB 8",
+            "Port": [
+                1,
+                3,
+                2,
+                1
+            ],
+            "RootHubPosition": 0,
+            "Type": "MCTPUSBDevice"
+        }
+    ]
+}
