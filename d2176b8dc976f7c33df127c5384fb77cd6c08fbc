@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd063a9f_143a203a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-20T15:00:29Z",
+      "side": 1,
+      "message": "Thanks for looking into this",
+      "revId": "d2176b8dc976f7c33df127c5384fb77cd6c08fbc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bb985a4e_9ec756d6",
@@ -14,6 +31,30 @@
       "writtenOn": "2026-08-19T15:49:53Z",
       "side": 1,
       "message": "Just \u0027Fru\u0027 instead of \u0027Frus\u0027 since just one?",
+      "range": {
+        "startLine": 1207,
+        "startChar": 19,
+        "endLine": 1207,
+        "endChar": 23
+      },
+      "revId": "d2176b8dc976f7c33df127c5384fb77cd6c08fbc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea1d99f3_a4d5c63a",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1207,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-20T15:00:29Z",
+      "side": 1,
+      "message": "Thanks 👍, Done.",
+      "parentUuid": "bb985a4e_9ec756d6",
       "range": {
         "startLine": 1207,
         "startChar": 19,
@@ -47,6 +88,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3f81e6d_d960887e",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1234,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-20T15:00:29Z",
+      "side": 1,
+      "message": "Done. Sometimes i just look too much at existing code and forget about modern C++ 😊",
+      "parentUuid": "766f7056_27b74ac3",
+      "range": {
+        "startLine": 1234,
+        "startChar": 13,
+        "endLine": 1234,
+        "endChar": 17
+      },
+      "revId": "d2176b8dc976f7c33df127c5384fb77cd6c08fbc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b1b172c8_63552eed",
@@ -60,6 +125,30 @@
       "writtenOn": "2026-08-19T15:49:53Z",
       "side": 1,
       "message": "correct signature to reduce unnecessary copies?",
+      "range": {
+        "startLine": 1257,
+        "startChar": 9,
+        "endLine": 1257,
+        "endChar": 14
+      },
+      "revId": "d2176b8dc976f7c33df127c5384fb77cd6c08fbc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8ce7403_30e852b1",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1257,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-20T15:00:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b1b172c8_63552eed",
       "range": {
         "startLine": 1257,
         "startChar": 9,
@@ -93,6 +182,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6beadad9_bd614b96",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1260,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-20T15:00:29Z",
+      "side": 1,
+      "message": "Agree, removed the extra var here to be consistent.",
+      "parentUuid": "3123bbb3_f36ef7c4",
+      "range": {
+        "startLine": 1259,
+        "startChar": 8,
+        "endLine": 1260,
+        "endChar": 75
+      },
+      "revId": "d2176b8dc976f7c33df127c5384fb77cd6c08fbc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "908d02dc_56395e0d",
@@ -106,6 +219,30 @@
       "writtenOn": "2026-08-19T15:49:53Z",
       "side": 1,
       "message": "nit: how about a comment on what this does, as it doesn\u0027t quite just extract out bus numbers",
+      "range": {
+        "startLine": 1283,
+        "startChar": 26,
+        "endLine": 1283,
+        "endChar": 41
+      },
+      "revId": "d2176b8dc976f7c33df127c5384fb77cd6c08fbc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67ed7b32_8518f9f3",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1283,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-20T15:00:29Z",
+      "side": 1,
+      "message": "sure, added the detail about baseboard fru feature and how this function determines the buses that cannot be pruned",
+      "parentUuid": "908d02dc_56395e0d",
       "range": {
         "startLine": 1283,
         "startChar": 26,
@@ -139,6 +276,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "40a45381_40e068b5",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1286,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-20T15:00:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c69f3249_dac13f7b",
+      "range": {
+        "startLine": 1286,
+        "startChar": 9,
+        "endLine": 1286,
+        "endChar": 13
+      },
+      "revId": "d2176b8dc976f7c33df127c5384fb77cd6c08fbc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b0f44ec9_4c2e258b",
@@ -152,6 +313,30 @@
       "writtenOn": "2026-08-19T15:49:53Z",
       "side": 1,
       "message": "maybe a comment on why this is done?",
+      "range": {
+        "startLine": 1291,
+        "startChar": 3,
+        "endLine": 1291,
+        "endChar": 27
+      },
+      "revId": "d2176b8dc976f7c33df127c5384fb77cd6c08fbc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25c98045_9c826bb4",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1291,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-20T15:00:29Z",
+      "side": 1,
+      "message": "sure, added the detail about baseboard fru feature and how this function determines the buses that cannot be pruned",
+      "parentUuid": "b0f44ec9_4c2e258b",
       "range": {
         "startLine": 1291,
         "startChar": 3,
@@ -185,6 +370,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c75099a_bd03f15f",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1323,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-20T15:00:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a3518d9_936101d8",
+      "range": {
+        "startLine": 1323,
+        "startChar": 9,
+        "endLine": 1323,
+        "endChar": 14
+      },
+      "revId": "d2176b8dc976f7c33df127c5384fb77cd6c08fbc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "49905d43_1dd8ba4a",
@@ -198,6 +407,30 @@
       "writtenOn": "2026-08-19T15:49:53Z",
       "side": 1,
       "message": "a comment here would be nice",
+      "range": {
+        "startLine": 1327,
+        "startChar": 7,
+        "endLine": 1327,
+        "endChar": 24
+      },
+      "revId": "d2176b8dc976f7c33df127c5384fb77cd6c08fbc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4f8c578_d68596c0",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1327,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-20T15:00:29Z",
+      "side": 1,
+      "message": "Done, added explainer about possible busmap modification and that this is done to prevent modification while iterating over the map.\n\nAlso added constants for baseboard fru bus and address to avoid hardcoding them in a bunch of places.",
+      "parentUuid": "49905d43_1dd8ba4a",
       "range": {
         "startLine": 1327,
         "startChar": 7,
