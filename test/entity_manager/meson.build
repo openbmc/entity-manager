@@ -37,6 +37,17 @@ test(
 )
 
 test(
+    'test_probe_lexer',
+    executable(
+        'test_probe_lexer',
+        'test_probe_lexer.cpp',
+        '../../src/entity_manager/probe_lexer.cpp',
+        dependencies: [gtest],
+        include_directories: test_include_dir,
+    ),
+)
+
+test(
     'test_log_device_inventory',
     executable(
         'test_log_device_inventory',

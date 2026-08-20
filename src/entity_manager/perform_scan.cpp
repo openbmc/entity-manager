@@ -5,7 +5,7 @@
 
 #include "object_mapper.hpp"
 #include "perform_probe.hpp"
-#include "probe_type.hpp"
+#include "probe_lexer.hpp"
 #include "utils.hpp"
 
 #include <boost/asio/steady_timer.hpp>
@@ -682,10 +682,11 @@ void scan::PerformScan::updateSystemConfiguration(
     }
 }
 
-std::vector<std::string> scan::detail::parseProbeCommand(
+std::vector<probe::Token> scan::detail::parseProbeCommand(
     const nlohmann::json& probeField)
 {
-    std::vector<std::string> probeCommand;
+    // Join the statements (array form) into a single string, then lex it.
+    std::string joined;
     const nlohmann::json::array_t* probeCommandArrayPtr =
         probeField.get_ptr<const nlohmann::json::array_t*>();
     if (probeCommandArrayPtr != nullptr)
@@ -698,7 +699,11 @@ std::vector<std::string> scan::detail::parseProbeCommand(
                 lg2::error("Probe statement wasn't a string, can't parse");
                 return {};
             }
-            probeCommand.push_back(*probeStr);
+            if (!joined.empty())
+            {
+                joined += ' ';
+            }
+            joined += *probeStr;
         }
     }
     else
@@ -709,30 +714,36 @@ std::vector<std::string> scan::detail::parseProbeCommand(
             lg2::error("Probe statement wasn't a string, can't parse");
             return {};
         }
-        probeCommand.push_back(*probeStr);
+        joined = *probeStr;
     }
-    return probeCommand;
+
+    std::optional<std::vector<probe::Token>> tokens = probe::lexProbe(joined);
+    if (!tokens)
+    {
+        lg2::error("Probe statement failed to parse: {PROBE}", "PROBE", joined);
+        return {};
+    }
+    return *tokens;
 }
 
 // From a config's parsed probe statements, collect the D-Bus interface names
 // that need to be probed (discarding non-D-Bus probe types) and record that
 // this config's PerformProbe cares about each of them.
 static void collectDbusProbes(
-    const std::vector<std::string>& probeCommand,
+    const std::vector<probe::Token>& probeCommand,
     const std::shared_ptr<probe::PerformProbe>& probePointer,
     std::flat_set<std::string, std::less<>>& dbusProbeInterfaces,
     std::vector<std::shared_ptr<probe::PerformProbe>>& dbusProbePointers)
 {
-    for (const std::string& probe : probeCommand)
+    for (const probe::Token& token : probeCommand)
     {
-        if (probe::findProbeType(probe))
+        if (token.type != probe::TokenType::dbusProbe)
         {
             continue;
         }
-        // syntax requires probe before first open brace
-        auto findStart = probe.find('(');
-        std::string interface = probe.substr(0, findStart);
-        dbusProbeInterfaces.emplace(interface);
+        // syntax requires the interface before the first open brace
+        auto findStart = token.value.find('(');
+        dbusProbeInterfaces.emplace(token.value.substr(0, findStart));
         dbusProbePointers.emplace_back(probePointer);
     }
 }
@@ -787,7 +798,7 @@ bool scan::PerformScan::processConfigurations(
         }
 
         nlohmann::json& recordRef = *it;
-        std::vector<std::string> probeCommand =
+        std::vector<probe::Token> probeCommand =
             detail::parseProbeCommand(*findProbe);
         if (probeCommand.empty())
         {
