@@ -149,6 +149,64 @@
                             },
                             "type": "object"
                         },
+                        "Drive": {
+                            "additionalProperties": false,
+                            "properties": {
+                                "Capacity": {
+                                    "type": "number",
+                                    "x-dbus-type": "uint64"
+                                },
+                                "Protocol": {
+                                    "enum": [
+                                        "xyz.openbmc_project.Inventory.Item.DriveProtocol.SAS",
+                                        "xyz.openbmc_project.Inventory.Item.DriveProtocol.SATA",
+                                        "xyz.openbmc_project.Inventory.Item.DriveProtocol.NVMe",
+                                        "xyz.openbmc_project.Inventory.Item.DriveProtocol.FC",
+                                        "xyz.openbmc_project.Inventory.Item.DriveProtocol.eMMC",
+                                        "xyz.openbmc_project.Inventory.Item.DriveProtocol.Unknown"
+                                    ]
+                                },
+                                "Type": {
+                                    "enum": [
+                                        "xyz.openbmc_project.Inventory.Item.DriveType.HDD",
+                                        "xyz.openbmc_project.Inventory.Item.DriveType.SMR",
+                                        "xyz.openbmc_project.Inventory.Item.DriveType.SSD",
+                                        "xyz.openbmc_project.Inventory.Item.DriveType.Unknown"
+                                    ]
+                                },
+                                "EncryptionStatus": {
+                                    "enum": [
+                                        "xyz.openbmc_project.Inventory.Item.DriveEncryptionState.Encrypted",
+                                        "xyz.openbmc_project.Inventory.Item.DriveEncryptionState.Unencrypted",
+                                        "xyz.openbmc_project.Inventory.Item.DriveEncryptionState.Unknown"
+                                    ]
+                                },
+                                "LockedStatus": {
+                                    "enum": [
+                                        "xyz.openbmc_project.Inventory.Item.DriveLockedState.Locked",
+                                        "xyz.openbmc_project.Inventory.Item.DriveLockedState.Unlocked",
+                                        "xyz.openbmc_project.Inventory.Item.DriveLockedState.Unknown"
+                                    ]
+                                },
+                                "PredictedMediaLifeLeftPercent": {
+                                    "type": "number",
+                                    "x-dbus-type": "uint8"
+                                },
+                                "Resettable": {
+                                    "type": "boolean"
+                                }
+                            },
+                            "required": [
+                                "Capacity",
+                                "Protocol",
+                                "Type",
+                                "EncryptionStatus",
+                                "LockedStatus",
+                                "PredictedMediaLifeLeftPercent",
+                                "Resettable"
+                            ],
+                            "type": "object"
+                        },
                         "NetworkInterface": {
                             "additionalProperties": false,
                             "properties": {
