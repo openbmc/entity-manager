@@ -78,27 +78,27 @@ EntityManager::EntityManager(
 
 void EntityManager::postToDbus(const nlohmann::json& newConfiguration)
 {
-    std::map<sdbusplus::object_path, std::string> newBoards; // path -> name
+    std::map<sdbusplus::object_path, std::string> newObjects; // path -> name
 
-    // iterate through boards
-    for (const auto& [boardId, boardConfig] : newConfiguration.items())
+    // iterate through configurations
+    for (const auto& [configId, configObject] : newConfiguration.items())
     {
-        const nlohmann::json::object_t* boardConfigPtr =
-            boardConfig.get_ptr<const nlohmann::json::object_t*>();
-        if (boardConfigPtr == nullptr)
+        const nlohmann::json::object_t* configObjectPtr =
+            configObject.get_ptr<const nlohmann::json::object_t*>();
+        if (configObjectPtr == nullptr)
         {
-            lg2::error("boardConfig for {BOARD} was not an object", "BOARD",
-                       boardId);
+            lg2::error("configObject for {CONFIG} was not an object", "CONFIG",
+                       configId);
             continue;
         }
-        postBoardToDBus(boardId, *boardConfigPtr, newBoards);
+        postBoardToDBus(configId, *configObjectPtr, newObjects);
     }
 
     for (const auto& [assocPath, assocPropValue] :
-         topology.getAssocs(std::views::keys(newBoards)))
+         topology.getAssocs(std::views::keys(newObjects)))
     {
-        auto findBoard = newBoards.find(assocPath);
-        if (findBoard == newBoards.end())
+        auto findBoard = newObjects.find(assocPath);
+        if (findBoard == newObjects.end())
         {
             continue;
         }
@@ -115,78 +115,78 @@ void EntityManager::postToDbus(const nlohmann::json& newConfiguration)
 }
 
 void EntityManager::postBoardToDBus(
-    const std::string& boardId, const nlohmann::json::object_t& boardConfig,
-    std::map<sdbusplus::object_path, std::string>& newBoards)
+    const std::string& configId, const nlohmann::json::object_t& configObject,
+    std::map<sdbusplus::object_path, std::string>& newObjects)
 {
-    auto boardNameIt = boardConfig.find("Name");
-    if (boardNameIt == boardConfig.end())
+    auto configNameIt = configObject.find("Name");
+    if (configNameIt == configObject.end())
     {
-        lg2::error("Unable to find name for {BOARD}", "BOARD", boardId);
+        lg2::error("Unable to find name for {CONFIG}", "CONFIG", configId);
         return;
     }
-    const std::string* boardNamePtr =
-        boardNameIt->second.get_ptr<const std::string*>();
-    if (boardNamePtr == nullptr)
+    const std::string* configNamePtr =
+        configNameIt->second.get_ptr<const std::string*>();
+    if (configNamePtr == nullptr)
     {
-        lg2::error("Name for {BOARD} was not a string", "BOARD", boardId);
+        lg2::error("Name for {CONFIG} was not a string", "CONFIG", configId);
         return;
     }
-    std::string boardName = *boardNamePtr;
-    std::string boardNameOrig = *boardNamePtr;
-    std::string jsonPointerPath = "/" + boardId;
+    std::string configName = *configNamePtr;
+    std::string configNameOrig = *configNamePtr;
+    std::string jsonPointerPath = "/" + configId;
     // loop through newConfiguration, but use values from system
     // configuration to be able to modify via dbus later
-    auto boardValues = systemConfiguration[boardId];
-    auto findBoardType = boardValues.find("Type");
-    std::string boardType;
-    if (findBoardType != boardValues.end() &&
-        findBoardType->type() == nlohmann::json::value_t::string)
+    auto configValues = systemConfiguration[configId];
+    auto findConfigType = configValues.find("Type");
+    std::string configType;
+    if (findConfigType != configValues.end() &&
+        findConfigType->type() == nlohmann::json::value_t::string)
     {
-        boardType = dbus_util::sanitizeForDBusPathSegment(
-            findBoardType->get<std::string>());
+        configType = dbus_util::sanitizeForDBusPathSegment(
+            findConfigType->get<std::string>());
     }
     else
     {
-        lg2::error("Unable to find type for {BOARD} reverting to Chassis.",
-                   "BOARD", boardName);
-        boardType = "Chassis";
+        lg2::error("Unable to find type for {CONFIG} reverting to Chassis.",
+                   "CONFIG", configName);
+        configType = "Chassis";
     }
 
-    lg2::debug("post {TYPE} '{NAME}' to DBus", "TYPE", boardType, "NAME",
-               boardName);
+    lg2::debug("post {TYPE} '{NAME}' to DBus", "TYPE", configType, "NAME",
+               configName);
 
-    const sdbusplus::object_path boardPath =
-        em_utils::buildInventorySystemPath(boardName, boardType);
+    const sdbusplus::object_path objectPath =
+        em_utils::buildInventorySystemPath(configName, configType);
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> inventoryIface =
         dbus_interface.createInterface(
-            boardPath,
+            objectPath,
             sdbusplus::common::xyz::openbmc_project::inventory::Item::interface,
-            boardNameOrig);
+            configNameOrig);
 
-    dbus_interface.createAddObjectMethod(jsonPointerPath, boardPath,
-                                         systemConfiguration, boardNameOrig);
+    dbus_interface.createAddObjectMethod(jsonPointerPath, objectPath,
+                                         systemConfiguration, configNameOrig);
 
     std::string jsonPointerPath1 = jsonPointerPath;
     jsonPointerPath += "/";
 
-    std::shared_ptr<sdbusplus::asio::dbus_interface> boardIface;
+    std::shared_ptr<sdbusplus::asio::dbus_interface> typeIface;
     const std::string invItemIntf = std::format(
         "{}.{}",
         sdbusplus::common::xyz::openbmc_project::inventory::Item::interface,
-        boardType);
+        configType);
 
-    // iterate through board properties
-    for (const auto& [propName, propValue] : boardValues.items())
+    // iterate through configuration properties
+    for (const auto& [propName, propValue] : configValues.items())
     {
         if (propValue.type() == nlohmann::json::value_t::object)
         {
             std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
-                dbus_interface.createInterface(boardPath, propName,
-                                               boardNameOrig);
+                dbus_interface.createInterface(objectPath, propName,
+                                               configNameOrig);
             if (propName == invItemIntf)
             {
-                boardIface = iface;
+                typeIface = iface;
             }
 
             dbus_interface.populateInterfaceFromJson(
@@ -195,43 +195,43 @@ void EntityManager::postBoardToDBus(
         }
     }
 
-    if (boardIface == nullptr)
+    if (typeIface == nullptr)
     {
-        boardIface = dbus_interface.createInterface(boardPath, invItemIntf,
-                                                    boardNameOrig);
+        typeIface = dbus_interface.createInterface(objectPath, invItemIntf,
+                                                   configNameOrig);
         dbus_interface.populateInterfaceFromJson(
-            systemConfiguration, jsonPointerPath1, boardIface, boardValues);
+            systemConfiguration, jsonPointerPath1, typeIface, configValues);
     }
 
-    nlohmann::json::iterator exposes = boardValues.find("Exposes");
-    if (exposes == boardValues.end())
+    nlohmann::json::iterator exposes = configValues.find("Exposes");
+    if (exposes == configValues.end())
     {
         return;
     }
     // iterate through exposes
     jsonPointerPath += "Exposes/";
 
-    // store the board level pointer so we can modify it on the way down
-    std::string jsonPointerPathBoard = jsonPointerPath;
+    // store the configuration level pointer so we can modify it on the way down
+    std::string jsonPointerPathConfig = jsonPointerPath;
     size_t exposesIndex = -1;
     for (nlohmann::json& item : *exposes)
     {
-        postExposesRecordsToDBus(item, exposesIndex, boardNameOrig,
-                                 jsonPointerPath, jsonPointerPathBoard,
-                                 boardPath, boardType);
+        postExposesRecordsToDBus(item, exposesIndex, configNameOrig,
+                                 jsonPointerPath, jsonPointerPathConfig,
+                                 objectPath, configType);
     }
 
-    newBoards.emplace(boardPath, boardNameOrig);
+    newObjects.emplace(objectPath, configNameOrig);
 }
 
 void EntityManager::postExposesRecordsToDBus(
     nlohmann::json& item, size_t& exposesIndex,
-    const std::string& boardNameOrig, std::string jsonPointerPath,
-    const std::string& jsonPointerPathBoard,
-    const sdbusplus::object_path& boardPath, const std::string& boardType)
+    const std::string& configNameOrig, std::string jsonPointerPath,
+    const std::string& jsonPointerPathConfig,
+    const sdbusplus::object_path& objectPath, const std::string& configType)
 {
     exposesIndex++;
-    jsonPointerPath = jsonPointerPathBoard;
+    jsonPointerPath = jsonPointerPathConfig;
     jsonPointerPath += std::to_string(exposesIndex);
 
     auto findName = item.find("Name");
@@ -267,7 +267,7 @@ void EntityManager::postExposesRecordsToDBus(
     const std::string itemName =
         dbus_util::sanitizeForDBusPathSegment(findName->get<std::string>());
 
-    const sdbusplus::object_path ifacePath = boardPath / itemName;
+    const sdbusplus::object_path ifacePath = objectPath / itemName;
 
     if (itemType == "BMC")
     {
@@ -276,7 +276,7 @@ void EntityManager::postExposesRecordsToDBus(
                 ifacePath,
                 sdbusplus::common::xyz::openbmc_project::inventory::item::Bmc::
                     interface,
-                boardNameOrig);
+                configNameOrig);
         dbus_interface.populateInterfaceFromJson(
             systemConfiguration, jsonPointerPath, bmcIface, item,
             getPermission(itemType));
@@ -288,7 +288,7 @@ void EntityManager::postExposesRecordsToDBus(
                 ifacePath,
                 sdbusplus::common::xyz::openbmc_project::inventory::item::
                     System::interface,
-                boardNameOrig);
+                configNameOrig);
         dbus_interface.populateInterfaceFromJson(
             systemConfiguration, jsonPointerPath, systemIface, item,
             getPermission(itemType));
@@ -296,12 +296,12 @@ void EntityManager::postExposesRecordsToDBus(
 
     for (const auto& [name, config] : item.items())
     {
-        jsonPointerPath = jsonPointerPathBoard;
+        jsonPointerPath = jsonPointerPathConfig;
         jsonPointerPath.append(std::to_string(exposesIndex))
             .append("/")
             .append(name);
 
-        if (!postConfigurationRecord(name, config, boardNameOrig, itemType,
+        if (!postConfigurationRecord(name, config, configNameOrig, itemType,
                                      jsonPointerPath, ifacePath))
         {
             break;
@@ -311,18 +311,18 @@ void EntityManager::postExposesRecordsToDBus(
     std::shared_ptr<sdbusplus::asio::dbus_interface> itemIface =
         dbus_interface.createInterface(
             ifacePath, "xyz.openbmc_project.Configuration." + itemType,
-            boardNameOrig);
+            configNameOrig);
 
     dbus_interface.populateInterfaceFromJson(
         systemConfiguration, jsonPointerPath, itemIface, item,
         getPermission(itemType));
 
-    topology.addBoard(boardPath, boardType, boardNameOrig, item);
+    topology.addBoard(objectPath, configType, configNameOrig, item);
 }
 
 bool EntityManager::postConfigurationRecord(
     const std::string& name, nlohmann::json& config,
-    const std::string& boardNameOrig, const std::string& itemType,
+    const std::string& configNameOrig, const std::string& itemType,
     const std::string& jsonPointerPath, const sdbusplus::object_path& ifacePath)
 {
     if (config.type() == nlohmann::json::value_t::object)
@@ -331,7 +331,8 @@ bool EntityManager::postConfigurationRecord(
         ifaceName.append(itemType).append(".").append(name);
 
         std::shared_ptr<sdbusplus::asio::dbus_interface> objectIface =
-            dbus_interface.createInterface(ifacePath, ifaceName, boardNameOrig);
+            dbus_interface.createInterface(ifacePath, ifaceName,
+                                           configNameOrig);
 
         dbus_interface.populateInterfaceFromJson(
             systemConfiguration, jsonPointerPath, objectIface, config,
@@ -374,7 +375,7 @@ bool EntityManager::postConfigurationRecord(
 
             std::shared_ptr<sdbusplus::asio::dbus_interface> objectIface =
                 dbus_interface.createInterface(ifacePath, ifaceName,
-                                               boardNameOrig);
+                                               configNameOrig);
 
             dbus_interface.populateInterfaceFromJson(
                 systemConfiguration,

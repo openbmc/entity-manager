@@ -57,18 +57,20 @@ class EntityManager
                                  nlohmann::json newConfiguration);
     void postToDbus(const nlohmann::json& newConfiguration);
     void postBoardToDBus(
-        const std::string& boardId, const nlohmann::json::object_t& boardConfig,
-        std::map<sdbusplus::object_path, std::string>& newBoards);
+        const std::string& configId,
+        const nlohmann::json::object_t& configObject,
+        std::map<sdbusplus::object_path, std::string>& newObjects);
     void postExposesRecordsToDBus(
         nlohmann::json& item, size_t& exposesIndex,
-        const std::string& boardNameOrig, std::string jsonPointerPath,
-        const std::string& jsonPointerPathBoard,
-        const sdbusplus::object_path& boardPath, const std::string& boardType);
+        const std::string& configNameOrig, std::string jsonPointerPath,
+        const std::string& jsonPointerPathConfig,
+        const sdbusplus::object_path& objectPath,
+        const std::string& configType);
 
     // @returns false on error
     bool postConfigurationRecord(
         const std::string& name, nlohmann::json& config,
-        const std::string& boardNameOrig, const std::string& itemType,
+        const std::string& configNameOrig, const std::string& itemType,
         const std::string& jsonPointerPath,
         const sdbusplus::object_path& ifacePath);
 
