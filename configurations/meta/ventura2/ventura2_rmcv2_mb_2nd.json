@@ -524,9 +524,13 @@
                 "Name1": "EXTERNAL2_TEMP_C",
                 "Type": "TMP411"
             },
+            /*
+             * USBPort configurations below support both AST2600 (MMIO 1e6a1000)
+             * and AST2700 (MMIO 12061000) via phosphor-modbus regex matching.
+             */
             {
                 "BaudRate": 115200,
-                "DeviceAddress": "1e6a1000",
+                "DeviceAddress": "(1e6a1000|12061000)",
                 "DeviceInterface": 0,
                 "DeviceLocation": "1.1",
                 "Mode": "RS485",
@@ -537,7 +541,7 @@
             },
             {
                 "BaudRate": 115200,
-                "DeviceAddress": "1e6a1000",
+                "DeviceAddress": "(1e6a1000|12061000)",
                 "DeviceInterface": 2,
                 "DeviceLocation": "1.1",
                 "Mode": "RS485",
@@ -548,7 +552,7 @@
             },
             {
                 "BaudRate": 115200,
-                "DeviceAddress": "1e6a1000",
+                "DeviceAddress": "(1e6a1000|12061000)",
                 "DeviceInterface": 4,
                 "DeviceLocation": "1.1",
                 "Mode": "RS485",
@@ -559,7 +563,7 @@
             },
             {
                 "BaudRate": 19200,
-                "DeviceAddress": "1e6a1000",
+                "DeviceAddress": "(1e6a1000|12061000)",
                 "DeviceInterface": 0,
                 "DeviceLocation": "1.3",
                 "Mode": "RS485",
@@ -570,7 +574,7 @@
             },
             {
                 "BaudRate": 19200,
-                "DeviceAddress": "1e6a1000",
+                "DeviceAddress": "(1e6a1000|12061000)",
                 "DeviceInterface": 2,
                 "DeviceLocation": "1.3",
                 "Mode": "RS485",
@@ -581,7 +585,7 @@
             },
             {
                 "BaudRate": 19200,
-                "DeviceAddress": "1e6a1000",
+                "DeviceAddress": "(1e6a1000|12061000)",
                 "DeviceInterface": 4,
                 "DeviceLocation": "1.3",
                 "Mode": "RS485",
@@ -592,7 +596,7 @@
             },
             {
                 "BaudRate": 19200,
-                "DeviceAddress": "1e6a1000",
+                "DeviceAddress": "(1e6a1000|12061000)",
                 "DeviceInterface": 6,
                 "DeviceLocation": "1.3",
                 "Mode": "RS485",
