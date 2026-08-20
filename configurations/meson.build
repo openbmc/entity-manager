@@ -337,6 +337,7 @@ configs = [
     'nvidia/vr_superchip.json',
     'ocp/cx7_ocp.json',
     'ocp/cx8_ocp.json',
+    'platform/nvidia/vr_platform.json',
     'samsung/pm9d3a.json',
     'solum/pssf132202a.json',
     'solum/pssf162202_psu.json',
