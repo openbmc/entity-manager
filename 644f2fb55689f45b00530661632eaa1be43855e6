@@ -1,0 +1,153 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00a64bf7_935288cd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-21T20:54:51Z",
+      "side": 1,
+      "message": "partial review",
+      "revId": "644f2fb55689f45b00530661632eaa1be43855e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7198a39_03c18771",
+        "filename": "docs/probe_grammar.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-21T20:54:51Z",
+      "side": 1,
+      "message": "wondering if this could go in a separate patch before the lexer since it describes current intended semantics which are valid independent of existing  (incorrect) parsing.",
+      "revId": "644f2fb55689f45b00530661632eaa1be43855e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70d71369_e0735fa9",
+        "filename": "docs/probe_grammar.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-21T20:54:51Z",
+      "side": 1,
+      "message": "nit: overly specific reference to implementation filename.\n\n```suggestion\nfield used in Entity Manager configuration.\n```",
+      "range": {
+        "startLine": 4,
+        "startChar": 52,
+        "endLine": 5,
+        "endChar": 56
+      },
+      "revId": "644f2fb55689f45b00530661632eaa1be43855e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ce6289a_4dfd8c39",
+        "filename": "docs/probe_grammar.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-21T20:54:51Z",
+      "side": 1,
+      "message": "nit: naming could align better with spec\n\nhttps://dbus.freedesktop.org/doc/dbus-specification.html#message-protocol-names-bus\n\n```suggestion\ndbus_probe       \u003d interface_name , \"(\" , match_object , \")\" ;\ninterface_name   \u003d interface_segment , { \".\" , interface_segment } ;\ninterface_segment       \u003d ( letter | \"_\" ) , { letter | digit | \"_\" } ;\n```",
+      "range": {
+        "startLine": 31,
+        "startChar": 62,
+        "endLine": 33,
+        "endChar": 64
+      },
+      "revId": "644f2fb55689f45b00530661632eaa1be43855e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03ed4e9f_aa5cf4ab",
+        "filename": "docs/probe_grammar.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-21T20:54:51Z",
+      "side": 1,
+      "message": "nit: prevent bitrot\n```suggestion\nAn audit of `configurations/` found **some probes that mix `AND` and `OR`**, all\n```",
+      "range": {
+        "startLine": 75,
+        "startChar": 38,
+        "endLine": 75,
+        "endChar": 47
+      },
+      "revId": "644f2fb55689f45b00530661632eaa1be43855e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c5e186d_359d1e5b",
+        "filename": "docs/probe_grammar.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-21T20:54:51Z",
+      "side": 1,
+      "message": "nit: documenting this count is bitrot fast\n\n```suggestion\nreinterpret these as `A OR B OR (C AND FOUND(...))`, breaking existing platforms.\n```",
+      "range": {
+        "startLine": 89,
+        "startChar": 66,
+        "endLine": 89,
+        "endChar": 68
+      },
+      "revId": "644f2fb55689f45b00530661632eaa1be43855e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2bbc389_267f911b",
+        "filename": "src/entity_manager/configuration.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-21T20:54:51Z",
+      "side": 1,
+      "message": "do we want to print a error if we do not parse any tokens?\n\nThat would make it easier to verify in testing that all existing configs parse.",
+      "range": {
+        "startLine": 161,
+        "startChar": 9,
+        "endLine": 164,
+        "endChar": 56
+      },
+      "revId": "644f2fb55689f45b00530661632eaa1be43855e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
