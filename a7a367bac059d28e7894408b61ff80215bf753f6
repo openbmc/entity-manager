@@ -22,6 +22,30 @@
       },
       "revId": "a7a367bac059d28e7894408b61ff80215bf753f6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c917725e_a60840ad",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-08-21T10:07:27Z",
+      "side": 1,
+      "message": "\u003e Which properties does itemValues currently contain that would be part of the interface ?\n\nNone. Exposes and the decorator objects are all that is left, and populateInterfaceFromJson skips objects, so it is already empty on the bus.\n\n\u003e Does it work to make the fallback case simply create an interface from empty json ?\n\nYes. Done by calling `tryIfaceInitialize` directly, which is all `populateInterfaceFromJson` would do with an empty json.",
+      "parentUuid": "495297b5_7fc31494",
+      "range": {
+        "startLine": 251,
+        "startChar": 7,
+        "endLine": 256,
+        "endChar": 34
+      },
+      "revId": "a7a367bac059d28e7894408b61ff80215bf753f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
