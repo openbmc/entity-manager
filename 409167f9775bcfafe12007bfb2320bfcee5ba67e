@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d2d5caa_016990c4",
+        "filename": "configurations/nvidia/imgx_connectx8_supernic_switch.json",
+        "patchSetId": 33
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-08-21T10:08:08Z",
+      "side": 1,
+      "message": "Done, as `InventoryName`, and required so a record cannot be left without one.",
+      "parentUuid": "53a62bf8_c6488f93",
+      "revId": "409167f9775bcfafe12007bfb2320bfcee5ba67e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bb4958ac_2c688a13",
@@ -35,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f662467b_157cc8f1",
+        "filename": "configurations/nvidia/imgx_connectx8_supernic_switch.json",
+        "patchSetId": 33
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-08-21T10:08:08Z",
+      "side": 1,
+      "message": "Done, as `InventoryName`, with one record per SMA. \nThe platform names the device with the same string, in Name for the endpoint itself and in the BridgedEndpoints entry for a device behind it, which is what pairs a record with its MCTPUSBDevice.",
+      "parentUuid": "bb4958ac_2c688a13",
+      "revId": "409167f9775bcfafe12007bfb2320bfcee5ba67e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ba59b439_93ee681b",
@@ -48,6 +84,24 @@
       "writtenOn": "2026-08-19T10:02:07Z",
       "side": 1,
       "message": "Let\u0027s add a property here that specifies the `Name` of the device that should appear on `D-Bus` and in turn on redfish.",
+      "revId": "409167f9775bcfafe12007bfb2320bfcee5ba67e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "993c8451_fef635a5",
+        "filename": "configurations/nvidia/rtx6000_pro.json",
+        "patchSetId": 33
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-08-21T10:08:08Z",
+      "side": 1,
+      "message": "Done, as `InventoryName`. The board is instantiated once per GPU, so it\ntemplates the name as `GPU_$index - 1`.",
+      "parentUuid": "ba59b439_93ee681b",
       "revId": "409167f9775bcfafe12007bfb2320bfcee5ba67e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
