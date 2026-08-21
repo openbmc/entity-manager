@@ -1,6 +1,37 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$defs": {
+        "ProbeTerm": {
+            "title": "Probe term",
+            "description": "A probe term is a sufficient and necessary component of a probe statement",
+            "type": "string",
+            "oneOf": [
+                {
+                    "title": "Boolean probe",
+                    "enum": ["TRUE", "FALSE"]
+                },
+                {
+                    "title": "Found probe",
+                    "description": "A reference to a previously found Entity Manager configuration.",
+                    "pattern": "^FOUND\\(.*\\)$"
+                },
+                {
+                    "title": "D-Bus property probe",
+                    "description": "A valid D-Bus interface name followed by probe arguments. Argument syntax is validated by the probe parser.",
+                    "pattern": "^[A-Za-z_][A-Za-z0-9_]*(?:\\.[A-Za-z_][A-Za-z0-9_]*)+\\(.*\\)$"
+                }
+            ]
+        },
+        "ProbeOperator": {
+            "title": "Probe operator",
+            "type": "string",
+            "enum": ["AND", "OR"]
+        },
+        "ProbeModifier": {
+            "title": "Probe modifier",
+            "description": "MATCH_ONE causes Entity Manager to retain one matching D-Bus object rather than all matching objects.",
+            "const": "MATCH_ONE"
+        },
         "EMConfig": {
             "title": "Entity Manager Configuration",
             "description": "The schema for an entity manager configuration. An entity manager configuration describes an association between a match condition, also known as a probe, and an array of heterogeneous configuration data.  When a probe match occurs, the configuration data is exported to DBus.",
@@ -20,14 +51,27 @@
                 },
                 "Probe": {
                     "description": "The schema for an entity manager probe statement. Probes can be a single string or an array. Probes describe a match condition, for example when a DBus property has a specific value. When the match condition occurs, the information described by the Exposes property is exported onto the DBus.",
-                    "anyOf": [
+                    "oneOf": [
                         {
-                            "type": "string"
+                            "$ref": "#/$defs/ProbeTerm"
                         },
                         {
                             "type": "array",
                             "items": {
-                                "type": "string"
+                                "oneOf": [
+                                    {
+                                        "$ref": "#/$defs/ProbeTerm"
+                                    },
+                                    {
+                                        "$ref": "#/$defs/ProbeOperator"
+                                    },
+                                    {
+                                        "$ref": "#/$defs/ProbeModifier"
+                                    }
+                                ]
+                            },
+                            "contains": {
+                                "$ref": "#/$defs/ProbeTerm"
                             },
                             "minItems": 1
                         }
