@@ -177,6 +177,30 @@
       },
       "revId": "10e98d65fee1471c59853ff183c7aac4f5dd6df8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c8a0cab_ca7757c7",
+        "filename": "src/entity_manager/probe_type.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1003117
+      },
+      "writtenOn": "2026-08-21T17:35:02Z",
+      "side": 1,
+      "message": "Thanks for the feedback! I\u0027ve published the incremental lexer changes in a separate patch to keep things clean: \nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/93844\n\nThis hand-rolled approach fixes the literal string bug.\n\nCould you please review when you get a chance?",
+      "parentUuid": "ee4b8240_78d789c3",
+      "range": {
+        "startLine": 9,
+        "startChar": 1,
+        "endLine": 34,
+        "endChar": 1
+      },
+      "revId": "10e98d65fee1471c59853ff183c7aac4f5dd6df8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
