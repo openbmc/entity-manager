@@ -3,6 +3,98 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "720d79f3_1d851d1f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-08-24T08:00:30Z",
+      "side": 1,
+      "message": "This suggests that we shouldn\u0027t be describing endpoints at all, as by doing so we\u0027re then encoding the configuration of the plugged board into the current board, which is against the design point of these configuration files.",
+      "range": {
+        "startLine": 10,
+        "startChar": 66,
+        "endLine": 12,
+        "endChar": 56
+      },
+      "revId": "9215f32088ed58f2100c004b43ae10214d35043b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a7b2754_e29ce61f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-08-24T08:00:30Z",
+      "side": 1,
+      "message": "That\u0027s encoding the bridge\u0027s endpoint assignment policy in the config, where the assignment policy is just an implementation detail of the bridge firmware. That seems too brittle for the purpose of these configs.",
+      "range": {
+        "startLine": 15,
+        "startChar": 24,
+        "endLine": 16,
+        "endChar": 42
+      },
+      "revId": "9215f32088ed58f2100c004b43ae10214d35043b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fb04993_0c599d7f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-08-24T08:00:30Z",
+      "side": 1,
+      "message": "This still sounds like you\u0027re suggesting we define properties in the config of the current board for a device present on a downstream board. If that\u0027s not what you\u0027re trying to describe, can you please reword this.",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 16
+      },
+      "revId": "9215f32088ed58f2100c004b43ae10214d35043b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7c63535_ee37f57a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-08-24T08:00:30Z",
+      "side": 1,
+      "message": "I\u0027m struggling to understand this at first pass. It would be great if it were reworded.",
+      "range": {
+        "startLine": 25,
+        "startChar": 51,
+        "endLine": 27,
+        "endChar": 54
+      },
+      "revId": "9215f32088ed58f2100c004b43ae10214d35043b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "17b22526_fbfd0d20",
         "filename": "schemas/platform/mctp.json",
         "patchSetId": 4
