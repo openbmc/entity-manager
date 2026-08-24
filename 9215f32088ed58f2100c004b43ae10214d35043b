@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c5274ba_1eb11f5e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-08-24T11:38:31Z",
+      "side": 1,
+      "message": "This is the platform schema rather than a board one: the records live under schemas/platform/, the configuration under configurations/platform/, and they are exported at /xyz/openbmc_project/inventory/system/platform/\u003cplatform\u003e/ rather than under a board [1].\n\nWhich board is reached through which bridge is not a fact any one board has. The platform is the layer that knows how the boards are wired together, so that is where I would expect it to be described.\n\n[1] https://gerrit.openbmc.org/c/openbmc/entity-manager/+/87415",
+      "parentUuid": "720d79f3_1d851d1f",
+      "range": {
+        "startLine": 10,
+        "startChar": 66,
+        "endLine": 12,
+        "endChar": 56
+      },
+      "revId": "9215f32088ed58f2100c004b43ae10214d35043b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a7b2754_e29ce61f",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-08-24T08:00:30Z",
       "side": 1,
       "message": "That\u0027s encoding the bridge\u0027s endpoint assignment policy in the config, where the assignment policy is just an implementation detail of the bridge firmware. That seems too brittle for the purpose of these configs.",
+      "range": {
+        "startLine": 15,
+        "startChar": 24,
+        "endLine": 16,
+        "endChar": 42
+      },
+      "revId": "9215f32088ed58f2100c004b43ae10214d35043b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aaec66c1_7ba00f1e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-08-24T11:38:31Z",
+      "side": 1,
+      "message": "You are right. It is what is available today: nothing in a reply says which device answered, and mctpd reports PoolStart and PoolEnd but not the downstream address an EID was assigned through, so position is the only thing tying a record to a pool EID. A consumer can check the number of records against the pool size, which it does, but not their order.\n\nI have narrowed the claim - the order only matters where a pool holds more than one EID, and a pool of one has nothing to order - and made the assumption visible at runtime rather than leaving it in the schema: a bridge with more than one pool EID now logs that it is pairing by position. That annotates the brittleness rather than removing it.\n\nIf mctpd reported the downstream address each pool EID was assigned through, a record could name that address instead of a position, which would be topology rather than policy. Would that be worth having?",
+      "parentUuid": "9a7b2754_e29ce61f",
       "range": {
         "startLine": 15,
         "startChar": 24,
@@ -70,6 +118,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4887da31_d7b6f53d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-08-24T11:38:31Z",
+      "side": 1,
+      "message": "An entry carries a Name and a Board and the object is closed to anything else, so it can only name a device, not describe one. What the device is stays in the configuration of the board it is on, which exposes a record for it, and the Name here has to match that record\u0027s InventoryName for the two to be paired [1].\n\nThe wording is mine to fix though: \"somewhere to put per device properties later\" does read as describing the downstream device, which is not what the closed object allows. I will drop that clause and keep the reason that survives: an entry can gain its own BridgedEndpoints if a bridged device is itself a bridge.\n\n[1] https://gerrit.openbmc.org/c/openbmc/entity-manager/+/93517",
+      "parentUuid": "5fb04993_0c599d7f",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 16
+      },
+      "revId": "9215f32088ed58f2100c004b43ae10214d35043b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e7c63535_ee37f57a",
@@ -93,6 +165,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b62e104a_9837f9b0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-08-24T11:38:31Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e7c63535_ee37f57a",
+      "range": {
+        "startLine": 25,
+        "startChar": 51,
+        "endLine": 27,
+        "endChar": 54
+      },
+      "revId": "9215f32088ed58f2100c004b43ae10214d35043b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "17b22526_fbfd0d20",
@@ -106,6 +202,30 @@
       "writtenOn": "2026-08-24T07:39:19Z",
       "side": 1,
       "message": "Why do we know this? And how do we name it in the event that the board name is dynamic based on e.g. `$bus` for that board (I can\u0027t see why we can assume it is the same as `$bus` for _this_ board).",
+      "range": {
+        "startLine": 7,
+        "startChar": 36,
+        "endLine": 7,
+        "endChar": 89
+      },
+      "revId": "9215f32088ed58f2100c004b43ae10214d35043b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8efc6d6_3df3e974",
+        "filename": "schemas/platform/mctp.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-08-24T11:38:31Z",
+      "side": 1,
+      "message": "The platform does not assume the name, it requires it: the Probe carries a FOUND precondition for each board a record references, so a name that does not resolve stops the platform configuration from applying rather than pairing a device with the wrong board.\n\nA templated reference would not work, as you say: a $bus written here resolves against the platform\u0027s own probe, not the referenced board\u0027s. So a record names a board by the name that board resolves to, and FOUND is what checks the two agree.\n\nYou have also caught something that is not about this patch: the GPU board templates on $index, which is the order the FRUs were matched in rather than where the board sits.",
+      "parentUuid": "17b22526_fbfd0d20",
       "range": {
         "startLine": 7,
         "startChar": 36,
