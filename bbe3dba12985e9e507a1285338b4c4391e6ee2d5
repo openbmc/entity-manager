@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3bf3a7df_fcba3ece",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-08-24T10:37:59Z",
+      "side": 1,
+      "message": "nit: Could you please update the commit subject to follow the imperative style, stay under 50 characters, and identify the affected schema? For example:\n\nschemas: add SubModel to Asset decorator",
+      "revId": "bbe3dba12985e9e507a1285338b4c4391e6ee2d5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51519a2b_25a3369e",
+        "filename": "schemas/openbmc-dbus.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-08-24T10:37:59Z",
+      "side": 1,
+      "message": "The commit message says that SubModel is missing according to PDI. Could you provide a reference to the relevant PDI schema or interface definition and clarify whether this property should be optional or required in this JSON schema? If it is intentionally optional for compatibility with existing configurations, please mention that in the commit message.",
+      "revId": "bbe3dba12985e9e507a1285338b4c4391e6ee2d5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
