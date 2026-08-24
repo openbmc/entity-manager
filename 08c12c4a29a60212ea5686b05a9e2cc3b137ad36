@@ -52,6 +52,24 @@
       "parentUuid": "cb6c5b7a_10475a79",
       "revId": "08c12c4a29a60212ea5686b05a9e2cc3b137ad36",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f0b08e8_3ada252c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 41
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-08-24T09:46:00Z",
+      "side": 1,
+      "message": "Hi @jk@ozlabs.org.\nHow is an SOC with two USB host controllers handled? \nThe AST2600 has ehci0 at 1e6a1000 and ehci1 at 1e6a3000, so a device can sit at port chain 1.2.1 on each. Reading get_usb_specifier(), the bus number ahead of the \u0027-\u0027 is not part of the specifier, so I would expect both to want mcu1u2u1 - am I misreading it? udev\u0027s own ID_PATH for the same device does keep the host: platform-1e6a3000.usb-usb-0:1.2.1:1.0.",
+      "parentUuid": "0ea7940e_6617ea47",
+      "revId": "08c12c4a29a60212ea5686b05a9e2cc3b137ad36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
