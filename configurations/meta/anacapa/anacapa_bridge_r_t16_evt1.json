@@ -17,6 +17,16 @@
             "Type": "LatticeLFMXO5_15DFirmware"
         },
         {
+            "Name": "RBB_Cable",
+            "PresencePinNames": [
+                "RBB_Cable_Present"
+            ],
+            "PresencePinValues": [
+                1
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
             "Address": "0x60",
             "Bus": "$bus + 2",
             "Labels": [
@@ -316,6 +326,11 @@
     },
     "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
         "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Compatible": {
+        "Names": [
+            "com.meta.Hardware.Anacapa.Boards.RBB"
+        ]
     },
     "xyz.openbmc_project.Inventory.Decorator.Revision": {
         "Version": "$PRODUCT_VERSION"
