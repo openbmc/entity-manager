@@ -33,6 +33,23 @@
       "message": "This introduces a second MB E1S0 entry whose Exposes section is identical to the existing EVT configuration. If more platforms are expected to share the same E1S0 sensors, is there a way to consolidate the probe logic instead of duplicating the whole configuration block? Duplicated sensor definitions can become a maintenance burden if thresholds or bus mappings need to change later.",
       "revId": "1fe3db31fe17150bb07097dac140b732928074b7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0cb082a_243c3eb3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003004
+      },
+      "writtenOn": "2026-08-25T09:19:39Z",
+      "side": 1,
+      "message": "Can you add a Tested: section to the commit message indicating how this was verified on T22/Bigbend systems?",
+      "revId": "1fe3db31fe17150bb07097dac140b732928074b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
