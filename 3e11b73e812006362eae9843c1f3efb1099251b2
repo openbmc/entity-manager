@@ -16,6 +16,24 @@
       "message": "Instead of changing the schema, please refer to https://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/80452. SoC specific root hubs location are added in mctpreactor.",
       "revId": "3e11b73e812006362eae9843c1f3efb1099251b2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d2e5a49_eeab60b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002465
+      },
+      "writtenOn": "2026-08-25T13:10:14Z",
+      "side": 1,
+      "message": "Thanks for pointing that out. 80452 (patchset 44) already remaps positional option 0 to /sys/devices/platform/ahb/1e6a1000.usb, which is exactly the controller our platform needs. So we can just use the existing numeric value 0 for RootHubPosition, no sysfs-path string support required, which makes this schema change unnecessary. I\u0027ll withdraw it.",
+      "parentUuid": "c0333241_1477b3cf",
+      "revId": "3e11b73e812006362eae9843c1f3efb1099251b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
