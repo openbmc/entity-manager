@@ -16,6 +16,24 @@
       "message": "Can this change be removed from the relation chain? Let all change for \"em-config-iface\" contain changes for that topic.",
       "revId": "e2a09f9c36ab309ea20dafc4ef6e10aca9754963",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb2e898d_d7a0d157",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-08-25T03:06:44Z",
+      "side": 1,
+      "message": "The topics are already separate: 93758, 92864, 93032 and 92929 are all on em-config-iface, and the MCTP USB changes are on mctp-usb-config.\n\nMay I ask why we need to removed this patch from the relation chain?",
+      "parentUuid": "2d6d0c20_99543834",
+      "revId": "e2a09f9c36ab309ea20dafc4ef6e10aca9754963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
