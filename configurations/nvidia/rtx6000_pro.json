@@ -5,6 +5,12 @@
             "Bus": "$bus",
             "Name": "Nvidia RTX PRO 6000 FRU",
             "Type": "EEPROM"
+        },
+        {
+            "DeviceName": "GPU_$index - 1",
+            "Name": "NVIDIA RTX PRO 6000 VDM",
+            "PlatformConfigName": "GPU_$index - 1",
+            "Type": "NvidiaMctpVdmGpu"
         }
     ],
     "Name": "Nvidia RTX PRO 6000 Blackwell $index - 1",
