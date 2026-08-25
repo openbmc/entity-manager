@@ -52,6 +52,24 @@
       "parentUuid": "eb2e898d_d7a0d157",
       "revId": "e2a09f9c36ab309ea20dafc4ef6e10aca9754963",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12b8007b_c55fd1fa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-08-25T04:48:10Z",
+      "side": 1,
+      "message": "Sorry for the inconvenience. I have kept them in one chain because it lets me build and test the whole set together on hardware, and the changes below are closely tied to these: 87415 adds a configuration type that is not an inventory item, so it needs this change to say so.\n\nThe topics are separate already, and the four em-config-iface changes sit at the bottom of the chain, so they can merge on their own without waiting for the MCTP USB work.",
+      "parentUuid": "8a6d55e2_bc297486",
+      "revId": "e2a09f9c36ab309ea20dafc4ef6e10aca9754963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
