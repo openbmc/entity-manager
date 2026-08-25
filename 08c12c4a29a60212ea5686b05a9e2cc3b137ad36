@@ -70,6 +70,24 @@
       "parentUuid": "0ea7940e_6617ea47",
       "revId": "08c12c4a29a60212ea5686b05a9e2cc3b137ad36",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8429ca71_0fc6ff68",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 41
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2026-08-25T01:37:21Z",
+      "side": 1,
+      "message": "Good question! It looks like we don\u0027t get bus indexes from platform devices, so the names are indeed duplicated (and so the second rename does not occur).\n\nFor USB controllers as non-platform devices, (say, PCI), we do get the topolology from the underlying bus, so those are unique at least.\n\n\nThe platform device behaviour with the base rename rules is unfortunate, I\u0027ll see if we can get something better going there.\n\n(note that I\u0027m certainly not objecting to the presence of topology information in the EM schema, more that we have explored the options available)",
+      "parentUuid": "9f0b08e8_3ada252c",
+      "revId": "08c12c4a29a60212ea5686b05a9e2cc3b137ad36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
