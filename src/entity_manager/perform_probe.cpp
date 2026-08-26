@@ -4,12 +4,15 @@
 #include "perform_probe.hpp"
 
 #include "perform_scan.hpp"
-#include "probe_type.hpp"
+#include "probe_lexer.hpp"
 
 #include <phosphor-logging/lg2.hpp>
 
-#include <regex>
+#include <algorithm>
+#include <map>
+#include <string>
 #include <utility>
+#include <vector>
 
 // probes dbus interface dictionary for a key with a value that matches a regex
 // When an interface passes a probe, also save its D-Bus path with it.
@@ -62,113 +65,93 @@ bool probeDbus(const std::string& interfaceName,
 
 // default probe entry point, iterates a list looking for specific types to
 // call specific probe functions
-bool doProbe(const std::vector<std::string>& probeCommand,
+bool doProbe(const std::vector<probe::Token>& probeCommand,
              const std::shared_ptr<scan::PerformScan>& scan,
              scan::FoundDevices& foundDevs)
 {
-    const static std::regex command(R"(\((.*)\))");
-    std::smatch match;
     bool ret = false;
     bool matchOne = false;
     bool cur = true;
-    probe::probe_type_codes lastCommand = probe::probe_type_codes::FALSE_T;
+    probe::TokenType lastCommand = probe::TokenType::boolFalse;
     bool first = true;
 
-    for (const auto& probe : probeCommand)
+    for (const probe::Token& token : probeCommand)
     {
-        probe::FoundProbeTypeT probeType = probe::findProbeType(probe);
-        if (probeType)
+        switch (token.type)
         {
-            switch (*probeType)
+            case probe::TokenType::boolFalse:
             {
-                case probe::probe_type_codes::FALSE_T:
+                cur = false;
+                break;
+            }
+            case probe::TokenType::boolTrue:
+            {
+                cur = true;
+                break;
+            }
+            case probe::TokenType::matchOne:
+            {
+                // does not affect the outcome; carry the running result
+                cur = ret;
+                matchOne = true;
+                break;
+            }
+            case probe::TokenType::opAnd:
+            case probe::TokenType::opOr:
+            {
+                // no-ops here; applied via lastCommand on the next operand
+                break;
+            }
+            case probe::TokenType::found:
+            {
+                cur = (std::find(scan->passedProbes.begin(),
+                                 scan->passedProbes.end(), token.value) !=
+                       scan->passedProbes.end());
+                break;
+            }
+            case probe::TokenType::dbusProbe:
+            {
+                // token.value is the full "iface({...})" statement.
+                size_t open = token.value.find('(');
+                size_t close = token.value.rfind(')');
+                if (open == std::string::npos || close == std::string::npos ||
+                    close < open)
                 {
-                    cur = false;
-                    break;
+                    lg2::error("dbus probe syntax error {JSON}", "JSON",
+                               token.value);
+                    return false;
                 }
-                case probe::probe_type_codes::TRUE_T:
+                std::string interface = token.value.substr(0, open);
+                std::string commandStr =
+                    token.value.substr(open + 1, close - open - 1);
+                // convert single ticks and single slashes into legal json
+                std::ranges::replace(commandStr, '\'', '"');
+                replaceAll(commandStr, R"(\)", R"(\\)");
+                auto json =
+                    nlohmann::json::parse(commandStr, nullptr, false, true);
+                if (json.is_discarded())
                 {
-                    cur = true;
-                    break;
+                    lg2::error("dbus command syntax error {STR}", "STR",
+                               commandStr);
+                    return false;
                 }
-                case probe::probe_type_codes::MATCH_ONE:
-                {
-                    // set current value to last, this probe type shouldn't
-                    // affect the outcome
-                    cur = ret;
-                    matchOne = true;
-                    break;
-                }
-                /*case probe::probe_type_codes::AND:
-                  break;
-                case probe::probe_type_codes::OR:
-                  break;
-                  // these are no-ops until the last command switch
-                  */
-                case probe::probe_type_codes::FOUND:
-                {
-                    if (!std::regex_search(probe, match, command))
-                    {
-                        lg2::error("found probe syntax error {JSON}", "JSON",
-                                   probe);
-                        return false;
-                    }
-                    std::string commandStr = *(match.begin() + 1);
-                    replaceAll(commandStr, "'", "");
-
-                    cur = (std::find(scan->passedProbes.begin(),
-                                     scan->passedProbes.end(), commandStr) !=
-                           scan->passedProbes.end());
-                    break;
-                }
-                default:
-                {
-                    break;
-                }
+                // we can match any (string, variant) property. (string,
+                // string) does a regex
+                std::map<std::string, nlohmann::json> dbusProbeMap =
+                    json.get<std::map<std::string, nlohmann::json>>();
+                bool foundProbe = false;
+                cur = probeDbus(interface, dbusProbeMap, foundDevs, scan,
+                                foundProbe);
+                break;
             }
         }
-        // look on dbus for object
-        else
-        {
-            if (!std::regex_search(probe, match, command))
-            {
-                lg2::error("dbus probe syntax error {JSON}", "JSON", probe);
-                return false;
-            }
-            std::string commandStr = *(match.begin() + 1);
-            // convert single ticks and single slashes into legal json
-            std::ranges::replace(commandStr, '\'', '"');
 
-            replaceAll(commandStr, R"(\)", R"(\\)");
-            auto json = nlohmann::json::parse(commandStr, nullptr, false, true);
-            if (json.is_discarded())
-            {
-                lg2::error("dbus command syntax error {STR}", "STR",
-                           commandStr);
-                return false;
-            }
-            // we can match any (string, variant) property. (string, string)
-            // does a regex
-            std::map<std::string, nlohmann::json> dbusProbeMap =
-                json.get<std::map<std::string, nlohmann::json>>();
-            auto findStart = probe.find('(');
-            if (findStart == std::string::npos)
-            {
-                return false;
-            }
-            bool foundProbe = !!probeType;
-            std::string probeInterface = probe.substr(0, findStart);
-            cur = probeDbus(probeInterface, dbusProbeMap, foundDevs, scan,
-                            foundProbe);
-        }
-
-        // some functions like AND and OR only take affect after the
-        // fact
-        if (lastCommand == probe::probe_type_codes::AND)
+        // AND and OR only take effect on the operand that follows them
+        if (lastCommand == probe::TokenType::opAnd)
         {
             ret = cur && ret;
         }
-        else if (lastCommand == probe::probe_type_codes::OR)
+        else if (lastCommand == probe::TokenType::opOr)
         {
             ret = cur || ret;
         }
@@ -178,7 +161,7 @@ bool doProbe(const std::vector<std::string>& probeCommand,
             ret = cur;
             first = false;
         }
-        lastCommand = probeType.value_or(probe::probe_type_codes::FALSE_T);
+        lastCommand = token.type;
     }
 
     // probe passed, but empty device
@@ -203,7 +186,7 @@ namespace probe
 {
 
 PerformProbe::PerformProbe(nlohmann::json& recordRef,
-                           const std::vector<std::string>& probeCommand,
+                           const std::vector<Token>& probeCommand,
                            std::string probeName,
                            std::shared_ptr<scan::PerformScan>& scanPtr) :
     recordRef(recordRef), _probeCommand(probeCommand),
