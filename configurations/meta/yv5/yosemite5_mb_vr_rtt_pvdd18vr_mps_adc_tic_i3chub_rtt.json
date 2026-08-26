@@ -198,6 +198,26 @@
             "Type": "GPIODeviceDetect"
         },
         {
+            "Name": "CXL_MCIO3A_PRSNT",
+            "PresencePinNames": [
+                "PRSNT_MCIO3A_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "CXL_MCIO4A_PRSNT",
+            "PresencePinNames": [
+                "PRSNT_MCIO4A_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
             "FirmwareInfo": {
                 "CompatibleHardware": "com.meta.Hardware.Yosemite5.SPI.Host",
                 "VendorIANA": 40981
