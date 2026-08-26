@@ -1,6 +1,7 @@
 #pragma once
 
 #include "perform_scan.hpp"
+#include "probe_lexer.hpp"
 
 #include <flat_map>
 #include <memory>
@@ -14,14 +15,13 @@ namespace probe
 struct PerformProbe final
 {
     PerformProbe(nlohmann::json& recordRef,
-                 const std::vector<std::string>& probeCommand,
-                 std::string probeName,
+                 const std::vector<Token>& probeCommand, std::string probeName,
                  std::shared_ptr<scan::PerformScan>& scanPtr);
     ~PerformProbe();
 
   private:
     nlohmann::json& recordRef;
-    std::vector<std::string> _probeCommand;
+    std::vector<Token> _probeCommand;
     std::string probeName;
     std::shared_ptr<scan::PerformScan> scan;
 };
