@@ -1,7 +1,7 @@
 #include "configuration.hpp"
 
 #include "perform_probe.hpp"
-#include "probe_type.hpp"
+#include "probe_lexer.hpp"
 #include "utils.hpp"
 
 #include <nlohmann/json.hpp>
@@ -160,37 +160,20 @@ void Configuration::filterProbeInterfaces()
             continue;
         }
 
-        nlohmann::json probeCommand;
-        if ((*findProbe).type() != nlohmann::json::value_t::array)
+        std::vector<probe::Token> probeCommand =
+            scan::detail::parseProbeCommand(*findProbe);
+        for (const probe::Token& token : probeCommand)
         {
-            probeCommand = nlohmann::json::array();
-            probeCommand.push_back(*findProbe);
-        }
-        else
-        {
-            probeCommand = *findProbe;
-        }
-
-        for (const nlohmann::json& probeJson : probeCommand)
-        {
-            const std::string* probe = probeJson.get_ptr<const std::string*>();
-            if (probe == nullptr)
-            {
-                lg2::error("Probe statement wasn't a string, can't parse");
-                continue;
-            }
-            // Skip it if the probe cmd doesn't contain an interface.
-            if (probe::findProbeType(*probe))
+            // Only D-Bus probes name an interface to collect.
+            if (token.type != probe::TokenType::dbusProbe)
             {
                 continue;
             }
-
-            // syntax requires probe before first open brace
-            auto findStart = probe->find('(');
+            // syntax requires the interface before the first open brace
+            auto findStart = token.value.find('(');
             if (findStart != std::string::npos)
             {
-                std::string interface = probe->substr(0, findStart);
-                probeInterfaces.emplace(interface);
+                probeInterfaces.emplace(token.value.substr(0, findStart));
             }
         }
         it++;

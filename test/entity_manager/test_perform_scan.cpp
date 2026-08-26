@@ -2,27 +2,29 @@
 
 #include <nlohmann/json.hpp>
 
-#include <string>
 #include <vector>
 
 #include <gtest/gtest.h>
 
 using json = nlohmann::json;
+using probe::Token;
+using probe::TokenType;
 
-// parseProbeCommand turns an array "Probe" field into a list of statements.
+// parseProbeCommand joins the array statements and lexes them into tokens.
 TEST(ParseProbeCommand, ParsesArrayOfStrings)
 {
     json probe = json::array({"FOUND('A')", "FOUND('B')"});
-    EXPECT_EQ(scan::detail::parseProbeCommand(probe),
-              (std::vector<std::string>{"FOUND('A')", "FOUND('B')"}));
+    EXPECT_EQ(
+        scan::detail::parseProbeCommand(probe),
+        (std::vector<Token>{{TokenType::found, "A"}, {TokenType::found, "B"}}));
 }
 
-// A single-string "Probe" field yields a one-element list.
+// A single-string "Probe" field is lexed directly.
 TEST(ParseProbeCommand, ParsesSingleString)
 {
     json probe = "TRUE";
     EXPECT_EQ(scan::detail::parseProbeCommand(probe),
-              (std::vector<std::string>{"TRUE"}));
+              (std::vector<Token>{{TokenType::boolTrue, ""}}));
 }
 
 // A non-string statement in the array yields an empty vector (the error / not

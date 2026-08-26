@@ -20,7 +20,7 @@ entity_manager_lib = static_library(
     'perform_scan.cpp',
     'perform_probe.cpp',
     'object_mapper.cpp',
-    'probe_type.cpp',
+    'probe_lexer.cpp',
     'power_status_monitor.cpp',
     'overlay.cpp',
     'topology.cpp',
