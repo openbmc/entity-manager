@@ -16,6 +16,23 @@
       "message": "Please add the Tested section like this so the pipeline does not fail.\nTested on Bigbend:\n- Verified Yosemite5_MB_E1S0 is published by EntityManager.\n- Verified MB_E1S0_TEMP_C and MB_PMON_E1S0 sensors are exposed.\n\u0027\u0027\u0027\nroot@bmc:~# busctl tree xyz.openbmc_project.EntityManager\n└─ /xyz\n  └─ /xyz/openbmc_project\n    ├─ /xyz/openbmc_project/EntityManager\n    └─ /xyz/openbmc_project/inventory\n      └─ /xyz/openbmc_project/inventory/system\n        └─ /xyz/openbmc_project/inventory/system/board\n          ├─ ...\n          ├─ /xyz/openbmc_project/inventory/system/board/Yosemite5_MB_E1S0\n          │ ├─ /xyz/openbmc_project/inventory/system/board/Yosemite5_MB_E1S0/MB_E1S0_TEMP_C\n          │ └─ /xyz/openbmc_project/inventory/system/board/Yosemite5_MB_E1S0/MB_PMON_E1S0\n\u0027\u0027\u0027\n\u0027\u0027\u0027\nroot@bmc:~# mfg-tool sensor-display 2\u003e/dev/null | table-sensor-display | grep -i E1S0\nMB_E1S0_TEMP_C                          ok              39              DegreesC        N/A     5               N/A             N/A             70              N/A\nMB_PMON_E1S0_P12V_CURR_A                ok              0.329           Amperes         N/A     N/A             N/A             N/A             1.837           2.2\nMB_PMON_E1S0_P12V_PWR_W                 ok              4.0313          Watts           N/A     N/A             N/A             N/A             20.6            25\nMB_PMON_E1S0_P12V_VOLT_V                ok              12.253          Volts           N/A     10.8            N/A             N/A             13.2            N/A\n\u0027\u0027\u0027",
       "revId": "3a843efda4cfaf06ed57da70b92820899b2fe4a8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95b6aa58_b71246ba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003004
+      },
+      "writtenOn": "2026-08-27T09:15:46Z",
+      "side": 1,
+      "message": "If your point is that the command output should be enclosed in code blocks (``` ), otherwise the CI/pipeline or Markdown formatting gets broken,",
+      "revId": "3a843efda4cfaf06ed57da70b92820899b2fe4a8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
