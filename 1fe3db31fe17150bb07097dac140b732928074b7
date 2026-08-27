@@ -50,6 +50,60 @@
       "message": "Can you add a Tested: section to the commit message indicating how this was verified on T22/Bigbend systems?",
       "revId": "1fe3db31fe17150bb07097dac140b732928074b7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09f989a7_10af5d67",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002591
+      },
+      "writtenOn": "2026-08-27T12:11:20Z",
+      "side": 1,
+      "message": "We verified that the Yosemite5 MB E1S0 board is published on a T22\nmachine.\nT2 and T22 use the same motherboard, so the E1S0 bus topology is expected to match the existing configuration.",
+      "parentUuid": "707b91cf_ee952ab0",
+      "revId": "1fe3db31fe17150bb07097dac140b732928074b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70b6c3ee_e485f4b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002591
+      },
+      "writtenOn": "2026-08-27T12:11:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0cb082a_243c3eb3",
+      "revId": "1fe3db31fe17150bb07097dac140b732928074b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c713830e_0e28e87c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002591
+      },
+      "writtenOn": "2026-08-27T12:11:20Z",
+      "side": 1,
+      "message": "Consolidated E1S0 entries by modifying probe command.\n\nAlso, @amithash@meta.com, since T2 and T22 use different BIOS firmware, we may need separate T22 MB configuration JSON files with a Bigbend-specific hardware compatible string to prevent flashing an image to an incompatible platform.\n\nCould you share any suggestions or concerns about this?",
+      "parentUuid": "39f3ed2e_8a2e1fec",
+      "revId": "1fe3db31fe17150bb07097dac140b732928074b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
