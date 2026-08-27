@@ -22,6 +22,30 @@
       },
       "revId": "cea70bf0443c9f52b2c087b7f6d31b8a377834e2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b84c7def_ea3ee0dc",
+        "filename": "src/entity_manager/overlay.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1003141
+      },
+      "writtenOn": "2026-08-27T12:41:30Z",
+      "side": 1,
+      "message": "Good catch. Thank you. I fixed in PS2 — declared them as std::string up front like parameters/busPath instead of casting at the call site.",
+      "parentUuid": "05310b6b_e4a9b35b",
+      "range": {
+        "startLine": 215,
+        "startChar": 4,
+        "endLine": 215,
+        "endChar": 20
+      },
+      "revId": "cea70bf0443c9f52b2c087b7f6d31b8a377834e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
