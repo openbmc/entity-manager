@@ -198,28 +198,8 @@
             "Type": "GPIODeviceDetect"
         },
         {
-            "Name": "CXL_MCIO3A_PRSNT",
-            "PresencePinNames": [
-                "PRSNT_MCIO3A_N"
-            ],
-            "PresencePinValues": [
-                0
-            ],
-            "Type": "GPIODeviceDetect"
-        },
-        {
-            "Name": "CXL_MCIO4A_PRSNT",
-            "PresencePinNames": [
-                "PRSNT_MCIO4A_N"
-            ],
-            "PresencePinValues": [
-                0
-            ],
-            "Type": "GPIODeviceDetect"
-        },
-        {
             "FirmwareInfo": {
-                "CompatibleHardware": "com.meta.Hardware.Yosemite5.SPI.Host",
+                "CompatibleHardware": "com.meta.Hardware.Yosemite5.Bigbend.SPI.Host",
                 "VendorIANA": 40981
             },
             "MuxOutputs": [
@@ -385,7 +365,7 @@
                 "curr1",
                 "power1"
             ],
-            "Name": "MB_PMON_NIC",
+            "Name": "MB_PMON_NIC_0",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -421,9 +401,57 @@
                 }
             ],
             "Type": "INA230",
-            "curr1_Name": "MB_PMON_NIC_P12V_CURR_A",
-            "in1_Name": "MB_PMON_NIC_P12V_VOLT_V",
-            "power1_Name": "MB_PMON_NIC_P12V_PWR_W"
+            "curr1_Name": "MB_PMON_NIC_0_P12V_CURR_A",
+            "in1_Name": "MB_PMON_NIC_0_P12V_VOLT_V",
+            "power1_Name": "MB_PMON_NIC_0_P12V_PWR_W"
+        },
+        {
+            "Address": "0x44",
+            "Bus": 22,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "MB_PMON_NIC_1",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0458,
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.29
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.216,
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.264,
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.55,
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 27.5
+                }
+            ],
+            "Type": "INA230",
+            "curr1_Name": "MB_PMON_NIC_1_P12V_CURR_A",
+            "in1_Name": "MB_PMON_NIC_1_P12V_VOLT_V",
+            "power1_Name": "MB_PMON_NIC_1_P12V_PWR_W"
         },
         {
             "Address": "0x48",
@@ -1401,9 +1429,9 @@
     ],
     "Name": "Yosemite5 MB",
     "Probe": [
-        "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 (EVT|DVT|PVT|MP).*', 'BOARD_PRODUCT_NAME': 'Motherboard', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)'})",
+        "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 T22 .*', 'BOARD_PRODUCT_NAME': 'Motherboard', 'BOARD_MANUFACTURER': 'Wiwynn', 'BOARD_INFO_AM4': 'VR-RTT PVDD18VR-MPS ADC-TIC I3CHUB-RTT'})",
         "AND",
-        "xyz.openbmc_project.FruDevice({'BOARD_INFO_AM4': 'VR-RTT PVDD18VR-MPS ADC-TIC I3CHUB-RTT'})"
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Rio Grande'})"
     ],
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
@@ -1419,7 +1447,7 @@
     },
     "xyz.openbmc_project.Inventory.Decorator.Compatible": {
         "Names": [
-            "com.meta.Hardware.Yosemite5.Boards.MB"
+            "com.meta.Hardware.Yosemite5.Bigbend.Boards.MB"
         ]
     },
     "xyz.openbmc_project.Inventory.Decorator.Revision": {
