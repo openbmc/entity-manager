@@ -198,28 +198,8 @@
             "Type": "GPIODeviceDetect"
         },
         {
-            "Name": "CXL_MCIO3A_PRSNT",
-            "PresencePinNames": [
-                "PRSNT_MCIO3A_N"
-            ],
-            "PresencePinValues": [
-                0
-            ],
-            "Type": "GPIODeviceDetect"
-        },
-        {
-            "Name": "CXL_MCIO4A_PRSNT",
-            "PresencePinNames": [
-                "PRSNT_MCIO4A_N"
-            ],
-            "PresencePinValues": [
-                0
-            ],
-            "Type": "GPIODeviceDetect"
-        },
-        {
             "FirmwareInfo": {
-                "CompatibleHardware": "com.meta.Hardware.Yosemite5.SPI.Host",
+                "CompatibleHardware": "com.meta.Hardware.Yosemite5.Bigbend.SPI.Host",
                 "VendorIANA": 40981
             },
             "MuxOutputs": [
@@ -385,7 +365,7 @@
                 "curr1",
                 "power1"
             ],
-            "Name": "MB_PMON_NIC",
+            "Name": "MB_PMON_NIC_0",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -421,9 +401,57 @@
                 }
             ],
             "Type": "INA230",
-            "curr1_Name": "MB_PMON_NIC_P12V_CURR_A",
-            "in1_Name": "MB_PMON_NIC_P12V_VOLT_V",
-            "power1_Name": "MB_PMON_NIC_P12V_PWR_W"
+            "curr1_Name": "MB_PMON_NIC_0_P12V_CURR_A",
+            "in1_Name": "MB_PMON_NIC_0_P12V_VOLT_V",
+            "power1_Name": "MB_PMON_NIC_0_P12V_PWR_W"
+        },
+        {
+            "Address": "0x44",
+            "Bus": 22,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "MB_PMON_NIC_1",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0458,
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.29
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.216,
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.264,
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.55,
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 27.5
+                }
+            ],
+            "Type": "INA230",
+            "curr1_Name": "MB_PMON_NIC_1_P12V_CURR_A",
+            "in1_Name": "MB_PMON_NIC_1_P12V_VOLT_V",
+            "power1_Name": "MB_PMON_NIC_1_P12V_PWR_W"
         },
         {
             "Address": "0x48",
@@ -480,7 +508,7 @@
             "Type": "LatticeLCMXO3D_9400Firmware"
         },
         {
-            "Address": "0x60",
+            "Address": "0x47",
             "Bus": 11,
             "Labels": [
                 "vout1",
@@ -592,7 +620,7 @@
                     "Value": 100
                 }
             ],
-            "Type": "RAA228228",
+            "Type": "MP2869",
             "iout1_Name": "MB_VR_CPU_CPU0_CURR_A",
             "iout2_Name": "MB_VR_CPU_MEM_S3_CURR_A",
             "pout1_Name": "MB_VR_CPU_CPU0_PWR_W",
@@ -603,7 +631,7 @@
             "vout2_Name": "MB_VR_CPU_MEM_S3_VOLT_V"
         },
         {
-            "Address": "0x62",
+            "Address": "0x4e",
             "Bus": 11,
             "Labels": [
                 "vout1",
@@ -663,14 +691,14 @@
                     "Value": 100
                 }
             ],
-            "Type": "RAA228228",
+            "Type": "MP29612",
             "iout1_Name": "MB_VR_CPU_CPU1_CURR_A",
             "pout1_Name": "MB_VR_CPU_CPU1_PWR_W",
             "temp1_Name": "MB_VR_CPU_CPU1_TEMP_C",
             "vout1_Name": "MB_VR_CPU_CPU1_VOLT_V"
         },
         {
-            "Address": "0x64",
+            "Address": "0x4d",
             "Bus": 11,
             "Labels": [
                 "vout1",
@@ -782,7 +810,7 @@
                     "Value": 100
                 }
             ],
-            "Type": "RAA228228",
+            "Type": "MP29612",
             "iout1_Name": "MB_VR_CPU_SOC_CURR_A",
             "iout2_Name": "MB_VR_CPU_PVDDIO_CURR_A",
             "pout1_Name": "MB_VR_CPU_SOC_PWR_W",
@@ -793,34 +821,111 @@
             "vout2_Name": "MB_VR_CPU_PVDDIO_VOLT_V"
         },
         {
-            "Address": "0x64",
+            "Address": "0x4d",
             "Bus": 11,
             "FirmwareInfo": {
-                "CompatibleHardware": "com.meta.Hardware.Yosemite5.VR.RAA229640_pvddcr_soc",
+                "CompatibleHardware": "com.meta.Hardware.Yosemite5.VR.MP29612A_pvddcr_soc",
                 "VendorIANA": 40981
             },
             "Name": "Yosemite5_MB_VR_SOC_VDDIO",
-            "Type": "RAA22XGen3p5Firmware"
+            "Type": "MP2X6XXFirmware"
         },
         {
-            "Address": "0x62",
+            "Address": "0x4e",
             "Bus": 11,
             "FirmwareInfo": {
-                "CompatibleHardware": "com.meta.Hardware.Yosemite5.VR.RAA229640_pvddcr_cpu1",
+                "CompatibleHardware": "com.meta.Hardware.Yosemite5.VR.MP29612A_pvddcr_cpu1",
                 "VendorIANA": 40981
             },
             "Name": "Yosemite5_MB_VR_CPU1",
-            "Type": "RAA22XGen3p5Firmware"
+            "Type": "MP2X6XXFirmware"
         },
         {
-            "Address": "0x60",
+            "Address": "0x47",
             "Bus": 11,
             "FirmwareInfo": {
-                "CompatibleHardware": "com.meta.Hardware.Yosemite5.VR.RAA229639_pvddcr_cpu0",
+                "CompatibleHardware": "com.meta.Hardware.Yosemite5.VR.MP2869A_pvddcr_cpu0",
                 "VendorIANA": 40981
             },
             "Name": "Yosemite5_MB_VR_CPU0_MEM",
-            "Type": "RAA22XGen3p5Firmware"
+            "Type": "MP2X6XXFirmware"
+        },
+        {
+            "Address": "0x46",
+            "Bus": "11",
+            "Labels": [
+                "iout1",
+                "vout1",
+                "pout1",
+                "temp1"
+            ],
+            "Name": "MB_VR_PVDD18_S5",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0336,
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.68
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.037,
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.85
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.484,
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 24.2
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.8712,
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 43.56
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Label": "temp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2,
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100
+                }
+            ],
+            "Type": "MP9945",
+            "iout1_Name": "MB_VR_PVDD18_S5_CURR_A",
+            "pout1_Name": "MB_VR_PVDD18_S5_PWR_W",
+            "temp1_Name": "MB_VR_PVDD18_S5_TEMP_C",
+            "vout1_Name": "MB_VR_PVDD18_S5_VOLT_V"
+        },
+        {
+            "Address": "0x46",
+            "Bus": 11,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Yosemite5.VR.MP9945_pvdd18_s5",
+                "VendorIANA": 40981
+            },
+            "Name": "Yosemite5_MB_VR_VDD18_S5",
+            "Type": "MP994XFirmware"
         },
         {
             "Address": "0x3c",
@@ -1320,88 +1425,13 @@
                 }
             ],
             "Type": "SBTSI"
-        },
-        {
-            "Address": "0x69",
-            "Bus": "11",
-            "Labels": [
-                "iout1",
-                "vout1",
-                "pout1",
-                "temp1"
-            ],
-            "Name": "MB_VR_PVDD18_S5",
-            "PowerState": "On",
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.0336,
-                    "Label": "vout1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 1.68
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.037,
-                    "Label": "vout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1.85
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.484,
-                    "Label": "iout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 24.2
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.8712,
-                    "Label": "pout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 43.56
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.1,
-                    "Label": "temp1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 2,
-                    "Label": "temp1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 100
-                }
-            ],
-            "Type": "TDA38640",
-            "iout1_Name": "MB_VR_PVDD18_S5_CURR_A",
-            "pout1_Name": "MB_VR_PVDD18_S5_PWR_W",
-            "temp1_Name": "MB_VR_PVDD18_S5_TEMP_C",
-            "vout1_Name": "MB_VR_PVDD18_S5_VOLT_V"
-        },
-        {
-            "Address": "0x30",
-            "Bus": 11,
-            "FirmwareInfo": {
-                "CompatibleHardware": "com.meta.Hardware.Yosemite5.VR.TDA38640A_pvdd18_s5",
-                "VendorIANA": 40981
-            },
-            "Name": "Yosemite5_MB_VR_VDD18_S5",
-            "Type": "TDA38640AFirmware"
         }
     ],
     "Name": "Yosemite5 MB",
     "Probe": [
-        "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 (?!T22).*', 'BOARD_PRODUCT_NAME': 'Motherboard', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)', 'BOARD_INFO_AM4': 'VR-RTT PVDD18VR-SNI ADC-TIC I3CHUB-RTT'})"
+        "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 T22 .*', 'BOARD_PRODUCT_NAME': 'Motherboard', 'BOARD_MANUFACTURER': 'Wiwynn', 'BOARD_INFO_AM4': 'VR-MPS PVDD18VR-MPS ADC-TIC I3CHUB-RTT'})",
+        "AND",
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Rio Grande'})"
     ],
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
@@ -1417,7 +1447,7 @@
     },
     "xyz.openbmc_project.Inventory.Decorator.Compatible": {
         "Names": [
-            "com.meta.Hardware.Yosemite5.Boards.MB"
+            "com.meta.Hardware.Yosemite5.Bigbend.Boards.MB"
         ]
     },
     "xyz.openbmc_project.Inventory.Decorator.Revision": {

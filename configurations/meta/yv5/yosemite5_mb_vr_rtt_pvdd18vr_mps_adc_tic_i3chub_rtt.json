@@ -1401,7 +1401,7 @@
     ],
     "Name": "Yosemite5 MB",
     "Probe": [
-        "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 .*', 'BOARD_PRODUCT_NAME': 'Motherboard', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)'})",
+        "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 (?!T22).*', 'BOARD_PRODUCT_NAME': 'Motherboard', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)'})",
         "AND",
         "xyz.openbmc_project.FruDevice({'BOARD_INFO_AM4': 'VR-RTT PVDD18VR-MPS ADC-TIC I3CHUB-RTT'})"
     ],
