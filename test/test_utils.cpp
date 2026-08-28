@@ -166,3 +166,14 @@ TEST(ToLowerCopyTest, BasicTests)
 
     EXPECT_EQ(toLowerCopy(""), "");
 }
+
+TEST(ParseMuxDeviceRootBusTest, BasicTests)
+{
+    EXPECT_EQ(parseMuxDeviceRootBus("7-0070"), 7);
+    EXPECT_EQ(parseMuxDeviceRootBus("77-0070"), 77);
+    EXPECT_EQ(parseMuxDeviceRootBus("0-0070"), 0);
+    EXPECT_EQ(parseMuxDeviceRootBus("i2c-mux-gpio"), -1);
+    EXPECT_EQ(parseMuxDeviceRootBus("-0070"), -1);
+    EXPECT_EQ(parseMuxDeviceRootBus("7"), -1);
+    EXPECT_EQ(parseMuxDeviceRootBus(""), -1);
+}
