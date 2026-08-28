@@ -154,7 +154,16 @@ static int getRootBus(size_t bus)
     {
         return -1;
     }
-    return std::stoi(filename.substr(0, findBus));
+
+    int val = 0;
+    bool fullMatch = false;
+    const std::from_chars_result res =
+        fromCharsWrapper(filename.substr(0, findBus), val, fullMatch);
+    if (res.ec != std::errc{} || !fullMatch)
+    {
+        return -1;
+    }
+    return val;
 }
 
 static bool isMuxBus(size_t bus)
