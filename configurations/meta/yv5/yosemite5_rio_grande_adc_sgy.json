@@ -5,9 +5,7 @@
             "Bus": 69,
             "Labels": [
                 "in0",
-                "in1",
-                "in6",
-                "in7"
+                "in1"
             ],
             "Name": "RIO_GRANDE_ADC0",
             "PowerState": "ChassisOn",
@@ -60,45 +58,13 @@
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 3.135
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in6",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 3.465
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in6",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 3.135
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in7",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 3.465
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in7",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 3.135
                 }
             ],
             "Type": "ADC128D818",
             "in0_Name": "RIO_GRANDE_ADC_P12V_AUX_VOLT_V",
             "in0_Scale": 151.515,
             "in1_Name": "RIO_GRANDE_ADC_P3V3_AUX_VOLT_V",
-            "in1_Scale": 500,
-            "in6_Name": "RIO_GRANDE_ADC_P3V3_AUX_SSD_24_VOLT_V",
-            "in6_Scale": 500,
-            "in7_Name": "RIO_GRANDE_ADC_P3V3_AUX_SSD_25_VOLT_V",
-            "in7_Scale": 500
+            "in1_Scale": 500
         },
         {
             "Address": "0x2e",
@@ -546,180 +512,6 @@
             "Bus": "$bus",
             "Name": "Yosemite5 Rio Grande FRU",
             "Type": "EEPROM"
-        },
-        {
-            "Address": "0x40",
-            "Bus": 38,
-            "Labels": [
-                "in1",
-                "curr1",
-                "power1"
-            ],
-            "Name": "RIO_GRANDE_PMON_SSD0",
-            "PowerState": "On",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Label": "curr1",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 4.32
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "curr1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 3.9
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "curr1",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 3.57
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in1",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 13.74
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 12.96
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in1",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 12.84
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in1",
-                    "Name": "lower non critical",
-                    "Severity": 0,
-                    "Value": 11.16
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 11.04
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "power1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 46.8
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "power1",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 42.84
-                }
-            ],
-            "Type": "INA230",
-            "curr1_Name": "RIO_GRANDE_PMON_SSD_24_P12V_CURR_A",
-            "in1_Name": "RIO_GRANDE_PMON_SSD_24_P12V_VOLT_V",
-            "power1_Name": "RIO_GRANDE_PMON_SSD_24_P12V_PWR_W"
-        },
-        {
-            "Address": "0x40",
-            "Bus": 39,
-            "Labels": [
-                "in1",
-                "curr1",
-                "power1"
-            ],
-            "Name": "RIO_GRANDE_PMON_SSD1",
-            "PowerState": "On",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Label": "curr1",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 4.32
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "curr1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 3.9
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "curr1",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 3.57
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in1",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 13.74
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 12.96
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in1",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 12.84
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in1",
-                    "Name": "lower non critical",
-                    "Severity": 0,
-                    "Value": 11.16
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 11.04
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "power1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 46.8
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "power1",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 42.84
-                }
-            ],
-            "Type": "INA230",
-            "curr1_Name": "RIO_GRANDE_PMON_SSD_25_P12V_CURR_A",
-            "in1_Name": "RIO_GRANDE_PMON_SSD_25_P12V_VOLT_V",
-            "power1_Name": "RIO_GRANDE_PMON_SSD_25_P12V_PWR_W"
         },
         {
             "Address": "0x40",
