@@ -149,12 +149,7 @@ static int getRootBus(size_t bus)
     }
 
     std::string filename = path.filename();
-    auto findBus = filename.find('-');
-    if (findBus == std::string::npos)
-    {
-        return -1;
-    }
-    return std::stoi(filename.substr(0, findBus));
+    return parseMuxDeviceRootBus(filename);
 }
 
 static bool isMuxBus(size_t bus)

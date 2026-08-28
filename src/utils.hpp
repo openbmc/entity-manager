@@ -10,6 +10,7 @@
 #include <charconv>
 #include <filesystem>
 #include <flat_map>
+#include <system_error>
 
 using DBusValueVariant =
     std::variant<std::string, int64_t, uint64_t, double, int32_t, uint32_t,
@@ -98,4 +99,23 @@ std::from_chars_result fromCharsWrapper(const std::string_view& str, T& out,
     fullMatch = result.ptr == std::next(str.begin(), str.size());
 
     return result;
+}
+
+inline int parseMuxDeviceRootBus(std::string_view muxDeviceName)
+{
+    const auto findBus = muxDeviceName.find('-');
+    if (findBus == std::string_view::npos)
+    {
+        return -1;
+    }
+
+    int val = 0;
+    bool fullMatch = false;
+    const std::from_chars_result res =
+        fromCharsWrapper(muxDeviceName.substr(0, findBus), val, fullMatch);
+    if (res.ec != std::errc{} || !fullMatch)
+    {
+        return -1;
+    }
+    return val;
 }
