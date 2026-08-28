@@ -136,6 +136,7 @@ static int busStrToInt(const std::string_view busName)
     return val;
 }
 
+// @returns -1 on error
 static int getRootBus(size_t bus)
 {
     auto ec = std::error_code();
@@ -148,13 +149,7 @@ static int getRootBus(size_t bus)
         return -1;
     }
 
-    std::string filename = path.filename();
-    auto findBus = filename.find('-');
-    if (findBus == std::string::npos)
-    {
-        return -1;
-    }
-    return std::stoi(filename.substr(0, findBus));
+    return parseMuxDeviceRootBus(path.filename().string());
 }
 
 static bool isMuxBus(size_t bus)
