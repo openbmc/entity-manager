@@ -88,6 +88,8 @@ void replaceAll(std::string& str, std::string_view search,
 
 std::string toLowerCopy(std::string_view str);
 
+int parseMuxDeviceRootBus(std::string_view muxDeviceName);
+
 template <typename T>
 std::from_chars_result fromCharsWrapper(const std::string_view& str, T& out,
                                         bool& fullMatch, int base = 10)
