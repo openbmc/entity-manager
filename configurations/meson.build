@@ -340,6 +340,7 @@ configs = [
     'nvidia/rtx6000_pro.json',
     'nvidia/vr_nvl_chassis.json',
     'nvidia/vr_nvl_cpu.json',
+    'nvidia/vr_nvl_iob.json',
     'nvidia/vr_nvl_superchip.json',
     'ocp/cx7_ocp.json',
     'ocp/cx8_ocp.json',
