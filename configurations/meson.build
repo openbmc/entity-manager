@@ -355,6 +355,7 @@ configs = [
     'nvidia/gb300.json',
     'nvidia/imgx_connectx8_supernic_switch.json',
     'nvidia/p3809-hmc.json',
+    'nvidia/p4107_chassis.json',
     'nvidia/p4764-hmc.json',
     'nvidia/rtx6000_pro.json',
     'ocp/cx7_ocp.json',
