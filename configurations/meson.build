@@ -357,6 +357,7 @@ configs = [
     'nvidia/p3809-hmc.json',
     'nvidia/p4107-chassis.json',
     'nvidia/p4764-hmc.json',
+    'nvidia/pg558-strata-hpm-cpu.json',
     'nvidia/pg558-strata-hpm.json',
     'nvidia/rtx6000_pro.json',
     'ocp/cx7_ocp.json',
