@@ -1,0 +1,108 @@
+[
+    {
+        "Exposes": [
+            {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "ProcMod_0",
+                "Type": "EEPROM_24C64"
+            },
+            {
+                "DeviceName": "GPU_0",
+                "Name": "GPU_0",
+                "PlatformConfigName": "GPU_0",
+                "Type": "NvidiaMctpVdmGpu"
+            },
+            {
+                "DeviceName": "GPU_1",
+                "Name": "GPU_1",
+                "PlatformConfigName": "GPU_1",
+                "Type": "NvidiaMctpVdmGpu"
+            },
+            {
+                "DeviceName": "HPM_0",
+                "Name": "HPM_0",
+                "PlatformConfigName": "HPM_0",
+                "Type": "NvidiaMctpVdmSma"
+            },
+            {
+                "DeviceName": "GPU_SMA_0",
+                "Name": "GPU_SMA_0",
+                "PlatformConfigName": "GPU_SMA_0",
+                "Type": "NvidiaMctpVdmSma"
+            }
+        ],
+        "Name": "HGX ProcessorModule 0",
+        "Probe": "xyz.openbmc_project.FruDevice({'BUS': 1, 'ADDRESS': 80, 'BOARD_PRODUCT_NAME': 'PG558|E5580'})",
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$BOARD_MANUFACTURER",
+            "Model": "$BOARD_PRODUCT_NAME",
+            "PartNumber": "$BOARD_PART_NUMBER",
+            "SerialNumber": "$BOARD_SERIAL_NUMBER"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.LocationCode": {
+            "LocationCode": "ProcessorModule_0"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.Replaceable": {
+            "FieldReplaceable": true,
+            "HotPluggable": false
+        },
+        "xyz.openbmc_project.Inventory.Item.Chassis": {
+            "Type": "xyz.openbmc_project.Inventory.Item.Chassis.ChassisType.Module"
+        }
+    },
+    {
+        "Exposes": [
+            {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "ProcMod_1",
+                "Type": "EEPROM_24C64"
+            },
+            {
+                "DeviceName": "GPU_2",
+                "Name": "GPU_2",
+                "PlatformConfigName": "GPU_2",
+                "Type": "NvidiaMctpVdmGpu"
+            },
+            {
+                "DeviceName": "GPU_3",
+                "Name": "GPU_3",
+                "PlatformConfigName": "GPU_3",
+                "Type": "NvidiaMctpVdmGpu"
+            },
+            {
+                "DeviceName": "HPM_1",
+                "Name": "HPM_1",
+                "PlatformConfigName": "HPM_1",
+                "Type": "NvidiaMctpVdmSma"
+            },
+            {
+                "DeviceName": "GPU_SMA_1",
+                "Name": "GPU_SMA_1",
+                "PlatformConfigName": "GPU_SMA_1",
+                "Type": "NvidiaMctpVdmSma"
+            }
+        ],
+        "Name": "HGX ProcessorModule 1",
+        "Probe": "xyz.openbmc_project.FruDevice({'BUS': 3, 'ADDRESS': 80, 'BOARD_PRODUCT_NAME': 'PG558|E5580'})",
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$BOARD_MANUFACTURER",
+            "Model": "$BOARD_PRODUCT_NAME",
+            "PartNumber": "$BOARD_PART_NUMBER",
+            "SerialNumber": "$BOARD_SERIAL_NUMBER"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.LocationCode": {
+            "LocationCode": "ProcessorModule_1"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.Replaceable": {
+            "FieldReplaceable": true,
+            "HotPluggable": false
+        },
+        "xyz.openbmc_project.Inventory.Item.Chassis": {
+            "Type": "xyz.openbmc_project.Inventory.Item.Chassis.ChassisType.Module"
+        }
+    }
+]
