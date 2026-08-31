@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4682da3_c22a0392",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-31T11:42:40Z",
+      "side": 1,
+      "message": "nit, nice to have documentation about how callers are supposed to handle errors,\nsince (as per commit message) they did not handle it correctly previously.\n\nI assume we want to go error by value here.\n```suggestion\n// @returns -1  on error\nstatic int getRootBus(size_t bus)\n```",
+      "range": {
+        "startLine": 138,
+        "startChar": 1,
+        "endLine": 139,
+        "endChar": 33
+      },
+      "revId": "6e7abb76c40ecbf0c05140302e38c296206f2847",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "079759bd_b27e1d19",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-31T11:42:40Z",
+      "side": 1,
+      "message": "nit, extra variable is not needed\n```suggestion\n\n    return parseMuxDeviceRootBus(path.filename());\n```",
+      "range": {
+        "startLine": 150,
+        "startChar": 1,
+        "endLine": 152,
+        "endChar": 43
+      },
+      "revId": "6e7abb76c40ecbf0c05140302e38c296206f2847",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6f7123e_fc72a33a",
+        "filename": "src/utils.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-31T11:42:40Z",
+      "side": 1,
+      "message": "nit, documentation\n```suggestion\nstd::string toLowerCopy(std::string_view str);\n\n\n// @returns -1 on error\nint parseMuxDeviceRootBus(std::string_view muxDeviceName);\n\n```",
+      "range": {
+        "startLine": 89,
+        "startChar": 46,
+        "endLine": 92,
+        "endChar": 1
+      },
+      "revId": "6e7abb76c40ecbf0c05140302e38c296206f2847",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
