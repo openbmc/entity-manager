@@ -145,13 +145,12 @@ static bool deviceIsCreated(std::string_view busPath, uint64_t bus,
     return std::filesystem::exists(dirPath, ec);
 }
 
-static int buildDevice(
-    std::string_view name, std::string_view busPath,
-    std::string_view parameters, uint64_t bus, uint64_t address,
-    std::string_view constructor, std::string_view destructor,
-    const devices::createsHWMon hasHWMonDir,
-    std::vector<std::string> channelNames, boost::asio::io_context& io,
-    const size_t retries = 5)
+static int buildDevice(std::string name, std::string busPath,
+                       std::string parameters, uint64_t bus, uint64_t address,
+                       std::string constructor, std::string destructor,
+                       const devices::createsHWMon hasHWMonDir,
+                       std::vector<std::string> channelNames,
+                       boost::asio::io_context& io, const size_t retries = 5)
 {
     if (retries == 0U)
     {
@@ -185,10 +184,11 @@ static int buildDevice(
                         lg2::error("Timer error: {ERR}", "ERR", ec.message());
                         return -2;
                     }
-                    return buildDevice(name, busPath, parameters, bus, address,
-                                       constructor, destructor, hasHWMonDir,
-                                       std::move(channelNames), io,
-                                       retries - 1);
+                    return buildDevice(
+                        std::move(name), std::move(busPath),
+                        std::move(parameters), bus, address,
+                        std::move(constructor), std::move(destructor),
+                        hasHWMonDir, std::move(channelNames), io, retries - 1);
                 });
             return -1;
         }
@@ -210,8 +210,8 @@ void exportDevice(const devices::ExportTemplate& exportTemplate,
     std::string_view type = exportTemplate.type;
     std::string parameters(exportTemplate.parameters);
     std::string busPath(exportTemplate.busPath);
-    std::string_view constructor = exportTemplate.add;
-    std::string_view destructor = exportTemplate.remove;
+    std::string constructor(exportTemplate.add);
+    std::string destructor(exportTemplate.remove);
     devices::createsHWMon hasHWMonDir = exportTemplate.hasHWMonDir;
     std::string name = "unknown";
     std::optional<uint64_t> bus;
@@ -257,8 +257,9 @@ void exportDevice(const devices::ExportTemplate& exportTemplate,
         return;
     }
 
-    buildDevice(name, busPath, parameters, *bus, *address, constructor,
-                destructor, hasHWMonDir, std::move(channels), io);
+    buildDevice(name, busPath, parameters, *bus, *address,
+                std::move(constructor), std::move(destructor), hasHWMonDir,
+                std::move(channels), io);
 }
 
 static void loadOverlayForConfigRecord(const nlohmann::json& configuration,
