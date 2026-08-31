@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5266e470_2473f051",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-08-31T04:49:21Z",
+      "side": 1,
+      "message": "This looks like a sensible fix for the abort condition. Could you add a small regression test covering both a valid numeric mux name such as 7-0070 and a non-numeric platform mux name such as i2c-mux-gpio, so the no-throw behavior and -1 fallback are covered?",
+      "revId": "6a51274e9ab52926e9e4cdd9a35497f1d66e1326",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
