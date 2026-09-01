@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <array>
 #include <iterator>
+#include <vector>
 
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
@@ -17,6 +18,65 @@ extern "C"
 }
 
 static constexpr size_t blockSize = I2C_SMBUS_BLOCK_MAX;
+
+// Named OOB scenario for the new buffer-bound guards: a valid 17-byte FRU
+// (8-byte common header, one complete 8-byte board area block, one
+// trailing padding byte) where the board area occupies the last full
+// block, ending one byte before the end of the buffer.
+static constexpr auto areaAtLastFullBlockFru = std::to_array<uint8_t>({
+    0x01, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
+    0xfe, // Header (board at 8, last full block in this 17-byte FRU)
+    0x01, 0x01, 0x19, 0x00, 0x00, 0x00, 0xc1,
+    0x24, // board area, 1 block
+    0x00, // trailing padding byte past the last full block
+});
+
+TEST(FormatIPMIFRUTest, AreaLengthBeyondBufferReturnsErr)
+{
+    // 32-byte FRU buffer whose chassis area-length byte claims 0xFF
+    // blocks == 2040 bytes, far past the end of the buffer. The parser
+    // must reject it instead of forming an out-of-bounds end iterator.
+    std::vector<uint8_t> fru(32, 0x00);
+    fru[0] = 0x01; // common header format version
+    fru[2] = 0x01; // chassis area offset: 1 block -> byte 8
+    fru[8] = 0x01; // chassis area format version
+    fru[9] = 0xFF; // chassis area length: 0xFF * 8 = 2040 bytes
+
+    std::flat_map<std::string, std::string, std::less<>> result;
+    EXPECT_EQ(formatIPMIFRU(fru, result), resCodes::resErr);
+}
+
+TEST(FormatIPMIFRUTest, ValidAreaNearBufferEndAccepted)
+{
+    // The length-vs-buffer bound check must not reject the layout: the
+    // parser reaches field parsing, i.e. resWarn for the absent
+    // mandatory part/serial fields, not resErr.
+    std::flat_map<std::string, std::string, std::less<>> result;
+    EXPECT_EQ(formatIPMIFRU(areaAtLastFullBlockFru, result), resCodes::resWarn);
+}
+
+TEST(FormatIPMIFRUTest, AreaOffsetPastBufferReturnsErr)
+{
+    // 16-byte FRU where the chassis offset byte is 0xFF, resolving to an
+    // offset of 0xFF * 8 = 2040 bytes - far past the buffer. The new
+    // offset guard must reject it.
+    std::vector<uint8_t> fru(16, 0x00);
+    fru[0] = 0x01; // common header format version
+    fru[2] = 0xFF; // chassis area offset: 0xFF * 8 = 2040 bytes
+
+    std::flat_map<std::string, std::string, std::less<>> result;
+    EXPECT_EQ(formatIPMIFRU(fru, result), resCodes::resErr);
+}
+
+TEST(FormatIPMIFRUTest, AreaOffsetAtLastBlockNotFalselyRejected)
+{
+    // Reverse control for the offset guard: this layout has a valid FRU
+    // area on the last full block, so a future over-strict guard (e.g.
+    // one requiring a spare byte past the area) fails here instead of
+    // silently rejecting valid FRUs.
+    std::flat_map<std::string, std::string, std::less<>> result;
+    EXPECT_EQ(formatIPMIFRU(areaAtLastFullBlockFru, result), resCodes::resWarn);
+}
 
 TEST(ValidateHeaderTest, InvalidFruVersionReturnsFalse)
 {
