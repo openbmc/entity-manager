@@ -262,6 +262,30 @@
       },
       "revId": "5b4a7c777f799bc692fe90e72651cb43a1ef426b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60715236_d9b986b7",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 1319,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-09-01T10:58:42Z",
+      "side": 1,
+      "message": "nothing pending, but the amount of reviews is quite small compared to the potential impact. There\u0027s a lot of people relying on fru-device and it\u0027s behavior so it would be good to get some reviews from other people who don\u0027t have any immediate incentive to get this merged.\n\nIt also touches the `/etc/fru/baseboard.fru.bin` feature and i am not sure that\u0027s even used anymore. Raised some query https://discordapp.com/channels/775381525260664832/819741065531359263/1544299099615141908 to potentially remove that which would simplify our efforts.",
+      "parentUuid": "71770f0f_7c7bc0f1",
+      "range": {
+        "startLine": 1298,
+        "startChar": 12,
+        "endLine": 1319,
+        "endChar": 13
+      },
+      "revId": "5b4a7c777f799bc692fe90e72651cb43a1ef426b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
