@@ -1,0 +1,88 @@
+[
+    {
+        "Exposes": [
+            {
+                "Address": "0x6a",
+                "Bus": 20,
+                "Name": "E1S_EB_E1S2_TEMP_C",
+                "PEC": "Required",
+                "PowerState": "On",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 0.1,
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 5.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 1.4,
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 70.0
+                    }
+                ],
+                "Type": "NVME1000"
+            }
+        ],
+        "Name": "Yosemite5 E1S EB E1S2",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'E1S_EB_E1S2', 'Compatible': 'com.meta.Hardware.Yosemite5.Boards.E1S_x4_Expansion_Board'})",
+            "AND",
+            "xyz.openbmc_project.FruDevice({'PRODUCT_VERSION': '^(?!DVT$).*', 'BOARD_PRODUCT_NAME': 'E1.S x4 Expansion Board'})",
+            "MATCH_ONE"
+        ],
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "NOT_SUPPORTED",
+            "Model": "NOT_SUPPORTED",
+            "PartNumber": "NOT_SUPPORTED",
+            "SerialNumber": "NOT_SUPPORTED",
+            "SparePartNumber": "NOT_SUPPORTED"
+        }
+    },
+    {
+        "Exposes": [
+            {
+                "Address": "0x6a",
+                "Bus": 21,
+                "Name": "E1S_EB_E1S3_TEMP_C",
+                "PEC": "Required",
+                "PowerState": "On",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 0.1,
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 5.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 1.4,
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 70.0
+                    }
+                ],
+                "Type": "NVME1000"
+            }
+        ],
+        "Name": "Yosemite5 E1S EB E1S3",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'E1S_EB_E1S3', 'Compatible': 'com.meta.Hardware.Yosemite5.Boards.E1S_x4_Expansion_Board'})",
+            "AND",
+            "xyz.openbmc_project.FruDevice({'PRODUCT_VERSION': '^(?!DVT$).*', 'BOARD_PRODUCT_NAME': 'E1.S x4 Expansion Board'})",
+            "MATCH_ONE"
+        ],
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "NOT_SUPPORTED",
+            "Model": "NOT_SUPPORTED",
+            "PartNumber": "NOT_SUPPORTED",
+            "SerialNumber": "NOT_SUPPORTED",
+            "SparePartNumber": "NOT_SUPPORTED"
+        }
+    }
+]
