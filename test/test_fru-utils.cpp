@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <array>
 #include <iterator>
+#include <vector>
 
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
@@ -17,6 +18,51 @@ extern "C"
 }
 
 static constexpr size_t blockSize = I2C_SMBUS_BLOCK_MAX;
+
+TEST(FormatIPMIFRUTest, AreaLengthBeyondBufferReturnsErr)
+{
+    // 32-byte FRU buffer whose chassis area-length byte claims 0xFF
+    // blocks == 2040 bytes, far past the end of the buffer. The parser
+    // must reject it instead of forming an out-of-bounds end iterator.
+    std::vector<uint8_t> fru(32, 0x00);
+    fru[0] = 0x01; // common header format version
+    fru[2] = 0x01; // chassis area offset: 1 block -> byte 8
+    fru[8] = 0x01; // chassis area format version
+    fru[9] = 0xFF; // chassis area length: 0xFF * 8 = 2040 bytes
+
+    std::flat_map<std::string, std::string, std::less<>> result;
+    EXPECT_EQ(formatIPMIFRU(fru, result), resCodes::resErr);
+}
+
+TEST(FormatIPMIFRUTest, ValidAreaNearBufferEndAccepted)
+{
+    // 17-byte FRU: common header (8) + one complete board area block (8)
+    // + a single trailing byte. The parser must not be rejected by the
+    // new length-vs-buffer bound check: it reaches field parsing, i.e.
+    // resWarn for the absent mandatory part/serial fields, not resErr.
+    const auto fru = std::to_array<uint8_t>({
+        0x01,
+        0x00,
+        0x00,
+        0x01,
+        0x00,
+        0x00,
+        0x00,
+        0xfe, // Header (board at 8)
+        0x01,
+        0x01,
+        0x19,
+        0x00,
+        0x00,
+        0x00,
+        0xc1,
+        0x24, // board area, 1 block
+        0x00, // trailing padding
+    });
+
+    std::flat_map<std::string, std::string, std::less<>> result;
+    EXPECT_EQ(formatIPMIFRU(fru, result), resCodes::resWarn);
+}
 
 TEST(ValidateHeaderTest, InvalidFruVersionReturnsFalse)
 {

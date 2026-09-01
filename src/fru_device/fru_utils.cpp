@@ -500,6 +500,12 @@ resCodes formatIPMIFRU(
         }
 
         size_t fruAreaSize = *fruBytesIter * fruBlockSize;
+        if (fruAreaSize > fruBytes.size() - offset)
+        {
+            lg2::error("FRU area {AREA} length extends past end of FRU buffer",
+                       "AREA", getFruAreaName(area));
+            return resCodes::resErr;
+        }
         std::span<const uint8_t>::const_iterator fruBytesIterEndArea =
             fruBytes.begin() + offset + fruAreaSize - 1;
         ++fruBytesIter;
