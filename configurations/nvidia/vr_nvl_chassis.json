@@ -1,6 +1,13 @@
 [
     {
-        "Exposes": [],
+        "Exposes": [
+            {
+                "Class": "Nct3018y_Hwmon",
+                "Name": "Chassis_0_Intrusion",
+                "Rearm": "Automatic",
+                "Type": "ChassisIntrusionSensor"
+            }
+        ],
         "Name": "Chassis_0",
         "Probe": "xyz.openbmc_project.FruDevice({'BUS': 9, 'ADDRESS': 80, 'BOARD_PRODUCT_NAME': 'P4107'})",
         "Type": "Chassis",
