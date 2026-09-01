@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6309f948_e863cae1",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1002918
+      },
+      "writtenOn": "2026-09-01T04:39:19Z",
+      "side": 1,
+      "message": "Done. Added a @returns -1 on error note above getRootBus().",
+      "parentUuid": "c4682da3_c22a0392",
+      "range": {
+        "startLine": 138,
+        "startChar": 1,
+        "endLine": 139,
+        "endChar": 33
+      },
+      "revId": "6e7abb76c40ecbf0c05140302e38c296206f2847",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "079759bd_b27e1d19",
@@ -47,6 +71,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9645c2f_3c9d2b92",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1002918
+      },
+      "writtenOn": "2026-09-01T04:39:19Z",
+      "side": 1,
+      "message": "Done. Used path.filename().string() because filename() is a path, not a\nstring_view.",
+      "parentUuid": "079759bd_b27e1d19",
+      "range": {
+        "startLine": 150,
+        "startChar": 1,
+        "endLine": 152,
+        "endChar": 43
+      },
+      "revId": "6e7abb76c40ecbf0c05140302e38c296206f2847",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d6f7123e_fc72a33a",
@@ -60,6 +108,30 @@
       "writtenOn": "2026-08-31T11:42:40Z",
       "side": 1,
       "message": "nit, documentation\n```suggestion\nstd::string toLowerCopy(std::string_view str);\n\n\n// @returns -1 on error\nint parseMuxDeviceRootBus(std::string_view muxDeviceName);\n\n```",
+      "range": {
+        "startLine": 89,
+        "startChar": 46,
+        "endLine": 92,
+        "endChar": 1
+      },
+      "revId": "6e7abb76c40ecbf0c05140302e38c296206f2847",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "21af715e_2fb4fa82",
+        "filename": "src/utils.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1002918
+      },
+      "writtenOn": "2026-09-01T04:39:19Z",
+      "side": 1,
+      "message": "Done. Added a @returns -1 on error note above parseMuxDeviceRootBus().",
+      "parentUuid": "d6f7123e_fc72a33a",
       "range": {
         "startLine": 89,
         "startChar": 46,
