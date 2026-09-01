@@ -2,6 +2,12 @@
     {
         "Exposes": [
             {
+                "Class": "Nct3018y_Hwmon",
+                "Name": "Chassis_Intrusion",
+                "Rearm": "Automatic",
+                "Type": "ChassisIntrusionSensor"
+            },
+            {
                 "Address": "$address",
                 "Bus": "$bus",
                 "Name": "P4107_FRU",
