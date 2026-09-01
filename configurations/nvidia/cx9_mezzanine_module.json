@@ -5,10 +5,32 @@
             "Bus": "$bus",
             "Name": "NVIDIA VR NVL72 IO Board $bus - 73 FRU",
             "Type": "EEPROM"
+        },
+        {
+            "DeviceName": "CX_$bus - 73 * 2",
+            "Name": "CX_$bus - 73 * 2",
+            "PlatformConfigName": "CX_$bus - 73 * 2",
+            "Type": "NvidiaMctpVdmCx"
+        },
+        {
+            "DeviceName": "CX_$bus - 73 * 2 + 1",
+            "Name": "CX_$bus - 73 * 2 + 1",
+            "PlatformConfigName": "CX_$bus - 73 * 2 + 1",
+            "Type": "NvidiaMctpVdmCx"
+        },
+        {
+            "DeviceName": "IO_Board_SMA_$bus - 73",
+            "Name": "IO_Board_SMA_$bus - 73",
+            "PlatformConfigName": "IO_Board_SMA_$bus - 73",
+            "Type": "NvidiaMctpVdmSma"
         }
     ],
     "Name": "NVIDIA VR NVL72 IO Board $bus - 73",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'ConnectX-9 800GE 2P NIC', 'BOARD_MANUFACTURER': '(Nvidia|NVIDIA)'})",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'ConnectX-9 800GE 2P NIC', 'BOARD_MANUFACTURER': '(Nvidia|NVIDIA)'})",
+        "AND",
+        "FOUND('HGX ProcessorModule 0')"
+    ],
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
