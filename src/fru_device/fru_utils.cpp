@@ -475,6 +475,12 @@ resCodes formatIPMIFRU(
             continue;
         }
         offset *= fruBlockSize;
+        if (offset >= fruBytes.size())
+        {
+            lg2::error("FRU area {AREA} offset {OFFSET} past end of FRU buffer",
+                       "AREA", getFruAreaName(area), "OFFSET", offset);
+            return resCodes::resErr;
+        }
         std::span<const uint8_t>::const_iterator fruBytesIter =
             fruBytes.begin() + offset;
         if (fruBytesIter + fruBlockSize >= fruBytes.end())
@@ -500,6 +506,12 @@ resCodes formatIPMIFRU(
         }
 
         size_t fruAreaSize = *fruBytesIter * fruBlockSize;
+        if (fruAreaSize > fruBytes.size() - offset)
+        {
+            lg2::error("FRU area {AREA} length extends past end of FRU buffer",
+                       "AREA", getFruAreaName(area));
+            return resCodes::resErr;
+        }
         std::span<const uint8_t>::const_iterator fruBytesIterEndArea =
             fruBytes.begin() + offset + fruAreaSize - 1;
         ++fruBytesIter;
