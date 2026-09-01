@@ -5,6 +5,18 @@
             "Bus": "$bus",
             "Name": "NVIDIA VR NVL72 IO Board $bus - 73 FRU",
             "Type": "EEPROM"
+        },
+        {
+            "Name": "CX_$bus - 73 * 2",
+            "Type": "NvidiaMctpVdmCx"
+        },
+        {
+            "Name": "CX_$bus - 73 * 2 + 1",
+            "Type": "NvidiaMctpVdmCx"
+        },
+        {
+            "Name": "IO_Board_SMA_$bus - 73",
+            "Type": "NvidiaMctpVdmSma"
         }
     ],
     "Name": "NVIDIA VR NVL72 IO Board $bus - 73",
