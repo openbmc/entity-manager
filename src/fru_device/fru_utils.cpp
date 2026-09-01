@@ -475,6 +475,18 @@ resCodes formatIPMIFRU(
             continue;
         }
         offset *= fruBlockSize;
+        // The offset byte in the common header is attacker-controlled
+        // (WriteFru / a malicious FRU EEPROM). Validate it against the
+        // buffer size here, at its first point of dereference, rather
+        // than relying on the iterator checks below to catch it: any
+        // future change to those checks must not be able to re-expose
+        // an invalid offset to the iterator arithmetic.
+        if (offset >= fruBytes.size())
+        {
+            lg2::error("FRU area {AREA} offset {OFFSET} past end of FRU buffer",
+                       "AREA", getFruAreaName(area), "OFFSET", offset);
+            return resCodes::resErr;
+        }
         std::span<const uint8_t>::const_iterator fruBytesIter =
             fruBytes.begin() + offset;
         if (fruBytesIter + fruBlockSize >= fruBytes.end())
@@ -500,6 +512,16 @@ resCodes formatIPMIFRU(
         }
 
         size_t fruAreaSize = *fruBytesIter * fruBlockSize;
+        // With offset < fruBytes.size() established above, the
+        // subtraction fruBytes.size() - offset cannot wrap. State that
+        // here so the bound is a local invariant: it must not silently
+        // depend on the iterator check twenty lines earlier.
+        if (fruAreaSize > fruBytes.size() - offset)
+        {
+            lg2::error("FRU area {AREA} length extends past end of FRU buffer",
+                       "AREA", getFruAreaName(area));
+            return resCodes::resErr;
+        }
         std::span<const uint8_t>::const_iterator fruBytesIterEndArea =
             fruBytes.begin() + offset + fruAreaSize - 1;
         ++fruBytesIter;
