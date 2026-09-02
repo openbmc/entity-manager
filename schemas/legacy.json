@@ -808,6 +808,12 @@
                     "type": "string",
                     "enum": ["Required", "NotRequired"]
                 },
+                "ErrorRetryDelay": {
+                    "description": "Number of poll cycles to skip before retrying an NVMe device in the error state.",
+                    "type": "number",
+                    "multipleOf": 1,
+                    "minimum": 1
+                },
                 "Type": {
                     "const": "NVME1000"
                 }
