@@ -808,6 +808,11 @@
                     "type": "string",
                     "enum": ["Required", "NotRequired"]
                 },
+                "ErrorRetryDelay": {
+                    "description": "Error-state polling interval for the NVMe device, in seconds.",
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                },
                 "Type": {
                     "const": "NVME1000"
                 }
