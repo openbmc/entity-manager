@@ -37,6 +37,10 @@
                     "description": "A recognisable name for the device",
                     "type": "string"
                 },
+                "StaticEndpointID": {
+                    "description": "An endpoint ID assigned to the target by platform policy. The platform must reserve this value from its dynamic EID pool. If omitted, the consumer may allocate an EID dynamically.",
+                    "type": "string"
+                },
                 "Type": {
                     "type": "string",
                     "enum": ["MCTPI3CTarget"]
