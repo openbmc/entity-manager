@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "050ad433_71f7974b",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-09-03T06:35:19Z",
+      "side": 1,
+      "message": "The new check protects against an oversized area length, but offset is also read from the untrusted FRU header and is used to form and dereference fruBytesIter before this check. If the offset is outside the supplied buffer, the iterator arithmetic/dereference is already invalid, and fruBytes.size() - offset can underflow. Could we validate the area offset before forming fruBytesIter and calculating the remaining buffer size?",
+      "revId": "090c4d5c64339fca9e50d30d41982750f059f91f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
