@@ -16,6 +16,24 @@
       "message": "What syntax is this ? Is this used anywhere else in EM configs ?",
       "revId": "585d40f9de71d9b786ba537543acfdde4582cfe5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19d34472_5defdcbe",
+        "filename": "configurations/meta/ventura2/ventura2_rmcv2_mb.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 607,
+      "author": {
+        "id": 1002889
+      },
+      "writtenOn": "2026-09-07T06:08:21Z",
+      "side": 1,
+      "message": "Thanks for the question! Here is the background behind this syntax:\n\nDeviceAddress here represents the AST SoC\u0027s USB controller MMIO base address (1e6a1000 on AST2600 vs 12061000 on AST2700).\n\nFor this RMC motherboard, everything else (hundreds of lines of sensors, thresholds, etc.) is completely identical between AST2600 and AST2700 platforms. Furthermore, because this motherboard has 1st-source and 2nd-source variants (with different UART chipsets/interfaces), avoiding this syntax would mean duplicating two ~750-line configuration files into four files, solely to change these 7 address strings.\n\nThis works cleanly because phosphor-modbus\u0027s USBPort::getDevicePath() constructs a std::regex with:\n\ncpp\nstd::regex pattern(std::format(R\"(platform-{}\\.usb...)\", config.address, ...));\nSince config.address feeds directly into the regex engine, (1e6a1000|12061000) naturally evaluates as regex alternation and matches both SoCs.\n\nGiven that DeviceAddress is consumed exclusively by phosphor-modbus\u0027s regex matching, would this be acceptable to prevent maintaining duplicate 750-line configs? Or would you still prefer separate _2700.json files with SCM AND-probes?",
+      "parentUuid": "c301f2ee_1438699e",
+      "revId": "585d40f9de71d9b786ba537543acfdde4582cfe5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
