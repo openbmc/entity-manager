@@ -33,6 +33,24 @@
       "message": "one remaining concern from my side is that there is\n\nno integration test. Since people will need to change this code in the future,\neither good test coverage or some documented test setup would be nice.\n\nIf there is no test setup for this nfc tag feature then it could also work to have a reviewer listed in OWNERS who is able to test changes on hardware.\n\nSo either integration test coverage or someone able to test changes would be nice.",
       "revId": "9ca694a69be45c0071c139966214c6a6544c3436",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d03cd655_7db93639",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002728
+      },
+      "writtenOn": "2026-09-07T03:09:23Z",
+      "side": 1,
+      "message": "Hi Alexander,\nThanks for the feedback.\nWe do not currently have integration test coverage for this NFC tag feature. For now, I can be listed in OWNERS since I have access to the required hardware and can validate future changes on real systems.\nI agree that integration test coverage would be valuable, and I would like to investigate adding it in a follow-up effort. In the meantime, are there any existing integration test examples or recommended approaches for hardware-dependent features that I could use as a reference? Thanks.",
+      "parentUuid": "cf5805c4_b8625dc5",
+      "revId": "9ca694a69be45c0071c139966214c6a6544c3436",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
