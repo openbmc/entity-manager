@@ -412,4 +412,20 @@ sdbusplus::object_path buildInventorySystemPath(std::string& boardName,
 
     return basePath / toLowerCopy(boardType) / boardName;
 }
+
+std::string resolveConfigType(const nlohmann::json& configValues,
+                              const std::string& configName)
+{
+    auto findConfigType = configValues.find("Type");
+    if (findConfigType != configValues.end() &&
+        findConfigType->type() == nlohmann::json::value_t::string)
+    {
+        return dbus_util::sanitizeForDBusPathSegment(
+            findConfigType->get<std::string>());
+    }
+
+    lg2::error("Unable to find type for {CONFIG} reverting to Chassis.",
+               "CONFIG", configName);
+    return "Chassis";
+}
 } // namespace em_utils
