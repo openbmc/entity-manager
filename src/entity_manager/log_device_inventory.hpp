@@ -7,9 +7,6 @@
 
 struct InvAddRemoveInfo
 {
-    std::string model = "Unknown";
-    std::string type = "Unknown";
-    std::string sn = "Unknown";
     std::string name = "Unknown";
 };
 
