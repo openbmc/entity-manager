@@ -1396,6 +1396,260 @@
             "Type": "NVME1000"
         },
         {
+            "Class": "fan",
+            "FFGainCoefficient": 1.0,
+            "FFOffCoefficient": 0.0,
+            "FailSafePercent": 100.0,
+            "ICoefficient": 0.0,
+            "ILimitMax": 0.0,
+            "ILimitMin": 0.0,
+            "Inputs": [
+                "FAN0_TACH_IL_SPEED_RPM",
+                "FAN0_TACH_OL_SPEED_RPM",
+                "FAN1_TACH_IL_SPEED_RPM",
+                "FAN1_TACH_OL_SPEED_RPM",
+                "FAN2_TACH_IL_SPEED_RPM",
+                "FAN2_TACH_OL_SPEED_RPM",
+                "FAN3_TACH_IL_SPEED_RPM",
+                "FAN3_TACH_OL_SPEED_RPM",
+                "FAN4_TACH_IL_SPEED_RPM",
+                "FAN4_TACH_OL_SPEED_RPM",
+                "FAN5_TACH_IL_SPEED_RPM",
+                "FAN5_TACH_OL_SPEED_RPM",
+                "FAN6_TACH_IL_SPEED_RPM",
+                "FAN6_TACH_OL_SPEED_RPM",
+                "FAN7_TACH_IL_SPEED_RPM",
+                "FAN7_TACH_OL_SPEED_RPM",
+                "FAN8_TACH_IL_SPEED_RPM",
+                "FAN8_TACH_OL_SPEED_RPM"
+            ],
+            "Name": "All Fan",
+            "OutLimitMax": 100.0,
+            "OutLimitMin": 0.0,
+            "Outputs": [
+                "FAN0_PWM_PCT",
+                "FAN0_PWM_PCT",
+                "FAN1_PWM_PCT",
+                "FAN1_PWM_PCT",
+                "FAN2_PWM_PCT",
+                "FAN2_PWM_PCT",
+                "FAN3_PWM_PCT",
+                "FAN3_PWM_PCT",
+                "FAN4_PWM_PCT",
+                "FAN4_PWM_PCT",
+                "FAN5_PWM_PCT",
+                "FAN5_PWM_PCT",
+                "FAN6_PWM_PCT",
+                "FAN6_PWM_PCT",
+                "FAN7_PWM_PCT",
+                "FAN7_PWM_PCT",
+                "FAN8_PWM_PCT",
+                "FAN8_PWM_PCT"
+            ],
+            "PCoefficient": 0.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "FFGainCoefficient": 0.39,
+            "FFOffCoefficient": 75.04,
+            "ICoefficient": -0.01192,
+            "ILimitMax": 100.0,
+            "ILimitMin": -5.0,
+            "Inputs": [
+                "MB_E1S_BOOT_TEMP_C",
+                "MB_E1S0_TEMP_C",
+                "MB_E1S1_TEMP_C",
+                "MB_E1S2_TEMP_C",
+                "MB_E1S3_TEMP_C"
+            ],
+            "Name": "PID_MB_E1S_TEMP",
+            "OutLimitMax": 100.0,
+            "OutLimitMin": 15.0,
+            "PCoefficient": -1.9073,
+            "SetPoint": 64.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "FFGainCoefficient": 0.39,
+            "FFOffCoefficient": 62.17,
+            "ICoefficient": -0.01192,
+            "ILimitMax": 100.0,
+            "ILimitMin": -5.0,
+            "Inputs": [
+                "NIC0_TEMP_C"
+            ],
+            "Name": "PID_FE_NIC_TEMP",
+            "OutLimitMax": 100.0,
+            "OutLimitMin": 15.0,
+            "PCoefficient": -1.9073,
+            "SetPoint": 95.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "FFGainCoefficient": 0.39,
+            "FFOffCoefficient": 61.0,
+            "ICoefficient": -0.01192,
+            "ILimitMax": 100.0,
+            "ILimitMin": -5.0,
+            "Inputs": [
+                "PDB_L_P12V_SW_VRM_TEMP_C",
+                "PDB_R_P12V_MB_VRM_TEMP_C",
+                "PDB_R_P12V_STBY_VRM_TEMP_C"
+            ],
+            "Name": "PID_PDB_VR_TEMP",
+            "OutLimitMax": 100.0,
+            "OutLimitMin": 15.0,
+            "PCoefficient": -1.9073,
+            "SetPoint": 100.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "FFGainCoefficient": 0.39,
+            "FFOffCoefficient": 62.17,
+            "ICoefficient": -0.01192,
+            "ILimitMax": 100.0,
+            "ILimitMin": -5.0,
+            "Inputs": [
+                "NIC1_TEMP_C",
+                "NIC3_TEMP_C",
+                "NIC5_TEMP_C",
+                "NIC7_TEMP_C"
+            ],
+            "Name": "PID_NIC_TEMP",
+            "OutLimitMax": 100.0,
+            "OutLimitMin": 15.0,
+            "PCoefficient": -1.9073,
+            "SetPoint": 95.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "FFGainCoefficient": 0.39,
+            "FFOffCoefficient": 62.17,
+            "ICoefficient": -0.01192,
+            "ILimitMax": 100.0,
+            "ILimitMin": -5.0,
+            "Inputs": [
+                "BRB_L_RETIMER_TEMP_C",
+                "BRB_R_RETIMER_TEMP_C"
+            ],
+            "Name": "PID_BRB_RETIMER_TEMP",
+            "OutLimitMax": 100.0,
+            "OutLimitMin": 15.0,
+            "PCoefficient": -1.9073,
+            "SetPoint": 95.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "FFGainCoefficient": 0.39,
+            "FFOffCoefficient": 60.61,
+            "ICoefficient": -0.01192,
+            "ILimitMax": 100.0,
+            "ILimitMin": -5.0,
+            "Inputs": [
+                "MB_VR_CPU_PVDD18_S5_P0_TEMP_C",
+                "MB_VR_CPU_PVDD33_S5_P0_TEMP_C",
+                "MB_VR_CPU_PVDDCR_CPU0_P0_TEMP_C",
+                "MB_VR_CPU_PVDDCR_CPU1_P0_TEMP_C",
+                "MB_VR_CPU_PVDDCR_SOC_P0_TEMP_C",
+                "MB_VR_CPU_PVDDIO_MEM_S3_P0_TEMP_C",
+                "MB_VR_CPU_PVDDIO_P0_TEMP_C"
+            ],
+            "Name": "PID_MB_VR_CPU_TEMP",
+            "OutLimitMax": 100.0,
+            "OutLimitMin": 15.0,
+            "PCoefficient": -1.9073,
+            "SetPoint": 100.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "FFGainCoefficient": 0.39,
+            "FFOffCoefficient": 69.97,
+            "ICoefficient": -0.01192,
+            "ILimitMax": 100.0,
+            "ILimitMin": -5.0,
+            "Inputs": [
+                "MB_DIMM_A0_TEMP_C",
+                "MB_DIMM_A1_TEMP_C",
+                "MB_DIMM_A2_TEMP_C",
+                "MB_DIMM_A3_TEMP_C",
+                "MB_DIMM_A4_TEMP_C",
+                "MB_DIMM_A5_TEMP_C",
+                "MB_DIMM_A6_TEMP_C",
+                "MB_DIMM_A7_TEMP_C",
+                "MB_DIMM_A8_TEMP_C",
+                "MB_DIMM_A9_TEMP_C",
+                "MB_DIMM_A10_TEMP_C",
+                "MB_DIMM_A11_TEMP_C",
+                "MB_DIMM_A12_TEMP_C",
+                "MB_DIMM_A13_TEMP_C",
+                "MB_DIMM_A14_TEMP_C",
+                "MB_DIMM_A15_TEMP_C"
+            ],
+            "Name": "PID_MB_DIMM_TEMP",
+            "OutLimitMax": 100.0,
+            "OutLimitMin": 15.0,
+            "PCoefficient": -1.9073,
+            "SetPoint": 77.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "AccumulateSetPoint": false,
+            "CycleIntervalTimeMS": 1000,
+            "FailSafePercent": 100.0,
+            "MinThermalOutput": 30.0,
+            "Name": "Zone 0",
+            "Type": "Pid.Zone",
+            "UpdateThermalsTimeMS": 1000,
+            "ZoneIndex": 0
+        },
+        {
             "Address": "0x1118",
             "Bus": 0,
             "Labels": [
@@ -2703,6 +2957,343 @@
                 }
             ],
             "Type": "SBTSI"
+        },
+        {
+            "Class": "temp",
+            "Inputs": [
+                "MB_E1S_BOOT_TEMP_C",
+                "MB_E1S0_TEMP_C",
+                "MB_E1S1_TEMP_C",
+                "MB_E1S2_TEMP_C",
+                "MB_E1S3_TEMP_C"
+            ],
+            "Name": "Stepwise_MB_E1S_TEMP",
+            "NegativeHysteresis": 2,
+            "Output": [
+                15.0,
+                22.0,
+                30.0,
+                40.0,
+                45.0,
+                50.0,
+                60.0,
+                70.0,
+                100.0
+            ],
+            "PositiveHysteresis": 0,
+            "Reading": [
+                24.4,
+                34.4,
+                44.4,
+                54.4,
+                64.4,
+                65.4,
+                67.4,
+                69.4,
+                70.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "Inputs": [
+                "NIC0_TEMP_C"
+            ],
+            "Name": "Stepwise_FE_NIC_TEMP",
+            "NegativeHysteresis": 2,
+            "Output": [
+                20.0,
+                25.0,
+                35.0,
+                50.0,
+                55.0,
+                60.0,
+                70.0,
+                80.0,
+                100.0
+            ],
+            "PositiveHysteresis": 0,
+            "Reading": [
+                51.6,
+                61.6,
+                71.6,
+                81.6,
+                86.6,
+                91.6,
+                96.6,
+                101.6,
+                105.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "Inputs": [
+                "PDB_L_P12V_SW_VRM_TEMP_C",
+                "PDB_R_P12V_MB_VRM_TEMP_C",
+                "PDB_R_P12V_STBY_VRM_TEMP_C"
+            ],
+            "Name": "Stepwise_PDB_VR_TEMP",
+            "NegativeHysteresis": 2,
+            "Output": [
+                20.0,
+                30.0,
+                40.0,
+                50.0,
+                65.0,
+                70.0,
+                75.0,
+                80.0,
+                100.0
+            ],
+            "PositiveHysteresis": 0,
+            "Reading": [
+                40.0,
+                50.0,
+                60.0,
+                70.0,
+                80.0,
+                85.0,
+                90.0,
+                95.0,
+                105.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "Inputs": [
+                "NIC1_VR_TEMP_C",
+                "NIC3_VR_TEMP_C",
+                "NIC5_VR_TEMP_C",
+                "NIC7_VR_TEMP_C"
+            ],
+            "Name": "Stepwise_NIC_VR_TEMP",
+            "NegativeHysteresis": 2,
+            "Output": [
+                20.0,
+                30.0,
+                40.0,
+                45.0,
+                50.0,
+                55.0,
+                60.0,
+                70.0,
+                80.0,
+                100.0
+            ],
+            "PositiveHysteresis": 0,
+            "Reading": [
+                35.0,
+                45.0,
+                55.0,
+                65.0,
+                75.0,
+                80.0,
+                85.0,
+                90.0,
+                95.0,
+                105.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "Inputs": [
+                "NIC1_TEMP_C",
+                "NIC3_TEMP_C",
+                "NIC5_TEMP_C",
+                "NIC7_TEMP_C"
+            ],
+            "Name": "Stepwise_NIC_TEMP",
+            "NegativeHysteresis": 2,
+            "Output": [
+                15.0,
+                25.0,
+                35.0,
+                40.0,
+                45.0,
+                55.0,
+                65.0,
+                80.0,
+                100.0
+            ],
+            "PositiveHysteresis": 0,
+            "Reading": [
+                26.6,
+                36.6,
+                46.6,
+                56.6,
+                66.6,
+                76.6,
+                81.6,
+                84.0,
+                85.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "Inputs": [
+                "BRB_L_RETIMER_TEMP_C",
+                "BRB_R_RETIMER_TEMP_C"
+            ],
+            "Name": "Stepwise_BRB_RETIMER_TEMP",
+            "NegativeHysteresis": 2,
+            "Output": [
+                20.0,
+                30.0,
+                35.0,
+                45.0,
+                60.0,
+                65.0,
+                70.0,
+                80.0,
+                100.0
+            ],
+            "PositiveHysteresis": 0,
+            "Reading": [
+                41.6,
+                51.6,
+                61.6,
+                71.6,
+                81.6,
+                91.6,
+                96.6,
+                104.0,
+                105.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "Inputs": [
+                "INLET_SCM_TEMP_C"
+            ],
+            "Name": "Stepwise_SCM_TEMP",
+            "NegativeHysteresis": 2,
+            "Output": [
+                30.0,
+                35.0,
+                40.0,
+                50.0,
+                70.0,
+                100.0
+            ],
+            "PositiveHysteresis": 0,
+            "Reading": [
+                15.0,
+                20.0,
+                25.0,
+                35.0,
+                40.0,
+                45.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "Inputs": [
+                "MB_VR_CPU_PVDD18_S5_P0_TEMP_C",
+                "MB_VR_CPU_PVDD33_S5_P0_TEMP_C",
+                "MB_VR_CPU_PVDDCR_CPU0_P0_TEMP_C",
+                "MB_VR_CPU_PVDDCR_CPU1_P0_TEMP_C",
+                "MB_VR_CPU_PVDDCR_SOC_P0_TEMP_C",
+                "MB_VR_CPU_PVDDIO_MEM_S3_P0_TEMP_C",
+                "MB_VR_CPU_PVDDIO_P0_TEMP_C"
+            ],
+            "Name": "Stepwise_MB_VR_CPU_TEMP",
+            "NegativeHysteresis": 2,
+            "Output": [
+                15.0,
+                20.0,
+                30.0,
+                50.0,
+                65.0,
+                85.0,
+                100.0
+            ],
+            "PositiveHysteresis": 0,
+            "Reading": [
+                31.2,
+                46.2,
+                61.2,
+                76.2,
+                91.2,
+                101.2,
+                110.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "Inputs": [
+                "MB_DIMM_A0_TEMP_C",
+                "MB_DIMM_A1_TEMP_C",
+                "MB_DIMM_A2_TEMP_C",
+                "MB_DIMM_A3_TEMP_C",
+                "MB_DIMM_A4_TEMP_C",
+                "MB_DIMM_A5_TEMP_C",
+                "MB_DIMM_A6_TEMP_C",
+                "MB_DIMM_A7_TEMP_C",
+                "MB_DIMM_A8_TEMP_C",
+                "MB_DIMM_A9_TEMP_C",
+                "MB_DIMM_A10_TEMP_C",
+                "MB_DIMM_A11_TEMP_C",
+                "MB_DIMM_A12_TEMP_C",
+                "MB_DIMM_A13_TEMP_C",
+                "MB_DIMM_A14_TEMP_C",
+                "MB_DIMM_A15_TEMP_C"
+            ],
+            "Name": "Stepwise_MB_DIMM_TEMP",
+            "NegativeHysteresis": 2,
+            "Output": [
+                15.0,
+                25.0,
+                30.0,
+                45.0,
+                60.0,
+                80.0,
+                100.0
+            ],
+            "PositiveHysteresis": 0,
+            "Reading": [
+                37.7,
+                47.7,
+                57.7,
+                67.7,
+                77.7,
+                82.7,
+                85.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 0"
+            ]
         },
         {
             "Address": "0x48",
