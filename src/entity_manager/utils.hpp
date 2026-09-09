@@ -40,4 +40,7 @@ std::optional<std::string> templateCharReplace(
 sdbusplus::object_path buildInventorySystemPath(std::string& boardName,
                                                 const std::string& boardType);
 
+std::string resolveConfigType(const nlohmann::json& configValues,
+                              const std::string& configName);
+
 } // namespace em_utils
