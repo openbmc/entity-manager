@@ -1,13 +1,11 @@
 #include "log_device_inventory.hpp"
 
-#include "../utils.hpp"
-
-#include <systemd/sd-journal.h>
+#include "utils.hpp"
 
 #include <nlohmann/json.hpp>
-#include <xyz/openbmc_project/Inventory/Decorator/Asset/common.hpp>
+#include <phosphor-logging/commit.hpp>
+#include <xyz/openbmc_project/Inventory/event.hpp>
 
-#include <flat_map>
 #include <string>
 
 static void setStringIfFound(std::string& value, const std::string& key,
@@ -35,20 +33,18 @@ InvAddRemoveInfo queryInvInfo(const nlohmann::json& record)
 {
     InvAddRemoveInfo ret;
 
-    setStringIfFound(ret.type, "Type", record);
     setStringIfFound(ret.name, "Name", record);
 
-    const nlohmann::json::const_iterator findAsset = record.find(
-        sdbusplus::common::xyz::openbmc_project::inventory::decorator::Asset::
-            interface);
-
-    if (findAsset != record.end())
-    {
-        setStringIfFound(ret.model, "Model", *findAsset);
-        setStringIfFound(ret.sn, "SerialNumber", *findAsset, true);
-    }
-
     return ret;
+}
+
+static sdbusplus::object_path inventoryPath(const nlohmann::json& record,
+                                            const InvAddRemoveInfo& info)
+{
+    std::string boardName = info.name;
+    std::string boardType = em_utils::resolveConfigType(record, info.name);
+
+    return em_utils::buildInventorySystemPath(boardName, boardType);
 }
 
 void logDeviceAdded(const nlohmann::json& record)
@@ -58,22 +54,19 @@ void logDeviceAdded(const nlohmann::json& record)
         return;
     }
 
-    const InvAddRemoveInfo info = queryInvInfo(record);
+    using InventoryAdded =
+        sdbusplus::event::xyz::openbmc_project::Inventory::InventoryAdded;
 
-    sd_journal_send(
-        "MESSAGE=Inventory Added: %s", info.name.c_str(), "PRIORITY=%i",
-        LOG_INFO, "REDFISH_MESSAGE_ID=%s", "OpenBMC.0.1.InventoryAdded",
-        "REDFISH_MESSAGE_ARGS=%s,%s,%s", info.model.c_str(), info.type.c_str(),
-        info.sn.c_str(), "NAME=%s", info.name.c_str(), NULL);
+    const InvAddRemoveInfo info = queryInvInfo(record);
+    lg2::commit(InventoryAdded("IDENTIFIER_PATH", inventoryPath(record, info)));
 }
 
 void logDeviceRemoved(const nlohmann::json& record)
 {
-    const InvAddRemoveInfo info = queryInvInfo(record);
+    using InventoryRemoved =
+        sdbusplus::event::xyz::openbmc_project::Inventory::InventoryRemoved;
 
-    sd_journal_send(
-        "MESSAGE=Inventory Removed: %s", info.name.c_str(), "PRIORITY=%i",
-        LOG_INFO, "REDFISH_MESSAGE_ID=%s", "OpenBMC.0.1.InventoryRemoved",
-        "REDFISH_MESSAGE_ARGS=%s,%s,%s", info.model.c_str(), info.type.c_str(),
-        info.sn.c_str(), "NAME=%s", info.name.c_str(), NULL);
+    const InvAddRemoveInfo info = queryInvInfo(record);
+    lg2::commit(
+        InventoryRemoved("IDENTIFIER_PATH", inventoryPath(record, info)));
 }
