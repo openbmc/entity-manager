@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "23fecb22_90686631",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 812,
+      "author": {
+        "id": 1002591
+      },
+      "writtenOn": "2026-09-09T01:24:36Z",
+      "side": 1,
+      "message": "How about: \"Error-state polling interval for the NVMe device, in seconds.\"?\nIs there specific reason for the \"units of\"?",
+      "parentUuid": "cf58d25e_ae64b33c",
+      "range": {
+        "startLine": 812,
+        "startChar": 57,
+        "endLine": 812,
+        "endChar": 61
+      },
+      "revId": "a0bf91c5d6e9e75cbafa3847d39975cead4f365d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5a64692c_1fd99b9c",
         "filename": "schemas/legacy.json",
         "patchSetId": 2
@@ -37,6 +61,24 @@
       "writtenOn": "2026-09-09T00:07:07Z",
       "side": 1,
       "message": "What\u0027s the motivation for this constraint?",
+      "revId": "a0bf91c5d6e9e75cbafa3847d39975cead4f365d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6e97890_e85f30e0",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 814,
+      "author": {
+        "id": 1002591
+      },
+      "writtenOn": "2026-09-09T01:24:36Z",
+      "side": 1,
+      "message": "`minimum: 1` is added to prevent NVMeSensor::sample() from underflowing scanDelay when ErrorRetryDelay is set to 0, which would delay the retry by UINT_MAX seconds.\n`multipleOf: 1` explicitly aligns the value with NVMeSensor\u0027s 1-second polling interval. It also ensures the configured value matches what\u0027s actually used at runtime, since the value is truncated when cast to an unsigned int",
+      "parentUuid": "5a64692c_1fd99b9c",
       "revId": "a0bf91c5d6e9e75cbafa3847d39975cead4f365d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
