@@ -1,0 +1,37 @@
+{
+    "Exposes": [
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "intel ssd $bus * 100 + $address vpd",
+            "Type": "EEPROM"
+        },
+        {
+            "Name": "DrivePort 1",
+            "PortType": "contained_by",
+            "Type": "Port"
+        }
+    ],
+    "Name": "intel ssd $bus * 100 + $address",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'PRODUCT_MANUFACTURER': 'INTEL', 'PRODUCT_PART_NUMBER': 'INTEL SSDPE2KX010T8O'})"
+    ],
+    "Type": "Drive",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "",
+        "Manufacturer": "$PRODUCT_MANUFACTURER",
+        "Model": "$PRODUCT_PRODUCT_NAME",
+        "PartNumber": "$PRODUCT_PART_NUMBER",
+        "SerialNumber": "BTLJXXXXXXXXXXXXXX",
+        "SparePartNumber": ""
+    },
+    "xyz.openbmc_project.Inventory.Item.Drive": {
+        "Capacity": 30720000000000,
+        "EncryptionStatus": "Unencrypted",
+        "LockedStatus": "Unlocked",
+        "PredictedMediaLifeLeftPercent": 99,
+        "Protocol": "NVMe",
+        "Resettable": false,
+        "Type": "SSD"
+    }
+}
