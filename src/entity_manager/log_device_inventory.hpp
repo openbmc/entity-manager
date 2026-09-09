@@ -5,16 +5,22 @@
 
 #include <nlohmann/json.hpp>
 
-struct InvAddRemoveInfo
+#include <string>
+
+// @brief Model/Type/SerialNumber for the legacy OpenBMC.0.1.* journal
+//        message, kept alongside the structured D-Bus event as a temporary
+//        compatibility shim.
+struct LegacyInvInfo
 {
     std::string model = "Unknown";
     std::string type = "Unknown";
     std::string sn = "Unknown";
-    std::string name = "Unknown";
 };
 
 void logDeviceAdded(const nlohmann::json& record);
 
 void logDeviceRemoved(const nlohmann::json& record);
 
-InvAddRemoveInfo queryInvInfo(const nlohmann::json& record);
+std::string queryInvName(const nlohmann::json& record);
+
+LegacyInvInfo queryLegacyInvInfo(const nlohmann::json& record);

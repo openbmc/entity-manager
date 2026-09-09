@@ -9,7 +9,14 @@ endif
 allowed = get_option('new-device-detection')
 cpp_args_em += '-DEM_CACHE_CONFIGURATION=' + allowed.to_string()
 
-em_deps = [boost, nlohmann_json_dep, phosphor_logging_dep, sdbusplus, valijson]
+em_deps = [
+    boost,
+    nlohmann_json_dep,
+    phosphor_dbus_interfaces_dep,
+    phosphor_logging_dep,
+    sdbusplus,
+    valijson,
+]
 
 entity_manager_lib = static_library(
     'entity-manager',
