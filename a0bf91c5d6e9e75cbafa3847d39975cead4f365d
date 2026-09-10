@@ -72,6 +72,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0d7459f_f00b6fca",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 812,
+      "author": {
+        "id": 1002591
+      },
+      "writtenOn": "2026-09-10T02:02:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b0fd5de0_810e19c9",
+      "range": {
+        "startLine": 812,
+        "startChar": 57,
+        "endLine": 812,
+        "endChar": 61
+      },
+      "revId": "a0bf91c5d6e9e75cbafa3847d39975cead4f365d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5a64692c_1fd99b9c",
@@ -121,6 +145,24 @@
       "side": 1,
       "message": "\u003e `multipleOf`: 1 explicitly aligns the value with NVMeSensor\u0027s 1-second polling interval.\n\nBut this is an implementation detail on `nvmesensor`\u0027s part. My suggestion is that you decouple the definition in the schema from whatever `nvmesensor` is doing. It\u0027s a requirement that `nvmesensor` translate the value specified into a value that\u0027s applicable in terms of its implementation. That is, the effort belongs in the implementation of nvmesensor to uphold the semantics defined in the schema, not on the authors of the configurations described by this schema.\n\n\u003e It also ensures the configured value matches what\u0027s actually used at runtime, since the value is truncated when cast to an unsigned int\u0027\n\nThis is entirely an implementation (`nvmesensor`) concern, no?",
       "parentUuid": "d6e97890_e85f30e0",
+      "revId": "a0bf91c5d6e9e75cbafa3847d39975cead4f365d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6a7abe9_8c38f1f0",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 814,
+      "author": {
+        "id": 1002591
+      },
+      "writtenOn": "2026-09-10T02:02:46Z",
+      "side": 1,
+      "message": "Dropped the `multipleOf: 1` constraint from the schema. \nChanged `minimum: 1` to `exclusiveMinimum: 0`, since a negative \"delay\" wouldn\u0027t be meaningful",
+      "parentUuid": "47c9199a_6e76e6af",
       "revId": "a0bf91c5d6e9e75cbafa3847d39975cead4f365d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
