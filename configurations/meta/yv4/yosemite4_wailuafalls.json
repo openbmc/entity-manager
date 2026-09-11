@@ -1,6 +1,24 @@
 {
     "Exposes": [
         {
+            "EID": "$bus % 15 * 10 + 2",
+            "Name": "BIC",
+            "NetworkId": 1,
+            "Type": "MCTPRoutedEndpoint"
+        },
+        {
+            "EID": "$bus % 15 * 10 + 4",
+            "Name": "CXL1",
+            "NetworkId": 1,
+            "Type": "MCTPRoutedEndpoint"
+        },
+        {
+            "EID": "$bus % 15 * 10 + 5",
+            "Name": "CXL2",
+            "NetworkId": 1,
+            "Type": "MCTPRoutedEndpoint"
+        },
+        {
             "CheckHysteresisWithSetpoint": true,
             "Class": "temp",
             "DCoefficient": 0.0,
