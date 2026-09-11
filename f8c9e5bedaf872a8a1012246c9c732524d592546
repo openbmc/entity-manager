@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "104e9edd_c0ac171e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2026-09-11T21:36:48Z",
+      "side": 1,
+      "message": "if you do:\nResolves: openbmc/entity-manager#24\nit will autoresolve it when it merges. (or at least it used to)",
+      "revId": "f8c9e5bedaf872a8a1012246c9c732524d592546",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5239b5a_917df11f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2026-09-11T21:36:48Z",
+      "side": 1,
+      "message": "two very minor things",
+      "revId": "f8c9e5bedaf872a8a1012246c9c732524d592546",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5137dda2_79b826d2",
+        "filename": "src/entity_manager/perform_probe.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2026-09-11T21:36:48Z",
+      "side": 1,
+      "message": "could also do:\ncur \u003d std::ranges::contains(scan-\u003epassedProbes, token.value);\n\ncan resolve if you\u0027d rather not",
+      "range": {
+        "startLine": 107,
+        "startChar": 22,
+        "endLine": 109,
+        "endChar": 49
+      },
+      "revId": "f8c9e5bedaf872a8a1012246c9c732524d592546",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
