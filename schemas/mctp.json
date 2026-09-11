@@ -44,6 +44,28 @@
             },
             "required": ["Address", "Bus", "Name", "Type"],
             "type": "object"
+        },
+        "MCTPRoutedEndpoint": {
+            "properties": {
+                "EID": {
+                    "description": "The EID already assigned to the endpoint. The route to this EID must be configured independently before the endpoint can be discovered.",
+                    "type": ["string", "number"]
+                },
+                "Name": {
+                    "description": "A recognisable name for the endpoint",
+                    "type": "string"
+                },
+                "NetworkId": {
+                    "description": "The MCTP network containing the routed endpoint",
+                    "type": ["string", "number"]
+                },
+                "Type": {
+                    "type": "string",
+                    "enum": ["MCTPRoutedEndpoint"]
+                }
+            },
+            "required": ["EID", "Name", "NetworkId", "Type"],
+            "type": "object"
         }
     }
 }
