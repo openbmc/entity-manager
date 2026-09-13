@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53851373_467b7672",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-09-13T15:21:35Z",
+      "side": 0,
+      "message": "We can get rid of this check and edge case here by confirming `Type` is one of the supported values at configuration parsing stage and simply drop the broken configs with an error log.",
+      "range": {
+        "startLine": 175,
+        "startChar": 8,
+        "endLine": 180,
+        "endChar": 5
+      },
+      "revId": "044a16e6952e48e8b7e01f3206b47cf13ca5a337",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
