@@ -69,6 +69,24 @@
       "parentUuid": "d03cd655_7db93639",
       "revId": "9ca694a69be45c0071c139966214c6a6544c3436",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35e32f1a_99e9d754",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-09-13T15:48:46Z",
+      "side": 1,
+      "message": "\u003e For now, I can be listed in OWNERS since I have access to the required hardware and can validate future changes on real systems.\n\nNice, thank you 👍\n\n\u003e In the meantime, are there any existing integration test examples or \nrecommended approaches for hardware-dependent features that I could use \nas a reference? \n\nIs it really directly hardware dependent? Or is it only depending on neard\u0027s D-Bus interfaces ?\n\nFor examples of D-Bus integration testing the fw update code has some:\n\nhttps://github.com/openbmc/phosphor-bmc-code-mgmt/blob/master/test/common/software/software_update.cpp",
+      "parentUuid": "fb743b0a_24c313b4",
+      "revId": "9ca694a69be45c0071c139966214c6a6544c3436",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
