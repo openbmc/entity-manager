@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "da35fed0_6a018b11",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-09-13T17:51:45Z",
+      "side": 1,
+      "message": "Yes, added that detail. Thanks for finding it 👍",
+      "parentUuid": "737c8575_922baf6f",
+      "revId": "d68be00d383bf9b725ee48952ca6e33f9714e406",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3684c4e7_bc5ea149",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-09-01T16:36:29Z",
       "side": 1,
       "message": "nit: contains then at looks up the same key twice here and twice again in the caller, where the code this replaces used a single find\nAnd will taking the `DeviceMap` instead of the `BusMap` would let the caller find once and reuse it?",
+      "revId": "d68be00d383bf9b725ee48952ca6e33f9714e406",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a7f5f1e_de36ab87",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1230,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-09-13T17:51:45Z",
+      "side": 1,
+      "message": "changed it to use `busmap.find` in the caller and removed this function.",
+      "parentUuid": "3684c4e7_bc5ea149",
       "revId": "d68be00d383bf9b725ee48952ca6e33f9714e406",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc213b86_6468275a",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1277,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-09-13T17:51:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23e92f10_d4ae5476",
+      "revId": "d68be00d383bf9b725ee48952ca6e33f9714e406",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a7161824_c25ddb96",
@@ -69,6 +123,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "935d9b0c_d9bfc27d",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1281,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-09-13T17:51:45Z",
+      "side": 1,
+      "message": "yes, fixed it. Thanks for catching this 👍",
+      "parentUuid": "a7161824_c25ddb96",
+      "revId": "d68be00d383bf9b725ee48952ca6e33f9714e406",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2779b17b_210b3f59",
@@ -82,6 +154,30 @@
       "writtenOn": "2026-09-01T16:30:50Z",
       "side": 1,
       "message": "nit: `its`",
+      "range": {
+        "startLine": 1289,
+        "startChar": 7,
+        "endLine": 1289,
+        "endChar": 11
+      },
+      "revId": "d68be00d383bf9b725ee48952ca6e33f9714e406",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c5eeaa1_d5f4d760",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1289,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-09-13T17:51:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2779b17b_210b3f59",
       "range": {
         "startLine": 1289,
         "startChar": 7,
