@@ -412,4 +412,21 @@ sdbusplus::object_path buildInventorySystemPath(std::string& boardName,
 
     return basePath / toLowerCopy(boardType) / boardName;
 }
+
+std::optional<std::string> resolveConfigType(const nlohmann::json& configValues)
+{
+    auto findConfigType = configValues.find("Type");
+    if (findConfigType != configValues.end() &&
+        findConfigType->type() == nlohmann::json::value_t::string)
+    {
+        const std::string& rawType =
+            findConfigType->get_ref<const std::string&>();
+        if (!rawType.empty())
+        {
+            return dbus_util::sanitizeForDBusPathSegment(rawType);
+        }
+    }
+
+    return std::nullopt;
+}
 } // namespace em_utils

@@ -164,20 +164,15 @@ void EntityManager::postBoardToDBus(
     // loop through newConfiguration, but use values from system
     // configuration to be able to modify via dbus later
     auto configValues = systemConfiguration[configId];
-    auto findConfigType = configValues.find("Type");
-    std::string configType;
-    if (findConfigType != configValues.end() &&
-        findConfigType->type() == nlohmann::json::value_t::string)
+    std::optional<std::string> resolvedType =
+        em_utils::resolveConfigType(configValues);
+    if (!resolvedType)
     {
-        configType = dbus_util::sanitizeForDBusPathSegment(
-            findConfigType->get<std::string>());
-    }
-    else
-    {
-        lg2::error("Unable to find type for {CONFIG} reverting to Chassis.",
+        lg2::error("Type for {CONFIG} was missing or not a string, dropping",
                    "CONFIG", configName);
-        configType = "Chassis";
+        return;
     }
+    const std::string& configType = *resolvedType;
 
     lg2::debug("post {TYPE} '{NAME}' to DBus", "TYPE", configType, "NAME",
                configName);
