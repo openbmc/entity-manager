@@ -33,6 +33,42 @@
       "message": "LGTM. One suggestion: could the tested section include how the updated thresholds were validated beyond confirming that the values are exposed?",
       "revId": "544d900c7ba113612d8fa8b176901525ec5c6d82",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "971c520d_5ce9b7aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002728
+      },
+      "writtenOn": "2026-09-14T09:34:07Z",
+      "side": 1,
+      "message": "Thanks for the suggestion. Since this change is limited to updating the sensor threshold configurations, the validation was focused on confirming that the updated threshold values are correctly applied and exposed. No changes were made to the existing threshold monitoring logic.",
+      "parentUuid": "f406949e_dbfa905c",
+      "revId": "544d900c7ba113612d8fa8b176901525ec5c6d82",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e89704d7_9dd2525d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002728
+      },
+      "writtenOn": "2026-09-14T09:34:07Z",
+      "side": 1,
+      "message": "Thanks for the suggestion. This change only updates the sensor threshold values and does not modify the existing threshold assertion/deassertion logic. Therefore, the validation was focused on verifying that the updated threshold configurations are correctly exposed.",
+      "parentUuid": "ab9446df_7d26e6c4",
+      "revId": "544d900c7ba113612d8fa8b176901525ec5c6d82",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
