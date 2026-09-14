@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "55f4e217_abe7a773",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1003117
+      },
+      "writtenOn": "2026-09-14T12:16:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "104e9edd_c0ac171e",
+      "revId": "f8c9e5bedaf872a8a1012246c9c732524d592546",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "f5239b5a_917df11f",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 8
@@ -48,6 +66,30 @@
       "writtenOn": "2026-09-11T21:36:48Z",
       "side": 1,
       "message": "could also do:\ncur \u003d std::ranges::contains(scan-\u003epassedProbes, token.value);\n\ncan resolve if you\u0027d rather not",
+      "range": {
+        "startLine": 107,
+        "startChar": 22,
+        "endLine": 109,
+        "endChar": 49
+      },
+      "revId": "f8c9e5bedaf872a8a1012246c9c732524d592546",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa16dd00_27d3eb08",
+        "filename": "src/entity_manager/perform_probe.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1003117
+      },
+      "writtenOn": "2026-09-14T12:16:37Z",
+      "side": 1,
+      "message": "Done, switched to std::ranges::contains",
+      "parentUuid": "5137dda2_79b826d2",
       "range": {
         "startLine": 107,
         "startChar": 22,
