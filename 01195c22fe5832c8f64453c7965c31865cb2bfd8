@@ -22,6 +22,30 @@
       },
       "revId": "01195c22fe5832c8f64453c7965c31865cb2bfd8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42230916_a67c70eb",
+        "filename": "test/entity_manager/test_entity-manager.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 1053,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-09-14T10:12:42Z",
+      "side": 1,
+      "message": "Moved this to [94479] since it\u0027s a pre-existing bug. Rebased on top of it, and this patch\u0027s own Chassis-fallback tests are gone with it, replaced by [94479]\u0027s.\n\n[94479]: https://gerrit.openbmc.org/c/openbmc/entity-manager/+/94479",
+      "parentUuid": "c730ae21_fcf8de57",
+      "range": {
+        "startLine": 1047,
+        "startChar": 1,
+        "endLine": 1053,
+        "endChar": 1
+      },
+      "revId": "01195c22fe5832c8f64453c7965c31865cb2bfd8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

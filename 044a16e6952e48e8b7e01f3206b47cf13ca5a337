@@ -22,6 +22,30 @@
       },
       "revId": "044a16e6952e48e8b7e01f3206b47cf13ca5a337",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bc731ce_381eca51",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-09-14T10:12:42Z",
+      "side": 0,
+      "message": "Thanks for catching this, pushed change [94479] to fix it: missing/non-string/\nempty Type is now rejected and the record dropped instead of silently falling back to Chassis. Rebased on top of it as a dependent change.\n\nI wasn\u0027t sure whether to just fix the fallback behavior for now, or go straight to full runtime enum validation. The full version seems to need a decision on whether to tie it to `ENABLE_RUNTIME_VALIDATE_JSON`, or find another way to get the enum list without adding a new dependency for all builds.\n\nLet me know if you want the full version and I\u0027ll extend [94479] to cover it.\n\n[94479]: https://gerrit.openbmc.org/c/openbmc/entity-manager/+/94479",
+      "parentUuid": "53851373_467b7672",
+      "range": {
+        "startLine": 175,
+        "startChar": 8,
+        "endLine": 180,
+        "endChar": 5
+      },
+      "revId": "044a16e6952e48e8b7e01f3206b47cf13ca5a337",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
