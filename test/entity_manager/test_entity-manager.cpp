@@ -1023,3 +1023,44 @@ TEST(BuildInventorySystemPath, needsSanitizeUnderscores)
 
     EXPECT_EQ(expect, path);
 }
+
+TEST(ResolveConfigType, validType)
+{
+    nlohmann::json configValues = R"({"Type": "Board"})"_json;
+
+    auto result = em_utils::resolveConfigType(configValues, "test");
+
+    ASSERT_TRUE(result.has_value());
+    EXPECT_EQ(result.value(), "Board");
+}
+
+TEST(ResolveConfigType, sanitizesType)
+{
+    nlohmann::json configValues = R"({"Type": "My Type"})"_json;
+
+    auto result = em_utils::resolveConfigType(configValues, "test");
+
+    ASSERT_TRUE(result.has_value());
+    EXPECT_EQ(result.value(), "My_Type");
+}
+
+TEST(ResolveConfigType, missingTypeIsRejected)
+{
+    nlohmann::json configValues = R"({})"_json;
+
+    EXPECT_FALSE(em_utils::resolveConfigType(configValues, "test"));
+}
+
+TEST(ResolveConfigType, nonStringTypeIsRejected)
+{
+    nlohmann::json configValues = R"({"Type": 5})"_json;
+
+    EXPECT_FALSE(em_utils::resolveConfigType(configValues, "test"));
+}
+
+TEST(ResolveConfigType, emptyTypeIsRejected)
+{
+    nlohmann::json configValues = R"({"Type": ""})"_json;
+
+    EXPECT_FALSE(em_utils::resolveConfigType(configValues, "test"));
+}
