@@ -40,4 +40,11 @@ std::optional<std::string> templateCharReplace(
 sdbusplus::object_path buildInventorySystemPath(std::string& boardName,
                                                 const std::string& boardType);
 
+// @brief: returns the sanitized Type value for a configuration record, or
+// std::nullopt if Type is missing or not a string. Callers must not create
+// a D-Bus object for a configuration whose Type could not be resolved, and
+// should log why using the caller's own config name/id.
+std::optional<std::string> resolveConfigType(
+    const nlohmann::json& configValues);
+
 } // namespace em_utils
