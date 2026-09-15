@@ -279,6 +279,30 @@
       },
       "revId": "e4b84990b83b490a40c26549fc9166aad2b9f51d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fae7a0c_0a664733",
+        "filename": "schemas/spdm_endpoint.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-09-15T08:45:49Z",
+      "side": 1,
+      "message": "I think both of these should exist rather than one replacing the other, since they suit different kinds of RoT. An ERoT \u0026 PRoT, discrete in the Redfish sense, can sit on a different board from the device it attests, so its target has to be named and Configuration.Probe gives a way to name it. An IRoT is part of the device itself, so there is nothing to name and nesting says it directly.",
+      "parentUuid": "9c81e90e_fd95ce21",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 17
+      },
+      "revId": "e4b84990b83b490a40c26549fc9166aad2b9f51d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
