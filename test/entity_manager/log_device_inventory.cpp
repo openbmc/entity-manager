@@ -51,3 +51,45 @@ TEST(LogDevicInventory, QueryInvInfoNoModelFound)
     EXPECT_EQ(info.sn, "43829239");
     EXPECT_EQ(info.model, "Unknown");
 }
+
+TEST(LogDevicInventory, InventoryPathSuccess)
+{
+    nlohmann::json record = nlohmann::json::parse(R"(
+{
+    "Name": "Supermicro PWS 920P SQ 0",
+    "Type": "PowerSupply"
+}
+    )");
+
+    std::optional<sdbusplus::object_path> path = inventoryPath(record);
+
+    ASSERT_TRUE(path.has_value());
+    EXPECT_EQ(path->str, "/xyz/openbmc_project/inventory/system/powersupply/"
+                         "Supermicro_PWS_920P_SQ_0");
+}
+
+TEST(LogDevicInventory, InventoryPathNoTypeDefaultsToChassis)
+{
+    nlohmann::json record = nlohmann::json::parse(R"(
+{
+    "Name": "My Board"
+}
+    )");
+
+    std::optional<sdbusplus::object_path> path = inventoryPath(record);
+
+    ASSERT_TRUE(path.has_value());
+    EXPECT_EQ(path->str,
+              "/xyz/openbmc_project/inventory/system/chassis/My_Board");
+}
+
+TEST(LogDevicInventory, InventoryPathNoName)
+{
+    nlohmann::json record = nlohmann::json::parse(R"(
+{
+    "Type": "PowerSupply"
+}
+    )");
+
+    EXPECT_FALSE(inventoryPath(record).has_value());
+}

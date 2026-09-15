@@ -50,7 +50,7 @@ test(
             sdbusplus,
             valijson,
         ],
-        link_with: entity_manager_lib,
+        link_with: [entity_manager_lib, utils_lib],
         include_directories: test_include_dir,
     ),
 )
