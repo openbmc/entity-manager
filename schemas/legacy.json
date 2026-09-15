@@ -75,7 +75,10 @@
                     "const": "CFMSensor"
                 }
             },
-            "required": ["Name", "Type"],
+            "required": [
+                "Name",
+                "Type"
+            ],
             "type": "object"
         },
         "FanRedundancy": {
@@ -92,7 +95,10 @@
                     "const": "FanRedundancy"
                 }
             },
-            "required": ["Name", "Type"],
+            "required": [
+                "Name",
+                "Type"
+            ],
             "type": "object"
         },
         "PURedundancy": {
@@ -109,7 +115,11 @@
                     "const": "PURedundancy"
                 }
             },
-            "required": ["RedundantCount", "Name", "Type"],
+            "required": [
+                "RedundantCount",
+                "Name",
+                "Type"
+            ],
             "type": "object"
         },
         "ChassisIntrusionSensor": {
@@ -129,7 +139,10 @@
                     "$ref": "#/$defs/Types/GpioPolarity"
                 },
                 "Rearm": {
-                    "enum": ["Automatic", "Manual"]
+                    "enum": [
+                        "Automatic",
+                        "Manual"
+                    ]
                 },
                 "Name": {
                     "$ref": "#/$defs/Types/Name"
@@ -139,7 +152,11 @@
                     "const": "ChassisIntrusionSensor"
                 }
             },
-            "required": ["Name", "Type", "Class"],
+            "required": [
+                "Name",
+                "Type",
+                "Class"
+            ],
             "type": "object"
         },
         "AspeedFan": {
@@ -180,7 +197,10 @@
                     "const": "AspeedFan"
                 }
             },
-            "required": ["Name", "Type"],
+            "required": [
+                "Name",
+                "Type"
+            ],
             "type": "object"
         },
         "I2CFan": {
@@ -227,7 +247,10 @@
                     "const": "I2CFan"
                 }
             },
-            "required": ["Name", "Type"],
+            "required": [
+                "Name",
+                "Type"
+            ],
             "type": "object"
         },
         "NuvotonFan": {
@@ -262,7 +285,11 @@
                     "const": "NuvotonFan"
                 }
             },
-            "required": ["Name", "Type", "Connector"],
+            "required": [
+                "Name",
+                "Type",
+                "Connector"
+            ],
             "type": "object"
         },
         "HPEFan": {
@@ -288,7 +315,11 @@
                     "const": "HPEFan"
                 }
             },
-            "required": ["Name", "Type", "Connector"],
+            "required": [
+                "Name",
+                "Type",
+                "Connector"
+            ],
             "type": "object"
         },
         "XeonCPU": {
@@ -324,7 +355,12 @@
                     "const": "XeonCPU"
                 }
             },
-            "required": ["Name", "Type", "CpuID", "Address"],
+            "required": [
+                "Name",
+                "Type",
+                "CpuID",
+                "Address"
+            ],
             "type": "object"
         },
         "IpmbSensor": {
@@ -362,7 +398,12 @@
                     "const": "IpmbSensor"
                 }
             },
-            "required": ["Name", "Type", "Address", "Class"],
+            "required": [
+                "Name",
+                "Type",
+                "Address",
+                "Class"
+            ],
             "type": "object"
         },
         "I2CMux": {
@@ -398,7 +439,13 @@
                     ]
                 }
             },
-            "required": ["Name", "Type", "Address", "Bus", "ChannelNames"],
+            "required": [
+                "Name",
+                "Type",
+                "Address",
+                "Bus",
+                "ChannelNames"
+            ],
             "type": "object"
         },
         "Gpio": {
@@ -421,7 +468,13 @@
                     "const": "Gpio"
                 }
             },
-            "required": ["Name", "Type", "Index", "Direction", "Polarity"],
+            "required": [
+                "Name",
+                "Type",
+                "Index",
+                "Direction",
+                "Polarity"
+            ],
             "type": "object"
         },
         "MultiNodeID": {
@@ -438,7 +491,11 @@
                     "const": "MultiNodeID"
                 }
             },
-            "required": ["Name", "Type", "GpioPins"],
+            "required": [
+                "Name",
+                "Type",
+                "GpioPins"
+            ],
             "type": "object"
         },
         "MultiNodePresence": {
@@ -458,7 +515,12 @@
                     "const": "MultiNodePresence"
                 }
             },
-            "required": ["Name", "Type", "Bus", "Address"],
+            "required": [
+                "Name",
+                "Type",
+                "Bus",
+                "Address"
+            ],
             "type": "object"
         },
         "HostCpuUtilization": {
@@ -475,7 +537,11 @@
                     "const": "HostCpuUtilization"
                 }
             },
-            "required": ["Name", "Type", "Polling"],
+            "required": [
+                "Name",
+                "Type",
+                "Polling"
+            ],
             "type": "object"
         },
         "ExternalSensor": {
@@ -511,7 +577,13 @@
                     "const": "ExternalSensor"
                 }
             },
-            "required": ["Name", "Type", "Units", "MinValue", "MaxValue"],
+            "required": [
+                "Name",
+                "Type",
+                "Units",
+                "MinValue",
+                "MaxValue"
+            ],
             "type": "object"
         },
         "PSUPresence": {
@@ -537,7 +609,12 @@
                     "const": "PSUPresence"
                 }
             },
-            "required": ["Name", "Type", "Bus", "Address"],
+            "required": [
+                "Name",
+                "Type",
+                "Bus",
+                "Address"
+            ],
             "type": "object"
         },
         "EmmcDevice": {
@@ -550,7 +627,10 @@
                     "const": "EmmcDevice"
                 }
             },
-            "required": ["Name", "Type"],
+            "required": [
+                "Name",
+                "Type"
+            ],
             "type": "object"
         },
         "IpmbDevice": {
@@ -575,7 +655,13 @@
                     "const": "IpmbDevice"
                 }
             },
-            "required": ["Name", "Type", "Bus", "Address", "Class"],
+            "required": [
+                "Name",
+                "Type",
+                "Bus",
+                "Address",
+                "Class"
+            ],
             "type": "object"
         },
         "IpmbPowerMonitor": {
@@ -597,7 +683,13 @@
                     "const": "IpmbPowerMonitor"
                 }
             },
-            "required": ["Name", "Type", "Bus", "Address", "Class"],
+            "required": [
+                "Name",
+                "Type",
+                "Bus",
+                "Address",
+                "Class"
+            ],
             "type": "object"
         },
         "ADC": {
@@ -647,7 +739,11 @@
                     "const": "ADC"
                 }
             },
-            "required": ["Name", "Type", "Index"],
+            "required": [
+                "Name",
+                "Type",
+                "Index"
+            ],
             "type": "object"
         },
         "DAC": {
@@ -781,7 +877,12 @@
                     ]
                 }
             },
-            "required": ["Name", "Type", "Bus", "Address"],
+            "required": [
+                "Name",
+                "Type",
+                "Bus",
+                "Address"
+            ],
             "type": "object"
         },
         "NVME1000": {
@@ -806,13 +907,21 @@
                 "PEC": {
                     "description": "Enable SMBus PEC generation and verification.",
                     "type": "string",
-                    "enum": ["Required", "NotRequired"]
+                    "enum": [
+                        "Required",
+                        "NotRequired"
+                    ]
                 },
                 "Type": {
                     "const": "NVME1000"
                 }
             },
-            "required": ["Name", "Type", "Bus", "Address"],
+            "required": [
+                "Name",
+                "Type",
+                "Bus",
+                "Address"
+            ],
             "type": "object"
         },
         "EEPROM": {
@@ -842,7 +951,12 @@
                     ]
                 }
             },
-            "required": ["Name", "Type", "Bus", "Address"],
+            "required": [
+                "Name",
+                "Type",
+                "Bus",
+                "Address"
+            ],
             "type": "object"
         },
         "PSUSensor": {
@@ -1050,6 +1164,7 @@
                         "TPS53679",
                         "TPS546D24",
                         "XDP710",
+                        "XDP712",
                         "XDPE11280",
                         "XDPE12284",
                         "XDPE132G5C",
@@ -1057,7 +1172,10 @@
                     ]
                 }
             },
-            "required": ["Name", "Type"],
+            "required": [
+                "Name",
+                "Type"
+            ],
             "type": "object"
         },
         "NMSensor": {
@@ -1142,7 +1260,10 @@
                     "$ref": "firmware.json#/$defs/FirmwareInfoDef"
                 }
             },
-            "required": ["Name", "Type"]
+            "required": [
+                "Name",
+                "Type"
+            ]
         },
         "UCD90XXX": {
             "description": "used in https://github.com/openbmc/phosphor-power",
@@ -1158,7 +1279,10 @@
                     "$ref": "#/$defs/Types/Bus"
                 },
                 "Type": {
-                    "enum": ["UCD90160", "UCD90320"]
+                    "enum": [
+                        "UCD90160",
+                        "UCD90320"
+                    ]
                 }
             }
         },
@@ -1198,11 +1322,17 @@
                             "type": "number"
                         }
                     },
-                    "required": ["Name", "Polarity"]
+                    "required": [
+                        "Name",
+                        "Polarity"
+                    ]
                 }
             },
             "Bus": {
-                "type": ["string", "number"]
+                "type": [
+                    "string",
+                    "number"
+                ]
             },
             "CPURequired": {
                 "type": "number",
@@ -1249,7 +1379,11 @@
                         "type": "string"
                     }
                 },
-                "required": ["Name", "Pwm", "Tachs"],
+                "required": [
+                    "Name",
+                    "Pwm",
+                    "Tachs"
+                ],
                 "type": "object"
             },
             "CpuID": {
@@ -1262,7 +1396,10 @@
             },
             "Direction": {
                 "type": "string",
-                "enum": ["less than", "greater than"]
+                "enum": [
+                    "less than",
+                    "greater than"
+                ]
             },
             "DtsCritOffset": {
                 "type": "number"
@@ -1280,7 +1417,9 @@
                 "type": "array"
             },
             "GpioPolarity": {
-                "enum": ["Low"]
+                "enum": [
+                    "Low"
+                ]
             },
             "Index": {
                 "type": "number",
@@ -1333,7 +1472,10 @@
                 "type": "number"
             },
             "Polarity": {
-                "enum": ["High", "Low"]
+                "enum": [
+                    "High",
+                    "Low"
+                ]
             },
             "Polling": {
                 "type": "object",
@@ -1363,12 +1505,20 @@
                 "type": "number"
             },
             "PowerState": {
-                "enum": ["On", "ChassisOn", "Always", "BiosPost"]
+                "enum": [
+                    "On",
+                    "ChassisOn",
+                    "Always",
+                    "BiosPost"
+                ]
             },
             "Presence": {
                 "properties": {
                     "MonitorType": {
-                        "enum": ["Event", "Polling"]
+                        "enum": [
+                            "Event",
+                            "Polling"
+                        ]
                     },
                     "PinName": {
                         "type": "string"
@@ -1380,7 +1530,10 @@
                 "type": "object"
             },
             "PresenceGpio": {
-                "type": ["number", "array"]
+                "type": [
+                    "number",
+                    "array"
+                ]
             },
             "Pwm": {
                 "type": "number",
@@ -1401,14 +1554,21 @@
                 "exclusiveMinimum": 0
             },
             "SensorType": {
-                "enum": ["current", "power", "voltage"]
+                "enum": [
+                    "current",
+                    "power",
+                    "voltage"
+                ]
             },
             "SlotId": {
                 "type": "string"
             },
             "Tachs": {
                 "items": {
-                    "type": ["number", "string"]
+                    "type": [
+                        "number",
+                        "string"
+                    ]
                 },
                 "type": "array"
             },
@@ -1416,7 +1576,10 @@
                 "items": {
                     "properties": {
                         "Direction": {
-                            "enum": ["less than", "greater than"]
+                            "enum": [
+                                "less than",
+                                "greater than"
+                            ]
                         },
                         "Hysteresis": {
                             "type": "number"
@@ -1436,7 +1599,12 @@
                             "type": "number"
                         }
                     },
-                    "required": ["Direction", "Name", "Severity", "Value"],
+                    "required": [
+                        "Direction",
+                        "Name",
+                        "Severity",
+                        "Value"
+                    ],
                     "type": "object"
                 },
                 "type": "array"
