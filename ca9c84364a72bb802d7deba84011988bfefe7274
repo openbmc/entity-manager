@@ -16,6 +16,29 @@
       "message": "re-tested",
       "revId": "ca9c84364a72bb802d7deba84011988bfefe7274",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1383edc_6b3ec5a4",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1248,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-09-15T02:39:39Z",
+      "side": 1,
+      "message": "`it` is still valid here, so `*(it-\u003esecond)` saves the second lookup this was meant to remove.",
+      "range": {
+        "startLine": 1248,
+        "startChar": 4,
+        "endLine": 1248,
+        "endChar": 48
+      },
+      "revId": "ca9c84364a72bb802d7deba84011988bfefe7274",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
