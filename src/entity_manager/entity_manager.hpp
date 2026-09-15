@@ -91,6 +91,12 @@ class EntityManager
     bool scannedPowerOff = false;
     bool scannedPowerOn = false;
 
+    // The cached configuration describes what was already on the system
+    // before this process started, so it has to be folded into the first
+    // scan's set of known devices. Later scans diff against the in-memory
+    // configuration only.
+    bool firstScanAfterRestart = true;
+
     bool propertiesChangedInProgress = false;
     boost::asio::steady_timer propertiesChangedTimer;
     size_t propertiesChangedInstance = 0;

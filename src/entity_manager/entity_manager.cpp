@@ -593,6 +593,18 @@ void EntityManager::propertiesChangedCallbackDebounced(
     lg2::debug("properties changed callback in progress");
 
     nlohmann::json oldConfiguration = systemConfiguration;
+    if (firstScanAfterRestart)
+    {
+        // systemConfiguration is empty right after a restart, but the devices
+        // restored from the cached configuration are not new to the system.
+        // Fold them in so they are not reported as newly added.
+        firstScanAfterRestart = false;
+        if (lastJson.is_object())
+        {
+            oldConfiguration.update(lastJson);
+        }
+    }
+
     auto missingConfigurations = std::make_shared<nlohmann::json>();
     *missingConfigurations = systemConfiguration;
 
