@@ -22,6 +22,30 @@
       },
       "revId": "47890c0f04f4a6577c57cd6a5fb53dab190cad06",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e0e6da5_b78c8086",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-09-17T11:27:57Z",
+      "side": 1,
+      "message": "Can we make it enabled on more systems and as the default?\n\nOPENBMC_MESSAGE_ID journal entries has been available for a long time and nobody has bothered to port it to bmcweb.  That implies to me that nobody cares.\n\nIf we want to put both events in place for a time, I guess I can live with that, but someone should propose a migration timeline when we start dropping these old events.",
+      "parentUuid": "09f9039d_3754c353",
+      "range": {
+        "startLine": 17,
+        "startChar": 64,
+        "endLine": 19,
+        "endChar": 20
+      },
+      "revId": "47890c0f04f4a6577c57cd6a5fb53dab190cad06",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
