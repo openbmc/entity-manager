@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1155ff90_fae1e8e8",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-09-18T15:31:42Z",
+      "side": 1,
+      "message": "would prefer to delete this whole comment block.\n\nCommenting on this scenario can be done in a testcase.\n\nOOB is a common failure and not special to write a long comment like that.",
+      "range": {
+        "startLine": 477,
+        "startChar": 31,
+        "endLine": 483,
+        "endChar": 56
+      },
+      "revId": "37f7d986a8a44f8f2133a91b7a8693821544b09c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47cb4676_624337d3",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-09-18T15:31:42Z",
+      "side": 1,
+      "message": "This looks like pure slop and bitrot fast.\n\nWe should probably not write things like `twenty lines earlier` into code comments.",
+      "range": {
+        "startLine": 515,
+        "startChar": 8,
+        "endLine": 518,
+        "endChar": 60
+      },
+      "revId": "37f7d986a8a44f8f2133a91b7a8693821544b09c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ca37fda_a5fcfc17",
+        "filename": "test/test_fru-utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-09-18T15:31:42Z",
+      "side": 1,
+      "message": "if this is a spec based magic value it should be a named constant. I will not look it up rn and leave this to you to check.",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 36
+      },
+      "revId": "37f7d986a8a44f8f2133a91b7a8693821544b09c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ae3a18c_d1fd6fe8",
+        "filename": "test/test_fru-utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-09-18T15:31:42Z",
+      "side": 1,
+      "message": "This is the exact same array as in the testcase at line 44?\n\nCan we deduplicate it?",
+      "range": {
+        "startLine": 91,
+        "startChar": 4,
+        "endLine": 109,
+        "endChar": 7
+      },
+      "revId": "37f7d986a8a44f8f2133a91b7a8693821544b09c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
