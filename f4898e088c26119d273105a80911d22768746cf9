@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6c1bd62_61e50969",
+        "filename": "configurations/platform/nvidia/vr_nvl_platform.json",
+        "patchSetId": 12
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1002918
+      },
+      "writtenOn": "2026-09-18T09:08:09Z",
+      "side": 1,
+      "message": "Done. Updated to VR_MCTP_USB_CPU0. Also changed the BF4 transport name to VR_MCTP_USB_BF4 for consistency.",
+      "parentUuid": "5015e664_f1104d42",
+      "range": {
+        "startLine": 7,
+        "startChar": 21,
+        "endLine": 7,
+        "endChar": 37
+      },
+      "revId": "f4898e088c26119d273105a80911d22768746cf9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "38247b84_e2b9463d",
@@ -47,6 +71,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd3689a3_fa7ef8eb",
+        "filename": "configurations/platform/nvidia/vr_nvl_platform.json",
+        "patchSetId": 12
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1002918
+      },
+      "writtenOn": "2026-09-18T09:08:09Z",
+      "side": 1,
+      "message": "Done. Updated to VR_MCTP_USB_CPU1.",
+      "parentUuid": "38247b84_e2b9463d",
+      "range": {
+        "startLine": 21,
+        "startChar": 10,
+        "endLine": 21,
+        "endChar": 39
+      },
+      "revId": "f4898e088c26119d273105a80911d22768746cf9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f102f60a_3710f6c4",
@@ -60,6 +108,24 @@
       "writtenOn": "2026-09-16T17:10:51Z",
       "side": 1,
       "message": "If Processor Module 0 is found we are exposing Module 1 which is on different board. That board for some reason may not be connected. Should we also have separate PROBE for that ?",
+      "revId": "f4898e088c26119d273105a80911d22768746cf9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1392ec0b_9a7c398a",
+        "filename": "configurations/platform/nvidia/vr_nvl_platform.json",
+        "patchSetId": 12
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1002918
+      },
+      "writtenOn": "2026-09-18T09:08:09Z",
+      "side": 1,
+      "message": "Done. Moved CPU1, HPM_1, and GPU_SMA_1 into a separate platform configuration with FOUND(\u0027HGX ProcessorModule 1\u0027).",
+      "parentUuid": "f102f60a_3710f6c4",
       "revId": "f4898e088c26119d273105a80911d22768746cf9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
