@@ -46,6 +46,30 @@
       },
       "revId": "47890c0f04f4a6577c57cd6a5fb53dab190cad06",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1036e7ef_76fe0850",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-09-18T11:40:45Z",
+      "side": 1,
+      "message": "Now emits both the legacy journal message and the new structured event unconditionally. The legacy message can be dropped once bmcweb has a way to translate the new event into a Redfish LogEntry.\n\nLet me know if any further changes are needed.",
+      "parentUuid": "7e0e6da5_b78c8086",
+      "range": {
+        "startLine": 17,
+        "startChar": 64,
+        "endLine": 19,
+        "endChar": 20
+      },
+      "revId": "47890c0f04f4a6577c57cd6a5fb53dab190cad06",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
