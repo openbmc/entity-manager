@@ -34,6 +34,24 @@
       "parentUuid": "662d898a_27cd1b96",
       "revId": "493c7d48109b0d69f1a6ee24daaf1915835856f9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "889840cf_5ec60a81",
+        "filename": "src/entity_manager/log_device_inventory.cpp",
+        "patchSetId": 25
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-09-18T21:39:36Z",
+      "side": 1,
+      "message": "Right.  I don\u0027t think we should start adding these kinds of try/catches everywhere for that case.  If that\u0027s the right thing to do, we should put it into lg2::commit directly.",
+      "parentUuid": "aa5a3852_6fb2f005",
+      "revId": "493c7d48109b0d69f1a6ee24daaf1915835856f9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
