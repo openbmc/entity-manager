@@ -16,6 +16,24 @@
       "message": "Did someone suggest that this throw can ever happen and needs to be caught?  We shouldn\u0027t need catch wrappers around every lg2::commit call.",
       "revId": "493c7d48109b0d69f1a6ee24daaf1915835856f9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa5a3852_6fb2f005",
+        "filename": "src/entity_manager/log_device_inventory.cpp",
+        "patchSetId": 25
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2026-09-18T21:37:25Z",
+      "side": 1,
+      "message": "In a catastrophic phosphor-log-manager fail the D-Bus method call would throw, though maybe that isn\u0027t worth worrying about.",
+      "parentUuid": "662d898a_27cd1b96",
+      "revId": "493c7d48109b0d69f1a6ee24daaf1915835856f9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
