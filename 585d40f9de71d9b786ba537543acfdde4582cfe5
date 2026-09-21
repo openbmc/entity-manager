@@ -106,6 +106,24 @@
       "parentUuid": "d3491096_4f33cc39",
       "revId": "585d40f9de71d9b786ba537543acfdde4582cfe5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad833fb0_0dc35662",
+        "filename": "configurations/meta/ventura2/ventura2_rmcv2_mb.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 607,
+      "author": {
+        "id": 1002889
+      },
+      "writtenOn": "2026-09-21T01:57:44Z",
+      "side": 1,
+      "message": "Hi Jagpal,\n\nThanks for the suggestion! However, there is a key hardware constraint that prevents moving the `USBPort` exposures to the SCM files:\n\nThe USB hub and USB-to-UART chips are physically soldered on the RMC motherboard, not on the SCM. More importantly, the motherboard has two source variants with completely different interface mappings:\n- 1st source MB uses `DeviceInterface`: 0, 1, 2, 3\n- 2nd source MB uses `DeviceInterface`: 0, 2, 4, 6\n\nTherefore, keeping `USBPort` on the motherboard JSONs correctly reflects the physical hardware topology. Given this and Patrick\u0027s earlier note, documenting the dual-platform MMIO addresses with JSON-C comments seems to be the cleanest approach without breaking the FRU modularity.\n\nDoes this make sense to you?",
+      "parentUuid": "f9a1df8b_4a152cf1",
+      "revId": "585d40f9de71d9b786ba537543acfdde4582cfe5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
