@@ -290,8 +290,10 @@
             ],
             "Type": "INA230",
             "curr1_Name": "MB_PMON_DIMM_0_P12V_CURR_A",
+            "curr1_Scale": 1105.4,
             "in1_Name": "MB_PMON_DIMM_0_P12V_VOLT_V",
-            "power1_Name": "MB_PMON_DIMM_0_P12V_PWR_W"
+            "power1_Name": "MB_PMON_DIMM_0_P12V_PWR_W",
+            "power1_Scale": 1105400
         },
         {
             "Address": "0x41",
@@ -335,8 +337,10 @@
             ],
             "Type": "INA230",
             "curr1_Name": "MB_PMON_DIMM_1_P12V_CURR_A",
+            "curr1_Scale": 1016.1,
             "in1_Name": "MB_PMON_DIMM_1_P12V_VOLT_V",
-            "power1_Name": "MB_PMON_DIMM_1_P12V_PWR_W"
+            "power1_Name": "MB_PMON_DIMM_1_P12V_PWR_W",
+            "power1_Scale": 1016100
         },
         {
             "Address": "0x44",
@@ -379,8 +383,10 @@
             ],
             "Type": "INA230",
             "curr1_Name": "MB_PMON_SCM_P12V_CURR_A",
+            "curr1_Scale": 1042.5,
             "in1_Name": "MB_PMON_SCM_P12V_VOLT_V",
-            "power1_Name": "MB_PMON_SCM_P12V_PWR_W"
+            "power1_Name": "MB_PMON_SCM_P12V_PWR_W",
+            "power1_Scale": 1042500
         },
         {
             "Address": "0x45",
@@ -423,8 +429,10 @@
             ],
             "Type": "INA230",
             "curr1_Name": "MB_PMON_NIC_P12V_CURR_A",
+            "curr1_Scale": 1209,
             "in1_Name": "MB_PMON_NIC_P12V_VOLT_V",
-            "power1_Name": "MB_PMON_NIC_P12V_PWR_W"
+            "power1_Name": "MB_PMON_NIC_P12V_PWR_W",
+            "power1_Scale": 1209000
         },
         {
             "Address": "0x48",
