@@ -77,9 +77,15 @@ boost::asio::io_context io;
 
 // Runtime state shared by the fru-device scan/publish paths. All members
 // share the same lifetime (owned by main()) and are always passed together.
+// Cache of the FRU contents currently published on dbus.
+// Key: pair(bus number, address). Value: the FRU bytes last published for it.
+using PublishedFruMap =
+    std::flat_map<std::pair<size_t, size_t>, std::vector<uint8_t>>;
+
 struct FruDetails
 {
     DBusIntfMap dbusInterfaceMap;
+    PublishedFruMap publishedFru;
     size_t unknownBusObjectCount = 0;
     bool powerIsOn = false;
     std::set<size_t> addressBlocklist;
@@ -1204,6 +1210,7 @@ static void clearDBusInterfacesForBus(
             !(skipAddresses.contains(ifaceAddress)))
         {
             objServer.remove_interface(busIface->second);
+            fruDetails.publishedFru.erase(key);
             busIface = fruDetails.dbusInterfaceMap.erase(busIface);
         }
         else
@@ -1217,10 +1224,18 @@ static void publishFruOnBusAddress(
     std::vector<uint8_t>& device, uint16_t busNum, uint8_t address,
     FruDetails& fruDetails, sdbusplus::asio::object_server& objServer)
 {
-    // clear our interface here if there is any
-
     const std::pair<size_t, size_t> key = {busNum, address};
 
+    // Skip republishing when the FRU contents are unchanged, to avoid an
+    // InterfacesRemoved/InterfacesAdded churn that consumers (e.g.
+    // EntityManager) may react to by tearing down and recreating inventory.
+    auto cached = fruDetails.publishedFru.find(key);
+    if (cached != fruDetails.publishedFru.end() && cached->second == device)
+    {
+        return;
+    }
+
+    // clear our interface here if there is any
     auto iface = fruDetails.dbusInterfaceMap.find(key);
 
     if (iface != fruDetails.dbusInterfaceMap.end())
@@ -1231,6 +1246,15 @@ static void publishFruOnBusAddress(
 
     addFruObjectToDbus(device, fruDetails, static_cast<uint32_t>(busNum),
                        address, objServer);
+
+    if (fruDetails.dbusInterfaceMap.contains(key))
+    {
+        fruDetails.publishedFru.insert_or_assign(key, device);
+    }
+    else
+    {
+        fruDetails.publishedFru.erase(key);
+    }
 }
 
 static void publishFrusOnBusCommon(BusMap& busmap, uint16_t busNum,
@@ -1313,6 +1337,7 @@ static void publishAllFrus(BusMap& busmap, FruDetails& fruDetails,
         if (!(busesCovered.contains(ifaceBus)))
         {
             objServer.remove_interface(busIface->second);
+            fruDetails.publishedFru.erase(key);
             busIface = fruDetails.dbusInterfaceMap.erase(busIface);
         }
         else
