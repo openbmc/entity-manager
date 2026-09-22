@@ -580,11 +580,11 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 0.02,
+                    "Hysteresis": 0.003,
                     "Label": "in0",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 1
+                    "Value": 0.15
                 }
             ],
             "Type": "INA238",
@@ -700,11 +700,11 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 0.02,
+                    "Hysteresis": 0.003,
                     "Label": "in1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 1
+                    "Value": 0.15
                 }
             ],
             "Type": "ISL28022",
