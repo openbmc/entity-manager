@@ -17,11 +17,11 @@
             "Thresholds": [
                 {
                     "Direction": "less than",
-                    "Hysteresis": 0.0002,
+                    "Hysteresis": 0,
                     "Label": "in0",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 0.012
+                    "Value": 0
                 },
                 {
                     "Direction": "greater than",
@@ -49,11 +49,11 @@
                 },
                 {
                     "Direction": "less than",
-                    "Hysteresis": 0.0002,
+                    "Hysteresis": 0,
                     "Label": "in1",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 0.012
+                    "Value": 0
                 },
                 {
                     "Direction": "greater than",
@@ -81,11 +81,11 @@
                 },
                 {
                     "Direction": "less than",
-                    "Hysteresis": 0.0002,
+                    "Hysteresis": 0,
                     "Label": "in2",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 0.012
+                    "Value": 0
                 },
                 {
                     "Direction": "greater than",
@@ -113,11 +113,11 @@
                 },
                 {
                     "Direction": "less than",
-                    "Hysteresis": 0.0002,
+                    "Hysteresis": 0,
                     "Label": "in3",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 0.012
+                    "Value": 0
                 },
                 {
                     "Direction": "greater than",
@@ -226,16 +226,16 @@
             ],
             "Type": "ADC128D818",
             "in0_Max": 3.6,
-            "in0_Min": 0,
+            "in0_Min": -0.3,
             "in0_Name": "PDB_ADC_FAN3_52V_IMON_VOLT_V",
             "in1_Max": 3.6,
-            "in1_Min": 0,
+            "in1_Min": -0.3,
             "in1_Name": "PDB_ADC_FAN2_52V_IMON_VOLT_V",
             "in2_Max": 3.6,
-            "in2_Min": 0,
+            "in2_Min": -0.3,
             "in2_Name": "PDB_ADC_FAN1_52V_IMON_VOLT_V",
             "in3_Max": 3.6,
-            "in3_Min": 0,
+            "in3_Min": -0.3,
             "in3_Name": "PDB_ADC_FAN0_52V_IMON_VOLT_V",
             "in4_Max": 3.6,
             "in4_Min": 0,
@@ -580,11 +580,11 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 0.02,
+                    "Hysteresis": 0.003,
                     "Label": "in0",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 1
+                    "Value": 0.15
                 }
             ],
             "Type": "INA238",
@@ -700,11 +700,11 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 0.02,
+                    "Hysteresis": 0.003,
                     "Label": "in1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 1
+                    "Value": 0.15
                 }
             ],
             "Type": "ISL28022",
