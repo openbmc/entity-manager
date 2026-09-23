@@ -11,9 +11,13 @@ class MachineContext :
         Asset<MachineContext>
 {
   public:
-    explicit MachineContext(sdbusplus::async::context& ctx, auto path) :
+    MachineContext(sdbusplus::async::context& ctx, auto path) :
         sdbusplus::aserver::xyz::openbmc_project::inventory::decorator::Asset<
-            MachineContext>(ctx, path) {};
+            MachineContext>(ctx, path, signal_action::defer_emit)
+    {
+        populateFromDeviceTree();
+        emit_object_added();
+    };
 
     void populateFromDeviceTree();
 
