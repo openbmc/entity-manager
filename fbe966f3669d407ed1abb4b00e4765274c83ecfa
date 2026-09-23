@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c802054_3e26f67e",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 1214,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-09-23T09:44:06Z",
+      "side": 1,
+      "message": "1",
+      "range": {
+        "startLine": 1211,
+        "startChar": 9,
+        "endLine": 1214,
+        "endChar": 67
+      },
+      "revId": "fbe966f3669d407ed1abb4b00e4765274c83ecfa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "943f73a7_a3d16c08",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 1244,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-09-23T09:44:06Z",
+      "side": 1,
+      "message": "2",
+      "range": {
+        "startLine": 1242,
+        "startChar": 5,
+        "endLine": 1244,
+        "endChar": 49
+      },
+      "revId": "fbe966f3669d407ed1abb4b00e4765274c83ecfa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "260e1dd4_62d38102",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 1252,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-09-23T09:44:06Z",
+      "side": 1,
+      "message": "nitpick (consistency):\n\nWould it work to unconditionally do  `fruDetails.publishedFru.erase(key);` in line 1245 ?\n\nSeparately, `addFruObjectToDbus` already does `objServer.add_interface` and inserts into `fruDetails.dbusInterfaceMap`, should it modify `fruDetails.publishedFru` as well?\n\nThat way the 3 steps required for removal and the steps required for adding something will stick together and probably easier to understand and maintain.\n\nI marked the 3 source locations that i found where the removal happens (looks like same 3 steps each time) with resolved comments.",
+      "range": {
+        "startLine": 1251,
+        "startChar": 5,
+        "endLine": 1252,
+        "endChar": 62
+      },
+      "revId": "fbe966f3669d407ed1abb4b00e4765274c83ecfa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0fea8bc_6a302fa2",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 1341,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-09-23T09:44:06Z",
+      "side": 1,
+      "message": "3",
+      "range": {
+        "startLine": 1338,
+        "startChar": 9,
+        "endLine": 1341,
+        "endChar": 67
+      },
+      "revId": "fbe966f3669d407ed1abb4b00e4765274c83ecfa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
