@@ -48,6 +48,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "654c8454_83d02681",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-09-23T12:18:14Z",
+      "side": 1,
+      "message": "right, we might have to check for \"Dimm\" separately or change the value type of the map to make the interface a `std::optional`, or otherwise handle it.\n\nMy overall point is that we do not need to sanitize something that was wrong to begin with but that we can just drop the invalid thing.\n\nI will drop this comment as it would be scope creep to rework all that config parsing code.",
+      "parentUuid": "950f8c15_f94758bc",
+      "range": {
+        "startLine": 166,
+        "startChar": 54,
+        "endLine": 171,
+        "endChar": 77
+      },
+      "revId": "8351410b6d96a0d323468c620c69020aa93e56c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8fb36708_83322abe",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "That makes sense.\n\nMy understanding is that sanitize here is acting more as a fallback for invalid input than as part of the intended Type model. Its primary purpose seems to be preventing an already-accepted Type value from producing an invalid D-Bus object path segment.\n\nIf Type is validated during configuration parsing as suggested above, then invalid values should never reach this path construction code in the first place. In that case, sanitize no longer appears to provide additional protection and could likely be removed as part of the same change.",
       "parentUuid": "8fb36708_83322abe",
+      "range": {
+        "startLine": 426,
+        "startChar": 30,
+        "endLine": 426,
+        "endChar": 56
+      },
+      "revId": "8351410b6d96a0d323468c620c69020aa93e56c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48252552_68a81285",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-09-23T12:18:14Z",
+      "side": 1,
+      "message": "\u003e My understanding is that sanitize here is acting more as a fallback for invalid input than as part of the intended Type model. Its primary purpose seems to be preventing an already-accepted Type value from producing an invalid D-Bus object path segment.\n\n\nYeah in case of invalid input we can just bail out instead of trying to fix it. The earlier we bail out the better. If we accept arbitrary input and try to *correct* it by sanitizing we take 1 problem (the input) and make 2 problems out of it (the input, the sanitized input) and have to keep track of both, including their possible mismatch or equality and any further issues arising from that discrepancy.\n\nI\u0027m not asking you to rework the entire config parsing but it would be great if e.g. we could just check that these things equal their sanitized version instead of sanitizing and then handling 2 versions of the same value.\n\nFor example\n\n```\n\nif (!rawType.empty())\n{\n    if (dbus_util::sanitizeForDBusPathSegment(rawType) \u003d\u003d rawType) {\n        return rawType;\n    }\n}\n```",
+      "parentUuid": "3600cafe_84662de4",
       "range": {
         "startLine": 426,
         "startChar": 30,
