@@ -29,7 +29,6 @@ int main()
     if (MachineContext::keyNodeExists())
     {
         mc = std::make_unique<MachineContext>(ctx, reqDBusPath);
-        mc->populateFromDeviceTree();
     }
 
     // NOLINTNEXTLINE(readability-static-accessed-through-instance)
