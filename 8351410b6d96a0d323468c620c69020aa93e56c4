@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "950f8c15_f94758bc",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-09-23T09:47:24Z",
+      "side": 1,
+      "message": "Just to make sure I\u0027m understanding the implications correctly: `typeToInterface` currently decides which Types get a declared `Item.\u003cType\u003e` interface, not which Types are accepted at all. An unlisted Type (e.g. Dimm) still gets a D-Bus object today, just without a dedicated interface.\n\nIf this table were also used as the parsing-stage validity gate, every schema-valid Type would need to be listed in it, whether or not it needs its own interface. Otherwise Dimm would go from \"object created without an interface\" to \"config rejected and dropped\" as a side effect.\n\nIf I\u0027m understanding correctly, that would effectively make this table the source of truth for accepted Types rather than just interface creation.",
+      "parentUuid": "83f46c72_18a6084e",
+      "range": {
+        "startLine": 166,
+        "startChar": 54,
+        "endLine": 171,
+        "endChar": 77
+      },
+      "revId": "8351410b6d96a0d323468c620c69020aa93e56c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8fb36708_83322abe",
         "filename": "src/entity_manager/utils.cpp",
         "patchSetId": 9
@@ -37,6 +61,30 @@
       "writtenOn": "2026-09-18T16:15:06Z",
       "side": 1,
       "message": "sanitize implies they may be changed. Why do we need to use a changed config type for a D-Bus path?\n\nAll the config types supported by the schema are already safe for D-Bus. Using a config type not supported by the schema or not D-Bus-path-safe is not an intended use-case.\n\nThus there is no need to sanitize but only to check the value?\n\nA sanitized string here would contain `_` and fail to lookup in `typeToInterface` map.",
+      "range": {
+        "startLine": 426,
+        "startChar": 30,
+        "endLine": 426,
+        "endChar": 56
+      },
+      "revId": "8351410b6d96a0d323468c620c69020aa93e56c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3600cafe_84662de4",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-09-23T09:47:24Z",
+      "side": 1,
+      "message": "That makes sense.\n\nMy understanding is that sanitize here is acting more as a fallback for invalid input than as part of the intended Type model. Its primary purpose seems to be preventing an already-accepted Type value from producing an invalid D-Bus object path segment.\n\nIf Type is validated during configuration parsing as suggested above, then invalid values should never reach this path construction code in the first place. In that case, sanitize no longer appears to provide additional protection and could likely be removed as part of the same change.",
+      "parentUuid": "8fb36708_83322abe",
       "range": {
         "startLine": 426,
         "startChar": 30,
