@@ -98,9 +98,8 @@ auto DevicePresence::updateDbusInterfaces() -> void
 
         detectedIface = std::make_unique<DevicePresenceInterface>(
             ctx, objPath.str.c_str(),
-            DevicePresenceProperties{deviceName, firstCompatible});
-
-        detectedIface->emit_added();
+            DevicePresenceProperties{deviceName, firstCompatible},
+            DevicePresenceInterface::signal_action::emit_object_added);
     }
 
     if (!present && detectedIface)
