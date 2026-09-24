@@ -47,9 +47,9 @@
         /* Clemente Hard Disk Drive NVMe Board 0*/
         "Name": "Clemente HDD NVMe 0 $bus - 48 / 2",
         "Probe": [
-            "xyz.openbmc_project.FruDevice({'BUS': 48, 'ADDRESS': 83, 'PRODUCT_MANUFACTURER': '(Samsung|MICRON)'})",
+            "xyz.openbmc_project.FruDevice({'BUS': 48, 'ADDRESS': 83, 'PRODUCT_MANUFACTURER': 'MICRON'})",
             "OR",
-            "xyz.openbmc_project.FruDevice({'BUS': 50, 'ADDRESS': 83, 'PRODUCT_MANUFACTURER': '(Samsung|MICRON)'})",
+            "xyz.openbmc_project.FruDevice({'BUS': 50, 'ADDRESS': 83, 'PRODUCT_MANUFACTURER': 'MICRON'})",
             "AND",
             "FOUND('Clemente HDD Carrier $bus - 25 % 11')"
         ],
@@ -110,9 +110,9 @@
         /* Clemente Hard Disk Drive NVMe Board 1*/
         "Name": "Clemente HDD NVMe 1 $bus - 52 / 2",
         "Probe": [
-            "xyz.openbmc_project.FruDevice({'BUS': 52, 'ADDRESS': 83, 'PRODUCT_MANUFACTURER': '(Samsung|MICRON)'})",
+            "xyz.openbmc_project.FruDevice({'BUS': 52, 'ADDRESS': 83, 'PRODUCT_MANUFACTURER': 'MICRON'})",
             "OR",
-            "xyz.openbmc_project.FruDevice({'BUS': 54, 'ADDRESS': 83, 'PRODUCT_MANUFACTURER': '(Samsung|MICRON)'})",
+            "xyz.openbmc_project.FruDevice({'BUS': 54, 'ADDRESS': 83, 'PRODUCT_MANUFACTURER': 'MICRON'})",
             "AND",
             "FOUND('Clemente HDD Carrier $bus - 25 % 11')"
         ],
@@ -165,7 +165,7 @@
         /* Clemente Boot Drive NVMe*/
         "Name": "Clemente Boot Drive NVMe",
         "Probe": [
-            "xyz.openbmc_project.FruDevice({'BUS': 45, 'ADDRESS': 83, 'PRODUCT_MANUFACTURER': '(Samsung|MICRON|KIOXIA)'})",
+            "xyz.openbmc_project.FruDevice({'BUS': 45, 'ADDRESS': 83, 'PRODUCT_MANUFACTURER': '(MICRON|KIOXIA)'})",
             "AND",
             "FOUND('Clemente HDD Carrier $bus - 25 % 11')"
         ],
