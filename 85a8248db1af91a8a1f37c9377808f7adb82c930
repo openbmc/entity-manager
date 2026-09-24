@@ -46,6 +46,30 @@
       },
       "revId": "85a8248db1af91a8a1f37c9377808f7adb82c930",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10b5b2cf_5ba74269",
+        "filename": "src/entity_manager/log_device_inventory.cpp",
+        "patchSetId": 27
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-09-24T10:16:20Z",
+      "side": 1,
+      "message": "Thanks for the review here.\nThis branch is based on change [94479], which I\u0027ve now updated to also reject a Type that isn\u0027t already D-Bus-path-safe (instead of silently sanitizing and publishing under a substituted name); the error message here was updated to match. That change needs to merge before this one can go in.\n\nHappy to keep iterating here if anything else needs to change, thanks.\n\n[94479]: https://gerrit.openbmc.org/c/openbmc/entity-manager/+/94479",
+      "parentUuid": "07227c62_6c37da01",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 35
+      },
+      "revId": "85a8248db1af91a8a1f37c9377808f7adb82c930",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
