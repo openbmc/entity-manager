@@ -16,6 +16,24 @@
       "message": "how does this work with the reactor side? specifically around the reactor tracing which device this applies to across the bridge for multiple bridged endpoints. how does the reactor know which device is which",
       "revId": "51582942f3096ade973c17b86bdb2bde6d9bb46c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a23c36a6_389cefc0",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1002135
+      },
+      "writtenOn": "2026-09-24T02:45:33Z",
+      "side": 1,
+      "message": "Redefined — `MCTPRoutedEndpoint` now drops that concern: each endpoint carries its own NetworkId + EID, no inference from bridge order or pool position needed.\n\nThe reactor side is [94538]; on real Yosemite 4 hardware it correctly associated each of eight WF BIC + ten reachable CXL endpoints with its own inventory object by EID, with no cross-talk between them.\n\n[94538]: https://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/94538",
+      "parentUuid": "cf33a524_c2ba4192",
+      "revId": "51582942f3096ade973c17b86bdb2bde6d9bb46c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
