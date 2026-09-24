@@ -16,6 +16,24 @@
       "message": "Could you add a high level description of what this matches?",
       "revId": "6ea48784b4cb42b5afcd6456491be47e0a8ee84f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1b3e336_cbfe19fe",
+        "filename": "schemas/global.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-09-24T08:16:04Z",
+      "side": 1,
+      "message": "I\u0027m not sure what to change here. The `description` field accurately describes what the regex matches.\n\n```\n \"description\": \"A valid D-Bus interface name followed by probe arguments. Argument syntax is validated by the probe parser.\",\n```\n\nI further decomposed the regex in the commit message but i would prefer to avoid explaining regex as part of the description here.\n\nRegex is not specific to EM so no reason to document it here. D-Bus interface syntax is also documented elsewhere.\n\nTherefore IMO sufficient to document that we are matching a D-Bus interface name followed by probe arguments. As the probe arguments are not matched here we do not need to describe how they look like.\n\nCan you just suggest the required change? It\u0027s only a few lines probably so should not take that much time and probably faster than going back and forth on something i don\u0027t fully understand what to change.",
+      "parentUuid": "776a9ea0_1b5086e0",
+      "revId": "6ea48784b4cb42b5afcd6456491be47e0a8ee84f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
