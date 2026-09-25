@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee60bd12_e81850fd",
+        "filename": "src/fru_device/neard_dbus.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2026-09-25T21:54:45Z",
+      "side": 1,
+      "message": "same comment as in other review.  to me the payload is data.",
+      "range": {
+        "startLine": 20,
+        "startChar": 60,
+        "endLine": 20,
+        "endChar": 67
+      },
+      "revId": "98edf1c68654fdbd00d3ea60866646164dc87853",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75d02606_39245b5e",
+        "filename": "src/fru_device/nfc.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2026-09-25T21:54:45Z",
+      "side": 1,
+      "message": "could also use std::ranges::contains if you want.",
+      "range": {
+        "startLine": 136,
+        "startChar": 9,
+        "endLine": 136,
+        "endChar": 12
+      },
+      "revId": "98edf1c68654fdbd00d3ea60866646164dc87853",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1da8da8_63c57e7a",
+        "filename": "src/fru_device/nfc.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2026-09-25T21:54:45Z",
+      "side": 1,
+      "message": "nit, there is now: sdbusplus::match_rules",
+      "range": {
+        "startLine": 212,
+        "startChar": 20,
+        "endLine": 212,
+        "endChar": 49
+      },
+      "revId": "98edf1c68654fdbd00d3ea60866646164dc87853",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
