@@ -58,7 +58,7 @@ std::optional<AssocName> Topology::getAssocByName(const std::string& name)
 
 void Topology::addBoard(const sdbusplus::object_path& path,
                         const std::string& boardType,
-                        const std::string& boardName,
+                        const std::string& /*boardName*/,
                         const nlohmann::json& exposesItem)
 {
     auto findType = exposesItem.find("Type");
@@ -66,8 +66,6 @@ void Topology::addBoard(const sdbusplus::object_path& path,
     {
         return;
     }
-
-    boardNames.try_emplace(boardName, path);
 
     PortType exposesType = findType->get<std::string>();
 
@@ -246,26 +244,15 @@ void Topology::fillAssocForPortId(
     result[upstream].insert({assocName.name, assocName.reverse, downstream});
 }
 
-void Topology::remove(const std::string& boardName)
+void Topology::remove(const sdbusplus::object_path& boardPath)
 {
-    // Remove the board from boardNames, and then using the path
-    // found in boardNames remove it from ports
-    auto boardFind = boardNames.find(boardName);
-    if (boardFind == boardNames.end())
-    {
-        return;
-    }
-
-    std::string boardPath = boardFind->second;
-
-    boardNames.erase(boardFind);
-
     for (auto& port : ports)
     {
         port.second.erase(boardPath);
     }
 
-    probePaths.erase(boardName);
+    boardTypes.erase(boardPath);
+    probePaths.erase(boardPath);
 }
 
 void Topology::addProbePath(const sdbusplus::object_path& boardPath,

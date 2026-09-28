@@ -532,7 +532,13 @@ void EntityManager::pruneConfiguration(bool powerOff, const std::string& name,
 
     ifaces.clear();
     systemConfiguration.erase(name);
-    topology.remove(device["Name"].get<std::string>());
+    std::optional<std::string> configType = em_utils::resolveConfigType(device);
+    if (configType)
+    {
+        std::string boardName = device["Name"].get<std::string>();
+        topology.remove(
+            em_utils::buildInventorySystemPath(boardName, *configType));
+    }
     logDeviceRemoved(device);
 }
 

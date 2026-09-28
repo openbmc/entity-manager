@@ -304,7 +304,7 @@ TEST(Topology, Remove)
     }
 
     {
-        topo.remove("BoardA");
+        topo.remove(subchassisPath);
         auto assocs = topo.getAssocs(std::views::keys(boards));
 
         EXPECT_EQ(assocs.size(), 1U);
@@ -313,11 +313,41 @@ TEST(Topology, Remove)
     }
 
     {
-        topo.remove("BoardB");
+        topo.remove(subchassisPath2);
         auto assocs = topo.getAssocs(std::views::keys(boards));
 
         EXPECT_EQ(assocs.size(), 0U);
     }
+}
+
+TEST(Topology, RemoveProbePathsWithoutPorts)
+{
+    Topology topo;
+    BoardMap boards{{subchassisPath, "BoardA"}, {subchassisPath2, "BoardB"}};
+    const sdbusplus::object_path probeA("/xyz/openbmc_project/probe/A");
+    const sdbusplus::object_path probeB("/xyz/openbmc_project/probe/B");
+
+    topo.addProbePath(subchassisPath, probeA);
+    topo.addProbePath(subchassisPath2, probeB);
+
+    auto assocs = topo.getAssocs(std::views::keys(boards));
+    EXPECT_TRUE(
+        assocs[subchassisPath].contains({"probing", "probed_by", probeA}));
+    EXPECT_TRUE(
+        assocs[subchassisPath2].contains({"probing", "probed_by", probeB}));
+
+    topo.remove(subchassisPath);
+    assocs = topo.getAssocs(std::views::keys(boards));
+    EXPECT_FALSE(assocs.contains(subchassisPath));
+    EXPECT_TRUE(
+        assocs[subchassisPath2].contains({"probing", "probed_by", probeB}));
+
+    // Reusing the inventory path must not revive the removed probe link.
+    topo.addProbePath(subchassisPath, probeB);
+    assocs = topo.getAssocs(std::views::keys(boards));
+    EXPECT_EQ(assocs[subchassisPath].size(), 1U);
+    EXPECT_TRUE(
+        assocs[subchassisPath].contains({"probing", "probed_by", probeB}));
 }
 
 TEST(Topology, SimilarToTyanS8030)
