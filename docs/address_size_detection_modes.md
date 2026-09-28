@@ -1,9 +1,44 @@
-# EEPROM address size detection modes
+# EEPROM address size detection
 
-This document introduces and discusses the different modes to detect how many
-address byte(s) needed for a given EEPROM device.
+This document describes how FruDevice decides whether a raw-i2c EEPROM uses a
+1-byte (8-bit) or 2-byte (16-bit) data-word address, and records the history of
+the heuristics that were used before.
 
-## MODE-1
+## Current approach: verify by FRU header
+
+Rather than guessing the address width up front, FruDevice now **tries reading
+and verifies the result**. In `getBusFRUsCallback` it attempts, in order:
+
+1. 8-bit block read,
+2. 8-bit bytewise read (some EEPROMs only answer one byte at a time), then
+3. 16-bit (two-byte address) write-then-read,
+
+and keeps the first strategy whose first 8 bytes form a checksum-valid IPMI FRU
+common header (`validateHeader`). Because the header carries a checksum, a wrong
+address width produces garbage that fails validation, so a false positive is
+effectively impossible and detection is decided **per device**.
+
+The order matters: the two 8-bit strategies are pure reads and cannot alter the
+device, so they run first. 16-bit addressing requires a 2-byte i2c write (which
+an 8-bit device would latch as a data write), so it is attempted only after the
+non-destructive reads have failed to find a FRU.
+
+The FRU **write** path (`writeFRU`) needs the width before it can write; it uses
+`detectAddressWidth`, which applies the same read-and-verify strategies in the
+same order - so, like the scan, it may issue the 16-bit 2-byte address write as
+its last attempt. It cannot infer the width of a blank EEPROM (no header to
+verify against) and reports failure in that case.
+
+This replaces the two heuristic modes below, which were removed. They guessed
+the width by issuing an SMBus **write** to every probed address. That is unsafe
+during discovery: the scan touches whatever ACKs in the address range - muxes,
+PMICs, sensors - not just EEPROMs, and an unsolicited write to such a device can
+have side effects. The heuristics also misidentified EEPROMs that return
+identical data across the probed addresses (e.g. some ONSEMI parts).
+
+## History (removed heuristics)
+
+### MODE-1
 
 The existing upstream function isDevice16Bit() bases on sending 1-byte write
 operation (with a STOP condition) and 8 subsequent 1-byte read operations with
@@ -27,7 +62,7 @@ SINGLE byte address.
   single byte address read --> therefore, existing function wrongly identifies
   it as 1 byte address device.
 
-## MODE-2
+### MODE-2
 
 The proposal MODE-2 changes to isDevice16Bit() sends 8 instructions of 2-bytes
 write operation (WITHOUT a STOP condition ie. prohibited STOP) followed by a

@@ -64,8 +64,6 @@ const static constexpr char* baseboardFruLocation =
 
 const static constexpr char* i2CDevLocation = "/dev";
 
-constexpr const char* fruDevice16BitDetectMode = FRU_DEVICE_16BITDETECTMODE;
-
 // TODO Refactor these to not be globals
 // NOLINTBEGIN(cppcoreguidelines-avoid-non-const-global-variables)
 static std::flat_map<size_t, std::optional<std::flat_set<size_t>>> busBlocklist;
@@ -246,95 +244,52 @@ static int64_t readData(bool is16bit, bool isBytewise, int file,
     return i2cSmbusWriteThenRead(file, address, u8Offset, 2, buf, len);
 }
 
-// Mode_1:
-// --------
-// Please refer to document docs/address_size_detection_modes.md for
-// more details and explanations.
-static std::optional<bool> isDevice16BitMode1(int file)
+// A raw-i2c FRU is read by trying these addressing/read strategies in order and
+// keeping the first that yields a checksum-valid FRU header (see
+// getBusFRUsCallback and docs/address_size_detection_modes.md). Order matters:
+// the two 8-bit variants are pure reads and cannot disturb the device, so they
+// are tried first; 16-bit addressing must send a 2-byte address (a combined
+// write-then-read), so it is attempted last, only once the plain reads have
+// failed to find a FRU.
+struct ReadStrategy
 {
-    // Set the higher data word address bits to 0. It's safe on 8-bit
-    // addressing EEPROMs because it doesn't write any actual data.
-    int ret = i2c_smbus_write_byte(file, 0);
-    if (ret < 0)
-    {
-        return std::nullopt;
-    }
+    bool is16bit;
+    bool isBytewise;
+};
+static constexpr std::array<ReadStrategy, 3> readStrategies{{
+    {false, false}, // 8-bit block read
+    {false, true},  // 8-bit bytewise read (some eeproms need this)
+    {true, false},  // 16-bit (two-byte address) write-then-read
+}};
 
-    /* Get first byte */
-    int byte1 = i2c_smbus_read_byte_data(file, 0);
-    if (byte1 < 0)
-    {
-        return std::nullopt;
-    }
-    /* Read 7 more bytes, it will read same first byte in case of
-     * 8 bit but it will read next byte in case of 16 bit
-     */
-    for (int i = 0; i < 7; i++)
-    {
-        int byte2 = i2c_smbus_read_byte_data(file, 0);
-        if (byte2 < 0)
-        {
-            return std::nullopt;
-        }
-        if (byte2 != byte1)
-        {
-            return true;
-        }
-    }
-    return false;
-}
-
-// Mode_2:
-// --------
-// Please refer to document docs/address_size_detection_modes.md for
-// more details and explanations.
-static std::optional<bool> isDevice16BitMode2(int file, uint16_t address)
+// Determine a device's address width by finding which addressing yields a
+// checksum-valid FRU header. Used by the raw-i2c write path, which needs the
+// width before it can write. Tries the same strategies, in the same order, as
+// the scan (readStrategies) so a device the scan discovered - including one
+// that only answers bytewise - is detected identically here. Any device
+// reachable here was discovered by the scan and therefore already holds a valid
+// FRU, so verification succeeds. Returns nullopt if no strategy finds an
+// existing FRU: a truly blank EEPROM cannot be width-detected from content, but
+// blank/programmable EEPROMs are expected to be bound to the kernel at24 driver
+// and written through the sysfs path in writeFRU (hasEepromFile), which needs
+// no width detection.
+static std::optional<bool> detectAddressWidth(int file, uint16_t address,
+                                              const std::string& errorHelp)
 {
-    uint8_t first = 0;
-    uint8_t cur = 0;
-    uint16_t v = 0;
-    int ret = 0;
-    // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
-    uint8_t* p = reinterpret_cast<uint8_t*>(&v);
-
-    /*
-     * Write 2 bytes byte0 = 0, byte1 = {0..7} and then subsequent read byte
-     * It will read same first byte in case of 8 bit but
-     * it will read next byte in case of 16 bit
-     */
-    for (int i = 0; i < 8; i++)
+    for (const ReadStrategy& strategy : readStrategies)
     {
-        v = htobe16(i);
-
-        ret = i2cSmbusWriteThenRead(file, address, p, 2, &cur, 1);
-        if (ret < 0)
+        auto readFunc = [strategy, file, address](off_t offset, size_t length,
+                                                  uint8_t* outbuf) {
+            return readData(strategy.is16bit, strategy.isBytewise, file,
+                            address, offset, length, outbuf);
+        };
+        FRUReader reader(std::move(readFunc));
+        if (readFRUContents(reader, errorHelp).second)
         {
-            return std::nullopt;
-        }
-
-        if (i == 0)
-        {
-            first = cur;
-        }
-
-        if (first != cur)
-        {
-            return true;
+            return strategy.is16bit;
         }
     }
-    return false;
-}
-
-static std::optional<bool> isDevice16Bit(int file, uint16_t address)
-{
-    std::string mode(fruDevice16BitDetectMode);
-
-    if (mode == "MODE_2")
-    {
-        return isDevice16BitMode2(file, address);
-    }
-
-    return isDevice16BitMode1(file);
+    return std::nullopt;
 }
 
 // TODO: This code is very similar to the non-eeprom version and can be merged
@@ -539,48 +494,42 @@ static int getBusFRUsCallback(int file, int first, int last, int bus,
             }
         }
 
-        /* Check for Device type if it is 8 bit or 16 bit */
-        std::optional<bool> is16Bit = isDevice16Bit(file, ii);
-        if (!is16Bit.has_value())
-        {
-            lg2::error("failed to read bus {BUS} address {ADDR}", "BUS", bus,
-                       "ADDR", ii);
-            if (powerIsOn)
-            {
-                failedItems.insert(ii);
-            }
-            continue;
-        }
-        bool is16BitBool{*is16Bit};
-
-        auto readFunc = [is16BitBool, file,
-                         ii](off_t offset, size_t length, uint8_t* outbuf) {
-            return readData(is16BitBool, false, file, ii, offset, length,
-                            outbuf);
-        };
-        FRUReader reader(std::move(readFunc));
         std::string errorMessage =
             "bus " + std::to_string(bus) + " address " + std::to_string(ii);
-        std::pair<std::vector<uint8_t>, bool> pair =
-            readFRUContents(reader, errorMessage);
-        const bool foundHeader = pair.second;
 
-        if (!foundHeader && !is16BitBool)
+        // Presence is already established by the i2c_smbus_read_byte probe
+        // above. Determine the addressing per device by trying each read
+        // strategy and keeping the first that yields a checksum-valid FRU
+        // header. This replaces the previous heuristic width detection, which
+        // issued an SMBus write to every probed address to guess the width -
+        // unsafe because the scan touches unidentified devices (muxes, PMICs,
+        // sensors) that merely ACK, not just EEPROMs.
+        std::pair<std::vector<uint8_t>, bool> pair;
+        for (const ReadStrategy& strategy : readStrategies)
         {
-            // certain FRU eeproms require bytewise reading.
-            // otherwise garbage is read. e.g. SuperMicro PWS 920P-SQ
-
-            auto readFunc = [is16BitBool, file,
+            auto readFunc = [strategy, file,
                              ii](off_t offset, size_t length, uint8_t* outbuf) {
-                return readData(is16BitBool, true, file, ii, offset, length,
-                                outbuf);
+                return readData(strategy.is16bit, strategy.isBytewise, file, ii,
+                                offset, length, outbuf);
             };
-            FRUReader readerBytewise(std::move(readFunc));
-            pair = readFRUContents(readerBytewise, errorMessage);
+            FRUReader reader(std::move(readFunc));
+            pair = readFRUContents(reader, errorMessage);
+            if (pair.second)
+            {
+                // found a checksum-valid FRU header with this addressing
+                break;
+            }
         }
 
         if (pair.first.empty())
         {
+            // No addressing yielded a FRU. While powered the host may own the
+            // bus and reads can fail transiently, so record the address to
+            // avoid re-probing it for the rest of this scan cycle.
+            if (powerIsOn)
+            {
+                failedItems.insert(ii);
+            }
             continue;
         }
 
@@ -1134,7 +1083,10 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
         return false;
     }
 
-    std::optional<bool> is16Bit = isDevice16Bit(file, address);
+    std::string errorMessage =
+        "bus " + std::to_string(bus) + " address " + std::to_string(address);
+    std::optional<bool> is16Bit =
+        detectAddressWidth(file, address, errorMessage);
     if (!is16Bit.has_value())
     {
         lg2::error("failed to detect if device is 8 or 16 bits");
