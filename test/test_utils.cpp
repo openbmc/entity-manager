@@ -152,6 +152,20 @@ TEST(IReplaceAllTest, ReplaceWithEmptyCaseInsensitive)
     EXPECT_EQ(str, "  ");
 }
 
+TEST(IReplaceAllTest, ReplacementContainsSearch)
+{
+    std::string str = "a A";
+    iReplaceAll(str, "a", "aa");
+    EXPECT_EQ(str, "aa aa");
+}
+
+TEST(IReplaceAllTest, ReplacementContainsSearchWithDifferentCase)
+{
+    std::string str = "abc ABC";
+    iReplaceAll(str, "abc", "xAbCy");
+    EXPECT_EQ(str, "xAbCy xAbCy");
+}
+
 TEST(ToLowerCopyTest, BasicTests)
 {
     EXPECT_EQ(toLowerCopy("HelloWorld"), "helloworld");

@@ -208,16 +208,20 @@ void iReplaceAll(std::string& str, std::string_view search,
         return;
     }
 
-    while (true)
+    size_t pos = 0;
+    while (pos < str.size())
     {
-        std::ranges::subrange<std::string::iterator> match =
-            iFindFirst(str, search);
+        std::string_view remaining(str);
+        remaining.remove_prefix(pos);
+        auto match = iFindFirst(remaining, search);
         if (!match)
         {
             break;
         }
 
-        str.replace(match.begin(), match.end(), replace.begin(), replace.end());
+        size_t matchPos = pos + (match.begin() - remaining.begin());
+        str.replace(matchPos, search.size(), replace);
+        pos = matchPos + replace.size();
     }
 }
 
