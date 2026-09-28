@@ -69,8 +69,8 @@ TEST(Topology, EmptyExposes)
     Topology topo;
     BoardMap boards{{subchassisPath, "BoardA"}, {superchassisPath, "BoardB"}};
 
-    topo.addBoard(subchassisPath, "Chassis", "BoardA", nlohmann::json());
-    topo.addBoard(superchassisPath, "Chassis", "BoardB", nlohmann::json());
+    topo.addBoard(subchassisPath, "Chassis", nlohmann::json());
+    topo.addBoard(superchassisPath, "Chassis", nlohmann::json());
 
     auto assocs = topo.getAssocs(std::views::keys(boards));
 
@@ -89,10 +89,8 @@ TEST(Topology, MissingConnectsTo)
     Topology topo;
     BoardMap boards{{subchassisPath, "BoardA"}, {superchassisPath, "BoardB"}};
 
-    topo.addBoard(subchassisPath, "Chassis", "BoardA",
-                  subchassisMissingConnectsTo);
-    topo.addBoard(superchassisPath, "Chassis", "BoardB",
-                  superchassisExposesItem);
+    topo.addBoard(subchassisPath, "Chassis", subchassisMissingConnectsTo);
+    topo.addBoard(superchassisPath, "Chassis", superchassisExposesItem);
 
     auto assocs = topo.getAssocs(std::views::keys(boards));
 
@@ -104,8 +102,8 @@ TEST(Topology, OtherExposes)
     Topology topo;
     BoardMap boards{{subchassisPath, "BoardA"}, {superchassisPath, "BoardB"}};
 
-    topo.addBoard(subchassisPath, "Chassis", "BoardA", otherExposesItem);
-    topo.addBoard(superchassisPath, "Chassis", "BoardB", otherExposesItem);
+    topo.addBoard(subchassisPath, "Chassis", otherExposesItem);
+    topo.addBoard(superchassisPath, "Chassis", otherExposesItem);
 
     auto assocs = topo.getAssocs(std::views::keys(boards));
 
@@ -117,9 +115,8 @@ TEST(Topology, NoMatchSubchassis)
     Topology topo;
     BoardMap boards{{subchassisPath, "BoardA"}, {superchassisPath, "BoardB"}};
 
-    topo.addBoard(subchassisPath, "Chassis", "BoardA", otherExposesItem);
-    topo.addBoard(superchassisPath, "Chassis", "BoardB",
-                  superchassisExposesItem);
+    topo.addBoard(subchassisPath, "Chassis", otherExposesItem);
+    topo.addBoard(superchassisPath, "Chassis", superchassisExposesItem);
 
     auto assocs = topo.getAssocs(std::views::keys(boards));
 
@@ -131,8 +128,8 @@ TEST(Topology, NoMatchSuperchassis)
     Topology topo;
     BoardMap boards{{subchassisPath, "BoardA"}, {superchassisPath, "BoardB"}};
 
-    topo.addBoard(subchassisPath, "Chassis", "BoardA", subchassisExposesItem);
-    topo.addBoard(superchassisPath, "Chassis", "BoardB", otherExposesItem);
+    topo.addBoard(subchassisPath, "Chassis", subchassisExposesItem);
+    topo.addBoard(superchassisPath, "Chassis", otherExposesItem);
 
     auto assocs = topo.getAssocs(std::views::keys(boards));
 
@@ -144,9 +141,8 @@ TEST(Topology, Basic)
     Topology topo;
     BoardMap boards{{subchassisPath, "BoardA"}, {superchassisPath, "BoardB"}};
 
-    topo.addBoard(subchassisPath, "Chassis", "BoardA", subchassisExposesItem);
-    topo.addBoard(superchassisPath, "Chassis", "BoardB",
-                  superchassisExposesItem);
+    topo.addBoard(subchassisPath, "Chassis", subchassisExposesItem);
+    topo.addBoard(superchassisPath, "Chassis", superchassisExposesItem);
 
     auto assocs = topo.getAssocs(std::views::keys(boards));
 
@@ -160,9 +156,8 @@ TEST(Topology, BasicPower)
     Topology topo;
     BoardMap boards{{subchassisPath, "BoardA"}, {superchassisPath, "BoardB"}};
 
-    topo.addBoard(subchassisPath, "Chassis", "BoardA", powerExposesItem);
-    topo.addBoard(superchassisPath, "Chassis", "BoardB",
-                  superchassisExposesItem);
+    topo.addBoard(subchassisPath, "Chassis", powerExposesItem);
+    topo.addBoard(superchassisPath, "Chassis", superchassisExposesItem);
 
     auto assocs = topo.getAssocs(std::views::keys(boards));
 
@@ -177,9 +172,8 @@ TEST(Topology, NoNewBoards)
     Topology topo;
     BoardMap boards;
 
-    topo.addBoard(subchassisPath, "Chassis", "BoardA", subchassisExposesItem);
-    topo.addBoard(superchassisPath, "Chassis", "BoardB",
-                  superchassisExposesItem);
+    topo.addBoard(subchassisPath, "Chassis", subchassisExposesItem);
+    topo.addBoard(superchassisPath, "Chassis", superchassisExposesItem);
 
     // Boards A and B aren't new, so no assocs are returned.
     auto assocs = topo.getAssocs(std::views::keys(boards));
@@ -194,10 +188,9 @@ TEST(Topology, 2Subchassis)
                     {subchassisPath2, "BoardB"},
                     {superchassisPath, "BoardC"}};
 
-    topo.addBoard(subchassisPath, "Chassis", "BoardA", subchassisExposesItem);
-    topo.addBoard(subchassisPath2, "Chassis", "BoardB", subchassisExposesItem);
-    topo.addBoard(superchassisPath, "Chassis", "BoardC",
-                  superchassisExposesItem);
+    topo.addBoard(subchassisPath, "Chassis", subchassisExposesItem);
+    topo.addBoard(subchassisPath2, "Chassis", subchassisExposesItem);
+    topo.addBoard(superchassisPath, "Chassis", superchassisExposesItem);
 
     auto assocs = topo.getAssocs(std::views::keys(boards));
 
@@ -213,10 +206,9 @@ TEST(Topology, OneNewBoard)
     Topology topo;
     BoardMap boards{{subchassisPath, "BoardA"}};
 
-    topo.addBoard(subchassisPath, "Chassis", "BoardA", subchassisExposesItem);
-    topo.addBoard(subchassisPath2, "Chassis", "BoardB", subchassisExposesItem);
-    topo.addBoard(superchassisPath, "Chassis", "BoardC",
-                  superchassisExposesItem);
+    topo.addBoard(subchassisPath, "Chassis", subchassisExposesItem);
+    topo.addBoard(subchassisPath2, "Chassis", subchassisExposesItem);
+    topo.addBoard(superchassisPath, "Chassis", superchassisExposesItem);
 
     // Only the assoc for BoardA should be returned
     auto assocs = topo.getAssocs(std::views::keys(boards));
@@ -236,11 +228,9 @@ TEST(Topology, 2Superchassis)
                     {superchassisPath, "BoardB"},
                     {superchassisPath2, "BoardC"}};
 
-    topo.addBoard(subchassisPath, "Chassis", "BoardA", subchassisExposesItem);
-    topo.addBoard(superchassisPath, "Chassis", "BoardB",
-                  superchassisExposesItem);
-    topo.addBoard(superchassisPath2, "Chassis", "BoardC",
-                  superchassisExposesItem);
+    topo.addBoard(subchassisPath, "Chassis", subchassisExposesItem);
+    topo.addBoard(superchassisPath, "Chassis", superchassisExposesItem);
+    topo.addBoard(superchassisPath2, "Chassis", superchassisExposesItem);
 
     auto assocs = topo.getAssocs(std::views::keys(boards));
 
@@ -262,12 +252,10 @@ TEST(Topology, 2SuperchassisAnd2Subchassis)
                     {superchassisPath, "BoardC"},
                     {superchassisPath2, "BoardD"}};
 
-    topo.addBoard(subchassisPath, "Chassis", "BoardA", subchassisExposesItem);
-    topo.addBoard(subchassisPath2, "Chassis", "BoardB", subchassisExposesItem);
-    topo.addBoard(superchassisPath, "Chassis", "BoardC",
-                  superchassisExposesItem);
-    topo.addBoard(superchassisPath2, "Chassis", "BoardD",
-                  superchassisExposesItem);
+    topo.addBoard(subchassisPath, "Chassis", subchassisExposesItem);
+    topo.addBoard(subchassisPath2, "Chassis", subchassisExposesItem);
+    topo.addBoard(superchassisPath, "Chassis", superchassisExposesItem);
+    topo.addBoard(superchassisPath2, "Chassis", superchassisExposesItem);
 
     auto assocs = topo.getAssocs(std::views::keys(boards));
 
@@ -288,10 +276,9 @@ TEST(Topology, Remove)
                     {subchassisPath2, "BoardB"},
                     {superchassisPath, "BoardC"}};
 
-    topo.addBoard(subchassisPath, "Chassis", "BoardA", subchassisExposesItem);
-    topo.addBoard(subchassisPath2, "Chassis", "BoardB", subchassisExposesItem);
-    topo.addBoard(superchassisPath, "Chassis", "BoardC",
-                  superchassisExposesItem);
+    topo.addBoard(subchassisPath, "Chassis", subchassisExposesItem);
+    topo.addBoard(subchassisPath2, "Chassis", subchassisExposesItem);
+    topo.addBoard(superchassisPath, "Chassis", superchassisExposesItem);
 
     {
         auto assocs = topo.getAssocs(std::views::keys(boards));
@@ -304,7 +291,7 @@ TEST(Topology, Remove)
     }
 
     {
-        topo.remove("BoardA");
+        topo.remove(subchassisPath);
         auto assocs = topo.getAssocs(std::views::keys(boards));
 
         EXPECT_EQ(assocs.size(), 1U);
@@ -313,11 +300,41 @@ TEST(Topology, Remove)
     }
 
     {
-        topo.remove("BoardB");
+        topo.remove(subchassisPath2);
         auto assocs = topo.getAssocs(std::views::keys(boards));
 
         EXPECT_EQ(assocs.size(), 0U);
     }
+}
+
+TEST(Topology, RemoveProbePathsWithoutPorts)
+{
+    Topology topo;
+    BoardMap boards{{subchassisPath, "BoardA"}, {subchassisPath2, "BoardB"}};
+    const sdbusplus::object_path probeA("/xyz/openbmc_project/probe/A");
+    const sdbusplus::object_path probeB("/xyz/openbmc_project/probe/B");
+
+    topo.addProbePath(subchassisPath, probeA);
+    topo.addProbePath(subchassisPath2, probeB);
+
+    auto assocs = topo.getAssocs(std::views::keys(boards));
+    EXPECT_TRUE(
+        assocs[subchassisPath].contains({"probing", "probed_by", probeA}));
+    EXPECT_TRUE(
+        assocs[subchassisPath2].contains({"probing", "probed_by", probeB}));
+
+    topo.remove(subchassisPath);
+    assocs = topo.getAssocs(std::views::keys(boards));
+    EXPECT_FALSE(assocs.contains(subchassisPath));
+    EXPECT_TRUE(
+        assocs[subchassisPath2].contains({"probing", "probed_by", probeB}));
+
+    // Reusing the inventory path must not revive the removed probe link.
+    topo.addProbePath(subchassisPath, probeB);
+    assocs = topo.getAssocs(std::views::keys(boards));
+    EXPECT_EQ(assocs[subchassisPath].size(), 1U);
+    EXPECT_TRUE(
+        assocs[subchassisPath].contains({"probing", "probed_by", probeB}));
 }
 
 TEST(Topology, SimilarToTyanS8030)
@@ -368,22 +385,21 @@ TEST(Topology, SimilarToTyanS8030)
     };
 
     // configure the chassis to be containing something
-    topo.addBoard(chassisPath, "Chassis", "ChassisA",
-                  chassisContainExposesItem);
+    topo.addBoard(chassisPath, "Chassis", chassisContainExposesItem);
 
     // configure board to be contained by something
-    topo.addBoard(boardPath, "Board", "BoardA", containedByExposesItem);
+    topo.addBoard(boardPath, "Board", containedByExposesItem);
 
     // configure the board to be powered by something
-    topo.addBoard(boardPath, "Board", "BoardA", boardPowerExposesItem);
+    topo.addBoard(boardPath, "Board", boardPowerExposesItem);
 
     // configure the PSUs to be powering something
-    topo.addBoard(psu0Path, "PowerSupply", "PSU0", psuPowerExposesItem);
-    topo.addBoard(psu1Path, "PowerSupply", "PSU1", psuPowerExposesItem);
+    topo.addBoard(psu0Path, "PowerSupply", psuPowerExposesItem);
+    topo.addBoard(psu1Path, "PowerSupply", psuPowerExposesItem);
 
     // configured PSUs to be contained by something
-    topo.addBoard(psu0Path, "PowerSupply", "PSU0", containedByExposesItem);
-    topo.addBoard(psu1Path, "PowerSupply", "PSU1", containedByExposesItem);
+    topo.addBoard(psu0Path, "PowerSupply", containedByExposesItem);
+    topo.addBoard(psu1Path, "PowerSupply", containedByExposesItem);
 
     auto assocs = topo.getAssocs(std::views::keys(boards));
 
@@ -502,23 +518,22 @@ TEST(Topology, SimilarToYosemiteV3)
         {superChassisPath, "SuperChassis"},
     };
 
-    topo.addBoard(blade1Path, "Board", "Blade1", blade1ExposesItem);
-    topo.addBoard(blade2Path, "Board", "Blade2", blade2ExposesItem);
-    topo.addBoard(blade3Path, "Board", "Blade3", blade3ExposesItem);
-    topo.addBoard(blade4Path, "Board", "Blade4", blade4ExposesItem);
+    topo.addBoard(blade1Path, "Board", blade1ExposesItem);
+    topo.addBoard(blade2Path, "Board", blade2ExposesItem);
+    topo.addBoard(blade3Path, "Board", blade3ExposesItem);
+    topo.addBoard(blade4Path, "Board", blade4ExposesItem);
 
-    topo.addBoard(chassis1Path, "Chassis", "Chassis1", chassis1ExposesItem);
-    topo.addBoard(chassis2Path, "Chassis", "Chassis2", chassis2ExposesItem);
-    topo.addBoard(chassis3Path, "Chassis", "Chassis3", chassis3ExposesItem);
-    topo.addBoard(chassis4Path, "Chassis", "Chassis4", chassis4ExposesItem);
+    topo.addBoard(chassis1Path, "Chassis", chassis1ExposesItem);
+    topo.addBoard(chassis2Path, "Chassis", chassis2ExposesItem);
+    topo.addBoard(chassis3Path, "Chassis", chassis3ExposesItem);
+    topo.addBoard(chassis4Path, "Chassis", chassis4ExposesItem);
 
-    topo.addBoard(chassis1Path, "Chassis", "Chassis1", chassis1ExposesItem2);
-    topo.addBoard(chassis2Path, "Chassis", "Chassis2", chassis2ExposesItem2);
-    topo.addBoard(chassis3Path, "Chassis", "Chassis3", chassis3ExposesItem2);
-    topo.addBoard(chassis4Path, "Chassis", "Chassis4", chassis4ExposesItem2);
+    topo.addBoard(chassis1Path, "Chassis", chassis1ExposesItem2);
+    topo.addBoard(chassis2Path, "Chassis", chassis2ExposesItem2);
+    topo.addBoard(chassis3Path, "Chassis", chassis3ExposesItem2);
+    topo.addBoard(chassis4Path, "Chassis", chassis4ExposesItem2);
 
-    topo.addBoard(superChassisPath, "Chassis", "SuperChassis",
-                  superChassisExposesItem);
+    topo.addBoard(superChassisPath, "Chassis", superChassisExposesItem);
 
     auto assocs = topo.getAssocs(std::views::keys(boards));
 
@@ -578,10 +593,10 @@ TEST(Topology, MiscItemContainingItem)
         {dimmPath, "SomeDimm"},
     };
 
-    topo.addBoard(cpuPath, "Cpu", "SomeCpu", cpuExposesItem);
-    topo.addBoard(dimmPath, "Dimm", "SomeDimm", dimmExposesItem);
-    topo.addBoard(boardPath, "Board", "SomeBoard", boardExposesItem1);
-    topo.addBoard(boardPath, "Board", "SomeBoard", boardExposesItem2);
+    topo.addBoard(cpuPath, "Cpu", cpuExposesItem);
+    topo.addBoard(dimmPath, "Dimm", dimmExposesItem);
+    topo.addBoard(boardPath, "Board", boardExposesItem1);
+    topo.addBoard(boardPath, "Board", boardExposesItem2);
 
     auto assocs = topo.getAssocs(std::views::keys(boards));
 

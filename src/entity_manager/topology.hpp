@@ -44,7 +44,7 @@ class Topology
     explicit Topology() = default;
 
     void addBoard(const sdbusplus::object_path& path,
-                  const std::string& boardType, const std::string& boardName,
+                  const std::string& boardType,
                   const nlohmann::json& exposesItem);
     std::unordered_map<sdbusplus::object_path, std::set<Association>> getAssocs(
         BoardPathsView boardPaths);
@@ -53,11 +53,10 @@ class Topology
     // and inventory board path.
     void addProbePath(const sdbusplus::object_path& boardPath,
                       const sdbusplus::object_path& probePath);
-    void remove(const std::string& boardName);
+    void remove(const sdbusplus::object_path& boardPath);
 
   private:
     using BoardType = std::string;
-    using BoardName = std::string;
     using PortType = std::string;
 
     void addDownstreamPort(const sdbusplus::object_path& path,
@@ -94,8 +93,6 @@ class Topology
         ports;
 
     std::unordered_map<sdbusplus::object_path, BoardType> boardTypes;
-    std::unordered_map<BoardName, sdbusplus::object_path> boardNames;
-
     // Represents the mapping between inventory object paths of a
     // probed configuration and the object paths of DBus interfaces
     // it was probed on.
