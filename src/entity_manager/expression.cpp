@@ -93,17 +93,32 @@ int evaluate(int substitute, std::vector<std::string>::iterator curr,
         }
         else
         {
+            size_t parsed = 0;
+            int constant = 0;
             try
             {
-                int constant = std::stoi(*curr);
-                substitute = evaluate(substitute, *next, constant);
+                constant = std::stoi(*curr, &parsed);
             }
             catch (const std::invalid_argument&)
             {
-                lg2::error("Parameter not supported for templates {STR}", "STR",
+                lg2::error("Invalid template expression operand {STR}", "STR",
                            *curr);
-                continue;
+                throw;
             }
+            catch (const std::out_of_range&)
+            {
+                lg2::error("Template expression operand out of range {STR}",
+                           "STR", *curr);
+                throw;
+            }
+            if (parsed != curr->size())
+            {
+                lg2::error("Invalid template expression operand {STR}", "STR",
+                           *curr);
+                throw std::invalid_argument(
+                    "Invalid template expression operand");
+            }
+            substitute = evaluate(substitute, *next, constant);
         }
         isOperator = !isOperator;
     }
