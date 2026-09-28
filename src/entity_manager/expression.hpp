@@ -19,7 +19,8 @@ enum class Operation
 };
 
 std::optional<Operation> parseOperation(const std::string& op);
-int evaluate(int a, Operation op, int b);
-int evaluate(int substitute, std::vector<std::string>::iterator curr,
-             std::vector<std::string>::iterator& end);
+std::optional<int> evaluate(int a, Operation op, int b);
+std::optional<int> evaluate(int substitute,
+                            std::vector<std::string>::iterator curr,
+                            std::vector<std::string>::iterator& end);
 } // namespace expression
