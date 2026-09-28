@@ -5,11 +5,16 @@
             "Bus": "$bus",
             "Name": "BMC Storage Module FRU",
             "Type": "EEPROM"
+        },
+        {
+            "Name": "StoragePort 1",
+            "PortType": "contained_by",
+            "Type": "Port"
         }
     ],
     "Name": "BMC Storage Module",
     "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'BMC Storage Module', 'BOARD_MANUFACTURER': '(Wiwynn|Quanta|Ingrasys|Inventec)'})",
-    "Type": "Board",
+    "Type": "Storage",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
         "Manufacturer": "$BOARD_MANUFACTURER",
