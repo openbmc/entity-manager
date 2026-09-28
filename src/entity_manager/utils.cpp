@@ -243,7 +243,11 @@ static bool templateCharReplaceOneProperty(
     auto exprBegin = splitResult.begin();
     auto exprEnd = splitResult.end();
 
-    number = expression::evaluate(number, exprBegin, exprEnd);
+    auto result = expression::evaluate(number, exprBegin, exprEnd);
+    if (!result)
+    {
+        return false;
+    }
 
     std::string replaced(find.begin(), find.end());
     while (exprBegin != exprEnd)
@@ -252,12 +256,12 @@ static bool templateCharReplaceOneProperty(
     }
     ret = replaced;
 
-    std::string result = prefix + std::to_string(number);
+    std::string replacement = prefix + std::to_string(*result);
     while (exprEnd != splitResult.end())
     {
-        result.append(" ").append(*exprEnd++);
+        replacement.append(" ").append(*exprEnd++);
     }
-    str = result;
+    str = replacement;
 
     return false;
 }

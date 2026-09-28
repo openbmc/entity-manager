@@ -3,6 +3,7 @@ test(
     executable(
         'test_entity_manager',
         'test_entity-manager.cpp',
+        'test_expression.cpp',
         cpp_args: test_boost_args,
         dependencies: [
             boost,

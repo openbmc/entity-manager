@@ -116,6 +116,16 @@ TEST(TemplateCharReplace, incrementIndex)
     EXPECT_EQ(expected, j["foo"]);
 }
 
+TEST(TemplateCharReplace, preservesFailedExpression)
+{
+    std::string value = "$index + 2 / 0";
+    DBusInterface data;
+
+    EXPECT_FALSE(
+        em_utils::templateCharReplaceStr(value, data, 3, std::nullopt));
+    EXPECT_EQ(value, "$index + 2 / 0");
+}
+
 TEST(TemplateCharReplace, decrement)
 {
     nlohmann::json j = {{"foo", "3 minus 1 equals $TEST - 1 !"}};
