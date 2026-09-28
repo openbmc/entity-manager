@@ -4,9 +4,9 @@
 
 #include <sdbusplus/message/native_types.hpp>
 
-const AssocName assocContaining =
-    AssocName("containing", "contained_by", {"Board", "Chassis"},
-              {"Board", "Chassis", "Cpu", "Dimm", "Drive", "PowerSupply"});
+const AssocName assocContaining = AssocName(
+    "containing", "contained_by", {"Board", "Chassis"},
+    {"Board", "Chassis", "Cpu", "Dimm", "Drive", "PowerSupply", "Storage"});
 const AssocName assocContainedBy = assocContaining.getReverse();
 
 // Topology tests say that a chassis can be powering another chassis.
