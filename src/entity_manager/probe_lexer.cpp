@@ -48,10 +48,10 @@ std::optional<TokenType> keywordType(std::string_view word)
 
 // Given the index of an opening '(', return the index just past the matching
 // ')', tracking nested () / {} and ignoring delimiters inside quotes. Returns
-// npos if unbalanced.
+// npos if unbalanced or mismatched.
 size_t findBalancedEnd(std::string_view s, size_t open)
 {
-    int depth = 0;
+    std::vector<char> delimiters;
     char quote = '\0';
     for (size_t i = open; i < s.size(); ++i)
     {
@@ -78,12 +78,18 @@ size_t findBalancedEnd(std::string_view s, size_t open)
                 break;
             case '(':
             case '{':
-                ++depth;
+                delimiters.push_back(c);
                 break;
             case ')':
             case '}':
-                --depth;
-                if (depth == 0)
+                if (delimiters.empty() ||
+                    (c == ')' && delimiters.back() != '(') ||
+                    (c == '}' && delimiters.back() != '{'))
+                {
+                    return std::string_view::npos;
+                }
+                delimiters.pop_back();
+                if (delimiters.empty())
                 {
                     return i + 1;
                 }
@@ -92,7 +98,7 @@ size_t findBalancedEnd(std::string_view s, size_t open)
                 break;
         }
     }
-    // Ran off the end with parens still open, or a quote never closed.
+    // Ran off the end with delimiters still open, or a quote never closed.
     return std::string_view::npos;
 }
 

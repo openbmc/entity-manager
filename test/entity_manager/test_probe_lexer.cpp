@@ -82,6 +82,13 @@ TEST(LexProbe, QuotedValueWithParensAndEscapedQuote)
               (std::vector<Token>{{TokenType::dbusProbe, dbus}}));
 }
 
+TEST(LexProbe, BalancedNestedDelimiters)
+{
+    const std::string dbus = "xyz.Iface({'A': (1), 'B': {'C': 2}})";
+    EXPECT_EQ(lexProbe(dbus),
+              (std::vector<Token>{{TokenType::dbusProbe, dbus}}));
+}
+
 // Newlines and carriage returns act as token separators.
 TEST(LexProbe, NewlineSeparatesTokens)
 {
@@ -105,6 +112,10 @@ TEST(LexProbe, SyntaxErrors)
     EXPECT_EQ(lexProbe("NOTAKEYWORD"), std::nullopt);
     // Unbalanced parenthesis.
     EXPECT_EQ(lexProbe("xyz.Iface({'A': 1}"), std::nullopt);
+    // A closing brace cannot close a parenthesis (or vice versa).
+    EXPECT_EQ(lexProbe("xyz.Iface({'A': (1})"), std::nullopt);
+    EXPECT_EQ(lexProbe("xyz.Iface({'A': {1)})"), std::nullopt);
+    EXPECT_EQ(lexProbe("FOUND('A'}"), std::nullopt);
     // A stray delimiter that does not start a token.
     EXPECT_EQ(lexProbe("{'A': 1}"), std::nullopt);
     // Unterminated quote (keeps the paren depth open to end of input).
