@@ -35,7 +35,7 @@ std::optional<Operation> parseOperation(std::string& op)
     return std::nullopt;
 }
 
-int evaluate(int a, Operation op, int b)
+std::optional<int> evaluate(int a, Operation op, int b)
 {
     switch (op)
     {
@@ -55,8 +55,8 @@ int evaluate(int a, Operation op, int b)
         {
             if (b == 0)
             {
-                throw std::runtime_error(
-                    "Math error: Attempted to divide by Zero\n");
+                lg2::error("Math error: Attempted to divide by zero");
+                return std::nullopt;
             }
             return a / b;
         }
@@ -64,19 +64,48 @@ int evaluate(int a, Operation op, int b)
         {
             if (b == 0)
             {
-                throw std::runtime_error(
-                    "Math error: Attempted to divide by Zero\n");
+                lg2::error("Math error: Attempted to divide by zero");
+                return std::nullopt;
             }
             return a % b;
         }
 
         default:
-            throw std::invalid_argument("Unrecognised operation");
+            lg2::error("Unrecognised template expression operation");
+            return std::nullopt;
     }
 }
 
-int evaluate(int substitute, std::vector<std::string>::iterator curr,
-             std::vector<std::string>::iterator& end)
+static std::optional<int> parseOperand(const std::string& operand)
+{
+    size_t parsed = 0;
+    int constant = 0;
+    try
+    {
+        constant = std::stoi(operand, &parsed);
+    }
+    catch (const std::invalid_argument&)
+    {
+        lg2::error("Invalid template expression operand {STR}", "STR", operand);
+        return std::nullopt;
+    }
+    catch (const std::out_of_range&)
+    {
+        lg2::error("Template expression operand out of range {STR}", "STR",
+                   operand);
+        return std::nullopt;
+    }
+    if (parsed != operand.size())
+    {
+        lg2::error("Invalid template expression operand {STR}", "STR", operand);
+        return std::nullopt;
+    }
+    return constant;
+}
+
+std::optional<int> evaluate(int substitute,
+                            std::vector<std::string>::iterator curr,
+                            std::vector<std::string>::iterator& end)
 {
     bool isOperator = true;
     std::optional<Operation> next = Operation::addition;
@@ -93,17 +122,17 @@ int evaluate(int substitute, std::vector<std::string>::iterator curr,
         }
         else
         {
-            try
+            auto constant = parseOperand(*curr);
+            if (!constant)
             {
-                int constant = std::stoi(*curr);
-                substitute = evaluate(substitute, *next, constant);
+                return std::nullopt;
             }
-            catch (const std::invalid_argument&)
+            auto result = evaluate(substitute, *next, *constant);
+            if (!result)
             {
-                lg2::error("Parameter not supported for templates {STR}", "STR",
-                           *curr);
-                continue;
+                return std::nullopt;
             }
+            substitute = *result;
         }
         isOperator = !isOperator;
     }
