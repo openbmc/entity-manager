@@ -123,6 +123,11 @@
             "Type": "Port"
         },
         {
+            "Name": "StoragePort $bus % 15",
+            "PortType": "containing",
+            "Type": "Port"
+        },
+        {
             "Class": "temp",
             "InputUnavailableAsFailed": false,
             "Inputs": [
