@@ -17,11 +17,79 @@
             },
             {
                 "Name": "STRATA_SMA_HPM_$bus",
+                "TemperatureSensors": [
+                    {
+                        "Id": 16,
+                        "Name": "SMA_Ext"
+                    },
+                    {
+                        "Id": 17,
+                        "Name": "SMA_Internal"
+                    },
+                    {
+                        "Id": 18,
+                        "Name": "GPU_VR"
+                    },
+                    {
+                        "Id": 19,
+                        "Name": "BusBar"
+                    },
+                    {
+                        "Id": 216,
+                        "Name": "CPU1_Die"
+                    },
+                    {
+                        "Id": 217,
+                        "Name": "CPU1_SoC"
+                    }
+                ],
                 "Type": "NvidiaMctpVdmSma"
             },
             {
                 "Name": "GPU_SMA_HPM_$bus",
-                "Type": "NvidiaMctpVdmSma"
+                "PowerSensors": [
+                    {
+                        "Id": 128,
+                        "Name": "HSC"
+                    },
+                    {
+                        "Id": 192,
+                        "Name": "HSCC"
+                    }
+                ],
+                "TemperatureSensors": [
+                    {
+                        "Id": 17,
+                        "Name": "SMA_Internal"
+                    },
+                    {
+                        "Id": 168,
+                        "Name": "HSCC"
+                    },
+                    {
+                        "Id": 192,
+                        "Name": "HSC"
+                    }
+                ],
+                "Type": "NvidiaMctpVdmSma",
+                "VoltageSensors": [
+                    {
+                        "Id": 128,
+                        "Name": "HSC_Vout"
+                    },
+                    {
+                        "Id": 192,
+                        "Name": "HSC_Vin"
+                    },
+                    {
+                        "Id": 208,
+                        "Name": "HSCC_Vout"
+                    },
+                    {
+                        "Id": 224,
+                        "Name": "HSCC_Vin"
+                    }
+                ]
             }
         ],
         "Name": "STRATA_HPM_$bus",
