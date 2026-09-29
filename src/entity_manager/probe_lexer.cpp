@@ -1,5 +1,6 @@
 #include "probe_lexer.hpp"
 
+#include <algorithm>
 #include <array>
 #include <cstddef>
 #include <optional>
@@ -117,6 +118,29 @@ std::string extractFoundName(std::string_view args)
     return std::string(inner.substr(begin, end - begin + 1));
 }
 
+std::optional<DbusProbe> parseDBusProbe(std::string_view interface,
+                                        std::string_view args)
+{
+    std::string commandStr(args.substr(1, args.size() - 2));
+
+    std::ranges::replace(commandStr, '\'', '"');
+
+    size_t pos = 0;
+    while ((pos = commandStr.find('\\', pos)) != std::string::npos)
+    {
+        commandStr.replace(pos, 1, R"(\\)");
+        pos += 2;
+    }
+    nlohmann::json properties =
+        nlohmann::json::parse(commandStr, nullptr, false, true);
+    if (!properties.is_object())
+    {
+        return std::nullopt;
+    }
+    return DbusProbe{std::string(interface),
+                     properties.get<std::map<std::string, nlohmann::json>>()};
+}
+
 } // namespace
 
 std::optional<std::vector<Token>> lexProbe(std::string_view probe)
@@ -159,9 +183,12 @@ std::optional<std::vector<Token>> lexProbe(std::string_view probe)
             }
             else
             {
-                tokens.push_back(
-                    {TokenType::dbusProbe,
-                     std::string(probe.substr(start, end - start))});
+                auto dbus = parseDBusProbe(word, probe.substr(i, end - i));
+                if (!dbus)
+                {
+                    return std::nullopt;
+                }
+                tokens.push_back({TokenType::dbusProbe, {}, std::move(dbus)});
             }
             i = end;
             continue;

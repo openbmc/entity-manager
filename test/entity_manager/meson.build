@@ -42,7 +42,7 @@ test(
         'test_probe_lexer',
         'test_probe_lexer.cpp',
         '../../src/entity_manager/probe_lexer.cpp',
-        dependencies: [gtest],
+        dependencies: [gtest, nlohmann_json_dep],
         include_directories: test_include_dir,
     ),
 )

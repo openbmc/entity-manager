@@ -5,6 +5,7 @@
 
 #include <gtest/gtest.h>
 
+using probe::DbusProbe;
 using probe::lexProbe;
 using probe::Token;
 using probe::TokenType;
@@ -31,13 +32,15 @@ TEST(LexProbe, FoundFunction)
               (std::vector<Token>{{TokenType::found, "Harma SCM"}}));
 }
 
-// A D-Bus probe is kept as one opaque token holding the full statement text.
+// A D-Bus probe contains the parsed interface/properties with an empty value.
 TEST(LexProbe, DbusProbe)
 {
     const std::string dbus =
         "xyz.openbmc_project.FruDevice({'BUS': 6, 'ADDRESS': 80})";
     EXPECT_EQ(lexProbe(dbus),
-              (std::vector<Token>{{TokenType::dbusProbe, dbus}}));
+              (std::vector<Token>{{TokenType::dbusProbe, "",
+                                   DbusProbe{"xyz.openbmc_project.FruDevice",
+                                             {{"BUS", 6}, {"ADDRESS", 80}}}}}));
 }
 
 // The regression this change fixes: a keyword appearing as a substring inside a
@@ -46,8 +49,11 @@ TEST(LexProbe, KeywordSubstringInsideDbusProbeIsNotAnOperator)
 {
     const std::string dbus =
         "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'HORIZON'})";
-    EXPECT_EQ(lexProbe(dbus),
-              (std::vector<Token>{{TokenType::dbusProbe, dbus}}));
+    EXPECT_EQ(
+        lexProbe(dbus),
+        (std::vector<Token>{{TokenType::dbusProbe, "",
+                             DbusProbe{"xyz.openbmc_project.FruDevice",
+                                       {{"BOARD_PRODUCT_NAME", "HORIZON"}}}}}));
 }
 
 // The mixed operator pattern used by several platforms:
@@ -57,11 +63,14 @@ TEST(LexProbe, MixedOperators)
     const std::string a = "xyz.openbmc_project.FruDevice({'BUS': 6})";
     const std::string b = "xyz.openbmc_project.FruDevice({'BUS': 7})";
     EXPECT_EQ(lexProbe(a + " OR " + b + " AND FOUND('Board')"),
-              (std::vector<Token>{{TokenType::dbusProbe, a},
-                                  {TokenType::opOr, ""},
-                                  {TokenType::dbusProbe, b},
-                                  {TokenType::opAnd, ""},
-                                  {TokenType::found, "Board"}}));
+              (std::vector<Token>{
+                  {TokenType::dbusProbe, "",
+                   DbusProbe{"xyz.openbmc_project.FruDevice", {{"BUS", 6}}}},
+                  {TokenType::opOr, ""},
+                  {TokenType::dbusProbe, "",
+                   DbusProbe{"xyz.openbmc_project.FruDevice", {{"BUS", 7}}}},
+                  {TokenType::opAnd, ""},
+                  {TokenType::found, "Board"}}));
 }
 
 // Surrounding and separating whitespace is tolerated.
@@ -78,15 +87,36 @@ TEST(LexProbe, WhitespaceTolerated)
 TEST(LexProbe, QuotedValueWithParensAndEscapedQuote)
 {
     const std::string dbus = "xyz.a.C({'N': 'P(31|33) is it\\'s AND (x)'})";
-    EXPECT_EQ(lexProbe(dbus),
-              (std::vector<Token>{{TokenType::dbusProbe, dbus}}));
+    // Preserve the existing property parser's rejection of this escaping.
+    EXPECT_EQ(lexProbe(dbus), std::nullopt);
 }
 
 TEST(LexProbe, BalancedNestedDelimiters)
 {
     const std::string dbus = "xyz.Iface({'A': (1), 'B': {'C': 2}})";
+    // Balanced delimiters do not make parenthesized values valid JSON.
+    EXPECT_EQ(lexProbe(dbus), std::nullopt);
+}
+
+TEST(LexProbe, ParsesDbusPropertiesBeforeEvaluation)
+{
+    const std::string dbus =
+        R"(xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Riser\d+', 'ADDRESS': 80}))";
     EXPECT_EQ(lexProbe(dbus),
-              (std::vector<Token>{{TokenType::dbusProbe, dbus}}));
+              (std::vector<Token>{
+                  {TokenType::dbusProbe, "",
+                   DbusProbe{"xyz.openbmc_project.FruDevice",
+                             {{"BOARD_PRODUCT_NAME", "Riser\\d+"},
+                              {"ADDRESS", 80}}}}}));
+}
+
+TEST(LexProbe, RejectsMalformedDbusProperties)
+{
+    EXPECT_EQ(lexProbe("xyz.Iface({'A': })"), std::nullopt);
+    EXPECT_EQ(lexProbe("xyz.Iface([1, 2])"), std::nullopt);
+    EXPECT_EQ(lexProbe("xyz.Iface(null)"), std::nullopt);
+    EXPECT_EQ(lexProbe("xyz.Iface({'A': 1}) OR xyz.Iface({'B': })"),
+              std::nullopt);
 }
 
 // Newlines and carriage returns act as token separators.
