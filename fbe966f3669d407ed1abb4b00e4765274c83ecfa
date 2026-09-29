@@ -72,6 +72,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "689348dd_0d5105a4",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 1252,
+      "author": {
+        "id": 1002470
+      },
+      "writtenOn": "2026-09-29T03:02:28Z",
+      "side": 1,
+      "message": "Good call — done. addFruObjectToDbus() now writes publishedFru alongside\nthe dbusInterfaceMap insert, and each of the 3 removal sites erases it\nnext to the dbusInterfaceMap.erase(). publishFruOnBusAddress() keeps only\nthe \"skip if unchanged\" check, so add/remove of the cache now sticks with\nadd/remove of the interface. Thanks for marking the locations.",
+      "parentUuid": "260e1dd4_62d38102",
+      "range": {
+        "startLine": 1251,
+        "startChar": 5,
+        "endLine": 1252,
+        "endChar": 62
+      },
+      "revId": "fbe966f3669d407ed1abb4b00e4765274c83ecfa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "e0fea8bc_6a302fa2",
         "filename": "src/fru_device/fru_device.cpp",
         "patchSetId": 8
