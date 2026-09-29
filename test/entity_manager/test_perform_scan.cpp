@@ -84,6 +84,35 @@ TEST(ParseProbeCommand, ParsesSingleString)
               (std::vector<Token>{{TokenType::boolTrue, ""}}));
 }
 
+TEST(ParseProbeCommand, ParsesDbusPropertiesBeforeEvaluation)
+{
+    auto probe = std::vector<std::string>{
+        R"(xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Riser\d+', 'ADDRESS': 80}))"};
+    auto tokens = scan::detail::parseProbeCommand(probe);
+    ASSERT_EQ(tokens.size(), 1);
+    const auto& token = tokens.at(0);
+
+    ASSERT_TRUE(token.dbus.has_value());
+
+    if (token.dbus.has_value())
+    {
+        EXPECT_EQ(token.dbus->interface, "xyz.openbmc_project.FruDevice");
+        EXPECT_EQ(token.dbus->properties.at("BOARD_PRODUCT_NAME"), "Riser\\d+");
+        EXPECT_EQ(token.dbus->properties.at("ADDRESS"), 80);
+    }
+}
+
+TEST(ParseProbeCommand, RejectsMalformedDbusProperties)
+{
+    EXPECT_TRUE(
+        scan::detail::parseProbeCommand({"xyz.Iface({'A': })"}).empty());
+    EXPECT_TRUE(scan::detail::parseProbeCommand({"xyz.Iface([1, 2])"}).empty());
+    EXPECT_TRUE(scan::detail::parseProbeCommand({"xyz.Iface(null)"}).empty());
+    EXPECT_TRUE(scan::detail::parseProbeCommand({"xyz.Iface({'A': 1}) OR "
+                                                 "xyz.Iface({'B': })"})
+                    .empty());
+}
+
 TEST(RestorePersistedConfigurations, RegistersResolvedNameAndPreservesIndex)
 {
     const std::string probeName = "Nvidia RTX PRO 6000 Blackwell $index";

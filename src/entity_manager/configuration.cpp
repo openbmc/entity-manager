@@ -173,15 +173,9 @@ void Configuration::filterProbeInterfaces()
         for (const probe::Token& token : probeCommand)
         {
             // Only D-Bus probes name an interface to collect.
-            if (token.type != probe::TokenType::dbusProbe)
+            if (token.dbus.has_value())
             {
-                continue;
-            }
-            // syntax requires the interface before the first open brace
-            auto findStart = token.value.find('(');
-            if (findStart != std::string::npos)
-            {
-                probeInterfaces.emplace(token.value.substr(0, findStart));
+                probeInterfaces.emplace(token.dbus->interface);
             }
         }
         it++;

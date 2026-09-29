@@ -55,12 +55,10 @@ struct PerformScan final : std::enable_shared_from_this<PerformScan>
         const DBusDeviceDescriptor& device, std::set<nlohmann::json>& usedNames,
         std::list<size_t>& indexes, std::optional<std::string>& replaceStr);
 
-    // Walk _configurations, dropping malformed or already-probed entries and
-    // starting a PerformProbe for each remaining one. Collects the D-Bus
+    // Walk _configurations, skipping malformed and dropping already-probed
+    // entries. Start a PerformProbe for each remaining one. Collects the D-Bus
     // interfaces to look up into dbusProbeInterfaces / dbusProbePointers.
-    // Returns false if a config had an unparsable Probe, in which case the
-    // scan must not continue.
-    bool processConfigurations(
+    void processConfigurations(
         std::flat_set<std::string, std::less<>>& dbusProbeInterfaces,
         std::vector<std::shared_ptr<probe::PerformProbe>>& dbusProbePointers);
 
