@@ -1,6 +1,25 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$defs": {
+        "NvidiaMctpVdmSensorEntry": {
+            "properties": {
+                "Id": {
+                    "description": "The sensor id sent in the MCTP VDM request that reads the sensor. 255 is not an id: the temperature and power requests take it to ask for every sensor at once.",
+                    "x-dbus-type": "uint64",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 254
+                },
+                "Name": {
+                    "description": "Name of the sensor, published on D-Bus as <device>_<Name>, where <device> is the name the device is given on D-Bus.",
+                    "x-dbus-type": "string",
+                    "type": "string"
+                }
+            },
+            "required": ["Id", "Name"],
+            "additionalProperties": false,
+            "type": "object"
+        },
         "NvidiaMctpVdmGpu": {
             "description": "An Nvidia GPU that implements an MCTP VDM protocol to provide sensor readings - implemented in dbus-sensors",
             "properties": {
@@ -31,6 +50,27 @@
                 "PollRate": {
                     "description": "Poll the device at this rate, specified in milliseconds, to fetch sensors",
                     "type": "number"
+                },
+                "PowerSensors": {
+                    "description": "The power sensors to read from the device, one sensor per entry.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/NvidiaMctpVdmSensorEntry"
+                    }
+                },
+                "TemperatureSensors": {
+                    "description": "The temperature sensors to read from the device, one sensor per entry.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/NvidiaMctpVdmSensorEntry"
+                    }
+                },
+                "VoltageSensors": {
+                    "description": "The voltage sensors to read from the device, one sensor per entry.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/NvidiaMctpVdmSensorEntry"
+                    }
                 },
                 "Type": {
                     "type": "string",
