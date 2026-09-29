@@ -739,6 +739,33 @@ std::vector<probe::Token> scan::detail::parseProbeCommand(
         lg2::error("Probe statement produced no tokens: {PROBE}", "PROBE",
                    joined);
     }
+    for (probe::Token& token : *tokens)
+    {
+        if (token.type != probe::TokenType::dbusProbe)
+        {
+            continue;
+        }
+
+        // The lexer has already checked that the parentheses are balanced.
+        size_t open = token.value.find('(');
+        std::string commandStr =
+            token.value.substr(open + 1, token.value.size() - open - 2);
+        // Preserve the escaping used by the existing D-Bus probe evaluator:
+        // configurations use single quotes and single regex backslashes.
+        std::ranges::replace(commandStr, '\'', '"');
+        replaceAll(commandStr, R"(\)", R"(\\)");
+        nlohmann::json properties =
+            nlohmann::json::parse(commandStr, nullptr, false, true);
+        if (!properties.is_object())
+        {
+            lg2::error("D-Bus probe properties must be an object: {PROBE}",
+                       "PROBE", token.value);
+            return {};
+        }
+        token.dbus = probe::DbusProbe{
+            token.value.substr(0, open),
+            properties.get<std::map<std::string, nlohmann::json>>()};
+    }
     return *tokens;
 }
 
@@ -753,14 +780,11 @@ static void collectDbusProbes(
 {
     for (const probe::Token& token : probeCommand)
     {
-        if (token.type != probe::TokenType::dbusProbe)
+        if (token.dbus)
         {
-            continue;
+            dbusProbeInterfaces.emplace(token.dbus->interface);
+            dbusProbePointers.emplace_back(probePointer);
         }
-        // syntax requires the interface before the first open brace
-        auto findStart = token.value.find('(');
-        dbusProbeInterfaces.emplace(token.value.substr(0, findStart));
-        dbusProbePointers.emplace_back(probePointer);
     }
 }
 
