@@ -48,6 +48,15 @@
                     "description": "Poll the device at this rate, specified in milliseconds, to fetch sensors",
                     "type": "number"
                 },
+                "TemperatureSensorIds": {
+                    "description": "The ids of the device's temperature sensors, one sensor per id. 255 is not an id: it asks the device for every sensor at once.",
+                    "type": "array",
+                    "items": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 254
+                    }
+                },
                 "Type": {
                     "type": "string",
                     "const": "NvidiaMctpVdmSma"
