@@ -1,6 +1,23 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$defs": {
+        "NvidiaMctpVdmSensor": {
+            "properties": {
+                "Id": {
+                    "description": "The sensor id sent in the MCTP VDM request that reads the sensor. 255 is not an id: the temperature and power requests take it to ask for every sensor at once.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 254
+                },
+                "Name": {
+                    "description": "Name of the sensor, published on D-Bus as <device>_<Name>, where <device> is the name the device is given on D-Bus.",
+                    "type": "string"
+                }
+            },
+            "required": ["Id", "Name"],
+            "additionalProperties": false,
+            "type": "object"
+        },
         "NvidiaMctpVdmGpu": {
             "description": "An Nvidia GPU that implements an MCTP VDM protocol to provide sensor readings - implemented in dbus-sensors",
             "properties": {
@@ -47,6 +64,27 @@
                 "PollRate": {
                     "description": "Poll the device at this rate, specified in milliseconds, to fetch sensors",
                     "type": "number"
+                },
+                "PowerSensors": {
+                    "description": "The power sensors to read from the device, one sensor per entry. An entry is not published if the device rejects its id, or while the device reports no reading for it.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/NvidiaMctpVdmSensor"
+                    }
+                },
+                "TemperatureSensors": {
+                    "description": "The temperature sensors to read from the device, one sensor per entry. An entry is not published if the device rejects its id, or while the device reports no reading for it.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/NvidiaMctpVdmSensor"
+                    }
+                },
+                "VoltageSensors": {
+                    "description": "The voltage sensors to read from the device, one sensor per entry. An entry is not published if the device rejects its id, or while the device reports no reading for it.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/NvidiaMctpVdmSensor"
+                    }
                 },
                 "Type": {
                     "type": "string",
