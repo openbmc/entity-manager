@@ -1,5 +1,8 @@
 #pragma once
 
+#include <nlohmann/json.hpp>
+
+#include <map>
 #include <optional>
 #include <string>
 #include <string_view>
@@ -21,12 +24,22 @@ enum class TokenType
     dbusProbe, // iface({...});  value holds the full "iface({...})" text
 };
 
+struct DbusProbe
+{
+    std::string interface;
+    std::map<std::string, nlohmann::json> properties;
+
+    bool operator==(const DbusProbe&) const = default;
+};
+
 struct Token
 {
     TokenType type;
     // For 'found', the probe name; for 'dbusProbe', the full statement text;
     // empty for the keyword tokens.
     std::string value;
+
+    std::optional<DbusProbe> dbus = std::nullopt;
 
     bool operator==(const Token&) const = default;
 };
