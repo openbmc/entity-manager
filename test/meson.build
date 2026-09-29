@@ -19,6 +19,13 @@ test_include_dir = include_directories('../src')
 subdir('entity_manager')
 
 test(
+    'validate-configs',
+    config_validator,
+    args: ['--continue'],
+    timeout: 120,
+)
+
+test(
     'test_fru_utils',
     executable(
         'test_fru_utils',

@@ -42,6 +42,33 @@ entity_manager_lib = static_library(
     link_with: utils_lib,
 )
 
+if get_option('validate-json') or get_option('tests').allowed()
+
+    native_json_dep = dependency(
+        'nlohmann_json',
+        native: true,
+        include_type: 'system',
+    )
+    config_validation_native_lib = static_library(
+        'config-validation-native',
+        'config_validation.cpp',
+        native: true,
+        dependencies: [native_json_dep, valijson],
+    )
+
+    config_validator = executable(
+        'validate-configs',
+        'validate_configs.cpp',
+        native: true,
+        cpp_args: ['-DEM_SOURCE_ROOT="' + meson.project_source_root() + '"'],
+        dependencies: [
+            native_json_dep,
+            valijson,
+        ],
+        link_with: config_validation_native_lib,
+    )
+endif
+
 executable(
     'entity-manager',
     'main.cpp',
