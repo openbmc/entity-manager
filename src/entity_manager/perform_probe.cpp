@@ -109,38 +109,16 @@ bool doProbe(const std::vector<probe::Token>& probeCommand,
             }
             case probe::TokenType::dbusProbe:
             {
-                // token.value is the full "iface({...})" statement.
-                size_t open = token.value.find('(');
-                size_t close = token.value.rfind(')');
-                if (open == std::string::npos || close == std::string::npos ||
-                    close < open)
+                if (token.dbus)
                 {
-                    lg2::error("dbus probe syntax error {JSON}", "JSON",
-                               token.value);
-                    return false;
+                    // we can match any (string, variant) property. (string,
+                    // string) does a regex
+                    bool foundProbe = false;
+                    cur = probeDbus(token.dbus->interface,
+                                    token.dbus->properties, foundDevs, scan,
+                                    foundProbe);
+                    break;
                 }
-                std::string interface = token.value.substr(0, open);
-                std::string commandStr =
-                    token.value.substr(open + 1, close - open - 1);
-                // convert single ticks and single slashes into legal json
-                std::ranges::replace(commandStr, '\'', '"');
-                replaceAll(commandStr, R"(\)", R"(\\)");
-                auto json =
-                    nlohmann::json::parse(commandStr, nullptr, false, true);
-                if (json.is_discarded())
-                {
-                    lg2::error("dbus command syntax error {STR}", "STR",
-                               commandStr);
-                    return false;
-                }
-                // we can match any (string, variant) property. (string,
-                // string) does a regex
-                std::map<std::string, nlohmann::json> dbusProbeMap =
-                    json.get<std::map<std::string, nlohmann::json>>();
-                bool foundProbe = false;
-                cur = probeDbus(interface, dbusProbeMap, foundDevs, scan,
-                                foundProbe);
-                break;
             }
         }
 
