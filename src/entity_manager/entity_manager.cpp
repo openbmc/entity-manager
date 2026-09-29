@@ -69,7 +69,7 @@ EntityManager::EntityManager(
     // https://discord.com/channels/775381525260664832/1018929092009144380
     objServer.add_manager("/xyz/openbmc_project/inventory");
 
-    entityIface = objServer.add_interface(emDbusPath, emDbusName);
+    auto entityIface = objServer.add_interface(emDbusPath, emDbusName);
     entityIface->register_method("ReScan", [this]() {
         propertiesChangedCallback();
     });

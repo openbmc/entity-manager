@@ -38,7 +38,6 @@ class EntityManager
 
     std::shared_ptr<sdbusplus::asio::connection> systemBus;
     sdbusplus::asio::object_server objServer;
-    std::shared_ptr<sdbusplus::asio::dbus_interface> entityIface;
     Configuration configuration;
     nlohmann::json lastJson;
     nlohmann::json systemConfiguration;
