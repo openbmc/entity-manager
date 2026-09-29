@@ -702,18 +702,15 @@ static void collectDbusProbes(
 {
     for (const probe::Token& token : probeCommand)
     {
-        if (token.type != probe::TokenType::dbusProbe)
+        if (token.dbus)
         {
-            continue;
+            dbusProbeInterfaces.emplace(token.dbus->interface);
+            dbusProbePointers.emplace_back(probePointer);
         }
-        // syntax requires the interface before the first open brace
-        auto findStart = token.value.find('(');
-        dbusProbeInterfaces.emplace(token.value.substr(0, findStart));
-        dbusProbePointers.emplace_back(probePointer);
     }
 }
 
-bool scan::PerformScan::processConfigurations(
+void scan::PerformScan::processConfigurations(
     std::flat_set<std::string, std::less<>>& dbusProbeInterfaces,
     std::vector<std::shared_ptr<probe::PerformProbe>>& dbusProbePointers)
 {
@@ -731,7 +728,10 @@ bool scan::PerformScan::processConfigurations(
             detail::parseProbeCommand(it->probeStmt);
         if (probeCommand.empty())
         {
-            return false;
+            lg2::error("Skipping configuration {NAME}: invalid Probe statement",
+                       "NAME", it->name);
+            it++;
+            continue;
         }
 
         // store reference to this to children to makes sure we don't get
@@ -746,8 +746,6 @@ bool scan::PerformScan::processConfigurations(
                           dbusProbePointers);
         it++;
     }
-
-    return true;
 }
 
 void scan::PerformScan::run()
@@ -755,10 +753,7 @@ void scan::PerformScan::run()
     std::flat_set<std::string, std::less<>> dbusProbeInterfaces;
     std::vector<std::shared_ptr<probe::PerformProbe>> dbusProbePointers;
 
-    if (!processConfigurations(dbusProbeInterfaces, dbusProbePointers))
-    {
-        return;
-    }
+    processConfigurations(dbusProbeInterfaces, dbusProbePointers);
 
     // probe vector stores a shared_ptr to each PerformProbe that cares
     // about a dbus interface
