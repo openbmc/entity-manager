@@ -23,13 +23,81 @@
                 "DeviceName": "HPM_0",
                 "Name": "HPM_0",
                 "PlatformConfigName": "HPM_0",
+                "TemperatureSensors": [
+                    {
+                        "Id": 16,
+                        "Name": "SMA_Ext"
+                    },
+                    {
+                        "Id": 17,
+                        "Name": "SMA_Internal"
+                    },
+                    {
+                        "Id": 18,
+                        "Name": "GPU_VR"
+                    },
+                    {
+                        "Id": 19,
+                        "Name": "BusBar"
+                    },
+                    {
+                        "Id": 216,
+                        "Name": "CPU1_Die"
+                    },
+                    {
+                        "Id": 217,
+                        "Name": "CPU1_SoC"
+                    }
+                ],
                 "Type": "NvidiaMctpVdmSma"
             },
             {
                 "DeviceName": "GPU_SMA_0",
                 "Name": "GPU_SMA_0",
                 "PlatformConfigName": "GPU_SMA_0",
-                "Type": "NvidiaMctpVdmSma"
+                "PowerSensors": [
+                    {
+                        "Id": 128,
+                        "Name": "HSC"
+                    },
+                    {
+                        "Id": 192,
+                        "Name": "HSCC"
+                    }
+                ],
+                "TemperatureSensors": [
+                    {
+                        "Id": 17,
+                        "Name": "SMA_Internal"
+                    },
+                    {
+                        "Id": 168,
+                        "Name": "HSCC"
+                    },
+                    {
+                        "Id": 192,
+                        "Name": "HSC"
+                    }
+                ],
+                "Type": "NvidiaMctpVdmSma",
+                "VoltageSensors": [
+                    {
+                        "Id": 128,
+                        "Name": "HSC_Vout"
+                    },
+                    {
+                        "Id": 192,
+                        "Name": "HSC_Vin"
+                    },
+                    {
+                        "Id": 208,
+                        "Name": "HSCC_Vout"
+                    },
+                    {
+                        "Id": 224,
+                        "Name": "HSCC_Vin"
+                    }
+                ]
             }
         ],
         "Name": "HGX ProcessorModule 0",
@@ -76,13 +144,81 @@
                 "DeviceName": "HPM_1",
                 "Name": "HPM_1",
                 "PlatformConfigName": "HPM_1",
+                "TemperatureSensors": [
+                    {
+                        "Id": 16,
+                        "Name": "SMA_Ext"
+                    },
+                    {
+                        "Id": 17,
+                        "Name": "SMA_Internal"
+                    },
+                    {
+                        "Id": 18,
+                        "Name": "GPU_VR"
+                    },
+                    {
+                        "Id": 19,
+                        "Name": "BusBar"
+                    },
+                    {
+                        "Id": 216,
+                        "Name": "CPU1_Die"
+                    },
+                    {
+                        "Id": 217,
+                        "Name": "CPU1_SoC"
+                    }
+                ],
                 "Type": "NvidiaMctpVdmSma"
             },
             {
                 "DeviceName": "GPU_SMA_1",
                 "Name": "GPU_SMA_1",
                 "PlatformConfigName": "GPU_SMA_1",
-                "Type": "NvidiaMctpVdmSma"
+                "PowerSensors": [
+                    {
+                        "Id": 128,
+                        "Name": "HSC"
+                    },
+                    {
+                        "Id": 192,
+                        "Name": "HSCC"
+                    }
+                ],
+                "TemperatureSensors": [
+                    {
+                        "Id": 17,
+                        "Name": "SMA_Internal"
+                    },
+                    {
+                        "Id": 168,
+                        "Name": "HSCC"
+                    },
+                    {
+                        "Id": 192,
+                        "Name": "HSC"
+                    }
+                ],
+                "Type": "NvidiaMctpVdmSma",
+                "VoltageSensors": [
+                    {
+                        "Id": 128,
+                        "Name": "HSC_Vout"
+                    },
+                    {
+                        "Id": 192,
+                        "Name": "HSC_Vin"
+                    },
+                    {
+                        "Id": 208,
+                        "Name": "HSCC_Vout"
+                    },
+                    {
+                        "Id": 224,
+                        "Name": "HSCC_Vin"
+                    }
+                ]
             }
         ],
         "Name": "HGX ProcessorModule 1",
