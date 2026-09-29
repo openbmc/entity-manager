@@ -97,21 +97,12 @@ foreach c : configs
     filepaths += [file]
 endforeach
 
-if get_option('validate-json')
-    validate_script = files('scripts/validate_configs.py')
-    autojson = custom_target(
-        'check_syntax',
-        command: [validate_script, '-v', '-k'],
-        depend_files: files(filepaths),
-        build_by_default: true,
-        output: 'validate_configs.log',
-    )
-endif
-
 # this creates the 'schemas' variable
 subdir('schemas')
 
+schema_filepaths = []
 foreach s : schemas
+    schema_filepaths += [join_paths('schemas', s)]
     install_data(
         join_paths('schemas', s),
         install_dir: join_paths(packagedir, 'schemas', fs.parent(s)),
@@ -120,6 +111,32 @@ endforeach
 
 subdir('service_files')
 subdir('src')
+
+if get_option('validate-json')
+    expected_fails = files('test/expected-schema-errors.txt')
+    validation_command = [
+        find_program('env'),
+        'LG2_FORCE_STDERR=1',
+        config_validator,
+        '--schema',
+        files('schemas/global.json')[0],
+        '--expected-fails',
+        expected_fails[0],
+        '--continue',
+        '--verbose',
+    ]
+    foreach config_file : files(filepaths)
+        validation_command += ['--config', config_file]
+    endforeach
+    custom_target(
+        'check_syntax',
+        command: validation_command,
+        depend_files: files(filepaths + schema_filepaths) + expected_fails,
+        build_by_default: true,
+        capture: true,
+        output: 'validate_configs.log',
+    )
+endif
 
 if get_option('tests').allowed()
     subdir('test')

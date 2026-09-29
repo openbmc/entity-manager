@@ -48,6 +48,18 @@ test(
 )
 
 test(
+    'test_config_validation',
+    executable(
+        'test_config_validation',
+        'test_config_validation.cpp',
+        '../../src/entity_manager/config_validation.cpp',
+        cpp_args: ['-DEM_SOURCE_ROOT="' + meson.project_source_root() + '"'],
+        dependencies: [gtest, nlohmann_json_dep, valijson, threads],
+        include_directories: test_include_dir,
+    ),
+)
+
+test(
     'test_log_device_inventory',
     executable(
         'test_log_device_inventory',

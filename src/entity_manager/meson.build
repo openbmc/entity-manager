@@ -38,6 +38,37 @@ entity_manager_lib = static_library(
     link_with: utils_lib,
 )
 
+# This tool runs on the build machine, including when Entity Manager is
+# cross-compiled. Keep the validation implementation separate so it can also
+# be linked into the runtime after its results have been compared with CI.
+native_json_dep = dependency(
+    'nlohmann_json',
+    native: true,
+    include_type: 'system',
+)
+native_threads_dep = dependency('threads', native: true)
+native_logging_dep = dependency('phosphor-logging', native: true)
+config_validation_native_lib = static_library(
+    'config-validation-native',
+    'config_validation.cpp',
+    native: true,
+    dependencies: [native_json_dep, valijson],
+)
+
+config_validator = executable(
+    'validate-configs',
+    'validate_configs.cpp',
+    native: true,
+    cpp_args: ['-DEM_SOURCE_ROOT="' + meson.project_source_root() + '"'],
+    dependencies: [
+        native_json_dep,
+        valijson,
+        native_threads_dep,
+        native_logging_dep,
+    ],
+    link_with: config_validation_native_lib,
+)
+
 executable(
     'entity-manager',
     'main.cpp',
@@ -47,4 +78,3 @@ executable(
     install: true,
     install_dir: installdir,
 )
-
