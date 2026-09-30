@@ -54,8 +54,8 @@ constexpr uint32_t nfcBus = std::numeric_limits<uint32_t>::max();
 void setupNfcMonitor(
     const std::shared_ptr<sdbusplus::asio::connection>& systemBus,
     FruDetails& fruDetails, sdbusplus::asio::object_server& objServer,
-    std::optional<sdbusplus::bus::match_t>& tagAddedMatch,
-    std::optional<sdbusplus::bus::match_t>& tagRemovedMatch);
+    std::optional<sdbusplus::match>& tagAddedMatch,
+    std::optional<sdbusplus::match>& tagRemovedMatch);
 
 // Identify NFC-based FRU objects using the reserved bus.
 // This is used to preserve them during I2C rescan.
