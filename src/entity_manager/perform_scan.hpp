@@ -90,14 +90,6 @@ void restorePersistedConfigurations(
     nlohmann::json& missingConfigurations,
     std::vector<std::string>& passedProbes, std::set<nlohmann::json>& usedNames,
     std::list<size_t>& indexes);
-
-// Collect the "Name" of every entry in systemConfiguration, i.e. the names of
-// the already-applied configs.
-std::vector<std::string> collectConfiguredNames(
-    const nlohmann::json& systemConfiguration);
-
-void pruneMissingByName(nlohmann::json& missingConfigurations,
-                        const std::vector<std::string>& names);
 } // namespace detail
 
 } // namespace scan
