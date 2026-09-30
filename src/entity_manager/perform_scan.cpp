@@ -199,8 +199,8 @@ static void findDbusObjects(
                               std::move(cb));
 }
 
-static std::string getRecordName(const DBusInterface& probe,
-                                 const std::string& probeName)
+std::string scan::detail::getRecordName(const DBusInterface& probe,
+                                        const std::string& probeName)
 {
     if (probe.empty())
     {
@@ -491,17 +491,28 @@ void scan::PerformScan::restorePersistedConfigurations(
     FoundDevices& foundDevices, const std::string& probeName,
     std::set<nlohmann::json>& usedNames, std::list<size_t>& indexes)
 {
+    detail::restorePersistedConfigurations(
+        foundDevices, probeName, _em.systemConfiguration, _em.lastJson,
+        _missingConfigurations, usedNames, indexes);
+}
+
+void scan::detail::restorePersistedConfigurations(
+    FoundDevices& foundDevices, const std::string& probeName,
+    nlohmann::json& systemConfiguration, nlohmann::json& lastJson,
+    nlohmann::json& missingConfigurations, std::set<nlohmann::json>& usedNames,
+    std::list<size_t>& indexes)
+{
     // Copy over persisted configurations and make sure we remove indexes
     // that are already used.
     for (auto itr = foundDevices.begin(); itr != foundDevices.end();)
     {
         std::string recordName = getRecordName(itr->interface, probeName);
 
-        auto record = _em.systemConfiguration.find(recordName);
-        if (record == _em.systemConfiguration.end())
+        auto record = systemConfiguration.find(recordName);
+        if (record == systemConfiguration.end())
         {
-            record = _em.lastJson.find(recordName);
-            if (record == _em.lastJson.end())
+            record = lastJson.find(recordName);
+            if (record == lastJson.end())
             {
                 itr++;
                 continue;
@@ -509,9 +520,9 @@ void scan::PerformScan::restorePersistedConfigurations(
 
             pruneRecordExposes(*record);
 
-            _em.systemConfiguration[recordName] = *record;
+            systemConfiguration[recordName] = *record;
         }
-        _missingConfigurations.erase(recordName);
+        missingConfigurations.erase(recordName);
 
         // We've processed the device, remove it and advance the iterator.
         itr = foundDevices.erase(itr);
@@ -620,7 +631,7 @@ void scan::PerformScan::updateSystemConfigurationForDevice(
         return;
     }
     nlohmann::json::object_t record = *recordPtr;
-    std::string recordName = getRecordName(device.interface, probeName);
+    std::string recordName = detail::getRecordName(device.interface, probeName);
     size_t foundDeviceIdx = indexes.front();
     indexes.pop_front();
 
