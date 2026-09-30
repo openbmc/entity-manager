@@ -1590,16 +1590,14 @@ int main()
             auto findState = values.find("CurrentHostState");
             if (findState != values.end())
             {
-                if (std::get<std::string>(findState->second) ==
-                    "xyz.openbmc_project.State.Host.HostState.Running")
-                {
-                    fruDetails.powerIsOn = true;
-                }
-            }
+                fruDetails.powerIsOn =
+                    (std::get<std::string>(findState->second) ==
+                     "xyz.openbmc_project.State.Host.HostState.Running");
 
-            if (fruDetails.powerIsOn)
-            {
-                rescanBusses(busMap, fruDetails, objServer);
+                if (fruDetails.powerIsOn)
+                {
+                    rescanBusses(busMap, fruDetails, objServer);
+                }
             }
         };
 
