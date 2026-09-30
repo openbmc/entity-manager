@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "feb53aa4_01f634df",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-09-30T15:27:36Z",
+      "side": 1,
+      "message": "my query: is it possible to simply move the `restorePersistedConfigurations` function out of the class and modify each of the callers to do the member access instead of making a wrapper function for a single call?\n\nI\u0027m assuming there was some reason why it\u0027s done like this so marking it as resolved.",
+      "range": {
+        "startLine": 489,
+        "startChar": 1,
+        "endLine": 497,
+        "endChar": 1
+      },
+      "revId": "ea328e10e8fa59c889bc2ad1d806e4953ae9ad5f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
