@@ -49,10 +49,6 @@ struct PerformScan final : std::enable_shared_from_this<PerformScan>
     std::vector<std::string> passedProbes;
 
   private:
-    void restorePersistedConfigurations(
-        FoundDevices& foundDevices, const std::string& probeName,
-        std::set<nlohmann::json>& usedNames, std::list<size_t>& indexes);
-
     void updateSystemConfigurationForDevice(
         const nlohmann::json& recordRef, const std::string& probeName,
         const DBusDeviceDescriptor& device, std::set<nlohmann::json>& usedNames,
@@ -82,6 +78,13 @@ namespace detail
 // and lexed. Returns an empty vector on error (a non-string statement or a
 // lexing error); a valid probe is never empty.
 std::vector<probe::Token> parseProbeCommand(const nlohmann::json& probeField);
+std::string getRecordName(const DBusInterface& probe,
+                          const std::string& probeName);
+void restorePersistedConfigurations(
+    FoundDevices& foundDevices, const std::string& probeName,
+    nlohmann::json& systemConfiguration, nlohmann::json& lastJson,
+    nlohmann::json& missingConfigurations, std::set<nlohmann::json>& usedNames,
+    std::list<size_t>& indexes);
 
 // Collect the "Name" of every entry in systemConfiguration, i.e. the names of
 // the already-applied configs.
