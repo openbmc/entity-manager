@@ -1463,7 +1463,7 @@ bool updateFruProperty(const std::string& propertyValue, uint32_t bus,
 
 int main()
 {
-    using namespace sdbusplus::bus::match::rules;
+    using namespace sdbusplus::match_rules;
 
     auto systemBus = std::make_shared<sdbusplus::asio::connection>(io);
     sdbusplus::asio::object_server objServer(systemBus);
@@ -1544,8 +1544,8 @@ int main()
         eventHandler);
 
     // Monitor NFC tag add/remove signals and initialize existing NFC tags.
-    std::optional<sdbusplus::bus::match_t> nfcTagAddedMatch;
-    std::optional<sdbusplus::bus::match_t> nfcTagRemovedMatch;
+    std::optional<sdbusplus::match> nfcTagAddedMatch;
+    std::optional<sdbusplus::match> nfcTagRemovedMatch;
     setupNfcMonitor(systemBus, fruDetails, objServer, nfcTagAddedMatch,
                     nfcTagRemovedMatch);
 
