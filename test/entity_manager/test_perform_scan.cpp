@@ -2,7 +2,9 @@
 
 #include <nlohmann/json.hpp>
 
-#include <algorithm>
+#include <cstdint>
+#include <list>
+#include <set>
 #include <string>
 #include <vector>
 
@@ -37,63 +39,118 @@ TEST(ParseProbeCommand, ReturnsEmptyOnNonStringElement)
     EXPECT_TRUE(scan::detail::parseProbeCommand(probe).empty());
 }
 
-// systemConfiguration / missingConfigurations are keyed by a numeric record
-// hash (see getRecordName), so these tests use hash-like numeric keys.
-
-// Removes from missingConfigurations any config whose "Name" is in names.
-TEST(PruneMissingByName, RemovesConfigsWhoseNameIsInList)
+TEST(RestorePersistedConfigurations, RegistersResolvedNameAndPreservesIndex)
 {
-    json missing = {{"16888500906263256819", {{"Name", "A"}}},
-                    {"3421789056127653902", {{"Name", "B"}}},
-                    {"9995127843016654321", {{"Name", "C"}}}};
-    std::vector<std::string> names = {"A", "C"};
-    scan::detail::pruneMissingByName(missing, names);
-    EXPECT_EQ(missing.size(), 1);
-    EXPECT_EQ(missing["3421789056127653902"]["Name"], "B");
+    const std::string probeName = "Nvidia RTX PRO 6000 Blackwell $index";
+    DBusInterface properties = {{"BUS", uint64_t{10}},
+                                {"ADDRESS", uint64_t{80}}};
+    const std::string recordId =
+        scan::detail::getRecordName(properties, probeName);
+    json configuration = {
+        {recordId, {{"Name", "Nvidia RTX PRO 6000 Blackwell 2"}}}};
+    const json original = configuration;
+    json cached = json::object();
+    json missing = configuration;
+    scan::FoundDevices devices = {{properties, "/fru/blackwell"}};
+    std::vector<std::string> passed;
+    std::set<json> usedNames;
+    std::list<size_t> indexes = {1, 2};
+
+    scan::detail::restorePersistedConfigurations(
+        devices, probeName, configuration, cached, missing, passed, usedNames,
+        indexes);
+
+    EXPECT_EQ(configuration, original);
+    EXPECT_EQ(passed,
+              (std::vector<std::string>{"Nvidia RTX PRO 6000 Blackwell 2"}));
+    EXPECT_TRUE(missing.empty());
+    EXPECT_TRUE(devices.empty());
+    EXPECT_EQ(usedNames, (std::set<json>{"Nvidia RTX PRO 6000 Blackwell 2"}));
+    EXPECT_EQ(indexes, (std::list<size_t>{1}));
 }
 
-// collectConfiguredNames returns the Name of every systemConfiguration entry
-// (the resolved names of already-applied configs that run() seeds into
-// passedProbes).
-TEST(CollectConfiguredNames, ReturnsAllNames)
+TEST(RestorePersistedConfigurations, MissingDeviceDoesNotRegisterHistoricalName)
 {
-    json systemConfiguration = {
-        {"16888500906263256819", {{"Name", "Nvidia RTX PRO 6000 Blackwell 1"}}},
-        {"3421789056127653902", {{"Name", "Nvidia RTX PRO 6000 Blackwell 2"}}}};
-    std::vector<std::string> names =
-        scan::detail::collectConfiguredNames(systemConfiguration);
-    EXPECT_EQ(names.size(), 2);
-    EXPECT_NE(std::find(names.begin(), names.end(),
-                        "Nvidia RTX PRO 6000 Blackwell 1"),
-              names.end());
-    EXPECT_NE(std::find(names.begin(), names.end(),
-                        "Nvidia RTX PRO 6000 Blackwell 2"),
-              names.end());
+    const std::string probeName = "Nvidia RTX PRO 6000 Blackwell $index";
+    DBusInterface properties = {{"BUS", uint64_t{10}}};
+    const std::string recordId =
+        scan::detail::getRecordName(properties, probeName);
+    json configuration = {
+        {recordId, {{"Name", "Nvidia RTX PRO 6000 Blackwell 1"}}}};
+    json cached = configuration;
+    json missing = configuration;
+    const json original = missing;
+    scan::FoundDevices devices;
+    std::vector<std::string> passed;
+    std::set<json> usedNames;
+    std::list<size_t> indexes = {1};
+
+    scan::detail::restorePersistedConfigurations(
+        devices, probeName, configuration, cached, missing, passed, usedNames,
+        indexes);
+
+    EXPECT_EQ(missing, original);
+    EXPECT_TRUE(passed.empty());
+    EXPECT_TRUE(usedNames.empty());
+    EXPECT_EQ(indexes, (std::list<size_t>{1}));
 }
 
-// Regression for the templated-config prune bug: on a rescan a config that is
-// already applied (its resolved templated Name is in systemConfiguration) must
-// survive, while an unrelated missing config stays eligible for pruning. This
-// mirrors the seed-then-prune that PerformScan::run() performs.
-TEST(SeedAndPrune, RescanKeepsAppliedTemplatedConfig)
+TEST(RestorePersistedConfigurations, KeepsUnmatchedInstanceMissing)
 {
-    const std::string gpuKey = "16888500906263256819";
-    const std::string otherKey = "9995127843016654321";
+    const std::string probeName = "Nvidia RTX PRO 6000 Blackwell $index";
+    DBusInterface first = {{"ADDRESS", uint64_t{80}}};
+    DBusInterface second = {{"ADDRESS", uint64_t{81}}};
+    const std::string firstId = scan::detail::getRecordName(first, probeName);
+    const std::string secondId = scan::detail::getRecordName(second, probeName);
+    json configuration = {
+        {firstId, {{"Name", "Nvidia RTX PRO 6000 Blackwell 1"}}},
+        {secondId, {{"Name", "Nvidia RTX PRO 6000 Blackwell 2"}}}};
+    json cached = json::object();
+    json missing = configuration;
+    scan::FoundDevices devices = {{second, "/fru/blackwell_1"}};
+    std::vector<std::string> passed;
+    std::set<json> usedNames;
+    std::list<size_t> indexes = {1, 2};
 
-    // "...Blackwell 1" was resolved from a templated Name and is applied.
-    json systemConfiguration = {
-        {gpuKey, {{"Name", "Nvidia RTX PRO 6000 Blackwell 1"}}}};
+    scan::detail::restorePersistedConfigurations(
+        devices, probeName, configuration, cached, missing, passed, usedNames,
+        indexes);
 
-    // At the start of a rescan everything currently present is provisionally
-    // "missing" until re-proven this pass.
-    json missing = {{gpuKey, {{"Name", "Nvidia RTX PRO 6000 Blackwell 1"}}},
-                    {otherKey, {{"Name", "Some Other Board"}}}};
+    EXPECT_EQ(missing,
+              (json{{firstId, {{"Name", "Nvidia RTX PRO 6000 Blackwell 1"}}}}));
+    EXPECT_EQ(passed,
+              (std::vector<std::string>{"Nvidia RTX PRO 6000 Blackwell 2"}));
+    EXPECT_EQ(configuration[secondId]["Name"],
+              "Nvidia RTX PRO 6000 Blackwell 2");
+}
 
-    std::vector<std::string> passedProbes =
-        scan::detail::collectConfiguredNames(systemConfiguration);
-    scan::detail::pruneMissingByName(missing, passedProbes);
+TEST(RestorePersistedConfigurations, RestoresCachedMatchedInstance)
+{
+    const std::string probeName = "Nvidia RTX PRO 6000 Blackwell $index";
+    DBusInterface properties = {{"BUS", uint64_t{10}}};
+    const std::string recordId =
+        scan::detail::getRecordName(properties, probeName);
+    json configuration = json::object();
+    json cached = {
+        {recordId,
+         {{"Name", "Nvidia RTX PRO 6000 Blackwell 2"},
+          {"Exposes", json::array({nullptr, {{"Name", "Sensor"}}})}}}};
+    json missing = json::object();
+    scan::FoundDevices devices = {{properties, "/fru/blackwell"}};
+    std::vector<std::string> passed;
+    std::set<json> usedNames;
+    std::list<size_t> indexes = {1, 2};
 
-    EXPECT_EQ(missing.size(), 1);
-    EXPECT_FALSE(missing.contains(gpuKey));
-    EXPECT_TRUE(missing.contains(otherKey));
+    scan::detail::restorePersistedConfigurations(
+        devices, probeName, configuration, cached, missing, passed, usedNames,
+        indexes);
+
+    EXPECT_EQ(configuration[recordId]["Name"],
+              "Nvidia RTX PRO 6000 Blackwell 2");
+    EXPECT_EQ(configuration[recordId]["Exposes"],
+              json::array({{{"Name", "Sensor"}}}));
+    EXPECT_EQ(passed,
+              (std::vector<std::string>{"Nvidia RTX PRO 6000 Blackwell 2"}));
+    EXPECT_TRUE(devices.empty());
+    EXPECT_EQ(indexes, (std::list<size_t>{1}));
 }
