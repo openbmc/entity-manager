@@ -17,6 +17,7 @@
             "Thresholds": [
                 {
                     "Direction": "less than",
+                    "Hysteresis": 0.72,
                     "Label": "in0",
                     "Name": "lower non critical",
                     "Severity": 0,
@@ -24,6 +25,7 @@
                 },
                 {
                     "Direction": "greater than",
+                    "Hysteresis": 0.72,
                     "Label": "in0",
                     "Name": "upper non critical",
                     "Severity": 0,
@@ -31,6 +33,7 @@
                 },
                 {
                     "Direction": "greater than",
+                    "Hysteresis": 0.72,
                     "Label": "in0",
                     "Name": "upper non recoverable",
                     "Severity": 4,
@@ -134,6 +137,7 @@
                 },
                 {
                     "Direction": "less than",
+                    "Hysteresis": 0.72,
                     "Label": "in3",
                     "Name": "lower non critical",
                     "Severity": 0,
@@ -141,6 +145,7 @@
                 },
                 {
                     "Direction": "greater than",
+                    "Hysteresis": 0.72,
                     "Label": "in3",
                     "Name": "upper non critical",
                     "Severity": 0,
@@ -148,6 +153,7 @@
                 },
                 {
                     "Direction": "greater than",
+                    "Hysteresis": 0.72,
                     "Label": "in3",
                     "Name": "upper non recoverable",
                     "Severity": 4,
