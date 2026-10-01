@@ -32,6 +32,7 @@ constexpr std::array keywords{
     std::pair<std::string_view, TokenType>{"FALSE", TokenType::boolFalse},
     std::pair<std::string_view, TokenType>{"AND", TokenType::opAnd},
     std::pair<std::string_view, TokenType>{"OR", TokenType::opOr},
+    std::pair<std::string_view, TokenType>{"NOT", TokenType::opNot},
     std::pair<std::string_view, TokenType>{"MATCH_ONE", TokenType::matchOne},
 };
 
