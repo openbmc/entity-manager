@@ -27,6 +27,7 @@ const Token trueToken{TokenType::boolTrue, ""};
 const Token falseToken{TokenType::boolFalse, ""};
 const Token opAnd{TokenType::opAnd, ""};
 const Token opOr{TokenType::opOr, ""};
+const Token opNot{TokenType::opNot, ""};
 
 Token dbusProbe(const std::string& interface,
                 std::map<std::string, nlohmann::json> properties)
@@ -50,6 +51,20 @@ TEST(DoProbe, EvaluateOrOperator)
     EXPECT_TRUE(runProbe({falseToken, opOr, trueToken}));
     EXPECT_TRUE(runProbe({trueToken, opOr, falseToken}));
     EXPECT_FALSE(runProbe({falseToken, opOr, falseToken}));
+}
+
+TEST(DoProbe, EvaluateNotOperator)
+{
+    EXPECT_FALSE(runProbe({opNot, trueToken}));
+    EXPECT_TRUE(runProbe({opNot, falseToken}));
+    EXPECT_TRUE(runProbe({trueToken, opAnd, opNot, falseToken}));
+    EXPECT_TRUE(runProbe({opNot, opNot, trueToken}));
+
+    // A NOT that is not followed by a TRUE, FALSE, or D-Bus probe is ignored.
+    EXPECT_FALSE(runProbe({opNot, opAnd, falseToken}));
+    EXPECT_TRUE(runProbe({falseToken, opNot, opOr, trueToken}));
+    EXPECT_TRUE(runProbe({trueToken, opAnd, opNot}));
+    EXPECT_TRUE(runProbe({opNot, {TokenType::found, "A"}}, {}, {"A"}));
 }
 
 TEST(DoProbe, EvaluateFoundProbe)
@@ -77,6 +92,32 @@ TEST(DoProbe, EvaluateDbusProbe)
     EXPECT_FALSE(runProbe({dbusProbe("xyz.openbmc_project.FruDevice",
                                      {{"PRODUCT_PRODUCT_NAME", "Other"}})},
                           objects));
+}
+
+TEST(DoProbe, NegatedDbusProbeDoesNotReportDevices)
+{
+    const DBusInterface properties1 = {
+        {"PRODUCT_PRODUCT_NAME", std::string("Board_1")}};
+    const DBusInterface properties2 = {
+        {"PRODUCT_PRODUCT_NAME", std::string("Board_2")}};
+    const DBusObject interfaces1 = {
+        {"xyz.openbmc_project.FruDevice", properties1}};
+    const DBusObject interfaces2 = {
+        {"xyz.openbmc_project.FruDevice", properties2}};
+    MapperGetSubTreeResponse objects = {
+        {"/xyz/openbmc_project/FruDevice/1", interfaces1},
+        {"/xyz/openbmc_project/FruDevice/2", interfaces2}};
+
+    const Token board1 = dbusProbe("xyz.openbmc_project.FruDevice",
+                                   {{"PRODUCT_PRODUCT_NAME", "Board_1"}});
+    const Token board2 = dbusProbe("xyz.openbmc_project.FruDevice",
+                                   {{"PRODUCT_PRODUCT_NAME", "Board_2"}});
+
+    // The negated term's device is not reported.
+    scan::FoundDevices devices;
+    EXPECT_TRUE(runProbe({board1, opOr, opNot, board2}, objects, {}, &devices));
+    ASSERT_EQ(devices.size(), 1U);
+    EXPECT_EQ(devices[0].path, "/xyz/openbmc_project/FruDevice/1");
 }
 
 TEST(DoProbe, MatchOneRetainsSingleDevice)
