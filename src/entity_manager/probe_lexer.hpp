@@ -16,6 +16,7 @@ enum class TokenType
     boolFalse, // FALSE
     opAnd,     // AND
     opOr,      // OR
+    opNot,     // NOT
     matchOne,  // MATCH_ONE
     found,     // FOUND('name'); value holds the name
     dbusProbe, // iface({...});  value holds the full "iface({...})" text
