@@ -25,7 +25,7 @@ const Token trueToken{TokenType::boolTrue, ""};
 const Token falseToken{TokenType::boolFalse, ""};
 const Token opAnd{TokenType::opAnd, ""};
 const Token opOr{TokenType::opOr, ""};
-
+const Token opNot{TokenType::opNot, ""};
 } // namespace
 
 TEST(DoProbe, EvaluateAndOperator)
@@ -42,6 +42,14 @@ TEST(DoProbe, EvaluateOrOperator)
     EXPECT_TRUE(runProbe({falseToken, opOr, trueToken}));
     EXPECT_TRUE(runProbe({trueToken, opOr, falseToken}));
     EXPECT_FALSE(runProbe({falseToken, opOr, falseToken}));
+}
+
+TEST(DoProbe, EvaluateNotOperator)
+{
+    EXPECT_FALSE(runProbe({opNot, trueToken}));
+    EXPECT_TRUE(runProbe({opNot, falseToken}));
+    EXPECT_TRUE(runProbe({trueToken, opAnd, opNot, falseToken}));
+    EXPECT_TRUE(runProbe({opNot, opNot, trueToken}));
 }
 
 TEST(DoProbe, EvaluateFoundProbe)
