@@ -72,6 +72,7 @@ bool probe::detail::doProbe(const std::vector<probe::Token>& probeCommand,
                             scan::FoundDevices& foundDevs)
 {
     bool ret = false;
+    bool invertNext = false;
     bool matchOne = false;
     bool cur = true;
     probe::TokenType lastCommand = probe::TokenType::boolFalse;
@@ -103,6 +104,12 @@ bool probe::detail::doProbe(const std::vector<probe::Token>& probeCommand,
             {
                 // no-ops here; applied via lastCommand on the next operand
                 break;
+            }
+            case probe::TokenType::opNot:
+            {
+                // applied to next command; leave the ret and lastCommand as-is
+                invertNext = !invertNext;
+                continue;
             }
             case probe::TokenType::found:
             {
@@ -144,6 +151,12 @@ bool probe::detail::doProbe(const std::vector<probe::Token>& probeCommand,
                                 dbusProbeObjects, foundProbe);
                 break;
             }
+        }
+
+        if (invertNext)
+        {
+            cur = !cur;
+            invertNext = false;
         }
 
         // AND and OR only take effect on the operand that follows them
