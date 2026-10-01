@@ -72,6 +72,7 @@ bool probe::detail::doProbe(const std::vector<probe::Token>& probeCommand,
                             scan::FoundDevices& foundDevs)
 {
     bool ret = false;
+    bool invertNext = false;
     bool matchOne = false;
     bool cur = true;
     probe::TokenType lastCommand = probe::TokenType::boolFalse;
@@ -83,12 +84,12 @@ bool probe::detail::doProbe(const std::vector<probe::Token>& probeCommand,
         {
             case probe::TokenType::boolFalse:
             {
-                cur = false;
+                cur = invertNext;
                 break;
             }
             case probe::TokenType::boolTrue:
             {
-                cur = true;
+                cur = !invertNext;
                 break;
             }
             case probe::TokenType::matchOne:
@@ -104,6 +105,13 @@ bool probe::detail::doProbe(const std::vector<probe::Token>& probeCommand,
                 // no-ops here; applied via lastCommand on the next operand
                 break;
             }
+            case probe::TokenType::opNot:
+            {
+                // applied to the next TRUE, FALSE, or D-Bus probe; leave the
+                // ret and lastCommand as-is
+                invertNext = !invertNext;
+                continue;
+            }
             case probe::TokenType::found:
             {
                 cur = std::ranges::contains(passedProbes, token.value);
@@ -116,13 +124,20 @@ bool probe::detail::doProbe(const std::vector<probe::Token>& probeCommand,
                     // we can match any (string, variant) property. (string,
                     // string) does a regex
                     bool foundProbe = false;
+                    // devices matched by a negated term are not saved
+                    scan::FoundDevices negatedDevs;
                     cur = probeDbus(token.dbus->interface,
-                                    token.dbus->properties, foundDevs,
-                                    dbusProbeObjects, foundProbe);
+                                    token.dbus->properties,
+                                    invertNext ? negatedDevs : foundDevs,
+                                    dbusProbeObjects, foundProbe) != invertNext;
                     break;
                 }
             }
         }
+
+        // NOT applies only to a following TRUE, FALSE, or D-Bus probe;
+        // otherwise, it is ignored
+        invertNext = false;
 
         // AND and OR only take effect on the operand that follows them
         if (lastCommand == probe::TokenType::opAnd)
