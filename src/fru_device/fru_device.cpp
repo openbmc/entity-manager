@@ -1,9 +1,8 @@
 // SPDX-License-Identifier: Apache-2.0
 // SPDX-FileCopyrightText: Copyright 2018 Intel Corporation
 
-#include "fru_device.hpp"
-
 #include "../utils.hpp"
+#include "fru_device.hpp"
 #include "fru_utils.hpp"
 #include "neard_dbus.hpp"
 #include "nfc.hpp"
@@ -908,6 +907,7 @@ void addFruObjectToDbus(std::vector<uint8_t>& device, FruDetails& fruDetails,
         objServer.add_interface(productName, "xyz.openbmc_project.FruDevice");
     fruDetails.dbusInterfaceMap[std::pair<size_t, size_t>(bus, address)] =
         iface;
+    fruDetails.publishedFru[std::pair<size_t, size_t>(bus, address)] = device;
 
     if (ENABLE_FRU_UPDATE_PROPERTY)
     {
@@ -1198,6 +1198,7 @@ static void clearDBusInterfacesForBus(
             !(skipAddresses.contains(ifaceAddress)))
         {
             objServer.remove_interface(busIface->second);
+            fruDetails.publishedFru.erase(key);
             busIface = fruDetails.dbusInterfaceMap.erase(busIface);
         }
         else
@@ -1211,15 +1212,24 @@ static void publishFruOnBusAddress(
     std::vector<uint8_t>& device, uint16_t busNum, uint8_t address,
     FruDetails& fruDetails, sdbusplus::asio::object_server& objServer)
 {
-    // clear our interface here if there is any
-
     const std::pair<size_t, size_t> key = {busNum, address};
 
+    // Skip republishing when the FRU contents are unchanged, to avoid an
+    // InterfacesRemoved/InterfacesAdded churn that consumers (e.g.
+    // EntityManager) may react to by tearing down and recreating inventory.
+    auto cached = fruDetails.publishedFru.find(key);
+    if (cached != fruDetails.publishedFru.end() && cached->second == device)
+    {
+        return;
+    }
+
+    // clear our interface here if there is any
     auto iface = fruDetails.dbusInterfaceMap.find(key);
 
     if (iface != fruDetails.dbusInterfaceMap.end())
     {
         objServer.remove_interface(iface->second);
+        fruDetails.publishedFru.erase(key);
         fruDetails.dbusInterfaceMap.erase(iface);
     }
 
@@ -1307,6 +1317,7 @@ static void publishAllFrus(BusMap& busmap, FruDetails& fruDetails,
         if (!(busesCovered.contains(ifaceBus)) && !isNfcFru(ifaceBus))
         {
             objServer.remove_interface(busIface->second);
+            fruDetails.publishedFru.erase(key);
             busIface = fruDetails.dbusInterfaceMap.erase(busIface);
         }
         else
