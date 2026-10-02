@@ -384,22 +384,6 @@
             "Address": "0x49",
             "Bus": 10,
             "Name": "E1S_EB_TEMP_C",
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.1,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5.0
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.9,
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 45
-                }
-            ],
             "Type": "TMP75"
         }
     ],

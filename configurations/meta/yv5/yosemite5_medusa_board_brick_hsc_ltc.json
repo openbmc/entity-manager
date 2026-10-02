@@ -1062,44 +1062,12 @@
             "Address": "0x48",
             "Bus": 8,
             "Name": "PDB_R_TEMP_C",
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.1,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 1.5,
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 75
-                }
-            ],
             "Type": "TMP75"
         },
         {
             "Address": "0x49",
             "Bus": 8,
             "Name": "PDB_L_TEMP_C",
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.1,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 1.5,
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 75
-                }
-            ],
             "Type": "TMP75"
         },
         {
