@@ -587,9 +587,13 @@ static void addRecordProbePath(const EMConfig& record, const std::string& path,
     topology.addProbePath(boardInventoryPath, path);
 }
 
-void scan::PerformScan::updateSystemConfigurationForDevice(
+void scan::detail::updateSystemConfigurationForDevice(
     const EMConfig& recordRef, const std::string& probeName,
-    const DBusDeviceDescriptor& device, std::set<nlohmann::json>& usedNames,
+    const DBusDeviceDescriptor& device,
+    const MapperGetSubTreeResponse& dbusProbeObjects,
+    nlohmann::json& systemConfiguration, Topology& topology,
+    nlohmann::json& missingConfigurations,
+    std::vector<std::string>& passedProbes, std::set<nlohmann::json>& usedNames,
     std::list<size_t>& indexes, std::optional<std::string>& replaceStr)
 {
     // Need all interfaces on this path so that template
@@ -624,13 +628,13 @@ void scan::PerformScan::updateSystemConfigurationForDevice(
 
     detail::applyTemplatesAndExposeActions(
         recordName, record, dbusObject, foundDeviceIdx, replaceStr,
-        _em.systemConfiguration);
+        systemConfiguration);
 
-    addRecordProbePath(record, device.path, _em.topology);
+    addRecordProbePath(record, device.path, topology);
 
     // overwrite ourselves with cleaned up version
-    _em.systemConfiguration[recordName] = record.toJson();
-    _missingConfigurations.erase(recordName);
+    systemConfiguration[recordName] = record.toJson();
+    missingConfigurations.erase(recordName);
 }
 
 void scan::PerformScan::updateSystemConfiguration(const EMConfig& recordRef,
@@ -652,8 +656,10 @@ void scan::PerformScan::updateSystemConfiguration(const EMConfig& recordRef,
 
     for (const DBusDeviceDescriptor& device : foundDevices)
     {
-        updateSystemConfigurationForDevice(recordRef, probeName, device,
-                                           usedNames, indexes, replaceStr);
+        detail::updateSystemConfigurationForDevice(
+            recordRef, probeName, device, dbusProbeObjects,
+            _em.systemConfiguration, _em.topology, _missingConfigurations,
+            passedProbes, usedNames, indexes, replaceStr);
     }
 }
 
