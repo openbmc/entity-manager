@@ -1,9 +1,13 @@
 #include "entity_manager/perform_scan.hpp"
+#include "entity_manager/topology.hpp"
+#include "utils.hpp"
 
 #include <nlohmann/json.hpp>
 
+#include <cstddef>
 #include <cstdint>
 #include <list>
+#include <optional>
 #include <set>
 #include <string>
 #include <vector>
@@ -153,4 +157,65 @@ TEST(RestorePersistedConfigurations, RestoresCachedMatchedInstance)
               (std::vector<std::string>{"Nvidia RTX PRO 6000 Blackwell 2"}));
     EXPECT_TRUE(devices.empty());
     EXPECT_EQ(indexes, (std::list<size_t>{1}));
+}
+
+// A templated Name is resolved against the device index, and the resolved name
+// is registered so that another config's FOUND() on it can match.
+TEST(UpdateSystemConfigurationForDevice, RegistersResolvedName)
+{
+    const std::string probeName = "Nvidia RTX PRO 6000 Blackwell $index";
+    const json record = {{"Name", probeName}};
+    DBusInterface properties = {{"BUS", uint64_t{10}}};
+    const scan::DBusDeviceDescriptor device = {properties, "/fru/blackwell"};
+    const MapperGetSubTreeResponse dbusProbeObjects;
+    json configuration = json::object();
+    Topology topology;
+    json missing = json::object();
+    std::vector<std::string> passed;
+    std::set<json> usedNames;
+    std::list<size_t> indexes = {1};
+    std::optional<std::string> replaceStr;
+
+    scan::detail::updateSystemConfigurationForDevice(
+        record, probeName, device, dbusProbeObjects, configuration, topology,
+        missing, passed, usedNames, indexes, replaceStr);
+
+    EXPECT_EQ(passed,
+              (std::vector<std::string>{"Nvidia RTX PRO 6000 Blackwell 1"}));
+    const std::string recordId =
+        scan::detail::getRecordName(properties, probeName);
+    EXPECT_EQ(configuration[recordId]["Name"],
+              "Nvidia RTX PRO 6000 Blackwell 1");
+    EXPECT_TRUE(indexes.empty());
+}
+
+// Each found device takes the next index, so every instance registers its own
+// resolved name.
+TEST(UpdateSystemConfigurationForDevice, RegistersEachInstance)
+{
+    const std::string probeName = "Nvidia RTX PRO 6000 Blackwell $index";
+    const json record = {{"Name", probeName}};
+    DBusInterface first = {{"BUS", uint64_t{10}}};
+    DBusInterface second = {{"BUS", uint64_t{11}}};
+    const MapperGetSubTreeResponse dbusProbeObjects;
+    json configuration = json::object();
+    Topology topology;
+    json missing = json::object();
+    std::vector<std::string> passed;
+    std::set<json> usedNames;
+    std::list<size_t> indexes = {1, 2};
+    std::optional<std::string> replaceStr;
+
+    for (const scan::DBusDeviceDescriptor& device :
+         {scan::DBusDeviceDescriptor{first, "/fru/blackwell_0"},
+          scan::DBusDeviceDescriptor{second, "/fru/blackwell_1"}})
+    {
+        scan::detail::updateSystemConfigurationForDevice(
+            record, probeName, device, dbusProbeObjects, configuration,
+            topology, missing, passed, usedNames, indexes, replaceStr);
+    }
+
+    EXPECT_EQ(passed,
+              (std::vector<std::string>{"Nvidia RTX PRO 6000 Blackwell 1",
+                                        "Nvidia RTX PRO 6000 Blackwell 2"}));
 }
