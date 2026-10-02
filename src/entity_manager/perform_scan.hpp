@@ -50,11 +50,6 @@ struct PerformScan final : std::enable_shared_from_this<PerformScan>
     std::vector<std::string> passedProbes;
 
   private:
-    void updateSystemConfigurationForDevice(
-        const EMConfig& recordRef, const std::string& probeName,
-        const DBusDeviceDescriptor& device, std::set<nlohmann::json>& usedNames,
-        std::list<size_t>& indexes, std::optional<std::string>& replaceStr);
-
     // Walk _configurations, dropping malformed or already-probed entries and
     // starting a PerformProbe for each remaining one. Collects the D-Bus
     // interfaces to look up into dbusProbeInterfaces / dbusProbePointers.
@@ -96,6 +91,17 @@ void restorePersistedConfigurations(
     nlohmann::json& missingConfigurations,
     std::vector<std::string>& passedProbes, std::set<nlohmann::json>& usedNames,
     std::list<size_t>& indexes);
+
+// Apply a matched record to one found device, registering its resolved Name in
+// passedProbes so that FOUND() can match it.
+void updateSystemConfigurationForDevice(
+    const EMConfig& recordRef, const std::string& probeName,
+    const DBusDeviceDescriptor& device,
+    const MapperGetSubTreeResponse& dbusProbeObjects,
+    nlohmann::json& systemConfiguration, Topology& topology,
+    nlohmann::json& missingConfigurations,
+    std::vector<std::string>& passedProbes, std::set<nlohmann::json>& usedNames,
+    std::list<size_t>& indexes, std::optional<std::string>& replaceStr);
 } // namespace detail
 
 } // namespace scan
