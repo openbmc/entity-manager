@@ -22,6 +22,30 @@
       },
       "revId": "c9b624da0b1aae3636d0c3cb4a1e16453e4845f4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "244792ca_3acc721f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-02T09:59:26Z",
+      "side": 1,
+      "message": "https://github.com/openbmc/sdbusplus/blob/f94e0ce95884678b49502469dfcd6743b587b584/include/sdbusplus/asio/object_server.hpp#L861\n\n```\nclass object_server\n{\n  public:\n    ...\n    std::shared_ptr\u003cdbus_interface\u003e add_interface(const std::string\u0026 path,\n                                                  const std::string\u0026 name)\n    {\n        auto dbusIface \u003d std::make_shared\u003cdbus_interface\u003e(conn_, path, name);\n        interfaces_.emplace_back(dbusIface);\n        return dbusIface;\n    }\n    ...\n  private:\n    std::shared_ptr\u003csdbusplus::asio::connection\u003e conn_;\n    std::vector\u003cstd::shared_ptr\u003cdbus_interface\u003e\u003e interfaces_;\n    std::vector\u003cserver::manager_t\u003e managers_;\n};\n```\n\nAlso added tested statement with catalina qemu.",
+      "parentUuid": "2aca31f4_59246229",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 67
+      },
+      "revId": "c9b624da0b1aae3636d0c3cb4a1e16453e4845f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
