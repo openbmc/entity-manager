@@ -1,0 +1,176 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7559ee6_068ebf52",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-10-02T05:57:45Z",
+      "side": 1,
+      "message": "nit: this is a bit redundant and I would remove it.",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 48
+      },
+      "revId": "6213b9f87ba9217a99d585936164fd67d396159d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ca85016_088be3d4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-10-02T05:57:45Z",
+      "side": 1,
+      "message": "Why can\u0027t Name be used for this?",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 10
+      },
+      "revId": "6213b9f87ba9217a99d585936164fd67d396159d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01288d36_ff45a4b7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-10-02T05:57:45Z",
+      "side": 1,
+      "message": "It\u0027s better to give an example here.",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 27
+      },
+      "revId": "6213b9f87ba9217a99d585936164fd67d396159d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb8673f8_6e3f8a87",
+        "filename": "configurations/nvidia/gb200.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-10-02T05:57:45Z",
+      "side": 1,
+      "message": "I saw the purpose of this in the commit message, but why can\u0027t the consuming service name this (and provide an index based on how many such MCTP endpoints it discovered)?",
+      "revId": "6213b9f87ba9217a99d585936164fd67d396159d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0273b3a_a857d58d",
+        "filename": "configurations/nvidia/gb200.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-10-02T05:57:45Z",
+      "side": 1,
+      "message": "This config itself isn\u0027t a platform config, so why should this live here?",
+      "revId": "6213b9f87ba9217a99d585936164fd67d396159d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a670774_5e59babf",
+        "filename": "docs/platform_configuration.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-10-02T05:57:45Z",
+      "side": 1,
+      "message": "I\u0027m finding it a little hard to understand this. Maybe an example of rephrasing will help. Also, how does this relate to \"Associating a platform exposes record with a board\".",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 16
+      },
+      "revId": "6213b9f87ba9217a99d585936164fd67d396159d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d53e820c_0f395a0f",
+        "filename": "schemas/nvidia.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-10-02T05:57:45Z",
+      "side": 1,
+      "message": "So the value in the board/entity config is the default and the platform can override it? Otherwise, how do we know the platform name for a device at a board level - it could be named differently in different platforms?",
+      "range": {
+        "startLine": 12,
+        "startChar": 71,
+        "endLine": 12,
+        "endChar": 94
+      },
+      "revId": "6213b9f87ba9217a99d585936164fd67d396159d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fafe050a_26b0bfb7",
+        "filename": "schemas/nvidia.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-10-02T05:57:45Z",
+      "side": 1,
+      "message": "Why are these mandatory?",
+      "range": {
+        "startLine": 28,
+        "startChar": 25,
+        "endLine": 28,
+        "endChar": 59
+      },
+      "revId": "6213b9f87ba9217a99d585936164fd67d396159d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
