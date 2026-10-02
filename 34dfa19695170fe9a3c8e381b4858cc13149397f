@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c76a0196_29757dd4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-02T05:09:02Z",
+      "side": 1,
+      "message": "LGTM. Thanks for doing this.",
+      "revId": "34dfa19695170fe9a3c8e381b4858cc13149397f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37054a42_7f531665",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-02T05:09:02Z",
+      "side": 1,
+      "message": "nit: at() would avoid inserting a null into the record if Name were ever absent.\n\n```suggestion\n        passedProbes.push_back(record-\u003eat(\"Name\").get\u003cstd::string\u003e());\n```",
+      "revId": "34dfa19695170fe9a3c8e381b4858cc13149397f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
