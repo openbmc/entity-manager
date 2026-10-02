@@ -12,11 +12,17 @@
 #include <set>
 #include <vector>
 
+// Cache of the FRU contents currently published on dbus.
+// Key: pair(bus number, address). Value: the FRU bytes last published for it.
+using PublishedFruMap =
+    std::flat_map<std::pair<size_t, size_t>, std::vector<uint8_t>>;
+
 // Runtime state shared by the fru-device scan/publish paths. All members
 // share the same lifetime (owned by main()) and are always passed together.
 struct FruDetails
 {
     DBusIntfMap dbusInterfaceMap;
+    PublishedFruMap publishedFru;
     size_t unknownBusObjectCount = 0;
     bool powerIsOn = false;
     std::set<size_t> addressBlocklist;
