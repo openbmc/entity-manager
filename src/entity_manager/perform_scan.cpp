@@ -598,9 +598,13 @@ static void addRecordProbePath(const nlohmann::json::object_t& record,
     topology.addProbePath(boardInventoryPath, path);
 }
 
-void scan::PerformScan::updateSystemConfigurationForDevice(
+void scan::detail::updateSystemConfigurationForDevice(
     const nlohmann::json& recordRef, const std::string& probeName,
-    const DBusDeviceDescriptor& device, std::set<nlohmann::json>& usedNames,
+    const DBusDeviceDescriptor& device,
+    const MapperGetSubTreeResponse& dbusProbeObjects,
+    nlohmann::json& systemConfiguration, Topology& topology,
+    nlohmann::json& missingConfigurations,
+    std::vector<std::string>& passedProbes, std::set<nlohmann::json>& usedNames,
     std::list<size_t>& indexes, std::optional<std::string>& replaceStr)
 {
     // Need all interfaces on this path so that template
@@ -651,7 +655,7 @@ void scan::PerformScan::updateSystemConfigurationForDevice(
     // insert into configuration temporarily to be able to
     // reference ourselves
 
-    _em.systemConfiguration[recordName] = record;
+    systemConfiguration[recordName] = record;
 
     auto findExpose = record.find("Exposes");
     if (findExpose == record.end())
@@ -660,13 +664,13 @@ void scan::PerformScan::updateSystemConfigurationForDevice(
     }
 
     applyExposes(recordName, findExpose->second, dbusObject, foundDeviceIdx,
-                 replaceStr, _em.systemConfiguration);
+                 replaceStr, systemConfiguration);
 
-    addRecordProbePath(record, device.path, _em.topology);
+    addRecordProbePath(record, device.path, topology);
 
     // overwrite ourselves with cleaned up version
-    _em.systemConfiguration[recordName] = record;
-    _missingConfigurations.erase(recordName);
+    systemConfiguration[recordName] = record;
+    missingConfigurations.erase(recordName);
 }
 
 void scan::PerformScan::updateSystemConfiguration(
@@ -688,8 +692,10 @@ void scan::PerformScan::updateSystemConfiguration(
 
     for (const DBusDeviceDescriptor& device : foundDevices)
     {
-        updateSystemConfigurationForDevice(recordRef, probeName, device,
-                                           usedNames, indexes, replaceStr);
+        detail::updateSystemConfigurationForDevice(
+            recordRef, probeName, device, dbusProbeObjects,
+            _em.systemConfiguration, _em.topology, _missingConfigurations,
+            passedProbes, usedNames, indexes, replaceStr);
     }
 }
 
