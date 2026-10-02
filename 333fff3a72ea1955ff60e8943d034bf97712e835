@@ -22,6 +22,30 @@
       },
       "revId": "333fff3a72ea1955ff60e8943d034bf97712e835",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c97ada8d_e60ca9e7",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1536,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2026-10-02T09:04:54Z",
+      "side": 1,
+      "message": "I checked PowerStatusMonitor and found a couple of things:\n\n1. FruDevice needs to invoke rescanBusses() when CurrentHostState becomes \"Running\", so it needs to add a callback mechanism to allow extra actions when state changes.\n\n\n2. Currently, FruDevice expects rescanBusses() to run only when CurrentHostState is exactly \"Running\". However, PowerStatusMonitor checks whether the state ends with \"Running\", which inadvertently matches both \"Running\" and \"TransitioningToRunning\".\n```\n    if (findState !\u003d values.end())\n    {\n        powerStatusOn \u003d\n            std::get\u003cstd::string\u003e(findState-\u003esecond).ends_with(\"Running\");\n    }\n```",
+      "parentUuid": "86392577_802700a9",
+      "range": {
+        "startLine": 1525,
+        "startChar": 13,
+        "endLine": 1536,
+        "endChar": 13
+      },
+      "revId": "333fff3a72ea1955ff60e8943d034bf97712e835",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
