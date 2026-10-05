@@ -106,6 +106,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b1f8af8_e333aad1",
+        "filename": "src/entity_manager/dbus_interface.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1001076
+      },
+      "writtenOn": "2026-10-05T15:28:32Z",
+      "side": 1,
+      "message": "Moved `addObjectRuntimeValidateJson` inside `insertIntoExposes`",
+      "parentUuid": "524832d9_91a84aee",
+      "revId": "ee2629792a2ba0d90ff160ca302b5c2b709bd857",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f4517c1f_c3695088",
@@ -119,6 +137,24 @@
       "writtenOn": "2026-08-14T06:24:38Z",
       "side": 1,
       "message": "With this order, a duplicate plus schema-invalid request may return a different first error than before. Could you confirm whether that change is intended?",
+      "revId": "ee2629792a2ba0d90ff160ca302b5c2b709bd857",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68520cc8_5925a7b5",
+        "filename": "src/entity_manager/dbus_interface.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1001076
+      },
+      "writtenOn": "2026-10-05T15:28:32Z",
+      "side": 1,
+      "message": "Added a try-catch block to handle the error appropriately.",
+      "parentUuid": "f4517c1f_c3695088",
       "revId": "ee2629792a2ba0d90ff160ca302b5c2b709bd857",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
