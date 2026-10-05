@@ -16,6 +16,24 @@
       "message": "Why is this needed here? `test_add_object.cpp` never references `EM_CACHE_CONFIGURATION` directly.\n\nThe only consumer of this macro is `config_cache.cpp:12`, which is compiled into `entity_manager_lib` — not into this test binary. By the time test_add_object links against entity_manager_lib, config_cache.cpp has already been compiled with whatever value meson.build set:\n\n```\nallowed \u003d get_option(\u0027new-device-detection\u0027)\ncpp_args_em +\u003d \u0027-DEM_CACHE_CONFIGURATION\u003d\u0027 + allowed.to_string()\n```\n\nSo this `-DEM_CACHE_CONFIGURATION\u003dtrue` here is a no-op — it only affects the compilation of test_add_object.cpp, which doesn\u0027t use the macro. The test\u0027s actual behavior depends entirely on the `new-device-detection` option used when building entity_manager_lib (default true, but overridable). If that option is ever set to false, this test would fail despite this line claiming to force true.",
       "revId": "f6a7517de5b95cacd0fb8a6b551e022b1a920a28",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00fdcdb7_a9bc64e5",
+        "filename": "test/entity_manager/meson.build",
+        "patchSetId": 10
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1001076
+      },
+      "writtenOn": "2026-10-05T14:57:49Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "46e1de8a_31d0bab9",
+      "revId": "f6a7517de5b95cacd0fb8a6b551e022b1a920a28",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
