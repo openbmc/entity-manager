@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0727f9c_dc15a5b5",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1194,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-05T14:22:04Z",
+      "side": 1,
+      "message": "```suggestion\nusing PendingRemoveList \u003d\n    std::vector\u003cstd::shared_ptr\u003csdbusplus::asio::dbus_interface\u003e\u003e;\nstruct PendingAdd\n{\n    std::vector\u003cuint8_t\u003e device;\n    uint16_t busNum;\n    uint8_t address;\n};\nusing PendingAddList \u003d std::vector\u003cPendingAdd\u003e;\n\nclass  PublishFru {\n    public:\n\tvoid clearDBusInterfacesForBus(...);\n        void publishFruOnBusAddress(...);\n        void publishFrusOnBusCommon(...);\n        void publishFrusOnBus(...);\n        void publishAllFrus(...);\n\n    private:\n\tPendingAddList addList;\n\tPendindRemoveList removeList;\n        FruDetails\u0026 fruDetails;\n};\n```\n\nthis is only an idea, feel free to ignore if you don\u0027t like it.\n\nBy making a class we would avoid passing the state around lots of functions and could also make a method for the currently duplicated code (separate comment).",
+      "range": {
+        "startLine": 1186,
+        "startChar": 0,
+        "endLine": 1194,
+        "endChar": 47
+      },
+      "revId": "635b56813c76fcfba759f7d6d59d1915830177f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c61187be_79f99ed1",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1412,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-05T14:22:04Z",
+      "side": 1,
+      "message": "Duplicated code, same as code starting near line 1348. Maybe extract a funciton `applyPendingAddRemoveLists`",
+      "range": {
+        "startLine": 1401,
+        "startChar": 1,
+        "endLine": 1412,
+        "endChar": 13
+      },
+      "revId": "635b56813c76fcfba759f7d6d59d1915830177f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
