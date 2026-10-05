@@ -1183,9 +1183,19 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
     return true;
 }
 
+using PendingRemoveList =
+    std::vector<std::shared_ptr<sdbusplus::asio::dbus_interface>>;
+struct PendingAdd
+{
+    std::vector<uint8_t> device;
+    uint16_t busNum;
+    uint8_t address;
+};
+using PendingAddList = std::vector<PendingAdd>;
+
 static void clearDBusInterfacesForBus(
     uint16_t busNum, const std::set<uint8_t>& skipAddresses,
-    FruDetails& fruDetails, sdbusplus::asio::object_server& objServer)
+    FruDetails& fruDetails, PendingRemoveList& pendingRemove)
 {
     for (auto busIface = fruDetails.dbusInterfaceMap.begin();
          busIface != fruDetails.dbusInterfaceMap.end();)
@@ -1197,7 +1207,7 @@ static void clearDBusInterfacesForBus(
         if (ifaceBus == static_cast<size_t>(busNum) &&
             !(skipAddresses.contains(ifaceAddress)))
         {
-            objServer.remove_interface(busIface->second);
+            pendingRemove.emplace_back(busIface->second);
             busIface = fruDetails.dbusInterfaceMap.erase(busIface);
         }
         else
@@ -1209,7 +1219,8 @@ static void clearDBusInterfacesForBus(
 
 static void publishFruOnBusAddress(
     std::vector<uint8_t>& device, uint16_t busNum, uint8_t address,
-    FruDetails& fruDetails, sdbusplus::asio::object_server& objServer)
+    FruDetails& fruDetails, PendingRemoveList& pendingRemove,
+    PendingAddList& pendingAdd)
 {
     // clear our interface here if there is any
 
@@ -1219,17 +1230,16 @@ static void publishFruOnBusAddress(
 
     if (iface != fruDetails.dbusInterfaceMap.end())
     {
-        objServer.remove_interface(iface->second);
+        pendingRemove.emplace_back(iface->second);
         fruDetails.dbusInterfaceMap.erase(iface);
     }
 
-    addFruObjectToDbus(device, fruDetails, static_cast<uint32_t>(busNum),
-                       address, objServer);
+    pendingAdd.emplace_back(PendingAdd{device, busNum, address});
 }
 
-static void publishFrusOnBusCommon(BusMap& busmap, uint16_t busNum,
-                                   FruDetails& fruDetails,
-                                   sdbusplus::asio::object_server& objServer)
+static void publishFrusOnBusCommon(
+    BusMap& busmap, uint16_t busNum, FruDetails& fruDetails,
+    PendingRemoveList& pendingRemove, PendingAddList& pendingAdd)
 {
     auto it = busmap.find(busNum);
 
@@ -1243,7 +1253,8 @@ static void publishFrusOnBusCommon(BusMap& busmap, uint16_t busNum,
 
     // clear interfaces for all other addresses on this bus which do not
     // get republished
-    clearDBusInterfacesForBus(busNum, addressesCovered, fruDetails, objServer);
+    clearDBusInterfacesForBus(busNum, addressesCovered, fruDetails,
+                              pendingRemove);
 
     if (it == busmap.end())
     {
@@ -1253,13 +1264,13 @@ static void publishFrusOnBusCommon(BusMap& busmap, uint16_t busNum,
     for (const auto& entry : *(it->second))
     {
         publishFruOnBusAddress(entry.second, busNum, entry.first, fruDetails,
-                               objServer);
+                               pendingRemove, pendingAdd);
     }
 }
 
-static void publishFrusOnBus(BusMap& busmap, uint16_t busNum,
-                             FruDetails& fruDetails,
-                             sdbusplus::asio::object_server& objServer)
+static void publishFrusOnBus(
+    BusMap& busmap, uint16_t busNum, FruDetails& fruDetails,
+    PendingRemoveList& pendingRemove, PendingAddList& pendingAdd)
 {
     if (busNum == baseboardFruBus)
     {
@@ -1274,7 +1285,8 @@ static void publishFrusOnBus(BusMap& busmap, uint16_t busNum,
         }
     }
 
-    publishFrusOnBusCommon(busmap, busNum, fruDetails, objServer);
+    publishFrusOnBusCommon(busmap, busNum, fruDetails, pendingRemove,
+                           pendingAdd);
 }
 
 // @returns all buses which still exist after i2c bus re-scan
@@ -1295,6 +1307,9 @@ static void publishAllFrus(BusMap& busmap, FruDetails& fruDetails,
 {
     fruDetails.unknownBusObjectCount = 0;
 
+    PendingRemoveList pendingRemove;
+    PendingAddList pendingAdd;
+
     const std::set<uint16_t> busesCovered = getCoveredBuses(busmap);
 
     // clear all interfaces on buses which are not republished
@@ -1306,7 +1321,7 @@ static void publishAllFrus(BusMap& busmap, FruDetails& fruDetails,
 
         if (!(busesCovered.contains(ifaceBus)) && !isNfcFru(ifaceBus))
         {
-            objServer.remove_interface(busIface->second);
+            pendingRemove.emplace_back(busIface->second);
             busIface = fruDetails.dbusInterfaceMap.erase(busIface);
         }
         else
@@ -1316,7 +1331,8 @@ static void publishAllFrus(BusMap& busmap, FruDetails& fruDetails,
     }
 
     // make sure baseboard fru rescan happens
-    publishFrusOnBus(busmap, baseboardFruBus, fruDetails, objServer);
+    publishFrusOnBus(busmap, baseboardFruBus, fruDetails, pendingRemove,
+                     pendingAdd);
 
     for (const auto& entry : busmap)
     {
@@ -1324,8 +1340,22 @@ static void publishAllFrus(BusMap& busmap, FruDetails& fruDetails,
         // it may modify the bus map
         if (entry.first != baseboardFruBus)
         {
-            publishFrusOnBus(busmap, entry.first, fruDetails, objServer);
+            publishFrusOnBus(busmap, entry.first, fruDetails, pendingRemove,
+                             pendingAdd);
         }
+    }
+
+    for (auto& iface : pendingRemove)
+    {
+        objServer.remove_interface(iface);
+    }
+    pendingRemove.clear();
+
+    for (auto& add : pendingAdd)
+    {
+        addFruObjectToDbus(add.device, fruDetails,
+                           static_cast<uint32_t>(add.busNum), add.address,
+                           objServer);
     }
 }
 
@@ -1364,7 +1394,22 @@ void rescanOneBus(BusMap& busmap, uint16_t busNum, FruDetails& fruDetails,
         i2cBuses, busmap, fruDetails.powerIsOn, objServer,
         fruDetails.addressBlocklist,
         [busNum, &busmap, &fruDetails, &objServer]() {
-            publishFrusOnBus(busmap, busNum, fruDetails, objServer);
+            PendingRemoveList pendingRemove;
+            PendingAddList pendingAdd;
+            publishFrusOnBus(busmap, busNum, fruDetails, pendingRemove,
+                             pendingAdd);
+            for (auto& iface : pendingRemove)
+            {
+                objServer.remove_interface(iface);
+            }
+            pendingRemove.clear();
+
+            for (auto& add : pendingAdd)
+            {
+                addFruObjectToDbus(add.device, fruDetails,
+                                   static_cast<uint32_t>(add.busNum),
+                                   add.address, objServer);
+            }
         });
     scan->run();
 }
