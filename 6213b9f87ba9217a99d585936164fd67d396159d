@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a53fda59_353bab82",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-05T05:44:27Z",
+      "side": 1,
+      "message": "Done, removed.",
+      "parentUuid": "e7559ee6_068ebf52",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 48
+      },
+      "revId": "6213b9f87ba9217a99d585936164fd67d396159d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7ca85016_088be3d4",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-10-02T05:57:45Z",
       "side": 1,
       "message": "Why can\u0027t Name be used for this?",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 10
+      },
+      "revId": "6213b9f87ba9217a99d585936164fd67d396159d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddccb16e_26229c28",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-05T05:44:27Z",
+      "side": 1,
+      "message": "`Name` stays the human readable label for the record, while `PlatformConfigName` is the short identifier a platform refers to and the device is named by on D-Bus, so folding them together would force a choice between a descriptive label and a short, stable name. That said, if you\u0027d still rather drop it, I\u0027m happy to take it off.",
+      "parentUuid": "7ca85016_088be3d4",
       "range": {
         "startLine": 27,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8cb1b3f_72ca8d60",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-05T05:44:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "01288d36_ff45a4b7",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 27
+      },
+      "revId": "6213b9f87ba9217a99d585936164fd67d396159d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb8673f8_6e3f8a87",
@@ -83,6 +155,24 @@
       "writtenOn": "2026-10-02T05:57:45Z",
       "side": 1,
       "message": "I saw the purpose of this in the commit message, but why can\u0027t the consuming service name this (and provide an index based on how many such MCTP endpoints it discovered)?",
+      "revId": "6213b9f87ba9217a99d585936164fd67d396159d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17060321_1bb7709e",
+        "filename": "configurations/nvidia/gb200.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-05T05:44:27Z",
+      "side": 1,
+      "message": "Agreed it wasn\u0027t needed: DeviceName always matched PlatformConfigName, so I dropped it.",
+      "parentUuid": "cb8673f8_6e3f8a87",
       "revId": "6213b9f87ba9217a99d585936164fd67d396159d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -104,6 +194,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc07601e_046dd6e0",
+        "filename": "configurations/nvidia/gb200.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-05T05:44:27Z",
+      "side": 1,
+      "message": "The name belongs to the board rather than the platform: the board defines it and every platform that uses the board looks it up, so it lives with the board\u0027s records.",
+      "parentUuid": "c0273b3a_a857d58d",
+      "revId": "6213b9f87ba9217a99d585936164fd67d396159d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0a670774_5e59babf",
@@ -117,6 +225,30 @@
       "writtenOn": "2026-10-02T05:57:45Z",
       "side": 1,
       "message": "I\u0027m finding it a little hard to understand this. Maybe an example of rephrasing will help. Also, how does this relate to \"Associating a platform exposes record with a board\".",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 16
+      },
+      "revId": "6213b9f87ba9217a99d585936164fd67d396159d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f6f9b40_1d06048e",
+        "filename": "docs/platform_configuration.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-05T05:44:27Z",
+      "side": 1,
+      "message": "Rewrote the section with an example. It now opens from Board in the section above: Board picks the board, and PlatformConfigName picks the record on it.",
+      "parentUuid": "0a670774_5e59babf",
       "range": {
         "startLine": 53,
         "startChar": 0,
@@ -150,6 +282,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a61eb6a_7cc1fdfb",
+        "filename": "schemas/nvidia.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-05T05:44:27Z",
+      "side": 1,
+      "message": "It\u0027s the other way round: the board defines the name and every platform refers to the device by it, so the board never needs to know how a platform would name it. I reworded the description to say so.",
+      "parentUuid": "d53e820c_0f395a0f",
+      "range": {
+        "startLine": 12,
+        "startChar": 71,
+        "endLine": 12,
+        "endChar": 94
+      },
+      "revId": "6213b9f87ba9217a99d585936164fd67d396159d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fafe050a_26b0bfb7",
@@ -163,6 +319,30 @@
       "writtenOn": "2026-10-02T05:57:45Z",
       "side": 1,
       "message": "Why are these mandatory?",
+      "range": {
+        "startLine": 28,
+        "startChar": 25,
+        "endLine": 28,
+        "endChar": 59
+      },
+      "revId": "6213b9f87ba9217a99d585936164fd67d396159d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab877c5f_659dc23c",
+        "filename": "schemas/nvidia.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-05T05:44:27Z",
+      "side": 1,
+      "message": "`DeviceName` is gone. `PlatformConfigName` stays required because a board can carry several records of one type that only the name tells apart, and a missing one is better caught at validation than as a device no platform can reach.",
+      "parentUuid": "fafe050a_26b0bfb7",
       "range": {
         "startLine": 28,
         "startChar": 25,
