@@ -16,6 +16,24 @@
       "message": "Probably OK, but on your biggest system, how much more memory is going to be used by caching all of these?  Is that a concern?",
       "revId": "e00a7eba8307fa0a1634adeedda0f436c1f86a49",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a15889a4_714a20f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002470
+      },
+      "writtenOn": "2026-10-05T08:12:25Z",
+      "side": 1,
+      "message": "Checked on the largest system I have on hand: 37 FRUs (busctl tree | grep -c FruDevice) on a 1 GB BMC.\n\nThe cache stores raw FRU bytes per (bus,address); maxFruSize caps a single FRU at 512 bytes. Worst case here is 37 * (512 + ~64) ≈ ~21 KB, and typical FRUs (~256 bytes) are about half that.\n\nEven an order of magnitude more FRUs would only be ~200 KB, so I don\u0027t think it\u0027s a concern on any realistic config.\n\nIt\u0027s also not really new memory pressure: fru-device already holds every FRU\u0027s bytes in busmap (DeviceMap) during a scan, so publishedFru is a second copy of the same data — same order of magnitude as what\u0027s already kept, not a multiple of it.",
+      "parentUuid": "b8bb4ab1_161230b6",
+      "revId": "e00a7eba8307fa0a1634adeedda0f436c1f86a49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
