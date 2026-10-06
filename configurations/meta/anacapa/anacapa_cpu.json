@@ -2,9 +2,7 @@
     "Exposes": [],
     "Name": "CPU0",
     "Probe": [
-        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Anacapa MB *', 'BOARD_MANUFACTURER': '(Inventec|Wiwynn)'})",
-        "AND",
-        "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'CPU0'})"
+        "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'CPU0', 'Compatible': 'com.meta.Hardware.Anacapa.Boards.MB'})"
     ],
     "Type": "Cpu",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
