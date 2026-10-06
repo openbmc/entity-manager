@@ -440,7 +440,7 @@
         }
     ],
     "Name": "Santa Barbara E1.S BP",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara E1.S BP', 'BOARD_MANUFACTURER': 'Quanta', 'BOARD_INFO_AM4': 'vr-rds'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': '^Santa Barbara (Gen2 )?E1.S BP', 'BOARD_MANUFACTURER': 'Quanta', 'BOARD_INFO_AM4': 'vr-rds'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",

@@ -1,0 +1,318 @@
+{
+    "Exposes": [
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "Santa Barbara PDB1 FRU",
+            "Type": "EEPROM"
+        },
+        {
+            "Name": "Tray_Cable_SlotID",
+            "PresencePinNames": [
+                "TRAY_SLOT_PRESENT_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Address": "0x42",
+            "Bus": 45,
+            "Labels": [
+                "in0"
+            ],
+            "Name": "PDB1_P52V_SENSE",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.02,
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.02,
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": -1
+                }
+            ],
+            "Type": "INA238",
+            "in0_Max": 1,
+            "in0_Min": -1,
+            "in0_Name": "PDB1_P52V_SENSE_VOLT_V"
+        },
+        {
+            "Address": "0x43",
+            "Bus": 45,
+            "Labels": [
+                "in0"
+            ],
+            "Name": "PDB1_GND_SENSE",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.02,
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.02,
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": -1
+                }
+            ],
+            "Type": "INA238",
+            "in0_Max": 1,
+            "in0_Min": -1,
+            "in0_Name": "PDB1_GND_SENSE_VOLT_V"
+        },
+        {
+            "Address": "0x4c",
+            "Bus": 45,
+            "Labels": [
+                "curr1"
+            ],
+            "Name": "PDB1_BUSBAR_TSENSE_P1",
+            "Type": "INA238",
+            "curr1_Max": 0.1,
+            "curr1_Min": 0,
+            "curr1_Name": "PDB1_BUSBAR_TSENSE_P1_CURR_A",
+            "curr1_Scale": 200000
+        },
+        {
+            "Address": "0x4d",
+            "Bus": 45,
+            "Labels": [
+                "curr1"
+            ],
+            "Name": "PDB1_BUSBAR_TSENSE_P2",
+            "Type": "INA238",
+            "curr1_Max": 0.1,
+            "curr1_Min": 0,
+            "curr1_Name": "PDB1_BUSBAR_TSENSE_P2_CURR_A",
+            "curr1_Scale": 200000
+        },
+        {
+            "Address": "0x43",
+            "Bus": 47,
+            "Labels": [
+                "iout1",
+                "pin",
+                "temp1",
+                "vin",
+                "vout1"
+            ],
+            "Name": "PDB1_P52V_HSC1",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2,
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.12,
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 56
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.92,
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 46
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.12,
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 56
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.92,
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 46
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2.4,
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 120
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 122.4,
+                    "Label": "pin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 6120
+                }
+            ],
+            "Type": "LTC4287",
+            "iout1_Name": "PDB1_P52V_HSC1_CURR_A",
+            "iout1_Offset": 0.3,
+            "iout1_Scale": 1020.408163265,
+            "pin_Name": "PDB1_P52V_HSC1_PWR_W",
+            "pin_Offset": 18.8,
+            "pin_Scale": 1030927.835052,
+            "temp1_Name": "PDB1_P52V_HSC1_TEMP_C",
+            "vin_Name": "PDB1_P52V_HSC1_VIN_VOLT_V",
+            "vout1_Name": "PDB1_P52V_HSC1_VOUT_VOLT_V"
+        },
+        {
+            "Address": "0x41",
+            "Bus": 47,
+            "Labels": [
+                "iout1",
+                "pin",
+                "temp1",
+                "vin",
+                "vout1"
+            ],
+            "Name": "PDB1_P52V_HSC2",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2,
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.12,
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 56
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.92,
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 46
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.12,
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 56
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.92,
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 46
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 3.4,
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 170
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 173.4,
+                    "Label": "pin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 8670
+                }
+            ],
+            "Type": "LTC4287",
+            "iout1_Name": "PDB1_P52V_HSC2_CURR_A",
+            "iout1_Offset": 0.11,
+            "iout1_Scale": 1086.956521739,
+            "pin_Name": "PDB1_P52V_HSC2_PWR_W",
+            "pin_Offset": 8.47,
+            "pin_Scale": 1098901.098901,
+            "temp1_Name": "PDB1_P52V_HSC2_TEMP_C",
+            "vin_Name": "PDB1_P52V_HSC2_VIN_VOLT_V",
+            "vout1_Name": "PDB1_P52V_HSC2_VOUT_VOLT_V"
+        },
+        {
+            "Address": "0x4a",
+            "Bus": 44,
+            "Name": "PDB1_TOP_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.6,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 80.0
+                }
+            ],
+            "Type": "TMP75"
+        },
+        {
+            "Address": "0x4e",
+            "Bus": 44,
+            "Name": "PDB1_BOT_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.6,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 80.0
+                }
+            ],
+            "Type": "TMP75"
+        }
+    ],
+    "Name": "Santa Barbara PDB1",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara PDB1', 'BOARD_MANUFACTURER': 'Quanta', 'BOARD_INFO_AM4': '^vr-adv ubc-11kw$'})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$BOARD_MANUFACTURE_DATE",
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER",
+        "SparePartNumber": "$BOARD_INFO_AM1"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Compatible": {
+        "Names": [
+            "com.meta.Hardware.Santabarbara.Boards.Power_Distribution_Board_1"
+        ]
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Revision": {
+        "Version": "$PRODUCT_VERSION"
+    }
+}

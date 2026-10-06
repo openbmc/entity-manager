@@ -1,0 +1,900 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x49",
+            "Bus": 36,
+            "Labels": [
+                "in0",
+                "in1",
+                "in2",
+                "in3",
+                "in4",
+                "in5",
+                "in6",
+                "in7"
+            ],
+            "Name": "SWB_ADC0",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.264,
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.216,
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0693,
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.465
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0627,
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.135
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0254,
+                    "Label": "in2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.27
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0226,
+                    "Label": "in2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.13
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0693,
+                    "Label": "in3",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.465
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0627,
+                    "Label": "in3",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.135
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0254,
+                    "Label": "in4",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.27
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0226,
+                    "Label": "in4",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.13
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.105,
+                    "Label": "in5",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 5.25
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.095,
+                    "Label": "in5",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 4.75
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0254,
+                    "Label": "in6",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.27
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0226,
+                    "Label": "in6",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.13
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0254,
+                    "Label": "in7",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.27
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0226,
+                    "Label": "in7",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.13
+                }
+            ],
+            "Type": "ADS7830",
+            "in0_Name": "SWB_P12V_AUX_PDB_ADC_VOLT_V",
+            "in0_Scale": 133.2599,
+            "in1_Name": "SWB_P3V3_AUX_ADC_VOLT_V",
+            "in1_Scale": 479.103,
+            "in2_Name": "SWB_P1V2_SCO1_ADC_VOLT_V",
+            "in3_Name": "SWB_P3V3_ADC_VOLT_V",
+            "in3_Scale": 479.103,
+            "in4_Name": "SWB_P1V2_SCO2_ADC_VOLT_V",
+            "in5_Name": "SWB_P5V_ADC_VOLT_V",
+            "in5_Scale": 335.5482,
+            "in6_Name": "SWB_P1V2_SCO3_ADC_VOLT_V",
+            "in7_Name": "SWB_P1V2_SCO4_ADC_VOLT_V"
+        },
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "Santa Barbara PCIe switch board FRU",
+            "Type": "EEPROM"
+        },
+        {
+            "Name": "SWB_Cable_MCIO0",
+            "PresencePinNames": [
+                "CBL_PRSNT_MCIO_0_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "SWB_Cable_MCIO1",
+            "PresencePinNames": [
+                "CBL_PRSNT_MCIO_1_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "SWB_Cable_MCIO2",
+            "PresencePinNames": [
+                "CBL_PRSNT_MCIO_2_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "SWB_Cable_MCIO3",
+            "PresencePinNames": [
+                "CBL_PRSNT_MCIO_3_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "SWB_Cable_J1",
+            "PresencePinNames": [
+                "PDB_PRSNT_J1_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "SWB_Cable_J2",
+            "PresencePinNames": [
+                "PDB_PRSNT_J2_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "SWB_SKU_ID_0",
+            "PresencePinNames": [
+                "SWB_SKU_ID_0"
+            ],
+            "PresencePinValues": [
+                1
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "SWB_SKU_ID_1",
+            "PresencePinNames": [
+                "SWB_SKU_ID_1"
+            ],
+            "PresencePinValues": [
+                1
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "SWB_SKU_ID_2",
+            "PresencePinNames": [
+                "SWB_SKU_ID_2"
+            ],
+            "PresencePinValues": [
+                1
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "SWB_SKU_ID_3",
+            "PresencePinNames": [
+                "SWB_SKU_ID_3"
+            ],
+            "PresencePinValues": [
+                1
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Address": "0x40",
+            "Bus": 34,
+            "Labels": [
+                "in0",
+                "curr1",
+                "power1"
+            ],
+            "Name": "SWB_P12V_NIC3",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.264,
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.216,
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.1452,
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 7.26
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7424,
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 87.12
+                }
+            ],
+            "Type": "ISL28022",
+            "curr1_Name": "SWB_P12V_NIC3_CURR_A",
+            "curr1_Offset": 0.0015,
+            "curr1_Scale": 1111.975981319,
+            "in0_Name": "SWB_P12V_NIC3_VOLT_V",
+            "power1_Name": "SWB_P12V_NIC3_PWR_W",
+            "power1_Offset": 0.0381,
+            "power1_Scale": 1124985.937676
+        },
+        {
+            "Address": "0x41",
+            "Bus": 34,
+            "Labels": [
+                "in0",
+                "curr1",
+                "power1"
+            ],
+            "Name": "SWB_P12V_NIC1",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.264,
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.216,
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.1452,
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 7.26
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7424,
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 87.12
+                }
+            ],
+            "Type": "ISL28022",
+            "curr1_Name": "SWB_P12V_NIC1_CURR_A",
+            "curr1_Offset": 0.0004,
+            "curr1_Scale": 1123.343068973,
+            "in0_Name": "SWB_P12V_NIC1_VOLT_V",
+            "power1_Name": "SWB_P12V_NIC1_PWR_W",
+            "power1_Offset": 0.0238,
+            "power1_Scale": 1136751.16517
+        },
+        {
+            "Address": "0x44",
+            "Bus": 35,
+            "Labels": [
+                "in0",
+                "curr1",
+                "power1"
+            ],
+            "Name": "SWB_P12V_NIC4",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.264,
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.216,
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.1452,
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 7.26
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7424,
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 87.12
+                }
+            ],
+            "Type": "ISL28022",
+            "curr1_Name": "SWB_P12V_NIC4_CURR_A",
+            "curr1_Offset": -4e-05,
+            "curr1_Scale": 993.443274389,
+            "in0_Name": "SWB_P12V_NIC4_VOLT_V",
+            "power1_Name": "SWB_P12V_NIC4_PWR_W",
+            "power1_Offset": 0.0143,
+            "power1_Scale": 1003310.926056
+        },
+        {
+            "Address": "0x45",
+            "Bus": 35,
+            "Labels": [
+                "in0",
+                "curr1",
+                "power1"
+            ],
+            "Name": "SWB_P12V_NIC2",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.264,
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.216,
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.1452,
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 7.26
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.7424,
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 87.12
+                }
+            ],
+            "Type": "ISL28022",
+            "curr1_Name": "SWB_P12V_NIC2_CURR_A",
+            "curr1_Offset": 0.0002,
+            "curr1_Scale": 1171.920778155,
+            "in0_Name": "SWB_P12V_NIC2_VOLT_V",
+            "power1_Name": "SWB_P12V_NIC2_PWR_W",
+            "power1_Offset": 0.0226,
+            "power1_Scale": 1186521.120076
+        },
+        {
+            "Address": "0x61",
+            "Bus": "33",
+            "Labels": [
+                "iout1",
+                "iout2",
+                "vout1",
+                "vout2",
+                "pout1",
+                "pout2"
+            ],
+            "Name": "SWB_P0V75_SCO1",
+            "Name1": "SWB_P0V75_SCO3",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0158,
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 0.79
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0142,
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.71
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.792,
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 39.6
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.6256,
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 31.28
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0158,
+                    "Label": "vout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 0.79
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0142,
+                    "Label": "vout2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.71
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.792,
+                    "Label": "iout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 39.6
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.6256,
+                    "Label": "pout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 31.28
+                }
+            ],
+            "Type": "ISL69260",
+            "iout1_Name": "SWB_P0V75_SCO1_CURR_A",
+            "iout2_Name": "SWB_P0V75_SCO3_CURR_A",
+            "pout1_Name": "SWB_P0V75_SCO1_PWR_W",
+            "pout2_Name": "SWB_P0V75_SCO3_PWR_W",
+            "vout1_Name": "SWB_P0V75_SCO1_VOLT_V",
+            "vout2_Name": "SWB_P0V75_SCO3_VOLT_V"
+        },
+        {
+            "Address": "0x60",
+            "Bus": "33",
+            "Labels": [
+                "iout1",
+                "iout2",
+                "vout1",
+                "vout2",
+                "pout1",
+                "pout2"
+            ],
+            "Name": "SWB_P0V75_SCO2",
+            "Name1": "SWB_P0V75_SCO4",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0158,
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 0.79
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0142,
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.71
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.792,
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 39.6
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.6256,
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 31.28
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0158,
+                    "Label": "vout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 0.79
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0142,
+                    "Label": "vout2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.71
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.792,
+                    "Label": "iout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 39.6
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.6256,
+                    "Label": "pout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 31.28
+                }
+            ],
+            "Type": "ISL69260",
+            "iout1_Name": "SWB_P0V75_SCO2_CURR_A",
+            "iout2_Name": "SWB_P0V75_SCO4_CURR_A",
+            "pout1_Name": "SWB_P0V75_SCO2_PWR_W",
+            "pout2_Name": "SWB_P0V75_SCO4_PWR_W",
+            "vout1_Name": "SWB_P0V75_SCO2_VOLT_V",
+            "vout2_Name": "SWB_P0V75_SCO4_VOLT_V"
+        },
+        {
+            "Address": "0x61",
+            "Bus": 33,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Santabarbara.VR.ISL69260_p0v75_sco1_sco3",
+                "VendorIANA": 40981
+            },
+            "Name": "Santabarbara_SWB_VR_p0v75_sco1_sco3",
+            "Type": "ISL69269Firmware"
+        },
+        {
+            "Address": "0x60",
+            "Bus": 33,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Santabarbara.VR.ISL69260_p0v75_sco2_sco4",
+                "VendorIANA": 40981
+            },
+            "Name": "Santabarbara_SWB_VR_p0v75_sco2_sco4",
+            "Type": "ISL69269Firmware"
+        },
+        {
+            "Address": "0x30",
+            "Bus": 12,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Santabarbara.CPLD.LCMXO3D_9400_swb",
+                "VendorIANA": 40981
+            },
+            "Name": "Santabarbara_SWB_CPLD",
+            "Type": "LatticeLCMXO3D_9400Firmware"
+        },
+        {
+            "Address": "0x20",
+            "Bus": "114",
+            "Inventory": "",
+            "Name": "SWB_SCO1",
+            "PLDMSensors": [
+                {
+                    "ID": 6144,
+                    "Name": "TEMP_C"
+                }
+            ],
+            "Type": "MCTPI2CTarget"
+        },
+        {
+            "Address": "0x21",
+            "Bus": "115",
+            "Inventory": "",
+            "Name": "SWB_SCO2",
+            "PLDMSensors": [
+                {
+                    "ID": 6144,
+                    "Name": "TEMP_C"
+                }
+            ],
+            "Type": "MCTPI2CTarget"
+        },
+        {
+            "Address": "0x22",
+            "Bus": "116",
+            "Inventory": "",
+            "Name": "SWB_SCO3",
+            "PLDMSensors": [
+                {
+                    "ID": 6144,
+                    "Name": "TEMP_C"
+                }
+            ],
+            "Type": "MCTPI2CTarget"
+        },
+        {
+            "Address": "0x23",
+            "Bus": "117",
+            "Inventory": "",
+            "Name": "SWB_SCO4",
+            "PLDMSensors": [
+                {
+                    "ID": 6144,
+                    "Name": "TEMP_C"
+                }
+            ],
+            "Type": "MCTPI2CTarget"
+        },
+        {
+            "CheckHysteresisWithSetpoint": true,
+            "Class": "temp",
+            "DCoefficient": -1.0,
+            "FFGainCoefficient": 0.0,
+            "FFOffCoefficient": 0.0,
+            "ICoefficient": -0.5,
+            "ILimitMax": 100,
+            "ILimitMin": 0,
+            "Inputs": [
+                "NIC1_TEMP_C",
+                "NIC2_TEMP_C",
+                "NIC3_TEMP_C",
+                "NIC4_TEMP_C"
+            ],
+            "Name": "PID_BE_NIC_TEMP_C",
+            "NegativeHysteresis": 2.0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 0,
+            "PCoefficient": -5.0,
+            "PositiveHysteresis": 0.0,
+            "SetPoint": 85.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "CheckHysteresisWithSetpoint": true,
+            "Class": "temp",
+            "DCoefficient": -1.0,
+            "FFGainCoefficient": 0.0,
+            "FFOffCoefficient": 0.0,
+            "ICoefficient": -0.5,
+            "ILimitMax": 100,
+            "ILimitMin": 0,
+            "InputUnavailableAsFailed": false,
+            "Inputs": [
+                "NIC1_OSFP_TEMP_C",
+                "NIC2_OSFP_TEMP_C",
+                "NIC3_OSFP_TEMP_C",
+                "NIC4_OSFP_TEMP_C"
+            ],
+            "Name": "PID_BE_NIC_OSFP",
+            "NegativeHysteresis": 2.0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 0,
+            "PCoefficient": -5.0,
+            "PositiveHysteresis": 0.0,
+            "SetPoint": 60.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "Inputs": [
+                "NIC1_TEMP_C",
+                "NIC2_TEMP_C",
+                "NIC3_TEMP_C",
+                "NIC4_TEMP_C"
+            ],
+            "Name": "Stepwise_BE_NIC_TEMP_C",
+            "NegativeHysteresis": 1.0,
+            "Output": [
+                30.0,
+                31.0,
+                32.0,
+                33.0,
+                34.0,
+                35.0,
+                100.0
+            ],
+            "PositiveHysteresis": 0.0,
+            "Reading": [
+                75.0,
+                76.0,
+                77.0,
+                78.0,
+                79.0,
+                80.0,
+                100.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "InputUnavailableAsFailed": false,
+            "Inputs": [
+                "NIC1_OSFP_TEMP_C",
+                "NIC2_OSFP_TEMP_C",
+                "NIC3_OSFP_TEMP_C",
+                "NIC4_OSFP_TEMP_C"
+            ],
+            "Name": "Stepwise_BE_NIC_OSFP",
+            "NegativeHysteresis": 1.0,
+            "Output": [
+                30.0,
+                31.0,
+                32.0,
+                33.0,
+                34.0,
+                35.0,
+                100.0
+            ],
+            "PositiveHysteresis": 0.0,
+            "Reading": [
+                51.0,
+                52.0,
+                53.0,
+                54.0,
+                55.0,
+                56.0,
+                68.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Address": "0x48",
+            "Bus": 32,
+            "Name": "SWB_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.8,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 90.0
+                }
+            ],
+            "Type": "TMP75"
+        }
+    ],
+    "Name": "Santa Barbara PCIe switch board",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': '^Santa Barbara Gen2 PCIe SW', 'BOARD_MANUFACTURER': 'Quanta', 'BOARD_INFO_AM4': '^vr-rtt switch-aeb$'})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$BOARD_MANUFACTURE_DATE",
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER",
+        "SparePartNumber": "$BOARD_INFO_AM1"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Compatible": {
+        "Names": [
+            "com.meta.Hardware.Santabarbara.Boards.PCIe_Switch_Board"
+        ]
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Revision": {
+        "Version": "$PRODUCT_VERSION"
+    }
+}
