@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe02d182_36f71527",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1194,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2026-10-06T00:38:12Z",
+      "side": 1,
+      "message": "I will have a look, and add the changes as a follow-up commit.",
+      "parentUuid": "a0727f9c_dc15a5b5",
+      "range": {
+        "startLine": 1186,
+        "startChar": 0,
+        "endLine": 1194,
+        "endChar": 47
+      },
+      "revId": "635b56813c76fcfba759f7d6d59d1915830177f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c61187be_79f99ed1",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-10-05T14:22:04Z",
       "side": 1,
       "message": "Duplicated code, same as code starting near line 1348. Maybe extract a funciton `applyPendingAddRemoveLists`",
+      "range": {
+        "startLine": 1401,
+        "startChar": 1,
+        "endLine": 1412,
+        "endChar": 13
+      },
+      "revId": "635b56813c76fcfba759f7d6d59d1915830177f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7797fce_38bfdd7c",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1412,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2026-10-06T00:38:12Z",
+      "side": 1,
+      "message": "Done, thanks for the suggestion.",
+      "parentUuid": "c61187be_79f99ed1",
       "range": {
         "startLine": 1401,
         "startChar": 1,
