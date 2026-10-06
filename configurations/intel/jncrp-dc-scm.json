@@ -1,0 +1,580 @@
+{
+    "Exposes": [
+        {
+            "Name": "MCTP USB Root",
+            "Type": "MctpConfig",
+            "PhysicalLinkType": "usb",
+            "PhysicalLinkName": "mctpusb0",
+            "NetworkID": 3,
+            "Role": "BusOwner",
+            "RetryCount": 2,
+            "Timeout": 300,
+            "MTU": 251
+        },
+        {
+            "Name": "MCTP USB Root",
+            "Type": "MctpBusOwnerConfig",
+            "OwnEID": 8
+        },
+        {
+            "Name": "MCTP USB Generic",
+            "Type": "MctpConfig",
+            "PhysicalLinkType": "usb",
+            "PhysicalLinkName": "mctpusb[1-9]\\d*",
+            "Priority": 1,
+            "NetworkID": 3,
+            "Role": "BusOwner",
+            "RetryCount": 2,
+            "Timeout": 300,
+            "MTU": 251
+        },
+        {
+            "Name": "MCTP USB Generic",
+            "Type": "MctpBusOwnerConfig",
+            "OwnEID": 8
+        },
+        {
+            "Name": "I3C HUB detector ",
+            "Bus": [
+                3,
+                5
+            ],
+            "Type": "I3CHub"
+        },
+        {
+            "Address": "0x51",
+            "Bus": 10,
+            "DBusPath": "/xyz/openbmc_project/dcscm/cpld/manager",
+            "DBusService": "xyz.openbmc_project.DCSCM.Cpld.Manager",
+            "Name": "SCM PLD",
+            "Type": "CPLD"
+        },
+        {
+            "Name": "CUPS",
+            "Polling": {
+                "AveragingPeriod": 3000,
+                "CoreLoadFactor": 33.3,
+                "IioLoadFactor": 33.3,
+                "Interval": 1000,
+                "LoadFactorConfiguration": "Dynamic",
+                "MemoryLoadFactor": 33.4
+            },
+            "Type": "CupsSensor"
+        },
+        {
+            "BDF": 0,
+            "DefaultEID": 0,
+            "GetRoutingInterval": 5,
+            "Index": 0,
+            "Name": "MCTP PCIe",
+            "NetworkID": 1,
+            "PhysicalMediumID": "Pcie2",
+            "ReqRetryCount": 2,
+            "ReqToRespTimeMs": 120,
+            "Role": "Endpoint",
+            "SupportsSPDMRequester": true,
+            "TransportBindingType": "MctpPCIe",
+            "Type": "MctpConfiguration"
+        },
+        {
+            "PhysicalLinkType": "pcie",
+            "PhysicalLinkName": "mctpaspeed0",
+            "Role": "endpoint",
+            "NetworkID": 1,
+            "ResetEvents": [
+                "espireset"
+            ],
+            "RetryCount": 3,
+            "Timeout": 300,
+            "MTU": 68,
+            "Type": "MctpConfig",
+            "Name": "MCTP_PCIe"
+        },
+        {
+            "RequestEIDPool": 0,
+            "Type": "MctpEndPointConfig",
+            "Name": "MCTP_PCIe"
+        },
+        {
+            "PhysicalLinkType": "i3c",
+            "PhysicalLinkName": "mctpi3c2",
+            "Role": "busowner",
+            "NetworkID": 2,
+            "ResetEvents": [
+                "espireset"
+            ],
+            "MTU": 68,
+            "RetryCount": 3,
+            "Timeout": 300,
+            "Type": "MctpConfig",
+            "Name": "MCTP_PFR"
+        },
+        {
+            "BusNumber": 2,
+            "PIDMask": "20a00b0.000",
+            "Type": "MctpI3CConfig",
+            "Name": "MCTP_PFR"
+        },
+        {
+            "EIDPool": [
+                0,
+                0
+            ],
+            "OwnEID": 0,
+            "Type": "MctpBusOwnerConfig",
+            "Name": "MCTP_PFR"
+        },
+        {
+            "PhysicalLinkType": "i3c",
+            "PhysicalLinkName": "mctpi3c3",
+            "Role": "busowner",
+            "NetworkID": 3,
+            "ResetEvents": [
+                "powerStateChange"
+            ],
+            "MTU": 68,
+            "RetryCount": 3,
+            "Timeout": 300,
+            "Type": "MctpConfig",
+            "Name": "MCTP_I3C_PCIe1"
+        },
+        {
+            "BusNumber": 3,
+            "PIDMask": "4cd.{8}",
+            "Type": "MctpI3CConfig",
+            "Name": "MCTP_I3C_PCIe1"
+        },
+        {
+            "EIDPool": [
+                9,
+                244
+            ],
+            "OwnEID": 8,
+            "Type": "MctpBusOwnerConfig",
+            "Name": "MCTP_I3C_PCIe1"
+        },
+        {
+            "PhysicalLinkType": "i3c",
+            "PhysicalLinkName": "mctpi3c5",
+            "Role": "busowner",
+            "NetworkID": 3,
+            "ResetEvents": [
+                "powerStateChange"
+            ],
+            "MTU": 68,
+            "RetryCount": 3,
+            "Timeout": 300,
+            "Type": "MctpConfig",
+            "Name": "MCTP_I3C_PCIe2"
+        },
+        {
+            "BusNumber": 5,
+            "PIDMask": "4cd.{8}",
+            "Type": "MctpI3CConfig",
+            "Name": "MCTP_I3C_PCIe2"
+        },
+        {
+            "PhysicalLinkType": "i2c",
+            "PhysicalLinkName": "mctpi2c\\d+",
+            "Role": "busowner",
+            "NetworkID": 3,
+            "ResetEvents": [
+                "powerStateChange"
+            ],
+            "MTU": 68,
+            "RetryCount": 3,
+            "Timeout": 300,
+            "Type": "MctpConfig",
+            "Name": "MCTP_SMBus"
+        },
+        {
+            "DefaultAddress": 9,
+            "SupportedEndpointTargetAddress": [
+                29,
+                50,
+                56,
+                103
+            ],
+            "Type": "MctpSMBusConfig",
+            "Name": "MCTP_SMBus"
+        },
+        {
+            "Name": "I3C Bus CPU",
+            "Bus": 1,
+            "BusType": "CPU",
+            "Type": "I3CBus"
+        },
+        {
+            "Name": "I3C Bus PFR",
+            "Bus": 2,
+            "BusType": "PFR",
+            "Type": "I3CBus"
+        },
+        {
+            "Name": "I3C Bus PCIe 1",
+            "Bus": 3,
+            "BusType": "NORMAL",
+            "Type": "I3CBus"
+        },
+        {
+            "Name": "I3C Bus PCIe 2",
+            "Bus": 5,
+            "BusType": "NORMAL",
+            "Type": "I3CBus"
+        },
+        {
+            "PhysicalLinkType": "i3c",
+            "PhysicalLinkName": "mctpi3c([06-9]|\\d{2,})",
+            "Role": "busowner",
+            "Priority": 1,
+            "NetworkID": 3,
+            "ResetEvents": [
+                "powerStateChange"
+            ],
+            "MTU": 68,
+            "RetryCount": 3,
+            "Timeout": 300,
+            "Type": "MctpConfig",
+            "Name": "MCTP_I3C_AIC"
+        },
+        {
+            "BusNumber": 255,
+            "PIDMask": ".+",
+            "Type": "MctpI3CConfig",
+            "Name": "MCTP_I3C_AIC"
+        },
+        {
+            "AllowedBuses": [
+                "xyz.openbmc_project.MCTP_I3C_MNG_CPU0",
+                "xyz.openbmc_project.MCTP_I3C_MNG_CPU_HPM_0",
+                "xyz.openbmc_project.MCTP_I3C_MNG_CPU_HPM_1",
+                "xyz.openbmc_project.MCTP_I3C_MNG_CPU_HPM_2",
+                "xyz.openbmc_project.MCTP_I3C_MNG_CPU_HPM_3"
+            ],
+            "Bus": 2,
+            "DefaultEID": 0,
+            "Index": 1,
+            "Name": "MCTP I3C MNG PFR",
+            "NetworkID": 2,
+            "PhysicalMediumID": "I3cSDR",
+            "ProvisionalIdMask": 4096,
+            "ReqRetryCount": 2,
+            "ReqToRespTimeMs": 300,
+            "RequiredEIDPoolSize": 1,
+            "RequiresCpuPidMask": true,
+            "Role": "BusOwner",
+            "SupportsSPDMRequester": false,
+            "TransportBindingType": "MctpI3C",
+            "Type": "MctpConfiguration"
+        },
+        {
+            "Bus": 2,
+            "DefaultEID": 16,
+            "EIDPool": [
+                22
+            ],
+            "Index": 2,
+            "Name": "MCTP I3C MNG PFR Secure MB",
+            "NetworkID": 3,
+            "PhysicalMediumID": "I3cSDR",
+            "ProvisionalIdMask": 0,
+            "ReqRetryCount": 2,
+            "ReqToRespTimeMs": 300,
+            "RequiresCpuPidMask": true,
+            "Role": "BusOwner",
+            "SupportsBridge": true,
+            "SupportsSPDMRequester": false,
+            "TransportBindingType": "MctpI3C",
+            "Type": "MctpConfiguration"
+        },
+        {
+            "ARPOwnerSupport": false,
+            "BMCReceiverAddress": 18,
+            "Buses": [
+                "i3c-3",
+                "i3c-5"
+            ],
+            "DefaultEID": 8,
+            "EIDPool": [
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30,
+                31,
+                32,
+                33,
+                34,
+                35,
+                36,
+                37,
+                38,
+                39,
+                40
+            ],
+            "IgnoredEndpointTargetAddress": [
+                80,
+                81,
+                82,
+                83,
+                84,
+                85,
+                86,
+                87
+            ],
+            "Index": 3,
+            "Name": "MCTP SMBus AIC",
+            "PhysicalMediumID": "I2cCompatible",
+            "ReqRetryCount": 2,
+            "ReqToRespTimeMs": 300,
+            "Role": "BusOwner",
+            "SupportsBridge": true,
+            "TransportBindingType": "MctpSMBus",
+            "Type": "MctpConfiguration",
+            "_comment": [
+                "Title: MCTP service configuration to support all SMBus based AICs"
+            ]
+        },
+        {
+            "Config": {
+                "SensorsEnabled": true
+            },
+            "Name": "PMT",
+            "Type": "PmtConfig"
+        },
+        {
+            "Aead": [
+                "AES_256_GCM"
+            ],
+            "Asym": [
+                "ECDSA_P384"
+            ],
+            "BasicMutAuth": "BASIC",
+            "Capability": [
+                "CACHE",
+                "CERT",
+                "CHAL",
+                "MEAS_SIG",
+                "MEAS_FRESH",
+                "ENCRYPT",
+                "MAC",
+                "MUT_AUTH",
+                "KEY_EX",
+                "ENCAP"
+            ],
+            "CertPath": "/etc/spdm",
+            "Dhe": [
+                "SECP_384_R1",
+                "FFDHE_3072"
+            ],
+            "Hash": [
+                "SHA_384"
+            ],
+            "MeasHash": [
+                "SHA_384"
+            ],
+            "MeasSpec": "DMTF",
+            "MutAuth": "W_ENCAP",
+            "Name": "SPDM responder",
+            "ReqAsym": [
+                "ECDSA_P384"
+            ],
+            "Role": "responder",
+            "SlotCount": "3",
+            "Type": "SPDMConfiguration",
+            "Version": [
+                "1.0",
+                "1.2"
+            ]
+        },
+        {
+            "Aead": [
+                "AES_256_GCM"
+            ],
+            "Asym": [
+                "ECDSA_P384"
+            ],
+            "BasicMutAuth": "BASIC",
+            "Capability": [
+                "CERT",
+                "CHAL",
+                "ENCRYPT",
+                "MAC",
+                "MUT_AUTH",
+                "KEY_EX",
+                "ENCAP",
+                "HANDSHAKE_IN_CLEAR"
+            ],
+            "CertPath": "/etc/spdm",
+            "Dhe": [
+                "SECP_384_R1",
+                "FFDHE_3072"
+            ],
+            "Hash": [
+                "SHA_384"
+            ],
+            "MeasHash": [
+                "SHA_384"
+            ],
+            "MeasurementOp": "ALL",
+            "MutAuth": "W_ENCAP",
+            "Name": "SPDM requester",
+            "ReqAsym": [
+                "ECDSA_P384"
+            ],
+            "Role": "requester",
+            "SlotCount": "3",
+            "Type": "SPDMConfiguration",
+            "Version": [
+                "1.0",
+                "1.2"
+            ],
+            "SecureVersion": [
+                "1.0",
+                "1.1"
+            ]
+        },
+        {
+            "Address": "0x4B",
+            "Bus": 6,
+            "Name": "DC SCM Temp",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 115
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 110
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 5
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "TMP75"
+        },
+        {
+            "BMC_PRDY_N": {
+                "PinName": "DBP_ASD_BMC_PRDY_N"
+            },
+            "BMC_DEBUG_EN_N": {
+                "PinType": "PIN_NONE"
+            },
+            "BMC_PWR_DEBUG_N": {
+                "PinType": "PIN_NONE"
+            },
+            "BMC_RSMRST_B": {
+                "PinType": "PIN_NONE"
+            },
+            "BMC_SYSPWROK": {
+                "PinName": "DBP_HOOK3_CPU_FBRK_OUT_R_N"
+            },
+            "BMC_XDP_PRST_IN": {
+                "PinName": "DBP_PRSNT_IN_N"
+            },
+            "BMC_PWRGD2": {
+                "PinName": "DBP_PMODE_S0_PWROK"
+            },
+            "BMC_PWRGD3": {
+                "PinName": "PWRGD_CPU_AUXPWRGD"
+            },
+            "BMC_TCK_MUX_SEL": {
+                "PinType": "PIN_NONE"
+            },
+            "BusConfig": [
+                {
+                    "BusNum": 0,
+                    "BusType": "BUS_CONFIG_I3C"
+                },
+                {
+                    "BusNum": 1,
+                    "BusType": "BUS_CONFIG_I3C"
+                },
+                {
+                    "BusNum": 2,
+                    "BusType": "BUS_CONFIG_I3C"
+                },
+                {
+                    "BusNum": 3,
+                    "BusType": "BUS_CONFIG_I3C"
+                },
+                {
+                    "BusNum": 0,
+                    "BusType": "BUS_CONFIG_I3C_DBG"
+                }
+            ],
+            "Name": "ASD",
+            "Type": "ASD"
+        },
+        {
+            "Address": "0x38",
+            "Bus": 4,
+            "Name": "PFR",
+            "PFMOffset": "0x00100000",
+            "PFMSize": "0x20000",
+            "PartitionNo": 2,
+            "SubPartition": [
+                {
+                    "Name": "pfm",
+                    "Offset": "0x00100000",
+                    "Size": "0x1000"
+                },
+                {
+                    "Name": "afm",
+                    "Offset": "0x00101000",
+                    "Size": "0x1000"
+                }
+            ],
+            "Type": "PFR"
+        }
+    ],
+    "Name": "OKS DC-SCM Board",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'DC-SCM 2.(0|1)$'})"
+    ],
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Item.Board.Motherboard": {
+        "FruAddress": "0x52",
+        "FruBus": 15,
+        "MacOffset": "0xe0"
+    }
+}
