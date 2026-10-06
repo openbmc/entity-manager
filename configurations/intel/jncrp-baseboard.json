@@ -1,0 +1,1050 @@
+{
+    "Exposes": [
+        {
+            "Class": "Aspeed2600_Hwmon",
+            "Name": "Chassis_Intrusion_Status",
+            "Type": "ChassisIntrusionSensor"
+        },
+         {
+            "Address": "0x60",
+            "Bus": 5,
+            "CPURequired": 0,
+            "Labels": [
+                "vout2",
+                "iout1",
+                "pin1",
+                "pout1",
+                "temp1"
+            ],
+            "Name": "CPU VCCIN EHV0",
+            "Name1": "CPU PVCCANA0",
+            "PowerState": "On",
+            "Type": "MP2925"
+        },
+        {
+            "Address": "0x64",
+            "Bus": 5,
+            "CPURequired": 0,
+            "Labels": [
+                "vout2",
+                "iout1",
+                "pin1",
+                "pout1",
+                "temp1"
+            ],
+            "Name": "CPU VCCIN EHV1",
+            "Name1": "CPU PVCCANA1",
+            "PowerState": "On",
+            "Type": "MP2925"
+        },
+        {
+            "Address": "0x62",
+            "Bus": 5,
+            "CPURequired": 0,
+            "Labels": [
+                "vout2",
+                "iout1",
+                "pin1",
+                "pout1",
+                "temp1"
+            ],
+            "Name": "CPU PVCCDDR HV0",
+            "Name1": "CPU PVCCINF",
+            "PowerState": "On",
+            "Type": "MP2929"
+        },
+        {
+            "Address": "0x63",
+            "Bus": 5,
+            "CPURequired": 0,
+            "Labels": [
+                "vout2",
+                "iout1",
+                "pin1",
+                "pout1",
+                "temp1"
+            ],
+            "Name": "CPU PVCCDDR HV1",
+            "Name1": "CPU PVCCA HV",
+            "PowerState": "On",
+            "Type": "MP2929"
+        },
+        {
+            "Address": "0x70",
+            "Bus": 5,
+            "CPURequired": 0,
+            "Labels": [
+                "iout1",
+                "pin1",
+                "pout1",
+                "temp1"
+            ],
+            "Name": "CPU PVCCFA EHV",
+            "PowerState": "On",
+            "Type": "MP9946"
+        },
+        {
+            "Address": "0x71",
+            "Bus": 5,
+            "CPURequired": 0,
+            "Labels": [
+                "iout1",
+                "pin1",
+                "pout1",
+                "temp1"
+            ],
+            "Name": "CPU PVCCVNN",
+            "PowerState": "On",
+            "Type": "MP9945"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 6,
+            "Name": "Far Left Exit BRD Temp",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 115
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 110
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 5
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "TMP75"
+        },
+        {
+            "Address": "0x49",
+            "Bus": 6,
+            "Name": "Far Right Exit BRD Temp",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 115
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 110
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 5
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "TMP75"
+        },
+        {
+            "Address": "0x4a",
+            "Bus": 6,
+            "Name": "Near Center BRD Temp",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 70
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 60
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 5
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "TMP75"
+        },
+        {
+            "Address": "0x4c",
+            "Bus": 6,
+            "Name": "OCP Inlet Temp",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 90
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 80
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 5
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "TMP75"
+        },
+        {
+            "Address": "0x4e",
+            "Bus": 6,
+            "Name": "SCM Inlet Temp",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 90
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 5
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "TMP75"
+        },
+        {
+            "Name": "DIMM_CH_TEMP",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 95
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 90
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 5
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "Intel_cpusensor"
+        },
+        {
+            "Name": "DTS_TEMP",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": -10
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": -15
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 5
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "Intel_cpusensor"
+        },
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Type": "EEPROM_24C32",
+            "Name": "HPM FRU"
+        },
+        {
+            "Address": "0x6f",
+            "Bus": 15,
+            "Type": "PCF85053",
+            "Name": "RTC"
+        },
+        {
+            "PhysicalLinkType": "i3c",
+            "PhysicalLinkName": "mctpi3c1",
+            "Role": "endpoint",
+            "NetworkID": 2,
+            "ResetEvents": [
+                "espireset"
+            ],
+            "RetryCount": 3,
+            "Timeout": 300,
+            "MTU": 68,
+            "Type": "MctpConfig",
+            "Name": "MCTP_CPU0"
+        },
+        {
+            "RequestEIDPool": 2,
+            "Type": "MctpEndPointConfig",
+            "Name": "MCTP_CPU0"
+        },
+        {
+            "BusNumber": 1,
+            "PIDMask": "20a.{4}[08].{2}f",
+            "Type": "MctpI3CConfig",
+            "Name": "MCTP_CPU0"
+        },
+        {
+            "AllowedBuses": [
+                "xyz.openbmc_project.MCTP_I3C_MNG_PFR"
+            ],
+            "Bus": 1,
+            "DefaultEID": 0,
+            "EIDPoolDistribution": {
+                "MCTP_I3C_MNG_PFR": 1
+            },
+            "GetRoutingInterval": 60,
+            "Index": 1,
+            "Name": "MCTP I3C MNG CPU0",
+            "NetworkID": 2,
+            "PhysicalMediumID": "I3cSDR",
+            "ProvisionalIdMask": 15,
+            "ReqRetryCount": 2,
+            "ReqToRespTimeMs": 300,
+            "RequiredEIDPoolFromBO": 1,
+            "RequiresCpuPidMask": true,
+            "Role": "Endpoint",
+            "SupportsBridge": true,
+            "SupportsSPDMRequester": true,
+            "TransportBindingType": "MctpI3C",
+            "Type": "MctpConfiguration"
+        },
+        {
+            "Address": "0x73",
+            "Bus": 9,
+            "ChannelNames": [
+                "Riser1A",
+                "Riser1B",
+                "Riser2A",
+                "BootModule"
+            ],
+            "MuxIdleMode": "Disconnect",
+            "Name": "MPIC Mux 1",
+            "Type": "PCA9546Mux"
+        },
+        {
+            "Address": "0x72",
+            "Bus": 9,
+            "ChannelNames": [
+                "Riser2B",
+                "Riser3A",
+                "Riser3B",
+                "NotUsed"
+            ],
+            "MuxIdleMode": "Disconnect",
+            "Name": "MPIC Mux 2",
+            "Type": "PCA9546Mux"
+        },
+        {
+            "Address": "0x71",
+            "Bus": 16,
+            "ChannelNames": [
+                "FruTemp",
+                "LOM",
+                "M2",
+                "NotUsed"
+            ],
+            "MuxIdleMode": "Disconnect",
+            "Name": "BootModule Mux",
+            "Type": "PCA9546Mux"
+        },
+        {
+            "CpuID": 1,
+            "Name": "CPU",
+            "PiromI2cAddress": "0x54",
+            "PiromI2cBus": 12,
+            "PresenceGpio": [
+                {
+                    "Name": "CPU1_PRESENCE",
+                    "Polarity": "Low"
+                }
+            ],
+            "RequiredTempSensor": "DTS",
+            "Type": "XeonCPU"
+        },
+        {
+            "BusesPerCPU": 8,
+            "ChannelsPerIMC": 1,
+            "Hub": "hub@70,3C000000100",
+            "ImcsPerBus": 2,
+            "Name": "CLTT Config",
+            "SlotsPerChannel": 2,
+            "Type": "MemoryTopology"
+        },
+        {
+            "Bus": 5,
+            "ChannelNames": [
+                "P1_Conn1",
+                "P1_Conn2",
+                "P2_Conn1",
+                "P2_Conn2",
+                "P3_Conn1",
+                "P3_Conn2",
+                "P4_Conn1",
+                "P4_Conn2"
+            ],
+            "DeviceID": "0x00",
+            "Name": "PCIe1",
+            "Type": "I3CHub"
+        },
+        {
+            "Bus": 3,
+            "ChannelNames": [
+                "P9_Conn1",
+                "P9_Conn2",
+                "P10_Conn1",
+                "P10_Conn2",
+                "P11_Conn1",
+                "P11_Conn2",
+                "P12_Conn1",
+                "P12_Conn2"
+            ],
+            "DeviceID": "0x04",
+            "Name": "PCIe2",
+            "Type": "I3CHub"
+        },
+        {
+            "Address": "0x45",
+            "Bus": 8,
+            "Type": "LTC2497",
+            "Name": "ADC",
+            "PowerState": "ChassisOn",
+            "PollRate": 10,
+            "Labels": [
+                "in_voltage0",
+                "in_voltage1",
+                "in_voltage2",
+                "in_voltage3",
+                "in_voltage4",
+                "in_voltage5",
+                "in_voltage6",
+                "in_voltage7",
+                "in_voltage8",
+                "in_voltage9",
+                "in_voltage10",
+                "in_voltage11",
+                "in_voltage12",
+                "in_voltage13",
+                "in_voltage14",
+                "in_voltage15"
+            ],
+
+            "in_voltage0_Name": "PVCCIN_EHV0_CPU0_ADC",
+            "in_voltage0_Scale": 32811,
+            "in_voltage0_Max": 3,
+
+            "in_voltage1_Name": "PVCCIN_EHV1_CPU0_ADC",
+            "in_voltage1_Scale": 32811,
+            "in_voltage1_Max": 3,
+
+            "in_voltage2_Name": "PVCCANA0_CPU0_ADC",
+            "in_voltage2_Scale": 39719,
+            "in_voltage2_Max": 3,
+
+            "in_voltage3_Name": "PVCCANA1_CPU0_ADC",
+            "in_voltage3_Scale": 39719,
+            "in_voltage3_Max": 3,
+
+            "in_voltage4_Name": "PVCCFA_EHV_CPU0_ADC",
+            "in_voltage4_Scale": 32811,
+            "in_voltage4_Max": 3,
+
+            "in_voltage5_Name": "PVCCA_HV_CPU0_ADC",
+            "in_voltage5_Scale": 39719,
+            "in_voltage5_Max": 3,
+
+            "in_voltage6_Name": "PVCCDDR_HV0_CPU0_ADC",
+            "in_voltage6_Scale": 32811,
+            "in_voltage6_Max": 3,
+
+            "in_voltage7_Name": "PVCCDDR_HV1_CPU0_ADC",
+            "in_voltage7_Scale": 39719,
+            "in_voltage7_Max": 3,
+
+            "in_voltage8_Name": "PVCCINF_CPU0_ADC",
+            "in_voltage8_Scale": 39719,
+            "in_voltage8_Max": 3,
+
+            "in_voltage9_Name": "PVCCVNN_CPU0_ADC",
+            "in_voltage9_Scale": 39719,
+            "in_voltage9_Max": 3,
+
+            "in_voltage10_Name": "P12V_PRIMARY_ADC",
+            "in_voltage10_Scale": 4673,
+            "in_voltage10_Max": 24,
+
+            "in_voltage11_Name": "P12V_PRIMARY_2_ADC",
+            "in_voltage11_Scale": 4673,
+            "in_voltage11_Max": 24,
+
+            "in_voltage12_Name": "P12V_AUX_ADC",
+            "in_voltage12_Scale": 4673,
+            "in_voltage12_Max": 24,
+
+            "in_voltage13_Name": "P5V_AUX_ADC",
+            "in_voltage13_Scale": 11769,
+            "in_voltage13_Max": 12,
+
+            "in_voltage14_Name": "P3V3_AUX_CPU0_ADC",
+            "in_voltage14_Scale": 17692,
+            "in_voltage14_Max": 12,
+
+            "in_voltage15_Name": "P3V_BAT_SCALED_ADC",
+            "in_voltage15_Scale": 17497,
+            "in_voltage15_Max": 12,
+
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in_voltage0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.992
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in_voltage0",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1.934
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in_voltage0",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 1.586
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in_voltage0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.539
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in_voltage1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.992
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in_voltage1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1.934
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in_voltage1",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 1.586
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in_voltage1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.539
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in_voltage2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 0.993
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in_voltage2",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 0.964
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in_voltage2",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 0.838
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in_voltage2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.813
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in_voltage3",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 0.993
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in_voltage3",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 0.964
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in_voltage3",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 0.838
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in_voltage3",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.813
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in_voltage4",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.997
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in_voltage4",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1.939
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in_voltage4",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 1.666
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in_voltage4",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.616
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in_voltage5",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.379
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in_voltage5",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1.339
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in_voltage5",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 1.164
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in_voltage5",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.129
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in_voltage6",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.220
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in_voltage6",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1.185
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in_voltage6",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 1.018
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in_voltage6",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.987
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in_voltage7",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.213
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in_voltage7",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1.178
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in_voltage7",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 1.024
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in_voltage7",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.993
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in_voltage8",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 0.938
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in_voltage8",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 0.910
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in_voltage8",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 0.791
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in_voltage8",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.768
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in_voltage9",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.187
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in_voltage9",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1.153
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in_voltage9",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 0.794
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in_voltage9",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.770
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in_voltage10",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.212
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in_voltage10",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.827
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in_voltage10",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.200
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in_voltage10",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.864
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in_voltage11",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.212
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in_voltage11",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.827
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in_voltage11",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.200
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in_voltage11",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.864
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in_voltage12",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.212
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in_voltage12",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.827
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in_voltage12",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.200
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in_voltage12",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.864
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in_voltage13",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 5.486
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in_voltage13",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 5.326
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in_voltage13",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 4.684
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in_voltage13",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 4.544
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in_voltage14",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.609
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in_voltage14",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.573
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in_voltage14",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2.718
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in_voltage14",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.364
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in_voltage15",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.346
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in_voltage15",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.3
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in_voltage15",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2.761
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in_voltage15",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.678
+                }
+            ],
+
+            "BridgeGpio": [
+                {
+                    "Label": "in_voltage15",
+                    "Name": "FM_P3V_BAT_SCALED_EN",
+                    "Polarity": "High",
+                    "SetupTime": 0.2
+                }
+            ]
+        }
+    ],
+    "Name": "JC Baseboard",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': '^OKS HPM JC'})",
+        "OR",
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'JohnsonCity$'})",
+        "MATCH_ONE"
+    ],
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Item.Board.Motherboard": {
+        "ProductId": 69
+    },
+    "xyz.openbmc_project.Inventory.Item.System": {}
+}

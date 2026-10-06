@@ -1,0 +1,852 @@
+[
+    {
+        "Exposes": [
+            {
+                "Address": "0x62",
+                "Bus": "$bus",
+                "CPURequired": 1,
+                "Labels": [
+                    "pin1",
+                    "pin2",
+                    "pout1",
+                    "pout2",
+                    "vin",
+                    "vout1",
+                    "vout2",
+                    "iin1",
+                    "iin2",
+                    "iout1",
+                    "iout2",
+                    "temp1",
+                    "temp2"
+                ],
+                "Name": "Fan Power",
+                "PowerState": "On",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Label": "temp1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 115
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "temp1",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 110
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "temp1",
+                        "Name": "lower non critical",
+                        "Severity": 0,
+                        "Value": 5
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "temp1",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 0
+                    }
+                ],
+                "Type": "ISL28022",
+                "temp2_Name": "Fan VR Temp"
+            },
+            {
+                "Address": "0x20",
+                "Bus": "$bus",
+                "Name": "Fan controller Left",
+                "Type": "MAX31790"
+            },
+            {
+                "Address": "0x20",
+                "BindConnector": "System Fan connector 0",
+                "Bus": "$bus",
+                "Index": 0,
+                "Name": "Fan 0",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x20",
+                "BindConnector": "System Fan connector 1",
+                "Bus": "$bus",
+                "Index": 1,
+                "Name": "Fan 1",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x20",
+                "BindConnector": "System Fan connector 2",
+                "Bus": "$bus",
+                "Index": 2,
+                "Name": "Fan 2",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x20",
+                "BindConnector": "System Fan connector 3",
+                "Bus": "$bus",
+                "Index": 3,
+                "Name": "Fan 3",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x20",
+                "BindConnector": "System Fan connector 4",
+                "Bus": "$bus",
+                "Index": 4,
+                "Name": "Fan 4",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x20",
+                "BindConnector": "System Fan connector 5",
+                "Bus": "$bus",
+                "Index": 11,
+                "Name": "Fan 5",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x20",
+                "BindConnector": "System Fan connector 6",
+                "Bus": "$bus",
+                "Index": 5,
+                "Name": "Fan 6",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Name": "System Fan connector 0",
+                "Pwm": 0,
+                "PwmName": "Pwm_0",
+                "Tachs": [ 0 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Name": "System Fan connector 1",
+                "Pwm": 1,
+                "PwmName": "Pwm_1_2",
+                "Tachs": [ 1 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Name": "System Fan connector 2",
+                "Pwm": 1,
+                "PwmName": "Pwm_1_2",
+                "Tachs": [ 2 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Name": "System Fan connector 3",
+                "Pwm": 3,
+                "PwmName": "Pwm_3_4",
+                "Tachs": [ 3 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Name": "System Fan connector 4",
+                "Pwm": 3,
+                "PwmName": "Pwm_3_4",
+                "Tachs": [ 4 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Name": "System Fan connector 5",
+                "Pwm": 4,
+                "PwmName": "Pwm_5_6",
+                "Tachs": [ 11 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Name": "System Fan connector 6",
+                "Pwm": 4,
+                "PwmName": "Pwm_5_6",
+                "Tachs": [ 5 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Address": "0x23",
+                "Bus": "$bus",
+                "Name": "Fan controller Mid",
+                "Type": "MAX31790"
+            },
+            {
+                "Address": "0x23",
+                "BindConnector": "System Fan connector 7",
+                "Bus": "$bus",
+                "Index": 0,
+                "Name": "Fan 7",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x23",
+                "BindConnector": "System Fan connector 8",
+                "Bus": "$bus",
+                "Index": 1,
+                "Name": "Fan 8",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x23",
+                "BindConnector": "System Fan connector 9",
+                "Bus": "$bus",
+                "Index": 2,
+                "Name": "Fan 9",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x23",
+                "BindConnector": "System Fan connector 10",
+                "Bus": "$bus",
+                "Index": 3,
+                "Name": "Fan 10",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x23",
+                "BindConnector": "System Fan connector 11",
+                "Bus": "$bus",
+                "Index": 4,
+                "Name": "Fan 11",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x23",
+                "BindConnector": "System Fan connector 12",
+                "Bus": "$bus",
+                "Index": 5,
+                "Name": "Fan 12",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Name": "System Fan connector 7",
+                "Pwm": 0,
+                "PwmName": "Pwm_7_8",
+                "Tachs": [ 0 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Name": "System Fan connector 8",
+                "Pwm": 0,
+                "PwmName": "Pwm_7_8",
+                "Tachs": [ 1 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Name": "System Fan connector 9",
+                "Pwm": 2,
+                "PwmName": "Pwm_9_10",
+                "Tachs": [ 2 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Name": "System Fan connector 10",
+                "Pwm": 2,
+                "PwmName": "Pwm_9_10",
+                "Tachs": [ 3 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Name": "System Fan connector 11",
+                "Pwm": 4,
+                "PwmName": "Pwm_11_12",
+                "Tachs": [ 4 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Name": "System Fan connector 12",
+                "Pwm": 4,
+                "PwmName": "Pwm_11_12",
+                "Tachs": [ 5 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Address": "0x2f",
+                "Bus": "$bus",
+                "Name": "Fan controller Right",
+                "Type": "MAX31790"
+            },
+            {
+                "Address": "0x2f",
+                "BindConnector": "System Fan connector 13",
+                "Bus": "$bus",
+                "Index": 0,
+                "Name": "Fan 13",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x2f",
+                "BindConnector": "System Fan connector 14",
+                "Bus": "$bus",
+                "Index": 1,
+                "Name": "Fan 14",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x2f",
+                "BindConnector": "System Fan connector 15",
+                "Bus": "$bus",
+                "Index": 2,
+                "Name": "Fan 15",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x2f",
+                "BindConnector": "System Fan connector 16",
+                "Bus": "$bus",
+                "Index": 3,
+                "Name": "Fan 16",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x2f",
+                "BindConnector": "System Fan connector 17",
+                "Bus": "$bus",
+                "Index": 4,
+                "Name": "Fan 17",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x2f",
+                "BindConnector": "System Fan connector 18",
+                "Bus": "$bus",
+                "Index": 5,
+                "Name": "Fan 18",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Name": "System Fan connector 13",
+                "Pwm": 0,
+                "PwmName": "Pwm_13_14",
+                "Tachs": [ 0 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Name": "System Fan connector 14",
+                "Pwm": 0,
+                "PwmName": "Pwm_13_14",
+                "Tachs": [ 1 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Name": "System Fan connector 15",
+                "Pwm": 2,
+                "PwmName": "Pwm_15_16",
+                "Tachs": [ 2 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Name": "System Fan connector 16",
+                "Pwm": 2,
+                "PwmName": "Pwm_15_16",
+                "Tachs": [ 3 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Name": "System Fan connector 17",
+                "Pwm": 4,
+                "PwmName": "Pwm_17_18",
+                "Tachs": [ 4 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Name": "System Fan connector 18",
+                "Pwm": 4,
+                "PwmName": "Pwm_17_18",
+                "Tachs": [ 5 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Address": "0x48",
+                "Bus": "$bus",
+                "Name": "Fan Board Temp",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 115
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 110
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower non critical",
+                        "Severity": 0,
+                        "Value": 5
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 0
+                    }
+                ],
+                "Type": "TMP75"
+            }
+        ],
+        "Name": "OKS Fan Board",
+        "Probe": [
+            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'OKS Fan board$'})",
+            "OR",
+            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'FAN BOARD$'})"
+        ],
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$BOARD_MANUFACTURER",
+            "Model": "$BOARD_PRODUCT_NAME",
+            "PartNumber": "$BOARD_PART_NUMBER",
+            "SerialNumber": "$BOARD_SERIAL_NUMBER"
+        }
+    },
+    {
+        "Exposes": [
+            {
+                "Address": "0x62",
+                "Bus": "$bus",
+                "CPURequired": 1,
+                "Labels": [
+                    "pin1",
+                    "pin2",
+                    "pout1",
+                    "pout2",
+                    "vin",
+                    "vout1",
+                    "vout2",
+                    "iin1",
+                    "iin2",
+                    "iout1",
+                    "iout2",
+                    "temp1",
+                    "temp2"
+                ],
+                "Name": "$MUX Fan Power",
+                "PowerState": "On",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Label": "temp1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 115
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "temp1",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 110
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "temp1",
+                        "Name": "lower non critical",
+                        "Severity": 0,
+                        "Value": 5
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "temp1",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 0
+                    }
+                ],
+                "Type": "ISL28022",
+                "temp2_Name": "Fan VR Temp"
+            },
+            {
+                "Address": "0x20",
+                "Bus": "$bus",
+                "Name": "$MUX Fan controller Left",
+                "Type": "MAX31790"
+            },
+            {
+                "Address": "0x20",
+                "BindConnector": "$MUX System Fan connector 0",
+                "Bus": "$bus",
+                "Index": 0,
+                "Name": "$MUX Fan 0",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x20",
+                "BindConnector": "$MUX System Fan connector 1",
+                "Bus": "$bus",
+                "Index": 1,
+                "Name": "$MUX Fan 1",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x20",
+                "BindConnector": "$MUX System Fan connector 2",
+                "Bus": "$bus",
+                "Index": 2,
+                "Name": "$MUX Fan 2",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x20",
+                "BindConnector": "$MUX System Fan connector 3",
+                "Bus": "$bus",
+                "Index": 3,
+                "Name": "$MUX Fan 3",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x20",
+                "BindConnector": "$MUX System Fan connector 4",
+                "Bus": "$bus",
+                "Index": 4,
+                "Name": "$MUX Fan 4",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x20",
+                "BindConnector": "$MUX System Fan connector 5",
+                "Bus": "$bus",
+                "Index": 11,
+                "Name": "$MUX Fan 5",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x20",
+                "BindConnector": "$MUX System Fan connector 6",
+                "Bus": "$bus",
+                "Index": 5,
+                "Name": "$MUX Fan 6",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Name": "$MUX System Fan connector 0",
+                "Pwm": 0,
+                "PwmName": "$MUX Pwm_0",
+                "Tachs": [ 0 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Name": "$MUX System Fan connector 1",
+                "Pwm": 1,
+                "PwmName": "$MUX Pwm_1_2",
+                "Tachs": [ 1 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Name": "$MUX System Fan connector 2",
+                "Pwm": 1,
+                "PwmName": "$MUX Pwm_1_2",
+                "Tachs": [ 2 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Name": "$MUX System Fan connector 3",
+                "Pwm": 3,
+                "PwmName": "$MUX Pwm_3_4",
+                "Tachs": [ 3 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Name": "$MUX System Fan connector 4",
+                "Pwm": 3,
+                "PwmName": "$MUX Pwm_3_4",
+                "Tachs": [ 4 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Name": "$MUX System Fan connector 5",
+                "Pwm": 4,
+                "PwmName": "$MUX Pwm_5_6",
+                "Tachs": [ 11 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Name": "$MUX System Fan connector 6",
+                "Pwm": 4,
+                "PwmName": "$MUX Pwm_5_6",
+                "Tachs": [ 5 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Address": "0x23",
+                "Bus": "$bus",
+                "Name": "$MUX Fan controller Mid",
+                "Type": "MAX31790"
+            },
+            {
+                "Address": "0x23",
+                "BindConnector": "$MUX System Fan connector 7",
+                "Bus": "$bus",
+                "Index": 0,
+                "Name": "$MUX Fan 7",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x23",
+                "BindConnector": "$MUX System Fan connector 8",
+                "Bus": "$bus",
+                "Index": 1,
+                "Name": "$MUX Fan 8",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x23",
+                "BindConnector": "$MUX System Fan connector 9",
+                "Bus": "$bus",
+                "Index": 2,
+                "Name": "$MUX Fan 9",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x23",
+                "BindConnector": "$MUX System Fan connector 10",
+                "Bus": "$bus",
+                "Index": 3,
+                "Name": "$MUX Fan 10",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x23",
+                "BindConnector": "$MUX System Fan connector 11",
+                "Bus": "$bus",
+                "Index": 4,
+                "Name": "$MUX Fan 11",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x23",
+                "BindConnector": "$MUX System Fan connector 12",
+                "Bus": "$bus",
+                "Index": 5,
+                "Name": "$MUX Fan 12",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Name": "$MUX System Fan connector 7",
+                "Pwm": 0,
+                "PwmName": "$MUX Pwm_7_8",
+                "Tachs": [ 0 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Name": "$MUX System Fan connector 8",
+                "Pwm": 0,
+                "PwmName": "$MUX Pwm_7_8",
+                "Tachs": [ 1 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Name": "$MUX System Fan connector 9",
+                "Pwm": 2,
+                "PwmName": "$MUX Pwm_9_10",
+                "Tachs": [ 2 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Name": "$MUX System Fan connector 10",
+                "Pwm": 2,
+                "PwmName": "$MUX Pwm_9_10",
+                "Tachs": [ 3 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Name": "$MUX System Fan connector 11",
+                "Pwm": 4,
+                "PwmName": "$MUX Pwm_11_12",
+                "Tachs": [ 4 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Name": "$MUX System Fan connector 12",
+                "Pwm": 4,
+                "PwmName": "$MUX Pwm_11_12",
+                "Tachs": [ 5 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Address": "0x2f",
+                "Bus": "$bus",
+                "Name": "$MUX Fan controller Right",
+                "Type": "MAX31790"
+            },
+            {
+                "Address": "0x2f",
+                "BindConnector": "$MUX System Fan connector 13",
+                "Bus": "$bus",
+                "Index": 0,
+                "Name": "$MUX Fan 13",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x2f",
+                "BindConnector": "$MUX System Fan connector 14",
+                "Bus": "$bus",
+                "Index": 1,
+                "Name": "$MUX Fan 14",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x2f",
+                "BindConnector": "$MUX System Fan connector 15",
+                "Bus": "$bus",
+                "Index": 2,
+                "Name": "$MUX Fan 15",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x2f",
+                "BindConnector": "$MUX System Fan connector 16",
+                "Bus": "$bus",
+                "Index": 3,
+                "Name": "$MUX Fan 16",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x2f",
+                "BindConnector": "$MUX System Fan connector 17",
+                "Bus": "$bus",
+                "Index": 4,
+                "Name": "$MUX Fan 17",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x2f",
+                "BindConnector": "$MUX System Fan connector 18",
+                "Bus": "$bus",
+                "Index": 5,
+                "Name": "$MUX Fan 18",
+                "PowerState": "On",
+                "Type": "I2CFan"
+            },
+            {
+                "Name": "$MUX System Fan connector 13",
+                "Pwm": 0,
+                "PwmName": "$MUX Pwm_13_14",
+                "Tachs": [ 0 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Name": "$MUX System Fan connector 14",
+                "Pwm": 0,
+                "PwmName": "$MUX Pwm_13_14",
+                "Tachs": [ 1 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Name": "$MUX System Fan connector 15",
+                "Pwm": 2,
+                "PwmName": "$MUX Pwm_15_16",
+                "Tachs": [ 2 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Name": "$MUX System Fan connector 16",
+                "Pwm": 2,
+                "PwmName": "$MUX Pwm_15_16",
+                "Tachs": [ 3 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Name": "$MUX System Fan connector 17",
+                "Pwm": 4,
+                "PwmName": "$MUX Pwm_17_18",
+                "Tachs": [ 4 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Name": "$MUX System Fan connector 18",
+                "Pwm": 4,
+                "PwmName": "$MUX Pwm_17_18",
+                "Tachs": [ 5 ],
+                "Type": "IntelFanConnector"
+            },
+            {
+                "Address": "0x48",
+                "Bus": "$bus",
+                "Name": "$MUX Fan Board Temp",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 115
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 110
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower non critical",
+                        "Severity": 0,
+                        "Value": 5
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 0
+                    }
+                ],
+                "Type": "TMP75"
+            }
+        ],
+        "Name": "$MUX OKS Fan Board",
+        "Probe": [
+            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'OKS Fan board$', 'MUX': '^HPM'})",
+            "OR",
+            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'FAN BOARD$', 'MUX': '^HPM'})"
+        ],
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$BOARD_MANUFACTURER",
+            "Model": "$BOARD_PRODUCT_NAME",
+            "PartNumber": "$BOARD_PART_NUMBER",
+            "SerialNumber": "$BOARD_SERIAL_NUMBER"
+        }
+    }
+]    

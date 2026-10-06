@@ -1,0 +1,72 @@
+[
+    {
+        "Exposes": [
+            {
+                "Address": "0x70",
+                "Bus": 9,
+                "ChannelNames": [
+                    "PDB_0",
+                    "PDB_1",
+                    "PDB_2",
+                    "PDB_3",
+                    "PDB_4",
+                    "PDB_5",
+                    "PDB_6",
+                    "PDB_7"
+                ],
+                "MuxIdleMode": "Disconnect",
+                "Name": "PDB_SMB_Mux",
+                "Type": "PCA9548Mux"
+            }
+        ],
+        "Name": "$BOARD_PRODUCT_NAME",
+        "Probe": [
+            "FOUND('JC Baseboard')",
+            "OR",
+            "FOUND('BSC Baseboard')",
+            "AND",
+            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'OKS [12]PSU PDB$', 'BUS': 7})"
+        ],
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$BOARD_MANUFACTURER",
+            "Model": "$BOARD_PRODUCT_NAME",
+            "PartNumber": "$BOARD_PART_NUMBER",
+            "SerialNumber": "$BOARD_SERIAL_NUMBER"
+        }
+    },
+    {
+        "Exposes": [
+            {
+                "Address": "0x70",
+                "Bus": "SMB_MPIC_Mux/$MUX",
+                "ChannelNames": [
+                    "$MUX PDB_0",
+                    "$MUX PDB_1",
+                    "$MUX PDB_2",
+                    "$MUX PDB_3",
+                    "$MUX PDB_4",
+                    "$MUX PDB_5",
+                    "$MUX PDB_6",
+                    "$MUX PDB_7"
+                ],
+                "MuxIdleMode": "Disconnect",
+                "Name": "$MUX_PDB_SMB_Mux",
+                "Type": "PCA9548Mux"
+            }
+        ],
+        "Name": "$MUX $BOARD_PRODUCT_NAME",
+        "Probe": [
+            "FOUND('OKS Aggregator Board')",
+            "AND",
+            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'OKS [12]PSU PDB$', 'MUX': '^HPM'})"
+        ],
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$BOARD_MANUFACTURER",
+            "Model": "$BOARD_PRODUCT_NAME",
+            "PartNumber": "$BOARD_PART_NUMBER",
+            "SerialNumber": "$BOARD_SERIAL_NUMBER"
+        }
+    }
+]
