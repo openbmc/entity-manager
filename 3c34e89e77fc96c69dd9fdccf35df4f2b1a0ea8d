@@ -16,6 +16,29 @@
       "message": "Addresses",
       "revId": "3c34e89e77fc96c69dd9fdccf35df4f2b1a0ea8d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f9ed6af_ca637a87",
+        "filename": "src/entity_manager/dbus_interface.cpp",
+        "patchSetId": 22
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-07T08:51:57Z",
+      "side": 1,
+      "message": "As per https://github.com/openbmc/docs/blob/93b1e07c59cd8bc11e7afaaba4172b21a0a5b552/CONTRIBUTING.md?plain\u003d1#L398\n\n\u003e D-Bus interfaces are defined in the `phosphor-dbus-interfaces` repository\n\nwith a strict interpretation, it means that we might want to document the (existing) interface we are changing as it seems to be a legacy (undocumented) interface that\u0027s not yet in PDI.",
+      "range": {
+        "startLine": 413,
+        "startChar": 4,
+        "endLine": 433,
+        "endChar": 11
+      },
+      "revId": "3c34e89e77fc96c69dd9fdccf35df4f2b1a0ea8d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
