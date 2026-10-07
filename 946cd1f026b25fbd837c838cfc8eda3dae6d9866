@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcee9a16_220a5bf2",
+        "filename": "configurations/nvidia/imgx_connectx8_supernic_switch.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002395
+      },
+      "writtenOn": "2026-10-07T07:31:40Z",
+      "side": 1,
+      "message": "Let\u0027s add a property `DeviceName` here, which would be the name of the device on D-Bus and Redfish.",
+      "revId": "946cd1f026b25fbd837c838cfc8eda3dae6d9866",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f91a3ab3_ceca79a6",
+        "filename": "configurations/nvidia/imgx_connectx8_supernic_switch.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1002395
+      },
+      "writtenOn": "2026-10-07T07:31:40Z",
+      "side": 1,
+      "message": "What if we add config for multiple devices into single `Exposes` object? This would make config smaller and easier to read for vr-nvl board since all gpus and cx can be grouped together. However we can have separate configs for HPM SMAs and property `Devices` would be array of size of 1.\n\n\n```\n{\n  \"Name\": \"CX8\",\n  \"Type\": \"NvidiaMctpVdmCx\",\n  \"Devices\": [\n    {\n      \"PlatformConfigName\": \"CX8_1\",\n      \"DeviceName\": \"ConnectX_\",\n      \"AppendInstanceIdToDeviceName\": True\n    },\n    {\n      \"PlatformConfigName\": \"CX8_2\",\n      \"DeviceName\": \"ConnectX_\",\n      \"AppendInstanceIdToDeviceName\": True\n    }\n  ],\n  \"PortCount\": 2\n}\n```",
+      "revId": "946cd1f026b25fbd837c838cfc8eda3dae6d9866",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09a07898_c9249aac",
+        "filename": "configurations/nvidia/rtx6000_pro.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002395
+      },
+      "writtenOn": "2026-10-07T07:31:40Z",
+      "side": 1,
+      "message": "Let\u0027s add property `DeviceName` here as well.",
+      "revId": "946cd1f026b25fbd837c838cfc8eda3dae6d9866",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57ea72c7_c04770cd",
+        "filename": "configurations/nvidia/rtx6000_pro.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1002395
+      },
+      "writtenOn": "2026-10-07T07:31:40Z",
+      "side": 1,
+      "message": "Is it guaranteed that a gpu board would have same `$index` across reboots and power cycle?",
+      "revId": "946cd1f026b25fbd837c838cfc8eda3dae6d9866",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
