@@ -775,7 +775,7 @@
         }
     ],
     "Name": "Yosemite5 SCM",
-    "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 .*', 'BOARD_PRODUCT_NAME': 'SCM board 2700', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': '^Yosemite V5 (EVT|DVT|MP).*$', 'BOARD_PRODUCT_NAME': 'SCM board 2700', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
