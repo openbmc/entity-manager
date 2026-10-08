@@ -78,6 +78,23 @@ static std::optional<sdbusplus::object_path> inventoryPath(
     return em_utils::buildInventorySystemPath(boardName, *boardType);
 }
 
+nlohmann::json recordsToLogAdded(
+    const nlohmann::json& newConfiguration,
+    const std::unordered_set<std::string>& cachedBaseline)
+{
+    nlohmann::json records = nlohmann::json::object();
+
+    for (const auto& [key, record] : newConfiguration.items())
+    {
+        if (!cachedBaseline.contains(key))
+        {
+            records[key] = record;
+        }
+    }
+
+    return records;
+}
+
 void logDeviceAdded(const nlohmann::json& record)
 {
     if (!EM_CACHE_CONFIGURATION)
