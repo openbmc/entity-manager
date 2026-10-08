@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab347f41_06f78de2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 33
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2026-10-08T22:03:51Z",
+      "side": 1,
+      "message": "didn\u0027t get through it all yet",
+      "revId": "37914430414b0e63d9ce841a2e6d19e06456d63d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ebcf9be_5193474a",
+        "filename": "src/entity_manager/config_pointer.hpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2026-10-08T22:03:51Z",
+      "side": 1,
+      "message": "There\u0027s no need to make constructors explicit if they have more than 1 arg. (unless I\u0027m missing something).",
+      "revId": "37914430414b0e63d9ce841a2e6d19e06456d63d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73e9c39c_505dd694",
+        "filename": "src/entity_manager/config_pointer.hpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2026-10-08T22:03:51Z",
+      "side": 1,
+      "message": "I think this would be slightly more efficient if it did a find() instead so it had the iterator to use below, so it doesn\u0027t have to find it  twice.  Same probably goes for memberName below.  if you are really against it that\u0027s fine.",
+      "range": {
+        "startLine": 72,
+        "startChar": 40,
+        "endLine": 72,
+        "endChar": 73
+      },
+      "revId": "37914430414b0e63d9ce841a2e6d19e06456d63d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05b62ae6_4dcc6029",
+        "filename": "src/entity_manager/config_pointer.hpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2026-10-08T22:03:51Z",
+      "side": 1,
+      "message": "nit: these default to nullupt, so this isn\u0027t really necessary.",
+      "range": {
+        "startLine": 107,
+        "startChar": 40,
+        "endLine": 107,
+        "endChar": 56
+      },
+      "revId": "37914430414b0e63d9ce841a2e6d19e06456d63d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
