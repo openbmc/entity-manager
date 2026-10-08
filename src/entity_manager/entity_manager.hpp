@@ -15,6 +15,7 @@
 
 #include <flat_map>
 #include <string>
+#include <unordered_set>
 
 class EntityManager
 {
@@ -40,6 +41,10 @@ class EntityManager
     sdbusplus::asio::object_server objServer;
     Configuration configuration;
     nlohmann::json lastJson;
+    // Keys of lastJson for which no InventoryRemoved has been reported since
+    // startup. The previous run already reported these devices, so they are
+    // not reported as added again.
+    std::unordered_set<std::string> cachedBaseline;
     nlohmann::json systemConfiguration;
     Topology topology;
     boost::asio::io_context& io;
