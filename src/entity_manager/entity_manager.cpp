@@ -457,6 +457,7 @@ static bool deviceRequiresPowerOn(const nlohmann::json& entity)
 }
 
 static void pruneDevice(const nlohmann::json& systemConfiguration,
+                        std::unordered_set<std::string>& cachedBaseline,
                         const bool powerOff, const bool scannedPowerOff,
                         const std::string& name, const nlohmann::json& device)
 {
@@ -471,6 +472,7 @@ static void pruneDevice(const nlohmann::json& systemConfiguration,
     }
 
     logDeviceRemoved(device);
+    cachedBaseline.erase(name);
 }
 
 void EntityManager::startRemovedTimer(boost::asio::steady_timer& timer)
@@ -499,8 +501,8 @@ void EntityManager::startRemovedTimer(boost::asio::steady_timer& timer)
         bool powerOff = !powerStatus.isPowerOn();
         for (const auto& [name, device] : lastJson.items())
         {
-            pruneDevice(systemConfiguration, powerOff, scannedPowerOff, name,
-                        device);
+            pruneDevice(systemConfiguration, cachedBaseline, powerOff,
+                        scannedPowerOff, name, device);
         }
 
         scannedPowerOff = true;
@@ -542,6 +544,7 @@ void EntityManager::pruneConfiguration(bool powerOff, const std::string& name,
             em_utils::buildInventorySystemPath(boardName, *configType));
     }
     logDeviceRemoved(device);
+    cachedBaseline.erase(name);
 }
 
 void EntityManager::publishNewConfiguration(
@@ -615,7 +618,10 @@ void EntityManager::propertiesChangedCallbackDebounced(
 
             deriveNewConfiguration(oldConfiguration, newConfiguration);
 
-            for (const auto& [_, device] : newConfiguration.items())
+            const nlohmann::json recordsToLog =
+                recordsToLogAdded(newConfiguration, cachedBaseline);
+
+            for (const auto& [_, device] : recordsToLog.items())
             {
                 logDeviceAdded(device);
             }
@@ -697,6 +703,10 @@ void EntityManager::handleCurrentConfigurationJson()
                 else
                 {
                     lastJson = std::move(data);
+                    for (const auto& [key, _] : lastJson.items())
+                    {
+                        cachedBaseline.insert(key);
+                    }
                 }
             }
             else
