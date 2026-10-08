@@ -86,3 +86,65 @@ TEST(LogDevicInventory, QueryLegacyInvInfoNoModelFound)
     EXPECT_EQ(info.sn, "43829239");
     EXPECT_EQ(info.model, "Unknown");
 }
+
+TEST(LogDevicInventory, KeysToLogAddedEmptyBaselineReturnsAll)
+{
+    nlohmann::json newConfiguration = nlohmann::json::parse(R"(
+{
+    "boardA": {"Name": "Board A", "Type": "Board"},
+    "boardB": {"Name": "Board B", "Type": "Board"}
+}
+    )");
+
+    EXPECT_EQ(keysToLogAdded(newConfiguration, {}),
+              (std::vector<std::string>{"boardA", "boardB"}));
+}
+
+TEST(LogDevicInventory, KeysToLogAddedSkipsBaselineKeys)
+{
+    nlohmann::json newConfiguration = nlohmann::json::parse(R"(
+{
+    "boardA": {"Name": "Board A", "Type": "Board"},
+    "boardB": {"Name": "Board B", "Type": "Board"}
+}
+    )");
+
+    EXPECT_EQ(keysToLogAdded(newConfiguration, {"boardA"}),
+              (std::vector<std::string>{"boardB"}));
+}
+
+TEST(LogDevicInventory, KeysToLogAddedReturnsKeyOnceRemovedFromBaseline)
+{
+    nlohmann::json newConfiguration = nlohmann::json::parse(R"(
+{
+    "boardA": {"Name": "Board A", "Type": "Board"}
+}
+    )");
+    std::unordered_set<std::string> cachedBaseline = {"boardA"};
+
+    EXPECT_TRUE(keysToLogAdded(newConfiguration, cachedBaseline).empty());
+
+    // An InventoryRemoved was reported for boardA, so it is new again.
+    cachedBaseline.erase("boardA");
+
+    EXPECT_EQ(keysToLogAdded(newConfiguration, cachedBaseline),
+              (std::vector<std::string>{"boardA"}));
+}
+
+TEST(LogDevicInventory, KeysToLogAddedIgnoresBaselineKeysNotPresent)
+{
+    nlohmann::json newConfiguration = nlohmann::json::parse(R"(
+{
+    "boardA": {"Name": "Board A", "Type": "Board"}
+}
+    )");
+
+    EXPECT_EQ(keysToLogAdded(newConfiguration, {"boardGone"}),
+              (std::vector<std::string>{"boardA"}));
+}
+
+TEST(LogDevicInventory, KeysToLogAddedNothingNew)
+{
+    EXPECT_TRUE(keysToLogAdded(nlohmann::json::object(), {}).empty());
+    EXPECT_TRUE(keysToLogAdded(nlohmann::json(), {"boardA"}).empty());
+}
