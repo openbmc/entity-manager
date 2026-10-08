@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df6fdc0c_91895546",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-08T14:19:08Z",
+      "side": 1,
+      "message": "Thanks for fixing",
+      "revId": "685764413d42c9a18d2208a2c0a33ec92782423a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10a1f6f3_c321afae",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-08T14:19:08Z",
+      "side": 1,
+      "message": "`logDeviceRemoved` goes together with `cachedBaseline.erase` also in line 547.\n\nWould it be possible to pass `cachedBaseline` to `logDeviceRemoved` to avoid writing the same code sequence in 2 places.\n\nIf it\u0027s 2 separate functions it creates the opportunity for the data structure to go out of sync with what\u0027s being logged.",
+      "range": {
+        "startLine": 473,
+        "startChar": 1,
+        "endLine": 475,
+        "endChar": 31
+      },
+      "revId": "685764413d42c9a18d2208a2c0a33ec92782423a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca00ad3f_dd319fe2",
+        "filename": "src/entity_manager/log_device_inventory.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-08T14:19:08Z",
+      "side": 1,
+      "message": "Can this be inlined into it\u0027s only call-site?\n\nWe have 140 lines of test code for a a loop with an if-statement. And the tests do not cover the functions operating on the `cachedBaseline`.\n\nAlso we are copying the records when we do not have to do that for what the caller does.\n\nOverall it\u0027s a data structure and logic which is used for event logging so a regression there is not the end of the world.\n\nAnd as written the unit tests would not catch much besides regression in this helper function (which is unlikely as it\u0027s not that complicated)",
+      "range": {
+        "startLine": 80,
+        "startChar": 1,
+        "endLine": 96,
+        "endChar": 1
+      },
+      "revId": "685764413d42c9a18d2208a2c0a33ec92782423a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6541c16e_fcdac205",
+        "filename": "test/entity_manager/log_device_inventory.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-08T14:19:08Z",
+      "side": 1,
+      "message": "Do these tests describe schema-valid EM configurations?\n\nIt can be confusing to read tests with examples that do not match the schema because it creates ambiguity about what functions are supposed to handle.\n\nWe probably do not need to handle wildly invalid json configs anymore because now the configs go through the `EMConfig::fromJson` parser which guarantees certain fields to be present and have their expected types.\n\nSo it might be impossible for the `newConfiguration` data structure to look like what\u0027s in this test.",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 23
+      },
+      "revId": "685764413d42c9a18d2208a2c0a33ec92782423a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
