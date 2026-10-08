@@ -6,6 +6,8 @@
 #include <nlohmann/json.hpp>
 
 #include <string>
+#include <unordered_set>
+#include <vector>
 
 // @brief Model/Type/SerialNumber for the legacy OpenBMC.0.1.* journal
 //        message, kept alongside the structured D-Bus event as a temporary
@@ -16,6 +18,18 @@ struct LegacyInvInfo
     std::string type = "Unknown";
     std::string sn = "Unknown";
 };
+
+// @brief Selects the records of a derived-new configuration that are to be
+//        reported with InventoryAdded.
+// @param newConfiguration  records that are new to this run, keyed by record
+//                          name
+// @param cachedBaseline    keys of the configuration persisted by a previous
+//                          run for which no InventoryRemoved has been reported
+//                          since startup; consumers already know these devices
+// @returns pointers into newConfiguration, in iteration order
+std::vector<const nlohmann::json*> recordsToLogAdded(
+    const nlohmann::json& newConfiguration,
+    const std::unordered_set<std::string>& cachedBaseline);
 
 void logDeviceAdded(const nlohmann::json& record);
 
