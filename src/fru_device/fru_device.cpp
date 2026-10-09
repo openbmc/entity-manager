@@ -900,7 +900,7 @@ void addFruObjectToDbus(std::vector<uint8_t>& device, FruDetails& fruDetails,
         findIndexForFRU(fruDetails.dbusInterfaceMap, productName);
     if (index.has_value())
     {
-        productName += "_";
+        productName += '_';
         productName += std::to_string(++(*index));
     }
 
