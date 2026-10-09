@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2286068_3bd34b83",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 33
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-09T13:16:34Z",
+      "side": 1,
+      "message": "Thank you for taking the time to look into this 👍",
+      "parentUuid": "ab347f41_06f78de2",
+      "revId": "37914430414b0e63d9ce841a2e6d19e06456d63d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7ebcf9be_5193474a",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-10-08T22:03:51Z",
       "side": 1,
       "message": "There\u0027s no need to make constructors explicit if they have more than 1 arg. (unless I\u0027m missing something).",
+      "revId": "37914430414b0e63d9ce841a2e6d19e06456d63d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b6e5247_4346a814",
+        "filename": "src/entity_manager/config_pointer.hpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-09T13:16:34Z",
+      "side": 1,
+      "message": "right, fixed it 👍",
+      "parentUuid": "7ebcf9be_5193474a",
       "revId": "37914430414b0e63d9ce841a2e6d19e06456d63d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -58,6 +94,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a17a4c2_5e1f05a7",
+        "filename": "src/entity_manager/config_pointer.hpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-09T13:16:34Z",
+      "side": 1,
+      "message": "changed it to use an iterator. Agree with the point about duplicating the lookup, i should remember to use iterators more in these situations 👍\n\nIn this case it also makes the code more compact since `find` already checks for `is_object()`",
+      "parentUuid": "73e9c39c_505dd694",
+      "range": {
+        "startLine": 72,
+        "startChar": 40,
+        "endLine": 72,
+        "endChar": 73
+      },
+      "revId": "37914430414b0e63d9ce841a2e6d19e06456d63d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "05b62ae6_4dcc6029",
@@ -71,6 +131,30 @@
       "writtenOn": "2026-10-08T22:03:51Z",
       "side": 1,
       "message": "nit: these default to nullupt, so this isn\u0027t really necessary.",
+      "range": {
+        "startLine": 107,
+        "startChar": 40,
+        "endLine": 107,
+        "endChar": 56
+      },
+      "revId": "37914430414b0e63d9ce841a2e6d19e06456d63d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43738329_e9d595b4",
+        "filename": "src/entity_manager/config_pointer.hpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-09T13:16:34Z",
+      "side": 1,
+      "message": "Thanks, removed the redundant initializers.",
+      "parentUuid": "05b62ae6_4dcc6029",
       "range": {
         "startLine": 107,
         "startChar": 40,
