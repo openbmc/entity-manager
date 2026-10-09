@@ -193,7 +193,7 @@ void EntityManager::postBoardToDBus(
     dbus_interface.createAddObjectMethod(jsonPointerPath, objectPath,
                                          systemConfiguration, configNameOrig);
 
-    jsonPointerPath += "/";
+    jsonPointerPath += '/';
 
     // A configuration type only gets a top-level interface if it is listed
     // here. Adding a type to the schema is therefore not enough to make
