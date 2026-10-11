@@ -138,24 +138,33 @@ std::optional<std::vector<Token>> lexProbe(std::string_view probe)
         }
         std::string_view word = probe.substr(start, i - start);
 
-        // A call: the name is immediately followed by '('.
-        if (i < probe.size() && probe[i] == '(')
+        // A call: the name is followed by '(' (optionally after whitespace).
+        size_t paren = i;
+        while (paren < probe.size() && isSpace(probe[paren]))
         {
-            size_t end = findBalancedEnd(probe, i);
+            ++paren;
+        }
+        if (paren < probe.size() && probe[paren] == '(')
+        {
+            size_t end = findBalancedEnd(probe, paren);
             if (end == std::string_view::npos)
             {
                 return std::nullopt;
             }
             if (word == "FOUND")
             {
-                tokens.push_back({TokenType::found,
-                                  extractFoundName(probe.substr(i, end - i))});
+                tokens.push_back(
+                    {TokenType::found,
+                     extractFoundName(probe.substr(paren, end - paren))});
             }
             else
             {
+                // Normalize any whitespace between the name and '(' out of the
+                // token text so it is always "name(...)".
                 tokens.push_back(
                     {TokenType::dbusProbe,
-                     std::string(probe.substr(start, end - start))});
+                     std::string(word) +
+                         std::string(probe.substr(paren, end - paren))});
             }
             i = end;
             continue;
