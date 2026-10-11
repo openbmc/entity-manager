@@ -32,6 +32,18 @@ TEST(LexProbe, FoundFunction)
               (std::vector<Token>{{TokenType::found, "Harma SCM"}}));
 }
 
+// Whitespace between the name and '(' is tolerated; the parsed token carries
+// the interface and properties regardless of the space.
+TEST(LexProbe, WhitespaceBeforeParen)
+{
+    EXPECT_EQ(lexProbe("FOUND ('Board')"),
+              (std::vector<Token>{{TokenType::found, "Board"}}));
+    EXPECT_EQ(lexProbe("xyz.openbmc_project.FruDevice ({'BUS': 6})"),
+              (std::vector<Token>{
+                  {TokenType::dbusProbe, "",
+                   DbusProbe{"xyz.openbmc_project.FruDevice", {{"BUS", 6}}}}}));
+}
+
 // A D-Bus probe contains the parsed interface/properties with an empty value.
 TEST(LexProbe, DbusProbe)
 {
