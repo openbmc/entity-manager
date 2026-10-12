@@ -16,15 +16,16 @@
 
 // probes dbus interface dictionary for a key with a value that matches a regex
 // When an interface passes a probe, also save its D-Bus path with it.
-bool probeDbus(const std::string& interfaceName,
-               const std::map<std::string, nlohmann::json>& matches,
-               scan::FoundDevices& devices,
-               const std::shared_ptr<scan::PerformScan>& scan, bool& foundProbe)
+static bool probeDbus(const std::string& interfaceName,
+                      const std::map<std::string, nlohmann::json>& matches,
+                      scan::FoundDevices& devices,
+                      const MapperGetSubTreeResponse& dbusProbeObjects,
+                      bool& foundProbe)
 {
     bool foundMatch = false;
     foundProbe = false;
 
-    for (const auto& [path, interfaces] : scan->dbusProbeObjects)
+    for (const auto& [path, interfaces] : dbusProbeObjects)
     {
         auto it = interfaces.find(interfaceName);
         if (it == interfaces.end())
@@ -65,9 +66,10 @@ bool probeDbus(const std::string& interfaceName,
 
 // default probe entry point, iterates a list looking for specific types to
 // call specific probe functions
-bool doProbe(const std::vector<probe::Token>& probeCommand,
-             const std::shared_ptr<scan::PerformScan>& scan,
-             scan::FoundDevices& foundDevs)
+bool probe::detail::doProbe(const std::vector<probe::Token>& probeCommand,
+                            const MapperGetSubTreeResponse& dbusProbeObjects,
+                            const std::vector<std::string>& passedProbes,
+                            scan::FoundDevices& foundDevs)
 {
     bool ret = false;
     bool matchOne = false;
@@ -104,7 +106,7 @@ bool doProbe(const std::vector<probe::Token>& probeCommand,
             }
             case probe::TokenType::found:
             {
-                cur = std::ranges::contains(scan->passedProbes, token.value);
+                cur = std::ranges::contains(passedProbes, token.value);
                 break;
             }
             case probe::TokenType::dbusProbe:
@@ -138,8 +140,8 @@ bool doProbe(const std::vector<probe::Token>& probeCommand,
                 std::map<std::string, nlohmann::json> dbusProbeMap =
                     json.get<std::map<std::string, nlohmann::json>>();
                 bool foundProbe = false;
-                cur = probeDbus(interface, dbusProbeMap, foundDevs, scan,
-                                foundProbe);
+                cur = probeDbus(interface, dbusProbeMap, foundDevs,
+                                dbusProbeObjects, foundProbe);
                 break;
             }
         }
@@ -194,7 +196,8 @@ PerformProbe::PerformProbe(EMConfig& recordRef,
 PerformProbe::~PerformProbe()
 {
     scan::FoundDevices foundDevs;
-    if (doProbe(_probeCommand, scan, foundDevs))
+    if (detail::doProbe(_probeCommand, scan->dbusProbeObjects,
+                        scan->passedProbes, foundDevs))
     {
         scan->updateSystemConfiguration(recordRef, probeName, foundDevs);
     }
