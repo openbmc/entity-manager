@@ -26,4 +26,14 @@ struct PerformProbe final
     std::shared_ptr<scan::PerformScan> scan;
 };
 
+namespace detail
+{
+// Evaluate a lexed probe against the given D-Bus objects and the names of
+// already-passed probes. Matching devices are appended to foundDevs.
+bool doProbe(const std::vector<Token>& probeCommand,
+             const MapperGetSubTreeResponse& dbusProbeObjects,
+             const std::vector<std::string>& passedProbes,
+             scan::FoundDevices& foundDevs);
+} // namespace detail
+
 } // namespace probe
