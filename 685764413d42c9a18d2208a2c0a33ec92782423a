@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8a7514f3_be102f90",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-10-13T12:15:37Z",
+      "side": 1,
+      "message": "Done, `logDeviceRemoved()` now takes cachedBaseline and does the erase itself, so there is a single erase site.",
+      "parentUuid": "10a1f6f3_c321afae",
+      "range": {
+        "startLine": 473,
+        "startChar": 1,
+        "endLine": 475,
+        "endChar": 31
+      },
+      "revId": "685764413d42c9a18d2208a2c0a33ec92782423a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ca00ad3f_dd319fe2",
         "filename": "src/entity_manager/log_device_inventory.cpp",
         "patchSetId": 15
@@ -66,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cfdd58fd_2b55dd16",
+        "filename": "src/entity_manager/log_device_inventory.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-10-13T12:15:37Z",
+      "side": 1,
+      "message": "Done, inlined. Happy to add a test for the baseline logic if you think it\u0027s worth it.",
+      "parentUuid": "ca00ad3f_dd319fe2",
+      "range": {
+        "startLine": 80,
+        "startChar": 1,
+        "endLine": 96,
+        "endChar": 1
+      },
+      "revId": "685764413d42c9a18d2208a2c0a33ec92782423a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6541c16e_fcdac205",
         "filename": "test/entity_manager/log_device_inventory.cpp",
         "patchSetId": 15
@@ -77,6 +125,30 @@
       "writtenOn": "2026-10-08T14:19:08Z",
       "side": 1,
       "message": "Do these tests describe schema-valid EM configurations?\n\nIt can be confusing to read tests with examples that do not match the schema because it creates ambiguity about what functions are supposed to handle.\n\nWe probably do not need to handle wildly invalid json configs anymore because now the configs go through the `EMConfig::fromJson` parser which guarantees certain fields to be present and have their expected types.\n\nSo it might be impossible for the `newConfiguration` data structure to look like what\u0027s in this test.",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 23
+      },
+      "revId": "685764413d42c9a18d2208a2c0a33ec92782423a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab5657a0_8346ac50",
+        "filename": "test/entity_manager/log_device_inventory.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-10-13T12:15:37Z",
+      "side": 1,
+      "message": "Done, dropped them along with the helper.",
+      "parentUuid": "6541c16e_fcdac205",
       "range": {
         "startLine": 99,
         "startChar": 0,
