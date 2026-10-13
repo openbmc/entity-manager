@@ -6,6 +6,7 @@
 #include <nlohmann/json.hpp>
 
 #include <string>
+#include <unordered_set>
 
 // @brief Model/Type/SerialNumber for the legacy OpenBMC.0.1.* journal
 //        message, kept alongside the structured D-Bus event as a temporary
@@ -19,7 +20,8 @@ struct LegacyInvInfo
 
 void logDeviceAdded(const nlohmann::json& record);
 
-void logDeviceRemoved(const nlohmann::json& record);
+void logDeviceRemoved(const std::string& key, const nlohmann::json& record,
+                      std::unordered_set<std::string>& cachedBaseline);
 
 std::string queryInvName(const nlohmann::json& record);
 
