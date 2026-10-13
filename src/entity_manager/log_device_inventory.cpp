@@ -108,7 +108,8 @@ void logDeviceAdded(const nlohmann::json& record)
     lg2::commit(InventoryAdded("IDENTIFIER_PATH", *path));
 }
 
-void logDeviceRemoved(const nlohmann::json& record)
+void logDeviceRemoved(const std::string& key, const nlohmann::json& record,
+                      std::unordered_set<std::string>& cachedBaseline)
 {
     const std::string name = queryInvName(record);
 
@@ -124,9 +125,9 @@ void logDeviceRemoved(const nlohmann::json& record)
         sdbusplus::event::xyz::openbmc_project::Inventory::InventoryRemoved;
 
     std::optional<sdbusplus::object_path> path = inventoryPath(record, name);
-    if (!path)
+    if (path)
     {
-        return;
+        lg2::commit(InventoryRemoved("IDENTIFIER_PATH", *path));
     }
-    lg2::commit(InventoryRemoved("IDENTIFIER_PATH", *path));
+    cachedBaseline.erase(key);
 }
