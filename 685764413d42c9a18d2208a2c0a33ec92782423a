@@ -65,6 +65,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8948828c_3a9ef785",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-13T14:15:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a7514f3_be102f90",
+      "range": {
+        "startLine": 473,
+        "startChar": 1,
+        "endLine": 475,
+        "endChar": 31
+      },
+      "revId": "685764413d42c9a18d2208a2c0a33ec92782423a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ca00ad3f_dd319fe2",
@@ -112,6 +136,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad0f21b1_2460dd58",
+        "filename": "src/entity_manager/log_device_inventory.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-13T14:15:24Z",
+      "side": 1,
+      "message": "from my side it\u0027s fine as-is since your patch looks like a bug fix rather than feature expansion.\n\nIf you\u0027d like to have test coverage for the added/removed logging feature maybe best to explore it in a future patch. Since the code you changed goes through timers there could be some restructuring needed to meaningfully test this without mocking everything. Maybe you have a better idea but i don\u0027t see how to easily test it.",
+      "parentUuid": "cfdd58fd_2b55dd16",
+      "range": {
+        "startLine": 80,
+        "startChar": 1,
+        "endLine": 96,
+        "endChar": 1
+      },
+      "revId": "685764413d42c9a18d2208a2c0a33ec92782423a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6541c16e_fcdac205",
@@ -149,6 +197,30 @@
       "side": 1,
       "message": "Done, dropped them along with the helper.",
       "parentUuid": "6541c16e_fcdac205",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 23
+      },
+      "revId": "685764413d42c9a18d2208a2c0a33ec92782423a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bce3fd94_50ddf960",
+        "filename": "test/entity_manager/log_device_inventory.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-13T14:15:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab5657a0_8346ac50",
       "range": {
         "startLine": 99,
         "startChar": 0,
