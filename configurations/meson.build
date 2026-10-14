@@ -297,6 +297,7 @@ configs = [
     'meta/yv4/yosemite4_wailuafalls_without_asic.json',
     'meta/yv4/yosemite4n.json',
     'meta/yv5/yosemite5_1kw_paddle_board_hsc_mps.json',
+    'meta/yv5/yosemite5_1kw_paddle_board_hsc_mpsb.json',
     'meta/yv5/yosemite5_1kw_paddle_board_hsc_rds.json',
     'meta/yv5/yosemite5_1kw_paddle_board_hsc_tic.json',
     'meta/yv5/yosemite5_3kw_paddle_board_hsc_mps.json',
