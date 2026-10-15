@@ -84,7 +84,7 @@ class EntityManager
         const ConfigPointer& configPtr,
         const sdbusplus::object_path& ifacePath);
 
-    void pruneConfiguration(bool powerOff, const std::string& name,
+    void pruneConfiguration(const std::string& name,
                             const nlohmann::json& device);
 
     void handleCurrentConfigurationJson();

@@ -178,3 +178,15 @@ TEST(EMConfig, RoundTrip)
 
     EXPECT_EQ(*outObj, input);
 }
+
+TEST(EMConfig, PreservesExposePowerState)
+{
+    nlohmann::json::object_t input = getSampleConfig();
+    input["Exposes"].at(0)["PowerState"] = "BiosPost";
+
+    const auto config = EMConfig::fromJson(input);
+
+    ASSERT_TRUE(config.has_value());
+    EXPECT_EQ(config->exposesRecords.at(0).at("PowerState"), "BiosPost");
+    EXPECT_EQ(config->toJson(), nlohmann::json(input));
+}
