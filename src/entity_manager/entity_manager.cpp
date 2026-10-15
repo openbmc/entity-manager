@@ -425,34 +425,11 @@ bool EntityManager::postConfigurationRecord(
     return true;
 }
 
-static bool deviceRequiresPowerOn(const nlohmann::json& entity)
-{
-    auto powerState = entity.find("PowerState");
-    if (powerState == entity.end())
-    {
-        return false;
-    }
-
-    const auto* ptr = powerState->get_ptr<const std::string*>();
-    if (ptr == nullptr)
-    {
-        return false;
-    }
-
-    return *ptr == "On" || *ptr == "BiosPost";
-}
-
 static void pruneDevice(const nlohmann::json& systemConfiguration,
                         std::unordered_set<std::string>& cachedBaseline,
-                        const bool powerOff, const bool scannedPowerOff,
                         const std::string& name, const nlohmann::json& device)
 {
     if (systemConfiguration.contains(name))
-    {
-        return;
-    }
-
-    if (deviceRequiresPowerOn(device) && (powerOff || scannedPowerOff))
     {
         return;
     }
@@ -486,8 +463,7 @@ void EntityManager::startRemovedTimer(boost::asio::steady_timer& timer)
         bool powerOff = !powerStatus.isPowerOn();
         for (const auto& [name, device] : lastJson.items())
         {
-            pruneDevice(systemConfiguration, cachedBaseline, powerOff,
-                        scannedPowerOff, name, device);
+            pruneDevice(systemConfiguration, cachedBaseline, name, device);
         }
 
         scannedPowerOff = true;
@@ -498,16 +474,10 @@ void EntityManager::startRemovedTimer(boost::asio::steady_timer& timer)
     });
 }
 
-void EntityManager::pruneConfiguration(bool powerOff, const std::string& name,
+void EntityManager::pruneConfiguration(const std::string& name,
                                        const nlohmann::json& device)
 {
     lg2::debug("pruning configuration");
-
-    if (powerOff && deviceRequiresPowerOn(device))
-    {
-        // power not on yet, don't know if it's there or not
-        return;
-    }
 
     auto& ifaces = dbus_interface.getDeviceInterfaces(device);
     for (auto& iface : ifaces)
@@ -593,10 +563,9 @@ void EntityManager::propertiesChangedCallbackDebounced(
         [this, count, oldConfiguration, missingConfigurations]() {
             // this is something that since ac has been applied to the
             // bmc we saw, and we no longer see it
-            bool powerOff = !powerStatus.isPowerOn();
             for (const auto& [name, device] : missingConfigurations->items())
             {
-                pruneConfiguration(powerOff, name, device);
+                pruneConfiguration(name, device);
             }
             nlohmann::json newConfiguration = systemConfiguration;
 
