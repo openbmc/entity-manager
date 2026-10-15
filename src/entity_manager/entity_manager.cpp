@@ -56,8 +56,7 @@ EntityManager::EntityManager(
     std::filesystem::path configCacheDir) :
     systemBus(systemBus),
     objServer(sdbusplus::asio::object_server(systemBus, /*skipManager=*/true)),
-    configuration(configurationDirectories, schemaDirectory),
-    lastJson(nlohmann::json::object()),
+    configuration(configurationDirectories, schemaDirectory), lastJson(),
     systemConfiguration(nlohmann::json::object()), io(io),
     configCache(std::move(configCacheDir)),
     dbus_interface(io, objServer, schemaDirectory, configCache),
@@ -486,9 +485,10 @@ void EntityManager::startRemovedTimer(boost::asio::steady_timer& timer)
         }
 
         bool powerOff = !powerStatus.isPowerOn();
-        for (const auto& [name, device] : lastJson.items())
+        for (const auto& [name, device] : lastJson)
         {
-            pruneDevice(systemConfiguration, cachedBaseline, name, device);
+            pruneDevice(systemConfiguration, cachedBaseline, name,
+                        device.toJson());
         }
 
         scannedPowerOff = true;
@@ -680,10 +680,20 @@ void EntityManager::handleCurrentConfigurationJson()
                 }
                 else
                 {
-                    lastJson = std::move(data);
-                    for (const auto& [key, _] : lastJson.items())
+                    std::optional<SystemConfiguration> optConfig =
+                        systemConfigurationFromJson(data);
+                    if (optConfig.has_value())
                     {
-                        cachedBaseline.insert(key);
+                        lastJson = optConfig.value();
+                        for (const auto& [key, _] : lastJson)
+                        {
+                            cachedBaseline.insert(key);
+                        }
+                    }
+                    else
+                    {
+                        lg2::error("Failed parsing last json at {PATH}", "PATH",
+                                   lastConfiguration);
                     }
                 }
             }
