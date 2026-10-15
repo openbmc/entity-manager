@@ -139,6 +139,14 @@ bool ConfigPointer::write(const nlohmann::json& value,
     {
         return false;
     }
-    *target = value;
+    if (exposesIndex && !propertyName && value.is_null())
+    {
+        // Keep the slot so pointers to later exposes stay valid.
+        (*target)["Status"] = "disabled";
+    }
+    else
+    {
+        *target = value;
+    }
     return true;
 }
