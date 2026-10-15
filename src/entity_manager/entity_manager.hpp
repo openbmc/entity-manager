@@ -71,11 +71,11 @@ class EntityManager
         const std::string& configId,
         const nlohmann::json::object_t& configObject,
         std::map<sdbusplus::object_path, std::string>& newObjects);
-    void postExposesRecordsToDBus(nlohmann::json& item, size_t& exposesIndex,
-                                  const std::string& configNameOrig,
-                                  const std::string& boardId,
-                                  const sdbusplus::object_path& objectPath,
-                                  const std::string& configType);
+    void postExposesRecordsToDBus(
+        nlohmann::json::object_t& item, size_t& exposesIndex,
+        const std::string& configNameOrig, const std::string& boardId,
+        const sdbusplus::object_path& objectPath,
+        const std::string& configType);
 
     // @returns false on error
     bool postConfigurationRecord(
