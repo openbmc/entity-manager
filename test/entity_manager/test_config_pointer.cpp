@@ -179,7 +179,7 @@ TEST(ConfigPointer, deleteKeepsExposeIndices)
     EXPECT_TRUE(ConfigPointer("823", 1).withName("Name").write(
         "second", systemConfiguration));
 
-    EXPECT_TRUE(systemConfiguration["823"]["Exposes"][0].is_null());
+    EXPECT_EQ(systemConfiguration["823"]["Exposes"][0]["Status"], "disabled");
     EXPECT_EQ(systemConfiguration["823"]["Exposes"][1]["Name"], "second");
 
     EXPECT_TRUE(ConfigPointer("823", 1, "Thresholds", 0)
@@ -187,6 +187,32 @@ TEST(ConfigPointer, deleteKeepsExposeIndices)
     EXPECT_TRUE(
         systemConfiguration["823"]["Exposes"][1]["Thresholds"][0].is_null());
     EXPECT_EQ(systemConfiguration["823"]["Exposes"][1]["Name"], "second");
+}
+
+TEST(ConfigPointer, reusesDeletedExposeSlot)
+{
+    nlohmann::json systemConfiguration;
+    systemConfiguration["823"] = getSampleConfig();
+    nlohmann::json& board = systemConfiguration["823"];
+    board["Exposes"].push_back(getSampleConfigRecord());
+    board["Exposes"].push_back(getSampleConfigRecord());
+    board["Exposes"][1]["Name"] = "second";
+    nlohmann::json expected = board;
+
+    ASSERT_TRUE(ConfigPointer("823", 0).write(nullptr, systemConfiguration));
+
+    expected["Exposes"][0]["Status"] = "disabled";
+    ASSERT_EQ(board["Exposes"].size(), 2);
+    EXPECT_EQ(board, expected);
+
+    const nlohmann::json::object_t replacement = {{"Name", "replacement"},
+                                                  {"Type", "TMP75"}};
+    ASSERT_TRUE(
+        ConfigPointer("823", 0).write(replacement, systemConfiguration));
+
+    expected["Exposes"][0] = replacement;
+    ASSERT_EQ(board["Exposes"].size(), 2);
+    EXPECT_EQ(board, expected);
 }
 
 class ConfigPointerFailureTest : public ::testing::Test
@@ -237,13 +263,6 @@ TEST_F(ConfigPointerFailureTest, rejectsOutOfRangeExposeIndex)
 TEST_F(ConfigPointerFailureTest, rejectsOutOfRangeArrayIndex)
 {
     expectWriteRejected(ConfigPointer("823", 0, "Thresholds", 1));
-}
-
-TEST_F(ConfigPointerFailureTest, rejectsTraversalThroughDeletedExpose)
-{
-    ASSERT_TRUE(ConfigPointer("823", 0).write(nullptr, systemConfiguration));
-
-    expectWriteRejected(ConfigPointer("823", 0).withName("Name"));
 }
 
 TEST_F(ConfigPointerFailureTest, rejectsTraversalThroughDeletedProperty)
