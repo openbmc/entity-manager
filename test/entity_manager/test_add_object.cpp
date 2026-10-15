@@ -58,12 +58,22 @@ class AddObjectTest : public ::testing::Test
     }
 };
 
+TEST_F(AddObjectTest, MissingDeviceInterfacesReturnsEmptyVector)
+{
+    EMConfig device;
+    device.name = kBoardId;
+
+    auto& interfaces = iface->getDeviceInterfaces(device);
+
+    EXPECT_TRUE(interfaces.empty());
+    EXPECT_EQ(&interfaces, &iface->getDeviceInterfaces(device));
+}
+
 TEST_F(AddObjectTest, AddObject)
 {
-    nlohmann::json sysConfig;
-    sysConfig[kBoardId] = {{"Name", kBoardId},
-                           {"Type", "Baseboard"},
-                           {"Exposes", nlohmann::json::array()}};
+    SystemConfiguration sysConfig;
+    sysConfig[kBoardId].name = kBoardId;
+    sysConfig[kBoardId].type = "Baseboard";
 
     std::string boardName{"TestBoard"};
     const sdbusplus::object_path boardPath =
@@ -76,7 +86,7 @@ TEST_F(AddObjectTest, AddObject)
                             {"Address", uint64_t{0x41}}},
                      sysConfig, kBoardId, boardPath, kBoardId);
 
-    const auto& exposes = sysConfig[kBoardId]["Exposes"];
+    const auto exposes = sysConfig[kBoardId].toJson().at("Exposes");
     ASSERT_FALSE(exposes.empty());
     EXPECT_EQ(exposes[0].value("Name", ""), "Sensor1");
 
@@ -91,21 +101,21 @@ TEST_F(AddObjectTest, AddObject)
 class AddObjectExposesTest : public AddObjectTest
 {
   protected:
-    nlohmann::json sysConfig;
+    SystemConfiguration sysConfig;
     std::string boardName{"TestBoard"};
     const sdbusplus::object_path boardPath =
         em_utils::buildInventorySystemPath(boardName, "Board");
 
     void setExposes(const nlohmann::json& exposes)
     {
-        sysConfig[kBoardId] = {
-            {"Name", kBoardId}, {"Type", "Baseboard"}, {"Exposes", exposes}};
-        for (auto& record : sysConfig[kBoardId]["Exposes"])
+        EMConfig& config = sysConfig[kBoardId];
+        config.name = kBoardId;
+        config.type = "Baseboard";
+        config.exposesRecords.clear();
+        for (const auto& record : exposes)
         {
-            if (record.is_null())
-            {
-                record = {{"Status", "disabled"}};
-            }
+            config.exposesRecords.push_back(
+                record.get<nlohmann::json::object_t>());
         }
     }
 
@@ -119,9 +129,9 @@ class AddObjectExposesTest : public AddObjectTest
             sysConfig, kBoardId, boardPath, kBoardId);
     }
 
-    const nlohmann::json& exposes()
+    nlohmann::json exposes()
     {
-        return sysConfig[kBoardId]["Exposes"];
+        return sysConfig[kBoardId].exposesRecords;
     }
 };
 
@@ -130,7 +140,14 @@ static nlohmann::json expose(const std::string& name)
     return {{"Name", name}, {"Type", "Temperature"}};
 }
 
-TEST_F(AddObjectExposesTest, AppendsWhenNoNullSlot)
+static nlohmann::json disabledExpose(const std::string& name)
+{
+    nlohmann::json record = expose(name);
+    record["Status"] = "disabled";
+    return record;
+}
+
+TEST_F(AddObjectExposesTest, AppendsWhenNoDisabledSlot)
 {
     setExposes({expose("A"), expose("B")});
 
@@ -142,9 +159,10 @@ TEST_F(AddObjectExposesTest, AppendsWhenNoNullSlot)
     EXPECT_EQ(exposes()[2]["Name"], "C");
 }
 
-TEST_F(AddObjectExposesTest, ReusesFirstNullSlot)
+TEST_F(AddObjectExposesTest, ReusesFirstDisabledSlot)
 {
-    setExposes({expose("A"), nullptr, expose("B"), nullptr});
+    setExposes({expose("A"), disabledExpose("old C"), expose("B"),
+                disabledExpose("old D")});
 
     add("C");
 
@@ -160,9 +178,9 @@ TEST_F(AddObjectExposesTest, ReusesFirstNullSlot)
     EXPECT_EQ(exposes()[3]["Name"], "D");
 }
 
-TEST_F(AddObjectExposesTest, ReusesLeadingNullSlot)
+TEST_F(AddObjectExposesTest, ReusesLeadingDisabledSlot)
 {
-    setExposes({nullptr, expose("A")});
+    setExposes({disabledExpose("old B"), expose("A")});
 
     add("B");
 
@@ -171,9 +189,9 @@ TEST_F(AddObjectExposesTest, ReusesLeadingNullSlot)
     EXPECT_EQ(exposes()[1]["Name"], "A");
 }
 
-TEST_F(AddObjectExposesTest, DuplicateAfterNullSlotThrows)
+TEST_F(AddObjectExposesTest, DuplicateAfterDisabledSlotThrows)
 {
-    setExposes({nullptr, expose("A")});
+    setExposes({disabledExpose("old B"), expose("A")});
 
     EXPECT_THROW(add("A"), std::invalid_argument);
     EXPECT_EQ(exposes()[0]["Status"], "disabled");
