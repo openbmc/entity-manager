@@ -62,3 +62,83 @@ ConfigPointer ConfigPointer::withName(const std::string& name) const
     }
     return result;
 }
+
+nlohmann::json* ConfigPointer::findRecord(nlohmann::json& board) const
+{
+    nlohmann::json* target = &board;
+    if (exposesIndex)
+    {
+        auto it = target->find("Exposes");
+        if (it == target->end() || !it->is_array() ||
+            it->size() <= *exposesIndex)
+        {
+            lg2::error("error: config ptr: invalid exposes index {INDEX}",
+                       "INDEX", *exposesIndex);
+            return nullptr;
+        }
+        target = &(*it)[*exposesIndex];
+    }
+    if (propertyName)
+    {
+        auto it = target->find(*propertyName);
+        if (it == target->end())
+        {
+            lg2::error("error: config ptr: property {NAME} not found", "NAME",
+                       *propertyName);
+            return nullptr;
+        }
+        target = &(*it);
+    }
+    return target;
+}
+
+nlohmann::json* ConfigPointer::findValue(nlohmann::json& record) const
+{
+    nlohmann::json* target = &record;
+    if (arrayIndex)
+    {
+        if (!target->is_array() || target->size() <= *arrayIndex)
+        {
+            lg2::error("error: config ptr: invalid array index {INDEX}",
+                       "INDEX", *arrayIndex);
+            return nullptr;
+        }
+        target = &(*target)[*arrayIndex];
+    }
+    if (memberName)
+    {
+        auto it = target->find(*memberName);
+        if (it == target->end())
+        {
+            lg2::error("error: config ptr: property {NAME} not found", "NAME",
+                       *memberName);
+            return nullptr;
+        }
+        target = &(*it);
+    }
+    return target;
+}
+
+bool ConfigPointer::write(const nlohmann::json& value,
+                          nlohmann::json& systemConfiguration) const
+{
+    lg2::debug("config ptr: writing value: {VALUE}", "VALUE", value);
+    auto targetIt = systemConfiguration.find(boardId);
+    if (targetIt == systemConfiguration.end())
+    {
+        lg2::error("error: config ptr: board id {ID} not found", "ID", boardId);
+        return false;
+    }
+    nlohmann::json* record = findRecord(*targetIt);
+    if (record == nullptr)
+    {
+        return false;
+    }
+    nlohmann::json* target = findValue(*record);
+    if (target == nullptr)
+    {
+        return false;
+    }
+    *target = value;
+    return true;
+}
