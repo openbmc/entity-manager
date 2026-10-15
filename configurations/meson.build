@@ -135,6 +135,8 @@ configs = [
     'meta/anacapa/anacapa_pdb_r_evt1.json',
     'meta/anacapa/anacapa_pdb_r_evt2.json',
     'meta/anacapa/anacapa_scm.json',
+    'meta/anacapa/anacapa_fsc_t16.json',
+    'meta/anacapa/anacapa_fsc_t20.json',
     'meta/bletchley/bletchley_baseboard.json',
     'meta/bletchley/bletchley_chassis.json',
     'meta/bletchley/bletchley_frontpanel.json',
