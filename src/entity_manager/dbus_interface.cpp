@@ -296,8 +296,7 @@ void EMDBusInterface::addObject(
     addObjectJson(newData, systemConfiguration, boardId, path, board);
 }
 
-// Reuses the first null slot or appends; returns the index of the inserted
-// entry.
+// Reuses the first null or disabled slot, or appends; returns its index.
 static size_t insertIntoExposes(
     nlohmann::json& exposes, const std::string& name, const std::string& type,
     const nlohmann::json& newData, const std::filesystem::path& schemaDirectory)
@@ -306,7 +305,8 @@ static size_t insertIntoExposes(
     size_t lastIndex = 0;
     for (const auto& expose : exposes)
     {
-        if (expose.is_null())
+        if (expose.is_null() ||
+            (expose.contains("Status") && expose.at("Status") == "disabled"))
         {
             foundNull = true;
             continue;
