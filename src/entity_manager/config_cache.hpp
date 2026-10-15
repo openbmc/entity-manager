@@ -6,6 +6,7 @@
 #include <nlohmann/json.hpp>
 
 #include <filesystem>
+#include <string>
 
 class ConfigCache
 {
@@ -22,4 +23,8 @@ class ConfigCache
     const std::filesystem::path configurationOutDir;
     const std::filesystem::path currentConfiguration;
     const std::filesystem::path versionHashFile;
+
+  private:
+    // Last content written to currentConfiguration.
+    std::string lastWritten;
 };
