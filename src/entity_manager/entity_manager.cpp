@@ -440,7 +440,7 @@ bool EntityManager::postConfigurationRecord(
 
 static void pruneDevice(const nlohmann::json& systemConfiguration,
                         std::unordered_set<std::string>& cachedBaseline,
-                        const std::string& name, const nlohmann::json& device)
+                        const std::string& name, const EMConfig& device)
 {
     if (systemConfiguration.contains(name))
     {
@@ -476,8 +476,7 @@ void EntityManager::startRemovedTimer(boost::asio::steady_timer& timer)
         bool powerOff = !powerStatus.isPowerOn();
         for (const auto& [name, device] : lastJson)
         {
-            pruneDevice(systemConfiguration, cachedBaseline, name,
-                        device.toJson());
+            pruneDevice(systemConfiguration, cachedBaseline, name, device);
         }
 
         scannedPowerOff = true;
