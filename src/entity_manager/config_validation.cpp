@@ -66,7 +66,6 @@ void freeSchemaDocument(const nlohmann::json* document)
 struct Validator::Impl
 {
     valijson::Schema schema;
-    valijson::Validator validator;
 };
 
 Validator::Validator(const fs::path& schemaPath) :
@@ -88,6 +87,27 @@ Validator::~Validator() = default;
 
 bool Validator::validate(const nlohmann::json& document,
                          std::vector<Error>* errors) const
+{
+    Session session(*this);
+    return session.validate(document, errors);
+}
+
+struct Session::Impl
+{
+    explicit Impl(const valijson::Schema& schema) : schema(schema) {}
+
+    const valijson::Schema& schema;
+    valijson::Validator validator;
+};
+
+Session::Session(const Validator& validator) :
+    impl(std::make_unique<Impl>(validator.impl->schema))
+{}
+
+Session::~Session() = default;
+
+bool Session::validate(const nlohmann::json& document,
+                       std::vector<Error>* errors)
 {
     valijson::adapters::NlohmannJsonAdapter adapter(document);
     if (errors != nullptr)
