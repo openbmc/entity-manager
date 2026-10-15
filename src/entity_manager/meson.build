@@ -46,6 +46,7 @@ native_json_dep = dependency(
     native: true,
     include_type: 'system',
 )
+native_threads_dep = dependency('threads', native: true)
 config_validation_native_lib = static_library(
     'config-validation-native',
     'config_validation.cpp',
@@ -61,6 +62,7 @@ config_validator = executable(
     dependencies: [
         native_json_dep,
         valijson,
+        native_threads_dep,
     ],
     link_with: config_validation_native_lib,
 )
