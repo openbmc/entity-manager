@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b502617_d614fa64",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003117
+      },
+      "writtenOn": "2026-10-15T10:49:43Z",
+      "side": 1,
+      "message": "Nice consolidation! Parsing the D-Bus probe once into Token::dbus cleans up those reparses, and doing the is_object() check up front is a great call. Skipping bad configs instead of stopping the whole scan is definitely a solid improvement.\n\nA couple of small optional thoughts (non-blocking):\n\nIn doProbe, the dbusProbe case doesn\u0027t have an else for if (token.dbus). It\u0027s safe since parseProbeCommand sets it, but adding a defensive else that logs an error would help document that expectation.\n\nparseProbeCommand assumes token.value ends in ). Using rfind(\u0027)\u0027) might be a bit more robust in case the lexer ever leaves a trailing char.\n\nLGTM.",
+      "revId": "f224adb23a227dd790e5577d3f28564d9bc02859",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
