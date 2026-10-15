@@ -1,5 +1,8 @@
 [Unit]
 Description=Entity Manager
+After=devicetree-vpd-parser.service
+After=xyz.openbmc_project.FruDevice.service
+After=xyz.openbmc_project.gpiopresence.service
 
 [Service]
 ExecStartPre=/bin/mkdir -p /var/configuration
