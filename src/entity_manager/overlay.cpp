@@ -295,11 +295,29 @@ static void loadOverlayForConfigRecord(const nlohmann::json& configuration,
                type);
 }
 
-bool loadOverlays(const nlohmann::json& systemConfiguration,
+bool loadOverlays(const SystemConfiguration& systemConfiguration,
                   boost::asio::io_context& io)
 {
     lg2::debug("start loading device overlays");
 
+    std::filesystem::create_directory(outputDir);
+    for (const auto& [name, entity] : systemConfiguration)
+    {
+        for (const auto& configuration : entity.exposesRecords)
+        {
+            loadOverlayForConfigRecord(configuration, io);
+        }
+    }
+
+    lg2::debug("finish loading device overlays");
+
+    return true;
+}
+
+bool loadOverlays(const nlohmann::json& systemConfiguration,
+                  boost::asio::io_context& io)
+{
+    lg2::debug("start loading device overlays");
     std::filesystem::create_directory(outputDir);
     for (auto entity = systemConfiguration.begin();
          entity != systemConfiguration.end(); entity++)
@@ -310,14 +328,11 @@ bool loadOverlays(const nlohmann::json& systemConfiguration,
         {
             continue;
         }
-
         for (const auto& configuration : *findExposes)
         {
             loadOverlayForConfigRecord(configuration, io);
         }
     }
-
     lg2::debug("finish loading device overlays");
-
     return true;
 }
