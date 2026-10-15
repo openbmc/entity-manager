@@ -150,3 +150,131 @@ bool ConfigPointer::write(const nlohmann::json& value,
     }
     return true;
 }
+
+static bool replaceObject(const nlohmann::json& value,
+                          nlohmann::json::object_t& object)
+{
+    const auto* replacement = value.get_ptr<const nlohmann::json::object_t*>();
+    if (replacement == nullptr)
+    {
+        return false;
+    }
+    object = *replacement;
+    return true;
+}
+
+bool ConfigPointer::writeExpose(const nlohmann::json& value,
+                                EMConfig& board) const
+{
+    if (board.exposesRecords.size() <= *exposesIndex)
+    {
+        lg2::error("error: config ptr: invalid exposes index {INDEX}", "INDEX",
+                   *exposesIndex);
+        return false;
+    }
+    nlohmann::json::object_t& record = board.exposesRecords[*exposesIndex];
+    if (!propertyName)
+    {
+        if (value.is_null())
+        {
+            // Keep the slot so pointers to later exposes stay valid.
+            record["Status"] = "disabled";
+            return true;
+        }
+        return replaceObject(value, record);
+    }
+    auto it = record.find(*propertyName);
+    if (it == record.end())
+    {
+        lg2::error("error: config ptr: property {NAME} not found", "NAME",
+                   *propertyName);
+        return false;
+    }
+    nlohmann::json* target = findValue(it->second);
+    if (target == nullptr)
+    {
+        return false;
+    }
+    *target = value;
+    return true;
+}
+
+bool ConfigPointer::writeBoardProperty(const nlohmann::json& value,
+                                       EMConfig& board) const
+{
+    if (!memberName && !arrayIndex &&
+        (*propertyName == "Name" || *propertyName == "Type"))
+    {
+        const auto* str = value.get_ptr<const std::string*>();
+        if (str == nullptr)
+        {
+            return false;
+        }
+        (*propertyName == "Name" ? board.name : board.type) = *str;
+        return true;
+    }
+    auto it = board.extraInterfaces.find(*propertyName);
+    if (it == board.extraInterfaces.end())
+    {
+        return false;
+    }
+    if (!memberName && !arrayIndex)
+    {
+        if (value.is_null())
+        {
+            board.extraInterfaces.erase(it);
+            return true;
+        }
+        return replaceObject(value, it->second);
+    }
+    if (!memberName)
+    {
+        return false;
+    }
+    auto member = it->second.find(*memberName);
+    if (member == it->second.end())
+    {
+        return false;
+    }
+    nlohmann::json* target = &member->second;
+    if (arrayIndex)
+    {
+        if (!target->is_array() || target->size() <= *arrayIndex)
+        {
+            return false;
+        }
+        target = &(*target)[*arrayIndex];
+    }
+    *target = value;
+    return true;
+}
+
+bool ConfigPointer::write(const nlohmann::json& value,
+                          SystemConfiguration& systemConfiguration) const
+{
+    lg2::debug("config ptr: writing value: {VALUE}", "VALUE", value);
+    auto targetIt = systemConfiguration.find(boardId);
+    if (targetIt == systemConfiguration.end())
+    {
+        lg2::error("error: config ptr: board id {ID} not found", "ID", boardId);
+        return false;
+    }
+    EMConfig& board = targetIt->second;
+    // The source may refer to a property in the configuration being replaced.
+    nlohmann::json newValue = value;
+    if (exposesIndex)
+    {
+        return writeExpose(newValue, board);
+    }
+    if (propertyName)
+    {
+        return writeBoardProperty(newValue, board);
+    }
+    auto parsed = EMConfig::fromJson(newValue);
+    if (!parsed)
+    {
+        return false;
+    }
+    board = std::move(*parsed);
+    return true;
+}
