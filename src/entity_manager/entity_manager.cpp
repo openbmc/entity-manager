@@ -236,9 +236,12 @@ void EntityManager::postBoardToDBus(
                 typeIface = iface;
             }
 
+            const auto* propValueObj =
+                propValue.get_ptr<const nlohmann::json::object_t*>();
+
             dbus_interface.populateInterfaceFromJson(
                 systemConfiguration, ConfigPointer(configId, propName), iface,
-                propValue);
+                *propValueObj);
         }
     }
 
@@ -260,15 +263,25 @@ void EntityManager::postBoardToDBus(
     size_t exposesIndex = -1;
     for (nlohmann::json& item : *exposes)
     {
-        postExposesRecordsToDBus(item, exposesIndex, configNameOrig, configId,
-                                 objectPath, configType);
+        nlohmann::json::object_t* itemObj =
+            item.get_ptr<nlohmann::json::object_t*>();
+
+        if (itemObj == nullptr)
+        {
+            // null slot
+            lg2::debug("Exposes record was not an object");
+            exposesIndex++;
+            continue;
+        }
+        postExposesRecordsToDBus(*itemObj, exposesIndex, configNameOrig,
+                                 configId, objectPath, configType);
     }
 
     newObjects.emplace(objectPath, configNameOrig);
 }
 
 void EntityManager::postExposesRecordsToDBus(
-    nlohmann::json& item, size_t& exposesIndex,
+    nlohmann::json::object_t& item, size_t& exposesIndex,
     const std::string& configNameOrig, const std::string& boardId,
     const sdbusplus::object_path& objectPath, const std::string& configType)
 {
@@ -278,14 +291,15 @@ void EntityManager::postExposesRecordsToDBus(
     auto findName = item.find("Name");
     if (findName == item.end())
     {
-        lg2::error("cannot find name in field {ITEM}", "ITEM", item);
+        lg2::error("cannot find name in field {ITEM}", "ITEM",
+                   nlohmann::json(item));
         return;
     }
     auto findStatus = item.find("Status");
     // if status is not found it is assumed to be status = 'okay'
     if (findStatus != item.end())
     {
-        if (*findStatus == "disabled")
+        if (findStatus->second == "disabled")
         {
             return;
         }
@@ -294,7 +308,7 @@ void EntityManager::postExposesRecordsToDBus(
     std::string itemType = "unknown";
     if (findType != item.end())
     {
-        itemType = findType->get<std::string>();
+        itemType = findType->second.get<std::string>();
     }
 
     if (!dbus_util::validateDBusInterfaceSegments(itemType))
@@ -305,8 +319,8 @@ void EntityManager::postExposesRecordsToDBus(
         return;
     }
 
-    const std::string itemName =
-        dbus_util::sanitizeForDBusPathSegment(findName->get<std::string>());
+    const std::string itemName = dbus_util::sanitizeForDBusPathSegment(
+        findName->second.get<std::string>());
 
     const sdbusplus::object_path ifacePath = objectPath / itemName;
 
@@ -335,7 +349,7 @@ void EntityManager::postExposesRecordsToDBus(
             getPermission(itemType));
     }
 
-    for (const auto& [name, config] : item.items())
+    for (auto& [name, config] : item)
     {
         if (!postConfigurationRecord(
                 name, config, configNameOrig, itemType,
@@ -372,8 +386,10 @@ bool EntityManager::postConfigurationRecord(
             dbus_interface.createInterface(ifacePath, ifaceName,
                                            configNameOrig);
 
+        auto* configObj = config.get_ptr<nlohmann::json::object_t*>();
+
         dbus_interface.populateInterfaceFromJson(
-            systemConfiguration, configPtr, objectIface, config,
+            systemConfiguration, configPtr, objectIface, *configObj,
             getPermission(name));
     }
     else if (config.type() == nlohmann::json::value_t::array)
@@ -407,6 +423,15 @@ bool EntityManager::postConfigurationRecord(
 
         for (auto& arrayItem : config)
         {
+            const nlohmann::json::object_t* arrayItemObj =
+                arrayItem.get_ptr<const nlohmann::json::object_t*>();
+
+            if (arrayItemObj == nullptr)
+            {
+                lg2::error("array item was not an object");
+                continue;
+            }
+
             std::string ifaceName = "xyz.openbmc_project.Configuration.";
             ifaceName.append(itemType).append(".").append(name);
             ifaceName.append(std::to_string(index));
@@ -417,7 +442,7 @@ bool EntityManager::postConfigurationRecord(
 
             dbus_interface.populateInterfaceFromJson(
                 systemConfiguration, configPtr.withArrayIndex(index),
-                objectIface, arrayItem, getPermission(name));
+                objectIface, *arrayItemObj, getPermission(name));
             index++;
         }
     }

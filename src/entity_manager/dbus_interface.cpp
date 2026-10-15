@@ -98,9 +98,10 @@ void EMDBusInterface::createDeleteObjectMethod(
     });
 }
 
-static bool checkArrayElementsSameType(nlohmann::json& value)
+static bool checkArrayElementsSameType(const nlohmann::json& value)
 {
-    nlohmann::json::array_t* arr = value.get_ptr<nlohmann::json::array_t*>();
+    const nlohmann::json::array_t* arr =
+        value.get_ptr<const nlohmann::json::array_t*>();
     if (arr == nullptr)
     {
         return false;
@@ -199,9 +200,10 @@ static void populateInterfacePropertyFromJson(
 void EMDBusInterface::populateInterfaceFromJson(
     nlohmann::json& systemConfiguration, const ConfigPointer& configPtr,
     std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
-    nlohmann::json& dict, sdbusplus::asio::PropertyPermission permission)
+    const nlohmann::json::object_t& dict,
+    sdbusplus::asio::PropertyPermission permission)
 {
-    for (const auto& [key, value] : dict.items())
+    for (const auto& [key, value] : dict)
     {
         auto type = value.type();
         if (value.type() == nlohmann::json::value_t::array)
@@ -280,7 +282,7 @@ void EMDBusInterface::addObject(
     }
 
     // this will throw invalid-argument to sdbusplus if invalid json
-    nlohmann::json newData{};
+    nlohmann::json::object_t newData{};
     for (const auto& item : data)
     {
         nlohmann::json& newJson = newData[item.first];
@@ -338,7 +340,7 @@ static size_t insertIntoExposes(
 }
 
 void EMDBusInterface::addObjectJson(
-    nlohmann::json& newData, nlohmann::json& systemConfiguration,
+    nlohmann::json::object_t& newData, nlohmann::json& systemConfiguration,
     const std::string& boardId, const sdbusplus::object_path& path,
     const std::string& board)
 {
@@ -350,8 +352,8 @@ void EMDBusInterface::addObjectJson(
     {
         throw std::invalid_argument("AddObject missing Name or Type");
     }
-    const std::string* type = findType->get_ptr<const std::string*>();
-    const std::string* name = findName->get_ptr<const std::string*>();
+    const std::string* type = findType->second.get_ptr<const std::string*>();
+    const std::string* name = findName->second.get_ptr<const std::string*>();
     if (type == nullptr || name == nullptr)
     {
         throw std::invalid_argument("Type and Name must be a string.");
