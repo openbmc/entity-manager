@@ -49,6 +49,7 @@ native_json_dep = dependency(
     native: true,
     include_type: 'system',
 )
+native_threads_dep = dependency('threads', native: true)
 native_logging_dep = dependency('phosphor-logging', native: true)
 config_validation_native_lib = static_library(
     'config-validation-native',
@@ -65,6 +66,7 @@ config_validator = executable(
     dependencies: [
         native_json_dep,
         valijson,
+        native_threads_dep,
         native_logging_dep,
     ],
     link_with: config_validation_native_lib,

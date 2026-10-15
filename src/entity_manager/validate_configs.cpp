@@ -1,15 +1,23 @@
 // SPDX-License-Identifier: Apache-2.0
 #include "config_validation.hpp"
 
+#include <sched.h>
+
 #include <phosphor-logging/lg2.hpp>
 
 #include <algorithm>
+#include <atomic>
+#include <charconv>
 #include <exception>
 #include <filesystem>
+#include <functional>
+#include <mutex>
+#include <optional>
 #include <span>
 #include <stdexcept>
 #include <string>
 #include <string_view>
+#include <thread>
 #include <utility>
 #include <vector>
 
@@ -26,6 +34,7 @@ struct Options
     bool keepGoing = false;
     bool verbose = false;
     bool showHelp = false;
+    std::optional<size_t> threads;
 };
 
 void printUsage()
@@ -36,6 +45,7 @@ void printUsage()
         "  -c, --config FILE          Configuration (repeatable; defaults to all)\n"
         "  -k, --continue             Continue after a validation failure\n"
         "  -v, --verbose              Print validation details\n"
+        "  -t, --threads COUNT        Override available CPU count\n"
         "  -h, --help                 Show this help");
 }
 
@@ -61,7 +71,8 @@ Options parseOptions(std::span<char*> arguments)
             continue;
         }
         if (argument != "-s" && argument != "--schema" && argument != "-c" &&
-            argument != "--config")
+            argument != "--config" && argument != "-t" &&
+            argument != "--threads")
         {
             throw std::invalid_argument(
                 "Unknown option: " + std::string(argument));
@@ -79,6 +90,18 @@ Options parseOptions(std::span<char*> arguments)
         else if (argument == "-c" || argument == "--config")
         {
             options.configs.emplace_back(value);
+        }
+        else
+        {
+            size_t count = 0;
+            auto [end,
+                  error] = std::from_chars(value.begin(), value.end(), count);
+            if (error != std::errc() || end != value.end() || count == 0)
+            {
+                throw std::invalid_argument(
+                    "Invalid thread count: " + std::string(value));
+            }
+            options.threads = count;
         }
     }
     return options;
@@ -98,6 +121,17 @@ std::vector<fs::path> findConfigs(const fs::path& directory)
     return configs;
 }
 
+size_t availableCpus()
+{
+    cpu_set_t cpus;
+    CPU_ZERO(&cpus);
+    if (sched_getaffinity(0, sizeof(cpus), &cpus) == 0)
+    {
+        return std::max(1, CPU_COUNT(&cpus));
+    }
+    return std::max(1U, std::thread::hardware_concurrency());
+}
+
 struct Result
 {
     bool valid = false;
@@ -105,28 +139,97 @@ struct Result
     std::string failure;
 };
 
+struct WorkerState
+{
+    WorkerState(const Options& options,
+                const config_validation::Validator& validator,
+                std::vector<Result>& results) :
+        options(options), validator(validator), results(results),
+        stopAfter(options.configs.size())
+    {}
+
+    const Options& options;
+    const config_validation::Validator& validator;
+    std::vector<Result>& results;
+    std::atomic_size_t next{0};
+    std::atomic_size_t stopAfter;
+    std::mutex errorMutex;
+    std::exception_ptr error;
+};
+
+void requestStop(WorkerState& state, size_t index)
+{
+    if (state.options.keepGoing)
+    {
+        return;
+    }
+    size_t current = state.stopAfter.load();
+    while (index < current &&
+           !state.stopAfter.compare_exchange_weak(current, index))
+    {}
+}
+
+void validateWorker(WorkerState& state)
+{
+    try
+    {
+        config_validation::Session session(state.validator);
+        while (true)
+        {
+            size_t index = state.next.fetch_add(1);
+            if (index >= state.options.configs.size() ||
+                index > state.stopAfter.load())
+            {
+                break;
+            }
+            Result& result = state.results[index];
+            try
+            {
+                nlohmann::json document =
+                    config_validation::loadJson(state.options.configs[index]);
+                result.valid = session.validate(
+                    document, state.options.verbose ? &result.errors : nullptr);
+            }
+            catch (const std::exception& error)
+            {
+                result.failure = error.what();
+                requestStop(state, index);
+                continue;
+            }
+            if (!result.valid)
+            {
+                requestStop(state, index);
+            }
+        }
+    }
+    catch (...)
+    {
+        std::lock_guard lock(state.errorMutex);
+        if (!state.error)
+        {
+            state.error = std::current_exception();
+        }
+    }
+}
+
 std::vector<Result> validateConfigs(
     const Options& options, const config_validation::Validator& validator)
 {
     std::vector<Result> results(options.configs.size());
-    for (size_t index = 0; index < options.configs.size(); ++index)
+    const size_t workerCount = std::min(
+        options.configs.size(), options.threads.value_or(availableCpus()));
+    WorkerState state(options, validator, results);
+    // jthread joins on destruction, including when thread creation fails.
+    std::vector<std::jthread> workers;
+    workers.reserve(workerCount);
+    for (size_t i = 0; i < workerCount; ++i)
     {
-        Result& result = results[index];
-        try
-        {
-            nlohmann::json document =
-                config_validation::loadJson(options.configs[index]);
-            result.valid = validator.validate(
-                document, options.verbose ? &result.errors : nullptr);
-        }
-        catch (const std::exception& error)
-        {
-            result.failure = error.what();
-        }
-        if (!options.keepGoing && (!result.failure.empty() || !result.valid))
-        {
-            break;
-        }
+        workers.emplace_back(validateWorker, std::ref(state));
+    }
+    workers.clear(); // Join before inspecting errors or returning results.
+    if (state.error)
+    {
+        std::rethrow_exception(state.error);
     }
     return results;
 }

@@ -11,6 +11,8 @@
 namespace config_validation
 {
 
+class Session;
+
 struct Error
 {
     std::string path;
@@ -30,6 +32,26 @@ class Validator
 
     bool validate(const nlohmann::json& document,
                   std::vector<Error>* errors = nullptr) const;
+
+  private:
+    friend class Session;
+    struct Impl;
+    std::unique_ptr<Impl> impl;
+};
+
+// One session per worker thread. The compiled schema belongs to Validator;
+// each session owns its own mutable regex cache and must not outlive it.
+class Session
+{
+  public:
+    explicit Session(const Validator& validator);
+    ~Session();
+
+    Session(const Session&) = delete;
+    Session& operator=(const Session&) = delete;
+
+    bool validate(const nlohmann::json& document,
+                  std::vector<Error>* errors = nullptr);
 
   private:
     struct Impl;
