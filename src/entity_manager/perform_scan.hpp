@@ -11,7 +11,6 @@
 #include <nlohmann/json.hpp>
 #include <sdbusplus/asio/object_server.hpp>
 
-#include <flat_map>
 #include <flat_set>
 #include <functional>
 #include <list>
@@ -37,7 +36,7 @@ using FoundDevices = std::vector<DBusDeviceDescriptor>;
 
 struct PerformScan final : std::enable_shared_from_this<PerformScan>
 {
-    PerformScan(EntityManager& em, nlohmann::json& missingConfigurations,
+    PerformScan(EntityManager& em, SystemConfiguration& missingConfigurations,
                 std::vector<EMConfig>& configurations,
                 boost::asio::io_context& io, std::function<void()>&& callback);
 
@@ -60,7 +59,7 @@ struct PerformScan final : std::enable_shared_from_this<PerformScan>
         std::flat_set<std::string, std::less<>>& dbusProbeInterfaces,
         std::vector<std::shared_ptr<probe::PerformProbe>>& dbusProbePointers);
 
-    nlohmann::json& _missingConfigurations;
+    SystemConfiguration& _missingConfigurations;
     std::vector<EMConfig> _configurations;
     std::function<void()> _callback;
     bool _passed = false;
@@ -77,7 +76,7 @@ void applyTemplatesAndExposeActions(
     const std::string& recordName, EMConfig& record,
     const DBusObject& dbusObject, size_t foundDeviceIdx,
     std::optional<std::string>& replaceStr,
-    nlohmann::json& systemConfiguration);
+    SystemConfiguration& systemConfiguration);
 
 // Parse validated probe statements into a token stream. The statements are
 // joined with single spaces and lexed. Returns an empty vector on a lexing
@@ -88,8 +87,8 @@ std::string getRecordName(const DBusInterface& probe,
                           const std::string& probeName);
 void restorePersistedConfigurations(
     FoundDevices& foundDevices, const std::string& probeName,
-    nlohmann::json& systemConfiguration, SystemConfiguration& lastJson,
-    nlohmann::json& missingConfigurations,
+    SystemConfiguration& systemConfiguration, SystemConfiguration& lastJson,
+    SystemConfiguration& missingConfigurations,
     std::vector<std::string>& passedProbes, std::set<nlohmann::json>& usedNames,
     std::list<size_t>& indexes);
 
@@ -99,8 +98,8 @@ void updateSystemConfigurationForDevice(
     const EMConfig& recordRef, const std::string& probeName,
     const DBusDeviceDescriptor& device,
     const MapperGetSubTreeResponse& dbusProbeObjects,
-    nlohmann::json& systemConfiguration, Topology& topology,
-    nlohmann::json& missingConfigurations,
+    SystemConfiguration& systemConfiguration, Topology& topology,
+    SystemConfiguration& missingConfigurations,
     std::vector<std::string>& passedProbes, std::set<nlohmann::json>& usedNames,
     std::list<size_t>& indexes, std::optional<std::string>& replaceStr);
 } // namespace detail
