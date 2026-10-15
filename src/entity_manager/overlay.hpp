@@ -10,6 +10,3 @@
 void unloadAllOverlays();
 bool loadOverlays(const SystemConfiguration& systemConfiguration,
                   boost::asio::io_context& io);
-// Compatibility entry point until live configuration storage is migrated.
-bool loadOverlays(const nlohmann::json& systemConfiguration,
-                  boost::asio::io_context& io);
