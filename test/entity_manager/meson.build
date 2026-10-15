@@ -122,3 +122,21 @@ test(
         include_directories: test_include_dir,
     ),
 )
+
+test(
+    'test_system_configuration',
+    executable(
+        'test_system_configuration',
+        'test_system_configuration.cpp',
+        cpp_args: test_boost_args,
+        dependencies: [
+            boost,
+            gtest,
+            nlohmann_json_dep,
+            phosphor_logging_dep,
+            sdbusplus,
+        ],
+        link_with: entity_manager_lib,
+        include_directories: test_include_dir,
+    ),
+)
