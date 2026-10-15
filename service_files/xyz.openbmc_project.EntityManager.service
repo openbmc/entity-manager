@@ -1,5 +1,11 @@
 [Unit]
 Description=Entity Manager
+# on BMC reboot, 'start EM after', meaning 'stop EM before' these services
+# to avoid emitting false event logs about removed inventory items
+# which were probed on interfaces from services that are already stopped.
+After=devicetree-vpd-parser.service
+After=xyz.openbmc_project.FruDevice.service
+After=xyz.openbmc_project.gpiopresence.service
 
 [Service]
 ExecStartPre=/bin/mkdir -p /var/configuration
