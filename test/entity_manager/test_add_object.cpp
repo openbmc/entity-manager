@@ -100,6 +100,13 @@ class AddObjectExposesTest : public AddObjectTest
     {
         sysConfig[kBoardId] = {
             {"Name", kBoardId}, {"Type", "Baseboard"}, {"Exposes", exposes}};
+        for (auto& record : sysConfig[kBoardId]["Exposes"])
+        {
+            if (record.is_null())
+            {
+                record = {{"Status", "disabled"}};
+            }
+        }
     }
 
     void add(const std::string& name)
@@ -145,7 +152,7 @@ TEST_F(AddObjectExposesTest, ReusesFirstNullSlot)
     EXPECT_EQ(exposes()[0]["Name"], "A");
     EXPECT_EQ(exposes()[1]["Name"], "C");
     EXPECT_EQ(exposes()[2]["Name"], "B");
-    EXPECT_TRUE(exposes()[3].is_null());
+    EXPECT_EQ(exposes()[3]["Status"], "disabled");
 
     add("D");
 
@@ -169,6 +176,6 @@ TEST_F(AddObjectExposesTest, DuplicateAfterNullSlotThrows)
     setExposes({nullptr, expose("A")});
 
     EXPECT_THROW(add("A"), std::invalid_argument);
-    EXPECT_TRUE(exposes()[0].is_null());
+    EXPECT_EQ(exposes()[0]["Status"], "disabled");
     EXPECT_EQ(exposes().size(), 2U);
 }
