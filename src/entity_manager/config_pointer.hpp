@@ -1,7 +1,6 @@
 #pragma once
 
 #include <nlohmann/json.hpp>
-#include <phosphor-logging/lg2.hpp>
 
 #include <cstdint>
 #include <optional>
@@ -37,68 +36,8 @@ struct ConfigPointer
 
     // @brief writes configuration at the pointed-to location
     // @returns false on error
-    template <typename JsonType>
-    bool write(const JsonType& value, nlohmann::json& systemConfiguration) const
-    {
-        lg2::debug("config ptr: writing value: {VALUE}", "VALUE",
-                   nlohmann::json(value));
-
-        auto targetIt = systemConfiguration.find(boardId);
-        if (targetIt == systemConfiguration.end())
-        {
-            lg2::error("error: config ptr: board id {ID} not found", "ID",
-                       boardId);
-            return false;
-        }
-        nlohmann::json* target = &(*targetIt);
-        if (exposesIndex)
-        {
-            auto it = target->find("Exposes");
-
-            if (it == target->end() || !(*it).is_array() ||
-                (*it).size() <= *exposesIndex)
-            {
-                lg2::error("error: config ptr: invalid exposes index {INDEX}",
-                           "INDEX", *exposesIndex);
-                return false;
-            }
-            target = &(*it)[*exposesIndex];
-        }
-        if (propertyName)
-        {
-            auto it = target->find(*propertyName);
-            if (it == target->end())
-            {
-                lg2::error("error: config ptr: property {NAME} not found",
-                           "NAME", *propertyName);
-                return false;
-            }
-            target = &(*it);
-        }
-        if (arrayIndex)
-        {
-            if (!target->is_array() || target->size() <= *arrayIndex)
-            {
-                lg2::error("error: config ptr: invalid array index {INDEX}",
-                           "INDEX", *arrayIndex);
-                return false;
-            }
-            target = &(*target)[*arrayIndex];
-        }
-        if (memberName)
-        {
-            auto it = target->find(*memberName);
-            if (it == target->end())
-            {
-                lg2::error("error: config ptr: property {NAME} not found",
-                           "NAME", *memberName);
-                return false;
-            }
-            target = &(*it);
-        }
-        *target = value;
-        return true;
-    }
+    bool write(const nlohmann::json& value,
+               nlohmann::json& systemConfiguration) const;
 
     // This will be an hash (integer) in almost all cases
     std::string boardId;
@@ -109,4 +48,8 @@ struct ConfigPointer
     std::optional<uint64_t> arrayIndex;
     // A property on an interface object or an object within an array.
     std::optional<std::string> memberName;
+
+  private:
+    nlohmann::json* findRecord(nlohmann::json& board) const;
+    nlohmann::json* findValue(nlohmann::json& record) const;
 };
