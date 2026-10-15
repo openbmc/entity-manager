@@ -21,6 +21,12 @@ bool ConfigCache::writeJsonFiles(const nlohmann::json& systemConfiguration)
         return false;
     }
 
+    std::string content = systemConfiguration.dump(4);
+    if (content == lastWritten)
+    {
+        return true;
+    }
+
     lg2::debug("writing system configuration to {PATH}", "PATH",
                currentConfiguration);
 
@@ -29,7 +35,12 @@ bool ConfigCache::writeJsonFiles(const nlohmann::json& systemConfiguration)
     {
         return false;
     }
-    output << systemConfiguration.dump(4);
+    output << content;
     output.close();
+    if (output.fail())
+    {
+        return false;
+    }
+    lastWritten = std::move(content);
     return true;
 }
