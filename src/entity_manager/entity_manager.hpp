@@ -46,7 +46,8 @@ class EntityManager
     // startup. The previous run already reported these devices, so they are
     // not reported as added again.
     std::unordered_set<std::string> cachedBaseline;
-    nlohmann::json systemConfiguration;
+    // map of board id -> EM config (with template vars replaced)
+    SystemConfiguration systemConfiguration;
     Topology topology;
     boost::asio::io_context& io;
     ConfigCache configCache;
@@ -62,15 +63,14 @@ class EntityManager
     void registerCallback(const sdbusplus::object_path& path);
     void publishNewConfiguration(const size_t& instance, size_t count,
                                  boost::asio::steady_timer& timer,
-                                 nlohmann::json newConfiguration);
-    void postToDbus(const nlohmann::json& newConfiguration);
+                                 SystemConfiguration newConfiguration);
+    void postToDbus(const SystemConfiguration& newConfiguration);
     void postProbeConfig(const sdbusplus::object_path& objectPath,
                          const std::string& configName,
                          const std::string& configType,
                          const nlohmann::json& probe);
     void postBoardToDBus(
-        const std::string& configId,
-        const nlohmann::json::object_t& configObject,
+        const std::string& configId, const EMConfig& configObject,
         std::map<sdbusplus::object_path, std::string>& newObjects);
     void postExposesRecordsToDBus(
         nlohmann::json::object_t& item, size_t& exposesIndex,
@@ -85,8 +85,7 @@ class EntityManager
         const ConfigPointer& configPtr,
         const sdbusplus::object_path& ifacePath);
 
-    void pruneConfiguration(const std::string& name,
-                            const nlohmann::json& device);
+    void pruneConfiguration(const std::string& name, const EMConfig& device);
 
     void handleCurrentConfigurationJson();
 
