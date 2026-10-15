@@ -4,6 +4,7 @@
 #include "em_config.hpp"
 #include "entity_manager.hpp"
 #include "probe_lexer.hpp"
+#include "system_configuration.hpp"
 
 #include <systemd/sd-journal.h>
 
@@ -87,7 +88,7 @@ std::string getRecordName(const DBusInterface& probe,
                           const std::string& probeName);
 void restorePersistedConfigurations(
     FoundDevices& foundDevices, const std::string& probeName,
-    nlohmann::json& systemConfiguration, nlohmann::json& lastJson,
+    nlohmann::json& systemConfiguration, SystemConfiguration& lastJson,
     nlohmann::json& missingConfigurations,
     std::vector<std::string>& passedProbes, std::set<nlohmann::json>& usedNames,
     std::list<size_t>& indexes);
