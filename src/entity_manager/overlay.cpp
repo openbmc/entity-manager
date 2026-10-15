@@ -313,26 +313,3 @@ bool loadOverlays(const SystemConfiguration& systemConfiguration,
 
     return true;
 }
-
-bool loadOverlays(const nlohmann::json& systemConfiguration,
-                  boost::asio::io_context& io)
-{
-    lg2::debug("start loading device overlays");
-    std::filesystem::create_directory(outputDir);
-    for (auto entity = systemConfiguration.begin();
-         entity != systemConfiguration.end(); entity++)
-    {
-        auto findExposes = entity.value().find("Exposes");
-        if (findExposes == entity.value().end() ||
-            findExposes->type() != nlohmann::json::value_t::array)
-        {
-            continue;
-        }
-        for (const auto& configuration : *findExposes)
-        {
-            loadOverlayForConfigRecord(configuration, io);
-        }
-    }
-    lg2::debug("finish loading device overlays");
-    return true;
-}

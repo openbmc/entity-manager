@@ -24,10 +24,3 @@ void logDeviceRemoved(const std::string& key, const EMConfig& record,
                       std::unordered_set<std::string>& cachedBaseline);
 
 LegacyInvInfo queryLegacyInvInfo(const EMConfig& record);
-
-// Compatibility entry points for live configurations still stored as JSON.
-void logDeviceAdded(const nlohmann::json& record);
-void logDeviceRemoved(const std::string& key, const nlohmann::json& record,
-                      std::unordered_set<std::string>& cachedBaseline);
-std::string queryInvName(const nlohmann::json& record);
-LegacyInvInfo queryLegacyInvInfo(const nlohmann::json& record);
