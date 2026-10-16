@@ -26,7 +26,8 @@
                 "TemperatureSensors": [
                     {
                         "Id": 16,
-                        "Name": "SMA_Ext"
+                        "Name": "SMA_Ext",
+                        "PhysicalContext": "GPUSubsystem"
                     },
                     {
                         "Id": 17,
@@ -34,15 +35,18 @@
                     },
                     {
                         "Id": 18,
-                        "Name": "GPU_VR"
+                        "Name": "GPU_VR",
+                        "PhysicalContext": "Board"
                     },
                     {
                         "Id": 216,
-                        "Name": "CPU1_Die"
+                        "Name": "CPU1_Die",
+                        "PhysicalContext": "CPU"
                     },
                     {
                         "Id": 217,
-                        "Name": "CPU1_SoC"
+                        "Name": "CPU1_SoC",
+                        "PhysicalContext": "CPU"
                     }
                 ],
                 "Thresholds": [
@@ -98,11 +102,13 @@
                 "PowerSensors": [
                     {
                         "Id": 128,
-                        "Name": "HSC"
+                        "Name": "HSC",
+                        "PhysicalContext": "VoltageRegulator"
                     },
                     {
                         "Id": 192,
-                        "Name": "HSCC"
+                        "Name": "HSCC",
+                        "PhysicalContext": "VoltageRegulator"
                     }
                 ],
                 "TemperatureSensors": [
@@ -112,30 +118,36 @@
                     },
                     {
                         "Id": 168,
-                        "Name": "HSCC"
+                        "Name": "HSCC",
+                        "PhysicalContext": "VoltageRegulator"
                     },
                     {
                         "Id": 192,
-                        "Name": "HSC"
+                        "Name": "HSC",
+                        "PhysicalContext": "VoltageRegulator"
                     }
                 ],
                 "Type": "NvidiaMctpVdmSma",
                 "VoltageSensors": [
                     {
                         "Id": 128,
-                        "Name": "HSC_Vout"
+                        "Name": "HSC_Vout",
+                        "PhysicalContext": "VoltageRegulator"
                     },
                     {
                         "Id": 192,
-                        "Name": "HSC_Vin"
+                        "Name": "HSC_Vin",
+                        "PhysicalContext": "VoltageRegulator"
                     },
                     {
                         "Id": 208,
-                        "Name": "HSCC_Vout"
+                        "Name": "HSCC_Vout",
+                        "PhysicalContext": "VoltageRegulator"
                     },
                     {
                         "Id": 224,
-                        "Name": "HSCC_Vin"
+                        "Name": "HSCC_Vin",
+                        "PhysicalContext": "VoltageRegulator"
                     }
                 ]
             }
@@ -187,7 +199,8 @@
                 "TemperatureSensors": [
                     {
                         "Id": 16,
-                        "Name": "SMA_Ext"
+                        "Name": "SMA_Ext",
+                        "PhysicalContext": "GPUSubsystem"
                     },
                     {
                         "Id": 17,
@@ -195,19 +208,23 @@
                     },
                     {
                         "Id": 18,
-                        "Name": "GPU_VR"
+                        "Name": "GPU_VR",
+                        "PhysicalContext": "Board"
                     },
                     {
                         "Id": 19,
-                        "Name": "BusBar"
+                        "Name": "BusBar",
+                        "PhysicalContext": "DCBus"
                     },
                     {
                         "Id": 216,
-                        "Name": "CPU1_Die"
+                        "Name": "CPU1_Die",
+                        "PhysicalContext": "CPU"
                     },
                     {
                         "Id": 217,
-                        "Name": "CPU1_SoC"
+                        "Name": "CPU1_SoC",
+                        "PhysicalContext": "CPU"
                     }
                 ],
                 "Thresholds": [
@@ -284,11 +301,13 @@
                 "PowerSensors": [
                     {
                         "Id": 128,
-                        "Name": "HSC"
+                        "Name": "HSC",
+                        "PhysicalContext": "VoltageRegulator"
                     },
                     {
                         "Id": 192,
-                        "Name": "HSCC"
+                        "Name": "HSCC",
+                        "PhysicalContext": "VoltageRegulator"
                     }
                 ],
                 "TemperatureSensors": [
@@ -298,30 +317,36 @@
                     },
                     {
                         "Id": 168,
-                        "Name": "HSCC"
+                        "Name": "HSCC",
+                        "PhysicalContext": "VoltageRegulator"
                     },
                     {
                         "Id": 192,
-                        "Name": "HSC"
+                        "Name": "HSC",
+                        "PhysicalContext": "VoltageRegulator"
                     }
                 ],
                 "Type": "NvidiaMctpVdmSma",
                 "VoltageSensors": [
                     {
                         "Id": 128,
-                        "Name": "HSC_Vout"
+                        "Name": "HSC_Vout",
+                        "PhysicalContext": "VoltageRegulator"
                     },
                     {
                         "Id": 192,
-                        "Name": "HSC_Vin"
+                        "Name": "HSC_Vin",
+                        "PhysicalContext": "VoltageRegulator"
                     },
                     {
                         "Id": 208,
-                        "Name": "HSCC_Vout"
+                        "Name": "HSCC_Vout",
+                        "PhysicalContext": "VoltageRegulator"
                     },
                     {
                         "Id": 224,
-                        "Name": "HSCC_Vin"
+                        "Name": "HSCC_Vin",
+                        "PhysicalContext": "VoltageRegulator"
                     }
                 ]
             }
