@@ -64,6 +64,9 @@
                         "required": ["Name", "PollRate"]
                     }
                 },
+                "RTUTimeout": {
+                    "$ref": "legacy.json#/$defs/Types/Timeout"
+                },
                 "Thresholds": {
                     "description": "Threshold values used to set and clear alarms",
                     "$ref": "legacy.json#/$defs/Types/Thresholds"
