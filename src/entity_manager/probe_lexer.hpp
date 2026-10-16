@@ -19,6 +19,8 @@ enum class TokenType
     matchOne,  // MATCH_ONE
     found,     // FOUND('name'); value holds the name
     dbusProbe, // iface({...});  value holds the full "iface({...})" text
+    lparen,    // ( ; a grouping open paren (not part of a call)
+    rparen,    // ) ; a grouping close paren (not part of a call)
 };
 
 struct Token

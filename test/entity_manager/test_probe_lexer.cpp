@@ -64,6 +64,37 @@ TEST(LexProbe, MixedOperators)
                                   {TokenType::found, "Board"}}));
 }
 
+// Top-level parentheses lex to grouping tokens (they are not part of a call).
+TEST(LexProbe, GroupingParentheses)
+{
+    EXPECT_EQ(lexProbe("(TRUE OR FALSE)"),
+              (std::vector<Token>{{TokenType::lparen, ""},
+                                  {TokenType::boolTrue, ""},
+                                  {TokenType::opOr, ""},
+                                  {TokenType::boolFalse, ""},
+                                  {TokenType::rparen, ""}}));
+    // No whitespace required around the parens.
+    EXPECT_EQ(lexProbe("TRUE AND(FALSE)"),
+              (std::vector<Token>{{TokenType::boolTrue, ""},
+                                  {TokenType::opAnd, ""},
+                                  {TokenType::lparen, ""},
+                                  {TokenType::boolFalse, ""},
+                                  {TokenType::rparen, ""}}));
+}
+
+// A grouping paren must not be confused with a call's parens: FOUND(...) and a
+// D-Bus statement still lex as single tokens even next to grouping parens.
+TEST(LexProbe, GroupingAroundCalls)
+{
+    const std::string a = "xyz.openbmc_project.FruDevice({'BUS': 6})";
+    EXPECT_EQ(lexProbe("(" + a + " OR FOUND('B'))"),
+              (std::vector<Token>{{TokenType::lparen, ""},
+                                  {TokenType::dbusProbe, a},
+                                  {TokenType::opOr, ""},
+                                  {TokenType::found, "B"},
+                                  {TokenType::rparen, ""}}));
+}
+
 // Surrounding and separating whitespace is tolerated.
 TEST(LexProbe, WhitespaceTolerated)
 {
