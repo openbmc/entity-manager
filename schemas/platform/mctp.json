@@ -46,7 +46,11 @@
                     "type": "number"
                 },
                 "Interface": {
-                    "description": "The USB interface within that configuration, the bInterfaceNumber of its interface descriptor. Configuration and interface together name the interface in sysfs, so configuration 1 interface 0 of the device above is /sys/bus/usb/devices/<bus>-1.2.1:1.0.",
+                    "description": "Deprecated, use InterfaceNumber instead. Accepted in its place so that existing configurations keep working.",
+                    "type": "number"
+                },
+                "InterfaceNumber": {
+                    "description": "The USB interface within that configuration, the bInterfaceNumber of its interface descriptor. Configuration and interface number together name the interface in sysfs, so configuration 1 interface 0 of the device above is /sys/bus/usb/devices/<bus>-1.2.1:1.0.",
                     "type": "number"
                 },
                 "Name": {
@@ -62,10 +66,17 @@
                 "RootHubPosition",
                 "Port",
                 "Configuration",
-                "Interface",
                 "Name",
                 "Board",
                 "Type"
+            ],
+            "oneOf": [
+                {
+                    "required": ["InterfaceNumber"]
+                },
+                {
+                    "required": ["Interface"]
+                }
             ],
             "additionalProperties": false,
             "type": "object"

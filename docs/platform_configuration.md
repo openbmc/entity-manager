@@ -47,3 +47,15 @@ may name a `Board` of its own, because a bridge and the devices behind it are
 not necessarily on the same board; an entry that names none is on the bridge's.
 The order matters: the Nth entry is assigned the Nth EID of the bridge's pool,
 so entries must be listed in pool order.
+
+## Migrating from `Interface` to `InterfaceNumber`
+
+`MCTPUSBDevice` used to name the USB interface number `Interface`. It is now
+`InterfaceNumber`, matching the property defined in phosphor-dbus-interfaces.
+`Interface` is still accepted but deprecated, and consumers log a warning when
+they fall back to it. To migrate, rename the key in each `MCTPUSBDevice` entry;
+the value is unchanged:
+
+```text
+"Interface": 0   ->   "InterfaceNumber": 0
+```
