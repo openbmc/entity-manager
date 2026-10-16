@@ -64,6 +64,10 @@
                         "required": ["Name", "PollRate"]
                     }
                 },
+                "RTUTimeout": {
+                    "description": "The duration in seconds to wait for an RTU response before marking it as timed out.",
+                    "$ref": "legacy.json#/$defs/Types/Timeout"
+                },
                 "Thresholds": {
                     "description": "Threshold values used to set and clear alarms",
                     "$ref": "legacy.json#/$defs/Types/Thresholds"
