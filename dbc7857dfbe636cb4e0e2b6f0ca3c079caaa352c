@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f62b2713_98df636c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-16T08:48:23Z",
+      "side": 1,
+      "message": "i don\u0027t believe this is the true reason why it was kept this way until now.\n\nIt is probably more of a downstream reasoning. The upstream configs could be fixed up.\n\nSame story as with the `$bus`  vs `${bus}`. Delimiting template variables avoids conflict between template vars which are prefixes of each other and avoids having to insert extra spaces behind the template var. It was a better solution which also did not go anywhere.",
+      "range": {
+        "startLine": 12,
+        "startChar": 1,
+        "endLine": 14,
+        "endChar": 46
+      },
+      "revId": "dbc7857dfbe636cb4e0e2b6f0ca3c079caaa352c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb178959_afd474f8",
+        "filename": "docs/probe_grammar.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-16T08:48:23Z",
+      "side": 1,
+      "message": "i have not seen this before in upstream configurations and believe `schemas/global.json` does not support it today.\n\nCan you please help me out and link me an upstream config that uses grouping like that?",
+      "revId": "dbc7857dfbe636cb4e0e2b6f0ca3c079caaa352c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
