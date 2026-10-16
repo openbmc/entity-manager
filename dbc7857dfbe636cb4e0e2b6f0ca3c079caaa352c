@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "744dca8f_675aa84b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1003117
+      },
+      "writtenOn": "2026-10-16T10:24:11Z",
+      "side": 1,
+      "message": "Agreed, I\u0027ll reword. it\u0027s really just the existing left-to-right behavior, not a deliberate design choice. The 13 config audit is only to show what switching to precedence would cost today, not the historical reason it ended up this way.",
+      "parentUuid": "f62b2713_98df636c",
+      "range": {
+        "startLine": 12,
+        "startChar": 1,
+        "endLine": 14,
+        "endChar": 46
+      },
+      "revId": "dbc7857dfbe636cb4e0e2b6f0ca3c079caaa352c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cb178959_afd474f8",
         "filename": "docs/probe_grammar.md",
         "patchSetId": 1
@@ -37,6 +61,24 @@
       "writtenOn": "2026-10-16T08:48:23Z",
       "side": 1,
       "message": "i have not seen this before in upstream configurations and believe `schemas/global.json` does not support it today.\n\nCan you please help me out and link me an upstream config that uses grouping like that?",
+      "revId": "dbc7857dfbe636cb4e0e2b6f0ca3c079caaa352c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1a78728_8a2ba0c0",
+        "filename": "docs/probe_grammar.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1003117
+      },
+      "writtenOn": "2026-10-16T10:24:11Z",
+      "side": 1,
+      "message": "No current config needs this ordering, and you\u0027re right that global.json doesn\u0027t model it. I\u0027ll drop grouping and keep the doc for current behavior easy to revive if a board ever needs it.",
+      "parentUuid": "cb178959_afd474f8",
       "revId": "dbc7857dfbe636cb4e0e2b6f0ca3c079caaa352c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
