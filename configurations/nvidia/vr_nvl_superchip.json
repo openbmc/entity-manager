@@ -45,6 +45,50 @@
                         "Name": "CPU1_SoC"
                     }
                 ],
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Dynamic": true,
+                        "Label": "SMA_Ext",
+                        "Name": "upper non critical",
+                        "Severity": 0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "GPU_VR",
+                        "Name": "upper non recoverable",
+                        "Severity": 4,
+                        "Value": 135
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "GPU_VR",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 130
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "GPU_VR",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 120
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Dynamic": true,
+                        "Label": "CPU1_Die",
+                        "Name": "upper non critical",
+                        "Severity": 0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Dynamic": true,
+                        "Label": "CPU1_SoC",
+                        "Name": "upper non critical",
+                        "Severity": 0
+                    }
+                ],
                 "Type": "NvidiaMctpVdmSma"
             },
             {
@@ -164,6 +208,71 @@
                     {
                         "Id": 217,
                         "Name": "CPU1_SoC"
+                    }
+                ],
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Dynamic": true,
+                        "Label": "SMA_Ext",
+                        "Name": "upper non critical",
+                        "Severity": 0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "GPU_VR",
+                        "Name": "upper non recoverable",
+                        "Severity": 4,
+                        "Value": 135
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "GPU_VR",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 130
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "GPU_VR",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 120
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "BusBar",
+                        "Name": "upper non recoverable",
+                        "Severity": 4,
+                        "Value": 110
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "BusBar",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 107
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "BusBar",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 100
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Dynamic": true,
+                        "Label": "CPU1_Die",
+                        "Name": "upper non critical",
+                        "Severity": 0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Dynamic": true,
+                        "Label": "CPU1_SoC",
+                        "Name": "upper non critical",
+                        "Severity": 0
                     }
                 ],
                 "Type": "NvidiaMctpVdmSma"
