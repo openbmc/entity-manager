@@ -37,6 +37,17 @@
                 "Name": {
                     "description": "Name of the sensor, published on D-Bus as <device>_<Name>, where <device> is the name the device is given on D-Bus.",
                     "type": "string"
+                },
+                "PhysicalContext": {
+                    "description": "The device type or chassis area the reading of the sensor applies to, as the PhysicalContextType value of the same name in xyz.openbmc_project.Common.PhysicalContext.",
+                    "type": "string",
+                    "enum": [
+                        "Board",
+                        "CPU",
+                        "DCBus",
+                        "GPUSubsystem",
+                        "VoltageRegulator"
+                    ]
                 }
             },
             "required": ["Id", "Name"],
