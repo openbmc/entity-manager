@@ -52,7 +52,6 @@ extern "C"
 
 namespace fs = std::filesystem;
 constexpr size_t maxFruSize = 512;
-constexpr size_t maxEepromPageIndex = 255;
 constexpr size_t busTimeoutSeconds = 10;
 
 constexpr const char* blocklistPath = PACKAGE_DIR "blacklist.json";
@@ -1145,23 +1144,25 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
     constexpr const size_t retryMax = 2;
     uint16_t index = 0;
     size_t retries = retryMax;
+    uint8_t currentAddress = address;
     while (index < fru.size())
     {
-        if (((index != 0U) && ((index % (maxEepromPageIndex + 1)) == 0)) &&
-            (retries == retryMax))
+        EepromByteLocation location =
+            getEepromByteLocation(*is16Bit, address, index);
+        if (location.address != currentAddress)
         {
-            // The 4K EEPROM only uses the A2 and A1 device address bits
-            // with the third bit being a memory page address bit.
-            if (ioctl(file, I2C_SLAVE_FORCE, ++address) < 0)
+            if (ioctl(file, I2C_SLAVE_FORCE, location.address) < 0)
             {
                 lg2::error("unable to set device address");
                 close(file);
                 throw DBusInternalError();
                 return false;
             }
+            currentAddress = location.address;
         }
 
-        if (writeFruByteData(*is16Bit, file, address, index, fru[index]))
+        if (writeFruByteData(*is16Bit, file, location.address, location.offset,
+                             fru[index]))
         {
             retries = retryMax;
             index++;

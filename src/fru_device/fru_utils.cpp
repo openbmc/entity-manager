@@ -681,6 +681,19 @@ ssize_t getFieldLength(uint8_t fruFieldTypeLenValue)
     return fruFieldTypeLenValue & typeLenMask;
 }
 
+EepromByteLocation getEepromByteLocation(bool is16Bit, uint8_t address,
+                                         uint16_t index)
+{
+    if (is16Bit)
+    {
+        return {address, index};
+    }
+    // Each 256 byte page of an 8-bit addressed EEPROM is at the next address
+    constexpr uint16_t pageSize = 256;
+    return {static_cast<uint8_t>(address + (index / pageSize)),
+            static_cast<uint16_t>(index % pageSize)};
+}
+
 bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
 {
     // ipmi spec format version number is currently at 1, verify it

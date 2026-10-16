@@ -820,3 +820,37 @@ TEST(GzipUtils, parseMacFromGzipXmlHeader)
     std::string mac = parseMacFromGzipXmlHeader(reader, 0);
     EXPECT_EQ(mac, "10:FF:E0:39:84:DC");
 }
+
+TEST(GetEepromByteLocation, EightBitPagesThroughDeviceAddress)
+{
+    EepromByteLocation first = getEepromByteLocation(false, 0x50, 0);
+    EXPECT_EQ(first.address, 0x50);
+    EXPECT_EQ(first.offset, 0);
+
+    EepromByteLocation lastOfPage = getEepromByteLocation(false, 0x50, 255);
+    EXPECT_EQ(lastOfPage.address, 0x50);
+    EXPECT_EQ(lastOfPage.offset, 255);
+
+    EepromByteLocation nextPage = getEepromByteLocation(false, 0x50, 256);
+    EXPECT_EQ(nextPage.address, 0x51);
+    EXPECT_EQ(nextPage.offset, 0);
+
+    EepromByteLocation onNextPage = getEepromByteLocation(false, 0x50, 404);
+    EXPECT_EQ(onNextPage.address, 0x51);
+    EXPECT_EQ(onNextPage.offset, 148);
+}
+
+TEST(GetEepromByteLocation, SixteenBitKeepsDeviceAddress)
+{
+    EepromByteLocation first = getEepromByteLocation(true, 0x56, 0);
+    EXPECT_EQ(first.address, 0x56);
+    EXPECT_EQ(first.offset, 0);
+
+    EepromByteLocation pastFirst256 = getEepromByteLocation(true, 0x56, 256);
+    EXPECT_EQ(pastFirst256.address, 0x56);
+    EXPECT_EQ(pastFirst256.offset, 256);
+
+    EepromByteLocation last = getEepromByteLocation(true, 0x56, 404);
+    EXPECT_EQ(last.address, 0x56);
+    EXPECT_EQ(last.offset, 404);
+}

@@ -160,6 +160,16 @@ std::pair<std::vector<uint8_t>, bool> readFRUContents(
 /// \return true if valid
 bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData);
 
+struct EepromByteLocation
+{
+    uint8_t address; // Device address
+    uint16_t offset; // Offset within that device address
+};
+
+/// \brief Get the device address and offset a FRU byte is written at
+EepromByteLocation getEepromByteLocation(bool is16Bit, uint8_t address,
+                                         uint16_t index);
+
 /// \brief Get offset for a common header area
 /// \param area - the area
 /// \return the field offset
