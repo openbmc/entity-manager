@@ -16,6 +16,24 @@
       "message": "@Will.Tsai@quantatw.com I see the same values for 2600 variant as well. Can you please check if those need a change as well. Thanks",
       "revId": "495e0a4ad62a1f19ee03c98091db288f5725574f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a5d93d5_f0681fa4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002889
+      },
+      "writtenOn": "2026-10-16T00:52:00Z",
+      "side": 1,
+      "message": "Thanks Jagpal. The 2600 variant\u0027s PGPPA_BMC_AUX is a 3.3V rail, so its current thresholds (3.135V - 3.465V) are correct. Only the 2700 board uses a 1.8V rail, so this patch changes only ventura2_scm_2700.json. No change needed for 2600.",
+      "parentUuid": "5665b704_82322cf8",
+      "revId": "495e0a4ad62a1f19ee03c98091db288f5725574f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
