@@ -1,6 +1,31 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$defs": {
+        "NvidiaMctpVdmDynamicThreshold": {
+            "description": "A threshold whose value is the one the device holds for the sensor, read with the MCTP VDM Read Thermal Parameters command when the sensor is published.",
+            "properties": {
+                "Direction": {
+                    "enum": ["less than", "greater than"]
+                },
+                "Dynamic": {
+                    "const": true
+                },
+                "Label": {
+                    "type": "string"
+                },
+                "Name": {
+                    "type": "string"
+                },
+                "Severity": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 4
+                }
+            },
+            "required": ["Direction", "Dynamic", "Label", "Name", "Severity"],
+            "additionalProperties": false,
+            "type": "object"
+        },
         "NvidiaMctpVdmSensor": {
             "properties": {
                 "Id": {
@@ -77,6 +102,29 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/$defs/NvidiaMctpVdmSensor"
+                    }
+                },
+                "Thresholds": {
+                    "description": "Thresholds of the temperature sensors. A threshold applies to the TemperatureSensors entry whose Name is the Label of the threshold.",
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "allOf": [
+                                    {
+                                        "$ref": "legacy.json#/$defs/Types/Thresholds/items"
+                                    },
+                                    {
+                                        "not": {
+                                            "required": ["Dynamic"]
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "$ref": "#/$defs/NvidiaMctpVdmDynamicThreshold"
+                            }
+                        ]
                     }
                 },
                 "VoltageSensors": {
