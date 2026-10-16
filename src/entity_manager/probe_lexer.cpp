@@ -131,6 +131,22 @@ std::optional<std::vector<Token>> lexProbe(std::string_view probe)
             continue;
         }
 
+        // Grouping parentheses. A call's parentheses are consumed as part of
+        // the name run below (and never reach here), so any '(' or ')' seen at
+        // the start of a token is a grouping delimiter.
+        if (probe[i] == '(')
+        {
+            tokens.push_back({TokenType::lparen, std::string{}});
+            ++i;
+            continue;
+        }
+        if (probe[i] == ')')
+        {
+            tokens.push_back({TokenType::rparen, std::string{}});
+            ++i;
+            continue;
+        }
+
         // Read a name run: a keyword, FOUND, or an interface name.
         size_t start = i;
         while (i < probe.size() && isNameChar(probe[i]))

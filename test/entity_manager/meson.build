@@ -48,6 +48,18 @@ test(
 )
 
 test(
+    'test_probe_parser',
+    executable(
+        'test_probe_parser',
+        'test_probe_parser.cpp',
+        '../../src/entity_manager/probe_lexer.cpp',
+        '../../src/entity_manager/probe_parser.cpp',
+        dependencies: [gtest],
+        include_directories: test_include_dir,
+    ),
+)
+
+test(
     'test_log_device_inventory',
     executable(
         'test_log_device_inventory',
