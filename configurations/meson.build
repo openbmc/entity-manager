@@ -217,6 +217,7 @@ configs = [
     'meta/santabarbara/santabarbara_pcie_switch_board_brcm_vr_sni.json',
     'meta/santabarbara/santabarbara_pdb1.json',
     'meta/santabarbara/santabarbara_pdb1_vr_adv_efu_tos.json',
+    'meta/santabarbara/santabarbara_pdb1_vr_adv_ubc_11kw.json',
     'meta/santabarbara/santabarbara_pdb1_vr_sni.json',
     'meta/santabarbara/santabarbara_pdb1_vr_sni_efu_rds.json',
     'meta/santabarbara/santabarbara_pdb2.json',
