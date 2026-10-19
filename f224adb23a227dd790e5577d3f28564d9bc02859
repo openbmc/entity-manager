@@ -39,6 +39,30 @@
       },
       "revId": "f224adb23a227dd790e5577d3f28564d9bc02859",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d323c8c_89ba35b8",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 716,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-19T12:34:43Z",
+      "side": 1,
+      "message": "no, doing it from `lexProbe()` is probably better since we do not have to populate `token.value`.\n\nAlso the parsing code moves into an actual parsing related file which is also better.\n\nMade this change as requested and refreshed the manual testing.",
+      "parentUuid": "303644ed_9c3f4bf9",
+      "range": {
+        "startLine": 698,
+        "startChar": 8,
+        "endLine": 716,
+        "endChar": 69
+      },
+      "revId": "f224adb23a227dd790e5577d3f28564d9bc02859",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
