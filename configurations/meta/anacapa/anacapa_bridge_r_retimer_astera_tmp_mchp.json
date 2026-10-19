@@ -13,6 +13,122 @@
             "Type": "EEPROM_24C256"
         },
         {
+            "Address": "0x4c",
+            "Bus": "$bus",
+            "Name": "BRB_R_OUTLET_BE5_TEMP_C",
+            "Name1": "BRB_R_OUTLET_RT_TEMP_C",
+            "Name2": "BRB_R_OUTLET_BE7_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 4.25,
+                    "Index": 1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 4.25,
+                    "Index": 1,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 4.25,
+                    "Index": 2,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 4.25,
+                    "Index": 2,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 4.25,
+                    "Index": 3,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 4.25,
+                    "Index": 3,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85
+                }
+            ],
+            "Type": "EMC1413"
+        },
+        {
+            "Address": "0x4c",
+            "Bus": "$bus + 1",
+            "Name": "BRB_R_INLET_BE5_TEMP_C",
+            "Name1": "BRB_R_INLET_BE7_TEMP_C",
+            "Name2": "BRB_R_INLET_RT_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 3.75,
+                    "Index": 1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 3.75,
+                    "Index": 1,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 75
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 3.75,
+                    "Index": 2,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 3.75,
+                    "Index": 2,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 75
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 3.75,
+                    "Index": 3,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 3.75,
+                    "Index": 3,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 75
+                }
+            ],
+            "Type": "EMC1413"
+        },
+        {
             "Name": "RBB_Cable",
             "PresencePinNames": [
                 "RBB_Cable_Present"
@@ -78,126 +194,10 @@
                 }
             ],
             "Type": "PT5161L"
-        },
-        {
-            "Address": "0x4c",
-            "Bus": "$bus",
-            "Name": "BRB_R_OUTLET_BE5_TEMP_C",
-            "Name1": "BRB_R_OUTLET_RT_TEMP_C",
-            "Name2": "BRB_R_OUTLET_BE7_TEMP_C",
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 4.25,
-                    "Index": 1,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 4.25,
-                    "Index": 1,
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 85
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 4.25,
-                    "Index": 2,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 4.25,
-                    "Index": 2,
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 85
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 4.25,
-                    "Index": 3,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 4.25,
-                    "Index": 3,
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 85
-                }
-            ],
-            "Type": "TMP432"
-        },
-        {
-            "Address": "0x4c",
-            "Bus": "$bus + 1",
-            "Name": "BRB_R_INLET_BE5_TEMP_C",
-            "Name1": "BRB_R_INLET_BE7_TEMP_C",
-            "Name2": "BRB_R_INLET_RT_TEMP_C",
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 3.75,
-                    "Index": 1,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 3.75,
-                    "Index": 1,
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 75
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 3.75,
-                    "Index": 2,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 3.75,
-                    "Index": 2,
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 75
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 3.75,
-                    "Index": 3,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 3.75,
-                    "Index": 3,
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 75
-                }
-            ],
-            "Type": "TMP432"
         }
     ],
     "Name": "BRB_R",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Anacapa RBB(?!.*EVT1)(?!.*EVT2).*', 'BOARD_MANUFACTURER': '(Inventec|Wiwynn)'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Anacapa RBB(?!.*EVT1)(?!.*EVT2).*', 'BOARD_MANUFACTURER': '(Inventec|Wiwynn)', 'BOARD_INFO_AM4': 'RETIMER-ASTERA TMP-MCHP'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
