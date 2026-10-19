@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4caa89fb_6083e315",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-10-19T05:21:51Z",
+      "side": 1,
+      "message": "Please tidy up the commit message: wrap at 72 characters, remove the stray leading spaces in the Motivation paragraph, capitalize the first word of each sentence, and make the subject start with \"Order...\" so it says what is ordered after what.\n\nA Tested section would also help.",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 1
+      },
+      "revId": "f7941e032fb7b75389d5d776500a02d2e3687652",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7f22004_d4dbce71",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-10-19T05:21:51Z",
+      "side": 1,
+      "message": "I suspect this problem occurs because EM stays alive long enough after fru-device/gpio-presence exit to finish a rescan. One possible reason is that the dbus-sensors units order themselves after EM (e.g. [the ADC sensor service]), so EM\u0027s shutdown may wait for them, while fru-device and gpio-presence have no such ordering.\n\nAlso, EM configs may probe objects from other services, so ordering EM after a fixed set of services may not cover all cases. I\u0027m not sure service file ordering alone fully addresses the issue and would like to hear other opinions.\n\n[the ADC sensor service]: https://github.com/openbmc/dbus-sensors/blob/393c0f71be63cc59b8c345126ed53c99a333ecec/service_files/xyz.openbmc_project.adcsensor.service#L6",
+      "revId": "f7941e032fb7b75389d5d776500a02d2e3687652",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e0ce468_854ecb06",
+        "filename": "service_files/xyz.openbmc_project.EntityManager.service",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-10-19T05:21:51Z",
+      "side": 1,
+      "message": "`devicetree-vpd-parser.service` also publishes an object that EM configs can probe, could it be added here as well?",
+      "revId": "f7941e032fb7b75389d5d776500a02d2e3687652",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
