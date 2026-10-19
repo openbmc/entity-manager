@@ -1,0 +1,1029 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x1f",
+            "Bus": "$bus",
+            "Labels": [
+                "in6",
+                "in7"
+            ],
+            "Name": "BUSBAR_ADC",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Label": "in6",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 0.1
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in6",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 3.74
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in7",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 0.1
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in7",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 3.74
+                }
+            ],
+            "Type": "ADC128D818",
+            "in6_Name": "PDB_R_BUSBAR_TSENSE_P2_VOLT_V",
+            "in7_Name": "PDB_R_BUSBAR_TSENSE_P1_VOLT_V"
+        },
+        {
+            "Address": "0x23",
+            "Bus": "$bus",
+            "Labels": [
+                "iout1",
+                "temp1",
+                "vin",
+                "vout1"
+            ],
+            "Name": "PDB_R_P12V_STBY_VRM",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2.55,
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 51
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2.55,
+                    "Label": "iout1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 56
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 127
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 3,
+                    "Label": "vin",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 31
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 3,
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 60
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 3,
+                    "Label": "vin",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 70
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.4
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.6
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 15.6
+                }
+            ],
+            "Type": "E50SN12051",
+            "iout1_Name": "PDB_R_P12V_STBY_VRM_CURR_A",
+            "temp1_Name": "PDB_R_P12V_STBY_VRM_TEMP_C",
+            "vin_Name": "PDB_R_P12V_STBY_VRM_VIN_VOLT_V",
+            "vout1_Name": "PDB_R_P12V_STBY_VRM_VOUT_VOLT_V"
+        },
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "PDB_R FRU",
+            "Type": "EEPROM"
+        },
+        {
+            "Address": "0x4d",
+            "Bus": "$bus",
+            "Name": "PDB_R_OUTLET_TEMP_C",
+            "Name1": "PDB_R_P12V_STBY_VRM_AMB_TEMP_C",
+            "Name2": "PDB_R_EAM3_AMB_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 4.25,
+                    "Index": 1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 4.25,
+                    "Index": 1,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 4.25,
+                    "Index": 2,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 4.25,
+                    "Index": 2,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 4.25,
+                    "Index": 3,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 4.25,
+                    "Index": 3,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85
+                }
+            ],
+            "Type": "EMC1403"
+        },
+        {
+            "Address": "0x4c",
+            "Bus": "$bus",
+            "Name": "PDB_R_P12V_MB_VRM_AMB_TEMP_C",
+            "Name1": "PDB_R_BUSBAR_AMB_TEMP_C",
+            "Name2": "PDB_R_EAM2_AMB_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 4.25,
+                    "Index": 1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 4.25,
+                    "Index": 1,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 4.25,
+                    "Index": 2,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 4.25,
+                    "Index": 2,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 4.25,
+                    "Index": 3,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 4.25,
+                    "Index": 3,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85
+                }
+            ],
+            "Type": "EMC1413"
+        },
+        {
+            "Address": "0x21",
+            "Bus": "$bus",
+            "Connector": {
+                "Name": "FAN5_TACH_IL",
+                "Pwm": 0,
+                "PwmName": "FAN5_PWM_PCT",
+                "Tachs": [
+                    9
+                ]
+            },
+            "Index": 9,
+            "MaxReading": 50000,
+            "Name": "FAN5_TACH_IL_SPEED_RPM",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "RPDB_FAN5_PRSNT_N_R",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 2375,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2800
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2375,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 48400
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x21",
+            "Bus": "$bus",
+            "Connector": {
+                "Name": "FAN5_TACH_OL",
+                "Pwm": 0,
+                "PwmName": "FAN5_PWM_PCT",
+                "Tachs": [
+                    10
+                ]
+            },
+            "Index": 10,
+            "MaxReading": 47000,
+            "Name": "FAN5_TACH_OL_SPEED_RPM",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "RPDB_FAN5_PRSNT_N_R",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 2225,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2600
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2225,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 45000
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x21",
+            "Bus": "$bus",
+            "Connector": {
+                "Name": "FAN6_TACH_IL",
+                "Pwm": 6,
+                "PwmName": "FAN6_PWM_PCT",
+                "Tachs": [
+                    15
+                ]
+            },
+            "Index": 15,
+            "MaxReading": 50000,
+            "Name": "FAN6_TACH_IL_SPEED_RPM",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "RPDB_FAN6_PRSNT_N_R",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 2375,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2800
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2375,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 48400
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x21",
+            "Bus": "$bus",
+            "Connector": {
+                "Name": "FAN6_TACH_OL",
+                "Pwm": 6,
+                "PwmName": "FAN6_PWM_PCT",
+                "Tachs": [
+                    0
+                ]
+            },
+            "Index": 0,
+            "MaxReading": 47000,
+            "Name": "FAN6_TACH_OL_SPEED_RPM",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "RPDB_FAN6_PRSNT_N_R",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 2225,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2600
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2225,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 45000
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x21",
+            "Bus": "$bus",
+            "Connector": {
+                "Name": "FAN7_TACH_IL",
+                "Pwm": 9,
+                "PwmName": "FAN7_PWM_PCT",
+                "Tachs": [
+                    2
+                ]
+            },
+            "Index": 2,
+            "MaxReading": 50000,
+            "Name": "FAN7_TACH_IL_SPEED_RPM",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "RPDB_FAN7_PRSNT_N_R",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 2375,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2800
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2375,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 48400
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x21",
+            "Bus": "$bus",
+            "Connector": {
+                "Name": "FAN7_TACH_OL",
+                "Pwm": 9,
+                "PwmName": "FAN7_PWM_PCT",
+                "Tachs": [
+                    3
+                ]
+            },
+            "Index": 3,
+            "MaxReading": 47000,
+            "Name": "FAN7_TACH_OL_SPEED_RPM",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "RPDB_FAN7_PRSNT_N_R",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 2225,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2600
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2225,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 45000
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x21",
+            "Bus": "$bus",
+            "Connector": {
+                "Name": "FAN8_TACH_IL",
+                "Pwm": 12,
+                "PwmName": "FAN8_PWM_PCT",
+                "Tachs": [
+                    5
+                ]
+            },
+            "Index": 5,
+            "MaxReading": 50000,
+            "Name": "FAN8_TACH_IL_SPEED_RPM",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "RPDB_FAN8_PRSNT_N_R",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 2375,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2800
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2375,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 48400
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x21",
+            "Bus": "$bus",
+            "Connector": {
+                "Name": "FAN8_TACH_OL",
+                "Pwm": 12,
+                "PwmName": "FAN8_PWM_PCT",
+                "Tachs": [
+                    6
+                ]
+            },
+            "Index": 6,
+            "MaxReading": 47000,
+            "Name": "FAN8_TACH_OL_SPEED_RPM",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "RPDB_FAN8_PRSNT_N_R",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 2225,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2600
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2225,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 45000
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x45",
+            "Bus": "$bus",
+            "Labels": [
+                "iout1",
+                "pin",
+                "temp1",
+                "vin",
+                "vout1"
+            ],
+            "Name": "PDB_R_P50V_HSC_STBY",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2.25,
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 45
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2.25,
+                    "Label": "iout1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 56
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pin",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 3000
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 5.5,
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 110
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 5.5,
+                    "Label": "temp1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 125
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 3,
+                    "Label": "vin",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 32.8
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 3,
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 40
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 3,
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 60
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 3,
+                    "Label": "vin",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 64
+                }
+            ],
+            "Type": "LTC4287",
+            "iout1_Name": "PDB_R_P50V_HSC_STBY_CURR_A",
+            "pin_Name": "PDB_R_P50V_HSC_STBY_PWR_W",
+            "temp1_Name": "PDB_R_P50V_HSC_STBY_TEMP_C",
+            "vin_Name": "PDB_R_P50V_HSC_STBY_VIN_VOLT_V",
+            "vout1_Name": "PDB_R_P50V_HSC_STBY_VOUT_VOLT_V"
+        },
+        {
+            "Address": "0x42",
+            "Bus": "$bus",
+            "Labels": [
+                "iout1",
+                "pin",
+                "temp1",
+                "vin",
+                "vout1"
+            ],
+            "Name": "PDB_R_P50V_HSC2",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 4.375,
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 87.5
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 4.375,
+                    "Label": "iout1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 113
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pin",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 5000
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 5.5,
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 110
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 5.5,
+                    "Label": "temp1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 125
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 3,
+                    "Label": "vin",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 32.8
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 3,
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 40
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 3,
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 60
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 3,
+                    "Label": "vin",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 64
+                }
+            ],
+            "Type": "LTC4287",
+            "iout1_Name": "PDB_R_P50V_HSC2_CURR_A",
+            "pin_Max": 5500,
+            "pin_Name": "PDB_R_P50V_HSC2_PWR_W",
+            "temp1_Name": "PDB_R_P50V_HSC2_TEMP_C",
+            "vin_Name": "PDB_R_P50V_HSC2_VIN_VOLT_V",
+            "vout1_Name": "PDB_R_P50V_HSC2_VOUT_VOLT_V"
+        },
+        {
+            "Address": "0x43",
+            "Bus": "$bus",
+            "Labels": [
+                "iout1",
+                "pin",
+                "temp1",
+                "vin",
+                "vout1"
+            ],
+            "Name": "PDB_R_P50V_HSC3",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 4.375,
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 87.5
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 4.375,
+                    "Label": "iout1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 113
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pin",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 5000
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 5.5,
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 110
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 5.5,
+                    "Label": "temp1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 125
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 3,
+                    "Label": "vin",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 32.8
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 3,
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 40
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 3,
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 60
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 3,
+                    "Label": "vin",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 64
+                }
+            ],
+            "Type": "LTC4287",
+            "iout1_Name": "PDB_R_P50V_HSC3_CURR_A",
+            "pin_Max": 5500,
+            "pin_Name": "PDB_R_P50V_HSC3_PWR_W",
+            "temp1_Name": "PDB_R_P50V_HSC3_TEMP_C",
+            "vin_Name": "PDB_R_P50V_HSC3_VIN_VOLT_V",
+            "vout1_Name": "PDB_R_P50V_HSC3_VOUT_VOLT_V"
+        },
+        {
+            "Address": "0x44",
+            "Bus": "$bus",
+            "Labels": [
+                "iout1",
+                "pin",
+                "temp1",
+                "vin",
+                "vout1"
+            ],
+            "Name": "PDB_R_P50V_HSC4",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2.9,
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 58
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2.9,
+                    "Label": "iout1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 72
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pin",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 3800
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 5.5,
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 110
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 5.5,
+                    "Label": "temp1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 125
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 3,
+                    "Label": "vin",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 32.8
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 3,
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 40
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 3,
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 60
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 3,
+                    "Label": "vin",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 64
+                }
+            ],
+            "Type": "LTC4287",
+            "iout1_Name": "PDB_R_P50V_HSC4_CURR_A",
+            "pin_Max": 5500,
+            "pin_Name": "PDB_R_P50V_HSC4_PWR_W",
+            "temp1_Name": "PDB_R_P50V_HSC4_TEMP_C",
+            "vin_Name": "PDB_R_P50V_HSC4_VIN_VOLT_V",
+            "vout1_Name": "PDB_R_P50V_HSC4_VOUT_VOLT_V"
+        },
+        {
+            "Address": "0x60",
+            "Bus": "$bus",
+            "Labels": [
+                "iout1",
+                "temp1",
+                "vin",
+                "vout1"
+            ],
+            "Name": "PDB_R_P12V_MB_VRM",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 8.35,
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 167
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 8.35,
+                    "Label": "iout1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 210
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 122
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 3,
+                    "Label": "vin",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 37.5
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 3,
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 40
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 3,
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 60
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 3,
+                    "Label": "vin",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 62
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.51
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.79
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 14.5
+                }
+            ],
+            "Type": "pmbus",
+            "iout1_Name": "PDB_R_P12V_MB_VRM_CURR_A",
+            "temp1_Name": "PDB_R_P12V_MB_VRM_TEMP_C",
+            "vin_Name": "PDB_R_P12V_MB_VRM_VIN_VOLT_V",
+            "vout1_Name": "PDB_R_P12V_MB_VRM_VOUT_VOLT_V"
+        }
+    ],
+    "Name": "PDB_R",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Anacapa(?!.*EVT1)(?!.*EVT2).*RPDB', 'BOARD_MANUFACTURER': '(Inventec|Wiwynn)', 'BOARD_INFO_AM4': 'TMP8-MC TMP29-MC FSC-NCT ADC-PJ HSC-ADI MBVR-LUX STBYVR-DLTA'})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$BOARD_MANUFACTURE_DATE",
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER",
+        "SparePartNumber": "$BOARD_INFO_AM1"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Revision": {
+        "Version": "$PRODUCT_VERSION"
+    }
+}

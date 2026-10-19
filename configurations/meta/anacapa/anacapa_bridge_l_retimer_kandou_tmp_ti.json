@@ -23,33 +23,6 @@
             "Type": "GPIODeviceDetect"
         },
         {
-            "Address": "0x71",
-            "Bus": 0,
-            "FirmwareInfo": {
-                "CompatibleHardware": "com.meta.Hardware.Anacapa.CPLD.LFMXO5_15D_bb",
-                "VendorIANA": 40981
-            },
-            "Name": "Anacapa_LBB_CPLD",
-            "Type": "LatticeLFMXO5_15DFirmware"
-        },
-        {
-            "Address": "0x20",
-            "Bus": "$bus + 1",
-            "FirmwareDevice": "Anacapa_LBB_Retimer_EEPROM",
-            "FirmwareInfo": {
-                "CompatibleHardware": "com.meta.Hardware.Anacapa.Retimer.PT5081L",
-                "VendorIANA": 40981
-            },
-            "MuxOutputs": [
-                {
-                    "Name": "RTM_MUX_L",
-                    "Polarity": "High"
-                }
-            ],
-            "Name": "Anacapa_LBB_Retimer",
-            "Type": "PT5081LFirmware"
-        },
-        {
             "Address": "0x20",
             "Bus": "$bus + 1",
             "Name": "BRB_L_RETIMER_TEMP_C",
@@ -77,7 +50,17 @@
                     "Value": 105
                 }
             ],
-            "Type": "PT5161L"
+            "Type": "KB9002"
+        },
+        {
+            "Address": "0x71",
+            "Bus": 0,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Anacapa.CPLD.LFMXO5_15D_bb",
+                "VendorIANA": 40981
+            },
+            "Name": "Anacapa_LBB_CPLD",
+            "Type": "LatticeLFMXO5_15DFirmware"
         },
         {
             "Address": "0x4c",
@@ -197,7 +180,7 @@
         }
     ],
     "Name": "BRB_L",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Anacapa LBB(?!.*EVT1)(?!.*EVT2).*', 'BOARD_MANUFACTURER': '(Inventec|Wiwynn)'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Anacapa LBB(?!.*EVT1)(?!.*EVT2).*', 'BOARD_MANUFACTURER': '(Inventec|Wiwynn)', 'BOARD_INFO_AM4': 'RETIMER-KA[N]DOU TMP-TI'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
