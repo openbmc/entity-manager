@@ -380,7 +380,7 @@
             "Address": "0x40",
             "Bus": "$bus",
             "Labels": [
-                "iout1",
+                "iin",
                 "pin",
                 "temp1",
                 "vin",
@@ -391,7 +391,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 4.375,
-                    "Label": "iout1",
+                    "Label": "iin",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 71.94
@@ -399,7 +399,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 4.375,
-                    "Label": "iout1",
+                    "Label": "iin",
                     "Name": "upper non recoverable",
                     "Severity": 4,
                     "Value": 75.93
@@ -460,8 +460,8 @@
                     "Value": 64
                 }
             ],
-            "Type": "LTC4287",
-            "iout1_Name": "PDB_L_P50V_HSC0_CURR_A",
+            "Type": "MP5926",
+            "iin_Name": "PDB_L_P50V_HSC0_CURR_A",
             "pin_Max": 5500,
             "pin_Name": "PDB_L_P50V_HSC0_PWR_W",
             "temp1_Name": "PDB_L_P50V_HSC0_TEMP_C",
@@ -472,7 +472,7 @@
             "Address": "0x41",
             "Bus": "$bus",
             "Labels": [
-                "iout1",
+                "iin",
                 "pin",
                 "temp1",
                 "vin",
@@ -483,7 +483,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 4.375,
-                    "Label": "iout1",
+                    "Label": "iin",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 71.94
@@ -491,7 +491,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 4.375,
-                    "Label": "iout1",
+                    "Label": "iin",
                     "Name": "upper non recoverable",
                     "Severity": 4,
                     "Value": 75.93
@@ -552,8 +552,8 @@
                     "Value": 64
                 }
             ],
-            "Type": "LTC4287",
-            "iout1_Name": "PDB_L_P50V_HSC1_CURR_A",
+            "Type": "MP5926",
+            "iin_Name": "PDB_L_P50V_HSC1_CURR_A",
             "pin_Max": 5500,
             "pin_Name": "PDB_L_P50V_HSC1_PWR_W",
             "temp1_Name": "PDB_L_P50V_HSC1_TEMP_C",
@@ -564,7 +564,7 @@
             "Address": "0x45",
             "Bus": "$bus",
             "Labels": [
-                "iout1",
+                "iin",
                 "pin",
                 "temp1",
                 "vin",
@@ -575,7 +575,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 2.25,
-                    "Label": "iout1",
+                    "Label": "iin",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 45
@@ -583,7 +583,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 2.25,
-                    "Label": "iout1",
+                    "Label": "iin",
                     "Name": "upper non recoverable",
                     "Severity": 4,
                     "Value": 56
@@ -644,8 +644,8 @@
                     "Value": 64
                 }
             ],
-            "Type": "LTC4287",
-            "iout1_Name": "PDB_L_P50V_HSC5_CURR_A",
+            "Type": "MP5926",
+            "iin_Name": "PDB_L_P50V_HSC5_CURR_A",
             "pin_Max": 5500,
             "pin_Name": "PDB_L_P50V_HSC5_PWR_W",
             "temp1_Name": "PDB_L_P50V_HSC5_TEMP_C",
@@ -847,7 +847,7 @@
         }
     ],
     "Name": "PDB_L",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Anacapa(?!.*EVT1)(?!.*EVT2).*LPDB', 'BOARD_MANUFACTURER': '(Inventec|Wiwynn)'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Anacapa(?!.*EVT1)(?!.*EVT2).*LPDB', 'BOARD_MANUFACTURER': '(Inventec|Wiwynn)', 'BOARD_INFO_AM4': 'TMP-TI FSC-MAX HSC-MPS SWVR-DLTA'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
