@@ -7,17 +7,75 @@
             "Type": "EEPROM"
         },
         {
-            "Address": "0x2b",
+            "Address": "0x4c",
+            "Bus": "$bus",
+            "Name": "PDB_L_EAM1_AMB_TEMP_C",
+            "Name1": "PDB_L_EAM0_AMB_TEMP_C",
+            "Name2": "PDB_L_BUSBAR_AMB_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 4.25,
+                    "Index": 1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 4.25,
+                    "Index": 1,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 4.25,
+                    "Index": 2,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 4.25,
+                    "Index": 2,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 4.25,
+                    "Index": 3,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 4.25,
+                    "Index": 3,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85
+                }
+            ],
+            "Type": "EMC1413"
+        },
+        {
+            "Address": "0x20",
             "Bus": "$bus",
             "Connector": {
                 "Name": "FAN0_TACH_IL",
                 "Pwm": 0,
                 "PwmName": "FAN0_PWM_PCT",
                 "Tachs": [
-                    0
+                    9
                 ]
             },
-            "Index": 0,
+            "Index": 9,
             "MaxReading": 50000,
             "Name": "FAN0_TACH_IL_SPEED_RPM",
             "PowerState": "Always",
@@ -44,17 +102,17 @@
             "Type": "I2CFan"
         },
         {
-            "Address": "0x2b",
+            "Address": "0x20",
             "Bus": "$bus",
             "Connector": {
                 "Name": "FAN0_TACH_OL",
                 "Pwm": 0,
                 "PwmName": "FAN0_PWM_PCT",
                 "Tachs": [
-                    1
+                    10
                 ]
             },
-            "Index": 1,
+            "Index": 10,
             "MaxReading": 47000,
             "Name": "FAN0_TACH_OL_SPEED_RPM",
             "PowerState": "Always",
@@ -81,17 +139,17 @@
             "Type": "I2CFan"
         },
         {
-            "Address": "0x2b",
+            "Address": "0x20",
             "Bus": "$bus",
             "Connector": {
                 "Name": "FAN1_TACH_IL",
-                "Pwm": 1,
+                "Pwm": 3,
                 "PwmName": "FAN1_PWM_PCT",
                 "Tachs": [
-                    2
+                    12
                 ]
             },
-            "Index": 2,
+            "Index": 12,
             "MaxReading": 50000,
             "Name": "FAN1_TACH_IL_SPEED_RPM",
             "PowerState": "Always",
@@ -118,17 +176,17 @@
             "Type": "I2CFan"
         },
         {
-            "Address": "0x2b",
+            "Address": "0x20",
             "Bus": "$bus",
             "Connector": {
                 "Name": "FAN1_TACH_OL",
-                "Pwm": 1,
+                "Pwm": 3,
                 "PwmName": "FAN1_PWM_PCT",
                 "Tachs": [
-                    3
+                    13
                 ]
             },
-            "Index": 3,
+            "Index": 13,
             "MaxReading": 47000,
             "Name": "FAN1_TACH_OL_SPEED_RPM",
             "PowerState": "Always",
@@ -155,17 +213,17 @@
             "Type": "I2CFan"
         },
         {
-            "Address": "0x2b",
+            "Address": "0x20",
             "Bus": "$bus",
             "Connector": {
                 "Name": "FAN2_TACH_IL",
-                "Pwm": 2,
+                "Pwm": 6,
                 "PwmName": "FAN2_PWM_PCT",
                 "Tachs": [
-                    4
+                    15
                 ]
             },
-            "Index": 4,
+            "Index": 15,
             "MaxReading": 50000,
             "Name": "FAN2_TACH_IL_SPEED_RPM",
             "PowerState": "Always",
@@ -192,17 +250,17 @@
             "Type": "I2CFan"
         },
         {
-            "Address": "0x2b",
+            "Address": "0x20",
             "Bus": "$bus",
             "Connector": {
                 "Name": "FAN2_TACH_OL",
-                "Pwm": 2,
+                "Pwm": 6,
                 "PwmName": "FAN2_PWM_PCT",
                 "Tachs": [
-                    5
+                    0
                 ]
             },
-            "Index": 5,
+            "Index": 0,
             "MaxReading": 47000,
             "Name": "FAN2_TACH_OL_SPEED_RPM",
             "PowerState": "Always",
@@ -229,17 +287,17 @@
             "Type": "I2CFan"
         },
         {
-            "Address": "0x2b",
+            "Address": "0x20",
             "Bus": "$bus",
             "Connector": {
                 "Name": "FAN3_TACH_IL",
-                "Pwm": 3,
+                "Pwm": 9,
                 "PwmName": "FAN3_PWM_PCT",
                 "Tachs": [
-                    10
+                    2
                 ]
             },
-            "Index": 10,
+            "Index": 2,
             "MaxReading": 50000,
             "Name": "FAN3_TACH_IL_SPEED_RPM",
             "PowerState": "Always",
@@ -266,17 +324,17 @@
             "Type": "I2CFan"
         },
         {
-            "Address": "0x2b",
+            "Address": "0x20",
             "Bus": "$bus",
             "Connector": {
                 "Name": "FAN3_TACH_OL",
-                "Pwm": 3,
+                "Pwm": 9,
                 "PwmName": "FAN3_PWM_PCT",
                 "Tachs": [
-                    11
+                    3
                 ]
             },
-            "Index": 11,
+            "Index": 3,
             "MaxReading": 47000,
             "Name": "FAN3_TACH_OL_SPEED_RPM",
             "PowerState": "Always",
@@ -303,17 +361,17 @@
             "Type": "I2CFan"
         },
         {
-            "Address": "0x2f",
+            "Address": "0x20",
             "Bus": "$bus",
             "Connector": {
                 "Name": "FAN4_TACH_IL",
-                "Pwm": 0,
+                "Pwm": 12,
                 "PwmName": "FAN4_PWM_PCT",
                 "Tachs": [
-                    0
+                    5
                 ]
             },
-            "Index": 0,
+            "Index": 5,
             "MaxReading": 50000,
             "Name": "FAN4_TACH_IL_SPEED_RPM",
             "PowerState": "Always",
@@ -340,17 +398,17 @@
             "Type": "I2CFan"
         },
         {
-            "Address": "0x2f",
+            "Address": "0x20",
             "Bus": "$bus",
             "Connector": {
                 "Name": "FAN4_TACH_OL",
-                "Pwm": 0,
+                "Pwm": 12,
                 "PwmName": "FAN4_PWM_PCT",
                 "Tachs": [
-                    1
+                    6
                 ]
             },
-            "Index": 1,
+            "Index": 6,
             "MaxReading": 47000,
             "Name": "FAN4_TACH_OL_SPEED_RPM",
             "PowerState": "Always",
@@ -653,6 +711,28 @@
             "vout1_Name": "PDB_L_P50V_HSC5_VOUT_VOLT_V"
         },
         {
+            "Address": "0x48",
+            "Bus": "$bus",
+            "Name": "PDB_L_INLET_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 3.75,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 3.75,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 75
+                }
+            ],
+            "Type": "TMP75"
+        },
+        {
             "Address": "0x60",
             "Bus": "$bus",
             "Labels": [
@@ -759,95 +839,15 @@
                     "Value": 14.2
                 }
             ],
-            "Type": "Q54SN120A1",
+            "Type": "pmbus",
             "iout1_Name": "PDB_L_P12V_SW_VRM_CURR_A",
             "temp1_Name": "PDB_L_P12V_SW_VRM_TEMP_C",
             "vin_Name": "PDB_L_P12V_SW_VRM_VIN_VOLT_V",
             "vout1_Name": "PDB_L_P12V_SW_VRM_VOUT_VOLT_V"
-        },
-        {
-            "Address": "0x4c",
-            "Bus": "$bus",
-            "Name": "PDB_L_EAM1_AMB_TEMP_C",
-            "Name1": "PDB_L_EAM0_AMB_TEMP_C",
-            "Name2": "PDB_L_BUSBAR_AMB_TEMP_C",
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 4.25,
-                    "Index": 1,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 4.25,
-                    "Index": 1,
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 85
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 4.25,
-                    "Index": 2,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 4.25,
-                    "Index": 2,
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 85
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 4.25,
-                    "Index": 3,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 4.25,
-                    "Index": 3,
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 85
-                }
-            ],
-            "Type": "TMP432"
-        },
-        {
-            "Address": "0x48",
-            "Bus": "$bus",
-            "Name": "PDB_L_INLET_TEMP_C",
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 3.75,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 3.75,
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 75
-                }
-            ],
-            "Type": "TMP75"
         }
     ],
     "Name": "PDB_L",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Anacapa(?!.*EVT1)(?!.*EVT2).*LPDB', 'BOARD_MANUFACTURER': '(Inventec|Wiwynn)'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Anacapa(?!.*EVT1)(?!.*EVT2).*LPDB', 'BOARD_MANUFACTURER': '(Inventec|Wiwynn)', 'BOARD_INFO_AM4': 'TMP-MC FSC-NCT HSC-ADI SWVR-FLEX'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
