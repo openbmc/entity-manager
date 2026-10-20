@@ -264,7 +264,7 @@
             "Connector": {
                 "Name": "FAN0_TACH_IL",
                 "Pwm": 2,
-                "PwmName": "PDB_FAN_PWM",
+                "PwmName": "PDB_FAN_PWM_PCT",
                 "Tachs": [
                     0
                 ]
@@ -302,7 +302,7 @@
             "Connector": {
                 "Name": "FAN0_TACH_OL",
                 "Pwm": 2,
-                "PwmName": "PDB_FAN_PWM",
+                "PwmName": "PDB_FAN_PWM_PCT",
                 "Tachs": [
                     1
                 ]
@@ -340,7 +340,7 @@
             "Connector": {
                 "Name": "FAN1_TACH_IL",
                 "Pwm": 2,
-                "PwmName": "PDB_FAN_PWM",
+                "PwmName": "PDB_FAN_PWM_PCT",
                 "Tachs": [
                     2
                 ]
@@ -378,7 +378,7 @@
             "Connector": {
                 "Name": "FAN1_TACH_OL",
                 "Pwm": 2,
-                "PwmName": "PDB_FAN_PWM",
+                "PwmName": "PDB_FAN_PWM_PCT",
                 "Tachs": [
                     3
                 ]
@@ -416,7 +416,7 @@
             "Connector": {
                 "Name": "FAN2_TACH_IL",
                 "Pwm": 2,
-                "PwmName": "PDB_FAN_PWM",
+                "PwmName": "PDB_FAN_PWM_PCT",
                 "Tachs": [
                     4
                 ]
@@ -454,7 +454,7 @@
             "Connector": {
                 "Name": "FAN2_TACH_OL",
                 "Pwm": 2,
-                "PwmName": "PDB_FAN_PWM",
+                "PwmName": "PDB_FAN_PWM_PCT",
                 "Tachs": [
                     5
                 ]
@@ -492,7 +492,7 @@
             "Connector": {
                 "Name": "FAN3_TACH_IL",
                 "Pwm": 2,
-                "PwmName": "PDB_FAN_PWM",
+                "PwmName": "PDB_FAN_PWM_PCT",
                 "Tachs": [
                     6
                 ]
@@ -530,7 +530,7 @@
             "Connector": {
                 "Name": "FAN3_TACH_OL",
                 "Pwm": 2,
-                "PwmName": "PDB_FAN_PWM",
+                "PwmName": "PDB_FAN_PWM_PCT",
                 "Tachs": [
                     7
                 ]
@@ -1002,7 +1002,7 @@
             "OutLimitMax": 100.0,
             "OutLimitMin": 0.0,
             "Outputs": [
-                "PDB_FAN_PWM"
+                "PDB_FAN_PWM_PCT"
             ],
             "PCoefficient": 0.0,
             "SlewNeg": 0.0,
