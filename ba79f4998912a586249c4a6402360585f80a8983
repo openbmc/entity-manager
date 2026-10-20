@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8482540_7b7ccfed",
+        "filename": "test/entity_manager/test_probe_lexer.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1003207
+      },
+      "writtenOn": "2026-10-20T15:21:26Z",
+      "side": 1,
+      "message": "Thanks for adding these tests. \nThe empty-object case verifies that interface-presence probes remain accepted, and the multiple-backslash case checks that the parsed property value preserves the backslashes exactly. Both cover the requested parser compatibility cases. \nLooks good from code inspection.\n\nCan you attach the unit test test results for our reference?",
+      "revId": "ba79f4998912a586249c4a6402360585f80a8983",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
