@@ -17,6 +17,22 @@ test(
     ),
 )
 
+test_perform_scan = executable(
+    'test_perform_scan',
+    'test_perform_scan.cpp',
+    cpp_args: test_boost_args,
+    dependencies: [
+        boost,
+        gtest,
+        nlohmann_json_dep,
+        phosphor_logging_dep,
+        sdbusplus,
+        valijson,
+    ],
+    link_with: [entity_manager_lib, utils_lib],
+    include_directories: test_include_dir,
+)
+
 test(
     'test_expression',
     executable(
@@ -38,21 +54,8 @@ test(
 
 test(
     'test_perform_scan',
-    executable(
-        'test_perform_scan',
-        'test_perform_scan.cpp',
-        cpp_args: test_boost_args,
-        dependencies: [
-            boost,
-            gtest,
-            nlohmann_json_dep,
-            phosphor_logging_dep,
-            sdbusplus,
-            valijson,
-        ],
-        link_with: [entity_manager_lib, utils_lib],
-        include_directories: test_include_dir,
-    ),
+    find_program('dbus-run-session'),
+    args: ['--', test_perform_scan],
 )
 
 test(

@@ -2,11 +2,17 @@
 #include "entity_manager/topology.hpp"
 #include "utils.hpp"
 
+#include <boost/asio/io_context.hpp>
 #include <nlohmann/json.hpp>
+#include <sdbusplus/asio/connection.hpp>
 
+#include <algorithm>
 #include <cstddef>
 #include <cstdint>
+#include <functional>
+#include <limits>
 #include <list>
+#include <memory>
 #include <optional>
 #include <set>
 #include <string>
@@ -115,6 +121,69 @@ TEST(ParseProbeCommand, RejectsMalformedDbusProperties)
     EXPECT_TRUE(scan::detail::parseProbeCommand({"xyz.Iface({'A': 1}) OR "
                                                  "xyz.Iface({'B': })"})
                     .empty());
+}
+
+static void recordScanCompletion(size_t& completions)
+{
+    ++completions;
+}
+
+static void drainPendingBusCalls(sdbusplus::asio::connection& bus)
+{
+    uint64_t timeout = 0;
+    ASSERT_GE(bus.get_timeout(&timeout), 0);
+    while (timeout != std::numeric_limits<uint64_t>::max())
+    {
+        ASSERT_NE(bus.get_io_context().run_one(), 0);
+        ASSERT_GE(bus.get_timeout(&timeout), 0);
+    }
+}
+
+TEST(PerformScan, SkipsMalformedProbeAndProcessesFollowingConfiguration)
+{
+    // Keep bus activity separate so the scan's event loop can drain.
+    boost::asio::io_context busIo;
+    auto bus = std::make_shared<sdbusplus::asio::connection>(
+        busIo, sdbusplus::bus::new_default_user());
+
+    boost::asio::io_context io;
+    EntityManager em(bus, io, {}, {});
+    json missing = json::object();
+
+    EMConfig malformed;
+    malformed.name = "Malformed Board";
+    malformed.type = "Board";
+    malformed.probeStmt = {"xyz.openbmc_project.FruDevice({'A': })"};
+
+    EMConfig valid;
+    valid.name = "Valid Board";
+    valid.type = "Board";
+    valid.probeStmt = {"TRUE"};
+
+    std::vector<EMConfig> configurations = {malformed, valid};
+
+    size_t completions = 0;
+    auto scan = std::make_shared<scan::PerformScan>(
+        em, missing, configurations, io,
+        std::bind_front(recordScanCompletion, std::ref(completions)));
+
+    scan->run();
+
+    EXPECT_FALSE(std::ranges::contains(scan->passedProbes, malformed.name));
+    EXPECT_TRUE(std::ranges::contains(scan->passedProbes, valid.name));
+    EXPECT_EQ(em.systemConfiguration, (json{{valid.name, valid.toJson()}}));
+    EXPECT_EQ(completions, 0);
+
+    scan.reset();
+    io.run();
+
+    EXPECT_EQ(completions, 1);
+    EXPECT_EQ(em.systemConfiguration, (json{{valid.name, valid.toJson()}}));
+
+    // Complete the initial power-state query while its callback target is
+    // alive. sd-bus reports an infinite timeout once no method calls are
+    // pending.
+    ASSERT_NO_FATAL_FAILURE(drainPendingBusCalls(*bus));
 }
 
 TEST(RestorePersistedConfigurations, RegistersResolvedNameAndPreservesIndex)
