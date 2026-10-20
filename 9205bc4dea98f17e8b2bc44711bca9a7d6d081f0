@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c2f4390_329b8ca9",
+        "filename": "service_files/xyz.openbmc_project.EntityManager.service",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-20T13:18:54Z",
+      "side": 1,
+      "message": "```suggestion\n# on BMC reboot, \u0027start EM after\u0027, meaning \u0027stop EM before\u0027 these services\n# to avoid emitting false event logs about removed inventory items\n# which were probed on interfaces from services that are already stopped.\nAfter\u003ddevicetree-vpd-parser.service\nAfter\u003dxyz.openbmc_project.FruDevice.service\nAfter\u003dxyz.openbmc_project.gpiopresence.service\n```\n\npossibly to add some explaining comments to avoid having to dig the git history",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 46
+      },
+      "revId": "9205bc4dea98f17e8b2bc44711bca9a7d6d081f0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
