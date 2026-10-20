@@ -110,6 +110,26 @@ TEST(LexProbe, ParsesDbusPropertiesBeforeEvaluation)
                               {"ADDRESS", 80}}}}}));
 }
 
+TEST(LexProbe, EmptyDbusProperties)
+{
+    EXPECT_EQ(
+        lexProbe("xyz.openbmc_project.FruDevice({})"),
+        (std::vector<Token>{{TokenType::dbusProbe, "",
+                             DbusProbe{"xyz.openbmc_project.FruDevice", {}}}}));
+}
+
+TEST(LexProbe, PreservesMultipleBackslashesInDbusProperties)
+{
+    const std::string dbus =
+        R"(xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Riser\d+\\slot\w+'}))";
+    EXPECT_EQ(
+        lexProbe(dbus),
+        (std::vector<Token>{
+            {TokenType::dbusProbe, "",
+             DbusProbe{"xyz.openbmc_project.FruDevice",
+                       {{"BOARD_PRODUCT_NAME", R"(Riser\d+\\slot\w+)"}}}}}));
+}
+
 TEST(LexProbe, RejectsMalformedDbusProperties)
 {
     EXPECT_EQ(lexProbe("xyz.Iface({'A': })"), std::nullopt);
