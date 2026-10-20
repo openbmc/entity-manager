@@ -27,7 +27,7 @@
             "properties": {
                 "Address": {
                     "description": "The 6-byte PID for the device on the I3C bus",
-                    "type": ["string", "array"]
+                    "type": "array"
                 },
                 "Bus": {
                     "description": "The bus index to which the device is attached",
