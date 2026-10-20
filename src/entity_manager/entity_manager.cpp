@@ -404,7 +404,9 @@ static void pruneDevice(const nlohmann::json& systemConfiguration,
         return;
     }
 
-    if (deviceRequiresPowerOn(device) && (powerOff || scannedPowerOff))
+    const bool requiresPowerOn = deviceRequiresPowerOn(device);
+    if ((requiresPowerOn && powerOff) ||
+        (!requiresPowerOn && scannedPowerOff))
     {
         return;
     }
