@@ -33,6 +33,42 @@
       "message": "if we tested malformed and out-of-range operands, such as $index + 2junk and $index + 9999999999999999999999999?\n\nThe evaluator tests already verify that these return std::nullopt. \nTesting them through template replacement would also confirm that the original string remains unchanged, as intended by this patch.",
       "revId": "01081aaa9866ffba3deb3e4d14806aa62913cb85",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fae88125_1d48b3c9",
+        "filename": "test/entity_manager/test_entity-manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-20T13:43:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ac08e91_64fc799c",
+      "revId": "01081aaa9866ffba3deb3e4d14806aa62913cb85",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b710906_dfe4eaaa",
+        "filename": "test/entity_manager/test_entity-manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-20T13:43:45Z",
+      "side": 1,
+      "message": "right, we can additionally cover the behavior of the expression evaluation in the template char test suite to capture how it should all work together.\n\nAdded the requested testcases, thanks for your review.",
+      "parentUuid": "40e69853_91c2bc3a",
+      "revId": "01081aaa9866ffba3deb3e4d14806aa62913cb85",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
