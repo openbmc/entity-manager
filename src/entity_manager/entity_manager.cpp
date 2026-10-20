@@ -434,7 +434,14 @@ static void pruneDevice(const nlohmann::json& systemConfiguration,
         return;
     }
 
-    logDeviceRemoved(name, device, cachedBaseline);
+    const bool requiresPowerOn = deviceRequiresPowerOn(device);
+    if ((requiresPowerOn && powerOff) ||
+        (!requiresPowerOn && scannedPowerOff))
+    {
+        return;
+    }
+
+    logDeviceRemoved(device);
 }
 
 void EntityManager::startRemovedTimer(boost::asio::steady_timer& timer)
