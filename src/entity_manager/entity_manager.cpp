@@ -429,7 +429,8 @@ static void pruneDevice(const nlohmann::json& systemConfiguration,
                         std::unordered_set<std::string>& cachedBaseline,
                         const std::string& name, const nlohmann::json& device)
 {
-    if (systemConfiguration.contains(name))
+    if (systemConfiguration.contains(name) ||
+        !cachedBaseline.contains(name))
     {
         return;
     }
