@@ -438,40 +438,12 @@
             "Address": "0x48",
             "Bus": 13,
             "Name": "MB_INLET_TEMP_C",
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 55
-                }
-            ],
             "Type": "LM75A"
         },
         {
             "Address": "0x49",
             "Bus": 13,
             "Name": "MB_OUTLET_TEMP_C",
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 85
-                }
-            ],
             "Type": "LM75A"
         },
         {
