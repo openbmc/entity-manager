@@ -311,7 +311,7 @@
         {
             "Level": "Warning",
             "Name": "EAM3_Cold_Plate",
-            "PinName": "Channel0_leakage_EAM3",
+            "PinName": "Channel0_leakage",
             "Polarity": "High",
             "SubType": "LeakSensingCable",
             "Type": "GPIOLeakDetector"
@@ -319,23 +319,23 @@
         {
             "Level": "Warning",
             "Name": "EAM0_Cold_Plate",
-            "PinName": "Channel1_leakage_EAM0",
+            "PinName": "Channel1_leakage",
             "Polarity": "High",
             "SubType": "LeakSensingCable",
             "Type": "GPIOLeakDetector"
         },
         {
             "Level": "Critical",
-            "Name": "Manifold_1",
-            "PinName": "Channel2_leakage_Manifold1",
+            "Name": "Chassis_Floor",
+            "PinName": "Channel2_leakage",
             "Polarity": "High",
             "SubType": "LeakSensingCable",
             "Type": "GPIOLeakDetector"
         },
         {
             "Level": "Critical",
-            "Name": "Manifold_2",
-            "PinName": "Channel4_leakage_Manifold2",
+            "Name": "Manifold",
+            "PinName": "Channel4_leakage",
             "Polarity": "High",
             "SubType": "LeakSensingCable",
             "Type": "GPIOLeakDetector"
@@ -343,15 +343,15 @@
         {
             "Level": "Warning",
             "Name": "EAM1_Cold_Plate",
-            "PinName": "Channel5_leakage_EAM1",
+            "PinName": "Channel5_leakage",
             "Polarity": "High",
             "SubType": "LeakSensingCable",
             "Type": "GPIOLeakDetector"
         },
         {
             "Level": "Warning",
-            "Name": "CPU_DIMM_Cold_Plate",
-            "PinName": "Channel6_leakage_CPU_DIMM",
+            "Name": "CPU_Cold_Plate",
+            "PinName": "Channel6_leakage",
             "Polarity": "High",
             "SubType": "LeakSensingCable",
             "Type": "GPIOLeakDetector"
@@ -359,7 +359,7 @@
         {
             "Level": "Warning",
             "Name": "EAM2_Cold_Plate",
-            "PinName": "Channel7_leakage_EAM2",
+            "PinName": "Channel7_leakage",
             "Polarity": "High",
             "SubType": "LeakSensingCable",
             "Type": "GPIOLeakDetector"
