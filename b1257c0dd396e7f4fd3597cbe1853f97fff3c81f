@@ -16,6 +16,24 @@
       "message": "This is caught somewhere higher up?  It wasn\u0027t obvious to me.\nOr did you want the app to crash.",
       "revId": "b1257c0dd396e7f4fd3597cbe1853f97fff3c81f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "edbc691e_bb22ea8c",
+        "filename": "src/entity_manager/expression.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-20T10:31:34Z",
+      "side": 1,
+      "message": "i could not find where this would be caught..\n\nnot sure what my reasoning was about this change but `std::stoi`\n\nhttps://en.cppreference.com/cpp/string/basic_string/stol\n\ncan also throw `std::out_of_range` and currently the code here does not catch it.\n\nSo technically it could already throw on error.\n\nAlso same for the `std::runtime_error` from `int evaluate(int a, Operation op, int b)`\n\nMaybe i thought that since there are uncaught exceptions that somewhere they would be handled.\n\n\u003e Or did you want the app to crash.\n\nno, that was not intended :/ . my favorite outcome would be to skip publishing an exposes record on an expression evaluation failure. That would require further error propagation and increase the scope of the patch since also the leftover template var handling would have to be considered.\n\nSo for now i changed the patch to perform both the operand parsing and evaluation as error-by-value to avoid exceptions falling through and crashing EM.",
+      "parentUuid": "b47b4ec4_202a892f",
+      "revId": "b1257c0dd396e7f4fd3597cbe1853f97fff3c81f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
