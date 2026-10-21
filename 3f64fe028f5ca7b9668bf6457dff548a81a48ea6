@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0b6a162_d619aeb3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-10-21T12:16:31Z",
+      "side": 1,
+      "message": "The clause \"without relying on board-level PowerState properties\" no longer refers to anything, since that check was removed in [1e775e9].\n\n[1e775e9]: https://github.com/openbmc/entity-manager/commit/1e775e960ba76ad85375b4a40780174f8a94e5da",
+      "range": {
+        "startLine": 15,
+        "startChar": 34,
+        "endLine": 16,
+        "endChar": 71
+      },
+      "revId": "3f64fe028f5ca7b9668bf6457dff548a81a48ea6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3170410_5ebbee67",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-10-21T12:16:31Z",
+      "side": 1,
+      "message": "Please add a Tested: section describing how the duplicate InventoryRemoved was observed before this change and that only one is reported after it.",
+      "revId": "3f64fe028f5ca7b9668bf6457dff548a81a48ea6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
