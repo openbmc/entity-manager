@@ -16,6 +16,24 @@
       "message": "If we publish `Name` and `Type` via `xyz.openbmc_project.Configuration.Exposes`, is it possible to drop them from the other `xyz.openbmc_project.Configuration.${Type}` interfaces ?\n\nSince with your patch there would be a dedicated interface to get those properties, consumers would not require duplicating them across multiple interfaces.",
       "revId": "441ada7b20ec5a2a0870c70c1354ff7803ec6031",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e947bedf_a052631d",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-21T15:35:22Z",
+      "side": 1,
+      "message": "Thanks for the suggestion. I think it would be good to keep `Configuration.\u003cType\u003e` as the key services discover their entries by, since watching for it lets the mapper filter by type rather than each service reading the `Type` of every entry, and it spares services from tracking endpoints themselves. \n`Name` and `Type` could then live only on `Configuration.Exposes`, and I\u0027d be happy to drop them from Configuration.\u003cType\u003e in a follow-up once consumers such as the dbus-sensors, pldm, spdm daemons read them from there. \nWould that work for you, or do you have something else in mind?",
+      "parentUuid": "2eb5b4e8_775a8ca9",
+      "revId": "441ada7b20ec5a2a0870c70c1354ff7803ec6031",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
