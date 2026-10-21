@@ -52,6 +52,24 @@
       "parentUuid": "e947bedf_a052631d",
       "revId": "441ada7b20ec5a2a0870c70c1354ff7803ec6031",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79ecf030_49e6f9c3",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-21T16:27:41Z",
+      "side": 1,
+      "message": "That makes sense to me. Since the migration touches dbus-sensors, pldm and spdm, I\u0027d like to get support from those maintainers before starting on it, so I\u0027ve raised it in the Discord thread on PLDM/SPDM device naming: https://discord.com/channels/775381525260664832/1534765185460338769",
+      "parentUuid": "6c17d715_798abb9d",
+      "revId": "441ada7b20ec5a2a0870c70c1354ff7803ec6031",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
