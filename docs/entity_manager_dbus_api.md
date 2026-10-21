@@ -95,6 +95,28 @@ Interface: xyz.openbmc_project.Configuration
     string "bus" = "1"
 ```
 
+#### `xyz.openbmc_project.Configuration.Object`
+
+Exported alongside the type-specific interface on every object created from an
+entry in a configuration's `Exposes` array, so that services can associate with
+these objects whatever the entry's type. Entries in one `Exposes` array that
+share a `Name` are published on one object, which then carries the type-specific
+interface of each entry and this interface once. Entries added with `AddObject`
+get it as well, and it is removed when the last entry on the object is deleted.
+
+The interface has no properties. The entry's name and type remain on the
+type-specific interface.
+
+**Example**:
+
+```text
+path: /xyz/openbmc_project/inventory/system/board/Intel_Front_Panel/Front_Panel_Temp
+Interface: xyz.openbmc_project.Configuration.Object
+Interface: xyz.openbmc_project.Configuration.TMP75
+    string Name = "front panel temp"
+    string Type = "TMP75"
+```
+
 #### `xyz.openbmc_project.Device.{Object}.{index}`
 
 {Object}s are members of the parent device that were originally described as
