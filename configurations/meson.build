@@ -342,6 +342,7 @@ configs = [
     'meta/yv5/yosemite5_scm_t22.json',
     'micron/7450.json',
     'nuvoton/npcm8xx_evb.json',
+    'nvidia/bluefield4_b4240v.json',
     'nvidia/bmc_p3809.json',
     'nvidia/cable_cartridge.json',
     'nvidia/cx7_mezzanine_module.json',
