@@ -16,6 +16,24 @@
       "message": "Thanks for adding these tests. \nThe empty-object case verifies that interface-presence probes remain accepted, and the multiple-backslash case checks that the parsed property value preserves the backslashes exactly. Both cover the requested parser compatibility cases. \nLooks good from code inspection.\n\nCan you attach the unit test test results for our reference?",
       "revId": "ba79f4998912a586249c4a6402360585f80a8983",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3578d57_3abc880e",
+        "filename": "test/entity_manager/test_probe_lexer.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-21T14:04:39Z",
+      "side": 1,
+      "message": "here you go\n\n```\n[alexander@alexanderarchlinux entity-manager]$ ./build/test/entity_manager/test_probe_lexer\nRunning main() from /usr/src/debug/gtest/googletest-1.18.0/googletest/src/gtest_main.cc\n[\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d] Running 15 tests from 1 test suite.\n[----------] Global test environment set-up.\n[----------] 15 tests from LexProbe\n[ RUN      ] LexProbe.Keywords\n[       OK ] LexProbe.Keywords (0 ms)\n[ RUN      ] LexProbe.FoundFunction\n[       OK ] LexProbe.FoundFunction (0 ms)\n[ RUN      ] LexProbe.DbusProbe\n[       OK ] LexProbe.DbusProbe (0 ms)\n[ RUN      ] LexProbe.KeywordSubstringInsideDbusProbeIsNotAnOperator\n[       OK ] LexProbe.KeywordSubstringInsideDbusProbeIsNotAnOperator (0 ms)\n[ RUN      ] LexProbe.MixedOperators\n[       OK ] LexProbe.MixedOperators (0 ms)\n[ RUN      ] LexProbe.WhitespaceTolerated\n[       OK ] LexProbe.WhitespaceTolerated (0 ms)\n[ RUN      ] LexProbe.QuotedValueWithParensAndEscapedQuote\n[       OK ] LexProbe.QuotedValueWithParensAndEscapedQuote (0 ms)\n[ RUN      ] LexProbe.BalancedNestedDelimiters\n[       OK ] LexProbe.BalancedNestedDelimiters (0 ms)\n[ RUN      ] LexProbe.ParsesDbusPropertiesBeforeEvaluation\n[       OK ] LexProbe.ParsesDbusPropertiesBeforeEvaluation (0 ms)\n[ RUN      ] LexProbe.EmptyDbusProperties\n[       OK ] LexProbe.EmptyDbusProperties (0 ms)\n[ RUN      ] LexProbe.PreservesMultipleBackslashesInDbusProperties\n[       OK ] LexProbe.PreservesMultipleBackslashesInDbusProperties (0 ms)\n[ RUN      ] LexProbe.RejectsMalformedDbusProperties\n[       OK ] LexProbe.RejectsMalformedDbusProperties (0 ms)\n[ RUN      ] LexProbe.NewlineSeparatesTokens\n[       OK ] LexProbe.NewlineSeparatesTokens (0 ms)\n[ RUN      ] LexProbe.EmptyIsNoTokens\n[       OK ] LexProbe.EmptyIsNoTokens (0 ms)\n[ RUN      ] LexProbe.SyntaxErrors\n[       OK ] LexProbe.SyntaxErrors (0 ms)\n[----------] 15 tests from LexProbe (0 ms total)\n\n[----------] Global test environment tear-down\n[\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d] 15 tests from 1 test suite ran. (0 ms total)\n[  PASSED  ] 15 tests.\n```\n\ni do not plan to add them to the commit message since the repository has no history of doing so.",
+      "parentUuid": "a8482540_7b7ccfed",
+      "revId": "ba79f4998912a586249c4a6402360585f80a8983",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
