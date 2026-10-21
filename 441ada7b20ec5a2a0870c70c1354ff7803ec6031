@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2eb5b4e8_775a8ca9",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-21T15:11:45Z",
+      "side": 1,
+      "message": "If we publish `Name` and `Type` via `xyz.openbmc_project.Configuration.Exposes`, is it possible to drop them from the other `xyz.openbmc_project.Configuration.${Type}` interfaces ?\n\nSince with your patch there would be a dedicated interface to get those properties, consumers would not require duplicating them across multiple interfaces.",
+      "revId": "441ada7b20ec5a2a0870c70c1354ff7803ec6031",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
