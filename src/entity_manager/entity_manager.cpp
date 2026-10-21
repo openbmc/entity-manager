@@ -355,7 +355,24 @@ void EntityManager::postExposesRecordsToDBus(
         systemConfiguration, configPointerPath, itemIface, item,
         getPermission(itemType));
 
+    postExposesConfig(ifacePath, findName->get<std::string>(), itemType,
+                      configNameOrig);
+
     topology.addBoard(objectPath, configType, item);
+}
+
+void EntityManager::postExposesConfig(
+    const sdbusplus::object_path& itemPath, const std::string& itemName,
+    const std::string& itemType, const std::string& configName)
+{
+    std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
+        dbus_interface.createInterface(
+            itemPath, "xyz.openbmc_project.Configuration.Exposes", configName);
+
+    iface->register_property("Name", itemName);
+    iface->register_property("Type", itemType);
+
+    dbus_interface::tryIfaceInitialize(iface);
 }
 
 bool EntityManager::postConfigurationRecord(

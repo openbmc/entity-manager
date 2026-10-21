@@ -76,6 +76,10 @@ class EntityManager
                                   const std::string& boardId,
                                   const sdbusplus::object_path& objectPath,
                                   const std::string& configType);
+    void postExposesConfig(const sdbusplus::object_path& itemPath,
+                           const std::string& itemName,
+                           const std::string& itemType,
+                           const std::string& configName);
 
     // @returns false on error
     bool postConfigurationRecord(

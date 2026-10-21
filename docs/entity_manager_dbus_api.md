@@ -95,6 +95,29 @@ Interface: xyz.openbmc_project.Configuration
     string "bus" = "1"
 ```
 
+#### `xyz.openbmc_project.Configuration.Exposes`
+
+Exported alongside the type-specific interface on every object created from an
+entry in a configuration's `Exposes` array, so that services can find and
+associate with these objects whatever the entry's type.
+
+##### Properties
+
+`std::string Name`: the entry's name, with any template substitution already
+applied.
+
+`std::string Type`: the entry's type, which also names its type-specific
+interface.
+
+**Example**:
+
+```text
+path: /xyz/openbmc_project/inventory/system/board/Intel_Front_Panel/Front_Panel_Temp
+Interface: xyz.openbmc_project.Configuration.Exposes
+    string Name = "front panel temp"
+    string Type = "TMP75"
+```
+
 #### `xyz.openbmc_project.Device.{Object}.{index}`
 
 {Object}s are members of the parent device that were originally described as
