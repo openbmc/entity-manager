@@ -220,6 +220,7 @@ configs = [
     'meta/santabarbara/santabarbara_pdb1_vr_adv_ubc_11kw.json',
     'meta/santabarbara/santabarbara_pdb1_vr_sni.json',
     'meta/santabarbara/santabarbara_pdb1_vr_sni_efu_rds.json',
+    'meta/santabarbara/santabarbara_pdb1_vr_sni_ubc_11kw.json',
     'meta/santabarbara/santabarbara_pdb2.json',
     'meta/santabarbara/santabarbara_pdb2_vr_ti.json',
     'meta/santabarbara/santabarbara_pdb2_vr_ti_brick_lux.json',
