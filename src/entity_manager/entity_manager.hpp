@@ -14,6 +14,7 @@
 #include <sdbusplus/asio/object_server.hpp>
 
 #include <flat_map>
+#include <optional>
 #include <string>
 #include <unordered_set>
 
@@ -71,11 +72,14 @@ class EntityManager
         const std::string& configId,
         const nlohmann::json::object_t& configObject,
         std::map<sdbusplus::object_path, std::string>& newObjects);
-    void postExposesRecordsToDBus(nlohmann::json& item, size_t& exposesIndex,
-                                  const std::string& configNameOrig,
-                                  const std::string& boardId,
-                                  const sdbusplus::object_path& objectPath,
-                                  const std::string& configType);
+    // @returns the object the entry was published on, if it was
+    std::optional<sdbusplus::object_path> postExposesRecordsToDBus(
+        nlohmann::json& item, size_t& exposesIndex,
+        const std::string& configNameOrig, const std::string& boardId,
+        const sdbusplus::object_path& objectPath,
+        const std::string& configType);
+    void postConfigObject(const sdbusplus::object_path& itemPath,
+                          const std::string& configName);
 
     // @returns false on error
     bool postConfigurationRecord(

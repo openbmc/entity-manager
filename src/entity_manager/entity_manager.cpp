@@ -33,6 +33,7 @@
 #include <fstream>
 #include <functional>
 #include <map>
+#include <optional>
 #include <regex>
 constexpr const char* tempConfigDir = "/tmp/configuration/";
 constexpr const char* lastConfiguration = "/tmp/configuration/last.json";
@@ -258,16 +259,23 @@ void EntityManager::postBoardToDBus(
     }
 
     size_t exposesIndex = -1;
+    boost::container::flat_set<sdbusplus::object_path> configObjects;
     for (nlohmann::json& item : *exposes)
     {
-        postExposesRecordsToDBus(item, exposesIndex, configNameOrig, configId,
-                                 objectPath, configType);
+        std::optional<sdbusplus::object_path> itemPath =
+            postExposesRecordsToDBus(item, exposesIndex, configNameOrig,
+                                     configId, objectPath, configType);
+        // Entries sharing a Name are published on one object.
+        if (itemPath && configObjects.insert(*itemPath).second)
+        {
+            postConfigObject(*itemPath, configNameOrig);
+        }
     }
 
     newObjects.emplace(objectPath, configNameOrig);
 }
 
-void EntityManager::postExposesRecordsToDBus(
+std::optional<sdbusplus::object_path> EntityManager::postExposesRecordsToDBus(
     nlohmann::json& item, size_t& exposesIndex,
     const std::string& configNameOrig, const std::string& boardId,
     const sdbusplus::object_path& objectPath, const std::string& configType)
@@ -279,7 +287,7 @@ void EntityManager::postExposesRecordsToDBus(
     if (findName == item.end())
     {
         lg2::error("cannot find name in field {ITEM}", "ITEM", item);
-        return;
+        return std::nullopt;
     }
     auto findStatus = item.find("Status");
     // if status is not found it is assumed to be status = 'okay'
@@ -287,7 +295,7 @@ void EntityManager::postExposesRecordsToDBus(
     {
         if (*findStatus == "disabled")
         {
-            return;
+            return std::nullopt;
         }
     }
     auto findType = item.find("Type");
@@ -302,13 +310,13 @@ void EntityManager::postExposesRecordsToDBus(
         lg2::error(
             "item Type '{TYPE}' is not a valid D-Bus interface segment(s)",
             "TYPE", itemType);
-        return;
+        return std::nullopt;
     }
 
     const std::string itemName =
         dbus_util::sanitizeForDBusPathSegment(findName->get<std::string>());
 
-    const sdbusplus::object_path ifacePath = objectPath / itemName;
+    sdbusplus::object_path ifacePath = objectPath / itemName;
 
     if (itemType == "BMC")
     {
@@ -356,6 +364,18 @@ void EntityManager::postExposesRecordsToDBus(
         getPermission(itemType));
 
     topology.addBoard(objectPath, configType, item);
+
+    return ifacePath;
+}
+
+void EntityManager::postConfigObject(const sdbusplus::object_path& itemPath,
+                                     const std::string& configName)
+{
+    std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
+        dbus_interface.createInterface(
+            itemPath, "xyz.openbmc_project.Configuration.Object", configName);
+
+    dbus_interface::tryIfaceInitialize(iface);
 }
 
 bool EntityManager::postConfigurationRecord(
