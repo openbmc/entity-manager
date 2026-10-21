@@ -6,7 +6,9 @@
 #include "utils.hpp"
 
 #include <phosphor-logging/lg2.hpp>
+#include <xyz/openbmc_project/Configuration/Object/common.hpp>
 
+#include <algorithm>
 #include <flat_map>
 #include <fstream>
 #include <string>
@@ -14,6 +16,9 @@
 
 namespace dbus_interface
 {
+
+using ConfigObject =
+    sdbusplus::common::xyz::openbmc_project::configuration::Object;
 
 EMDBusInterface::EMDBusInterface(
     boost::asio::io_context& io, sdbusplus::asio::object_server& objServer,
@@ -62,6 +67,71 @@ std::shared_ptr<sdbusplus::asio::dbus_interface>
     return ptr;
 }
 
+static bool isExposesRecordAt(const nlohmann::json& board,
+                              const sdbusplus::object_path& path)
+{
+    auto exposes = board.find("Exposes");
+    if (exposes == board.end() || !exposes->is_array())
+    {
+        return false;
+    }
+
+    const sdbusplus::object_path boardPath = path.parent_path();
+    return std::ranges::any_of(*exposes, [&](const nlohmann::json& record) {
+        const auto* recordObj =
+            record.get_ptr<const nlohmann::json::object_t*>();
+        if (recordObj == nullptr)
+        {
+            return false;
+        }
+        auto name = recordObj->find("Name");
+        if (name == recordObj->end() || !name->second.is_string())
+        {
+            return false;
+        }
+        auto status = recordObj->find("Status");
+        if (status != recordObj->end() && status->second == "disabled")
+        {
+            return false;
+        }
+        return boardPath / dbus_util::sanitizeForDBusPathSegment(
+                               name->second.get<std::string>()) ==
+               path;
+    });
+}
+
+void EMDBusInterface::addConfigObject(const sdbusplus::object_path& path,
+                                      const std::string& parent)
+{
+    std::weak_ptr<sdbusplus::asio::dbus_interface>& configObject =
+        configObjects[path];
+    if (!configObject.expired())
+    {
+        return;
+    }
+
+    std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
+        createInterface(path, ConfigObject::interface, parent, true);
+    tryIfaceInitialize(iface);
+    configObject = iface;
+}
+
+void EMDBusInterface::removeConfigObject(const sdbusplus::object_path& path)
+{
+    auto configObject = configObjects.find(path);
+    if (configObject == configObjects.end())
+    {
+        return;
+    }
+
+    if (std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
+            configObject->second.lock())
+    {
+        objServer.remove_interface(iface);
+    }
+    configObjects.erase(configObject);
+}
+
 void EMDBusInterface::createDeleteObjectMethod(
     const ConfigPointer& configPtr,
     const std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
@@ -84,11 +154,25 @@ void EMDBusInterface::createDeleteObjectMethod(
             throw DBusInternalError();
         }
 
+        const sdbusplus::object_path path(dbusInterface->get_object_path());
+        bool removeObject = false;
+        if (configPtr.exposesIndex && !configPtr.propertyName)
+        {
+            auto board = systemConfiguration.find(configPtr.boardId);
+            removeObject = board == systemConfiguration.end() ||
+                           !isExposesRecordAt(*board, path);
+        }
+
         // todo(james): dig through sdbusplus to find out why we can't
         // delete it in a method call
-        boost::asio::post(io, [dbusInterface, this]() mutable {
-            objServer.remove_interface(dbusInterface);
-        });
+        boost::asio::post(io,
+                          [dbusInterface, this, path, removeObject]() mutable {
+                              objServer.remove_interface(dbusInterface);
+                              if (removeObject)
+                              {
+                                  removeConfigObject(path);
+                              }
+                          });
 
         if (!configCache.writeJsonFiles(systemConfiguration))
         {
@@ -388,6 +472,8 @@ void EMDBusInterface::addObjectJson(
     populateInterfaceFromJson(
         systemConfiguration, ConfigPointer(boardId, lastIndex), interface,
         newData, sdbusplus::asio::PropertyPermission::readWrite);
+
+    addConfigObject(path / dbusName, board);
 }
 
 void EMDBusInterface::createAddObjectMethod(

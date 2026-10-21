@@ -11,6 +11,8 @@
 #include <sdbusplus/asio/object_server.hpp>
 
 #include <flat_map>
+#include <map>
+#include <memory>
 #include <vector>
 
 namespace dbus_interface
@@ -53,6 +55,9 @@ class EMDBusInterface
         const std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
         nlohmann::json& systemConfiguration);
 
+    void addConfigObject(const sdbusplus::object_path& path,
+                         const std::string& parent);
+
   protected:
     void addObject(
         const std::flat_map<std::string, JsonVariantType, std::less<>>& data,
@@ -67,6 +72,8 @@ class EMDBusInterface
                        const std::string& board);
 
   private:
+    void removeConfigObject(const sdbusplus::object_path& path);
+
     boost::asio::io_context& io;
     sdbusplus::asio::object_server& objServer;
     ConfigCache& configCache;
@@ -75,6 +82,11 @@ class EMDBusInterface
                   std::vector<std::weak_ptr<sdbusplus::asio::dbus_interface>>,
                   std::less<>>
         inventory;
+
+    // records sharing a Name share one object and its Configuration.Object
+    std::map<sdbusplus::object_path,
+             std::weak_ptr<sdbusplus::asio::dbus_interface>>
+        configObjects;
 
     const std::filesystem::path schemaDirectory;
 };
