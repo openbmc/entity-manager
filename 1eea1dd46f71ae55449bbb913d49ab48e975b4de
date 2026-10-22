@@ -52,6 +52,24 @@
       "parentUuid": "ab9129c8_f80ec6d0",
       "revId": "1eea1dd46f71ae55449bbb913d49ab48e975b4de",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af524e22_562a1615",
+        "filename": "schemas/platform/mctp.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-22T12:07:29Z",
+      "side": 1,
+      "message": "Thanks, that\u0027s a fair concern. I\u0027m happy to go with whatever the maintainers prefer here. Personally I lean toward the rename, though it only makes sense if https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/95926 is merged, and if backward compatibility is preferred I can keep accepting Interface as a deprecated alias with a fallback in mctpreactor.",
+      "parentUuid": "f8846134_249eb1c7",
+      "revId": "1eea1dd46f71ae55449bbb913d49ab48e975b4de",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
