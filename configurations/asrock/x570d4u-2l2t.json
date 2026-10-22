@@ -1,0 +1,30 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x4c",
+            "Bus": 1,
+            "Name": "UNKNOWN",
+            "Name1": "NIC_10G_TEMP",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Index": 2,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 55
+                },
+                {
+                    "Direction": "greater than",
+                    "Index": 2,
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 54
+                }
+            ],
+            "Type": "W83773G"
+        }
+    ],
+    "Name": "ASRock Rack X570D4U 10GbE NIC Temperature Sensor",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_MANUFACTURER': 'ASRockRack', 'BOARD_PRODUCT_NAME': 'X570D4U-2L2T.*'})",
+    "Type": "Board"
+}

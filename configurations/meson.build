@@ -29,6 +29,8 @@ configs = [
     'asrock/romed8hm3.json',
     'asrock/spc621d8hm3.json',
     'asrock/x470d4u.json',
+    'asrock/x570d4u-2l2t.json',
+    'asrock/x570d4u.json',
     'axiado/scm3002.json',
     'axiado/scm3003.json',
     'broadcomm/100g_1p_ocp_mezz.json',
