@@ -106,6 +106,24 @@
       "parentUuid": "c482bcc3_bad532fe",
       "revId": "441ada7b20ec5a2a0870c70c1354ff7803ec6031",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b7bdaee_0b3969f8",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-22T16:54:38Z",
+      "side": 1,
+      "message": "Renamed to `Configuration.Object` with no properties. \nI compared boot memory use and query times with and without the change on hardware, and the 42 added interfaces made no measurable difference; the numbers are in the Tested section.",
+      "parentUuid": "5cf271a8_dc99c28b",
+      "revId": "441ada7b20ec5a2a0870c70c1354ff7803ec6031",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
