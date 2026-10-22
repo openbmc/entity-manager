@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3415e495_2474ad5d",
+        "filename": "configurations/nvidia/cx9_mezzanine_module.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1002810
+      },
+      "writtenOn": "2026-10-22T05:28:18Z",
+      "side": 1,
+      "message": "Done in PS5. The commit message now says how the lists are used: dbus-sensors (94065) puts each Id in the MCTP VDM request of its list (Get Temperature Reading, Get Current Power Draw or Get Voltage) and publishes the reading as \u003cdevice\u003e_\u003cName\u003e, so this entry becomes the temperature sensor IO_Board_SMA_\u003cn\u003e_SMA_Internal.\n\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/95095/1..5//COMMIT_MSG#9",
+      "parentUuid": "99dfc99c_46f2784d",
+      "revId": "743fc4586d2340ed7ce818bab062cfcc9c75350b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73693263_d4f728f0",
@@ -35,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "edd05026_919d8123",
+        "filename": "configurations/nvidia/vr_nvl_superchip.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1002810
+      },
+      "writtenOn": "2026-10-22T05:28:18Z",
+      "side": 1,
+      "message": "MCTP VDM. Each Id is the sensor id dbus-sensors puts in the Get Temperature Reading request it sends to this SMA (PowerSensors and VoltageSensors use Get Current Power Draw and Get Voltage). The entries now also carry the Name the reading is published under, e.g. {Id 17, Name SMA_Internal} becomes HPM_0_SMA_Internal.\n\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/95095/1..5/configurations/nvidia/vr_nvl_superchip.json#26",
+      "parentUuid": "73693263_d4f728f0",
+      "revId": "743fc4586d2340ed7ce818bab062cfcc9c75350b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "71b7eec2_4f8c65ff",
@@ -48,6 +84,24 @@
       "writtenOn": "2026-10-02T04:34:56Z",
       "side": 1,
       "message": "How do we know these are fixed for an entity? This is not a platform config.",
+      "revId": "743fc4586d2340ed7ce818bab062cfcc9c75350b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c961f7ab_0f4a1135",
+        "filename": "configurations/nvidia/vr_nvl_superchip.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1002810
+      },
+      "writtenOn": "2026-10-22T05:28:18Z",
+      "side": 1,
+      "message": "They are the ids this SMA uses for its sensors, which the record now names: 17 is SMA_Internal (the SMA\u0027s own temperature), 168 is HSCC and 192 is HSC. The NSM spec defines these ids per board, so they belong in this board\u0027s config.\n\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/95095/1..5/configurations/nvidia/vr_nvl_superchip.json#64",
+      "parentUuid": "71b7eec2_4f8c65ff",
       "revId": "743fc4586d2340ed7ce818bab062cfcc9c75350b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
