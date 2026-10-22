@@ -70,6 +70,24 @@
       "parentUuid": "6c17d715_798abb9d",
       "revId": "441ada7b20ec5a2a0870c70c1354ff7803ec6031",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c482bcc3_bad532fe",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-22T06:52:32Z",
+      "side": 1,
+      "message": "Hi @alexander.hansen@9elements.com\nWould it be better to drop `Name` and `Type` from `Configuration.Exposes` and keep it as a marker interface used only as the `configured_by` association endpoint?\n\nIf two services need to share one object for the same device, the entries have to share a Name, for example:\n```\n{\n    \"Name\": \"CX8_0\",\n    \"PortCount\": 2,\n    \"Type\": \"NvidiaMctpVdmCx\"\n},\n{\n    \"Hostname\": \"127.0.0.1\",\n    \"Name\": \"CX8_0\",\n    \"Port\": 4433,\n    \"TrustedComponentType\": \"integrated\",\n    \"Type\": \"SpdmTcpResponder\"\n}\n```\nOn hardware this gives one object `.../board/\u003cboard_name\u003e/CX8_0` with:\n```\n xyz.openbmc_project.Configuration.Exposes            Type \u003d \"NvidiaMctpVdmCx\"\n xyz.openbmc_project.Configuration.NvidiaMctpVdmCx\n xyz.openbmc_project.Configuration.SpdmTcpResponder\n```",
+      "parentUuid": "79ecf030_49e6f9c3",
+      "revId": "441ada7b20ec5a2a0870c70c1354ff7803ec6031",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
