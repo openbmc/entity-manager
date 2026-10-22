@@ -16,6 +16,24 @@
       "message": "I would recommend retaining the existing key and updating the description. This would prevent breaking this feature for others using the schema.",
       "revId": "1eea1dd46f71ae55449bbb913d49ab48e975b4de",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab9129c8_f80ec6d0",
+        "filename": "schemas/platform/mctp.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-22T04:04:51Z",
+      "side": 1,
+      "message": "Thanks for the review. The rename is needed because a property named Interface clashes with the generated interface member in the sdbus++ bindings for https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/95926. As far as I can tell, mctpreactor is currently the only consumer of this key, and I\u0027ve submitted a patch to update it accordingly: https://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/95929",
+      "parentUuid": "fb0aea11_8787e86b",
+      "revId": "1eea1dd46f71ae55449bbb913d49ab48e975b4de",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
