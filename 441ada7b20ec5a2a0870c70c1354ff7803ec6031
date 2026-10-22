@@ -88,6 +88,24 @@
       "parentUuid": "79ecf030_49e6f9c3",
       "revId": "441ada7b20ec5a2a0870c70c1354ff7803ec6031",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cf271a8_dc99c28b",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-22T14:23:23Z",
+      "side": 1,
+      "message": "\u003e If two services need to share one object for the same device, the entries have to share a Name, for example:\n\ngreat observation, good to bring this up, i had not thought of it. That behavior blocks us from moving `Type` to another interface. i assume `Name` could still be moved.\n\n\u003e Would it be better to drop Name and Type from Configuration.Exposes and keep it as a marker interface used only as the configured_by association endpoint?\n\nFrom my side i am fine with a marker interface for every configuration object. \n\nThat should help with mapper queries, the PDI associations you are proposing, and it could be expanded in the future if we need to implement properties or D-Bus methods that apply to every configuration record.\n\nWould suggest to name it `xyz.openbmc_project.Configuration.Object` since it is a marker interface for a configuration object.\n\nAt least one thing that remains to be investigated is the performance impact this creates.",
+      "parentUuid": "c482bcc3_bad532fe",
+      "revId": "441ada7b20ec5a2a0870c70c1354ff7803ec6031",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
