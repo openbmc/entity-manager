@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7a3de62_267ecef1",
+        "filename": "schemas/platform/mctp.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-26T16:24:25Z",
+      "side": 1,
+      "message": "How you implemented it here means that someone can write a config which does not have `InterfaceNumber` property\n\nand thus will not work with generated code in your other patch\n\nhttps://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/95926\n\n(which *requires* `InterfaceNumber` property) even though it passed schema validation.\n\n\nThis defeats the point of schema validation.\n\ni would recommend you to go back to patchset 1.",
+      "range": {
+        "startLine": 73,
+        "startChar": 12,
+        "endLine": 80,
+        "endChar": 14
+      },
+      "revId": "a826867d132acbcc6dfd0b094eb94e1f02132e18",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
