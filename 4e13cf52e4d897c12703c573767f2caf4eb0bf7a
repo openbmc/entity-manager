@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8caddcf6_48878a14",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-27T08:03:13Z",
+      "side": 1,
+      "message": "Thanks, you\u0027re right that the board shouldn\u0027t need a second identifier, so I\u0027ve dropped `PlatformConfigName` and a platform now pairs with a board record by its `Name`, the same way it names any other record.\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/96318",
+      "parentUuid": "94e78a13_8d46b369",
+      "range": {
+        "startLine": 23,
+        "startChar": 39,
+        "endLine": 23,
+        "endChar": 44
+      },
+      "revId": "4e13cf52e4d897c12703c573767f2caf4eb0bf7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2bcaddc6_5202b40b",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-10-24T09:21:22Z",
       "side": 1,
       "message": "Sorry if I asked this before and didn\u0027t grok the response, but why is this and \"Name\" needed?",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 10
+      },
+      "revId": "4e13cf52e4d897c12703c573767f2caf4eb0bf7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f05a49fa_9e72e4d0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-27T08:03:13Z",
+      "side": 1,
+      "message": "I\u0027ve dropped `DeviceName` as well, so `Name` is the only name a record carries.",
+      "parentUuid": "2bcaddc6_5202b40b",
       "range": {
         "startLine": 29,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd518969_e71f1d8f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-27T08:03:13Z",
+      "side": 1,
+      "message": "Dropped `PlatformConfigName`.",
+      "parentUuid": "28e660b3_9a6da561",
+      "range": {
+        "startLine": 47,
+        "startChar": 35,
+        "endLine": 47,
+        "endChar": 44
+      },
+      "revId": "4e13cf52e4d897c12703c573767f2caf4eb0bf7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7d8cffbe_37bc3a49",
@@ -93,6 +165,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "be2458a3_e6df2461",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-27T08:03:13Z",
+      "side": 1,
+      "message": "That example is gone along with `PlatformConfigName` and `DeviceName`.",
+      "parentUuid": "7d8cffbe_37bc3a49",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 35
+      },
+      "revId": "4e13cf52e4d897c12703c573767f2caf4eb0bf7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a896f30_6acdd2b5",
@@ -106,6 +202,24 @@
       "writtenOn": "2026-10-24T09:21:22Z",
       "side": 1,
       "message": "Do we need an update to the RTX GPU config?",
+      "revId": "4e13cf52e4d897c12703c573767f2caf4eb0bf7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6657fbe7_4b4fca51",
+        "filename": "configurations/nvidia/gb200.json",
+        "patchSetId": 17
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-27T08:03:13Z",
+      "side": 1,
+      "message": "The RTX config on master has no MctpVdm record, so nothing to update there; its record is added in [93935](https://gerrit.openbmc.org/c/openbmc/entity-manager/+/93935) as `NvidiaMctpVdmGpu`.",
+      "parentUuid": "7a896f30_6acdd2b5",
       "revId": "4e13cf52e4d897c12703c573767f2caf4eb0bf7a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
