@@ -78,6 +78,9 @@ class EntityManager
         const std::string& configNameOrig, const std::string& boardId,
         const sdbusplus::object_path& objectPath,
         const std::string& configType);
+    void postDescribesAssocs(const nlohmann::json& newConfiguration);
+    std::optional<sdbusplus::object_path> findBoardEntry(
+        const std::string& boardName, const std::string& entryName) const;
 
     // @returns false on error
     bool postConfigurationRecord(
