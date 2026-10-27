@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f7d639d_88544af1",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-27T13:53:14Z",
+      "side": 1,
+      "message": "There seems to be a bug when this change interacts with `AddObject` API.\n\n\n```\nroot@catalina:~# em\u003dxyz.openbmc_project.EntityManager\nroot@catalina:~# board\u003d/xyz/openbmc_project/inventory/system/board/Catalina_FIO\nroot@catalina:~# obj\u003d$board/ReviewMarkerZone\nroot@catalina:~# zone\u003dxyz.openbmc_project.Configuration.Pid.Zone\nroot@catalina:~# marker\u003dxyz.openbmc_project.Configuration.Object\n```\n\nordinary configuration records have the `xyz.openbmc_project.Configuration.Object`\ninterface as expected\n\n```\nroot@catalina:~# busctl introspect \"$em\" \"$board/FIOBOARD_INLET_TEMP_C\"\nNAME                                  TYPE      SIGNATURE RESULT/VALUE            FLAGS                \norg.freedesktop.DBus.Introspectable   interface -         -                       -                    \n.Introspect                           method    -         s                       -                    \norg.freedesktop.DBus.Peer             interface -         -                       -                    \n.GetMachineId                         method    -         s                       -                    \n.Ping                                 method    -         -                       -                    \norg.freedesktop.DBus.Properties       interface -         -                       -                    \n.Get                                  method    ss        v                       -                    \n.GetAll                               method    s         a{sv}                   -                    \nNAME                                                TYPE      SIGNATURE RESULT/VALUE            FLAGS\norg.freedesktop.DBus.Introspectable                 interface -         -                       -\n.Introspect                                         method    -         s                       -\norg.freedesktop.DBus.Peer                           interface -         -                       -\n.GetMachineId                                       method    -         s                       -\n.Ping                                               method    -         -                       -\norg.freedesktop.DBus.Properties                     interface -         -                       -\n.Get                                                method    ss        v                       -\n.GetAll                                             method    s         a{sv}                   -\n.Set                                                method    ssv       -                       -\n.PropertiesChanged                                  signal    sa{sv}as  -                       -\nxyz.openbmc_project.Configuration.Object            interface -         -                       -\nxyz.openbmc_project.Configuration.TMP75             interface -         -                       -\n.Address                                            property  t         75                      emits-c\nhange\n.Bus                                                property  t         23                      emits-c\nhange\n.Name                                               property  s         \"FIOBOARD_INLET_TEMP_C\" emits-c\nhange\n.Type                                               property  s         \"TMP75\"                 emits-c\nhange\nxyz.openbmc_project.Configuration.TMP75.Thresholds0 interface -         -                       -\n.Delete                                             method    -         -                       -\n.Direction                                          property  s         \"greater than\"          emits-c\nhange writable\n.Hysteresis                                         property  d         0.9                     emits-c\nhange writable\n.Name                                               property  s         \"upper critical\"        emits-c\nhange writable\n.Severity                                           property  d         1                       emits-c\nhange writable\n.Value                                              property  d         45                      emits-c\nhange writable\nxyz.openbmc_project.Configuration.TMP75.Thresholds1 interface -         -                       -\n.Delete                                             method    -         -                       -\n.Direction                                          property  s         \"less than\"             emits-c\nhange writable\n.Hysteresis                                         property  d         0.1                     emits-c\nhange writable\n.Name                                               property  s         \"lower critical\"        emits-c\nhange writable\n.Severity                                           property  d         1                       emits-c\nhange writable\n.Value                                              property  d         5                       emits-c\nhange writable\n```\n\nthen if we call `AddObject`\n\n```\nbusctl call \"$em\" \"$board\" xyz.openbmc_project.AddObject AddObject \\\n    \u0027a{sv}\u0027 4 \\\n    Name s ReviewMarkerZone \\\n    Type s Pid.Zone \\\n    FailSafePercent d 100 \\\n    MinThermalOutput d 100\n\nbusctl introspect \"$em\" \"$obj\"\n```\n\nthe resulting object has no such interface\n\n```\nroot@catalina:~# busctl introspect \"$em\" \"$obj\"\nNAME                                       TYPE      SIGNATURE RESULT/VALUE       FLAGS                \norg.freedesktop.DBus.Introspectable        interface -         -                  -                    \n.Introspect                                method    -         s                  -                    \norg.freedesktop.DBus.Peer                  interface -         -                  -                    \n.GetMachineId                              method    -         s                  -                    \n.Ping                                      method    -         -                  -                    \norg.freedesktop.DBus.Properties            interface -         -                  -                    \n.Get                                       method    ss        v                  -                    \n.GetAll                                    method    s         a{sv}              -                    \n.Set                                       method    ssv       -                  -                    \n.PropertiesChanged                         signal    sa{sv}as  -                  -                    \nxyz.openbmc_project.Configuration.Pid.Zone interface -         -                  -                    \n.Delete                                    method    -         -                  -                    \n.FailSafePercent                           property  d         100                emits-change writable\n.MinThermalOutput                          property  d         100                emits-change writable\n.Name                                      property  s         \"ReviewMarkerZone\" emits-change writable\n.Type                                      property  s         \"Pid.Zone\"         emits-change writable\n```\n\nAdditionally there is a bug with removal as well\n\n```\nroot@catalina:~# systemctl restart xyz.openbmc_project.EntityManager.service\n```\nrestarted, EM picks up the persisted configuration added earlier\n```\nroot@catalina:~# busctl introspect \"$em\" \"$obj\"\nNAME                                       TYPE      SIGNATURE RESULT/VALUE       FLAGS                \norg.freedesktop.DBus.Introspectable        interface -         -                  -                    \n.Introspect                                method    -         s                  -                    \norg.freedesktop.DBus.Peer                  interface -         -                  -                    \n.GetMachineId                              method    -         s                  -                    \n.Ping                                      method    -         -                  -                    \norg.freedesktop.DBus.Properties            interface -         -                  -                    \n.Get                                       method    ss        v                  -                    \n.GetAll                                    method    s         a{sv}              -                    \n.Set                                       method    ssv       -                  -                    \n.PropertiesChanged                         signal    sa{sv}as  -                  -                    \nxyz.openbmc_project.Configuration.Object   interface -         -                  -                    \nxyz.openbmc_project.Configuration.Pid.Zone interface -         -                  -                    \n.Delete                                    method    -         -                  -                    \n.FailSafePercent                           property  d         100                emits-change writable\n.MinThermalOutput                          property  d         100                emits-change writable\n.Name                                      property  s         \"ReviewMarkerZone\" emits-change writable\n.Type                                      property  s         \"Pid.Zone\"         emits-change writable\n```\n\nnow we try to delete it since that configuration is no longer needed\n\n```\nroot@catalina:~# busctl call \"$em\" \"$obj\" \"$zone\" Delete\n```\n\n```\nroot@catalina:~# busctl introspect \"$em\" \"$obj\"\nNAME                                     TYPE      SIGNATURE RESULT/VALUE FLAGS\norg.freedesktop.DBus.Introspectable      interface -         -            -    \n.Introspect                              method    -         s            -    \norg.freedesktop.DBus.Peer                interface -         -            -    \n.GetMachineId                            method    -         s            -    \n.Ping                                    method    -         -            -    \norg.freedesktop.DBus.Properties          interface -         -            -    \n.Get                                     method    ss        v            -    \n.GetAll                                  method    s         a{sv}        -    \n.Set                                     method    ssv       -            -    \n.PropertiesChanged                       signal    sa{sv}as  -            -    \nxyz.openbmc_project.Configuration.Object interface -         -            -    \n```\n\nAs a result the `xyz.openbmc_project.Configuration.Object` is stuck there even though the object should have been removed from D-Bus.\n\nRestarting EM clears the interface\n\n```\nroot@catalina:~# systemctl restart xyz.openbmc_project.EntityManager.service\nroot@catalina:~# busctl introspect \"$em\" \"$obj\"\nFailed to introspect object /xyz/openbmc_project/inventory/system/board/Catalina_FIO/ReviewMarkerZone of service xyz.openbmc_project.EntityManager: Unknown object \u0027/xyz/openbmc_project/inventory/system/board/Catalina_FIO/ReviewMarkerZone\u0027.\n```\n\nso there is a change on D-Bus even though the configuration has not changed.",
+      "revId": "bc0e7565ea76bb35dcd7eccd6456d50035351a38",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee4542fa_2c5eb8a5",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-27T13:53:14Z",
+      "side": 1,
+      "message": "in the worst case it will be linear insertion time for each object path\n\nhttps://www.boost.org/doc/libs/1_53_0/doc/html/boost/container/flat_set.html\n\nAnd why do we need boost container, there is an STL implementation.\n\nout of curiosity my coding agent microbenchmarked this and at least for the largest configuration i know `configurations/meta/ventura2/ventura2_canbus.json`, the `std::set` is twice as good in terms of runtime and saves around 100 us.\n\nSince there is no limit to the amount of configuration records, should we select a collection like `std::set` that does not have linear insertion overhead?\n\nFor the average configuration, this sacrifices only a few microseconds but it scales much better.",
+      "range": {
+        "startLine": 262,
+        "startChar": 0,
+        "endLine": 262,
+        "endChar": 2
+      },
+      "revId": "bc0e7565ea76bb35dcd7eccd6456d50035351a38",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc98a515_1ef0201a",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-27T13:53:14Z",
+      "side": 1,
+      "message": "since we are adding another interface, do we need to signal it separately?\n\nwould it reduce signal overhead to signal `InterfacesAdded` for all the interfaces added on the object path instead of each one separately?",
+      "revId": "bc0e7565ea76bb35dcd7eccd6456d50035351a38",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea14a058_01c0dbe5",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-27T13:53:14Z",
+      "side": 1,
+      "message": "since the PDI change has already merged, we can get this string constant from PDI header. So if the interface is ever removed it will at least show up as a build failure.\n\nThe respective include statement will also make it easier to see which interface definitions we depend on.",
+      "range": {
+        "startLine": 386,
+        "startChar": 22,
+        "endLine": 386,
+        "endChar": 64
+      },
+      "revId": "bc0e7565ea76bb35dcd7eccd6456d50035351a38",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
