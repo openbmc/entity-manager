@@ -19,9 +19,6 @@ using DBusInterface = std::flat_map<std::string, DBusValueVariant, std::less<>>;
 using DBusObject = std::flat_map<std::string, DBusInterface, std::less<>>;
 using MapperGetSubTreeResponse =
     std::flat_map<std::string, DBusObject, std::less<>>;
-using DBusManagedObjectsType =
-    std::map<sdbusplus::object_path,
-             std::map<std::string, std::map<std::string, DBusValueVariant>>>;
 using FirstIndex = size_t;
 using LastIndex = size_t;
 

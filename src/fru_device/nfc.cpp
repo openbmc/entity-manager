@@ -3,7 +3,11 @@
 #include "fru_device.hpp"
 #include "neard_dbus.hpp"
 
+#include <org/freedesktop/DBus/ObjectManager/common.hpp>
+
 #include <algorithm>
+
+using ObjectManager = sdbusplus::common::org::freedesktop::d_bus::ObjectManager;
 
 static void handleNfcPayload(
     std::vector<uint8_t>& payload, FruDetails& fruDetails,
@@ -65,7 +69,7 @@ static void handleNfcTagAdded(
 {
     sdbusplus::object_path path;
 
-    std::map<std::string, std::map<std::string, DBusValueVariant>> interfaces;
+    ObjectManager::get_managed_objects_t::return_type::mapped_type interfaces;
 
     message.read(path, interfaces);
 
