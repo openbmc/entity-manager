@@ -8,7 +8,7 @@
                     "type": "string"
                 },
                 "Name": {
-                    "description": "Name of the bridged device. It must match the PlatformConfigName of the MCTP VDM configuration that device's board exposes for it, which is how the two are paired up.",
+                    "description": "Name of the bridged device. It must match the Name of one of the records that device's board exposes, which is how the two are paired up.",
                     "type": "string"
                 }
             },
@@ -50,7 +50,7 @@
                     "type": "number"
                 },
                 "Name": {
-                    "description": "Name of this device. It must match the PlatformConfigName of the MCTP VDM configuration the device's board exposes for it, which is how the two are paired up.",
+                    "description": "Name of this device. It must match the Name of one of the records the device's board exposes, which is how the two are paired up.",
                     "type": "string"
                 },
                 "Type": {
