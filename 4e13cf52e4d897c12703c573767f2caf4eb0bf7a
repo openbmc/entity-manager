@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cd7df825_2995c06b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1002395
+      },
+      "writtenOn": "2026-10-27T17:01:50Z",
+      "side": 1,
+      "message": "@andhsieh@nvidia.com, I suggest not dropping `PlatformConfigName`. In my opinion, if different platform needs to name a device on a Board differently we can add a new Board config per each platform since for this requirement a Board loses a right to define the config for the devices on it (since it is platform specific) and such device configs just don\u0027t belong to a Board config that is platform agnostic.",
+      "parentUuid": "8caddcf6_48878a14",
+      "range": {
+        "startLine": 23,
+        "startChar": 39,
+        "endLine": 23,
+        "endChar": 44
+      },
+      "revId": "4e13cf52e4d897c12703c573767f2caf4eb0bf7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2bcaddc6_5202b40b",
         "filename": "/COMMIT_MSG",
         "patchSetId": 17
@@ -97,6 +121,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "412a9062_36acf953",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1002395
+      },
+      "writtenOn": "2026-10-27T17:01:50Z",
+      "side": 1,
+      "message": "@deepak.kodihalli.83@gmail.com, to make things more clear, `Name` is used by Entity-Manager to derive the Entity-Manager D-Bus Object Path this config will be put on. `DeviceName` was meant to be consumed by nvidia-gpu to name the device on nvidia-gpu\u0027s D-Bus. I suggested to keep both of these property separate to gain that extra bit of flexibility in defining the configs. But if `DeviceName` seems redundant to you, I am also ok with removing it.",
+      "parentUuid": "f05a49fa_9e72e4d0",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 10
+      },
+      "revId": "4e13cf52e4d897c12703c573767f2caf4eb0bf7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "28e660b3_9a6da561",
         "filename": "/COMMIT_MSG",
         "patchSetId": 17
@@ -132,6 +180,30 @@
       "side": 1,
       "message": "Dropped `PlatformConfigName`.",
       "parentUuid": "28e660b3_9a6da561",
+      "range": {
+        "startLine": 47,
+        "startChar": 35,
+        "endLine": 47,
+        "endChar": 44
+      },
+      "revId": "4e13cf52e4d897c12703c573767f2caf4eb0bf7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0677756a_16d172e4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1002395
+      },
+      "writtenOn": "2026-10-27T17:01:50Z",
+      "side": 1,
+      "message": "@andhsieh@nvidia.com, we can also explore possibility of making PlatformConfigName an array to handle such use case. \n\nRemoving PlatformConfigName would force nvidia-gpu service (consumer of this config) to have dependency on Platform config to obtain the name of the device to use on D-Bus. In my opinion we should avoid that, Platform confing and this nvidia-gpu config are two independent configs and nvidia-gpu service should not have dependency on Platform config to obtain the name of the device to use on D-Bus. I still prefer keeping `PlatformConfigName` here and use it to associate this nvidia-gpu config to MCTP device (EID).\n\nThis config is just for nvidia-gpu service. A config for other service (pldm, spdm, etc) would also need a way to associate its config to MCTP device (EID) and using `PlatformConfigName` is good example to do that I think.",
+      "parentUuid": "dd518969_e71f1d8f",
       "range": {
         "startLine": 47,
         "startChar": 35,
