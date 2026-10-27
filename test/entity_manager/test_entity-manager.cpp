@@ -81,6 +81,18 @@ TEST(TemplateCharReplace, replaceLastStr)
     EXPECT_EQ(expected, j["foo"]);
 }
 
+TEST(TemplateCharReplace, replaceBeforeLastChar)
+{
+    nlohmann::json j = {{"foo", "$TEST "}};
+    DBusInterface data;
+    data["TEST"] = 23;
+
+    em_utils::templateCharReplace(j, data, 0);
+
+    nlohmann::json expected = "23 ";
+    EXPECT_EQ(expected, j["foo"]);
+}
+
 TEST(TemplateCharReplace, replaceNumericStrAsStr)
 {
     nlohmann::json j = {{"foo", "$BOARD_SERIAL_NUMBER"}};
