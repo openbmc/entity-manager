@@ -33,6 +33,47 @@
       "message": "For a USB bridge, these sensors would apply to the bridge endpoint only, so where would PLDMSensors go for the endpoints behind it?",
       "revId": "f19bd01a4bd29b49b7cbc0fd2cce6071275bdcee",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5763d28_157fec35",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 41
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-27T10:26:45Z",
+      "side": 1,
+      "message": "i am sorry this is taking so long. i see the change is open since last year and 41 patchsets already. provided some feedback.",
+      "parentUuid": "24afeddb_deaff369",
+      "revId": "f19bd01a4bd29b49b7cbc0fd2cce6071275bdcee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "866b55d6_bbbf77e4",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 41
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-27T10:26:45Z",
+      "side": 1,
+      "message": "This array of objects here looks like it would conflict with the PDI patch\n\nhttps://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/96007/1\n\nIf we want to have it in PDI then the generated client/server should be able to access all properties from the schema.\n\nWith how it\u0027s written here and current EM implementation, the nested objects would go on separate D-Bus interfaces and be unavailable to the generated client, meaning they would have to fetch them via another way, defeating the purpose of having a generated code.\n\nThe quick fix could be to flatten it as `Names` and `SensorIDs` (array of string and array of integer) which is compatible with 96007.",
+      "range": {
+        "startLine": 18,
+        "startChar": 16,
+        "endLine": 35,
+        "endChar": 18
+      },
+      "revId": "f19bd01a4bd29b49b7cbc0fd2cce6071275bdcee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
