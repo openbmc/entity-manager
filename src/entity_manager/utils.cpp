@@ -207,7 +207,7 @@ static bool templateCharReplaceOneProperty(
     constexpr const std::array<char, 5> mathChars = {'+', '-', '%', '*', '/'};
     size_t nextItemIdx = start + templateName.size() + 1;
 
-    if (nextItemIdx > str.size() ||
+    if (nextItemIdx >= str.size() ||
         std::find(mathChars.begin(), mathChars.end(), str.at(nextItemIdx)) ==
             mathChars.end())
     {
