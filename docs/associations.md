@@ -107,6 +107,46 @@ loads the configuration. The found path is the probed path and is placed as the
 probing/probed_by association property in the inventory item of the
 configuration.
 
+### describes Association
+
+A record in the `Exposes` array of a platform configuration that names a `Board`
+describes the device the board exposes under the same `Name`. The
+describes/described_by association links the record to that entry of the board.
+
+The association is added once the board is found and removed when it is lost.
+
+Platform configuration.
+
+```json
+{
+  "Exposes": [
+    {
+      "Board": "Example Switch Board",
+      "Name": "GPU_0",
+      "Type": "MCTPUSBDevice"
+    }
+  ],
+  "Name": "Example Platform",
+  "Type": "Platform"
+}
+```
+
+Board configuration.
+
+```json
+{
+  "Exposes": [
+    {
+      "Name": "GPU_0",
+      "Type": "ExampleGpu"
+    }
+  ],
+  "Name": "Example Switch Board",
+  "Probe": "TRUE",
+  "Type": "Board"
+}
+```
+
 [1]:
   https://github.com/openbmc/docs/blob/master/architecture/object-mapper.md#associations
 [2]: https://github.com/openbmc/docs/blob/master/designs/physical-topology.md
