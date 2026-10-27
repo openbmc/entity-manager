@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "79d50385_f378c99d",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-27T15:38:13Z",
+      "side": 1,
+      "message": "Thanks for catching this. The marker is now added by `AddObject` too, and `Delete` removes it along with the last entry on the object, which I checked on hardware.",
+      "parentUuid": "6f7d639d_88544af1",
+      "revId": "bc0e7565ea76bb35dcd7eccd6456d50035351a38",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ee4542fa_2c5eb8a5",
@@ -31,6 +49,30 @@
       "writtenOn": "2026-10-27T13:53:14Z",
       "side": 1,
       "message": "in the worst case it will be linear insertion time for each object path\n\nhttps://www.boost.org/doc/libs/1_53_0/doc/html/boost/container/flat_set.html\n\nAnd why do we need boost container, there is an STL implementation.\n\nout of curiosity my coding agent microbenchmarked this and at least for the largest configuration i know `configurations/meta/ventura2/ventura2_canbus.json`, the `std::set` is twice as good in terms of runtime and saves around 100 us.\n\nSince there is no limit to the amount of configuration records, should we select a collection like `std::set` that does not have linear insertion overhead?\n\nFor the average configuration, this sacrifices only a few microseconds but it scales much better.",
+      "range": {
+        "startLine": 262,
+        "startChar": 0,
+        "endLine": 262,
+        "endChar": 2
+      },
+      "revId": "bc0e7565ea76bb35dcd7eccd6456d50035351a38",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82a76df1_c23225ec",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-27T15:38:13Z",
+      "side": 1,
+      "message": "Done. The paths are now kept in a `std::map` next to the D-Bus interfaces, so `AddObject` and `Delete` can use them as well.",
+      "parentUuid": "ee4542fa_2c5eb8a5",
       "range": {
         "startLine": 262,
         "startChar": 0,
@@ -58,6 +100,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba12b2c2_2fc6f752",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-27T15:38:13Z",
+      "side": 1,
+      "message": "Entity-manager signals each interface separately today, so I\u0027d keep this one consistent and batch them for all interfaces together in a separate change.",
+      "parentUuid": "fc98a515_1ef0201a",
+      "revId": "bc0e7565ea76bb35dcd7eccd6456d50035351a38",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ea14a058_01c0dbe5",
@@ -71,6 +131,30 @@
       "writtenOn": "2026-10-27T13:53:14Z",
       "side": 1,
       "message": "since the PDI change has already merged, we can get this string constant from PDI header. So if the interface is ever removed it will at least show up as a build failure.\n\nThe respective include statement will also make it easier to see which interface definitions we depend on.",
+      "range": {
+        "startLine": 386,
+        "startChar": 22,
+        "endLine": 386,
+        "endChar": 64
+      },
+      "revId": "bc0e7565ea76bb35dcd7eccd6456d50035351a38",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "780ec148_dd709831",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-27T15:38:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea14a058_01c0dbe5",
       "range": {
         "startLine": 386,
         "startChar": 22,
