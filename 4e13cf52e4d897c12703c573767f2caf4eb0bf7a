@@ -96,6 +96,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "df798a52_415e0424",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-27T17:38:48Z",
+      "side": 1,
+      "message": "Thanks both, since [96318](https://gerrit.openbmc.org/c/openbmc/entity-manager/+/96318) has merged I\u0027d like to keep this patch to splitting the three kinds and come back to platform specific naming separately, where anything NSM specific can go into `schemas/nvidia.json`.",
+      "parentUuid": "078cef8d_8970691a",
+      "range": {
+        "startLine": 23,
+        "startChar": 39,
+        "endLine": 23,
+        "endChar": 44
+      },
+      "revId": "4e13cf52e4d897c12703c573767f2caf4eb0bf7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2bcaddc6_5202b40b",
@@ -181,6 +205,30 @@
       "side": 1,
       "message": "Does seem redundant to me. Let\u0027s see if we can introduce it with the platform override aspect I mentioned in another response.",
       "parentUuid": "412a9062_36acf953",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 10
+      },
+      "revId": "4e13cf52e4d897c12703c573767f2caf4eb0bf7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5946dfbb_fa80ebcc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-27T17:38:48Z",
+      "side": 1,
+      "message": "Thanks for explaining, I\u0027ve dropped `DeviceName` for now and will revisit it together with the naming follow up.",
+      "parentUuid": "0dc8cea2_29f21715",
       "range": {
         "startLine": 29,
         "startChar": 0,
@@ -323,6 +371,30 @@
       "writtenOn": "2026-10-27T17:20:24Z",
       "side": 1,
       "message": "If a service intends to use a name to be decided in the service then that logic can lvie in the service?",
+      "parentUuid": "bc8e071d_1a5da767",
+      "range": {
+        "startLine": 47,
+        "startChar": 35,
+        "endLine": 47,
+        "endChar": 44
+      },
+      "revId": "4e13cf52e4d897c12703c573767f2caf4eb0bf7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99be9cfa_3a6aa287",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-27T17:38:48Z",
+      "side": 1,
+      "message": "Thanks, the name nvidia-gpu uses still comes from the board\u0027s own record, and I\u0027ll pick up the array idea and how other services pair with an EID in the naming follow up so this patch stays focused on the record kinds.",
       "parentUuid": "bc8e071d_1a5da767",
       "range": {
         "startLine": 47,
