@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c46e4fcc_e5dade37",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1003195
+      },
+      "writtenOn": "2026-10-27T17:04:55Z",
+      "side": 1,
+      "message": "I think it would be better if you attach the build and test results.",
+      "revId": "89502e42816ad13d7c1a91b60c7d3e4b0a896d13",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d342ffb_32c3c721",
+        "filename": "src/fru_device/nfc.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1003195
+      },
+      "writtenOn": "2026-10-27T17:04:55Z",
+      "side": 1,
+      "message": "This using ObjectManager \u003d ... line is added identically in neard_dbus.cpp and here, and it is used only once in this file. Please define a shared alias (for example ManagedObjects) in neard_dbus.hpp and use it in both files.",
+      "revId": "89502e42816ad13d7c1a91b60c7d3e4b0a896d13",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b632fee3_c3f6e58c",
+        "filename": "src/fru_device/nfc.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1003195
+      },
+      "writtenOn": "2026-10-27T17:04:55Z",
+      "side": 1,
+      "message": "The PDI variant differs from DBusValueVariant. Please confirm it covers all property types neard sends and that downstream std::get uses are unchanged",
+      "revId": "89502e42816ad13d7c1a91b60c7d3e4b0a896d13",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
