@@ -40,6 +40,8 @@
 #include <optional>
 #include <regex>
 #include <string>
+#include <string_view>
+#include <vector>
 constexpr const char* tempConfigDir = "/tmp/configuration/";
 constexpr const char* lastConfiguration = "/tmp/configuration/last.json";
 
@@ -301,6 +303,93 @@ static bool recordDisabled(const nlohmann::json::object_t& item)
     return findStatus != item.end() && findStatus->second == "disabled";
 }
 
+std::optional<sdbusplus::object_path> EntityManager::findBoardEntry(
+    const std::string& boardName, const std::string& entryName) const
+{
+    // Another configuration may share the board's Name.
+    for (const auto& config : systemConfiguration)
+    {
+        if (config.at("Name") != boardName)
+        {
+            continue;
+        }
+        std::optional<std::string> type = em_utils::resolveConfigType(config);
+        if (!type || *type == "Platform")
+        {
+            continue;
+        }
+        for (const auto& entry : config.at("Exposes"))
+        {
+            if (!entry.is_object() || entry.at("Name") != entryName ||
+                recordDisabled(
+                    entry.get_ref<const nlohmann::json::object_t&>()))
+            {
+                continue;
+            }
+            std::string boardSegment = boardName;
+            return em_utils::buildInventorySystemPath(boardSegment, *type) /
+                   dbus_util::sanitizeForDBusPathSegment(entryName);
+        }
+    }
+    return std::nullopt;
+}
+
+void EntityManager::refreshDescribesAssoc(
+    const std::string& configId, const std::string& recordName,
+    const sdbusplus::object_path& ifacePath, const board_presence::Names& found)
+{
+    static constexpr std::string_view assocIface = sdbusplus::common::xyz::
+        openbmc_project::association::Definitions::interface;
+
+    // Records of the same Name share the object, so its associations are
+    // rebuilt from all of them.
+    const nlohmann::json& config = systemConfiguration.at(configId);
+    removeInterfaces(config, [&](auto& iface) {
+        return iface.get_object_path() == ifacePath &&
+               iface.get_interface_name() == assocIface;
+    });
+
+    std::vector<Association> assocs;
+    for (const auto& record : config.at("Exposes"))
+    {
+        const auto* item = record.get_ptr<const nlohmann::json::object_t*>();
+        if (item == nullptr || recordDisabled(*item) ||
+            item->at("Name") != recordName)
+        {
+            continue;
+        }
+        auto board = item->find("Board");
+        if (board == item->end() || !board->second.is_string() ||
+            !board_presence::boardFound(*item, found))
+        {
+            continue;
+        }
+        std::optional<sdbusplus::object_path> entry = findBoardEntry(
+            board->second.get_ref<const std::string&>(), recordName);
+        if (!entry)
+        {
+            lg2::debug("No entry {NAME} on board {BOARD}", "NAME", recordName,
+                       "BOARD", board->second);
+            continue;
+        }
+        Association assoc{"describes", "described_by", entry->str};
+        if (std::ranges::find(assocs, assoc) == assocs.end())
+        {
+            assocs.push_back(std::move(assoc));
+        }
+    }
+    if (assocs.empty())
+    {
+        return;
+    }
+
+    std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
+        dbus_interface.createInterface(ifacePath, std::string(assocIface),
+                                       config.at("Name").get<std::string>());
+    iface->register_property("Associations", assocs);
+    dbus_interface::tryIfaceInitialize(iface);
+}
+
 static sdbusplus::object_path recordPath(
     const sdbusplus::object_path& objectPath, const std::string& recordName)
 {
@@ -421,6 +510,11 @@ std::optional<sdbusplus::object_path> EntityManager::postExposesRecordsToDBus(
     if (!itemIface->is_initialized())
     {
         return std::nullopt;
+    }
+    if (foundBoards != nullptr)
+    {
+        refreshDescribesAssoc(boardId, findName->second.get<std::string>(),
+                              ifacePath, *foundBoards);
     }
     return ifacePath;
 }
@@ -680,7 +774,9 @@ void EntityManager::refreshPlatformRecord(
             break;
         }
         case board_presence::RecordChange::Action::withdraw:
-            withdrawPlatformRecord(config, ifacePath, type);
+            withdrawPlatformRecord(
+                configId, config, item.at("Name").get_ref<const std::string&>(),
+                ifacePath, type, after);
             break;
         case board_presence::RecordChange::Action::update:
             updatePlatformRecord(configId, config, exposesIndex, item, change,
@@ -692,8 +788,9 @@ void EntityManager::refreshPlatformRecord(
 }
 
 void EntityManager::withdrawPlatformRecord(
-    const nlohmann::json& config, const sdbusplus::object_path& ifacePath,
-    const std::string& type)
+    const std::string& configId, const nlohmann::json& config,
+    const std::string& recordName, const sdbusplus::object_path& ifacePath,
+    const std::string& type, const board_presence::Names& after)
 {
     // Another record of the same Name may share the object, so only this
     // record's interfaces go.
@@ -705,6 +802,7 @@ void EntityManager::withdrawPlatformRecord(
                 ifaceName.starts_with(recordIface + "."));
     });
     dbus_interface.removeConfigObject(ifacePath);
+    refreshDescribesAssoc(configId, recordName, ifacePath, after);
 }
 
 void EntityManager::updatePlatformRecord(

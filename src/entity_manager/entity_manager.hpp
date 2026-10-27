@@ -86,6 +86,13 @@ class EntityManager
         const std::string& configNameOrig, const std::string& boardId,
         const sdbusplus::object_path& objectPath, const std::string& configType,
         const board_presence::Names* foundBoards = nullptr);
+    // Links the platform records at ifacePath to the board entries they name.
+    void refreshDescribesAssoc(const std::string& configId,
+                               const std::string& recordName,
+                               const sdbusplus::object_path& ifacePath,
+                               const board_presence::Names& found);
+    std::optional<sdbusplus::object_path> findBoardEntry(
+        const std::string& boardName, const std::string& entryName) const;
 
     // @returns false on error
     bool postConfigurationRecord(
@@ -114,9 +121,10 @@ class EntityManager
         size_t exposesIndex, const nlohmann::json::object_t& item,
         const board_presence::Names& before,
         const board_presence::Names& after);
-    void withdrawPlatformRecord(const nlohmann::json& config,
-                                const sdbusplus::object_path& ifacePath,
-                                const std::string& type);
+    void withdrawPlatformRecord(
+        const std::string& configId, const nlohmann::json& config,
+        const std::string& recordName, const sdbusplus::object_path& ifacePath,
+        const std::string& type, const board_presence::Names& after);
     void updatePlatformRecord(const std::string& configId,
                               const nlohmann::json& config, size_t exposesIndex,
                               const nlohmann::json::object_t& item,
