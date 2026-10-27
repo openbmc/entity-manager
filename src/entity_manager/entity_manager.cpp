@@ -33,7 +33,10 @@
 #include <fstream>
 #include <functional>
 #include <map>
+#include <optional>
 #include <regex>
+#include <string>
+#include <vector>
 constexpr const char* tempConfigDir = "/tmp/configuration/";
 constexpr const char* lastConfiguration = "/tmp/configuration/last.json";
 
@@ -114,6 +117,123 @@ void EntityManager::postToDbus(const nlohmann::json& newConfiguration)
         ifacePtr->register_property("Associations", assocPropValue);
         dbus_interface::tryIfaceInitialize(ifacePtr);
     }
+
+    postDescribesAssocs(newConfiguration);
+}
+
+static bool isDisabled(const nlohmann::json& record)
+{
+    auto status = record.find("Status");
+    return status != record.end() && *status == "disabled";
+}
+
+void EntityManager::postDescribesAssocs(const nlohmann::json& newConfiguration)
+{
+    for (const auto& item : newConfiguration.items())
+    {
+        auto config = systemConfiguration.find(item.key());
+        if (config == systemConfiguration.end() ||
+            em_utils::resolveConfigType(*config) != "Platform")
+        {
+            continue;
+        }
+        auto platformName = config->find("Name");
+        auto exposes = config->find("Exposes");
+        if (platformName == config->end() || !platformName->is_string() ||
+            exposes == config->end() || !exposes->is_array())
+        {
+            continue;
+        }
+
+        std::string platformSegment = platformName->get<std::string>();
+        const sdbusplus::object_path platformPath =
+            em_utils::buildInventorySystemPath(platformSegment, "Platform");
+
+        std::map<sdbusplus::object_path, std::vector<Association>> assocs;
+        for (const auto& record : *exposes)
+        {
+            const auto* recordObj =
+                record.get_ptr<const nlohmann::json::object_t*>();
+            if (recordObj == nullptr || isDisabled(record))
+            {
+                continue;
+            }
+            auto board = recordObj->find("Board");
+            auto name = recordObj->find("Name");
+            if (board == recordObj->end() || !board->second.is_string() ||
+                name == recordObj->end() || !name->second.is_string())
+            {
+                continue;
+            }
+            const std::string& boardName =
+                board->second.get_ref<const std::string&>();
+            const std::string& recordName =
+                name->second.get_ref<const std::string&>();
+
+            std::optional<sdbusplus::object_path> entry =
+                findBoardEntry(boardName, recordName);
+            if (!entry)
+            {
+                lg2::error("No entry {NAME} on board {BOARD} for {PLATFORM}",
+                           "NAME", recordName, "BOARD", boardName, "PLATFORM",
+                           platformPath);
+                continue;
+            }
+            assocs[platformPath /
+                   dbus_util::sanitizeForDBusPathSegment(recordName)]
+                .emplace_back("describes", "described_by", entry->str);
+        }
+
+        for (const auto& [recordPath, recordAssocs] : assocs)
+        {
+            auto ifacePtr = dbus_interface.createInterface(
+                recordPath,
+                sdbusplus::common::xyz::openbmc_project::association::
+                    Definitions::interface,
+                platformName->get<std::string>());
+
+            ifacePtr->register_property("Associations", recordAssocs);
+            dbus_interface::tryIfaceInitialize(ifacePtr);
+        }
+    }
+}
+
+std::optional<sdbusplus::object_path> EntityManager::findBoardEntry(
+    const std::string& boardName, const std::string& entryName) const
+{
+    for (const auto& config : systemConfiguration)
+    {
+        auto name = config.find("Name");
+        if (name == config.end() || *name != boardName)
+        {
+            continue;
+        }
+
+        std::optional<std::string> type = em_utils::resolveConfigType(config);
+        auto exposes = config.find("Exposes");
+        if (!type || exposes == config.end() || !exposes->is_array())
+        {
+            return std::nullopt;
+        }
+
+        for (const auto& entry : *exposes)
+        {
+            if (!entry.is_object() || isDisabled(entry))
+            {
+                continue;
+            }
+            auto nameIt = entry.find("Name");
+            if (nameIt == entry.end() || *nameIt != entryName)
+            {
+                continue;
+            }
+            std::string boardSegment = boardName;
+            return em_utils::buildInventorySystemPath(boardSegment, *type) /
+                   dbus_util::sanitizeForDBusPathSegment(entryName);
+        }
+        return std::nullopt;
+    }
+    return std::nullopt;
 }
 
 void EntityManager::postProbeConfig(
