@@ -25,6 +25,7 @@ executable(
         i2c,
         libxml2_dep,
         nlohmann_json_dep,
+        phosphor_dbus_interfaces_dep,
         phosphor_logging_dep,
         sdbusplus,
         threads,
@@ -35,5 +36,4 @@ executable(
     install: true,
     install_dir: installdir,
 )
-
 

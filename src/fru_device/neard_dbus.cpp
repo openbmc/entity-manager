@@ -1,7 +1,12 @@
 #include "neard_dbus.hpp"
 
+#include <org/freedesktop/DBus/ObjectManager/common.hpp>
+
 #include <iomanip>
 #include <sstream>
+
+using ObjectManager = sdbusplus::common::org::freedesktop::d_bus::ObjectManager;
+using ManagedObjects = ObjectManager::get_managed_objects_t::return_type;
 
 static std::string uidToString(const std::vector<uint8_t>& uid)
 {
@@ -98,7 +103,7 @@ static void getTagUidCallback(
 
 static void getManagedObjectsCallback(
     const std::function<void(const sdbusplus::object_path&)>& onMimeRecord,
-    const boost::system::error_code& ec, const DBusManagedObjectsType& objects)
+    const boost::system::error_code& ec, const ManagedObjects& objects)
 {
     if (ec)
     {
@@ -165,14 +170,13 @@ void queryNeardObjectsAsync(
     const std::shared_ptr<sdbusplus::asio::connection>& conn,
     std::function<void(const sdbusplus::object_path&)> onMimeRecord)
 {
-    std::function<void(const boost::system::error_code&,
-                       const DBusManagedObjectsType&)>
+    std::function<void(const boost::system::error_code&, const ManagedObjects&)>
         callback =
             std::bind_front(getManagedObjectsCallback, std::move(onMimeRecord));
 
     conn->async_method_call(std::move(callback), neardService, "/",
-                            "org.freedesktop.DBus.ObjectManager",
-                            "GetManagedObjects");
+                            ObjectManager::interface,
+                            ObjectManager::method_names::get_managed_objects);
 }
 
 std::optional<sdbusplus::object_path> getNeardTagPathFromRecordPath(
