@@ -1051,10 +1051,10 @@
             "ILimitMax": 100,
             "ILimitMin": 0,
             "Inputs": [
-                "E1S_BP_E1S0_TEMP_C",
                 "E1S_BP_E1S1_TEMP_C",
                 "E1S_BP_E1S2_TEMP_C",
-                "E1S_BP_E1S3_TEMP_C"
+                "E1S_BP_E1S3_TEMP_C",
+                "E1S_BP_E1S4_TEMP_C"
             ],
             "Name": "PID_E1S_BP_E1S",
             "NegativeHysteresis": 2.0,
@@ -1570,10 +1570,10 @@
         {
             "Class": "temp",
             "Inputs": [
-                "E1S_BP_E1S0_TEMP_C",
                 "E1S_BP_E1S1_TEMP_C",
                 "E1S_BP_E1S2_TEMP_C",
-                "E1S_BP_E1S3_TEMP_C"
+                "E1S_BP_E1S3_TEMP_C",
+                "E1S_BP_E1S4_TEMP_C"
             ],
             "Name": "Stepwise_E1S_BP_E1S",
             "NegativeHysteresis": 1.0,

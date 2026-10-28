@@ -94,13 +94,13 @@
                 }
             ],
             "Type": "ADS7830",
-            "in0_Name": "E1S_BP_P3V3_E1S0_VOLT_V",
+            "in0_Name": "E1S_BP_P3V3_E1S1_VOLT_V",
             "in0_Scale": 479.103,
-            "in1_Name": "E1S_BP_P3V3_E1S1_VOLT_V",
+            "in1_Name": "E1S_BP_P3V3_E1S2_VOLT_V",
             "in1_Scale": 479.103,
-            "in2_Name": "E1S_BP_P3V3_E1S2_VOLT_V",
+            "in2_Name": "E1S_BP_P3V3_E1S3_VOLT_V",
             "in2_Scale": 479.103,
-            "in3_Name": "E1S_BP_P3V3_E1S3_VOLT_V",
+            "in3_Name": "E1S_BP_P3V3_E1S4_VOLT_V",
             "in3_Scale": 479.103,
             "in4_Name": "E1S_BP_P3V3_AUX_VOLT_V",
             "in4_Scale": 479.103
@@ -112,7 +112,7 @@
             "Type": "EEPROM"
         },
         {
-            "Name": "E1S_BP_E1S0",
+            "Name": "E1S_BP_E1S1",
             "PresencePinNames": [
                 "E1S_BP_0_PRSNT_R_N"
             ],
@@ -122,7 +122,7 @@
             "Type": "GPIODeviceDetect"
         },
         {
-            "Name": "E1S_BP_E1S1",
+            "Name": "E1S_BP_E1S2",
             "PresencePinNames": [
                 "E1S_BP_1_PRSNT_R_N"
             ],
@@ -132,7 +132,7 @@
             "Type": "GPIODeviceDetect"
         },
         {
-            "Name": "E1S_BP_E1S2",
+            "Name": "E1S_BP_E1S3",
             "PresencePinNames": [
                 "E1S_BP_2_PRSNT_R_N"
             ],
@@ -142,7 +142,7 @@
             "Type": "GPIODeviceDetect"
         },
         {
-            "Name": "E1S_BP_E1S3",
+            "Name": "E1S_BP_E1S4",
             "PresencePinNames": [
                 "E1S_BP_3_PRSNT_R_N"
             ],
@@ -153,58 +153,6 @@
         },
         {
             "Address": "0x41",
-            "Bus": 30,
-            "Labels": [
-                "in0",
-                "curr1",
-                "power1"
-            ],
-            "Name": "E1S_BP_P12V_E1S0",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.264,
-                    "Label": "in0",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 13.2
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.216,
-                    "Label": "in0",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 10.8
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.05,
-                    "Label": "curr1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 2.5
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.5,
-                    "Label": "power1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 25
-                }
-            ],
-            "Type": "ISL28022",
-            "curr1_Name": "E1S_BP_P12V_E1S0_CURR_A",
-            "curr1_Offset": 0.012,
-            "curr1_Scale": 198.212126618,
-            "in0_Name": "E1S_BP_P12V_E1S0_VOLT_V",
-            "power1_Name": "E1S_BP_P12V_E1S0_PWR_W",
-            "power1_Offset": 0.0452,
-            "power1_Scale": 211095.161698894
-        },
-        {
-            "Address": "0x40",
             "Bus": 30,
             "Labels": [
                 "in0",
@@ -248,15 +196,15 @@
             ],
             "Type": "ISL28022",
             "curr1_Name": "E1S_BP_P12V_E1S1_CURR_A",
-            "curr1_Offset": 0.003,
-            "curr1_Scale": 200.00400008,
+            "curr1_Offset": 0.012,
+            "curr1_Scale": 198.212126618,
             "in0_Name": "E1S_BP_P12V_E1S1_VOLT_V",
             "power1_Name": "E1S_BP_P12V_E1S1_PWR_W",
-            "power1_Offset": 0.1253,
-            "power1_Scale": 208785.702355103
+            "power1_Offset": 0.0452,
+            "power1_Scale": 211095.161698894
         },
         {
-            "Address": "0x45",
+            "Address": "0x40",
             "Bus": 30,
             "Labels": [
                 "in0",
@@ -300,15 +248,15 @@
             ],
             "Type": "ISL28022",
             "curr1_Name": "E1S_BP_P12V_E1S2_CURR_A",
-            "curr1_Offset": 0.0053,
-            "curr1_Scale": 197.032687723,
+            "curr1_Offset": 0.003,
+            "curr1_Scale": 200.00400008,
             "in0_Name": "E1S_BP_P12V_E1S2_VOLT_V",
             "power1_Name": "E1S_BP_P12V_E1S2_PWR_W",
-            "power1_Offset": -0.1601,
-            "power1_Scale": 205579.425611085
+            "power1_Offset": 0.1253,
+            "power1_Scale": 208785.702355103
         },
         {
-            "Address": "0x44",
+            "Address": "0x45",
             "Bus": 30,
             "Labels": [
                 "in0",
@@ -352,32 +300,68 @@
             ],
             "Type": "ISL28022",
             "curr1_Name": "E1S_BP_P12V_E1S3_CURR_A",
-            "curr1_Offset": 0.0122,
-            "curr1_Scale": 196.163050728,
+            "curr1_Offset": 0.0053,
+            "curr1_Scale": 197.032687723,
             "in0_Name": "E1S_BP_P12V_E1S3_VOLT_V",
             "power1_Name": "E1S_BP_P12V_E1S3_PWR_W",
+            "power1_Offset": -0.1601,
+            "power1_Scale": 205579.425611085
+        },
+        {
+            "Address": "0x44",
+            "Bus": 30,
+            "Labels": [
+                "in0",
+                "curr1",
+                "power1"
+            ],
+            "Name": "E1S_BP_P12V_E1S4",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.264,
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.216,
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.05,
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.5
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.5,
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 25
+                }
+            ],
+            "Type": "ISL28022",
+            "curr1_Name": "E1S_BP_P12V_E1S4_CURR_A",
+            "curr1_Offset": 0.0122,
+            "curr1_Scale": 196.163050728,
+            "in0_Name": "E1S_BP_P12V_E1S4_VOLT_V",
+            "power1_Name": "E1S_BP_P12V_E1S4_PWR_W",
             "power1_Offset": 0.2396,
             "power1_Scale": 203628.662770572
         },
         {
             "Address": "0x6a",
             "Bus": 24,
-            "Name": "E1S_BP_E1S0_TEMP_C",
-            "PowerState": "On",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 1.4,
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 70.0
-                }
-            ],
-            "Type": "NVME1000"
-        },
-        {
-            "Address": "0x6a",
-            "Bus": 25,
             "Name": "E1S_BP_E1S1_TEMP_C",
             "PowerState": "On",
             "Thresholds": [
@@ -393,7 +377,7 @@
         },
         {
             "Address": "0x6a",
-            "Bus": 26,
+            "Bus": 25,
             "Name": "E1S_BP_E1S2_TEMP_C",
             "PowerState": "On",
             "Thresholds": [
@@ -409,8 +393,24 @@
         },
         {
             "Address": "0x6a",
-            "Bus": 27,
+            "Bus": 26,
             "Name": "E1S_BP_E1S3_TEMP_C",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.4,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 70.0
+                }
+            ],
+            "Type": "NVME1000"
+        },
+        {
+            "Address": "0x6a",
+            "Bus": 27,
+            "Name": "E1S_BP_E1S4_TEMP_C",
             "PowerState": "On",
             "Thresholds": [
                 {
