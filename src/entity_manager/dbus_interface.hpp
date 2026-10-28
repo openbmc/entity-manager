@@ -4,6 +4,7 @@
 #include "config_pointer.hpp"
 #include "configuration.hpp"
 #include "schema_dbus_types.hpp"
+#include "system_configuration.hpp"
 
 #include <boost/asio/io_context.hpp>
 #include <nlohmann/json.hpp>
@@ -41,15 +42,16 @@ class EMDBusInterface
         const std::string& parent, bool checkNull = false);
 
     std::vector<std::weak_ptr<sdbusplus::asio::dbus_interface>>&
-        getDeviceInterfaces(const nlohmann::json& device);
+        getDeviceInterfaces(const EMConfig& device);
 
     void createAddObjectMethod(const std::string& boardId,
                                const sdbusplus::object_path& path,
-                               nlohmann::json& systemConfiguration,
+                               SystemConfiguration& systemConfiguration,
                                const std::string& board);
 
     void populateInterfaceFromJson(
-        nlohmann::json& systemConfiguration, const ConfigPointer& configPtr,
+        SystemConfiguration& systemConfiguration,
+        const ConfigPointer& configPtr,
         std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
         const nlohmann::json::object_t& dict,
         sdbusplus::asio::PropertyPermission permission =
@@ -67,7 +69,7 @@ class EMDBusInterface
     void createDeleteObjectMethod(
         const ConfigPointer& configPtr,
         const std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
-        nlohmann::json& systemConfiguration);
+        SystemConfiguration& systemConfiguration);
 
     void addConfigObject(const sdbusplus::object_path& path,
                          const std::string& parent);
@@ -79,12 +81,12 @@ class EMDBusInterface
   protected:
     void addObject(
         const std::flat_map<std::string, JsonVariantType, std::less<>>& data,
-        nlohmann::json& systemConfiguration, const std::string& boardId,
+        SystemConfiguration& systemConfiguration, const std::string& boardId,
         const sdbusplus::object_path& path, const std::string& board);
 
     // @brief: same as 'addObject', but operates on json
     void addObjectJson(const nlohmann::json::object_t& newData,
-                       nlohmann::json& systemConfiguration,
+                       SystemConfiguration& systemConfiguration,
                        const std::string& boardId,
                        const sdbusplus::object_path& path,
                        const std::string& board);
@@ -125,7 +127,7 @@ template <typename PropertyType>
 void addArrayToDbus(const std::string& name, const nlohmann::json& array,
                     sdbusplus::asio::dbus_interface* iface,
                     sdbusplus::asio::PropertyPermission permission,
-                    nlohmann::json& systemConfiguration,
+                    SystemConfiguration& systemConfiguration,
                     const ConfigPointer& configPtr, ConfigCache& configCache)
 {
     std::vector<PropertyType> values;
@@ -169,7 +171,7 @@ void addArrayToDbus(const std::string& name, const nlohmann::json& array,
 template <typename PropertyType>
 void addProperty(const std::string& name, const PropertyType& value,
                  sdbusplus::asio::dbus_interface* iface,
-                 nlohmann::json& systemConfiguration,
+                 SystemConfiguration& systemConfiguration,
                  const ConfigPointer& configPtr,
                  sdbusplus::asio::PropertyPermission permission,
                  ConfigCache& configCache)
@@ -203,7 +205,7 @@ template <typename PropertyType>
 void addValueToDBus(const std::string& key, const nlohmann::json& value,
                     sdbusplus::asio::dbus_interface& iface,
                     sdbusplus::asio::PropertyPermission permission,
-                    nlohmann::json& systemConfiguration,
+                    SystemConfiguration& systemConfiguration,
                     const ConfigPointer& configPtr, ConfigCache& configCache)
 {
     if (value.is_array())
