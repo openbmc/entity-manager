@@ -572,11 +572,11 @@
             "Thresholds": [
                 {
                     "Direction": "less than",
-                    "Hysteresis": 0,
+                    "Hysteresis": 0.0004,
                     "Label": "in0",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 0.002
+                    "Value": -0.02
                 },
                 {
                     "Direction": "greater than",
@@ -602,11 +602,11 @@
             "Thresholds": [
                 {
                     "Direction": "less than",
-                    "Hysteresis": 0,
+                    "Hysteresis": 0.0001,
                     "Label": "in0",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 0
+                    "Value": -0.005
                 },
                 {
                     "Direction": "greater than",
@@ -619,7 +619,7 @@
             ],
             "Type": "INA238",
             "in0_Max": 0.16384,
-            "in0_Min": -0.008,
+            "in0_Min": -0.16384,
             "in0_Name": "PDB_ADC_GND_SENSE_VOLT_V"
         },
         {
@@ -632,11 +632,11 @@
             "Thresholds": [
                 {
                     "Direction": "less than",
-                    "Hysteresis": 0.0002,
+                    "Hysteresis": 0,
                     "Label": "in0",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 0.01
+                    "Value": 0.001
                 },
                 {
                     "Direction": "greater than",
@@ -662,11 +662,11 @@
             "Thresholds": [
                 {
                     "Direction": "less than",
-                    "Hysteresis": 0.0002,
+                    "Hysteresis": 0,
                     "Label": "in0",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 0.01
+                    "Value": 0.001
                 },
                 {
                     "Direction": "greater than",
@@ -692,11 +692,11 @@
             "Thresholds": [
                 {
                     "Direction": "less than",
-                    "Hysteresis": 0,
+                    "Hysteresis": 0.0004,
                     "Label": "in1",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 0.002
+                    "Value": -0.02
                 },
                 {
                     "Direction": "greater than",
@@ -722,11 +722,11 @@
             "Thresholds": [
                 {
                     "Direction": "less than",
-                    "Hysteresis": 0,
+                    "Hysteresis": 0.0001,
                     "Label": "in1",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 0
+                    "Value": -0.005
                 },
                 {
                     "Direction": "greater than",
@@ -739,7 +739,7 @@
             ],
             "Type": "ISL28022",
             "in1_Max": 0.16384,
-            "in1_Min": -0.008,
+            "in1_Min": -0.16384,
             "in1_Name": "PDB_ADC_GND_SENSE_VOLT_V"
         },
         {
@@ -752,11 +752,11 @@
             "Thresholds": [
                 {
                     "Direction": "less than",
-                    "Hysteresis": 0.0002,
+                    "Hysteresis": 0,
                     "Label": "in1",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 0.01
+                    "Value": 0.001
                 },
                 {
                     "Direction": "greater than",
@@ -782,11 +782,11 @@
             "Thresholds": [
                 {
                     "Direction": "less than",
-                    "Hysteresis": 0.0002,
+                    "Hysteresis": 0,
                     "Label": "in1",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 0.01
+                    "Value": 0.001
                 },
                 {
                     "Direction": "greater than",
