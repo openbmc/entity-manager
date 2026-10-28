@@ -34,6 +34,24 @@
       "parentUuid": "078f12ef_041d6021",
       "revId": "dc19ba3a70e0f5b54f2d459926637197ac05accc",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "379ea867_bb279906",
+        "filename": "src/entity_manager/dbus_interface.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-28T17:26:09Z",
+      "side": 1,
+      "message": "PS6 also counts an entry only when its interface was published, and the following change adds test cases for this: https://gerrit.openbmc.org/c/openbmc/entity-manager/+/96411",
+      "parentUuid": "be8572ae_0567c352",
+      "revId": "dc19ba3a70e0f5b54f2d459926637197ac05accc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
