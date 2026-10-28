@@ -7,6 +7,7 @@
 #include "configuration.hpp"
 #include "dbus_interface.hpp"
 #include "power_status_monitor.hpp"
+#include "system_configuration.hpp"
 #include "topology.hpp"
 
 #include <nlohmann/json.hpp>
@@ -40,7 +41,7 @@ class EntityManager
     std::shared_ptr<sdbusplus::asio::connection> systemBus;
     sdbusplus::asio::object_server objServer;
     Configuration configuration;
-    nlohmann::json lastJson;
+    SystemConfiguration lastJson;
     // Keys of lastJson for which no InventoryRemoved has been reported since
     // startup. The previous run already reported these devices, so they are
     // not reported as added again.
