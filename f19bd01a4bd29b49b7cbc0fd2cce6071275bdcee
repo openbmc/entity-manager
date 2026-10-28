@@ -98,6 +98,30 @@
       },
       "revId": "f19bd01a4bd29b49b7cbc0fd2cce6071275bdcee",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6929cc1b_b7fef1b8",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 41
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-28T07:45:24Z",
+      "side": 1,
+      "message": "Following up on my question about devices behind a USB bridge: I\u0027ve posted a [design for MCTP device discovery](https://gerrit.openbmc.org/c/openbmc/docs/+/96378) that proposes a `PLDMTerminus` entry on the device\u0027s board for settings like these, since a device behind a bridge has no transport record of its own. That would also keep `MCTPI2CTarget` describing only the transport, as in [its PDI definition](https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/96007). I\u0027d welcome your view on it before the property settles here.",
+      "parentUuid": "973fb0ba_1ce4d797",
+      "range": {
+        "startLine": 18,
+        "startChar": 16,
+        "endLine": 35,
+        "endChar": 18
+      },
+      "revId": "f19bd01a4bd29b49b7cbc0fd2cce6071275bdcee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
