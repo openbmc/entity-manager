@@ -232,25 +232,6 @@ scan::PerformScan::PerformScan(
     _configurations(configurations), _callback(std::move(callback)), io(io)
 {}
 
-static void pruneRecordExposes(nlohmann::json& record)
-{
-    auto findExposes = record.find("Exposes");
-    if (findExposes == record.end())
-    {
-        return;
-    }
-
-    auto copy = nlohmann::json::array();
-    for (auto& expose : *findExposes)
-    {
-        if (!expose.is_null())
-        {
-            copy.emplace_back(expose);
-        }
-    }
-    *findExposes = copy;
-}
-
 static void recordDiscoveredIdentifiers(
     std::set<nlohmann::json>& usedNames, std::list<size_t>& indexes,
     const std::string& probeName, const nlohmann::json& record)
@@ -479,7 +460,7 @@ static void applyTemplateAndExposeActions(
 
 void scan::detail::restorePersistedConfigurations(
     FoundDevices& foundDevices, const std::string& probeName,
-    nlohmann::json& systemConfiguration, nlohmann::json& lastJson,
+    nlohmann::json& systemConfiguration, const SystemConfiguration& lastConfig,
     nlohmann::json& missingConfigurations,
     std::vector<std::string>& passedProbes, std::set<nlohmann::json>& usedNames,
     std::list<size_t>& indexes)
@@ -493,16 +474,15 @@ void scan::detail::restorePersistedConfigurations(
         auto record = systemConfiguration.find(recordName);
         if (record == systemConfiguration.end())
         {
-            record = lastJson.find(recordName);
-            if (record == lastJson.end())
+            auto cached = lastConfig.find(recordName);
+            if (cached == lastConfig.end())
             {
                 itr++;
                 continue;
             }
 
-            pruneRecordExposes(*record);
-
-            systemConfiguration[recordName] = *record;
+            systemConfiguration[recordName] = cached->second.toJson();
+            record = systemConfiguration.find(recordName);
         }
         passedProbes.push_back(record->at("Name").get<std::string>());
         missingConfigurations.erase(recordName);
@@ -641,7 +621,7 @@ void scan::PerformScan::updateSystemConfiguration(const EMConfig& recordRef,
     std::iota(indexes.begin(), indexes.end(), 1);
 
     detail::restorePersistedConfigurations(
-        foundDevices, probeName, _em.systemConfiguration, _em.lastJson,
+        foundDevices, probeName, _em.systemConfiguration, _em.lastConfig,
         _missingConfigurations, passedProbes, usedNames, indexes);
 
     std::optional<std::string> replaceStr;
