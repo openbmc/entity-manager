@@ -1145,9 +1145,7 @@ TEST(BuildInventorySystemPath, needsSanitizeUnderscores)
 
 TEST(ResolveConfigType, validType)
 {
-    nlohmann::json configValues = R"({"Type": "Board"})"_json;
-
-    auto result = em_utils::resolveConfigType(configValues);
+    auto result = em_utils::resolveConfigType("Board");
 
     if (result.has_value())
     {
@@ -1161,16 +1159,12 @@ TEST(ResolveConfigType, validType)
 
 TEST(ResolveConfigType, nonDBusPathSafeTypeIsRejected)
 {
-    nlohmann::json configValues = R"({"Type": "My Type"})"_json;
-
-    EXPECT_FALSE(em_utils::resolveConfigType(configValues));
+    EXPECT_FALSE(em_utils::resolveConfigType("My Type"));
 }
 
 TEST(ResolveConfigType, underscoreTypeIsAccepted)
 {
-    nlohmann::json configValues = R"({"Type": "My_Type"})"_json;
-
-    auto result = em_utils::resolveConfigType(configValues);
+    auto result = em_utils::resolveConfigType("My_Type");
 
     if (result.has_value())
     {
@@ -1182,23 +1176,7 @@ TEST(ResolveConfigType, underscoreTypeIsAccepted)
     }
 }
 
-TEST(ResolveConfigType, missingTypeIsRejected)
-{
-    nlohmann::json configValues = R"({})"_json;
-
-    EXPECT_FALSE(em_utils::resolveConfigType(configValues));
-}
-
-TEST(ResolveConfigType, nonStringTypeIsRejected)
-{
-    nlohmann::json configValues = R"({"Type": 5})"_json;
-
-    EXPECT_FALSE(em_utils::resolveConfigType(configValues));
-}
-
 TEST(ResolveConfigType, emptyTypeIsRejected)
 {
-    nlohmann::json configValues = R"({"Type": ""})"_json;
-
-    EXPECT_FALSE(em_utils::resolveConfigType(configValues));
+    EXPECT_FALSE(em_utils::resolveConfigType(""));
 }

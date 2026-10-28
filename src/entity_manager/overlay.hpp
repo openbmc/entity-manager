@@ -10,5 +10,3 @@
 void unloadAllOverlays();
 bool loadOverlays(const SystemConfiguration& systemConfiguration,
                   boost::asio::io_context& io);
-bool loadOverlays(const nlohmann::json& systemConfiguration,
-                  boost::asio::io_context& io);

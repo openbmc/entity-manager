@@ -5,33 +5,6 @@
 
 #include <gtest/gtest.h>
 
-TEST(ConfigPointerJson, DeletesExposeWithoutMovingLaterSlots)
-{
-    nlohmann::json configuration = {
-        {"823", {{"Exposes", {{{"Name", "first"}}, {{"Name", "second"}}}}}}};
-
-    ASSERT_TRUE(ConfigPointer("823", 1).withName("Name").write(
-        "updated", configuration));
-    ASSERT_TRUE(ConfigPointer("823", 0).write(nullptr, configuration));
-
-    EXPECT_EQ(configuration["823"]["Exposes"].size(), 2);
-    EXPECT_TRUE(configuration["823"]["Exposes"][0].is_null());
-    EXPECT_EQ(configuration["823"]["Exposes"][1]["Name"], "updated");
-}
-
-TEST(ConfigPointerJson, RejectsMissingLocationsWithoutChangingConfiguration)
-{
-    nlohmann::json configuration = {
-        {"823", {{"Exposes", {{{"Name", "first"}}}}}}};
-    const nlohmann::json before = configuration;
-
-    EXPECT_FALSE(ConfigPointer("missing").write("new", configuration));
-    EXPECT_FALSE(ConfigPointer("823", 1).write("new", configuration));
-    EXPECT_FALSE(
-        ConfigPointer("823", 0, "missing").write("new", configuration));
-    EXPECT_EQ(configuration, before);
-}
-
 static nlohmann::json::object_t getSampleConfigRecord()
 {
     nlohmann::json::object_t threshold1;
