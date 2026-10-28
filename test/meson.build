@@ -99,3 +99,25 @@ test(
         link_with: gpio_presence_lib,
     ),
 )
+
+if get_option('validate-json')
+    # A value whose schema names a D-Bus type must be publishable as that
+    # type, which validating its JSON type alone does not check.
+    test(
+        'schema_dbus_type_valid',
+        validate_script,
+        args: ['-v', '-c', files('schema-dbus-type/valid.json')],
+    )
+    foreach invalid : [
+        'i2c-address-not-template',
+        'i2c-bus-not-number',
+        'i3c-address-element-not-number',
+    ]
+        test(
+            'schema_dbus_type_' + invalid.underscorify(),
+            validate_script,
+            args: ['-c', files('schema-dbus-type' / invalid + '.json')],
+            should_fail: true,
+        )
+    endforeach
+endif
