@@ -3,13 +3,17 @@
 #include "../dbus_util.hpp"
 #include "config_pointer.hpp"
 #include "perform_probe.hpp"
+#include "schema_dbus_types.hpp"
 #include "utils.hpp"
 
 #include <phosphor-logging/lg2.hpp>
 
 #include <flat_map>
 #include <fstream>
+#include <optional>
 #include <string>
+#include <string_view>
+#include <variant>
 #include <vector>
 
 namespace dbus_interface
@@ -19,7 +23,7 @@ EMDBusInterface::EMDBusInterface(
     boost::asio::io_context& io, sdbusplus::asio::object_server& objServer,
     const std::filesystem::path& schemaDirectory, ConfigCache& configCache) :
     io(io), objServer(objServer), configCache(configCache),
-    schemaDirectory(schemaDirectory)
+    schemaDirectory(schemaDirectory), schemaDBusTypes(schemaDirectory)
 {}
 
 void tryIfaceInitialize(std::shared_ptr<sdbusplus::asio::dbus_interface>& iface)
@@ -203,8 +207,46 @@ void EMDBusInterface::populateInterfaceFromJson(
     const nlohmann::json::object_t& dict,
     sdbusplus::asio::PropertyPermission permission)
 {
+    // A record's schema can name the D-Bus type a property is published as,
+    // which its type in the configuration does not always say.
+    const std::string* recordType = nullptr;
+    auto typeIt = dict.find("Type");
+    if (typeIt != dict.end())
+    {
+        recordType = typeIt->second.get_ptr<const std::string*>();
+    }
+
     for (const auto& [key, value] : dict)
     {
+        std::optional<std::string_view> dbusType;
+        if (recordType != nullptr)
+        {
+            dbusType = schemaDBusTypes.find(*recordType, key);
+        }
+        if (dbusType)
+        {
+            std::optional<schema_dbus_types::DBusValue> dbusValue =
+                schema_dbus_types::toDBusValue(*dbusType, value);
+            if (!dbusValue)
+            {
+                // Publishing it as whatever it happens to be would leave
+                // consumers to find out it is wrong.
+                lg2::error(
+                    "{TYPE} property {KEY} value {VALUE} cannot be published as {DBUS_TYPE}, leaving it out",
+                    "TYPE", *recordType, "KEY", key, "VALUE", value.dump(),
+                    "DBUS_TYPE", *dbusType);
+                continue;
+            }
+            std::visit(
+                [&](const auto& publishedValue) {
+                    addProperty(key, publishedValue, iface.get(),
+                                systemConfiguration, configPtr, permission,
+                                configCache);
+                },
+                *dbusValue);
+            continue;
+        }
+
         auto type = value.type();
         if (value.type() == nlohmann::json::value_t::array)
         {

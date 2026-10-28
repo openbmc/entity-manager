@@ -3,6 +3,7 @@
 #include "config_cache.hpp"
 #include "config_pointer.hpp"
 #include "configuration.hpp"
+#include "schema_dbus_types.hpp"
 
 #include <boost/asio/io_context.hpp>
 #include <nlohmann/json.hpp>
@@ -77,6 +78,9 @@ class EMDBusInterface
         inventory;
 
     const std::filesystem::path schemaDirectory;
+
+    // The D-Bus types the schemas name for record properties.
+    const schema_dbus_types::SchemaDBusTypes schemaDBusTypes;
 };
 
 void tryIfaceInitialize(
