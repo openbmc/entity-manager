@@ -18,6 +18,8 @@ struct LegacyInvInfo
     std::string sn = "Unknown";
 };
 
+void logDeviceAdded(const EMConfig& record);
+
 void logDeviceRemoved(const std::string& key, const EMConfig& record,
                       std::unordered_set<std::string>& cachedBaseline);
 

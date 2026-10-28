@@ -23,6 +23,8 @@ class EMConfig
     bool isArrayProbeStmt = true;
     std::vector<std::string> probeStmt;
 
+    // Empty objects mark deleted slots and serialize as null. Keep their
+    // indices stable until cached configurations are restored.
     std::vector<nlohmann::json::object_t> exposesRecords;
 
     // map of extra interfaces starting with 'xyz.openbmc_project....'

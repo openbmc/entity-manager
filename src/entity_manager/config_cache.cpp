@@ -7,7 +7,7 @@
 
 #include <fstream>
 
-bool ConfigCache::writeJsonFiles(const nlohmann::json& systemConfiguration)
+bool ConfigCache::writeJsonFiles(const SystemConfiguration& systemConfiguration)
 {
     if (!EM_CACHE_CONFIGURATION)
     {
@@ -21,7 +21,12 @@ bool ConfigCache::writeJsonFiles(const nlohmann::json& systemConfiguration)
         return false;
     }
 
-    std::string content = systemConfiguration.dump(4);
+    nlohmann::json::object_t out;
+    for (const auto& [key, value] : systemConfiguration)
+    {
+        out[key] = value.toJson();
+    }
+    std::string content = nlohmann::json(out).dump(4);
     if (content == lastWritten)
     {
         return true;
