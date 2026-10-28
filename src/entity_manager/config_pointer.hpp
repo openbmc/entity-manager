@@ -40,9 +40,6 @@ struct ConfigPointer
     // @returns false on error
     bool write(const nlohmann::json& value,
                SystemConfiguration& systemConfiguration) const;
-    // Compatibility entry point until live configuration storage is migrated.
-    bool write(const nlohmann::json& value,
-               nlohmann::json& systemConfiguration) const;
 
     // This will be an hash (integer) in almost all cases
     std::string boardId;
@@ -55,7 +52,6 @@ struct ConfigPointer
     std::optional<std::string> memberName;
 
   private:
-    nlohmann::json* findRecord(nlohmann::json& board) const;
     nlohmann::json* findValue(nlohmann::json& record) const;
     bool writeExpose(const nlohmann::json& value, EMConfig& board) const;
     bool writeBoardProperty(const nlohmann::json& value, EMConfig& board) const;

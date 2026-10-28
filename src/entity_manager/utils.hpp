@@ -51,8 +51,6 @@ sdbusplus::object_path buildInventorySystemPath(std::string& boardName,
 // @brief: returns the sanitized Type value for a configuration record, or
 // std::nullopt if Type is missing or not a string. Callers must reject
 // (not fallback) and log using their own config name/id.
-std::optional<std::string> resolveConfigType(
-    const nlohmann::json& configValues);
 std::optional<std::string> resolveConfigType(const std::string& type);
 
 } // namespace em_utils
