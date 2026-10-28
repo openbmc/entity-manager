@@ -72,6 +72,36 @@ static std::optional<sdbusplus::object_path> inventoryPath(
     return em_utils::buildInventorySystemPath(boardName, *boardType);
 }
 
+void logDeviceAdded(const EMConfig& record)
+{
+    if (!EM_CACHE_CONFIGURATION)
+    {
+        return;
+    }
+
+    const std::string& name = record.name;
+
+    // Temporary compatibility shim: bmcweb's default journal-based EventLog
+    // backend does not yet understand lg2::commit()'s D-Bus event, so keep
+    // emitting the legacy message until that support exists.
+    const LegacyInvInfo info = queryLegacyInvInfo(record);
+    sd_journal_send(
+        "MESSAGE=Inventory Added: %s", name.c_str(), "PRIORITY=%i", LOG_INFO,
+        "REDFISH_MESSAGE_ID=%s", "OpenBMC.0.1.InventoryAdded",
+        "REDFISH_MESSAGE_ARGS=%s,%s,%s", info.model.c_str(), info.type.c_str(),
+        info.sn.c_str(), "NAME=%s", name.c_str(), NULL);
+
+    using InventoryAdded =
+        sdbusplus::event::xyz::openbmc_project::Inventory::InventoryAdded;
+
+    std::optional<sdbusplus::object_path> path = inventoryPath(record);
+    if (!path)
+    {
+        return;
+    }
+    lg2::commit(InventoryAdded("IDENTIFIER_PATH", *path));
+}
+
 void logDeviceRemoved(const std::string& key, const EMConfig& record,
                       std::unordered_set<std::string>& cachedBaseline)
 {
