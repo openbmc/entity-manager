@@ -1,0 +1,31 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x1d",
+            "Bus": "15",
+            "Name": "Hex Address",
+            "Type": "MCTPI2CTarget"
+        },
+        {
+            "Address": "$address",
+            "Bus": 3,
+            "Name": "Template Address",
+            "Type": "MCTPI2CTarget"
+        },
+        {
+            "Address": "$ADDRESS % 4 + 88",
+            "Bus": "$bus",
+            "Name": "Expression Address",
+            "Type": "MCTPI2CTarget"
+        },
+        {
+            "Address": [7, 43, 0, 0, 0, 1],
+            "Bus": 0,
+            "Name": "I3C Target",
+            "Type": "MCTPI3CTarget"
+        }
+    ],
+    "Name": "Test Board",
+    "Probe": "TRUE",
+    "Type": "Board"
+}

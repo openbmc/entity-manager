@@ -18,6 +18,124 @@ from referencing.jsonschema import DRAFT202012
 
 DEFAULT_SCHEMA_FILENAME = "global.json"
 
+# The D-Bus types a schema can name in "x-dbus-type", and for the integer
+# ones the range a value must fall in.
+DBUS_INTEGER_RANGES = {
+    "byte": (0, 0xFF),
+    "uint64": (0, 0xFFFFFFFFFFFFFFFF),
+    "int64": (-0x8000000000000000, 0x7FFFFFFFFFFFFFFF),
+}
+DBUS_SCALAR_TYPES = set(DBUS_INTEGER_RANGES) | {"double", "boolean", "string"}
+DBUS_ARRAY_TYPE = re.compile(r"^array\[(\w+)\]$")
+
+
+def is_known_dbus_type(dbus_type):
+    match = DBUS_ARRAY_TYPE.match(dbus_type)
+    if match:
+        dbus_type = match.group(1)
+    return dbus_type in DBUS_SCALAR_TYPES
+
+
+def parse_as_number(string):
+    """
+    Parses a string the way entity-manager does before publishing it, so a
+    string that parses here is published as a number rather than a string.
+    """
+    base = 10
+    if string.startswith("0x"):
+        string = string[2:]
+        base = 16
+    elif string.startswith("00"):
+        # zeroed out FRU fields are not seen as numbers
+        return None
+    if not string or not re.fullmatch(r"[0-9a-fA-F]+", string):
+        return None
+    try:
+        return int(string, base)
+    except ValueError:
+        return None
+
+
+def check_dbus_scalar(dbus_type, instance):
+    """
+    Returns why instance cannot be published as dbus_type, or None if it can.
+    """
+    if dbus_type == "string":
+        return None if isinstance(instance, str) else "is not a string"
+    if dbus_type == "boolean":
+        return None if isinstance(instance, bool) else "is not a boolean"
+
+    if isinstance(instance, str):
+        # A template is only resolved once the configuration is probed.
+        if "$" in instance:
+            return None
+        number = parse_as_number(instance)
+        if number is None:
+            return "is neither a number nor a template"
+    elif isinstance(instance, bool) or not isinstance(instance, (int, float)):
+        return "is not a number"
+    else:
+        number = instance
+
+    if dbus_type == "double":
+        return None
+    if not isinstance(number, int):
+        return "is not an integer"
+    low, high = DBUS_INTEGER_RANGES[dbus_type]
+    if not low <= number <= high:
+        return f"is out of range for {dbus_type}"
+    return None
+
+
+def x_dbus_type(validator, dbus_type, instance, schema):
+    """
+    Checks that a value can be published as the D-Bus type its schema names,
+    which the JSON type alone cannot say: a value that should be a number on
+    D-Bus is often written as a string so that it can hold a template.
+    """
+    match = DBUS_ARRAY_TYPE.match(dbus_type)
+    if match:
+        if not isinstance(instance, list):
+            yield jsonschema.exceptions.ValidationError(
+                f"{instance!r} is not an array, as {dbus_type} needs"
+            )
+            return
+        elements = instance
+        dbus_type = match.group(1)
+    else:
+        elements = [instance]
+
+    for element in elements:
+        reason = check_dbus_scalar(dbus_type, element)
+        if reason is not None:
+            yield jsonschema.exceptions.ValidationError(
+                f"{element!r} {reason}, so it cannot be published as "
+                f"{dbus_type}"
+            )
+
+
+ConfigValidator = jsonschema.validators.extend(
+    jsonschema.validators.Draft202012Validator, {"x-dbus-type": x_dbus_type}
+)
+
+
+def check_dbus_type_keywords(schema, location):
+    """
+    Rejects an "x-dbus-type" naming a type this script cannot check, which
+    would otherwise let any value through.
+    """
+    if isinstance(schema, dict):
+        dbus_type = schema.get("x-dbus-type")
+        if dbus_type is not None and (
+            not isinstance(dbus_type, str) or not is_known_dbus_type(dbus_type)
+        ):
+            raise ValueError(f"{location}: unknown x-dbus-type {dbus_type!r}")
+        for key, value in schema.items():
+            check_dbus_type_keywords(value, f"{location}/{key}")
+    elif isinstance(schema, list):
+        for index, value in enumerate(schema):
+            check_dbus_type_keywords(value, f"{location}/{index}")
+
 
 def get_default_thread_count() -> int:
     """
@@ -229,6 +347,7 @@ def validator_from_file(schema_file):
                     jsonschema.validators.Draft202012Validator.check_schema(
                         schema_contents
                     )
+                    check_dbus_type_keywords(schema_contents, relative_uri)
 
                     # Add to the registry.
                     registry = registry.with_resource(
@@ -244,11 +363,44 @@ def validator_from_file(schema_file):
                         root_schema = schema_contents
 
     # Create the validator instance with the schema content and the configured registry.
-    validator = jsonschema.validators.Draft202012Validator(
-        root_schema, registry=registry
-    )
+    validator = ConfigValidator(root_schema, registry=registry)
 
     return validator
+
+
+def is_type_mismatch(error):
+    """
+    Whether an error says a branch describes another kind of record, either
+    by its Type or by being a different JSON type altogether.
+    """
+    if error.validator == "type" and not error.relative_path:
+        return True
+    return list(error.relative_path)[-1:] == ["Type"] or (
+        error.validator in ("enum", "const")
+        and list(error.relative_schema_path)[-3:-1] == ["properties", "Type"]
+    )
+
+
+def innermost_errors(error):
+    """
+    Follows a oneOf or anyOf failure into the one branch whose Type matched,
+    which is the branch a record was meant for, so the errors reported are
+    that branch's rather than one per record kind.
+    """
+    if error.validator not in ("oneOf", "anyOf") or not error.context:
+        return [error]
+
+    branches = {}
+    for sub in error.context:
+        branches.setdefault(sub.relative_schema_path[0], []).append(sub)
+    matching = [
+        subs
+        for subs in branches.values()
+        if not any(is_type_mismatch(sub) for sub in subs)
+    ]
+    if len(matching) != 1:
+        return [error]
+    return [inner for sub in matching[0] for inner in innermost_errors(sub)]
 
 
 def validate_single_config(
@@ -272,6 +424,10 @@ def validate_single_config(
                 print("****** CONTEXT clues ******")
                 for sub in e.context:
                     print(sub.message)
+                print("****** Errors in the matching schema ******")
+                for inner in innermost_errors(e):
+                    location = "/".join(str(p) for p in inner.absolute_path)
+                    print(f"{location}: {inner.message}")
 
     return (is_invalid, is_unexpected_pass)
 
