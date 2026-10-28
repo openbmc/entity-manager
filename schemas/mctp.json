@@ -15,6 +15,10 @@
                     "description": "When false, pldmd will not create inventory paths or PLDM sensors for this terminus. Defaults to true if not specified.",
                     "type": "boolean"
                 },
+                "DiscoverFRU": {
+                    "description": "When false, pldmd will not request the PLDM FRU record table from this terminus or publish its FRU data. Defaults to true if not specified.",
+                    "type": "boolean"
+                },
                 "Name": {
                     "description": "A recognisable name for the device",
                     "type": "string"
@@ -39,6 +43,10 @@
                 },
                 "CreateSensors": {
                     "description": "When false, pldmd will not create inventory paths or PLDM sensors for this terminus. Defaults to true if not specified.",
+                    "type": "boolean"
+                },
+                "DiscoverFRU": {
+                    "description": "When false, pldmd will not request the PLDM FRU record table from this terminus or publish its FRU data. Defaults to true if not specified.",
                     "type": "boolean"
                 },
                 "Name": {
