@@ -57,8 +57,7 @@ EntityManager::EntityManager(
     std::filesystem::path configCacheDir) :
     systemBus(systemBus),
     objServer(sdbusplus::asio::object_server(systemBus, /*skipManager=*/true)),
-    configuration(configurationDirectories, schemaDirectory),
-    lastJson(nlohmann::json::object()),
+    configuration(configurationDirectories, schemaDirectory), lastConfig(),
     systemConfiguration(nlohmann::json::object()), io(io),
     configCache(std::move(configCacheDir)),
     dbus_interface(io, objServer, schemaDirectory, configCache),
@@ -475,7 +474,7 @@ static void pruneDevice(const nlohmann::json& systemConfiguration,
 
 void EntityManager::startRemovedTimer(boost::asio::steady_timer& timer)
 {
-    if (systemConfiguration.empty() || lastJson.empty())
+    if (systemConfiguration.empty() || lastConfig.empty())
     {
         return; // not ready yet
     }
@@ -497,9 +496,10 @@ void EntityManager::startRemovedTimer(boost::asio::steady_timer& timer)
         }
 
         bool powerOff = !powerStatus.isPowerOn();
-        for (const auto& [name, device] : lastJson.items())
+        for (const auto& [name, device] : lastConfig)
         {
-            pruneDevice(systemConfiguration, cachedBaseline, name, device);
+            pruneDevice(systemConfiguration, cachedBaseline, name,
+                        device.toJson());
         }
 
         scannedPowerOff = true;
@@ -681,10 +681,20 @@ void EntityManager::handleCurrentConfigurationJson()
                 }
                 else
                 {
-                    lastJson = std::move(data);
-                    for (const auto& [key, _] : lastJson.items())
+                    std::optional<SystemConfiguration> optConfig =
+                        systemConfigurationFromJson(data);
+                    if (optConfig.has_value())
                     {
-                        cachedBaseline.insert(key);
+                        lastConfig = std::move(*optConfig);
+                        for (const auto& [key, _] : lastConfig)
+                        {
+                            cachedBaseline.insert(key);
+                        }
+                    }
+                    else
+                    {
+                        lg2::error("Failed parsing last json at {PATH}", "PATH",
+                                   lastConfiguration);
                     }
                 }
             }
