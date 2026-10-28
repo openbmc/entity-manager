@@ -124,14 +124,14 @@ void Configuration::loadConfigurations()
 }
 
 // Iterate over new configuration and erase items from old configuration.
-void deriveNewConfiguration(const nlohmann::json& oldConfiguration,
-                            nlohmann::json& newConfiguration)
+void deriveNewConfiguration(const SystemConfiguration& oldConfiguration,
+                            SystemConfiguration& newConfiguration)
 {
     lg2::debug("deriving new configuration");
 
     for (auto it = newConfiguration.begin(); it != newConfiguration.end();)
     {
-        auto findKey = oldConfiguration.find(it.key());
+        auto findKey = oldConfiguration.find(it->first);
         if (findKey != oldConfiguration.end())
         {
             it = newConfiguration.erase(it);

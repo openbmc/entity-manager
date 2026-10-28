@@ -65,7 +65,7 @@ std::shared_ptr<sdbusplus::asio::dbus_interface>
 void EMDBusInterface::createDeleteObjectMethod(
     const ConfigPointer& configPtr,
     const std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
-    nlohmann::json& systemConfiguration)
+    SystemConfiguration& systemConfiguration)
 {
     std::weak_ptr<sdbusplus::asio::dbus_interface> interface = iface;
     iface->register_method("Delete", [this, &systemConfiguration, interface,
@@ -146,7 +146,7 @@ static nlohmann::json::value_t getDBusType(
 }
 
 static void populateInterfacePropertyFromJson(
-    nlohmann::json& systemConfiguration, const ConfigPointer& path,
+    SystemConfiguration& systemConfiguration, const ConfigPointer& path,
     const std::string& key, const nlohmann::json& value,
     nlohmann::json::value_t type,
     std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
@@ -198,7 +198,7 @@ static void populateInterfacePropertyFromJson(
 
 // adds simple json types to interface's properties
 void EMDBusInterface::populateInterfaceFromJson(
-    nlohmann::json& systemConfiguration, const ConfigPointer& configPtr,
+    SystemConfiguration& systemConfiguration, const ConfigPointer& configPtr,
     std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
     const nlohmann::json::object_t& dict,
     sdbusplus::asio::PropertyPermission permission)
@@ -270,17 +270,9 @@ static void addObjectRuntimeValidateJson(
 
 void EMDBusInterface::addObject(
     const std::flat_map<std::string, JsonVariantType, std::less<>>& data,
-    nlohmann::json& systemConfiguration, const std::string& boardId,
+    SystemConfiguration& systemConfiguration, const std::string& boardId,
     const sdbusplus::object_path& path, const std::string& board)
 {
-    nlohmann::json& base = systemConfiguration[boardId];
-    auto findExposes = base.find("Exposes");
-
-    if (findExposes == base.end())
-    {
-        throw std::invalid_argument("Entity must have children.");
-    }
-
     // this will throw invalid-argument to sdbusplus if invalid json
     nlohmann::json::object_t newData{};
     for (const auto& item : data)
@@ -296,28 +288,28 @@ void EMDBusInterface::addObject(
     addObjectJson(newData, systemConfiguration, boardId, path, board);
 }
 
-// Reuses the first null slot or appends; returns the index of the inserted
-// entry.
+// Reuses the first deleted slot or appends; returns its index.
 static size_t insertIntoExposes(
-    nlohmann::json& exposes, const std::string& name, const std::string& type,
-    const nlohmann::json& newData, const std::filesystem::path& schemaDirectory)
+    std::vector<nlohmann::json::object_t>& exposes, const std::string& name,
+    const std::string& type, const nlohmann::json& newData,
+    const std::filesystem::path& schemaDirectory)
 {
-    bool foundNull = false;
+    bool foundDeleted = false;
     size_t lastIndex = 0;
     for (const auto& expose : exposes)
     {
-        if (expose.is_null())
+        if (expose.empty())
         {
-            foundNull = true;
+            foundDeleted = true;
             continue;
         }
 
-        if (expose["Name"] == name && expose["Type"] == type)
+        if (expose.at("Name") == name && expose.at("Type") == type)
         {
             throw std::invalid_argument("Field already in JSON, not adding");
         }
 
-        if (foundNull)
+        if (foundDeleted)
         {
             continue;
         }
@@ -327,13 +319,13 @@ static size_t insertIntoExposes(
 
     addObjectRuntimeValidateJson(newData, &type, schemaDirectory);
 
-    if (foundNull)
+    if (foundDeleted)
     {
-        exposes.at(lastIndex) = newData;
+        exposes.at(lastIndex) = newData.get<nlohmann::json::object_t>();
     }
     else
     {
-        exposes.push_back(newData);
+        exposes.push_back(newData.get<nlohmann::json::object_t>());
     }
 
     return lastIndex;
@@ -341,11 +333,10 @@ static size_t insertIntoExposes(
 
 void EMDBusInterface::addObjectJson(
     const nlohmann::json::object_t& newData,
-    nlohmann::json& systemConfiguration, const std::string& boardId,
+    SystemConfiguration& systemConfiguration, const std::string& boardId,
     const sdbusplus::object_path& path, const std::string& board)
 {
-    nlohmann::json& base = systemConfiguration[boardId];
-    auto findExposes = base.find("Exposes");
+    EMConfig& base = systemConfiguration.at(boardId);
     auto findName = newData.find("Name");
     auto findType = newData.find("Type");
     if (findName == newData.end() || findType == newData.end())
@@ -362,8 +353,8 @@ void EMDBusInterface::addObjectJson(
     size_t lastIndex = 0;
     try
     {
-        lastIndex = insertIntoExposes(*findExposes, *name, *type, newData,
-                                      schemaDirectory);
+        lastIndex = insertIntoExposes(base.exposesRecords, *name, *type,
+                                      newData, schemaDirectory);
     }
     catch (const std::exception& e)
     {
@@ -392,7 +383,7 @@ void EMDBusInterface::addObjectJson(
 
 void EMDBusInterface::createAddObjectMethod(
     const std::string& boardId, const sdbusplus::object_path& path,
-    nlohmann::json& systemConfiguration, const std::string& board)
+    SystemConfiguration& systemConfiguration, const std::string& board)
 {
     std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
         createInterface(path, "xyz.openbmc_project.AddObject", board);
@@ -409,9 +400,9 @@ void EMDBusInterface::createAddObjectMethod(
 }
 
 std::vector<std::weak_ptr<sdbusplus::asio::dbus_interface>>&
-    EMDBusInterface::getDeviceInterfaces(const nlohmann::json& device)
+    EMDBusInterface::getDeviceInterfaces(const EMConfig& device)
 {
-    return inventory[device["Name"].get<std::string>()];
+    return inventory[device.name];
 }
 
 } // namespace dbus_interface

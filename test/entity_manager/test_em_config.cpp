@@ -190,3 +190,27 @@ TEST(EMConfig, PreservesExposePowerState)
     EXPECT_EQ(config->exposesRecords.at(0).at("PowerState"), "BiosPost");
     EXPECT_EQ(config->toJson(), nlohmann::json(input));
 }
+
+TEST(EMConfig, SerializesDeletedSlotsAsNull)
+{
+    EMConfig config;
+    config.exposesRecords = {
+        {},
+        {{"Name", "Disabled"}, {"Type", "TMP75"}, {"Status", "disabled"}},
+        {{"Name", "Active"}, {"Type", "TMP75"}}};
+
+    const auto serialized = config.toJson().at("Exposes");
+
+    ASSERT_EQ(serialized.size(), 3U);
+    EXPECT_TRUE(serialized.at(0).is_null());
+    EXPECT_EQ(serialized.at(1), nlohmann::json(config.exposesRecords.at(1)));
+    EXPECT_EQ(serialized.at(2), nlohmann::json(config.exposesRecords.at(2)));
+}
+
+TEST(EMConfig, RejectsEmptySourceExpose)
+{
+    auto input = getSampleConfig();
+    input["Exposes"].push_back(nlohmann::json::object());
+
+    EXPECT_FALSE(EMConfig::fromJson(input).has_value());
+}

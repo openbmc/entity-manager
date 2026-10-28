@@ -247,7 +247,14 @@ nlohmann::json::object_t EMConfig::toJsonObject() const
     res["Exposes"] = nlohmann::json::array_t();
     for (const auto& record : exposesRecords)
     {
-        res["Exposes"].push_back(record);
+        if (record.empty())
+        {
+            res["Exposes"].push_back(nullptr);
+        }
+        else
+        {
+            res["Exposes"].push_back(record);
+        }
     }
 
     for (const auto& [k, v] : extraInterfaces)
