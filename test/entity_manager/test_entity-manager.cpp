@@ -1,3 +1,4 @@
+#include "entity_manager/configuration.hpp"
 #include "entity_manager/utils.hpp"
 #include "utils.hpp"
 
@@ -9,6 +10,28 @@
 #include "gtest/gtest.h"
 
 using namespace std::string_literals;
+
+TEST(DeriveNewConfiguration, ErasesSharedKeysAndPreservesNewBoards)
+{
+    SystemConfiguration oldConfiguration;
+    oldConfiguration["a"].name = "old a";
+    oldConfiguration["b"].name = "old b";
+    oldConfiguration["d"].name = "old d";
+    SystemConfiguration newConfiguration = oldConfiguration;
+    newConfiguration["c"].name = "new c";
+    newConfiguration["e"].name = "new e";
+
+    deriveNewConfiguration(oldConfiguration, newConfiguration);
+
+    ASSERT_EQ(newConfiguration.size(), 2);
+    EXPECT_EQ(newConfiguration.at("c").name, "new c");
+    EXPECT_EQ(newConfiguration.at("e").name, "new e");
+    EXPECT_EQ(oldConfiguration.size(), 3);
+
+    newConfiguration = oldConfiguration;
+    deriveNewConfiguration(oldConfiguration, newConfiguration);
+    EXPECT_TRUE(newConfiguration.empty());
+}
 
 TEST(TemplateCharReplace, replaceIndex)
 {

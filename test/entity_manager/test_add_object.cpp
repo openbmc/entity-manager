@@ -67,12 +67,22 @@ class AddObjectTest : public ::testing::Test
     }
 };
 
+TEST_F(AddObjectTest, MissingDeviceInterfacesReturnsEmptyVector)
+{
+    EMConfig device;
+    device.name = kBoardId;
+
+    auto& interfaces = iface->getDeviceInterfaces(device);
+
+    EXPECT_TRUE(interfaces.empty());
+    EXPECT_EQ(&interfaces, &iface->getDeviceInterfaces(device));
+}
+
 TEST_F(AddObjectTest, AddObject)
 {
-    nlohmann::json sysConfig;
-    sysConfig[kBoardId] = {{"Name", kBoardId},
-                           {"Type", "Baseboard"},
-                           {"Exposes", nlohmann::json::array()}};
+    SystemConfiguration sysConfig;
+    sysConfig[kBoardId].name = kBoardId;
+    sysConfig[kBoardId].type = "Baseboard";
 
     std::string boardName{"TestBoard"};
     const sdbusplus::object_path boardPath =
@@ -85,7 +95,7 @@ TEST_F(AddObjectTest, AddObject)
                             {"Address", uint64_t{0x41}}},
                      sysConfig, kBoardId, boardPath, kBoardId);
 
-    const auto& exposes = sysConfig[kBoardId]["Exposes"];
+    const auto exposes = sysConfig[kBoardId].toJson().at("Exposes");
     ASSERT_FALSE(exposes.empty());
     EXPECT_EQ(exposes[0].value("Name", ""), "Sensor1");
 
@@ -100,15 +110,22 @@ TEST_F(AddObjectTest, AddObject)
 class AddObjectExposesTest : public AddObjectTest
 {
   protected:
-    nlohmann::json sysConfig;
+    SystemConfiguration sysConfig;
     std::string boardName{"TestBoard"};
     const sdbusplus::object_path boardPath =
         em_utils::buildInventorySystemPath(boardName, "Board");
 
     void setExposes(const nlohmann::json& exposes)
     {
-        sysConfig[kBoardId] = {
-            {"Name", kBoardId}, {"Type", "Baseboard"}, {"Exposes", exposes}};
+        EMConfig& config = sysConfig[kBoardId];
+        config.name = kBoardId;
+        config.type = "Baseboard";
+        config.exposesRecords.clear();
+        for (const auto& record : exposes)
+        {
+            config.exposesRecords.push_back(
+                record.get<nlohmann::json::object_t>());
+        }
     }
 
     void add(const std::string& name)
@@ -121,9 +138,9 @@ class AddObjectExposesTest : public AddObjectTest
             sysConfig, kBoardId, boardPath, kBoardId);
     }
 
-    const nlohmann::json& exposes()
+    nlohmann::json exposes()
     {
-        return sysConfig[kBoardId]["Exposes"];
+        return sysConfig[kBoardId].exposesRecords;
     }
 };
 
@@ -132,7 +149,14 @@ static nlohmann::json expose(const std::string& name)
     return {{"Name", name}, {"Type", "Temperature"}};
 }
 
-TEST_F(AddObjectExposesTest, AppendsWhenNoNullSlot)
+static nlohmann::json disabledExpose(const std::string& name)
+{
+    nlohmann::json record = expose(name);
+    record["Status"] = "disabled";
+    return record;
+}
+
+TEST_F(AddObjectExposesTest, AppendsWhenNoDeletedSlot)
 {
     setExposes({expose("A"), expose("B")});
 
@@ -144,9 +168,10 @@ TEST_F(AddObjectExposesTest, AppendsWhenNoNullSlot)
     EXPECT_EQ(exposes()[2]["Name"], "C");
 }
 
-TEST_F(AddObjectExposesTest, ReusesFirstNullSlot)
+TEST_F(AddObjectExposesTest, ReusesFirstDeletedSlot)
 {
-    setExposes({expose("A"), nullptr, expose("B"), nullptr});
+    setExposes({expose("A"), nlohmann::json::object(), expose("B"),
+                nlohmann::json::object()});
 
     add("C");
 
@@ -154,7 +179,7 @@ TEST_F(AddObjectExposesTest, ReusesFirstNullSlot)
     EXPECT_EQ(exposes()[0]["Name"], "A");
     EXPECT_EQ(exposes()[1]["Name"], "C");
     EXPECT_EQ(exposes()[2]["Name"], "B");
-    EXPECT_TRUE(exposes()[3].is_null());
+    EXPECT_TRUE(exposes()[3].empty());
 
     add("D");
 
@@ -162,9 +187,9 @@ TEST_F(AddObjectExposesTest, ReusesFirstNullSlot)
     EXPECT_EQ(exposes()[3]["Name"], "D");
 }
 
-TEST_F(AddObjectExposesTest, ReusesLeadingNullSlot)
+TEST_F(AddObjectExposesTest, ReusesLeadingDeletedSlot)
 {
-    setExposes({nullptr, expose("A")});
+    setExposes({nlohmann::json::object(), expose("A")});
 
     add("B");
 
@@ -173,12 +198,12 @@ TEST_F(AddObjectExposesTest, ReusesLeadingNullSlot)
     EXPECT_EQ(exposes()[1]["Name"], "A");
 }
 
-TEST_F(AddObjectExposesTest, DuplicateAfterNullSlotThrows)
+TEST_F(AddObjectExposesTest, DuplicateAfterDeletedSlotThrows)
 {
-    setExposes({nullptr, expose("A")});
+    setExposes({nlohmann::json::object(), expose("A")});
 
     EXPECT_THROW(add("A"), std::invalid_argument);
-    EXPECT_TRUE(exposes()[0].is_null());
+    EXPECT_TRUE(exposes()[0].empty());
     EXPECT_EQ(exposes().size(), 2U);
 }
 
@@ -294,14 +319,16 @@ TEST_F(ConfigObjectTest, RemoveDeviceInterfacesRemovesConfigObject)
 class PublishRecordTest : public AddObjectTest
 {
   protected:
-    nlohmann::json sysConfig;
+    SystemConfiguration sysConfig;
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> publish(
         const nlohmann::json::object_t& record)
     {
-        sysConfig[kBoardId] = {{"Name", kBoardId},
-                               {"Type", "Board"},
-                               {"Exposes", nlohmann::json::array({record})}};
+        EMConfig config;
+        config.name = kBoardId;
+        config.type = "Board";
+        config.exposesRecords.push_back(record);
+
         auto recordIface = iface->createInterface(
             sdbusplus::object_path(
                 "/xyz/openbmc_project/inventory/system/board/TestBoard/Mcu"),
@@ -338,9 +365,12 @@ TEST_F(PublishRecordTest, LeavesOutRecordWithUnconvertibleProperty)
 
 TEST_F(PublishRecordTest, AddObjectRejectsUnconvertibleRecord)
 {
-    sysConfig[kBoardId] = {{"Name", kBoardId},
-                           {"Type", "Board"},
-                           {"Exposes", nlohmann::json::array()}};
+    EMConfig config;
+    config.name = kBoardId;
+    config.type = "Board";
+
+    sysConfig[kBoardId] = config;
+
     std::string boardName{kBoardId};
     const sdbusplus::object_path boardPath =
         em_utils::buildInventorySystemPath(boardName, "Board");
@@ -354,6 +384,47 @@ TEST_F(PublishRecordTest, AddObjectRejectsUnconvertibleRecord)
                                   sysConfig, kBoardId, boardPath, kBoardId),
                  std::invalid_argument);
 
-    EXPECT_TRUE(sysConfig[kBoardId]["Exposes"].empty());
+    EXPECT_TRUE(sysConfig[kBoardId].exposesRecords.empty());
     EXPECT_FALSE(std::filesystem::exists(tmpDir / "system.json"));
+}
+
+TEST_F(AddObjectExposesTest, PreservesConfiguredDisabledRecords)
+{
+    const nlohmann::json disabled = disabledExpose("Template");
+    setExposes({disabled, nlohmann::json::object(), expose("A")});
+
+    add("B");
+
+    ASSERT_EQ(exposes().size(), 3U);
+    EXPECT_EQ(exposes()[0], disabled);
+    EXPECT_EQ(exposes()[1], expose("B"));
+    EXPECT_EQ(exposes()[2], expose("A"));
+}
+
+TEST_F(AddObjectExposesTest, RejectsDuplicateConfiguredDisabledRecord)
+{
+    const nlohmann::json disabled = disabledExpose("A");
+    setExposes(nlohmann::json::array({disabled}));
+
+    EXPECT_THROW(add("A"), std::invalid_argument);
+
+    ASSERT_EQ(exposes().size(), 1U);
+    EXPECT_EQ(exposes()[0], disabled);
+}
+
+TEST_F(AddObjectExposesTest, ReusesDeletedRecordAndPersistsNullSlot)
+{
+    setExposes({expose("A"), expose("B")});
+    ASSERT_TRUE(ConfigPointer(kBoardId, 0).write(nullptr, sysConfig));
+    ASSERT_TRUE(configCache->writeJsonFiles(sysConfig));
+    std::ifstream file{tmpDir / "system.json"};
+    ASSERT_TRUE(file.is_open());
+    const auto cached = nlohmann::json::parse(file);
+    EXPECT_TRUE(cached.at(kBoardId).at("Exposes").at(0).is_null());
+
+    add("C");
+
+    ASSERT_EQ(exposes().size(), 2U);
+    EXPECT_EQ(exposes()[0], expose("C"));
+    EXPECT_EQ(exposes()[1], expose("B"));
 }
