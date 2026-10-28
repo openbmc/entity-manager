@@ -72,6 +72,8 @@ class EMDBusInterface
                        const sdbusplus::object_path& path,
                        const std::string& board);
 
+    bool hasConfigObject(const sdbusplus::object_path& path) const;
+
   private:
     void removeConfigObject(const sdbusplus::object_path& path);
 

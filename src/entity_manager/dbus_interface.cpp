@@ -83,6 +83,13 @@ void EMDBusInterface::addConfigObject(const sdbusplus::object_path& path,
     configObject = {iface, 1};
 }
 
+bool EMDBusInterface::hasConfigObject(const sdbusplus::object_path& path) const
+{
+    auto configObject = configObjects.find(path);
+    return configObject != configObjects.end() &&
+           !configObject->second.iface.expired();
+}
+
 void EMDBusInterface::removeConfigObject(const sdbusplus::object_path& path)
 {
     auto configObject = configObjects.find(path);
