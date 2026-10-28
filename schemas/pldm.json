@@ -1,0 +1,22 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "PLDMTerminus": {
+            "title": "PLDM terminus configuration",
+            "description": "A device that pldmd manages as a PLDM terminus. The board exposing the device gives this entry the same Name as the device's other entries, and pldmd finds the device's MCTP endpoint through the associations of the configuration object.",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Name": {
+                    "description": "The name of the device, used as the name of the terminus",
+                    "type": "string"
+                },
+                "Type": {
+                    "type": "string",
+                    "enum": ["PLDMTerminus"]
+                }
+            },
+            "required": ["Name", "Type"]
+        }
+    }
+}
