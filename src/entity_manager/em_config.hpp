@@ -34,6 +34,8 @@ class EMConfig
     // doProbe. The copies of this record that the scan makes share it.
     std::shared_ptr<const probe::Ast> probeAst;
 
+    // Empty objects mark deleted slots and serialize as null. Keep their
+    // indices stable until cached configurations are restored.
     std::vector<nlohmann::json::object_t> exposesRecords;
 
     // map of extra interfaces starting with 'xyz.openbmc_project....'
