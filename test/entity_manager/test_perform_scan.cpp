@@ -77,6 +77,13 @@ TEST(ExposeActions, ResolvesPropertiesInsertedByBind)
     EXPECT_EQ(fan.at("Connector").at("PwmName"), "PWM 1 ");
 }
 
+static EMConfig namedConfig(const std::string& name)
+{
+    EMConfig config;
+    config.name = name;
+    return config;
+}
+
 // parseProbeCommand joins the array statements and lexes them into tokens.
 TEST(ParseProbeCommand, ParsesArrayOfStrings)
 {
@@ -196,7 +203,7 @@ TEST(RestorePersistedConfigurations, RegistersResolvedNameAndPreservesIndex)
     json configuration = {
         {recordId, {{"Name", "Nvidia RTX PRO 6000 Blackwell 2"}}}};
     const json original = configuration;
-    json cached = json::object();
+    SystemConfiguration cached;
     json missing = configuration;
     scan::FoundDevices devices = {{properties, "/fru/blackwell"}};
     std::vector<std::string> passed;
@@ -224,7 +231,8 @@ TEST(RestorePersistedConfigurations, MissingDeviceDoesNotRegisterHistoricalName)
         scan::detail::getRecordName(properties, probeName);
     json configuration = {
         {recordId, {{"Name", "Nvidia RTX PRO 6000 Blackwell 1"}}}};
-    json cached = configuration;
+    SystemConfiguration cached = {
+        {recordId, namedConfig("Nvidia RTX PRO 6000 Blackwell 1")}};
     json missing = configuration;
     const json original = missing;
     scan::FoundDevices devices;
@@ -252,7 +260,7 @@ TEST(RestorePersistedConfigurations, KeepsUnmatchedInstanceMissing)
     json configuration = {
         {firstId, {{"Name", "Nvidia RTX PRO 6000 Blackwell 1"}}},
         {secondId, {{"Name", "Nvidia RTX PRO 6000 Blackwell 2"}}}};
-    json cached = json::object();
+    SystemConfiguration cached;
     json missing = configuration;
     scan::FoundDevices devices = {{second, "/fru/blackwell_1"}};
     std::vector<std::string> passed;
@@ -278,10 +286,13 @@ TEST(RestorePersistedConfigurations, RestoresCachedMatchedInstance)
     const std::string recordId =
         scan::detail::getRecordName(properties, probeName);
     json configuration = json::object();
-    json cached = {
-        {recordId,
-         {{"Name", "Nvidia RTX PRO 6000 Blackwell 2"},
-          {"Exposes", json::array({nullptr, {{"Name", "Sensor"}}})}}}};
+    EMConfig restored = namedConfig("Nvidia RTX PRO 6000 Blackwell 2");
+    restored.exposesRecords = {
+        {{"Name", "Disabled sensor"},
+         {"Type", "TMP75"},
+         {"Status", "disabled"}},
+        {{"Name", "Runtime sensor"}, {"Type", "TMP75"}, {"Bus", 9}}};
+    SystemConfiguration cached = {{recordId, restored}};
     json missing = json::object();
     scan::FoundDevices devices = {{properties, "/fru/blackwell"}};
     std::vector<std::string> passed;
@@ -294,10 +305,46 @@ TEST(RestorePersistedConfigurations, RestoresCachedMatchedInstance)
 
     EXPECT_EQ(configuration[recordId]["Name"],
               "Nvidia RTX PRO 6000 Blackwell 2");
-    EXPECT_EQ(configuration[recordId]["Exposes"],
-              json::array({{{"Name", "Sensor"}}}));
+    EXPECT_EQ(configuration[recordId], restored.toJson());
     EXPECT_EQ(passed,
               (std::vector<std::string>{"Nvidia RTX PRO 6000 Blackwell 2"}));
+    EXPECT_TRUE(devices.empty());
+    EXPECT_EQ(indexes, (std::list<size_t>{1}));
+}
+
+TEST(RestorePersistedConfigurations, RestoresLegacyCacheRuntimeChanges)
+{
+    const std::string probeName = "Board $index";
+    DBusInterface properties = {{"BUS", uint64_t{10}}};
+    const std::string recordId =
+        scan::detail::getRecordName(properties, probeName);
+    json board = {
+        {"Name", "Board 2"},
+        {"Type", "Board"},
+        {"Probe", "TRUE"},
+        {"Exposes",
+         json::array(
+             {nullptr,
+              {{"Name", "Runtime sensor"}, {"Type", "TMP75"}, {"Bus", 9}}})}};
+    board["xyz.openbmc_project.Inventory.Decorator.Asset"] = {
+        {"Model", "runtime model"}};
+    auto cached = systemConfigurationFromJson({{recordId, board}});
+    ASSERT_TRUE(cached.has_value());
+    ASSERT_TRUE(cached->contains(recordId));
+    json configuration = json::object();
+    json missing = json::object();
+    scan::FoundDevices devices = {{properties, "/fru/board"}};
+    std::vector<std::string> passed;
+    std::set<json> usedNames;
+    std::list<size_t> indexes = {1, 2};
+
+    scan::detail::restorePersistedConfigurations(
+        devices, probeName, configuration, *cached, missing, passed, usedNames,
+        indexes);
+
+    board["Exposes"].erase(board["Exposes"].begin());
+    EXPECT_EQ(configuration.at(recordId), board);
+    EXPECT_EQ(passed, (std::vector<std::string>{"Board 2"}));
     EXPECT_TRUE(devices.empty());
     EXPECT_EQ(indexes, (std::list<size_t>{1}));
 }
