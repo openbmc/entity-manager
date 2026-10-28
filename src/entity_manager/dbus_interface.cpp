@@ -3,13 +3,19 @@
 #include "../dbus_util.hpp"
 #include "config_pointer.hpp"
 #include "perform_probe.hpp"
+#include "schema_dbus_types.hpp"
 #include "utils.hpp"
 
 #include <phosphor-logging/lg2.hpp>
 
 #include <flat_map>
 #include <fstream>
+#include <functional>
+#include <optional>
 #include <string>
+#include <string_view>
+#include <utility>
+#include <variant>
 #include <vector>
 
 namespace dbus_interface
@@ -19,7 +25,7 @@ EMDBusInterface::EMDBusInterface(
     boost::asio::io_context& io, sdbusplus::asio::object_server& objServer,
     const std::filesystem::path& schemaDirectory, ConfigCache& configCache) :
     io(io), objServer(objServer), configCache(configCache),
-    schemaDirectory(schemaDirectory)
+    schemaDirectory(schemaDirectory), schemaDBusTypes(schemaDirectory)
 {}
 
 void tryIfaceInitialize(std::shared_ptr<sdbusplus::asio::dbus_interface>& iface)
@@ -196,6 +202,48 @@ static void populateInterfacePropertyFromJson(
     }
 }
 
+std::optional<EMDBusInterface::SchemaTypedValues>
+    EMDBusInterface::convertSchemaTypes(
+        const nlohmann::json::object_t& record) const
+{
+    // A record's schema can name the D-Bus type a property is published as,
+    // which its type in the configuration does not always say.
+    SchemaTypedValues values;
+    auto typeIt = record.find("Type");
+    if (typeIt == record.end())
+    {
+        return values;
+    }
+    const std::string* recordType =
+        typeIt->second.get_ptr<const std::string*>();
+    if (recordType == nullptr)
+    {
+        return values;
+    }
+
+    for (const auto& [key, value] : record)
+    {
+        std::optional<std::string_view> dbusType =
+            schemaDBusTypes.find(*recordType, key);
+        if (!dbusType)
+        {
+            continue;
+        }
+        std::optional<schema_dbus_types::DBusValue> dbusValue =
+            schema_dbus_types::toDBusValue(*dbusType, value);
+        if (!dbusValue)
+        {
+            lg2::error(
+                "{TYPE} property {KEY} value {VALUE} cannot be published as {DBUS_TYPE}",
+                "TYPE", *recordType, "KEY", key, "VALUE", value.dump(),
+                "DBUS_TYPE", *dbusType);
+            return std::nullopt;
+        }
+        values.emplace(key, std::move(*dbusValue));
+    }
+    return values;
+}
+
 // adds simple json types to interface's properties
 void EMDBusInterface::populateInterfaceFromJson(
     nlohmann::json& systemConfiguration, const ConfigPointer& configPtr,
@@ -203,8 +251,33 @@ void EMDBusInterface::populateInterfaceFromJson(
     const nlohmann::json::object_t& dict,
     sdbusplus::asio::PropertyPermission permission)
 {
+    // Leave out the whole interface if a property cannot be published as the
+    // type its schema names, so that consumers never see the interface with a
+    // property missing or of the wrong type.
+    std::optional<SchemaTypedValues> dbusValues = convertSchemaTypes(dict);
+    if (!dbusValues)
+    {
+        lg2::error("Leaving out {INTF} at {PATH}", "INTF",
+                   iface->get_interface_name(), "PATH",
+                   iface->get_object_path());
+        return;
+    }
+
     for (const auto& [key, value] : dict)
     {
+        auto dbusValue = dbusValues->find(key);
+        if (dbusValue != dbusValues->end())
+        {
+            std::visit(
+                [&](const auto& publishedValue) {
+                    addProperty(key, publishedValue, iface.get(),
+                                systemConfiguration, configPtr, permission,
+                                configCache);
+                },
+                dbusValue->second);
+            continue;
+        }
+
         auto type = value.type();
         if (value.type() == nlohmann::json::value_t::array)
         {
@@ -357,6 +430,14 @@ void EMDBusInterface::addObjectJson(
     if (type == nullptr || name == nullptr)
     {
         throw std::invalid_argument("Type and Name must be a string.");
+    }
+
+    // Checked before the record is stored, so that a record that could not
+    // be published is rejected rather than saved and then left out.
+    if (!convertSchemaTypes(newData))
+    {
+        throw std::invalid_argument(
+            "A property cannot be published as the D-Bus type its schema names");
     }
 
     size_t lastIndex = 0;

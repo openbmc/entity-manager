@@ -300,10 +300,7 @@ static void templateCharReplaceArray(
     }
 }
 
-// @param strView: string to parse as number
-// @param strView: may be in base 10 or base 16 with '0x' prefix
-// @returns uint64_t number if it can be parsed as such
-static std::optional<uint64_t> parseAsNumber(std::string_view strView)
+std::optional<uint64_t> parseAsNumber(std::string_view strView)
 {
     if (strView.empty())
     {

@@ -320,6 +320,16 @@ void EntityManager::postExposesRecordsToDBus(
 
     const sdbusplus::object_path ifacePath = objectPath / itemName;
 
+    // The interfaces of the record's nested objects are published before the
+    // record's own, so check the record first and leave out all of them if it
+    // cannot be published.
+    if (!dbus_interface.convertSchemaTypes(item))
+    {
+        lg2::error("Leaving out {NAME} of {BOARD}", "NAME", itemName, "BOARD",
+                   configNameOrig);
+        return;
+    }
+
     if (itemType == "BMC")
     {
         std::shared_ptr<sdbusplus::asio::dbus_interface> bmcIface =

@@ -1,12 +1,14 @@
 // SPDX-License-Identifier: Apache-2.0
 // SPDX-FileCopyrightText: Copyright 2026 Intel Corporation
 
+#include "entity_manager/config_pointer.hpp"
 #include "entity_manager/dbus_interface.hpp"
 #include "entity_manager/utils.hpp"
 
 #include <boost/asio/io_context.hpp>
 #include <nlohmann/json.hpp>
 #include <sdbusplus/asio/connection.hpp>
+#include <sdbusplus/asio/object_server.hpp>
 
 #include <filesystem>
 #include <fstream>
@@ -171,4 +173,67 @@ TEST_F(AddObjectExposesTest, DuplicateAfterNullSlotThrows)
     EXPECT_THROW(add("A"), std::invalid_argument);
     EXPECT_TRUE(exposes()[0].is_null());
     EXPECT_EQ(exposes().size(), 2U);
+}
+
+class PublishRecordTest : public AddObjectTest
+{
+  protected:
+    nlohmann::json sysConfig;
+
+    std::shared_ptr<sdbusplus::asio::dbus_interface> publish(
+        const nlohmann::json::object_t& record)
+    {
+        sysConfig[kBoardId] = {{"Name", kBoardId},
+                               {"Type", "Board"},
+                               {"Exposes", nlohmann::json::array({record})}};
+        auto recordIface = iface->createInterface(
+            sdbusplus::object_path(
+                "/xyz/openbmc_project/inventory/system/board/TestBoard/Mcu"),
+            "xyz.openbmc_project.Configuration.MCTPI2CTarget", kBoardId);
+        iface->populateInterfaceFromJson(sysConfig, ConfigPointer(kBoardId, 0),
+                                         recordIface, record);
+        return recordIface;
+    }
+};
+
+TEST_F(PublishRecordTest, PublishesConvertibleRecord)
+{
+    auto recordIface = publish({{"Name", "Mcu"},
+                                {"Type", "MCTPI2CTarget"},
+                                {"Address", "0x1d"},
+                                {"Bus", 3}});
+
+    EXPECT_TRUE(recordIface->is_initialized());
+}
+
+TEST_F(PublishRecordTest, LeavesOutRecordWithUnconvertibleProperty)
+{
+    auto recordIface = publish({{"Name", "Mcu"},
+                                {"Type", "MCTPI2CTarget"},
+                                {"Address", "address"},
+                                {"Bus", 3}});
+
+    EXPECT_FALSE(recordIface->is_initialized());
+}
+
+TEST_F(PublishRecordTest, AddObjectRejectsUnconvertibleRecord)
+{
+    sysConfig[kBoardId] = {{"Name", kBoardId},
+                           {"Type", "Board"},
+                           {"Exposes", nlohmann::json::array()}};
+    std::string boardName{kBoardId};
+    const sdbusplus::object_path boardPath =
+        em_utils::buildInventorySystemPath(boardName, "Board");
+
+    using Params = std::flat_map<std::string, dbus_interface::JsonVariantType,
+                                 std::less<>>;
+    EXPECT_THROW(iface->addObject(Params{{"Name", std::string{"Mcu"}},
+                                         {"Type", std::string{"MCTPI2CTarget"}},
+                                         {"Address", std::string{"address"}},
+                                         {"Bus", uint64_t{3}}},
+                                  sysConfig, kBoardId, boardPath, kBoardId),
+                 std::invalid_argument);
+
+    EXPECT_TRUE(sysConfig[kBoardId]["Exposes"].empty());
+    EXPECT_FALSE(std::filesystem::exists(tmpDir / "system.json"));
 }

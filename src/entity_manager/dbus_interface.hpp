@@ -3,6 +3,7 @@
 #include "config_cache.hpp"
 #include "config_pointer.hpp"
 #include "configuration.hpp"
+#include "schema_dbus_types.hpp"
 
 #include <boost/asio/io_context.hpp>
 #include <nlohmann/json.hpp>
@@ -11,6 +12,9 @@
 #include <sdbusplus/asio/object_server.hpp>
 
 #include <flat_map>
+#include <functional>
+#include <optional>
+#include <string>
 #include <vector>
 
 namespace dbus_interface
@@ -48,6 +52,15 @@ class EMDBusInterface
         sdbusplus::asio::PropertyPermission permission =
             sdbusplus::asio::PropertyPermission::readOnly);
 
+    using SchemaTypedValues =
+        std::flat_map<std::string, schema_dbus_types::DBusValue, std::less<>>;
+
+    // The properties of a record whose schema names their D-Bus type,
+    // converted to it, or std::nullopt with an error logged if one of them
+    // cannot be.
+    std::optional<SchemaTypedValues> convertSchemaTypes(
+        const nlohmann::json::object_t& record) const;
+
     void createDeleteObjectMethod(
         const ConfigPointer& configPtr,
         const std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
@@ -77,6 +90,9 @@ class EMDBusInterface
         inventory;
 
     const std::filesystem::path schemaDirectory;
+
+    // The D-Bus types the schemas name for record properties.
+    const schema_dbus_types::SchemaDBusTypes schemaDBusTypes;
 };
 
 void tryIfaceInitialize(

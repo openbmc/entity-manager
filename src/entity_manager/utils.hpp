@@ -6,6 +6,10 @@
 #include <nlohmann/json.hpp>
 #include <sdbusplus/asio/connection.hpp>
 
+#include <cstdint>
+#include <optional>
+#include <string_view>
+
 constexpr const char* emDbusName = "xyz.openbmc_project.EntityManager";
 constexpr const char* emDbusPath = "/xyz/openbmc_project/EntityManager";
 constexpr const char* versionFile = "/etc/os-release";
@@ -35,6 +39,11 @@ std::optional<std::string> templateCharReplace(
 std::optional<std::string> templateCharReplace(
     nlohmann::json& value, const DBusInterface& interface, size_t index,
     const std::optional<std::string>& replaceStr = std::nullopt);
+
+// @param strView: string to parse as number
+// @param strView: may be in base 10 or base 16 with '0x' prefix
+// @returns uint64_t number if it can be parsed as such
+std::optional<uint64_t> parseAsNumber(std::string_view strView);
 
 // replacement functions which do not need json inputs
 std::optional<std::string> templateCharReplaceStr(
