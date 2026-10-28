@@ -7,16 +7,23 @@
 #include <boost/asio/io_context.hpp>
 #include <nlohmann/json.hpp>
 #include <sdbusplus/asio/connection.hpp>
+#include <xyz/openbmc_project/Configuration/Object/common.hpp>
 
+#include <chrono>
 #include <filesystem>
 #include <fstream>
 #include <memory>
+#include <string>
+#include <variant>
 
 #include <gtest/gtest.h>
 
 #ifndef SCHEMA_DIR
 #define SCHEMA_DIR "."
 #endif
+
+using ConfigObject =
+    sdbusplus::common::xyz::openbmc_project::configuration::Object;
 
 static constexpr const char* kBoardId = "TestBoard";
 
@@ -171,4 +178,104 @@ TEST_F(AddObjectExposesTest, DuplicateAfterNullSlotThrows)
     EXPECT_THROW(add("A"), std::invalid_argument);
     EXPECT_TRUE(exposes()[0].is_null());
     EXPECT_EQ(exposes().size(), 2U);
+}
+
+class ConfigObjectTest : public AddObjectExposesTest
+{
+  protected:
+    void SetUp() override
+    {
+        AddObjectExposesTest::SetUp();
+        setExposes(nlohmann::json::array());
+    }
+
+    sdbusplus::object_path add(const std::string& name, const std::string& type)
+    {
+        using Params =
+            std::flat_map<std::string, dbus_interface::JsonVariantType,
+                          std::less<>>;
+        iface->addObject(Params{{"Name", name}, {"Type", type}}, sysConfig,
+                         kBoardId, boardPath, kBoardId);
+        return boardPath / name;
+    }
+
+    template <typename... Args>
+    boost::system::error_code tryCall(
+        const sdbusplus::object_path& path, const std::string& interface,
+        const std::string& method, const Args&... args)
+    {
+        boost::system::error_code result;
+        bool done = false;
+        bus->async_method_call(
+            [&result, &done](const boost::system::error_code& ec) {
+                result = ec;
+                done = true;
+            },
+            bus->get_unique_name(), path, interface, method, args...);
+        for (int i = 0; !done && i < 100; i++)
+        {
+            io.run_one_for(std::chrono::milliseconds(100));
+        }
+        EXPECT_TRUE(done);
+        // Delete removes the interface in a posted handler
+        io.poll();
+        return result;
+    }
+
+    template <typename... Args>
+    void call(const sdbusplus::object_path& path, const std::string& interface,
+              const std::string& method, const Args&... args)
+    {
+        boost::system::error_code ec =
+            tryCall(path, interface, method, args...);
+        EXPECT_FALSE(ec) << ec.message();
+    }
+
+    bool exposesConfigObject(const sdbusplus::object_path& path)
+    {
+        return !tryCall(path, "org.freedesktop.DBus.Properties", "GetAll",
+                        std::string{ConfigObject::interface});
+    }
+
+    void remove(const sdbusplus::object_path& path, const std::string& type)
+    {
+        call(path, "xyz.openbmc_project.Configuration." + type, "Delete");
+    }
+};
+
+TEST_F(ConfigObjectTest, DeleteRemovesConfigObject)
+{
+    const sdbusplus::object_path path = add("Zone", "Pid.Zone");
+    EXPECT_TRUE(exposesConfigObject(path));
+
+    remove(path, "Pid.Zone");
+    EXPECT_FALSE(exposesConfigObject(path));
+}
+
+TEST_F(ConfigObjectTest, SharedNameKeepsConfigObjectUntilLastDelete)
+{
+    const sdbusplus::object_path path = add("Shared", "Pid.Zone");
+    add("Shared", "TMP75");
+    EXPECT_TRUE(exposesConfigObject(path));
+
+    remove(path, "Pid.Zone");
+    EXPECT_TRUE(exposesConfigObject(path));
+
+    remove(path, "TMP75");
+    EXPECT_FALSE(exposesConfigObject(path));
+}
+
+TEST_F(ConfigObjectTest, RenameKeepsConfigObject)
+{
+    const sdbusplus::object_path path = add("RenameSource", "Pid.Zone");
+    add("RenameSource", "TMP75");
+
+    call(path, "org.freedesktop.DBus.Properties", "Set",
+         std::string{"xyz.openbmc_project.Configuration.TMP75"},
+         std::string{"Name"}, std::variant<std::string>{"Renamed"});
+    remove(path, "Pid.Zone");
+    EXPECT_TRUE(exposesConfigObject(path));
+
+    remove(path, "TMP75");
+    EXPECT_FALSE(exposesConfigObject(path));
 }
