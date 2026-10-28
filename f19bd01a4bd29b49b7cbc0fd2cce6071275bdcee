@@ -74,6 +74,30 @@
       },
       "revId": "f19bd01a4bd29b49b7cbc0fd2cce6071275bdcee",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "973fb0ba_1ce4d797",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 41
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1001906
+      },
+      "writtenOn": "2026-10-28T07:09:38Z",
+      "side": 1,
+      "message": "Is this the structure you are expecting?\n\n{\n    \"Address\": \"0x20\",\n    \"Bus\": \"9\",\n    \"Name\": \"MMC\",\n    \"PLDMSensorNames\": [\n        \"SensorName1\",\n        \"SensorName2\"\n    ],\n    \"PLDMSensorIDs\": [\n        300,\n        500\n    ],\n    \"Type\": \"MCTPI2CTarget\"\n}",
+      "parentUuid": "866b55d6_bbbf77e4",
+      "range": {
+        "startLine": 18,
+        "startChar": 16,
+        "endLine": 35,
+        "endChar": 18
+      },
+      "revId": "f19bd01a4bd29b49b7cbc0fd2cce6071275bdcee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
