@@ -15,7 +15,7 @@
     ],
     "Name": "NVMe $index",
     "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PART_NUMBER': '^Micron_7450_.*'})",
-    "Type": "NVMe",
+    "Type": "Drive",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "Manufacturer": "$PRODUCT_MANUFACTURER",
         "Model": "7450",
