@@ -129,7 +129,11 @@
                 },
                 "Type": {
                     "description": "The type of configuration object",
-                    "enum": ["PT5161LFirmware", "PT5081LFirmware"]
+                    "enum": [
+                        "PT5161LFirmware",
+                        "PT5081LFirmware",
+                        "KB9002Firmware"
+                    ]
                 },
                 "Bus": {
                     "$ref": "legacy.json#/$defs/Types/Bus"
