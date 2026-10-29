@@ -238,9 +238,16 @@ void EntityManager::postBoardToDBus(
                 typeIface = iface;
             }
 
+            auto permission = sdbusplus::asio::PropertyPermission::readOnly;
+
+            if (propName.contains("xyz.openbmc_project.Inventory.Item.Drive"))
+            {
+                permission = sdbusplus::asio::PropertyPermission::readWrite;
+            }
+
             dbus_interface.populateInterfaceFromJson(
                 systemConfiguration, ConfigPointer(configId, propName), iface,
-                *propValueObj);
+                *propValueObj, permission);
         }
     }
 
