@@ -848,7 +848,7 @@
         }
     ],
     "Name": "Santa Barbara PCIe switch board",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara PCIe switch board', 'BOARD_MANUFACTURER': 'Quanta', 'BOARD_INFO_AM4': 'vr-mps switch-aeb'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': '^Santa Barbara (PCIe switch board|Gen2 PCIe SW)', 'BOARD_MANUFACTURER': 'Quanta', 'BOARD_INFO_AM4': 'vr-mps switch-aeb'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
