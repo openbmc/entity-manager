@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95e404d1_bd22130e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-29T10:08:03Z",
+      "side": 1,
+      "message": "hi, please make a gerrit topic or link related changes\n\nhttps://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/96490\n\nas part of the commit message.\n\nThis will help people to find related changes.",
+      "revId": "25dbbe6a9ae3e0dbd8d68f8e4d693c52635c92b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c29f4a43_ddadcd2e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-29T10:08:03Z",
+      "side": 1,
+      "message": "The kernel commit mentions a firmware version in debugfs,\n\n\u003e hwmon: (kb9002) Add driver for Kandou KB9002 retimer\nThe Kandou KB9002 is an 8-lane PCIe 5.0 retimer that exposes an SMBus\ntarget with mandatory PEC. Add a hwmon driver reporting the firmware\naggregated maximum die temperature as temp1_input, with the firmware\nversion and boot status under debugfs.\n\nhttps://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id\u003d694329073a3a964278a80a3ce1202b770f311b4d\n\nwill we track that version as well in fw inventory or are we only interested in the temp sensor?\n\nCould you make a note of this in the commit message which direction we are taking here.",
+      "revId": "25dbbe6a9ae3e0dbd8d68f8e4d693c52635c92b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
