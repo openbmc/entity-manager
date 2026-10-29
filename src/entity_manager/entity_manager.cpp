@@ -239,7 +239,7 @@ void EntityManager::postBoardToDBus(
 
             dbus_interface.populateInterfaceFromJson(
                 systemConfiguration, ConfigPointer(configId, propName), iface,
-                *propValueObj);
+                *propValueObj, sdbusplus::asio::PropertyPermission::readWrite);
         }
     }
 
