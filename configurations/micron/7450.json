@@ -22,5 +22,14 @@
         "PartNumber": "$PRODUCT_PART_NUMBER",
         "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
     },
-    "xyz.openbmc_project.Inventory.Item.Chassis": {}
+    "xyz.openbmc_project.Inventory.Item.Chassis": {},
+    "xyz.openbmc_project.Inventory.Item.Drive": {
+        "Capacity": 0,
+        "EncryptionStatus": "Unknown",
+        "LockedStatus": "Unknown",
+        "PredictedMediaLifeLeftPercent": 255,
+        "Protocol": "NVMe",
+        "Resettable": false,
+        "Type": "SSD"
+    }
 }
