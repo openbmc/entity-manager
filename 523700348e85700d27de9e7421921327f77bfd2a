@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c3bfe11_f64793a5",
+        "filename": "schemas/platform/mctp.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-30T06:08:32Z",
+      "side": 1,
+      "message": "Since [95311](https://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/95311) only uses these when all three are present, could we add a `dependentRequired` so a partial set fails validation instead of silently falling back to dynamic assignment?",
+      "revId": "523700348e85700d27de9e7421921327f77bfd2a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de343027_354b9781",
+        "filename": "schemas/platform/mctp.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-30T06:08:32Z",
+      "side": 1,
+      "message": "Could we bound these with `minimum` and `maximum`, for example 8 to 254 for `StaticEndpointID` as DSP0236 reserves 0, 1 to 7 and 255, and 1 or more for `BridgePoolSize`, so an out of range value fails validation instead of being ignored at runtime?",
+      "revId": "523700348e85700d27de9e7421921327f77bfd2a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d5d52a4_f31ff2c7",
+        "filename": "schemas/platform/mctp.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-30T06:08:32Z",
+      "side": 1,
+      "message": "nit: could the three names share one spelling, for example `StaticEid` alongside `BridgePoolStartEid`, and the curly quote in bridge’s become a plain apostrophe?",
+      "revId": "523700348e85700d27de9e7421921327f77bfd2a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
