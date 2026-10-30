@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b6751d7_a1be9db3",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-30T12:52:52Z",
+      "side": 1,
+      "message": "Done, this change now only adds the annotations, and the publishing change builds on it.",
+      "parentUuid": "5879225f_872329df",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 2
+      },
+      "revId": "fa751d1c90325b05591e6852732bfe858afd4df9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c3f9529_f4999b12",
@@ -47,6 +71,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb2fe7d6_1b9d259c",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-30T12:52:52Z",
+      "side": 1,
+      "message": "Done, `Name` and `Type` are annotated as `string` in both `MCTPI2CTarget` and `MCTPI3CTarget`, so a schema that uses `x-dbus-type` covers all of its properties.",
+      "parentUuid": "3c3f9529_f4999b12",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 18
+      },
+      "revId": "fa751d1c90325b05591e6852732bfe858afd4df9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2be17dfc_e4ae7516",
@@ -60,6 +108,24 @@
       "writtenOn": "2026-10-30T10:18:00Z",
       "side": 1,
       "message": "i am not sure if it makes sense to continue work on the python config validator given that it cannot call into the rest of the code without bindings.\n\nFor example there\u0027s C++ code to parse `Probe` statement which could be used to validate these probe statements in CI, but it\u0027s not used as python code cannot call it.\n\nIf we continue on this track of extending the python validator we are bound to implement things twice. Once in python and once in C++.\n\nAnd the checks done in python in CI do not imply that the same or similar checks done in C++ at runtime will pass. So might as well do the checks in C++ at CI time and at runtime.\n\nFor completeness this is the patch, you have already seen it:\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/95037\n\n\nMaybe Matt will have a completely different take on this issue so depending on\nyour preferred direction you could also wait on his review.",
+      "revId": "fa751d1c90325b05591e6852732bfe858afd4df9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35012722_99f04164",
+        "filename": "scripts/validate_configs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-30T12:52:52Z",
+      "side": 1,
+      "message": "Agreed, I\u0027ve dropped the Python check. [96529](https://gerrit.openbmc.org/c/openbmc/entity-manager/+/96529) already does the conversion in C++, so once [95037](https://gerrit.openbmc.org/c/openbmc/entity-manager/+/95037) lands I\u0027ll add a follow-up that runs the same code from the C++ validator, so CI and runtime check values the same way.",
+      "parentUuid": "2be17dfc_e4ae7516",
       "revId": "fa751d1c90325b05591e6852732bfe858afd4df9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
