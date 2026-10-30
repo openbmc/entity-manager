@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e0dc130_3d3bef15",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-30T10:53:26Z",
+      "side": 1,
+      "message": "please expand here on why you want to change it as writeable",
+      "revId": "ba4e257c4a88f21ab16f2ff4065c4f612ad0cf2e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d9359d0_f4717a4c",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-30T10:53:26Z",
+      "side": 1,
+      "message": "i fear that if anything is writeable then we can no longer rely on upstream config json to be accurate. Can it be scoped to the interfaces and properties where you think it\u0027s required?",
+      "range": {
+        "startLine": 242,
+        "startChar": 0,
+        "endLine": 242,
+        "endChar": 2
+      },
+      "revId": "ba4e257c4a88f21ab16f2ff4065c4f612ad0cf2e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
