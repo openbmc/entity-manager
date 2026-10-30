@@ -61,7 +61,8 @@ EntityManager::EntityManager(
     systemConfiguration(nlohmann::json::object()), io(io),
     configCache(std::move(configCacheDir)),
     dbus_interface(io, objServer, schemaDirectory, configCache),
-    powerStatus(*systemBus), propertiesChangedTimer(io)
+    mctpTarget(dbus_interface), powerStatus(*systemBus),
+    propertiesChangedTimer(io)
 {
     // All other objects that EntityManager currently support are under the
     // inventory subtree.
@@ -191,6 +192,8 @@ void EntityManager::postBoardToDBus(
 
     dbus_interface.createAddObjectMethod(configId, objectPath,
                                          systemConfiguration, configNameOrig);
+    mctpTarget.createMethods(configId, objectPath, systemConfiguration,
+                             configNameOrig);
 
     // A configuration type only gets a top-level interface if it is listed
     // here. Adding a type to the schema is therefore not enough to make

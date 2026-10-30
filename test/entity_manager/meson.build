@@ -108,6 +108,28 @@ test(
         include_directories: test_include_dir,
     ),
 )
+ \
+    test(
+    'test_mctp_target',
+    executable(
+        'test_mctp_target',
+        'test_mctp_target.cpp',
+        cpp_args: test_boost_args + [
+            '-DSCHEMA_DIR="' + packagedir / 'schemas' + '"',
+        ],
+        dependencies: [
+            boost,
+            gtest,
+            nlohmann_json_dep,
+            phosphor_dbus_interfaces_dep,
+            phosphor_logging_dep,
+            sdbusplus,
+            valijson,
+        ],
+        link_with: [entity_manager_lib, utils_lib],
+        include_directories: test_include_dir,
+    ),
+)
 
 test(
     'test_em_config',

@@ -6,6 +6,7 @@
 #include "config_cache.hpp"
 #include "configuration.hpp"
 #include "dbus_interface.hpp"
+#include "mctp_target.hpp"
 #include "power_status_monitor.hpp"
 #include "topology.hpp"
 
@@ -51,6 +52,8 @@ class EntityManager
     ConfigCache configCache;
 
     dbus_interface::EMDBusInterface dbus_interface;
+
+    mctp_target::MCTPTarget mctpTarget;
 
     power::PowerStatusMonitor powerStatus;
 
