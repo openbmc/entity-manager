@@ -184,9 +184,14 @@ TEST(EMConfig, PreservesExposePowerState)
     nlohmann::json::object_t input = getSampleConfig();
     input["Exposes"].at(0)["PowerState"] = "BiosPost";
 
-    const auto config = EMConfig::fromJson(input);
+    const std::optional<EMConfig> optConfig = EMConfig::fromJson(input);
 
-    ASSERT_TRUE(config.has_value());
-    EXPECT_EQ(config->exposesRecords.at(0).at("PowerState"), "BiosPost");
-    EXPECT_EQ(config->toJson(), nlohmann::json(input));
+    if (!optConfig.has_value())
+    {
+        throw std::invalid_argument("did not parse");
+    }
+    const EMConfig& config = optConfig.value();
+
+    EXPECT_EQ(config.exposesRecords.at(0).at("PowerState"), "BiosPost");
+    EXPECT_EQ(config.toJson(), nlohmann::json(input));
 }
