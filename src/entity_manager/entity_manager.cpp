@@ -6,6 +6,7 @@
 #include "../dbus_util.hpp"
 #include "../utils.hpp"
 #include "../variant_visitors.hpp"
+#include "board_presence.hpp"
 #include "configuration.hpp"
 #include "dbus_interface.hpp"
 #include "log_device_inventory.hpp"
@@ -28,13 +29,17 @@
 #include <xyz/openbmc_project/Inventory/Item/System/common.hpp>
 #include <xyz/openbmc_project/Inventory/Item/common.hpp>
 
+#include <algorithm>
+#include <cstddef>
 #include <filesystem>
 #include <flat_map>
+#include <flat_set>
 #include <fstream>
 #include <functional>
 #include <map>
 #include <optional>
 #include <regex>
+#include <string>
 constexpr const char* tempConfigDir = "/tmp/configuration/";
 constexpr const char* lastConfiguration = "/tmp/configuration/last.json";
 
@@ -267,6 +272,12 @@ void EntityManager::postBoardToDBus(
         return;
     }
 
+    std::optional<board_presence::Names> foundBoards;
+    if (configType == "Platform")
+    {
+        foundBoards = board_presence::foundNames(systemConfiguration);
+    }
+
     for (size_t exposesIndex = 0; exposesIndex < exposes->size();
          ++exposesIndex)
     {
@@ -281,7 +292,8 @@ void EntityManager::postBoardToDBus(
         }
         std::optional<sdbusplus::object_path> itemPath =
             postExposesRecordsToDBus(*itemObj, exposesIndex, configNameOrig,
-                                     configId, objectPath, configType);
+                                     configId, objectPath, configType,
+                                     foundBoards ? &*foundBoards : nullptr);
         if (itemPath)
         {
             dbus_interface.addConfigObject(*itemPath, configNameOrig);
@@ -291,10 +303,33 @@ void EntityManager::postBoardToDBus(
     newObjects.emplace(objectPath, configNameOrig);
 }
 
+// if status is not found it is assumed to be status = 'okay'
+static bool recordDisabled(const nlohmann::json::object_t& item)
+{
+    auto findStatus = item.find("Status");
+    return findStatus != item.end() && findStatus->second == "disabled";
+}
+
+static sdbusplus::object_path recordPath(
+    const sdbusplus::object_path& objectPath, const std::string& recordName)
+{
+    return objectPath / dbus_util::sanitizeForDBusPathSegment(recordName);
+}
+
+static std::string arrayObjectInterface(
+    const std::string& itemType, const std::string& property, size_t index)
+{
+    std::string ifaceName = "xyz.openbmc_project.Configuration.";
+    ifaceName.append(itemType).append(".").append(property);
+    ifaceName.append(std::to_string(index));
+    return ifaceName;
+}
+
 std::optional<sdbusplus::object_path> EntityManager::postExposesRecordsToDBus(
     const nlohmann::json::object_t& item, size_t exposesIndex,
     const std::string& configNameOrig, const std::string& boardId,
-    const sdbusplus::object_path& objectPath, const std::string& configType)
+    const sdbusplus::object_path& objectPath, const std::string& configType,
+    const board_presence::Names* foundBoards)
 {
     const ConfigPointer configPointerPath(boardId, exposesIndex);
 
@@ -305,14 +340,17 @@ std::optional<sdbusplus::object_path> EntityManager::postExposesRecordsToDBus(
                    nlohmann::json(item));
         return std::nullopt;
     }
-    auto findStatus = item.find("Status");
-    // if status is not found it is assumed to be status = 'okay'
-    if (findStatus != item.end())
+    if (recordDisabled(item))
     {
-        if (findStatus->second == "disabled")
-        {
-            return std::nullopt;
-        }
+        return std::nullopt;
+    }
+    if (foundBoards != nullptr &&
+        !board_presence::boardFound(item, *foundBoards))
+    {
+        lg2::info("{CONFIG} record {NAME} waits for board {BOARD}", "CONFIG",
+                  configNameOrig, "NAME", findName->second, "BOARD",
+                  item.at("Board").get<std::string>());
+        return std::nullopt;
     }
     auto findType = item.find("Type");
     std::string itemType = "unknown";
@@ -329,10 +367,8 @@ std::optional<sdbusplus::object_path> EntityManager::postExposesRecordsToDBus(
         return std::nullopt;
     }
 
-    const std::string itemName = dbus_util::sanitizeForDBusPathSegment(
-        findName->second.get<std::string>());
-
-    sdbusplus::object_path ifacePath = objectPath / itemName;
+    sdbusplus::object_path ifacePath =
+        recordPath(objectPath, findName->second.get<std::string>());
 
     // The interfaces of the record's nested objects are published before the
     // record's own, so check the record first and leave out all of them if it
@@ -341,8 +377,8 @@ std::optional<sdbusplus::object_path> EntityManager::postExposesRecordsToDBus(
         schema_dbus_types::recordInterface(itemType);
     if (!dbus_interface.convertSchemaTypes(recordIface, item))
     {
-        lg2::error("Leaving out {NAME} of {BOARD}", "NAME", itemName, "BOARD",
-                   configNameOrig);
+        lg2::error("Leaving out {NAME} of {BOARD}", "NAME", findName->second,
+                   "BOARD", configNameOrig);
         return std::nullopt;
     }
 
@@ -376,7 +412,7 @@ std::optional<sdbusplus::object_path> EntityManager::postExposesRecordsToDBus(
         if (!postConfigurationRecord(
                 name, config, configNameOrig, itemType,
                 configPointerPath.withExposesIndexAndName(exposesIndex, name),
-                ifacePath))
+                ifacePath, foundBoards))
         {
             break;
         }
@@ -398,10 +434,27 @@ std::optional<sdbusplus::object_path> EntityManager::postExposesRecordsToDBus(
     return ifacePath;
 }
 
+void EntityManager::postArrayObject(
+    const std::string& name, size_t index,
+    const nlohmann::json::object_t& object, const std::string& configNameOrig,
+    const std::string& itemType, const ConfigPointer& configPtr,
+    const sdbusplus::object_path& ifacePath)
+{
+    std::shared_ptr<sdbusplus::asio::dbus_interface> objectIface =
+        dbus_interface.createInterface(
+            ifacePath, arrayObjectInterface(itemType, name, index),
+            configNameOrig);
+
+    dbus_interface.populateInterfaceFromJson(
+        systemConfiguration, configPtr.withArrayIndex(index), objectIface,
+        object, std::nullopt, getPermission(name));
+}
+
 bool EntityManager::postConfigurationRecord(
     const std::string& name, const nlohmann::json& config,
     const std::string& configNameOrig, const std::string& itemType,
-    const ConfigPointer& configPtr, const sdbusplus::object_path& ifacePath)
+    const ConfigPointer& configPtr, const sdbusplus::object_path& ifacePath,
+    const board_presence::Names* foundBoards)
 {
     if (const auto* configObj =
             config.get_ptr<const nlohmann::json::object_t*>())
@@ -451,17 +504,21 @@ bool EntityManager::postConfigurationRecord(
             const nlohmann::json::object_t* arrayItemObj =
                 arrayItem.get_ptr<const nlohmann::json::object_t*>();
 
-            std::string ifaceName = "xyz.openbmc_project.Configuration.";
-            ifaceName.append(itemType).append(".").append(name);
-            ifaceName.append(std::to_string(index));
+            // Keep the index of an object that waits for its board, since
+            // the position in the array can carry meaning of its own.
+            if (foundBoards != nullptr &&
+                !board_presence::boardFound(*arrayItemObj, *foundBoards))
+            {
+                lg2::info("{CONFIG} {NAME}{INDEX} waits for board {BOARD}",
+                          "CONFIG", configNameOrig, "NAME", name, "INDEX",
+                          index, "BOARD",
+                          arrayItemObj->at("Board").get<std::string>());
+                index++;
+                continue;
+            }
 
-            std::shared_ptr<sdbusplus::asio::dbus_interface> objectIface =
-                dbus_interface.createInterface(ifacePath, ifaceName,
-                                               configNameOrig);
-
-            dbus_interface.populateInterfaceFromJson(
-                systemConfiguration, configPtr.withArrayIndex(index),
-                objectIface, *arrayItemObj, std::nullopt, getPermission(name));
+            postArrayObject(name, index, *arrayItemObj, configNameOrig,
+                            itemType, configPtr, ifacePath);
             index++;
         }
     }
@@ -533,6 +590,161 @@ void EntityManager::pruneConfiguration(const std::string& name,
             em_utils::buildInventorySystemPath(boardName, *configType));
     }
     logDeviceRemoved(name, device, cachedBaseline);
+}
+
+void EntityManager::removeInterfaces(
+    const nlohmann::json& config,
+    const std::function<bool(sdbusplus::asio::dbus_interface&)>& match)
+{
+    auto& ifaces = dbus_interface.getDeviceInterfaces(config);
+    std::erase_if(ifaces, [&](const auto& weakIface) {
+        auto iface = weakIface.lock();
+        if (!iface)
+        {
+            return true;
+        }
+        if (!match(*iface))
+        {
+            return false;
+        }
+        objServer.remove_interface(iface);
+        return true;
+    });
+}
+
+void EntityManager::refreshPlatformRecords(
+    const board_presence::Names& before, const board_presence::Names& after,
+    const std::flat_set<std::string>& newConfigIds)
+{
+    if (before == after)
+    {
+        return;
+    }
+
+    for (const auto& [configId, config] : systemConfiguration.items())
+    {
+        if (newConfigIds.contains(configId) ||
+            em_utils::resolveConfigType(config) != "Platform")
+        {
+            continue;
+        }
+        const nlohmann::json& exposes = config.at("Exposes");
+        for (size_t exposesIndex = 0; exposesIndex < exposes.size();
+             ++exposesIndex)
+        {
+            // Deleted records are null.
+            const auto* item = exposes[exposesIndex]
+                                   .get_ptr<const nlohmann::json::object_t*>();
+            if (item == nullptr || recordDisabled(*item))
+            {
+                continue;
+            }
+            refreshPlatformRecord(configId, config, exposesIndex, *item, before,
+                                  after);
+        }
+    }
+}
+
+void EntityManager::refreshPlatformRecord(
+    const std::string& configId, const nlohmann::json& config,
+    size_t exposesIndex, const nlohmann::json::object_t& item,
+    const board_presence::Names& before, const board_presence::Names& after)
+{
+    // A record of an invalid Type was never published.
+    const std::string& type = item.at("Type").get_ref<const std::string&>();
+    if (!dbus_util::validateDBusInterfaceSegments(type))
+    {
+        return;
+    }
+
+    const board_presence::RecordChange change =
+        board_presence::recordChange(item, before, after);
+    if (change.action == board_presence::RecordChange::Action::none)
+    {
+        return;
+    }
+
+    const std::string& name = config.at("Name").get_ref<const std::string&>();
+    std::string pathName = name;
+    const sdbusplus::object_path objectPath =
+        em_utils::buildInventorySystemPath(pathName, "Platform");
+    // Only what changed is touched, so a consumer of the rest of the record
+    // does not see it go away and come back.
+    const sdbusplus::object_path ifacePath =
+        recordPath(objectPath, item.at("Name").get<std::string>());
+    lg2::info("{CONFIG} record {NAME} follows a board change", "CONFIG", name,
+              "NAME", item.at("Name"));
+
+    switch (change.action)
+    {
+        case board_presence::RecordChange::Action::publish:
+        {
+            std::optional<sdbusplus::object_path> itemPath =
+                postExposesRecordsToDBus(item, exposesIndex, name, configId,
+                                         objectPath, "Platform", &after);
+            if (itemPath)
+            {
+                dbus_interface.addConfigObject(*itemPath, name);
+            }
+            break;
+        }
+        case board_presence::RecordChange::Action::withdraw:
+            withdrawPlatformRecord(config, ifacePath, type);
+            break;
+        case board_presence::RecordChange::Action::update:
+            updatePlatformRecord(configId, config, exposesIndex, item, change,
+                                 ifacePath);
+            break;
+        case board_presence::RecordChange::Action::none:
+            break;
+    }
+}
+
+void EntityManager::withdrawPlatformRecord(
+    const nlohmann::json& config, const sdbusplus::object_path& ifacePath,
+    const std::string& type)
+{
+    // Another record of the same Name may share the object, so only this
+    // record's interfaces go.
+    const std::string recordIface = "xyz.openbmc_project.Configuration." + type;
+    removeInterfaces(config, [&](auto& iface) {
+        const std::string& ifaceName = iface.get_interface_name();
+        return iface.get_object_path() == ifacePath &&
+               (ifaceName == recordIface ||
+                ifaceName.starts_with(recordIface + "."));
+    });
+    dbus_interface.removeConfigObject(ifacePath);
+}
+
+void EntityManager::updatePlatformRecord(
+    const std::string& configId, const nlohmann::json& config,
+    size_t exposesIndex, const nlohmann::json::object_t& item,
+    const board_presence::RecordChange& change,
+    const sdbusplus::object_path& ifacePath)
+{
+    const std::string& name = config.at("Name").get_ref<const std::string&>();
+    const std::string& type = item.at("Type").get_ref<const std::string&>();
+    for (const auto& object : change.removed)
+    {
+        const std::string iface =
+            arrayObjectInterface(type, object.property, object.index);
+        removeInterfaces(config, [&](auto& candidate) {
+            return candidate.get_object_path() == ifacePath &&
+                   candidate.get_interface_name() == iface;
+        });
+    }
+    for (const auto& object : change.added)
+    {
+        postArrayObject(
+            object.property, object.index,
+            item.at(object.property)
+                .at(object.index)
+                .get_ref<const nlohmann::json::object_t&>(),
+            name, type,
+            ConfigPointer(configId, exposesIndex)
+                .withExposesIndexAndName(exposesIndex, object.property),
+            ifacePath);
+    }
 }
 
 void EntityManager::publishNewConfiguration(
@@ -622,12 +834,31 @@ void EntityManager::onScanComplete(size_t count,
         }
     }
 
+    board_presence::Names boardsBefore =
+        board_presence::foundNames(oldConfiguration);
+    board_presence::Names boardsAfter =
+        board_presence::foundNames(systemConfiguration);
+    std::flat_set<std::string> newConfigIds;
+    for (const auto& [key, _] : newConfiguration.items())
+    {
+        newConfigIds.emplace(key);
+    }
+
     propertiesChangedInProgress = false;
 
-    boost::asio::post(io, [this, newConfiguration, count] {
+    boost::asio::post(io, [this, newConfiguration, count,
+                           boardsBefore{std::move(boardsBefore)},
+                           boardsAfter{std::move(boardsAfter)},
+                           newConfigIds{std::move(newConfigIds)}]() mutable {
         publishNewConfiguration(std::ref(propertiesChangedInstance), count,
                                 std::ref(propertiesChangedTimer),
                                 newConfiguration);
+        // After the boards themselves are published.
+        boost::asio::post(io, [this, boardsBefore{std::move(boardsBefore)},
+                               boardsAfter{std::move(boardsAfter)},
+                               newConfigIds{std::move(newConfigIds)}] {
+            refreshPlatformRecords(boardsBefore, boardsAfter, newConfigIds);
+        });
     });
 }
 

@@ -35,9 +35,16 @@ Platform config schemas live under `schemas/platform/`:
 A platform `Exposes` record (for example an `MCTPUSBDevice`) names the board
 inventory object its device is on in `Board`. Consumers use it to find the
 configuration that board exposes for the device, and to associate the resulting
-sensors with the correct board or chassis. Because the board must already exist
-for this to resolve, it is expected as a `FOUND(...)` precondition in the
-platform `Probe`.
+sensors with the correct board or chassis. Because the board must exist for this
+to resolve, entity-manager publishes a record only once the board it names has
+been found, and withdraws it again if the board is lost. The platform `Probe`
+therefore only needs to require the boards that identify the platform, and a
+missing board costs just the records that name it.
+
+The same holds for an object in one of the record's arrays, such as a
+`BridgedEndpoints` entry: it waits for the board it names while the rest of the
+record is published, and keeps its position in the array, so the index in its
+interface name does not shift.
 
 ## Describing the devices behind an MCTP bridge
 
