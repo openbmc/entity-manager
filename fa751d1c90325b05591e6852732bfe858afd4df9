@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5879225f_872329df",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-30T10:18:00Z",
+      "side": 1,
+      "message": "perhaps adding the `x-dbus-type` to a few schemas like this could be a commit on it\u0027s own, at the start of the patch series.\n\nYou already demonstrated through these 2 patches how it can be used and even\nwithout any code using it, it is independently useful to have it as documentation.",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 2
+      },
+      "revId": "fa751d1c90325b05591e6852732bfe858afd4df9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c3f9529_f4999b12",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-30T10:18:00Z",
+      "side": 1,
+      "message": "```suggestion\n                \"Name\": {\n                    \"description\": \"A recognisable name for the device\",\n                    \"x-dbus-type\": \"string\"\n                    \"type\": \"string\"\n                },\n```\n\nwould it work to add this as well? So that we can assume any schema which applies `x-dbus-type` does so for all it\u0027s properties.\n\nSimilar idea for `Type` below and `MCTPI3CTarget` schema.",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 18
+      },
+      "revId": "fa751d1c90325b05591e6852732bfe858afd4df9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2be17dfc_e4ae7516",
+        "filename": "scripts/validate_configs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-30T10:18:00Z",
+      "side": 1,
+      "message": "i am not sure if it makes sense to continue work on the python config validator given that it cannot call into the rest of the code without bindings.\n\nFor example there\u0027s C++ code to parse `Probe` statement which could be used to validate these probe statements in CI, but it\u0027s not used as python code cannot call it.\n\nIf we continue on this track of extending the python validator we are bound to implement things twice. Once in python and once in C++.\n\nAnd the checks done in python in CI do not imply that the same or similar checks done in C++ at runtime will pass. So might as well do the checks in C++ at CI time and at runtime.\n\nFor completeness this is the patch, you have already seen it:\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/95037\n\n\nMaybe Matt will have a completely different take on this issue so depending on\nyour preferred direction you could also wait on his review.",
+      "revId": "fa751d1c90325b05591e6852732bfe858afd4df9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
