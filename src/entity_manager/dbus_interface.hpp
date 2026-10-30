@@ -16,6 +16,11 @@
 #include <memory>
 #include <vector>
 
+namespace mctp_target
+{
+class MCTPTarget;
+} // namespace mctp_target
+
 namespace dbus_interface
 {
 
@@ -76,7 +81,11 @@ class EMDBusInterface
                        const std::string& board);
 
   private:
+<<<<<<< PATCH SET (4e7126 Add MctpTarget Interface)
+    friend class mctp_target::MCTPTarget;
+=======
     void removeConfigObject(const sdbusplus::object_path& path);
+>>>>>>> BASE      (f65c47 entity_manager: publish Configuration.Object)
 
     boost::asio::io_context& io;
     sdbusplus::asio::object_server& objServer;

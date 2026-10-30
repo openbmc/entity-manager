@@ -27,6 +27,7 @@ entity_manager_lib = static_library(
     'em_config.cpp',
     'expression.cpp',
     'dbus_interface.cpp',
+    'mctp_target.cpp',
     'perform_scan.cpp',
     'perform_probe.cpp',
     'object_mapper.cpp',
