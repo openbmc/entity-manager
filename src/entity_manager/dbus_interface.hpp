@@ -59,6 +59,8 @@ class EMDBusInterface
     void addConfigObject(const sdbusplus::object_path& path,
                          const std::string& parent);
 
+    void removeConfigObject(const sdbusplus::object_path& path);
+
     // forget the objects whose marker was removed along with their board
     void pruneConfigObjects();
 
@@ -76,8 +78,6 @@ class EMDBusInterface
                        const std::string& board);
 
   private:
-    void removeConfigObject(const sdbusplus::object_path& path);
-
     boost::asio::io_context& io;
     sdbusplus::asio::object_server& objServer;
     ConfigCache& configCache;
