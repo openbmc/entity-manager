@@ -162,3 +162,22 @@ test(
         include_directories: test_include_dir,
     ),
 )
+
+test(
+    'test_board_presence',
+    executable(
+        'test_board_presence',
+        'test_board_presence.cpp',
+        cpp_args: test_boost_args,
+        dependencies: [
+            boost,
+            gtest,
+            nlohmann_json_dep,
+            phosphor_logging_dep,
+            sdbusplus,
+            valijson,
+        ],
+        link_with: [entity_manager_lib, utils_lib],
+        include_directories: test_include_dir,
+    ),
+)

@@ -59,6 +59,8 @@ class EMDBusInterface
     void addConfigObject(const sdbusplus::object_path& path,
                          const std::string& parent);
 
+    void removeConfigObject(const sdbusplus::object_path& path);
+
     // remove a device's interfaces, and forget the objects whose marker
     // went with them
     void removeDeviceInterfaces(const nlohmann::json& device);
@@ -77,8 +79,6 @@ class EMDBusInterface
                        const std::string& board);
 
   private:
-    void removeConfigObject(const sdbusplus::object_path& path);
-
     void pruneConfigObjects();
 
     boost::asio::io_context& io;
