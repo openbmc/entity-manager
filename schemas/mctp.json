@@ -5,17 +5,21 @@
             "properties": {
                 "Address": {
                     "description": "The physical address for the device on the I2C bus.",
+                    "x-dbus-type": "uint64",
                     "type": "string"
                 },
                 "Bus": {
                     "description": "The bus index to which the device is attached",
+                    "x-dbus-type": "uint64",
                     "type": ["string", "number"]
                 },
                 "Name": {
                     "description": "A recognisable name for the device",
+                    "x-dbus-type": "string",
                     "type": "string"
                 },
                 "Type": {
+                    "x-dbus-type": "string",
                     "type": "string",
                     "enum": ["MCTPI2CTarget"]
                 }
@@ -27,17 +31,21 @@
             "properties": {
                 "Address": {
                     "description": "The 6-byte PID for the device on the I3C bus",
+                    "x-dbus-type": "array[uint64]",
                     "type": "array"
                 },
                 "Bus": {
                     "description": "The bus index to which the device is attached",
+                    "x-dbus-type": "uint64",
                     "type": ["string", "number"]
                 },
                 "Name": {
                     "description": "A recognisable name for the device",
+                    "x-dbus-type": "string",
                     "type": "string"
                 },
                 "Type": {
+                    "x-dbus-type": "string",
                     "type": "string",
                     "enum": ["MCTPI3CTarget"]
                 }
