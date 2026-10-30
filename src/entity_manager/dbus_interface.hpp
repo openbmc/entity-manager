@@ -16,6 +16,11 @@
 #include <memory>
 #include <vector>
 
+namespace mctp_target
+{
+class MCTPTarget;
+} // namespace mctp_target
+
 namespace dbus_interface
 {
 
@@ -77,6 +82,8 @@ class EMDBusInterface
                        const std::string& board);
 
   private:
+    friend class mctp_target::MCTPTarget;
+
     void removeConfigObject(const sdbusplus::object_path& path);
 
     void pruneConfigObjects();
