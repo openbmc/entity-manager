@@ -21,6 +21,7 @@ em_deps = [
 entity_manager_lib = static_library(
     'entity-manager',
     'entity_manager.cpp',
+    'board_presence.cpp',
     'config_cache.cpp',
     'configuration.cpp',
     'config_pointer.cpp',
