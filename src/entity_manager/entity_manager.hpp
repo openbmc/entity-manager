@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include "board_presence.hpp"
 #include "config_cache.hpp"
 #include "configuration.hpp"
 #include "dbus_interface.hpp"
@@ -14,7 +15,10 @@
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
 
+#include <cstddef>
 #include <flat_map>
+#include <flat_set>
+#include <functional>
 #include <optional>
 #include <string>
 #include <unordered_set>
@@ -80,15 +84,44 @@ class EntityManager
     std::optional<sdbusplus::object_path> postExposesRecordsToDBus(
         const nlohmann::json::object_t& item, size_t exposesIndex,
         const std::string& configNameOrig, const std::string& boardId,
-        const sdbusplus::object_path& objectPath,
-        const std::string& configType);
+        const sdbusplus::object_path& objectPath, const std::string& configType,
+        const board_presence::Names* foundBoards = nullptr);
 
     // @returns false on error
     bool postConfigurationRecord(
         const std::string& name, const nlohmann::json& config,
         const std::string& configNameOrig, const std::string& itemType,
-        const ConfigPointer& configPtr,
-        const sdbusplus::object_path& ifacePath);
+        const ConfigPointer& configPtr, const sdbusplus::object_path& ifacePath,
+        const board_presence::Names* foundBoards = nullptr);
+
+    void postArrayObject(const std::string& name, size_t index,
+                         const nlohmann::json::object_t& object,
+                         const std::string& configNameOrig,
+                         const std::string& itemType,
+                         const ConfigPointer& configPtr,
+                         const sdbusplus::object_path& ifacePath);
+
+    void removeInterfaces(
+        const nlohmann::json& config,
+        const std::function<bool(sdbusplus::asio::dbus_interface&)>& match);
+
+    // Updates published platforms for boards found or lost.
+    void refreshPlatformRecords(const board_presence::Names& before,
+                                const board_presence::Names& after,
+                                const std::flat_set<std::string>& newConfigIds);
+    void refreshPlatformRecord(
+        const std::string& configId, const nlohmann::json& config,
+        size_t exposesIndex, const nlohmann::json::object_t& item,
+        const board_presence::Names& before,
+        const board_presence::Names& after);
+    void withdrawPlatformRecord(const nlohmann::json& config,
+                                const sdbusplus::object_path& ifacePath,
+                                const std::string& type);
+    void updatePlatformRecord(const std::string& configId,
+                              const nlohmann::json& config, size_t exposesIndex,
+                              const nlohmann::json::object_t& item,
+                              const board_presence::RecordChange& change,
+                              const sdbusplus::object_path& ifacePath);
 
     void pruneConfiguration(const std::string& name,
                             const nlohmann::json& device);
