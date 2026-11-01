@@ -1253,11 +1253,11 @@ static std::optional<size_t> findEndOfFieldMarker(std::span<uint8_t> bytes)
     // we're skipping the checksum
     // this function assumes a properly sized and formatted area
     static uint8_t constexpr endOfFieldsByte = 0xc1;
-    for (int index = bytes.size() - 2; index >= 0; --index)
+    for (int index = static_cast<int>(bytes.size()) - 2; index >= 0; --index)
     {
-        if (bytes[index] == endOfFieldsByte)
+        if (bytes[static_cast<size_t>(index)] == endOfFieldsByte)
         {
-            return index;
+            return static_cast<size_t>(index);
         }
     }
     return std::nullopt;
