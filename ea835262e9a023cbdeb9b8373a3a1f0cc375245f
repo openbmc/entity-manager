@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c30653c7_c723d1a2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-11-02T10:12:23Z",
+      "side": 1,
+      "message": "This change is intended to handle the case where a slot with a single presence GPIO can accept drives from different vendors, and some of those drives do not provide a FRU. In that situation, the installed drive cannot be identified from a FRU that is present.\n\nHowever, I wonder whether this fits EM\u0027s general approach of probing based on information it actually detects from the device. With NOT, the drive type is inferred from the absence of something rather than from a positively identified characteristic.\n\nIt also relies on the probe author knowing exactly which drive variants can occupy that slot.\n\nAs mentioned in the other comments, some corner cases may also be difficult to handle robustly, such as a misplaced NOT condition or an object that appears after the initial scan.\n\nOne alternative might be for the platform to expose the installed drive type explicitly, for example through a virtual sensor, and then have the EM probe match that information positively. Since this would be configured per platform rather than in common code, other platforms would not be affected, although a virtual sensor is a semantically less precise way to express the drive type.\n\nI\u0027d be interested in hearing how the maintainers view this kind of use case.",
+      "revId": "ea835262e9a023cbdeb9b8373a3a1f0cc375245f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d259a285_3b93be59",
+        "filename": "src/entity_manager/perform_probe.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-11-02T10:12:23Z",
+      "side": 1,
+      "message": "I\u0027m concerned about whether this case can actually happen. If the probed D-Bus object appears after EM\u0027s first scan, a config published because the object was absent would be pruned on the next rescan, which could emit an `InventoryAdded` followed by an `InventoryRemoved` event for something that should never have existed. If it can really happen, it seems we would need a way to resolve it, otherwise these events would be unexpected.",
+      "revId": "ea835262e9a023cbdeb9b8373a3a1f0cc375245f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce5d18b4_beef7db2",
+        "filename": "src/entity_manager/perform_probe.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-11-02T10:12:23Z",
+      "side": 1,
+      "message": "A NOT that is not followed by TRUE, FALSE or a D-Bus probe is ignored, so NOT FOUND(\u0027x\u0027) behaves as FOUND(\u0027x\u0027) with no log message.\n\nI feel silently ignoring it is not great, but I\u0027m not sure which behavior the maintainers prefer. Would rejecting it when the probe is parsed be better, or is ignoring acceptable?",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 27
+      },
+      "revId": "ea835262e9a023cbdeb9b8373a3a1f0cc375245f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a290f775_27e0232f",
+        "filename": "test/entity_manager/test_perform_probe.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-11-02T10:12:23Z",
+      "side": 1,
+      "message": "It looks like `board1` already matches here, so this expression is true whether or not NOT inverts `board2`. Would a single NOT on a present object (expect false) and on an absent one (expect true) be worth adding to cover the inversion directly?",
+      "revId": "ea835262e9a023cbdeb9b8373a3a1f0cc375245f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
