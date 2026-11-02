@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a44b69f_62229650",
+        "filename": "src/entity_manager/dbus_interface.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-02T13:27:51Z",
+      "side": 1,
+      "message": "i believe this map does not shrink when boards are pruned and probe providers disappear, potentially resulting in unbounded memory growth.\n\ncreated a gist here for reproducer script and debug patch\n\nhttps://gist.github.com/pointbazaar/24eca5e186e3626fa5d64f0db4075e47\n\nplease let me know your thoughts on it.",
+      "range": {
+        "startLine": 92,
+        "startChar": 1,
+        "endLine": 94,
+        "endChar": 72
+      },
+      "revId": "06976a151f7c015fa9738db53abf5e9adf0f409f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
