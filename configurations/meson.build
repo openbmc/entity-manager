@@ -325,6 +325,7 @@ configs = [
     'meta/yv5/yosemite5_e1s_x4_expansion_board_adc_ons_pmon_sgy.json',
     'meta/yv5/yosemite5_e1s_x4_expansion_board_adc_tic_pmon_tic.json',
     'meta/yv5/yosemite5_e1s_x4_expansion_board_adc_tic_pmon_tic_dvt1.json',
+    'meta/yv5/yosemite5_marmotdome_mb_vr_mps_pvdd18vr_mps_socamm-mps_adc_tic_i2chub_rtt.json',
     'meta/yv5/yosemite5_mb_ssd.json',
     'meta/yv5/yosemite5_mb_vr_mps_pvdd18vr_mps_adc_tic_i3chub_rtt.json',
     'meta/yv5/yosemite5_mb_vr_rtt_pvdd18vr_mps_adc_tic_i3chub_rtt.json',
