@@ -17,6 +17,7 @@
 #include <flat_map>
 #include <flat_set>
 #include <list>
+#include <numeric>
 
 struct DBusInterfaceInstance
 {
