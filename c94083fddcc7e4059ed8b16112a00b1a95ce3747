@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8794ea40_4c11255b",
+        "filename": "src/entity_manager/schema_dbus_types.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-02T09:48:22Z",
+      "side": 1,
+      "message": "```suggestion\nusing Schemas \u003d std::flat_map\u003cstd::filesystem::path, nlohmann::json, std::less\u003c\u003e\u003e;\n```\n\ncould we write it like this? I see code sections like\n\n```\n        schemas.emplace(\n            entry.path().lexically_relative(schemaDirectory).generic_string(),\n            std::move(schema));\n```\n\nand\n\n```\nschema \u003d schemas.find(\n            (std::filesystem::path(schemaName).parent_path() / file)\n                .lexically_normal()\n                .generic_string());\n```\n\nwhich point towards the key being a filesystem path.",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 2
+      },
+      "revId": "c94083fddcc7e4059ed8b16112a00b1a95ce3747",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45288373_01f677b0",
+        "filename": "test/entity_manager/meson.build",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-02T09:48:22Z",
+      "side": 1,
+      "message": "```suggestion\n            \u0027-DSCHEMA_DIR\u003d\"\u0027 + meson.project_source_root() / \u0027schemas\u0027 + \u0027\"\u0027,\n```\n\nis it possible to use the source directory for schemas instead of installed schemas?\n\nIn my case i could not run tests locally because the schemas were not found since entity-manager was not installed.\n\nCan you compile and run the tests locally without installing?\nDoes it work for you?",
+      "revId": "c94083fddcc7e4059ed8b16112a00b1a95ce3747",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
