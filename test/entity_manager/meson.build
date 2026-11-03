@@ -94,7 +94,7 @@ test(
         'test_add_object',
         'test_add_object.cpp',
         cpp_args: test_boost_args + [
-            '-DSCHEMA_DIR="' + packagedir / 'schemas' + '"',
+            '-DSCHEMA_DIR="' + meson.project_source_root() / 'schemas' + '"',
         ],
         dependencies: [
             boost,
