@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5cfdcf6_cebd49c8",
+        "filename": "src/entity_manager/schema_dbus_types.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-11-03T19:53:24Z",
+      "side": 1,
+      "message": "Done. Thanks.",
+      "parentUuid": "8794ea40_4c11255b",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 2
+      },
+      "revId": "c94083fddcc7e4059ed8b16112a00b1a95ce3747",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "45288373_01f677b0",
@@ -37,6 +61,24 @@
       "writtenOn": "2026-11-02T09:48:22Z",
       "side": 1,
       "message": "```suggestion\n            \u0027-DSCHEMA_DIR\u003d\"\u0027 + meson.project_source_root() / \u0027schemas\u0027 + \u0027\"\u0027,\n```\n\nis it possible to use the source directory for schemas instead of installed schemas?\n\nIn my case i could not run tests locally because the schemas were not found since entity-manager was not installed.\n\nCan you compile and run the tests locally without installing?\nDoes it work for you?",
+      "revId": "c94083fddcc7e4059ed8b16112a00b1a95ce3747",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a16a492c_668e89cc",
+        "filename": "test/entity_manager/meson.build",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-11-03T19:53:24Z",
+      "side": 1,
+      "message": "This line is from the AddObject test already on master, so I fixed it in a separate change in front of this one: https://gerrit.openbmc.org/c/openbmc/entity-manager/+/96708",
+      "parentUuid": "45288373_01f677b0",
       "revId": "c94083fddcc7e4059ed8b16112a00b1a95ce3747",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
