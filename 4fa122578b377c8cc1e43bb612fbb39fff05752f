@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf2949d9_00b85075",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1003207
+      },
+      "writtenOn": "2026-11-03T23:41:40Z",
+      "side": 1,
+      "message": "The previous version changed the loop to int and added casts as a clang-23 compliance workaround but I can’t verify a specific clang-tidy diagnostic,so I shouldn’t claim one occurred. \nThis change replaces that workaround with a size_t countdown, avoiding the narrowing and signed/unsigned conversions while guarding the reverse scan at index zero. \nThe four added tests cover the checksum boundary, a checksum that matches the marker, a missing marker, and trailing padding.",
+      "parentUuid": "3a9571f8_22937587",
+      "revId": "4fa122578b377c8cc1e43bb612fbb39fff05752f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73544a27_99a5b990",
@@ -31,6 +49,30 @@
       "writtenOn": "2026-11-03T22:39:04Z",
       "side": 1,
       "message": "these obviously passed because the commit passed CI.  remove.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 55
+      },
+      "revId": "4fa122578b377c8cc1e43bb612fbb39fff05752f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a1d6566_3165ee1a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1003207
+      },
+      "writtenOn": "2026-11-03T23:41:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73544a27_99a5b990",
       "range": {
         "startLine": 20,
         "startChar": 0,
