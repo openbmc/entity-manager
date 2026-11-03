@@ -22,6 +22,30 @@
       },
       "revId": "06976a151f7c015fa9738db53abf5e9adf0f409f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f77131d_00442fc0",
+        "filename": "src/entity_manager/dbus_interface.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-11-03T20:33:39Z",
+      "side": 1,
+      "message": "Thanks, that was a real leak: pruning a board now also drops the records of its markers, which I checked on hardware by pruning a test board four times after adding 10 new entries each time, and [96411](https://gerrit.openbmc.org/c/openbmc/entity-manager/+/96411) adds a test case for it.",
+      "parentUuid": "8a44b69f_62229650",
+      "range": {
+        "startLine": 92,
+        "startChar": 1,
+        "endLine": 94,
+        "endChar": 72
+      },
+      "revId": "06976a151f7c015fa9738db53abf5e9adf0f409f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
