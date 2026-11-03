@@ -780,6 +780,50 @@ TEST(DisassembleFruDataTest, ValidData)
     EXPECT_EQ(result["BOARD_INFO_AM2"], "MAC: 3C:6D:66:14:C8:7A");
 }
 
+TEST(SetFieldTest, EndMarkerBeforeChecksum)
+{
+    std::vector<uint8_t> area = {0x01, 0x01, 0x17, 0xc2, 'A', 'B', 0xc1, 0x00};
+
+    ASSERT_TRUE(
+        setField(fruAreas::fruAreaChassis, area, "CHASSIS_PART_NUMBER", "CD"));
+    EXPECT_EQ(area.size(), 8U);
+    EXPECT_EQ(area[6], 0xc1);
+    EXPECT_EQ(area[4], 'C');
+    EXPECT_EQ(area[5], 'D');
+}
+
+TEST(SetFieldTest, ChecksumMatchingEndMarkerIsSkipped)
+{
+    std::vector<uint8_t> area = {0x01, 0x01, 0x17, 0xc2, 'A', 'B', 0xc1, 0xc1};
+
+    ASSERT_TRUE(
+        setField(fruAreas::fruAreaChassis, area, "CHASSIS_PART_NUMBER", "CD"));
+    EXPECT_EQ(area.size(), 8U);
+    EXPECT_EQ(area[6], 0xc1);
+}
+
+TEST(SetFieldTest, MissingEndMarkerLeavesAreaUnchanged)
+{
+    std::vector<uint8_t> area = {0x01, 0x01, 0x17, 0xc2, 'A', 'B', 0x00, 0xc1};
+    const auto original = area;
+
+    EXPECT_FALSE(
+        setField(fruAreas::fruAreaChassis, area, "CHASSIS_PART_NUMBER", "CD"));
+    EXPECT_EQ(area, original);
+}
+
+TEST(SetFieldTest, FindsEndMarkerBeforePadding)
+{
+    std::vector<uint8_t> area = {0x01, 0x02, 0x17, 0xc2, 'A',  'B',
+                                 0xc1, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                 0x00, 0x00, 0x00, 0x00};
+
+    ASSERT_TRUE(
+        setField(fruAreas::fruAreaChassis, area, "CHASSIS_PART_NUMBER", "CD"));
+    EXPECT_EQ(area.size(), 8U);
+    EXPECT_EQ(area[6], 0xc1);
+}
+
 TEST(ReassembleFruDataTest, UnalignedFails)
 {
     std::vector<uint8_t> areaOne{0, 35};
