@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecbbfa6c_8d5f60d4",
+        "filename": "configurations/meta/yv5/yosemite5_scm_2700.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 792,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2026-11-03T13:24:48Z",
+      "side": 1,
+      "message": "Why need to restrict the probe stage here instead of using an approach like the one below to distinguish between T22 and T1/T2?\n\n```\n\"Probe\": \"xyz.openbmc_project.FruDevice({\u0027PRODUCT_PRODUCT_NAME\u0027: \u0027Yosemite V5 (?!T22|T1).*\u0027, \u0027BOARD_PRODUCT_NAME\u0027: \u0027SCM board 2700\u0027, \u0027BOARD_MANUFACTURER\u0027: \u0027(Quanta|Wiwynn)\u0027})\"\n```",
+      "range": {
+        "startLine": 792,
+        "startChar": 0,
+        "endLine": 792,
+        "endChar": 188
+      },
+      "revId": "44cdca804fb0c098b8a54dc66dd0960d5bc58561",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
