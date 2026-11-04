@@ -349,6 +349,7 @@ configs = [
     'nvidia/bmc_p3809.json',
     'nvidia/cable_cartridge.json',
     'nvidia/cx7_mezzanine_module.json',
+    'nvidia/cx8_1p_module.json',
     'nvidia/cx8_mezzanine_module.json',
     'nvidia/cx9_mezzanine_module.json',
     'nvidia/gb200.json',
