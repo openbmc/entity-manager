@@ -1,0 +1,119 @@
+[
+    {
+        "Exposes": [
+            {
+                "Board": "MGX Vera C2 ProcessorModule 0",
+                "Configuration": 1,
+                "Interface": 2,
+                "Name": "VR_C2_MCTP_USB_CPU0",
+                "Port": [
+                    1,
+                    3,
+                    1,
+                    4,
+                    1
+                ],
+                "RootHubPosition": 1,
+                "Type": "MCTPUSBDevice"
+            },
+            {
+                "Board": "MGX Vera C2 ProcessorModule 0",
+                "Configuration": 1,
+                "Interface": 2,
+                "Name": "VR_C2_MCTP_USB_CPU1",
+                "Port": [
+                    1,
+                    3,
+                    1,
+                    4,
+                    2
+                ],
+                "RootHubPosition": 1,
+                "Type": "MCTPUSBDevice"
+            },
+            {
+                "Board": "MGX Vera C2 ProcessorModule 0",
+                "Configuration": 1,
+                "Interface": 0,
+                "Name": "HPM_0",
+                "Port": [
+                    1,
+                    2,
+                    1,
+                    1
+                ],
+                "RootHubPosition": 1,
+                "Type": "MCTPUSBDevice"
+            }
+        ],
+        "Name": "Nvidia VR C2",
+        "Probe": "FOUND('MGX Vera C2 ProcessorModule 0')",
+        "Type": "Platform"
+    },
+    {
+        "Exposes": [
+            {
+                "Board": "Nvidia RTX PRO 6000 Blackwell 0",
+                "BridgedEndpoints": [
+                    {
+                        "Name": "GPU_0"
+                    }
+                ],
+                "Configuration": 1,
+                "Interface": 0,
+                "Name": "GPU_SMA_0",
+                "Port": [
+                    1,
+                    2,
+                    1,
+                    3,
+                    1
+                ],
+                "RootHubPosition": 1,
+                "Type": "MCTPUSBDevice"
+            }
+        ],
+        "Name": "Nvidia VR C2 GPU 0",
+        "Probe": [
+            "xyz.openbmc_project.FruDevice({'BUS': 42, 'ADDRESS': 80, 'BOARD_PRODUCT_NAME': 'RTXPRO6000Blackwel(l)?(DC)?', 'BOARD_MANUFACTURER': '((Nvidia)|(NVIDIA)|(nvidia))'})",
+            "AND",
+            "FOUND('MGX Vera C2 ProcessorModule 0')",
+            "AND",
+            "FOUND('Nvidia RTX PRO 6000 Blackwell 0')"
+        ],
+        "Type": "Platform"
+    },
+    {
+        "Exposes": [
+            {
+                "Board": "Nvidia RTX PRO 6000 Blackwell 1",
+                "BridgedEndpoints": [
+                    {
+                        "Name": "GPU_1"
+                    }
+                ],
+                "Configuration": 1,
+                "Interface": 0,
+                "Name": "GPU_SMA_1",
+                "Port": [
+                    1,
+                    3,
+                    1,
+                    3,
+                    1
+                ],
+                "RootHubPosition": 1,
+                "Type": "MCTPUSBDevice"
+            }
+        ],
+        "Name": "Nvidia VR C2 GPU 1",
+        "Probe": [
+            "xyz.openbmc_project.FruDevice({'BUS': 50, 'ADDRESS': 80, 'BOARD_PRODUCT_NAME': 'RTXPRO6000Blackwel(l)?(DC)?', 'BOARD_MANUFACTURER': '((Nvidia)|(NVIDIA)|(nvidia))'})",
+            "AND",
+            "FOUND('MGX Vera C2 ProcessorModule 0')",
+            "AND",
+            "FOUND('Nvidia RTX PRO 6000 Blackwell 1')"
+        ],
+        "Type": "Platform"
+    }
+]
