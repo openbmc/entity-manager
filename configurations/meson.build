@@ -354,6 +354,7 @@ configs = [
     'nvidia/p4764-hmc.json',
     'nvidia/rtx6000_pro.json',
     'nvidia/vr_c2_chassis.json',
+    'nvidia/vr_c2_cpu.json',
     'nvidia/vr_c2_processor_module.json',
     'ocp/cx7_ocp.json',
     'ocp/cx8_ocp.json',
