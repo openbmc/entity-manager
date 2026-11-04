@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44abbd9f_40129901",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-04T13:57:29Z",
+      "side": 1,
+      "message": "```suggestion\n                    \"type\": \"integer\"\n```\n\nif the range of values are restricted please put that into the json schema aswell.",
+      "range": {
+        "startLine": 185,
+        "startChar": 29,
+        "endLine": 185,
+        "endChar": 35
+      },
+      "revId": "d8a01fc201cb2b46985f9f19e21e2be8e0f5c00c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd7de289_253d4d05",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-04T13:57:29Z",
+      "side": 1,
+      "message": "```suggestion\n                    \"type\": \"integer\"\n```\n\ncurrently\n```\ndiff --git a/configurations/nvidia/rtx6000_pro.json b/configurations/nvidia/rtx6000_pro.json\nindex dfa8d6b..5e19495 100644\n--- a/configurations/nvidia/rtx6000_pro.json\n+++ b/configurations/nvidia/rtx6000_pro.json\n@@ -17,6 +17,7 @@\n                 \"CompatibleHardware\": \"com.nvidia.Hardware.Alon8.GPU\",\n                 \"VendorIANA\": 5703\n             },\n+            \"MemoryWindow\": -438,\n             \"Name\": \"GPU_OCP_Recovery\",\n             \"Type\": \"OCPRecoveryFirmware\"\n         }\n```\n\npasses validation even though your daemon only accepts uint64\n\ncan you specify some minimum value in json schema?",
+      "range": {
+        "startLine": 189,
+        "startChar": 29,
+        "endLine": 189,
+        "endChar": 35
+      },
+      "revId": "d8a01fc201cb2b46985f9f19e21e2be8e0f5c00c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b0ea457_56482c21",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-04T13:57:29Z",
+      "side": 1,
+      "message": "```suggestion\n                    \"type\": \"integer\"\n```",
+      "range": {
+        "startLine": 193,
+        "startChar": 29,
+        "endLine": 193,
+        "endChar": 35
+      },
+      "revId": "d8a01fc201cb2b46985f9f19e21e2be8e0f5c00c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
