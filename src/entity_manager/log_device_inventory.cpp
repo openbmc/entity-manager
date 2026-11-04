@@ -105,7 +105,7 @@ void logDeviceAdded(const nlohmann::json& record)
     {
         return;
     }
-    lg2::commit(InventoryAdded("IDENTIFIER_PATH", *path));
+    lg2::commit(InventoryAdded(*path));
 }
 
 void logDeviceRemoved(const std::string& key, const nlohmann::json& record,
@@ -127,7 +127,7 @@ void logDeviceRemoved(const std::string& key, const nlohmann::json& record,
     std::optional<sdbusplus::object_path> path = inventoryPath(record, name);
     if (path)
     {
-        lg2::commit(InventoryRemoved("IDENTIFIER_PATH", *path));
+        lg2::commit(InventoryRemoved(*path));
     }
     cachedBaseline.erase(key);
 }
