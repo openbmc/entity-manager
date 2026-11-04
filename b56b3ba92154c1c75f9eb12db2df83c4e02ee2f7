@@ -16,6 +16,24 @@
       "message": "For awareness, https://gerrit.openbmc.org/c/openbmc/entity-manager/+/96528 adds an `x-dbus-type` check to the Python validator, so it would need porting here before the C++ validator replaces it, and I\u0027m happy to do that.",
       "revId": "b56b3ba92154c1c75f9eb12db2df83c4e02ee2f7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d34621b7_34744285",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-04T15:10:41Z",
+      "side": 1,
+      "message": "ack, thanks for mentioning this. For this base patch the default validator does not change (CI still using the python based validator) and we\u0027re already at 400 lines so i would propose we add new validator features in a follow-up patch to this one so it does not further increase in size.\n\nIt\u0027s still unclear if the C++ validator will merge any time soon, i am waiting for review feedback from Matt. please take a look if you are also interested to review it.",
+      "parentUuid": "fdc545e6_fcad0a96",
+      "revId": "b56b3ba92154c1c75f9eb12db2df83c4e02ee2f7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
