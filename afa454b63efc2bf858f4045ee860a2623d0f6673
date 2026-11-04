@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23f6c50b_bbd4e8bf",
+        "filename": "src/entity_manager/schema_dbus_types.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-04T13:17:31Z",
+      "side": 1,
+      "message": "why do we reject array of boolean?\n\nIt looks like something that EM can publish.\n\n```\nxyz.openbmc_project.Configuration.test interface -         -            -           \n.Name                                  property  s         \"test\"       emits-change\n.Other                                 property  ab        2 true false emits-change\n.Type                                  property  s         \"test\"       emits-change\n```",
+      "range": {
+        "startLine": 283,
+        "startChar": 4,
+        "endLine": 287,
+        "endChar": 5
+      },
+      "revId": "afa454b63efc2bf858f4045ee860a2623d0f6673",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abddd7d6_ddc72248",
+        "filename": "test/entity_manager/test_schema_dbus_types.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-04T13:17:31Z",
+      "side": 1,
+      "message": "the reference following does not seem to work for a chain of references, the\ntest fails if below diff is applied.\n\n```\ndiff --git a/test/entity_manager/test_schema_dbus_types.cpp b/test/entity_manager/test_schema_dbus_types.cpp\nindex 46919fe..bc5a314 100644\n--- a/test/entity_manager/test_schema_dbus_types.cpp\n+++ b/test/entity_manager/test_schema_dbus_types.cpp\n@@ -127,11 +127,12 @@ TEST(SchemaDBusTypes, FollowsReferencesToOtherSchemas)\n             \"Target\": {\n                 \"properties\": {\n                     \"Address\": {\"$ref\": \"common.json#/$defs/Pid\"},\n-                    \"Bus\": {\"$ref\": \"#/$defs/Bus\"},\n+                    \"Bus\": {\"$ref\": \"#/$defs/Ref1\"},\n                     \"Type\": {\"const\": \"Target\"}\n                 }\n             },\n-            \"Bus\": {\"type\": \"number\", \"x-dbus-type\": \"uint64\"}\n+            \"Ref1\": {\"$ref\": \"#/$defs/Ref2\"},\n+            \"Ref2\": {\"type\": \"number\", \"x-dbus-type\": \"uint64\"}\n         }\n     })\";\n     // Comments are allowed in schemas, and a broken one is skipped.\n```\n\nCould we make it work with a chain of references up to some maximum number of recursions?",
+      "range": {
+        "startLine": 125,
+        "startChar": 4,
+        "endLine": 136,
+        "endChar": 8
+      },
+      "revId": "afa454b63efc2bf858f4045ee860a2623d0f6673",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
