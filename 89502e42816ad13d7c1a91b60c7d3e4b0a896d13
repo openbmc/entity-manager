@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "dea1515d_b6f80d9c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-04T17:32:38Z",
+      "side": 1,
+      "message": "Please refer to jenkins link https://jenkins.openbmc.org/job/ci-repository/154202/consoleFull for build an test results.\n\nIt\u0027s easy enough to build and unit test yourself also.\n\nThe git log does not have a history of attaching the unit test log and i do not want to create a new tradition for that due to above reasons.",
+      "parentUuid": "c46e4fcc_e5dade37",
+      "revId": "89502e42816ad13d7c1a91b60c7d3e4b0a896d13",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "77854d2b_daccbfdd",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2026-10-28T10:18:29Z",
       "side": 1,
       "message": "Test passed for NFC tag insertion and removal.\n\n```\nNFC tag inserted:\nroot@bmc:~# busctl tree xyz.openbmc_project.FruDevice\n`- /xyz\n  `- /xyz/openbmc_project\n    `- /xyz/openbmc_project/FruDevice\n      |- /xyz/openbmc_project/FruDevice/5_80\n      |- /xyz/openbmc_project/FruDevice/5_81\n      |- /xyz/openbmc_project/FruDevice/5_82\n      |- /xyz/openbmc_project/FruDevice/5_83\n      |- /xyz/openbmc_project/FruDevice/5_87\n      |- /xyz/openbmc_project/FruDevice/7_84\n      |- /xyz/openbmc_project/FruDevice/AMD_Instinct_MI455X_AMC\n      |- /xyz/openbmc_project/FruDevice/Anacapa_BMC_Storage_Module_DVT\n      |- /xyz/openbmc_project/FruDevice/Anacapa_LBB_DVT\n      |- /xyz/openbmc_project/FruDevice/Anacapa_LPDB_DVT\n      |- /xyz/openbmc_project/FruDevice/Anacapa_MB_DVT\n      |- /xyz/openbmc_project/FruDevice/Anacapa_NFC_Adaptor\n      |- /xyz/openbmc_project/FruDevice/Anacapa_RBB_DVT\n      |- /xyz/openbmc_project/FruDevice/Anacapa_RPDB_DVT\n      |- /xyz/openbmc_project/FruDevice/Anacapa_SCM_DVT\n      |- /xyz/openbmc_project/FruDevice/Anacapa_Tag_DVT\n\nroot@bmc:~# busctl introspect xyz.openbmc_project.FruDevice /xyz/openbmc_project/FruDevice/Anacapa_Tag_DVT                                                                                                                                                            \nNAME                                TYPE      SIGNATURE RESULT/VALUE       FLAGS                \norg.freedesktop.DBus.Introspectable interface 5:245m-         5:245m-                  5:245m-                    \n.Introspect                         method    5:245m-         s                  5:245m-                    \norg.freedesktop.DBus.Peer           interface 5:245m-         5:245m-                  5:245m-                    \n.GetMachineId                       method    5:245m-         s                  5:245m-                    \n.Ping                               method    5:245m-         5:245m-                  5:245m-                    \norg.freedesktop.DBus.Properties     interface 5:245m-         5:245m-                  5:245m-                    \n.Get                                method    ss        v                  5:245m-                    \n.GetAll                             method    s         a{sv}              5:245m-                    \n.Set                                method    ssv       5:245m-                  5:245m-                    \n.PropertiesChanged                  signal    sa{sv}as  5:245m-                  5:245m-                    \nxyz.openbmc_project.FruDevice       interface 5:245m-         5:245m-                  5:245m-                    \n.UpdateFruField                     method    ss        b                  5:245m-                    \n.ADDRESS                            property  u         1                  emits-change\n.BOARD_FRU_VERSION_ID               property  s         \"FRU Ver 0.01\"     emits-change writable\n.BOARD_INFO_AM1                     property  s         \"C18\"              emits-change writable\n.BOARD_LANGUAGE_CODE                property  s         \"25\"               emits-change\n.BOARD_MANUFACTURER                 property  s         \"AMD\"              emits-change writable\n.BOARD_MANUFACTURE_DATE             property  s         \"20271124T201600Z\" emits-change\n.BOARD_PART_NUMBER                  property  s         \"PN\"               emits-change writable\n.BOARD_PRODUCT_NAME                 property  s         \"Anacapa Tag DVT\"  emits-change writable\n.BOARD_SERIAL_NUMBER                property  s         \"SN\"               emits-change writable\n.BUS                                property  u         4294967295         emits-change\n.Common_Format_Version              property  s         \"1\"                emits-chang\n\nNFC tag removed:\nroot@bmc:~# busctl tree xyz.openbmc_project.FruDevice\n`- /xyz\n  `- /xyz/openbmc_project\n    `- /xyz/openbmc_project/FruDevice\n      |- /xyz/openbmc_project/FruDevice/5_80\n      |- /xyz/openbmc_project/FruDevice/5_81\n      |- /xyz/openbmc_project/FruDevice/5_82\n      |- /xyz/openbmc_project/FruDevice/5_83\n      |- /xyz/openbmc_project/FruDevice/5_87\n      |- /xyz/openbmc_project/FruDevice/7_84\n      |- /xyz/openbmc_project/FruDevice/AMD_Instinct_MI455X_AMC\n      |- /xyz/openbmc_project/FruDevice/Anacapa_BMC_Storage_Module_DVT\n      |- /xyz/openbmc_project/FruDevice/Anacapa_LBB_DVT\n      |- /xyz/openbmc_project/FruDevice/Anacapa_LPDB_DVT\n      |- /xyz/openbmc_project/FruDevice/Anacapa_MB_DVT\n      |- /xyz/openbmc_project/FruDevice/Anacapa_NFC_Adaptor\n      |- /xyz/openbmc_project/FruDevice/Anacapa_RBB_DVT\n      |- /xyz/openbmc_project/FruDevice/Anacapa_RPDB_DVT\n      |- /xyz/openbmc_project/FruDevice/Anacapa_SCM_DVT\n\t  \nroot@bmc:~# busctl introspect xyz.openbmc_project.FruDevice /xyz/openbmc_project/FruDevice/Anacapa_Tag_DVT\nFailed to introspect object /xyz/openbmc_project/FruDevice/Anacapa_Tag_DVT of service xyz.openbmc_project.FruDevice: Unknown object \u0027/xyz/openbmc_project/FruDevice/Anacapa_Tag_DVT\u0027.\n```",
+      "revId": "89502e42816ad13d7c1a91b60c7d3e4b0a896d13",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ab1e108_d840a1cc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-04T17:32:38Z",
+      "side": 1,
+      "message": "Thank you 👍",
+      "parentUuid": "77854d2b_daccbfdd",
       "revId": "89502e42816ad13d7c1a91b60c7d3e4b0a896d13",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e798081b_4d755a2f",
+        "filename": "src/fru_device/nfc.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-04T17:32:38Z",
+      "side": 1,
+      "message": "If we add a shared type alias in `neard_dbus.hpp` then it will be available in `fru_device.cpp` as well and it will not be clear which code depends on the interface definition.\n\nPreviously maintainers mentioned to me that being able to find usages of D-Bus  interfaces in source code is important to them. I agree with that sentiment therefore i will keep these type aliases in the source files where they are used.\n\nOtherwise finding where interfaces are used would involve tracking down type aliases through multiple files.\n\nFor a non PDI type alias that we define ourselves i would agree with you that it could be part of a shared header and should be defined once. This is a different matter since the alias is always the same and commonly defined this way in various repositories.\n\nIf you want to work on this direction i would recommend you to define macros in the PDI generated headers to provide these type aliases so we don\u0027t have to define them ourselves. Similar to `PHOSPHOR_LOG2_USING`.",
+      "parentUuid": "7d342ffb_32c3c721",
+      "revId": "89502e42816ad13d7c1a91b60c7d3e4b0a896d13",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b632fee3_c3f6e58c",
@@ -65,6 +119,24 @@
       "writtenOn": "2026-10-27T17:04:55Z",
       "side": 1,
       "message": "The PDI variant differs from DBusValueVariant. Please confirm it covers all property types neard sends and that downstream std::get uses are unchanged",
+      "revId": "89502e42816ad13d7c1a91b60c7d3e4b0a896d13",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86274181_685f6394",
+        "filename": "src/fru_device/nfc.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-04T17:32:38Z",
+      "side": 1,
+      "message": "Thanks to Carl Lee for testing. Based on the test report i am convinced the code is working.\n\nI\u0027ll consider this as resolved since the code has been tested.",
+      "parentUuid": "b632fee3_c3f6e58c",
       "revId": "89502e42816ad13d7c1a91b60c7d3e4b0a896d13",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
