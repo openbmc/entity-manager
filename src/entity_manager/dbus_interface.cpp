@@ -126,7 +126,7 @@ static nlohmann::json::value_t getDBusType(
 
     if (permission == sdbusplus::asio::PropertyPermission::readWrite)
     {
-        // all setable numbers are doubles as it is difficult to always
+        // all settable numbers are doubles as it is difficult to always
         // create a configuration file with all whole numbers as decimals
         // i.e. 1.0
         if (array)
