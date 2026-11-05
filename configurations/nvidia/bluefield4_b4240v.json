@@ -5,6 +5,96 @@
             "Bus": "$bus",
             "Name": "NVIDIA VR NVL72 BlueField4 FRU",
             "Type": "EEPROM"
+        },
+        {
+            "MaxValue": 255,
+            "MinValue": -255.0,
+            "Name": "BF4_NIC_TEMP_C",
+            "PowerState": "On",
+            "Timeout": 30.0,
+            "Type": "ExternalSensor",
+            "Units": "DegreesC"
+        },
+        {
+            "MaxValue": 65535,
+            "MinValue": 0,
+            "Name": "BF4_NIC_PWR_W",
+            "PowerState": "On",
+            "Timeout": 30.0,
+            "Type": "ExternalSensor",
+            "Units": "Watts"
+        },
+        {
+            "MaxValue": 255,
+            "MinValue": -255.0,
+            "Name": "BF4_CPU_TEMP_C",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2.04,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 102
+                }
+            ],
+            "Timeout": 30.0,
+            "Type": "ExternalSensor",
+            "Units": "DegreesC"
+        },
+        {
+            "MaxValue": 255,
+            "MinValue": -255.0,
+            "Name": "BF4_SSD_TEMP_C",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.6,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 80
+                }
+            ],
+            "Timeout": 30.0,
+            "Type": "ExternalSensor",
+            "Units": "DegreesC"
+        },
+        {
+            "MaxValue": 65535,
+            "MinValue": 0,
+            "Name": "BF4_CPU_PWR_W",
+            "PowerState": "On",
+            "Timeout": 30.0,
+            "Type": "ExternalSensor",
+            "Units": "Watts"
+        },
+        {
+            "MaxValue": 65535,
+            "MinValue": 0,
+            "Name": "BF4_TOTAL_PWR_W",
+            "PowerState": "On",
+            "Timeout": 30.0,
+            "Type": "ExternalSensor",
+            "Units": "Watts"
+        },
+        {
+            "MaxValue": 255,
+            "MinValue": -255.0,
+            "Name": "BF4_NIC_QSFP0_TEMP_C",
+            "PowerState": "On",
+            "Timeout": 30.0,
+            "Type": "ExternalSensor",
+            "Units": "DegreesC"
+        },
+        {
+            "MaxValue": 255,
+            "MinValue": -255.0,
+            "Name": "BF4_NIC_QSFP1_TEMP_C",
+            "PowerState": "On",
+            "Timeout": 30.0,
+            "Type": "ExternalSensor",
+            "Units": "DegreesC"
         }
     ],
     "Name": "NVIDIA VR NVL72 BlueField4",
