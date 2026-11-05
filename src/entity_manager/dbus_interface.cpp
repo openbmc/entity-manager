@@ -5,6 +5,7 @@
 #include "perform_probe.hpp"
 #include "utils.hpp"
 
+#include <org/freedesktop/DBus/Error/event.hpp>
 #include <phosphor-logging/lg2.hpp>
 #include <xyz/openbmc_project/Configuration/Object/common.hpp>
 
@@ -14,6 +15,8 @@
 #include <map>
 #include <string>
 #include <vector>
+
+using Failed = sdbusplus::error::org::freedesktop::d_bus::Error::Failed;
 
 namespace dbus_interface
 {
@@ -122,12 +125,14 @@ void EMDBusInterface::createDeleteObjectMethod(
         {
             // this technically can't happen as the pointer is pointing to
             // us
-            throw DBusInternalError();
+            throw Failed("METHOD", "Delete", "DETAILS",
+                         "D-Bus interface no longer exists");
         }
 
         if (!configPtr.write(nullptr, systemConfiguration))
         {
-            throw DBusInternalError();
+            throw Failed("METHOD", "Delete", "DETAILS",
+                         "Failed to remove configuration");
         }
 
         const sdbusplus::object_path path(dbusInterface->get_object_path());
@@ -145,7 +150,8 @@ void EMDBusInterface::createDeleteObjectMethod(
         if (!configCache.writeJsonFiles(systemConfiguration))
         {
             lg2::error("error setting json file");
-            throw DBusInternalError();
+            throw Failed("METHOD", "Delete", "DETAILS",
+                         "Failed to write configuration files");
         }
     });
 }
@@ -311,7 +317,7 @@ static void addObjectRuntimeValidateJson(
     if (schema.is_discarded())
     {
         lg2::error("Schema not legal: {TYPE}.json", "TYPE", *type);
-        throw DBusInternalError();
+        throw Failed("METHOD", "AddObject", "DETAILS", "Schema is not legal");
     }
 
     if (!validateJson(schema, newData))

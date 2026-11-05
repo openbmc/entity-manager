@@ -15,6 +15,7 @@
 #include <boost/asio/io_context.hpp>
 #include <boost/asio/steady_timer.hpp>
 #include <nlohmann/json.hpp>
+#include <org/freedesktop/DBus/Error/event.hpp>
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
@@ -49,6 +50,8 @@ extern "C"
 #include <i2c/smbus.h>
 #include <linux/i2c-dev.h>
 }
+
+using Failed = sdbusplus::error::org::freedesktop::d_bus::Error::Failed;
 
 namespace fs = std::filesystem;
 constexpr size_t maxFruSize = 512;
@@ -1056,7 +1059,8 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
         {
             lg2::error("Error opening file {PATH}", "PATH",
                        baseboardFruLocation);
-            throw DBusInternalError();
+            throw Failed("METHOD", "WriteFru", "DETAILS",
+                         "Failed to open baseboard FRU file");
             return false;
         }
         // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
@@ -1074,7 +1078,8 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
         if (eeprom < 0)
         {
             lg2::error("unable to open i2c device {PATH}", "PATH", path);
-            throw DBusInternalError();
+            throw Failed("METHOD", "WriteFru", "DETAILS",
+                         "Failed to open EEPROM device");
             return false;
         }
 
@@ -1100,7 +1105,8 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
             lg2::error("Unable to seek to offset {OFFSET} in device: {PATH}",
                        "OFFSET", offset, "PATH", path);
             close(eeprom);
-            throw DBusInternalError();
+            throw Failed("METHOD", "WriteFru", "DETAILS",
+                         "Failed to seek in EEPROM device");
         }
 
         ssize_t writtenBytes = write(eeprom, fru.data(), fru.size());
@@ -1108,7 +1114,8 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
         {
             lg2::error("unable to write to i2c device {PATH}", "PATH", path);
             close(eeprom);
-            throw DBusInternalError();
+            throw Failed("METHOD", "WriteFru", "DETAILS",
+                         "Failed to write to EEPROM device");
             return false;
         }
 
@@ -1122,14 +1129,16 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
     if (file < 0)
     {
         lg2::error("unable to open i2c device {PATH}", "PATH", i2cBus);
-        throw DBusInternalError();
+        throw Failed("METHOD", "WriteFru", "DETAILS",
+                     "Failed to open I2C device");
         return false;
     }
     if (ioctl(file, I2C_SLAVE_FORCE, address) < 0)
     {
         lg2::error("unable to set device address");
         close(file);
-        throw DBusInternalError();
+        throw Failed("METHOD", "WriteFru", "DETAILS",
+                     "Failed to set I2C device address");
         return false;
     }
 
@@ -1155,7 +1164,8 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
             {
                 lg2::error("unable to set device address");
                 close(file);
-                throw DBusInternalError();
+                throw Failed("METHOD", "WriteFru", "DETAILS",
+                             "Failed to set I2C device address");
                 return false;
             }
             currentAddress = location.address;
@@ -1173,7 +1183,8 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
             {
                 lg2::error("error writing fru: {ERR}", "ERR", strerror(errno));
                 close(file);
-                throw DBusInternalError();
+                throw Failed("METHOD", "WriteFru", "DETAILS",
+                             "Failed to write FRU data");
                 return false;
             }
         }

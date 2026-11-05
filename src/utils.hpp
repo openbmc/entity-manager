@@ -5,7 +5,6 @@
 
 #include <nlohmann/json.hpp>
 #include <sdbusplus/asio/connection.hpp>
-#include <sdbusplus/exception.hpp>
 
 #include <charconv>
 #include <filesystem>
@@ -34,28 +33,6 @@ bool findFiles(const std::vector<std::filesystem::path>& dirPaths,
 
 bool getI2cDevicePaths(const std::filesystem::path& dirPath,
                        std::flat_map<size_t, std::filesystem::path>& busPaths);
-
-struct DBusInternalError final : public sdbusplus::exception_t
-{
-    const char* name() const noexcept override
-    {
-        return "org.freedesktop.DBus.Error.Failed";
-    }
-    const char* description() const noexcept override
-    {
-        return "internal error";
-    }
-    const char* what() const noexcept override
-    {
-        return "org.freedesktop.DBus.Error.Failed: "
-               "internal error";
-    }
-
-    int get_errno() const noexcept override
-    {
-        return EACCES;
-    }
-};
 
 /// \brief Match a Dbus property against a probe statement.
 /// \param probe the probe statement to match against.
