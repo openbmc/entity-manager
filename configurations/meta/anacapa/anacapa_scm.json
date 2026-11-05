@@ -260,9 +260,24 @@
             "Thresholds": [
                 {
                     "Direction": "less than",
+                    "Hysteresis": 0.05,
                     "Name": "lower non recoverable",
                     "Severity": 4,
                     "Value": 2
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.05,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.8
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.05,
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2.88
                 }
             ],
             "Type": "ADC"
