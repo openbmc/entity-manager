@@ -81,6 +81,30 @@
       },
       "revId": "ba4e257c4a88f21ab16f2ff4065c4f612ad0cf2e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d8f88c5_3c96fbf2",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-06T15:52:48Z",
+      "side": 1,
+      "message": "you scoped the write permission to the whole interface, but we only need to write a single property for your proposal. Is it intentional?\n\n\nThere was a patch merged recently which added `x-dbus-type` annotation to some EM schemas, do you think we could approach this feature via an `x-dbus-writeable` annotation on a schema property rather than hardcoded edge case?\n\nThat would keep information about interfaces inside schemas instead of a mixed setup.\n\nAlternatively we could also have a lookup table but having it in the schema should be a cleaner solution and less files to patch for schema authors.",
+      "parentUuid": "40953eee_32eb4352",
+      "range": {
+        "startLine": 242,
+        "startChar": 0,
+        "endLine": 242,
+        "endChar": 2
+      },
+      "revId": "ba4e257c4a88f21ab16f2ff4065c4f612ad0cf2e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
