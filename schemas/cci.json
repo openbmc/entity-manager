@@ -1,0 +1,40 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "CCIDevice": {
+            "title": "CCI Device",
+            "description": "Configuration for a CXL Type 3 device managed by ccid via CCI over MCTP. ccid reads the event settings and applies them to the device.",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Name": {
+                    "description": "Unique name for this CXL device configuration",
+                    "x-dbus-type": "string",
+                    "type": "string"
+                },
+                "Type": {
+                    "x-dbus-type": "string",
+                    "type": "string",
+                    "enum": ["CCIDevice"]
+                },
+                "EventMode": {
+                    "description": "How ccid learns about new event records. Notification: ccid applies MCTPEventInterruptPolicy and the device sends CCI Event Notifications (opcode 0106h); ccid does not poll, unless the device does not take the policy and PollingIntervalSec is set. Polling: ccid sets the MCTP Event Interrupt Policy to 0 and reads the Informational, Warning, Failure and Fatal Event Logs every PollingIntervalSec seconds. Not set: event handling is off; ccid sets the policy to 0 and does not read the event logs. Notification requires MCTPEventInterruptPolicy; Polling requires PollingIntervalSec and does not take MCTPEventInterruptPolicy. ccid turns event handling off for a record that breaks this.",
+                    "x-dbus-type": "string",
+                    "type": "string",
+                    "enum": ["Notification", "Polling"]
+                },
+                "MCTPEventInterruptPolicy": {
+                    "description": "Event Interrupt Settings of the event logs ccid handles (CXL r3.1 Table 8-57). Notification mode only: sent with Set MCTP Event Interrupt Policy (opcode 0105h). Bits 0-3 select the Informational, Warning, Failure and Fatal Event Logs; 15 (000Fh) selects all four. Bit 4 selects the Dynamic Capacity Event Log, which ccid ignores and leaves to the host. Bits 15:5 are reserved and must be 0.",
+                    "x-dbus-type": "uint64",
+                    "type": "integer"
+                },
+                "PollingIntervalSec": {
+                    "description": "Seconds between two polls of the event logs. Required in Polling mode. Optional in Notification mode, where ccid polls at this interval only if the device does not take MCTPEventInterruptPolicy.",
+                    "x-dbus-type": "uint64",
+                    "type": "integer"
+                }
+            },
+            "required": ["Name", "Type"]
+        }
+    }
+}
