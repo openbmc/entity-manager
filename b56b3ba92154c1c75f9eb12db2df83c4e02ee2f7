@@ -34,6 +34,29 @@
       "parentUuid": "fdc545e6_fcad0a96",
       "revId": "b56b3ba92154c1c75f9eb12db2df83c4e02ee2f7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e916cd5_f6844f3d",
+        "filename": "src/entity_manager/meson.build",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2026-11-06T23:14:07Z",
+      "side": 1,
+      "message": "would this cause an extra, native, build of phosphor-logging then?  not a big deal if there already is one, but if not, maybe we shouldn\u0027t do it.",
+      "range": {
+        "startLine": 52,
+        "startChar": 51,
+        "endLine": 52,
+        "endChar": 65
+      },
+      "revId": "b56b3ba92154c1c75f9eb12db2df83c4e02ee2f7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
