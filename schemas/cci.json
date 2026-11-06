@@ -1,0 +1,40 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "CCIDevice": {
+            "title": "CCI Device",
+            "description": "A CXL Type 3 device that ccid manages over CCI/MCTP.",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Name": {
+                    "description": "A recognisable name for the device",
+                    "x-dbus-type": "string",
+                    "type": "string"
+                },
+                "Type": {
+                    "x-dbus-type": "string",
+                    "type": "string",
+                    "enum": ["CCIDevice"]
+                },
+                "EventMode": {
+                    "description": "How ccid gets new event records: Notification or Polling. Not set: off.",
+                    "x-dbus-type": "string",
+                    "type": "string",
+                    "enum": ["Notification", "Polling"]
+                },
+                "MCTPEventInterruptPolicy": {
+                    "description": "Notification only. Event Interrupt Settings to set (CXL r3.1 Table 8-57); bits 0-3 select the Informational, Warning, Failure and Fatal logs.",
+                    "x-dbus-type": "uint64",
+                    "type": "integer"
+                },
+                "PollingIntervalSec": {
+                    "description": "Seconds between polls. Required for Polling; with Notification, used only if the device rejects the policy.",
+                    "x-dbus-type": "uint64",
+                    "type": "integer"
+                }
+            },
+            "required": ["Name", "Type"]
+        }
+    }
+}
