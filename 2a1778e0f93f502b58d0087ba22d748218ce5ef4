@@ -16,6 +16,23 @@
       "message": "Sorry, PS3 and PS4 were built from a stale local copy of PS1 rather\nthan PS2. \nPS5 restores PS2 and adds what you asked for on PS3. \nA relative `$ref` now also looks next to the referring schema first. Since [96105](https://gerrit.openbmc.org/c/openbmc/entity-manager/+/96105) merged, a record that is left out no longer gets `Configuration.Object` either. Tested again on hardware.",
       "revId": "2a1778e0f93f502b58d0087ba22d748218ce5ef4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41ab9f09_9979842d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-06T18:37:08Z",
+      "side": 1,
+      "message": "Tested on qemu catalina, works well, did not find any problems.",
+      "revId": "2a1778e0f93f502b58d0087ba22d748218ce5ef4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
