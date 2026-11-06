@@ -1,6 +1,7 @@
 # This file is auto-generated. Do not edit manually.
 # File content generated with generate_schema_list.sh
 schemas = [
+    'cci.json',
     'cpld.json',
     'exposes_record.json',
     'firmware.json',
