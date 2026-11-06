@@ -2,6 +2,7 @@
 # File content generated with generate_schema_list.sh
 schemas = [
     'cpld.json',
+    'cxl_cci.json',
     'exposes_record.json',
     'firmware.json',
     'global.json',

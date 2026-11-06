@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "CXLCCIDevice": {
+            "title": "CXL Type3 CCI Device",
+            "description": "Configuration for a CXL Type 3 device managed by ccid via CCI over MCTP. The ccid daemon reads the MCTP Event Notification policy and applies it to the device.",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Name": {
+                    "description": "Unique name for this CXL device configuration",
+                    "type": "string"
+                },
+                "Type": {
+                    "type": "string",
+                    "enum": ["CXLCCIDevice"]
+                },
+                "MCTPEventInterruptPolicy": {
+                    "description": "16-bit MCTP Event Notification settings mask sent with CCI Set MCTP Event Interrupt Policy (0x0105). Bits 0-3 enable the Informational, Warning, Failure and Fatal event logs; 15 (0x000F) enables all four. Bit 4 (Dynamic Capacity) is ignored: ccid leaves that log to the host.",
+                    "type": "number"
+                }
+            },
+            "required": ["Name", "Type"]
+        }
+    }
+}
