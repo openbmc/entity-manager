@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "67dcbbf0_abc8b642",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-06T14:20:50Z",
+      "side": 1,
+      "message": "\u003e However, I wonder whether this fits EM\u0027s general approach of probing based on information it actually detects from the device. With NOT, the drive type is inferred from the absence of something rather than from a positively identified characteristic.\n\nFrom my perspective it\u0027s a natural extension to the set of operators already present, like `AND`, `OR`, ...",
+      "parentUuid": "c30653c7_c723d1a2",
+      "revId": "ea835262e9a023cbdeb9b8373a3a1f0cc375245f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d259a285_3b93be59",
         "filename": "src/entity_manager/perform_probe.cpp",
         "patchSetId": 10
@@ -48,6 +66,30 @@
       "writtenOn": "2026-11-02T10:12:23Z",
       "side": 1,
       "message": "A NOT that is not followed by TRUE, FALSE or a D-Bus probe is ignored, so NOT FOUND(\u0027x\u0027) behaves as FOUND(\u0027x\u0027) with no log message.\n\nI feel silently ignoring it is not great, but I\u0027m not sure which behavior the maintainers prefer. Would rejecting it when the probe is parsed be better, or is ignoring acceptable?",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 27
+      },
+      "revId": "ea835262e9a023cbdeb9b8373a3a1f0cc375245f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5282fb6_2b4dd267",
+        "filename": "src/entity_manager/perform_probe.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-06T14:20:50Z",
+      "side": 1,
+      "message": "If the probe statement does not parse or pass checks, IMO best to drop that config at the earliest chance we get and log an error.\n\nWe could modify the logic around\n```\n  Configuration::Configuration(\n      const std::vector\u003cstd::filesystem::path\u003e\u0026 configurationDirectories,\n      const std::filesystem::path\u0026 schemaDirectory) :\n      schemaDirectory(schemaDirectory),\n      configurationDirectories(configurationDirectories)\n  {\n      loadConfigurations();\n      filterProbeInterfaces();\n  }\n```\n\nto ensure configurations with probes that have errors do not get emplaced into `configurations` data structure in the first place and then we do not have to deal with it later.\n\nCurrently `filterProbeInterfaces` simply skips over probes that do not parse, and the config remains part of `configurations`.",
+      "parentUuid": "ce5d18b4_beef7db2",
       "range": {
         "startLine": 138,
         "startChar": 0,
