@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48eb80d4_a6fa69d7",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-08T21:09:14Z",
+      "side": 1,
+      "message": "wouldn\u0027t this check include the \u0027Internal Use Area\u0027 (line 883) ?\n\nin my pdf (rev 1.3), Section 9 \"Internal Use Area Format\"\n\nbyte 0 is \"Internal Use Format Version\" but everything beyond is vendor defined\nand no length field present.\n\n(as opposed to \"Chassis Info Area Format\" and \"Board Info Area Format\" which both have a length field)",
+      "revId": "d38ef315985e72f4501a932990d4b5cd319814f7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
