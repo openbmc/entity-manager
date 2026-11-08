@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e921f6b8_6ec4c365",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-08T21:47:26Z",
+      "side": 1,
+      "message": "Thanks for adding this test coverage 👍",
+      "revId": "c71e34f9a3a1e263162eaad5e7c156cead30ca97",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28a2f4fb_119877bb",
+        "filename": "test/entity_manager/test_add_object.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-08T21:47:26Z",
+      "side": 1,
+      "message": "```suggestion\n            bus-\u003eget_unique_name(), path, interface, method, args...);\n```\n`.str` is deprecated and it compiles for me without using it.",
+      "range": {
+        "startLine": 209,
+        "startChar": 0,
+        "endLine": 209,
+        "endChar": 2
+      },
+      "revId": "c71e34f9a3a1e263162eaad5e7c156cead30ca97",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c2c9b30_48b4c03e",
+        "filename": "test/entity_manager/test_add_object.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-08T21:47:26Z",
+      "side": 1,
+      "message": "nit: not sure what to think about this testcase, it duplicates the loop from\n\n`EntityManager::pruneConfiguration` but does so with a sightly different code.\n\nMeaning the value of the test will decline once someone changes that loop.\n\nCan we drop this testcase or push it to a follow-up?\n\nThat would give some time to think about how we could call into `EntityManager::pruneConfiguration`",
+      "range": {
+        "startLine": 267,
+        "startChar": 4,
+        "endLine": 274,
+        "endChar": 5
+      },
+      "revId": "c71e34f9a3a1e263162eaad5e7c156cead30ca97",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
