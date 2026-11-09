@@ -41,6 +41,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7841b2c8_62e57d6b",
+        "filename": "test/entity_manager/test_add_object.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-11-09T05:32:28Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "28a2f4fb_119877bb",
+      "range": {
+        "startLine": 209,
+        "startChar": 0,
+        "endLine": 209,
+        "endChar": 2
+      },
+      "revId": "c71e34f9a3a1e263162eaad5e7c156cead30ca97",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c2c9b30_48b4c03e",
@@ -54,6 +78,30 @@
       "writtenOn": "2026-11-08T21:47:26Z",
       "side": 1,
       "message": "nit: not sure what to think about this testcase, it duplicates the loop from\n\n`EntityManager::pruneConfiguration` but does so with a sightly different code.\n\nMeaning the value of the test will decline once someone changes that loop.\n\nCan we drop this testcase or push it to a follow-up?\n\nThat would give some time to think about how we could call into `EntityManager::pruneConfiguration`",
+      "range": {
+        "startLine": 267,
+        "startChar": 4,
+        "endLine": 274,
+        "endChar": 5
+      },
+      "revId": "c71e34f9a3a1e263162eaad5e7c156cead30ca97",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8698eccd_3982a3ba",
+        "filename": "test/entity_manager/test_add_object.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-11-09T05:32:28Z",
+      "side": 1,
+      "message": "Dropped it here, and moved that loop into EMDBusInterface in https://gerrit.openbmc.org/c/openbmc/entity-manager/+/96926 so the test calls the same code.",
+      "parentUuid": "7c2c9b30_48b4c03e",
       "range": {
         "startLine": 267,
         "startChar": 4,
