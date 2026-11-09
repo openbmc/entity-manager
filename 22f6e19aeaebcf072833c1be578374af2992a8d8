@@ -16,6 +16,24 @@
       "message": "@jim.tsui.wiwynn@gmail.com @eric.yang.wiwynn@gmail.com why does adding the T22 configuration require modifying the T1/T2 configurations and restricting the probe stage to EVT, DVT, and MP?",
       "revId": "22f6e19aeaebcf072833c1be578374af2992a8d8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d086e9d2_2c5c2205",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002592
+      },
+      "writtenOn": "2026-11-09T03:22:54Z",
+      "side": 1,
+      "message": "The T1/T2 probe stage changes were there to prevent the T22 platform from loading the T1/T2 configuration. I agree the probe stage should not be restricted to EVT/DVT/MP, so there is another change to relax product name probe (https://gerrit.openbmc.org/c/openbmc/entity-manager/+/96475).",
+      "parentUuid": "3648d2e7_a618a2da",
+      "revId": "22f6e19aeaebcf072833c1be578374af2992a8d8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
