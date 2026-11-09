@@ -16,6 +16,47 @@
       "message": "Why do we need two platform?",
       "revId": "8af7e1fa5ae78ead00dae7ab3cfa7e912f61cff8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc5dc024_6edeac8e",
+        "filename": "configurations/platform/nvidia/vr_nvl_platform.json",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-09T10:52:20Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "56cef5e7_4104ffae",
+      "revId": "8af7e1fa5ae78ead00dae7ab3cfa7e912f61cff8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2c6d51a_6668d9d9",
+        "filename": "configurations/platform/nvidia/vr_nvl_platform.json",
+        "patchSetId": 18
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-09T10:52:20Z",
+      "side": 1,
+      "message": "```\n# Platform Configurations                                                                              \n\n## Overview\n\nPlatform configurations are a special category of entity-manager configurations\nused to detect a **platform** (as opposed to a single entity) by detecting 2 or\nmore entities.\n\n**Key Characteristics**:\n\n1. Platform configurations detect 2 or more entities to identify a platform\n2. They use `\"Type\": \"Platform\"` with an `Exposes` array; `\"Type\": \"Platform\"`\n   routes validation to the platform schema (EMPlatformConfig)\n3. They are validated at build time against the schema in `schemas/global.json`\n   (EMPlatformConfig), which references `schemas/platform_schemas/`\n```\n\nwould you agree this config contradicts the current documentation by probing on a single entity ?\n\nIf so, either the config or docs would need changes.",
+      "range": {
+        "startLine": 198,
+        "startChar": 0,
+        "endLine": 198,
+        "endChar": 2
+      },
+      "revId": "8af7e1fa5ae78ead00dae7ab3cfa7e912f61cff8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
