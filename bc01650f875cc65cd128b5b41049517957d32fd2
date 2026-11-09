@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84adb1b0_4efb5107",
+        "filename": "configurations/nvidia/vr_nvl_chassis.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-11-09T02:18:08Z",
+      "side": 1,
+      "message": "Could this use a descriptive name like the other NVIDIA configs instead of the Redfish-style `Chassis_0`?",
+      "range": {
+        "startLine": 4,
+        "startChar": 17,
+        "endLine": 4,
+        "endChar": 26
+      },
+      "revId": "bc01650f875cc65cd128b5b41049517957d32fd2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d6c8620_3997cb68",
+        "filename": "configurations/nvidia/vr_nvl_chassis.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-11-09T02:18:08Z",
+      "side": 1,
+      "message": "Does the P4107 FRU have a product area? If so, Asset could use `$PRODUCT_*` like other `chassis` configs; otherwise `$BOARD_*` instead of hardcoded values.",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 50
+      },
+      "revId": "bc01650f875cc65cd128b5b41049517957d32fd2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "149a8c6d_1791e6e7",
+        "filename": "configurations/nvidia/vr_nvl_chassis.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-11-09T02:18:08Z",
+      "side": 1,
+      "message": "Why do we need this?",
+      "range": {
+        "startLine": 16,
+        "startChar": 49,
+        "endLine": 16,
+        "endChar": 61
+      },
+      "revId": "bc01650f875cc65cd128b5b41049517957d32fd2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
