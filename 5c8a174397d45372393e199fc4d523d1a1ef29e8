@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a0f2d9ba_20495a4f",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1002889
+      },
+      "writtenOn": "2026-11-09T08:09:39Z",
+      "side": 1,
+      "message": "Checked foundDevices.contains(std::make_pair(bus, address)) prior to calling objServer.add_interface(). If the interface already exists, we skip creating a new one to prevent dangling uninitialized interfaces in object_server::interfaces_.",
+      "parentUuid": "d23f49c0_4637d688",
+      "revId": "5c8a174397d45372393e199fc4d523d1a1ef29e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "78322621_dcf1259f",
         "filename": "src/fru_device/fru_device.cpp",
         "patchSetId": 2
@@ -31,6 +49,24 @@
       "writtenOn": "2026-11-09T07:38:55Z",
       "side": 1,
       "message": "What happens in rescanOneBus if an I2C bus device node no longer exists (!fs::exists(busPath))? In the previous code, all interfaces on that bus were cleaned up. Now it returns immediately and leaves stale devices published on D-Bu",
+      "revId": "5c8a174397d45372393e199fc4d523d1a1ef29e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "010e4d09_de638cdd",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1395,
+      "author": {
+        "id": 1002889
+      },
+      "writtenOn": "2026-11-09T08:09:39Z",
+      "side": 1,
+      "message": "When !fs::exists(busPath) holds in rescanOneBus(), we now explicitly clean up all foundDevices belonging to busNum as well as any published FRUs on that bus before returning or throwing.",
+      "parentUuid": "78322621_dcf1259f",
       "revId": "5c8a174397d45372393e199fc4d523d1a1ef29e8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
