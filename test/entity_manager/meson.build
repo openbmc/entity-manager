@@ -162,3 +162,23 @@ test(
         include_directories: test_include_dir,
     ),
 )
+
+test(
+    'test_configuration',
+    executable(
+        'test_configuration',
+        'test_configuration.cpp',
+        cpp_args: test_boost_args + [
+            '-DSCHEMA_DIR="' + meson.project_source_root() / 'schemas' + '"',
+        ],
+        dependencies: [
+            boost,
+            gtest,
+            nlohmann_json_dep,
+            phosphor_logging_dep,
+            sdbusplus,
+        ],
+        link_with: entity_manager_lib,
+        include_directories: test_include_dir,
+    ),
+)
