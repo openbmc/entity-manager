@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e0b1d6c_f4f22017",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-11-09T12:40:22Z",
+      "side": 1,
+      "message": "Thanks for confirming.",
+      "parentUuid": "67dcbbf0_abc8b642",
+      "revId": "ea835262e9a023cbdeb9b8373a3a1f0cc375245f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d259a285_3b93be59",
@@ -90,6 +108,30 @@
       "side": 1,
       "message": "If the probe statement does not parse or pass checks, IMO best to drop that config at the earliest chance we get and log an error.\n\nWe could modify the logic around\n```\n  Configuration::Configuration(\n      const std::vector\u003cstd::filesystem::path\u003e\u0026 configurationDirectories,\n      const std::filesystem::path\u0026 schemaDirectory) :\n      schemaDirectory(schemaDirectory),\n      configurationDirectories(configurationDirectories)\n  {\n      loadConfigurations();\n      filterProbeInterfaces();\n  }\n```\n\nto ensure configurations with probes that have errors do not get emplaced into `configurations` data structure in the first place and then we do not have to deal with it later.\n\nCurrently `filterProbeInterfaces` simply skips over probes that do not parse, and the config remains part of `configurations`.",
       "parentUuid": "ce5d18b4_beef7db2",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 27
+      },
+      "revId": "ea835262e9a023cbdeb9b8373a3a1f0cc375245f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e0c4db8_09844201",
+        "filename": "src/entity_manager/perform_probe.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-11-09T12:40:22Z",
+      "side": 1,
+      "message": "Thanks for the suggestion. I put the load-time drop into change [96941] to show the direction. It keeps those configurations out of `configurations` when they are loaded.\n\nFor this change, the plan is to add a small validator that `parseProbeCommand` calls to reject a misplaced `NOT` and log the reason. If that direction works, I would send a separate change that checks `AND`/`OR` placement in the same validator.\nDoes that fit what you had in mind?\n\n[96941]: https://gerrit.openbmc.org/c/openbmc/entity-manager/+/96941",
+      "parentUuid": "b5282fb6_2b4dd267",
       "range": {
         "startLine": 138,
         "startChar": 0,
