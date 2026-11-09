@@ -2,6 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$defs": {
         "MCTPI2CTarget": {
+            "additionalProperties": false,
             "properties": {
                 "Address": {
                     "description": "The physical address for the device on the I2C bus.",
