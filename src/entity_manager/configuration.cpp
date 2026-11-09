@@ -15,6 +15,7 @@
 #include <filesystem>
 #include <fstream>
 #include <string>
+#include <utility>
 #include <vector>
 
 Configuration::Configuration(
@@ -25,6 +26,20 @@ Configuration::Configuration(
 {
     loadConfigurations();
     filterProbeInterfaces();
+}
+
+// A configuration whose probe is empty or does not parse is not added, so later
+// scans never see it.
+void Configuration::addConfiguration(EMConfig config)
+{
+    if (scan::detail::parseProbeCommand(config.probeStmt).empty())
+    {
+        lg2::error("Dropping configuration {NAME}: invalid Probe statement",
+                   "NAME", config.name);
+        return;
+    }
+
+    configurations.emplace_back(std::move(config));
 }
 
 void Configuration::loadSingleConfigFile(const std::filesystem::path& jsonPath,
@@ -56,7 +71,7 @@ void Configuration::loadSingleConfigFile(const std::filesystem::path& jsonPath,
             auto optConfig = EMConfig::fromJson(d);
             if (optConfig.has_value())
             {
-                configurations.emplace_back(optConfig.value());
+                addConfiguration(std::move(optConfig.value()));
             }
         }
     }
@@ -65,7 +80,7 @@ void Configuration::loadSingleConfigFile(const std::filesystem::path& jsonPath,
         auto optConfig = EMConfig::fromJson(data);
         if (optConfig.has_value())
         {
-            configurations.emplace_back(optConfig.value());
+            addConfiguration(std::move(optConfig.value()));
         }
     }
 }
@@ -160,14 +175,6 @@ void Configuration::filterProbeInterfaces()
 {
     for (auto it = configurations.begin(); it != configurations.end();)
     {
-        if (it->probeStmt.empty())
-        {
-            lg2::error("configuration file missing probe: {PROBE}", "PROBE",
-                       it->toJson());
-            it++;
-            continue;
-        }
-
         std::vector<probe::Token> probeCommand =
             scan::detail::parseProbeCommand(it->probeStmt);
         for (const probe::Token& token : probeCommand)
