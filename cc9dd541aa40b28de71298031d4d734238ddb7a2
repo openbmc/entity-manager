@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "812e910d_f6f665e6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-09T00:32:34Z",
+      "side": 1,
+      "message": "Thanks for taking the time to look into this 😊",
+      "revId": "cc9dd541aa40b28de71298031d4d734238ddb7a2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "813ad271_62ec44f8",
+        "filename": "src/entity_manager/config_validation.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-09T00:32:34Z",
+      "side": 1,
+      "message": "i made this change here because https://en.cppreference.com/cpp/string/basic_string/contains is a C++23 API which caused compilation error on my fedora 44\nbuild host.",
+      "range": {
+        "startLine": 46,
+        "startChar": 34,
+        "endLine": 46,
+        "endChar": 74
+      },
+      "revId": "cc9dd541aa40b28de71298031d4d734238ddb7a2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -57,6 +57,30 @@
       },
       "revId": "b56b3ba92154c1c75f9eb12db2df83c4e02ee2f7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9dd3e1fb_ab523af4",
+        "filename": "src/entity_manager/meson.build",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-09T00:32:34Z",
+      "side": 1,
+      "message": "right, there is currently no native build for it:\n\n```\nERROR: Nothing PROVIDES \u0027phosphor-logging-native\u0027 (but /home/alexander/openbmc/meta-phosphor/recipes-phosphor/configuration/entity-manager_git.bb DEPENDS on or otherwise requires it). Close matches:\n  phosphor-logging\n  phosphor-logging-callouts-example-native\n  phosphor-logging-callouts-mrw-native\nNOTE: Runtime target \u0027entity-manager\u0027 is unbuildable, removing...\nMissing or unbuildable dependency chain was: [\u0027entity-manager\u0027, \u0027phosphor-logging-native\u0027]\nNOTE: Runtime target \u0027virtual-obmc-chassis-mgmt\u0027 is unbuildable, removing...\nMissing or unbuildable dependency chain was: [\u0027virtual-obmc-chassis-mgmt\u0027, \u0027entity-manager\u0027, \u0027phosphor-logging-native\u0027]\nERROR: Required build target \u0027obmc-phosphor-image\u0027 has no buildable providers.\nMissing or unbuildable dependency chain was: [\u0027obmc-phosphor-image\u0027, \u0027virtual-obmc-chassis-mgmt\u0027, \u0027entity-manager\u0027, \u0027phosphor-logging-native\u0027]\n```\n\nReworked to not depend on `phosphor-logging`, for our simple CI uses-case we probably do not need a structured logging.\n\nwith latest patchset, here\u0027s what\u0027s needed in the recipe:\n\n```\nDEPENDS +\u003d \" nlohmann-json-native\"\nDEPENDS +\u003d \" valijson-native\"\n```\n\nand with those changes the image build is successful.",
+      "parentUuid": "9e916cd5_f6844f3d",
+      "range": {
+        "startLine": 52,
+        "startChar": 51,
+        "endLine": 52,
+        "endChar": 65
+      },
+      "revId": "b56b3ba92154c1c75f9eb12db2df83c4e02ee2f7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
