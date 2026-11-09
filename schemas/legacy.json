@@ -1433,12 +1433,16 @@
             },
             "Thresholds": {
                 "items": {
+                    "additionalProperties": false,
                     "properties": {
                         "Direction": {
                             "enum": ["less than", "greater than"]
                         },
                         "Hysteresis": {
                             "type": "number"
+                        },
+                        "Index": {
+                            "$ref": "#/$defs/Types/Index"
                         },
                         "Label": {
                             "type": "string"
