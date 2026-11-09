@@ -155,7 +155,9 @@ bool validateJson(const nlohmann::json& schemaFile, const nlohmann::json& input)
     return validator.validate(schema, targetAdapter, nullptr);
 }
 
-// Extract the D-Bus interfaces to probe from the JSON config files.
+// Extract the D-Bus interfaces to probe from the JSON config files. A
+// configuration whose probe is missing or does not parse is dropped here, so
+// later scans never see it.
 void Configuration::filterProbeInterfaces()
 {
     for (auto it = configurations.begin(); it != configurations.end();)
@@ -164,12 +166,20 @@ void Configuration::filterProbeInterfaces()
         {
             lg2::error("configuration file missing probe: {PROBE}", "PROBE",
                        it->toJson());
-            it++;
+            it = configurations.erase(it);
             continue;
         }
 
         std::vector<probe::Token> probeCommand =
             scan::detail::parseProbeCommand(it->probeStmt);
+        if (probeCommand.empty())
+        {
+            lg2::error("Dropping configuration {NAME}: invalid Probe statement",
+                       "NAME", it->name);
+            it = configurations.erase(it);
+            continue;
+        }
+
         for (const probe::Token& token : probeCommand)
         {
             // Only D-Bus probes name an interface to collect.
