@@ -854,3 +854,88 @@ TEST(GetEepromByteLocation, SixteenBitKeepsDeviceAddress)
     EXPECT_EQ(last.address, 0x56);
     EXPECT_EQ(last.offset, 404);
 }
+
+class FruDeviceRescanTest : public ::testing::Test
+{
+  protected:
+    boost::asio::io_context io;
+    std::shared_ptr<sdbusplus::asio::connection> conn{
+        std::make_shared<sdbusplus::asio::connection>(io)};
+    std::unique_ptr<sdbusplus::asio::object_server> objServer;
+
+    void SetUp() override
+    {
+        objServer =
+            std::make_unique<sdbusplus::asio::object_server>(conn, true);
+    }
+
+    std::shared_ptr<sdbusplus::asio::dbus_interface> addMockInterface(
+        size_t bus, size_t address)
+    {
+        auto iface = objServer->add_interface(
+            "/xyz/openbmc_project/FruDevice/" + std::to_string(bus) + "_" +
+                std::to_string(address),
+            "xyz.openbmc_project.Inventory.Item.I2CDevice");
+        iface->register_property("Bus", bus);
+        iface->register_property("Address", address);
+        iface->initialize();
+        return iface;
+    }
+};
+
+TEST_F(FruDeviceRescanTest, InterfacesRemainPublishedDuringScanAndPrunedAfter)
+{
+    DBusIntfMap foundDevices;
+
+    // 1. Initial state: two devices discovered on bus 1 (addr 0x50 and 0x51).
+    foundDevices.emplace(std::make_pair(1, 0x50), addMockInterface(1, 0x50));
+    foundDevices.emplace(std::make_pair(1, 0x51), addMockInterface(1, 0x51));
+    EXPECT_EQ(foundDevices.size(), 2);
+    EXPECT_TRUE(foundDevices.contains(std::make_pair(1, 0x50)));
+    EXPECT_TRUE(foundDevices.contains(std::make_pair(1, 0x51)));
+
+    // 2. Simulate in-progress async scan:
+    // Probing discovers 0x50, while 0x51 is missing.
+    std::set<std::pair<size_t, size_t>> probedDevices;
+    probedDevices.emplace(1, 0x50);
+
+    // During the scan, existing interfaces remain published in foundDevices.
+    EXPECT_EQ(foundDevices.size(), 2);
+    EXPECT_TRUE(foundDevices.contains(std::make_pair(1, 0x50)));
+    EXPECT_TRUE(foundDevices.contains(std::make_pair(1, 0x51)));
+
+    // 3. Scan completes: prune devices that were not found during the scan.
+    pruneFoundDevices(foundDevices, *objServer,
+                      [&probedDevices](const auto& dev) {
+                          return !probedDevices.contains(dev);
+                      });
+
+    // Device 0x50 remains, while missing device 0x51 is pruned.
+    EXPECT_EQ(foundDevices.size(), 1);
+    EXPECT_TRUE(foundDevices.contains(std::make_pair(1, 0x50)));
+    EXPECT_FALSE(foundDevices.contains(std::make_pair(1, 0x51)));
+}
+
+TEST_F(FruDeviceRescanTest, RescanOneBusOnlyPrunesTargetBus)
+{
+    DBusIntfMap foundDevices;
+
+    // Devices on different buses: bus 1 (0x50) and bus 2 (0x50).
+    foundDevices.emplace(std::make_pair(1, 0x50), addMockInterface(1, 0x50));
+    foundDevices.emplace(std::make_pair(2, 0x50), addMockInterface(2, 0x50));
+    EXPECT_EQ(foundDevices.size(), 2);
+
+    // Rescan bus 1 only, probe finds nothing on bus 1.
+    std::set<std::pair<size_t, size_t>> probedDevices;
+    constexpr size_t rescanBus = 1;
+
+    pruneFoundDevices(
+        foundDevices, *objServer, [rescanBus, &probedDevices](const auto& dev) {
+            return dev.first == rescanBus && !probedDevices.contains(dev);
+        });
+
+    // Bus 1 device is removed, bus 2 device remains untouched.
+    EXPECT_EQ(foundDevices.size(), 1);
+    EXPECT_FALSE(foundDevices.contains(std::make_pair(1, 0x50)));
+    EXPECT_TRUE(foundDevices.contains(std::make_pair(2, 0x50)));
+}
