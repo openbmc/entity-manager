@@ -16,6 +16,24 @@
       "message": "Why are we adding hasConfigObject to EMDBusInterface? Production code should not carry test-only getters. Can this be checked via D-Bus introspection or object server lookup in the test?",
       "revId": "f92e1b380d5c37253249db3fb4b265698cc5c6e6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90ef7899_c1b15e06",
+        "filename": "src/entity_manager/dbus_interface.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-11-09T09:24:09Z",
+      "side": 1,
+      "message": "Good point, the tests already talk to the bus, so I changed them to check for 　`Configuration.Object` with `Properties.GetAll` on the object and dropped `hasConfigObject`.",
+      "parentUuid": "5baf9328_13cd499e",
+      "revId": "f92e1b380d5c37253249db3fb4b265698cc5c6e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
