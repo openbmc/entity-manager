@@ -505,18 +505,7 @@ void EntityManager::pruneConfiguration(const std::string& name,
 {
     lg2::debug("pruning configuration");
 
-    auto& ifaces = dbus_interface.getDeviceInterfaces(device);
-    for (auto& iface : ifaces)
-    {
-        auto sharedPtr = iface.lock();
-        if (!!sharedPtr)
-        {
-            objServer.remove_interface(sharedPtr);
-        }
-    }
-
-    ifaces.clear();
-    dbus_interface.pruneConfigObjects();
+    dbus_interface.removeDeviceInterfaces(device);
     systemConfiguration.erase(name);
     std::optional<std::string> configType = em_utils::resolveConfigType(device);
     if (configType)
