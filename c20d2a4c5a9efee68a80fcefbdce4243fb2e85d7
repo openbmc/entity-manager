@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be315ff6_c61b4fae",
+        "filename": "configurations/nvidia/vr_c2_chassis.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-11-09T02:52:39Z",
+      "side": 1,
+      "message": "Could we use `$PRODUCT_*`?",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 50
+      },
+      "revId": "c20d2a4c5a9efee68a80fcefbdce4243fb2e85d7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c456841_d55e953c",
+        "filename": "configurations/nvidia/vr_c2_chassis.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-11-09T02:52:39Z",
+      "side": 1,
+      "message": "What is this for?",
+      "revId": "c20d2a4c5a9efee68a80fcefbdce4243fb2e85d7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46bf7ba2_12861791",
+        "filename": "configurations/nvidia/vr_c2_chassis.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-11-09T02:52:39Z",
+      "side": 1,
+      "message": "`ChassisType.Shelf` is not in PDI https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Inventory/Item/Chassis.interface.yaml#L12. Please use a defined type.",
+      "range": {
+        "startLine": 20,
+        "startChar": 76,
+        "endLine": 20,
+        "endChar": 81
+      },
+      "revId": "c20d2a4c5a9efee68a80fcefbdce4243fb2e85d7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
