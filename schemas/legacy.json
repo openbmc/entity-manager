@@ -1245,12 +1245,16 @@
                 ]
             },
             "Connector": {
+                "additionalProperties": false,
                 "properties": {
                     "Name": {
                         "type": "string"
                     },
                     "Pwm": {
                         "type": "number"
+                    },
+                    "PwmName": {
+                        "type": "string"
                     },
                     "Tachs": {
                         "items": {
