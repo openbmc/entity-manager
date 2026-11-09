@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd0a6ade_0a435767",
+        "filename": "configurations/nvidia/vr_c2_cx_chassis.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-11-09T03:14:04Z",
+      "side": 1,
+      "message": "Please drop `chassis` from the file name, since both records are boards.",
+      "revId": "b6a05b281e5c148ed42de739c5c246594d6812f0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4610ac27_6a961f42",
+        "filename": "configurations/nvidia/vr_c2_cx_chassis.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-11-09T03:14:04Z",
+      "side": 1,
+      "message": "`MCTPI2CTarget` has no \"`Board`\" property in `schemas/mctp.json` and `mctpreactor` does not read it; please drop it.",
+      "range": {
+        "startLine": 12,
+        "startChar": 16,
+        "endLine": 12,
+        "endChar": 32
+      },
+      "revId": "b6a05b281e5c148ed42de739c5c246594d6812f0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "910294e7_c9be9e9c",
+        "filename": "configurations/nvidia/vr_c2_cx_chassis.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-11-09T03:14:04Z",
+      "side": 1,
+      "message": "Are buses 46 and 56 fixed by DT aliases? Mux channel numbers are not stable otherwise.",
+      "range": {
+        "startLine": 24,
+        "startChar": 51,
+        "endLine": 24,
+        "endChar": 53
+      },
+      "revId": "b6a05b281e5c148ed42de739c5c246594d6812f0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44a74ba9_1b9f57ad",
+        "filename": "configurations/nvidia/vr_c2_cx_chassis.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-11-09T03:14:04Z",
+      "side": 1,
+      "message": "Which CX cards can go in this slot? Could the probe match their product names more specifically than `ConnectX-.*`?",
+      "range": {
+        "startLine": 24,
+        "startChar": 93,
+        "endLine": 24,
+        "endChar": 104
+      },
+      "revId": "b6a05b281e5c148ed42de739c5c246594d6812f0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7959f53d_d8a3205e",
+        "filename": "configurations/nvidia/vr_c2_cx_chassis.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-11-09T03:14:04Z",
+      "side": 1,
+      "message": "`MCTPI2CTarget` has no \"`Board`\" property in `schemas/mctp.json` and `mctpreactor` does not read it; please drop it.",
+      "revId": "b6a05b281e5c148ed42de739c5c246594d6812f0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
