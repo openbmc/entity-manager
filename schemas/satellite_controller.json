@@ -5,6 +5,7 @@
             "title": "satellite controller configuration",
             "description": "The configuration used to add remote BMCs to a system",
             "type": "object",
+            "additionalProperties": false,
             "properties": {
                 "Hostname": {
                     "description": "Hostname or IP of satellite controller",
