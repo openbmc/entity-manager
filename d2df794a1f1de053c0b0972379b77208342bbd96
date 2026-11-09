@@ -49,6 +49,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eff9b40b_5d468eb3",
+        "filename": "configurations/nvidia/vr_nvl_superchip.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-11-09T16:02:15Z",
+      "side": 1,
+      "message": "More bus/address matches that shouldn\u0027t be here.\n\nProbe statements should match on product names and manufacturers, not bus/address combinations.  Bus/address are specific to a particular board layout, which makes this not really a \"FRU\" from an EM perspective.",
+      "revId": "d2df794a1f1de053c0b0972379b77208342bbd96",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7aa9d327_bf093436",
         "filename": "configurations/nvidia/vr_nvl_superchip.json",
         "patchSetId": 11
