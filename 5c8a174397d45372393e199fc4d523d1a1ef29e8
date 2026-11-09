@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d23f49c0_4637d688",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1003195
+      },
+      "writtenOn": "2026-11-09T07:38:55Z",
+      "side": 1,
+      "message": "Because foundDevices is no longer cleared before scanning, calling objServer.add_interface(...) as an argument to foundDevices.emplace(...) will call add_interface even if the device already exists. Since emplace fails to insert, that new interface is never initialized and never removed, leaking in object_server::interfaces_. Please check if the device already exists before calling add_interface.",
+      "revId": "5c8a174397d45372393e199fc4d523d1a1ef29e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78322621_dcf1259f",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1395,
+      "author": {
+        "id": 1003195
+      },
+      "writtenOn": "2026-11-09T07:38:55Z",
+      "side": 1,
+      "message": "What happens in rescanOneBus if an I2C bus device node no longer exists (!fs::exists(busPath))? In the previous code, all interfaces on that bus were cleaned up. Now it returns immediately and leaves stale devices published on D-Bu",
+      "revId": "5c8a174397d45372393e199fc4d523d1a1ef29e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
