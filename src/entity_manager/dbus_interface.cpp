@@ -471,4 +471,20 @@ std::vector<std::weak_ptr<sdbusplus::asio::dbus_interface>>&
     return inventory[device["Name"].get<std::string>()];
 }
 
+void EMDBusInterface::removeDeviceInterfaces(const nlohmann::json& device)
+{
+    auto& ifaces = getDeviceInterfaces(device);
+    for (auto& iface : ifaces)
+    {
+        auto sharedPtr = iface.lock();
+        if (!!sharedPtr)
+        {
+            objServer.remove_interface(sharedPtr);
+        }
+    }
+
+    ifaces.clear();
+    pruneConfigObjects();
+}
+
 } // namespace dbus_interface
