@@ -144,7 +144,17 @@
                             "additionalProperties": false,
                             "properties": {
                                 "Type": {
-                                    "type": "string"
+                                    "enum": [
+                                        "xyz.openbmc_project.Inventory.Item.Chassis.ChassisType.Blade",
+                                        "xyz.openbmc_project.Inventory.Item.Chassis.ChassisType.Component",
+                                        "xyz.openbmc_project.Inventory.Item.Chassis.ChassisType.Enclosure",
+                                        "xyz.openbmc_project.Inventory.Item.Chassis.ChassisType.Module",
+                                        "xyz.openbmc_project.Inventory.Item.Chassis.ChassisType.RackMount",
+                                        "xyz.openbmc_project.Inventory.Item.Chassis.ChassisType.StandAlone",
+                                        "xyz.openbmc_project.Inventory.Item.Chassis.ChassisType.StorageEnclosure",
+                                        "xyz.openbmc_project.Inventory.Item.Chassis.ChassisType.Unknown",
+                                        "xyz.openbmc_project.Inventory.Item.Chassis.ChassisType.Zone"
+                                    ]
                                 }
                             },
                             "type": "object"
