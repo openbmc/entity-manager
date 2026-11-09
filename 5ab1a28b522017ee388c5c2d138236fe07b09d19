@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a518f3d_000f5db0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-11-09T15:53:48Z",
+      "side": 1,
+      "message": "I don\u0027t really understand what we\u0027re doing with \"platform\" but we shouldn\u0027t abuse it by matching things that are actually FRUs.",
+      "revId": "5ab1a28b522017ee388c5c2d138236fe07b09d19",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9ee78ae2_240cc39e",
@@ -14,6 +31,29 @@
       "writtenOn": "2026-11-09T03:18:45Z",
       "side": 1,
       "message": "Why should we need two pldtform",
+      "revId": "5ab1a28b522017ee388c5c2d138236fe07b09d19",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4363fe13_96bc793a",
+        "filename": "configurations/platform/nvidia/vr_c2_platform.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-11-09T15:53:48Z",
+      "side": 1,
+      "message": "Why is this a \"Platform\"???!?",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 6
+      },
       "revId": "5ab1a28b522017ee388c5c2d138236fe07b09d19",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
