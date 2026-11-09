@@ -258,3 +258,12 @@ TEST_F(ConfigObjectTest, RenameKeepsConfigObject)
     remove(path, "TMP75");
     EXPECT_FALSE(iface->hasConfigObject(path));
 }
+
+TEST_F(ConfigObjectTest, RemoveDeviceInterfacesForgetsConfigObject)
+{
+    const sdbusplus::object_path path = add("Zone", "Pid.Zone");
+    EXPECT_TRUE(iface->hasConfigObject(path));
+
+    iface->removeDeviceInterfaces(sysConfig[kBoardId]);
+    EXPECT_FALSE(iface->hasConfigObject(path));
+}
