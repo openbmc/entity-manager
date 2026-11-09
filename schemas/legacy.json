@@ -1377,6 +1377,7 @@
                 "enum": ["On", "ChassisOn", "Always", "BiosPost"]
             },
             "Presence": {
+                "additionalProperties": false,
                 "properties": {
                     "MonitorType": {
                         "enum": ["Event", "Polling"]
