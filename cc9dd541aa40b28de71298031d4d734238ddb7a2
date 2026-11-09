@@ -58,6 +58,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "30cd0b6f_93148e72",
+        "filename": "src/entity_manager/meson.build",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-09T16:38:23Z",
+      "side": 1,
+      "message": "Thanks, yes, it should be guarded by the meson option.\n\nAdded it here as `if get_option(\u0027validate-json\u0027)`\nsimilar to how it\u0027s done in the toplevel `meson.build` for the python script already.",
+      "parentUuid": "9ed9bc8a_08821672",
+      "revId": "cc9dd541aa40b28de71298031d4d734238ddb7a2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f4c0a2a0_f39ba985",
@@ -71,6 +89,30 @@
       "writtenOn": "2026-11-09T04:58:25Z",
       "side": 1,
       "message": "nit: with --continue, this returns before reporting the configs after the one that could not be read, and there is no space after the colon.",
+      "range": {
+        "startLine": 151,
+        "startChar": 12,
+        "endLine": 153,
+        "endChar": 21
+      },
+      "revId": "cc9dd541aa40b28de71298031d4d734238ddb7a2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f6a6268_558476aa",
+        "filename": "src/entity_manager/validate_configs.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-09T16:38:23Z",
+      "side": 1,
+      "message": "right, changed it to work similar to the check below and keep going if the option is set. Log message formatting also fixed now 👍",
+      "parentUuid": "f4c0a2a0_f39ba985",
       "range": {
         "startLine": 151,
         "startChar": 12,
