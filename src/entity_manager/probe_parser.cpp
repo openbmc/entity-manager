@@ -93,6 +93,22 @@ std::unique_ptr<Node> Parser::parseOperand()
         case TokenType::dbusProbe:
             ++position;
             return std::make_unique<Node>(Node{token, nullptr, nullptr});
+        case TokenType::opNot:
+        {
+            ++position;
+            // NOT applies only to TRUE, FALSE or a D-Bus probe. Whether
+            // FOUND('X') is true depends on the order in which the
+            // configurations are probed, so a NOT before it could pass before
+            // X is published.
+            if (position == tokens.size() ||
+                (tokens[position].type != TokenType::boolTrue &&
+                 tokens[position].type != TokenType::boolFalse &&
+                 tokens[position].type != TokenType::dbusProbe))
+            {
+                return nullptr;
+            }
+            return std::make_unique<Node>(Node{token, parseOperand(), nullptr});
+        }
         case TokenType::opAnd:
         case TokenType::opOr:
         case TokenType::matchOne:

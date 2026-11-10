@@ -111,6 +111,14 @@ static bool evaluateNode(const probe::Node& node,
                        ? left && right
                        : left || right;
         }
+        case probe::TokenType::opNot:
+        {
+            // A negated D-Bus probe passes when no object matches, so the
+            // devices its operand matches are not devices of the probe.
+            scan::FoundDevices negatedDevs;
+            return !evaluateNode(*node.left, dbusProbeObjects, passedProbes,
+                                 negatedDevs);
+        }
         case probe::TokenType::matchOne:
         {
             // a flag of the tree, never a node
