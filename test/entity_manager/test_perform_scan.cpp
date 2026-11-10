@@ -1,3 +1,4 @@
+#include "entity_manager/parsed_config.hpp"
 #include "entity_manager/perform_scan.hpp"
 #include "entity_manager/topology.hpp"
 #include "utils.hpp"
@@ -16,6 +17,7 @@
 #include <optional>
 #include <set>
 #include <string>
+#include <utility>
 #include <vector>
 
 #include <gtest/gtest.h>
@@ -91,7 +93,19 @@ static void drainPendingBusCalls(sdbusplus::asio::connection& bus)
     }
 }
 
-TEST(PerformScan, SkipsMalformedProbeAndProcessesFollowingConfiguration)
+static void addScanConfig(std::vector<ParsedConfig>& configurations,
+                          const std::string& name, const std::string& probe)
+{
+    EMConfig record;
+    record.name = name;
+    record.type = "Board";
+    record.probeStmt = {probe};
+    std::optional<ParsedConfig> parsed = ParsedConfig::make(std::move(record));
+    ASSERT_TRUE(parsed.has_value());
+    configurations.emplace_back(std::move(parsed.value()));
+}
+
+TEST(PerformScan, ProcessesConfigurationAfterOneThatDoesNotMatch)
 {
     // Keep bus activity separate so the scan's event loop can drain.
     boost::asio::io_context busIo;
@@ -102,17 +116,15 @@ TEST(PerformScan, SkipsMalformedProbeAndProcessesFollowingConfiguration)
     EntityManager em(bus, io, {}, {});
     json missing = json::object();
 
-    EMConfig malformed;
-    malformed.name = "Malformed Board";
-    malformed.type = "Board";
-    malformed.probeStmt = {"xyz.openbmc_project.FruDevice({'A': })"};
-
-    EMConfig valid;
-    valid.name = "Valid Board";
-    valid.type = "Board";
-    valid.probeStmt = {"TRUE"};
-
-    std::vector<EMConfig> configurations = {malformed, valid};
+    // FALSE and TRUE stand for a board that is absent and one that is present;
+    // a FruDevice probe would need a D-Bus object.
+    std::vector<ParsedConfig> configurations;
+    ASSERT_NO_FATAL_FAILURE(
+        addScanConfig(configurations, "Yosemite 4 Medusa Board", "FALSE"));
+    ASSERT_NO_FATAL_FAILURE(
+        addScanConfig(configurations, "Yosemite 4 Management Board", "TRUE"));
+    const EMConfig& absent = configurations.at(0).config();
+    const EMConfig& present = configurations.at(1).config();
 
     size_t completions = 0;
     auto scan = std::make_shared<scan::PerformScan>(
@@ -121,16 +133,16 @@ TEST(PerformScan, SkipsMalformedProbeAndProcessesFollowingConfiguration)
 
     scan->run();
 
-    EXPECT_FALSE(std::ranges::contains(scan->passedProbes, malformed.name));
-    EXPECT_TRUE(std::ranges::contains(scan->passedProbes, valid.name));
-    EXPECT_EQ(em.systemConfiguration, (json{{valid.name, valid.toJson()}}));
+    EXPECT_FALSE(std::ranges::contains(scan->passedProbes, absent.name));
+    EXPECT_TRUE(std::ranges::contains(scan->passedProbes, present.name));
+    EXPECT_EQ(em.systemConfiguration, (json{{present.name, present.toJson()}}));
     EXPECT_EQ(completions, 0);
 
     scan.reset();
     io.run();
 
     EXPECT_EQ(completions, 1);
-    EXPECT_EQ(em.systemConfiguration, (json{{valid.name, valid.toJson()}}));
+    EXPECT_EQ(em.systemConfiguration, (json{{present.name, present.toJson()}}));
 
     // Complete the initial power-state query while its callback target is
     // alive. sd-bus reports an infinite timeout once no method calls are
