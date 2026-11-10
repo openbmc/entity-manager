@@ -1,7 +1,7 @@
 #include "configuration.hpp"
 
 #include "em_config.hpp"
-#include "perform_probe.hpp"
+#include "parsed_config.hpp"
 #include "probe_lexer.hpp"
 #include "utils.hpp"
 
@@ -32,14 +32,16 @@ Configuration::Configuration(
 // scans never see it.
 void Configuration::addConfiguration(EMConfig config)
 {
-    if (scan::detail::parseProbeCommand(config.probeStmt).empty())
+    const std::string name = config.name;
+    auto optParsed = ParsedConfig::make(std::move(config));
+    if (!optParsed.has_value())
     {
         lg2::error("Dropping configuration {NAME}: invalid Probe statement",
-                   "NAME", config.name);
+                   "NAME", name);
         return;
     }
 
-    configurations.emplace_back(std::move(config));
+    configurations.emplace_back(std::move(optParsed.value()));
 }
 
 void Configuration::loadSingleConfigFile(const std::filesystem::path& jsonPath,
@@ -175,9 +177,7 @@ void Configuration::filterProbeInterfaces()
 {
     for (auto it = configurations.begin(); it != configurations.end();)
     {
-        std::vector<probe::Token> probeCommand =
-            scan::detail::parseProbeCommand(it->probeStmt);
-        for (const probe::Token& token : probeCommand)
+        for (const probe::Token& token : it->tokens())
         {
             // Only D-Bus probes name an interface to collect.
             if (token.dbus.has_value())
