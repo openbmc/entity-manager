@@ -33,6 +33,24 @@
       "message": "hi, we are already calling the same `scan::detail::parseProbeCommand` in line 35.\n\nFound only one other caller in `src/entity_manager/perform_scan.cpp +729` which can also access `struct EMConfig`\n\n```\n  void scan::PerformScan::processConfigurations(\n      std::flat_set\u003cstd::string, std::less\u003c\u003e\u003e\u0026 dbusProbeInterfaces,\n      std::vector\u003cstd::shared_ptr\u003cprobe::PerformProbe\u003e\u003e\u0026 dbusProbePointers)\n  {\n      for (auto it \u003d _configurations.begin(); it !\u003d _configurations.end();)\n      {   \n          if (std::find(passedProbes.begin(), passedProbes.end(), it-\u003ename) !\u003d\n              passedProbes.end())\n          {   \n              it \u003d _configurations.erase(it);\n              continue;\n          }   \n  \n          EMConfig\u0026 recordRef \u003d *it;\n          std::vector\u003cprobe::Token\u003e probeCommand \u003d\n              detail::parseProbeCommand(it-\u003eprobeStmt);\n          if (probeCommand.empty())\n          {\n              lg2::error(\"Skipping configuration {NAME}: invalid Probe statement\",\n                         \"NAME\", it-\u003ename);\n              it++;\n              continue;\n          }\n  \n```\n\nwould it make sense to store the `std::vector\u003cprobe::Token\u003e` in `struct EMConfig` to avoid parsing it 3 times ?\n\nI don\u0027t think the probes change at runtime so it should be fine to store the output and use it instead of parsing again.\n\nThe `EMConfig` constructor could call the `parseProbeCommand` function, perform the check and fill the member, guaranteeing each instance is valid.\n\nWould it work for you like this ?",
       "revId": "81ce153f151ff8997e3767a103fa28140b3963d8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8cf73c4_a8878665",
+        "filename": "src/entity_manager/configuration.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-11-10T12:45:54Z",
+      "side": 1,
+      "message": "Thanks for the suggestion.\nIt is the follow-up in change [97000], on top of this change and the docs change [96992]. This change was pushed again only to fix its test, which lists the invalid record before the valid one so that dropping it must not stop the valid one from loading.\n\nIt follows your suggestion except that the tokens are not stored in `EMConfig`. A new `ParsedConfig` holds an `EMConfig` and its tokens, and `ParsedConfig::make` returns `std::nullopt` for an invalid Probe, so the Probe is still parsed once and every instance is valid. A scan copies an `EMConfig` per device and resolves the templates in its statements, so tokens kept there would stop matching them. \n\nThe tokens are held through a `std::shared_ptr\u003cconst\u003e` to avoid copying them on every scan, and I can use a plain `std::vector` if you prefer.\n\nI plan to send the AND/OR placement checks later in their own change.\n\n[97000]: https://gerrit.openbmc.org/c/openbmc/entity-manager/+/97000\n[96992]: https://gerrit.openbmc.org/c/openbmc/entity-manager/+/96992",
+      "parentUuid": "7dda8327_09f7fd5c",
+      "revId": "81ce153f151ff8997e3767a103fa28140b3963d8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
