@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5eac7458_6c7e80dd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-11-10T06:29:56Z",
+      "side": 1,
+      "message": "The first two items only say that the build and the unit tests passed. It will be clearer to describe what was checked.",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 9
+      },
+      "revId": "de02d6da7898f123f17f26961ad7e70652d5949a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d2f3313_e0ba6635",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-11-10T06:29:56Z",
+      "side": 1,
+      "message": "The `Co-Authored-By` trailer for the AI tool is not needed for now.",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 55
+      },
+      "revId": "de02d6da7898f123f17f26961ad7e70652d5949a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb2ca5b7_023b3350",
+        "filename": "test/entity_manager/test_perform_probe.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-11-10T06:29:56Z",
+      "side": 1,
+      "message": "`parseProbeCommand` rejects these sequences before `doProbe` is reached, so these assertions may not be needed.",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 71
+      },
+      "revId": "de02d6da7898f123f17f26961ad7e70652d5949a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7447c571_fedceaf2",
+        "filename": "test/entity_manager/test_perform_scan.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-11-10T06:29:56Z",
+      "side": 1,
+      "message": "The `NOT` cases here only cover rejection.\nWould it be worth adding a few accepted cases, for example `NOT TRUE` and `TRUE AND NOT FALSE`?",
+      "range": {
+        "startLine": 127,
+        "startChar": 0,
+        "endLine": 127,
+        "endChar": 44
+      },
+      "revId": "de02d6da7898f123f17f26961ad7e70652d5949a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
