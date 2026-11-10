@@ -11,7 +11,9 @@ namespace probe
 {
 
 // AND and OR have the same precedence and associate to the left, so the left
-// child of an operator is everything before it.
+// child of an operator is everything before it. NOT binds to the operand that
+// follows it and has that operand as its only child, in left. A pair of NOTs
+// cancels out, so an operand has at most one NOT above it.
 struct Node
 {
     Token token;

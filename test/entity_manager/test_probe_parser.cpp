@@ -77,6 +77,8 @@ static std::string render(const Node& node)
                    ")";
         case TokenType::opOr:
             return "OR(" + render(*node.left) + "," + render(*node.right) + ")";
+        case TokenType::opNot:
+            return "NOT(" + render(*node.left) + ")";
         case TokenType::boolTrue:
             return "TRUE";
         case TokenType::boolFalse:
@@ -131,6 +133,42 @@ TEST(ParseProbe, TrailingMatchOneIsAFlag)
 
     EXPECT_EQ(render(*ast.root), "AND(TRUE,FALSE)");
     EXPECT_TRUE(ast.matchOne);
+}
+
+// NOT applies to the operand right after it, not to the rest of the Probe.
+TEST(ParseProbe, NotBindsToTheNextOperand)
+{
+    EXPECT_EQ(render(*parseValid("NOT TRUE").root), "NOT(TRUE)");
+    EXPECT_EQ(render(*parseValid("NOT TRUE AND FALSE").root),
+              "AND(NOT(TRUE),FALSE)");
+    EXPECT_EQ(render(*parseValid("TRUE OR NOT FALSE").root),
+              "OR(TRUE,NOT(FALSE))");
+    EXPECT_EQ(render(*parseValid("NOT " + mgmtBoardWBmc).root),
+              "NOT(DBUS(xyz.openbmc_project.FruDevice))");
+}
+
+// A pair of NOTs cancels out, so an operand has at most one NOT above it.
+TEST(ParseProbe, PairsOfNotsCancelOut)
+{
+    EXPECT_EQ(render(*parseValid("NOT NOT TRUE").root), "TRUE");
+    EXPECT_EQ(render(*parseValid("NOT NOT NOT TRUE").root), "NOT(TRUE)");
+    EXPECT_EQ(render(*parseValid("FALSE OR NOT NOT TRUE").root),
+              "OR(FALSE,TRUE)");
+}
+
+// NOT needs TRUE, FALSE or a D-Bus probe after it. FOUND depends on the order
+// in which configurations are probed, so it cannot be negated.
+TEST(ParseProbe, RejectsMisplacedNot)
+{
+    EXPECT_FALSE(parse("NOT FOUND('A')").has_value());
+    EXPECT_FALSE(parse("NOT NOT FOUND('A')").has_value());
+    EXPECT_FALSE(parse("TRUE AND NOT FOUND('A')").has_value());
+    EXPECT_FALSE(parse("TRUE NOT AND FALSE").has_value());
+    EXPECT_FALSE(parse("FALSE NOT OR TRUE").has_value());
+    EXPECT_FALSE(parse("NOT MATCH_ONE TRUE").has_value());
+    EXPECT_FALSE(parse("TRUE NOT MATCH_ONE").has_value());
+    EXPECT_FALSE(parse("TRUE AND NOT").has_value());
+    EXPECT_FALSE(parse("NOT").has_value());
 }
 
 // AND and OR need an operand on both sides.
