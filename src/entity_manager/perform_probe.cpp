@@ -163,21 +163,19 @@ bool probe::detail::doProbe(const std::vector<probe::Token>& probeCommand,
 namespace probe
 {
 
-PerformProbe::PerformProbe(EMConfig& recordRef,
-                           const std::vector<Token>& probeCommand,
-                           std::string probeName,
+PerformProbe::PerformProbe(const ParsedConfig& recordRef, std::string probeName,
                            std::shared_ptr<scan::PerformScan>& scanPtr) :
-    recordRef(recordRef), _probeCommand(probeCommand),
-    probeName(std::move(probeName)), scan(scanPtr)
+    recordRef(recordRef), probeName(std::move(probeName)), scan(scanPtr)
 {}
 
 PerformProbe::~PerformProbe()
 {
     scan::FoundDevices foundDevs;
-    if (detail::doProbe(_probeCommand, scan->dbusProbeObjects,
+    if (detail::doProbe(recordRef.tokens(), scan->dbusProbeObjects,
                         scan->passedProbes, foundDevs))
     {
-        scan->updateSystemConfiguration(recordRef, probeName, foundDevs);
+        scan->updateSystemConfiguration(recordRef.config(), probeName,
+                                        foundDevs);
     }
 }
 
