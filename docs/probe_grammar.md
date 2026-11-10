@@ -47,6 +47,13 @@ Note: `boolean_literal` (`TRUE` / `FALSE`) is a probe operand and is upper-case;
 a `json_boolean` inside a `match_object` is a JSON value and is lower-case
 (`true` / `false`).
 
+## Invalid statements
+
+A Probe that is empty or cannot be tokenized, for example because of an unknown
+keyword or an unbalanced parenthesis, is rejected when the configuration is
+loaded. An error naming the configuration is logged and the configuration is not
+used. Other grammar violations, such as a misplaced operator, are not detected.
+
 ## Evaluation semantics
 
 Each operand evaluates to a boolean:
