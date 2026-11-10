@@ -66,10 +66,11 @@ Each operand evaluates to a boolean:
 - `dbus_probe`: true if at least one D-Bus object exposes the given interface
   with **all** listed properties matching. String match values are compared as
   `std::regex`; other values by equality. Matched devices are recorded.
-- `NOT`: negates the `TRUE`, `FALSE`, or `dbus_probe` that follows it. It does
-  not apply to `FOUND(...)`. A pair of `NOT`s cancels out, so `NOT NOT A` is
-  `A`, including the devices `A` records. A negated `dbus_probe` is true when no
-  object matches, and records no devices.
+- `NOT`: negates the `TRUE`, `FALSE`, or `dbus_probe` that follows it. A `NOT`
+  before `FOUND(...)` is rejected, because the result of `FOUND(...)` depends on
+  which probes have already passed. A pair of `NOT`s cancels out, so `NOT NOT A`
+  is `A`, including the devices `A` records. A negated `dbus_probe` is true when
+  no object matches, and records no devices.
 
 Combination and modifiers:
 
@@ -79,7 +80,8 @@ Combination and modifiers:
   part of the operand it precedes, so `NOT A AND B` is `(NOT A) AND B`.
 - `MATCH_ONE`: if the overall result is true, keep only the last matched device.
 - **Empty-device fallback**: if the result is true but no device matched (e.g. a
-  `TRUE`- or `FOUND`-only probe), one empty device record is emitted.
+  `TRUE`- or `FOUND`-only probe, or a probe whose only `dbus_probe` is negated),
+  one empty device record is emitted.
 
 ## Precedence: why it stays left-to-right
 
