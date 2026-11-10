@@ -226,7 +226,7 @@ std::string scan::detail::getRecordName(const DBusInterface& probe,
 
 scan::PerformScan::PerformScan(
     EntityManager& em, nlohmann::json& missingConfigurations,
-    std::vector<EMConfig>& configurations, boost::asio::io_context& io,
+    std::vector<ParsedConfig>& configurations, boost::asio::io_context& io,
     std::function<void()>&& callback) :
     _em(em), _missingConfigurations(missingConfigurations),
     _configurations(configurations), _callback(std::move(callback)), io(io)
@@ -689,33 +689,23 @@ void scan::PerformScan::processConfigurations(
 {
     for (auto it = _configurations.begin(); it != _configurations.end();)
     {
-        if (std::find(passedProbes.begin(), passedProbes.end(), it->name) !=
+        const std::string& name = it->config().name;
+        if (std::find(passedProbes.begin(), passedProbes.end(), name) !=
             passedProbes.end())
         {
             it = _configurations.erase(it);
             continue;
         }
 
-        EMConfig& recordRef = *it;
-        std::vector<probe::Token> probeCommand =
-            probe::parseProbeCommand(it->probeStmt);
-        if (probeCommand.empty())
-        {
-            lg2::error("Skipping configuration {NAME}: invalid Probe statement",
-                       "NAME", it->name);
-            it++;
-            continue;
-        }
-
         // store reference to this to children to makes sure we don't get
         // destroyed too early
         auto thisRef = shared_from_this();
-        auto probePointer = std::make_shared<probe::PerformProbe>(
-            recordRef, probeCommand, it->name, thisRef);
+        auto probePointer =
+            std::make_shared<probe::PerformProbe>(*it, name, thisRef);
 
         // parse out dbus probes by discarding other probe types, store in a
         // map
-        collectDbusProbes(probeCommand, probePointer, dbusProbeInterfaces,
+        collectDbusProbes(it->tokens(), probePointer, dbusProbeInterfaces,
                           dbusProbePointers);
         it++;
     }
