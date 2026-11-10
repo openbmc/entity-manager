@@ -123,6 +123,18 @@ TEST(ParseProbeCommand, RejectsMalformedDbusProperties)
                     .empty());
 }
 
+// NOT before FOUND, a binary operator, MATCH_ONE, or at the end is rejected.
+TEST(ParseProbeCommand, RejectsMisplacedNot)
+{
+    EXPECT_TRUE(scan::detail::parseProbeCommand({"NOT FOUND('A')"}).empty());
+    EXPECT_TRUE(
+        scan::detail::parseProbeCommand({"TRUE NOT AND FALSE"}).empty());
+    EXPECT_TRUE(scan::detail::parseProbeCommand({"FALSE NOT OR TRUE"}).empty());
+    EXPECT_TRUE(
+        scan::detail::parseProbeCommand({"NOT MATCH_ONE TRUE"}).empty());
+    EXPECT_TRUE(scan::detail::parseProbeCommand({"TRUE AND NOT"}).empty());
+}
+
 static void recordScanCompletion(size_t& completions)
 {
     ++completions;
