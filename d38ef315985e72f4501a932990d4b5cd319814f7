@@ -16,6 +16,24 @@
       "message": "wouldn\u0027t this check include the \u0027Internal Use Area\u0027 (line 883) ?\n\nin my pdf (rev 1.3), Section 9 \"Internal Use Area Format\"\n\nbyte 0 is \"Internal Use Format Version\" but everything beyond is vendor defined\nand no length field present.\n\n(as opposed to \"Chassis Info Area Format\" and \"Board Info Area Format\" which both have a length field)",
       "revId": "d38ef315985e72f4501a932990d4b5cd319814f7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75333673_6cc23aa3",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2026-11-10T04:19:35Z",
+      "side": 1,
+      "message": "Yeah I agree. But the current code seems to be assuming that, as opposed to how the length of the Internal Use Area is calculated based on the next area offset down in `calculatedAreaSize` function. While in this function, an arbitrary length byte can cause incorrect calculation of FRU length.",
+      "parentUuid": "48eb80d4_a6fa69d7",
+      "revId": "d38ef315985e72f4501a932990d4b5cd319814f7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
