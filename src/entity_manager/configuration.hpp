@@ -2,6 +2,7 @@
 
 #include "config_pointer.hpp"
 #include "em_config.hpp"
+#include "parsed_config.hpp"
 
 #include <nlohmann/json.hpp>
 #include <phosphor-logging/lg2.hpp>
@@ -16,7 +17,7 @@ class Configuration
         const std::vector<std::filesystem::path>& configurationDirectories,
         const std::filesystem::path& schemaDirectory);
     std::unordered_set<std::string> probeInterfaces;
-    std::vector<EMConfig> configurations;
+    std::vector<ParsedConfig> configurations;
 
     const std::filesystem::path schemaDirectory;
 
