@@ -664,6 +664,39 @@ void scan::PerformScan::updateSystemConfiguration(const EMConfig& recordRef,
     }
 }
 
+// NOT must be followed by TRUE, FALSE, or a D-Bus probe
+static bool validateNotPlacement(const std::vector<probe::Token>& tokens)
+{
+    bool afterNot = false;
+
+    for (const probe::Token& token : tokens)
+    {
+        switch (token.type)
+        {
+            case probe::TokenType::opNot:
+                afterNot = true;
+                break;
+            case probe::TokenType::boolTrue:
+            case probe::TokenType::boolFalse:
+            case probe::TokenType::dbusProbe:
+                afterNot = false;
+                break;
+            case probe::TokenType::found:
+            case probe::TokenType::opAnd:
+            case probe::TokenType::opOr:
+            case probe::TokenType::matchOne:
+                // cannot follow NOT
+                if (afterNot)
+                {
+                    return false;
+                }
+                break;
+        }
+    }
+    // NOT cannot be the last token
+    return !afterNot;
+}
+
 std::vector<probe::Token> scan::detail::parseProbeCommand(
     const std::vector<std::string>& probeField)
 {
@@ -688,6 +721,13 @@ std::vector<probe::Token> scan::detail::parseProbeCommand(
     {
         lg2::error("Probe statement produced no tokens: {PROBE}", "PROBE",
                    joined);
+        return {};
+    }
+    if (!validateNotPlacement(*tokens))
+    {
+        lg2::error("Probe statement has a misplaced NOT: {PROBE}", "PROBE",
+                   joined);
+        return {};
     }
     return *tokens;
 }

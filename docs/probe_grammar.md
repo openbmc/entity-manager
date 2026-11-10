@@ -22,7 +22,8 @@ entry point and avoiding array/string edge cases.
    left-to-right with NO operator precedence (see "Precedence" below). *)
 
 probe            = operand , { binary_op , operand } , [ match_modifier ] ;
-operand          = boolean_literal | found_probe | dbus_probe ;
+operand          = { unary_op }, ( boolean_literal | dbus_probe ) | found_probe ;
+unary_op         = "NOT" ;
 binary_op        = "AND" | "OR" ;
 match_modifier   = "MATCH_ONE" ;
 boolean_literal  = "TRUE" | "FALSE" ;
@@ -57,12 +58,15 @@ Each operand evaluates to a boolean:
 - `dbus_probe`: true if at least one D-Bus object exposes the given interface
   with **all** listed properties matching. String match values are compared as
   `std::regex`; other values by equality. Matched devices are recorded.
+- `NOT`: negates the `TRUE`, `FALSE`, or `dbus_probe` that follows it (repeated
+  `NOT`s negate in turn). It does not apply to `FOUND(...)`. A negated
+  `dbus_probe` is true when no object matches, and records no devices.
 
 Combination and modifiers:
 
 - **Precedence:** none. Operators combine strictly left-to-right:
-  `result := operand0`, then for each `op operand_i`,
-  `result := operand_i op result` (`AND` = `&&`, `OR` = `||`).
+  `result := operand0`, then for each `binary_op operand_i`,
+  `result := operand_i binary_op result` (`AND` = `&&`, `OR` = `||`).
 - `MATCH_ONE`: if the overall result is true, keep only the last matched device.
 - **Empty-device fallback**: if the result is true but no device matched (e.g. a
   `TRUE`- or `FOUND`-only probe), one empty device record is emitted.
