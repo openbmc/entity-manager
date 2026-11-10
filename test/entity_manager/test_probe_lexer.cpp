@@ -19,6 +19,7 @@ TEST(LexProbe, Keywords)
               (std::vector<Token>{{TokenType::boolFalse, ""}}));
     EXPECT_EQ(lexProbe("AND"), (std::vector<Token>{{TokenType::opAnd, ""}}));
     EXPECT_EQ(lexProbe("OR"), (std::vector<Token>{{TokenType::opOr, ""}}));
+    EXPECT_EQ(lexProbe("NOT"), (std::vector<Token>{{TokenType::opNot, ""}}));
     EXPECT_EQ(lexProbe("MATCH_ONE"),
               (std::vector<Token>{{TokenType::matchOne, ""}}));
 }
@@ -57,16 +58,17 @@ TEST(LexProbe, KeywordSubstringInsideDbusProbeIsNotAnOperator)
 }
 
 // The mixed operator pattern used by several platforms:
-// A OR B AND FOUND('X').
+// A OR NOT B AND FOUND('X').
 TEST(LexProbe, MixedOperators)
 {
     const std::string a = "xyz.openbmc_project.FruDevice({'BUS': 6})";
     const std::string b = "xyz.openbmc_project.FruDevice({'BUS': 7})";
-    EXPECT_EQ(lexProbe(a + " OR " + b + " AND FOUND('Board')"),
+    EXPECT_EQ(lexProbe(a + " OR NOT " + b + " AND FOUND('Board')"),
               (std::vector<Token>{
                   {TokenType::dbusProbe, "",
                    DbusProbe{"xyz.openbmc_project.FruDevice", {{"BUS", 6}}}},
                   {TokenType::opOr, ""},
+                  {TokenType::opNot, ""},
                   {TokenType::dbusProbe, "",
                    DbusProbe{"xyz.openbmc_project.FruDevice", {{"BUS", 7}}}},
                   {TokenType::opAnd, ""},
