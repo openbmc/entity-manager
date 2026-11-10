@@ -14,14 +14,12 @@ namespace probe
 // this class finds the needed dbus fields and on destruction runs the probe
 struct PerformProbe final
 {
-    PerformProbe(EMConfig& recordRef, const std::vector<Token>& probeCommand,
-                 std::string probeName,
+    PerformProbe(const ParsedConfig& recordRef, std::string probeName,
                  std::shared_ptr<scan::PerformScan>& scanPtr);
     ~PerformProbe();
 
   private:
-    EMConfig& recordRef;
-    std::vector<Token> _probeCommand;
+    const ParsedConfig& recordRef;
     std::string probeName;
     std::shared_ptr<scan::PerformScan> scan;
 };
