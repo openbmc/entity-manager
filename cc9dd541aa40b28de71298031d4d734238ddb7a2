@@ -121,6 +121,30 @@
       },
       "revId": "cc9dd541aa40b28de71298031d4d734238ddb7a2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acad0781_c334c286",
+        "filename": "src/entity_manager/validate_configs.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-11-10T02:10:23Z",
+      "side": 1,
+      "message": "Thanks, one small thing left: with --continue, a config that cannot be read is now reported twice, so maybe `continue` after this error.",
+      "parentUuid": "1f6a6268_558476aa",
+      "range": {
+        "startLine": 151,
+        "startChar": 12,
+        "endLine": 153,
+        "endChar": 21
+      },
+      "revId": "cc9dd541aa40b28de71298031d4d734238ddb7a2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
