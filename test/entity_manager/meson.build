@@ -146,6 +146,24 @@ test(
 )
 
 test(
+    'test_parsed_config',
+    executable(
+        'test_parsed_config',
+        'test_parsed_config.cpp',
+        cpp_args: test_boost_args,
+        dependencies: [
+            boost,
+            gtest,
+            nlohmann_json_dep,
+            phosphor_logging_dep,
+            sdbusplus,
+        ],
+        link_with: entity_manager_lib,
+        include_directories: test_include_dir,
+    ),
+)
+
+test(
     'test_config_pointer',
     executable(
         'test_config_pointer',

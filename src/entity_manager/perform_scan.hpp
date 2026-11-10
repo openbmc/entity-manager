@@ -3,6 +3,7 @@
 #include "../utils.hpp"
 #include "em_config.hpp"
 #include "entity_manager.hpp"
+#include "parsed_config.hpp"
 #include "probe_lexer.hpp"
 
 #include <systemd/sd-journal.h>
@@ -37,7 +38,7 @@ using FoundDevices = std::vector<DBusDeviceDescriptor>;
 struct PerformScan final : std::enable_shared_from_this<PerformScan>
 {
     PerformScan(EntityManager& em, nlohmann::json& missingConfigurations,
-                std::vector<EMConfig>& configurations,
+                std::vector<ParsedConfig>& configurations,
                 boost::asio::io_context& io, std::function<void()>&& callback);
 
     void updateSystemConfiguration(const EMConfig& recordRef,
@@ -50,15 +51,15 @@ struct PerformScan final : std::enable_shared_from_this<PerformScan>
     std::vector<std::string> passedProbes;
 
   private:
-    // Walk _configurations, skipping malformed and dropping already-probed
-    // entries. Start a PerformProbe for each remaining one. Collects the D-Bus
-    // interfaces to look up into dbusProbeInterfaces / dbusProbePointers.
+    // Walk _configurations, dropping already-probed entries. Start a
+    // PerformProbe for each remaining one. Collects the D-Bus interfaces to
+    // look up into dbusProbeInterfaces / dbusProbePointers.
     void processConfigurations(
         std::flat_set<std::string, std::less<>>& dbusProbeInterfaces,
         std::vector<std::shared_ptr<probe::PerformProbe>>& dbusProbePointers);
 
     nlohmann::json& _missingConfigurations;
-    std::vector<EMConfig> _configurations;
+    std::vector<ParsedConfig> _configurations;
     std::function<void()> _callback;
     bool _passed = false;
 
