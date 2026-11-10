@@ -79,7 +79,8 @@ TEST_F(ConfigurationTest, DropsConfigurationsWithInvalidProbe)
     Configuration config({tmpDir}, std::filesystem::path{SCHEMA_DIR});
 
     ASSERT_EQ(config.configurations.size(), 1);
-    EXPECT_EQ(config.configurations.at(0).name, "Yosemite 4 Management Board");
+    EXPECT_EQ(config.configurations.at(0).config().name,
+              "Yosemite 4 Management Board");
     EXPECT_EQ(config.probeInterfaces, (std::unordered_set<std::string>{
                                           "xyz.openbmc_project.FruDevice"}));
 }
