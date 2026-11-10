@@ -123,6 +123,27 @@ TEST(ParseProbeCommand, RejectsMalformedDbusProperties)
                     .empty());
 }
 
+TEST(ParseProbeCommand, ValidatesNotPlacement)
+{
+    // NOT preceding TRUE, FALSE, or a D-Bus probe is accepted.
+    EXPECT_FALSE(scan::detail::parseProbeCommand({"NOT TRUE"}).empty());
+    EXPECT_FALSE(
+        scan::detail::parseProbeCommand({"TRUE AND NOT FALSE"}).empty());
+    EXPECT_FALSE(scan::detail::parseProbeCommand(
+                     {"NOT xyz.openbmc_project.FruDevice({'BUS': 2})"})
+                     .empty());
+
+    // NOT preceding FOUND, a binary operator, MATCH_ONE, or at the end is
+    // rejected.
+    EXPECT_TRUE(scan::detail::parseProbeCommand({"NOT FOUND('A')"}).empty());
+    EXPECT_TRUE(
+        scan::detail::parseProbeCommand({"TRUE NOT AND FALSE"}).empty());
+    EXPECT_TRUE(scan::detail::parseProbeCommand({"FALSE NOT OR TRUE"}).empty());
+    EXPECT_TRUE(
+        scan::detail::parseProbeCommand({"NOT MATCH_ONE TRUE"}).empty());
+    EXPECT_TRUE(scan::detail::parseProbeCommand({"TRUE AND NOT"}).empty());
+}
+
 static void recordScanCompletion(size_t& completions)
 {
     ++completions;

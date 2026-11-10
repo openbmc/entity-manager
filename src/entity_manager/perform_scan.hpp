@@ -77,8 +77,9 @@ void applyTemplatesAndExposeActions(
     nlohmann::json& systemConfiguration);
 
 // Parse validated probe statements into a token stream. The statements are
-// joined with single spaces and lexed. Returns an empty vector on a lexing
-// error; a valid probe is never empty.
+// joined with single spaces, lexed, and checked that NOT precedes only TRUE,
+// FALSE, or a D-Bus probe. Returns an empty vector on a lexing error or a
+// misplaced NOT; a valid probe is never empty.
 std::vector<probe::Token> parseProbeCommand(
     const std::vector<std::string>& probeField);
 std::string getRecordName(const DBusInterface& probe,
