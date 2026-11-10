@@ -79,6 +79,14 @@ std::unique_ptr<Node> Parser::parseExpression()
 
 std::unique_ptr<Node> Parser::parseOperand()
 {
+    size_t nots = 0;
+    while (position < tokens.size() &&
+           tokens[position].type == TokenType::opNot)
+    {
+        ++nots;
+        ++position;
+    }
+
     if (position == tokens.size())
     {
         return nullptr;
@@ -87,14 +95,35 @@ std::unique_ptr<Node> Parser::parseOperand()
     const Token& token = tokens[position];
     switch (token.type)
     {
-        case TokenType::boolTrue:
-        case TokenType::boolFalse:
         case TokenType::found:
-        case TokenType::dbusProbe:
+        {
+            // Whether FOUND('X') is true depends on the order in which the
+            // configurations are probed, so a NOT before it could pass before
+            // X is published.
+            if (nots != 0)
+            {
+                return nullptr;
+            }
             ++position;
             return std::make_unique<Node>(Node{token, nullptr, nullptr});
+        }
+        case TokenType::boolTrue:
+        case TokenType::boolFalse:
+        case TokenType::dbusProbe:
+        {
+            ++position;
+            auto operand =
+                std::make_unique<Node>(Node{token, nullptr, nullptr});
+            if (nots % 2 == 0)
+            {
+                return operand;
+            }
+            return std::make_unique<Node>(
+                Node{{TokenType::opNot, {}}, std::move(operand), nullptr});
+        }
         case TokenType::opAnd:
         case TokenType::opOr:
+        case TokenType::opNot:
         case TokenType::matchOne:
             break;
     }
