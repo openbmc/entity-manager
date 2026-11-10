@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "acda6993_c1710c63",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1002591
+      },
+      "writtenOn": "2026-11-10T08:54:17Z",
+      "side": 1,
+      "message": "Updated the tested items.",
+      "parentUuid": "5eac7458_6c7e80dd",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 9
+      },
+      "revId": "de02d6da7898f123f17f26961ad7e70652d5949a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6d2f3313_e0ba6635",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-11-10T06:29:56Z",
       "side": 1,
       "message": "The `Co-Authored-By` trailer for the AI tool is not needed for now.",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 55
+      },
+      "revId": "de02d6da7898f123f17f26961ad7e70652d5949a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ac7cb67_fd642c6f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1002591
+      },
+      "writtenOn": "2026-11-10T08:54:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d2f3313_e0ba6635",
       "range": {
         "startLine": 135,
         "startChar": 0,
@@ -94,6 +142,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6961ebe3_4d770098",
+        "filename": "test/entity_manager/test_perform_probe.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1002591
+      },
+      "writtenOn": "2026-11-10T08:54:17Z",
+      "side": 1,
+      "message": "Done. Removed the cases that would be rejected by `filterProbeInterfaces` and added `NOT FALSE AND FALSE` to verify that `NOT` applies only to the first `FALSE`.",
+      "parentUuid": "eb07a22d_dab59aa1",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 71
+      },
+      "revId": "de02d6da7898f123f17f26961ad7e70652d5949a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7447c571_fedceaf2",
@@ -107,6 +179,30 @@
       "writtenOn": "2026-11-10T06:29:56Z",
       "side": 1,
       "message": "The `NOT` cases here only cover rejection.\nWould it be worth adding a few accepted cases, for example `NOT TRUE` and `TRUE AND NOT FALSE`?",
+      "range": {
+        "startLine": 127,
+        "startChar": 0,
+        "endLine": 127,
+        "endChar": 44
+      },
+      "revId": "de02d6da7898f123f17f26961ad7e70652d5949a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a9927aa_93692008",
+        "filename": "test/entity_manager/test_perform_scan.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1002591
+      },
+      "writtenOn": "2026-11-10T08:54:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7447c571_fedceaf2",
       "range": {
         "startLine": 127,
         "startChar": 0,
