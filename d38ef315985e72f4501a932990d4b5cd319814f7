@@ -34,6 +34,24 @@
       "parentUuid": "48eb80d4_a6fa69d7",
       "revId": "d38ef315985e72f4501a932990d4b5cd319814f7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "659eabd8_4cdb9b08",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-10T09:22:52Z",
+      "side": 1,
+      "message": "\u003e But the current code seems to be assuming that\n\nMaybe some people add it for consistency purpose with the other areas when generating FRU data.\n\nUnrelated to the specific tool used to generate, IMO we can only rely on the spec for which fields we can access.\n\nSince it\u0027s directly in the path of your patch (relating to length checks), would it make sense to add a testcase for an internal use area `0x01 0x00 0xff 0xff` ?\n\nThat would confirm the code can handle the internal use area without length field.",
+      "parentUuid": "75333673_6cc23aa3",
+      "revId": "d38ef315985e72f4501a932990d4b5cd319814f7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
