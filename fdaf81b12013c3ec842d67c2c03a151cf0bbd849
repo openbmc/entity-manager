@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0a4b2d7_bed4bf46",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1442,
+      "author": {
+        "id": 1003207
+      },
+      "writtenOn": "2026-11-11T02:43:48Z",
+      "side": 1,
+      "message": "Could you add an automated regression test for the rescan behavior?\n\nIt should verify that existing probe interfaces remain published,while an asynchronous scan is in-progress and that interfaces for devices no longer found are removed after the scan completes.\n\nThe Tested section describes runtime testing on AST2700,automated coverage would help prevent regressions in this cleanup logic.",
+      "revId": "fdaf81b12013c3ec842d67c2c03a151cf0bbd849",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
