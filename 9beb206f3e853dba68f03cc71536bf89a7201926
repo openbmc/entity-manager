@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34332c41_b754ea98",
+        "filename": "schemas/nvidia.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-11T15:01:30Z",
+      "side": 1,
+      "message": "```suggestion\n                    \"type\": \"integer\",\n```\n\nThis probably needs fixed in the existing Thresholds schema as well, otherwise things like `3.2` will pass the validator.",
+      "range": {
+        "startLine": 20,
+        "startChar": 29,
+        "endLine": 20,
+        "endChar": 35
+      },
+      "revId": "9beb206f3e853dba68f03cc71536bf89a7201926",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
