@@ -71,6 +71,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "3889a72a_a71d9564",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-11T11:28:40Z",
+      "side": 1,
+      "message": "\u003e Well, it says consumers rely on it so deleting it is maybe not a good idea?\n\nlet\u0027s follow up on schema changes in case this change gets in.\n\nRegarding the config changes:\n\nCan you confirm the effects of this change on upstream configurations and services and summarize it in the commit message?\n\nParticularly the effect of `xyz.openbmc_project.Inventory.Item.NVMe` interface not being there anymore and if there is any services relying on it or using it in some way.\n\nPlease also confirm in the commit message if you migrated all configs or if there is configs that you did not migrate. Otherwise reviewers need to dig up all this info by themselves.",
+      "parentUuid": "68a8af61_b3241d3c",
+      "revId": "eeabcbe4888a39e6341f09b371c3be3295fc4eb2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "b5f319a9_50b2f106",
