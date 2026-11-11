@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19fc016a_89993f21",
+        "filename": "schemas/openbmc-dbus.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-11T15:35:05Z",
+      "side": 1,
+      "message": "```suggestion\n                            \"required\": [\"MACAddress\", \"MACAddress2\"],\n```\n\nPDI interfaces have no optional properties",
+      "range": {
+        "startLine": 162,
+        "startChar": 0,
+        "endLine": 162,
+        "endChar": 2
+      },
+      "revId": "227579510a17156d5d0f835b47c33734955a74d1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
