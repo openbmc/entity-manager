@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7dd910c_32978353",
+        "filename": "configurations/nvidia/vr_c2_processor_module.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002918
+      },
+      "writtenOn": "2026-11-11T19:14:32Z",
+      "side": 1,
+      "message": "Renamed to P5035_C2_HPM_SMA as it represents the HPM SMA.",
+      "parentUuid": "9c79c336_f9ec24d9",
+      "range": {
+        "startLine": 11,
+        "startChar": 25,
+        "endLine": 11,
+        "endChar": 30
+      },
+      "revId": "73e27fb137d0c7961feedb129777a0ae42389e2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7edc310a_0a245f49",
@@ -37,6 +61,24 @@
       "writtenOn": "2026-11-09T15:57:14Z",
       "side": 1,
       "message": "Don\u0027t match on bus/address.\n\nIf this is your common processor module, why are you even restricting it to this bus/address?  Other people can put this module at a different location, can\u0027t they?",
+      "revId": "73e27fb137d0c7961feedb129777a0ae42389e2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f942b7a_4473d2be",
+        "filename": "configurations/nvidia/vr_c2_processor_module.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1002918
+      },
+      "writtenOn": "2026-11-11T19:14:32Z",
+      "side": 1,
+      "message": "Yes that makes sense (MGX has a modular architecture). The probe now matches BOARD_PRODUCT_NAME, PRODUCT_PRODUCT_NAME and PRODUCT_MANUFACTURER. Thanks.",
+      "parentUuid": "7edc310a_0a245f49",
       "revId": "73e27fb137d0c7961feedb129777a0ae42389e2f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
