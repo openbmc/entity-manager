@@ -16,6 +16,24 @@
       "message": "Could you add an automated regression test for the rescan behavior?\n\nIt should verify that existing probe interfaces remain published,while an asynchronous scan is in-progress and that interfaces for devices no longer found are removed after the scan completes.\n\nThe Tested section describes runtime testing on AST2700,automated coverage would help prevent regressions in this cleanup logic.",
       "revId": "fdaf81b12013c3ec842d67c2c03a151cf0bbd849",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "158a7b85_1c3e2d2c",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1442,
+      "author": {
+        "id": 1002889
+      },
+      "writtenOn": "2026-11-11T10:00:42Z",
+      "side": 1,
+      "message": "Added automated regression tests in test/test_fru-utils.cpp (FruDeviceRescanTest):\n\nInterfacesRemainPublishedDuringScanAndPrunedAfter: verifies that probe interfaces remain published in foundDevices during an in-progress async scan, and only unprobed devices are pruned after the scan completes.\nRescanOneBusOnlyPrunesTargetBus: ensures that single-bus rescan pruning only targets devices on the specified bus without disturbing other buses.\n\nPushed in Patchset 5.",
+      "parentUuid": "a0a4b2d7_bed4bf46",
+      "revId": "fdaf81b12013c3ec842d67c2c03a151cf0bbd849",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
