@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "75fadce5_4d0b3629",
+        "filename": "configurations/nvidia/vr_c2_cx_chassis.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002918
+      },
+      "writtenOn": "2026-11-11T19:20:54Z",
+      "side": 1,
+      "message": "Fixed. Renamed to cx8_1p_module.json and replaced the two records with a single FRU template. Thanks.",
+      "parentUuid": "1853091a_99312a62",
+      "revId": "b6a05b281e5c148ed42de739c5c246594d6812f0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4610ac27_6a961f42",
@@ -49,6 +67,30 @@
       "writtenOn": "2026-11-09T03:14:04Z",
       "side": 1,
       "message": "`MCTPI2CTarget` has no \"`Board`\" property in `schemas/mctp.json` and `mctpreactor` does not read it; please drop it.",
+      "range": {
+        "startLine": 12,
+        "startChar": 16,
+        "endLine": 12,
+        "endChar": 32
+      },
+      "revId": "b6a05b281e5c148ed42de739c5c246594d6812f0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5b421c5_05b68cf3",
+        "filename": "configurations/nvidia/vr_c2_cx_chassis.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002918
+      },
+      "writtenOn": "2026-11-11T19:20:54Z",
+      "side": 1,
+      "message": "Removed.",
+      "parentUuid": "4610ac27_6a961f42",
       "range": {
         "startLine": 12,
         "startChar": 16,
@@ -105,6 +147,54 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "792d43b6_e47ba159",
+        "filename": "configurations/nvidia/vr_c2_cx_chassis.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1002918
+      },
+      "writtenOn": "2026-11-11T19:20:54Z",
+      "side": 1,
+      "message": "Yes we can do that but not a good approach. The configuration now uses NAME to probe.",
+      "parentUuid": "910294e7_c9be9e9c",
+      "range": {
+        "startLine": 24,
+        "startChar": 51,
+        "endLine": 24,
+        "endChar": 53
+      },
+      "revId": "b6a05b281e5c148ed42de739c5c246594d6812f0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f80961b3_0920a774",
+        "filename": "configurations/nvidia/vr_c2_cx_chassis.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1002918
+      },
+      "writtenOn": "2026-11-11T19:20:54Z",
+      "side": 1,
+      "message": "Done. The installed cards identify as ConnectX-8 800GE 1P NIC. Updated the probe to match that product name and manufacturer.",
+      "parentUuid": "44a74ba9_1b9f57ad",
+      "range": {
+        "startLine": 24,
+        "startChar": 93,
+        "endLine": 24,
+        "endChar": 104
+      },
+      "revId": "b6a05b281e5c148ed42de739c5c246594d6812f0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7959f53d_d8a3205e",
@@ -118,6 +208,24 @@
       "writtenOn": "2026-11-09T03:14:04Z",
       "side": 1,
       "message": "`MCTPI2CTarget` has no \"`Board`\" property in `schemas/mctp.json` and `mctpreactor` does not read it; please drop it.",
+      "revId": "b6a05b281e5c148ed42de739c5c246594d6812f0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ca96730_5b6bf8a4",
+        "filename": "configurations/nvidia/vr_c2_cx_chassis.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1002918
+      },
+      "writtenOn": "2026-11-11T19:20:54Z",
+      "side": 1,
+      "message": "Removed.",
+      "parentUuid": "7959f53d_d8a3205e",
       "revId": "b6a05b281e5c148ed42de739c5c246594d6812f0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
