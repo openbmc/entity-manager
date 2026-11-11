@@ -12,11 +12,13 @@
 #include <xyz/openbmc_project/Configuration/Object/common.hpp>
 
 #include <chrono>
+#include <cstdint>
 #include <filesystem>
 #include <fstream>
 #include <memory>
 #include <string>
 #include <variant>
+#include <vector>
 
 #include <gtest/gtest.h>
 
@@ -305,7 +307,9 @@ class PublishRecordTest : public AddObjectTest
         auto recordIface = iface->createInterface(
             sdbusplus::object_path(
                 "/xyz/openbmc_project/inventory/system/board/TestBoard/Mcu"),
-            "xyz.openbmc_project.Configuration.MCTPI2CTarget", kBoardId);
+            "xyz.openbmc_project.Configuration." +
+                record.at("Type").get<std::string>(),
+            kBoardId);
         iface->populateInterfaceFromJson(sysConfig, ConfigPointer(kBoardId, 0),
                                          recordIface, record);
         return recordIface;
@@ -324,6 +328,20 @@ TEST_F(PublishRecordTest, PublishesConvertibleRecord)
     // changesOnly reports false when the value is already the same.
     EXPECT_FALSE((recordIface->set_property<uint64_t, true>("Address", 29)));
     EXPECT_TRUE(recordIface->set_property("Address", uint64_t{29}));
+}
+
+TEST_F(PublishRecordTest, PublishesI3CAddressAsBytes)
+{
+    auto recordIface = publish(
+        {{"Name", "Mcu"},
+         {"Type", "MCTPI3CTarget"},
+         {"Address", nlohmann::json::array({7, 43, 0, 0, 0, 1})},
+         {"Bus", 0}});
+
+    ASSERT_TRUE(recordIface->is_initialized());
+    const std::vector<uint8_t> pid{7, 43, 0, 0, 0, 1};
+    EXPECT_FALSE((
+        recordIface->set_property<std::vector<uint8_t>, true>("Address", pid)));
 }
 
 TEST_F(PublishRecordTest, LeavesOutRecordWithUnconvertibleProperty)
