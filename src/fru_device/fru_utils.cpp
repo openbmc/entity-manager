@@ -1346,6 +1346,12 @@ bool setField(const fruAreas& fruAreaToUpdate, std::vector<uint8_t>& areaData,
     // Resize the buffer as per numOfBlocks & pad with zeros
     tmpBuffer.resize(newSizePadded * fruBlockSize, 0);
 
+    if (auto endOfFields = findEndOfFieldMarker(tmpBuffer))
+    {
+        std::fill(tmpBuffer.begin() + *endOfFields + 1,
+                  tmpBuffer.end() - 1, // exclude checksum byte
+                  0);
+    }
     // Update the length field
     tmpBuffer[1] = newSizePadded;
     updateAreaChecksum(tmpBuffer);
