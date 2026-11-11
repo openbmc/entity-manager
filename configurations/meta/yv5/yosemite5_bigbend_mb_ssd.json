@@ -2,6 +2,12 @@
     {
         "Exposes": [
             {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "MB E1S0 FRU",
+                "Type": "EEPROM"
+            },
+            {
                 "Address": "0x44",
                 "Bus": 13,
                 "Labels": [
@@ -95,16 +101,15 @@
         "Probe": [
             "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'MB_E1S0', 'Compatible': 'com.meta.Hardware.Yosemite5.Bigbend.Boards.MB'})",
             "AND",
-            "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 T22 .*', 'BOARD_PRODUCT_NAME': 'Motherboard'})",
+            "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'PM9D3a', 'PRODUCT_MANUFACTURER': 'Samsung', 'BUS': 13, 'ADDRESS': 83})",
             "MATCH_ONE"
         ],
         "Type": "Board",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
-            "Manufacturer": "NOT_SUPPORTED",
-            "Model": "NOT_SUPPORTED",
-            "PartNumber": "NOT_SUPPORTED",
-            "SerialNumber": "NOT_SUPPORTED",
-            "SparePartNumber": "NOT_SUPPORTED"
+            "Manufacturer": "$PRODUCT_MANUFACTURER",
+            "Model": "$PRODUCT_PRODUCT_NAME",
+            "PartNumber": "$PRODUCT_PART_NUMBER",
+            "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
         }
     },
     {
