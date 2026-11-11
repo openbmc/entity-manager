@@ -41,6 +41,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce9b0888_2ed39fcd",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 889,
+      "author": {
+        "id": 1002889
+      },
+      "writtenOn": "2026-11-11T02:04:26Z",
+      "side": 1,
+      "message": "Removed std::shared_ptr and stored std::set\u003cstd::pair\u003csize_t, size_t\u003e\u003e directly inside FindDevicesWithCallback, passing it as a const\u0026 to the completion callback.",
+      "parentUuid": "2581ffb9_b39fd571",
+      "range": {
+        "startLine": 889,
+        "startChar": 0,
+        "endLine": 889,
+        "endChar": 2
+      },
+      "revId": "3a2bfcf19e5df85486b4ce7157d73b35a649e699",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1e805296_230a8276",
@@ -54,6 +78,30 @@
       "writtenOn": "2026-11-10T15:44:32Z",
       "side": 1,
       "message": "This is the 3rd source location where these 2 functions are called together.\n\n\nCan we abstract this somehow such that we have a named function so it\u0027s readable what we are doing here?",
+      "range": {
+        "startLine": 1492,
+        "startChar": 17,
+        "endLine": 1494,
+        "endChar": 48
+      },
+      "revId": "3a2bfcf19e5df85486b4ce7157d73b35a649e699",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "863b3795_e17904dd",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1494,
+      "author": {
+        "id": 1002889
+      },
+      "writtenOn": "2026-11-11T02:04:26Z",
+      "side": 1,
+      "message": "Abstracted the interface removal and map erasure into a helper function pruneFoundDevices(objServer, predicate) and reused it across all three locations.",
+      "parentUuid": "1e805296_230a8276",
       "range": {
         "startLine": 1492,
         "startChar": 17,
