@@ -16,6 +16,24 @@
       "message": "Are SMA really on the GPU board? Because Alon8 SMA is on the [imgx_connectx8_supernic_switch board](https://github.com/openbmc/entity-manager/blob/master/configurations/nvidia/imgx_connectx8_supernic_switch.json).\nIf you add here there will have a conflict.",
       "revId": "011aa6367bdb06cd7a9bba17da3590e141a1750f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffebb7fe_05dcc379",
+        "filename": "configurations/nvidia/rtx6000_pro.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1002918
+      },
+      "writtenOn": "2026-11-11T19:25:52Z",
+      "side": 1,
+      "message": "The GPU SMAs should be on the GPU boards rather than the ALON8 switch board (ET816). Updated the ALON8 JSON accordingly.",
+      "parentUuid": "bdb82d37_68687b71",
+      "revId": "011aa6367bdb06cd7a9bba17da3590e141a1750f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
