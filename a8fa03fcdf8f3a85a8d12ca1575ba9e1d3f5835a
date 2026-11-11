@@ -45,6 +45,78 @@
       },
       "revId": "a8fa03fcdf8f3a85a8d12ca1575ba9e1d3f5835a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "563fec6c_bddd6683",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1591,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2026-11-11T02:39:26Z",
+      "side": 1,
+      "message": "Originally, this logic was intended to trigger a rescan only when the host state reached \"Running\". However, the behavior changed starting with commit [1].\n\nI believe this introduced a behavior change, rescan is performed on every host state transition now:\n- Running\n- TransitioningToRunning\n- Off\n- TransitioningToOff\n\nThis patch proposes restoring the original behavior (rescanning only when host state switch to \"Running\").\n\nPreviously, this unintended rescan did not cause noticeable issues because entity-manager did not actually remove inventory objects when their underlying FruDevice objects disappeared. However, since commit [2] was merged, entity-manager actively purges inventory entries when the corresponding FruDevice D-Bus object is removed.\n\nAs a result, sensors and inventory items disappear whenever the host powers off. For example, our system boot drive is powered by the host power rail. We used to see the boot drive inventory remained present on D-Bus, and its temperature sensor remained exposed as \"N/A\" while the host was powered off, recovering automatically once the host powered back on. With commit [2], both the boot drive inventory and its sensors are completely removed when the host powers off.\n\nWe would like to clarify the expected upstream behavior:\n\n1. Should FruDevice rescan on every host state transition, or strictly when the state changes to \"Running\"?\n\n2. For component like host-powered boot drives that are temporarily inaccessible while host powered down, is the expected behavior to remove their D-Bus inventory and sensor interfaces entirely, or retain them in an unavailable/offline state until the next power-on?",
+      "parentUuid": "7181f935_3f92b634",
+      "range": {
+        "startLine": 1582,
+        "startChar": 16,
+        "endLine": 1591,
+        "endChar": 17
+      },
+      "revId": "a8fa03fcdf8f3a85a8d12ca1575ba9e1d3f5835a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "452f727f_e9bfcacc",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1591,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2026-11-11T02:39:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "952ddeb8_e38e68a2",
+      "range": {
+        "startLine": 1582,
+        "startChar": 16,
+        "endLine": 1591,
+        "endChar": 17
+      },
+      "revId": "a8fa03fcdf8f3a85a8d12ca1575ba9e1d3f5835a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "822c019d_c1524fb8",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1591,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2026-11-11T02:39:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "952ddeb8_e38e68a2",
+      "range": {
+        "startLine": 1582,
+        "startChar": 16,
+        "endLine": 1591,
+        "endChar": 17
+      },
+      "revId": "a8fa03fcdf8f3a85a8d12ca1575ba9e1d3f5835a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
