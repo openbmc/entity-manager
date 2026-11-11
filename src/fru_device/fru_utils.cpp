@@ -1296,15 +1296,20 @@ static std::optional<FieldInfo> findOrCreateField(
 
 static std::optional<size_t> findEndOfFieldMarker(std::span<uint8_t> bytes)
 {
-    // we're skipping the checksum
-    // this function assumes a properly sized and formatted area
-    static uint8_t constexpr endOfFieldsByte = 0xc1;
-    for (size_t index = bytes.size(); index > 1; --index)
+    // The span starts at the first field and includes the checksum byte.
+    for (size_t index = 0; index + 1 < bytes.size();)
     {
-        if (bytes[index - 2] == endOfFieldsByte)
+        const auto fieldLength = getFieldLength(bytes[index]);
+        if (fieldLength < 0)
         {
-            return index - 2;
+            return index;
         }
+        const size_t fieldSize = 1 + static_cast<size_t>(fieldLength);
+        if (fieldSize > bytes.size() - 1 - index)
+        {
+            return std::nullopt;
+        }
+        index += fieldSize;
     }
     return std::nullopt;
 }
@@ -1352,8 +1357,11 @@ bool setField(const fruAreas& fruAreaToUpdate, std::vector<uint8_t>& areaData,
     tmpBuffer.insert(fieldIt, 0xc0 | value.size());
     tmpBuffer.insert_range(fieldIt + 1, value);
 
-    auto newSize = getNonPaddedSizeOfArea(tmpBuffer);
-    auto oldSize = getNonPaddedSizeOfArea(areaData);
+    const size_t headerSize = fruAreaToUpdate == fruAreas::fruAreaBoard ? 6 : 3;
+    auto newSize =
+        getNonPaddedSizeOfArea(std::span(tmpBuffer).subspan(headerSize));
+    auto oldSize =
+        getNonPaddedSizeOfArea(std::span(areaData).subspan(headerSize));
 
     if (!oldSize || !newSize)
     {
@@ -1361,6 +1369,8 @@ bool setField(const fruAreas& fruAreaToUpdate, std::vector<uint8_t>& areaData,
         return false;
     }
 
+    *newSize += headerSize;
+    *oldSize += headerSize;
     size_t newSizePadded = getBlockCount(*newSize);
 #ifndef ENABLE_FRU_AREA_RESIZE
 
@@ -1379,6 +1389,9 @@ bool setField(const fruAreas& fruAreaToUpdate, std::vector<uint8_t>& areaData,
     // Resize the buffer as per numOfBlocks & pad with zeros
     tmpBuffer.resize(newSizePadded * fruBlockSize, 0);
 
+    std::fill(tmpBuffer.begin() + *newSize,
+              tmpBuffer.end() - 1, // exclude checksum byte
+              0);
     // Update the length field
     tmpBuffer[1] = newSizePadded;
     updateAreaChecksum(tmpBuffer);

@@ -874,6 +874,27 @@ TEST(SetFieldTest, FindsEndMarkerBeforePadding)
     EXPECT_EQ(area[6], 0xc1);
 }
 
+TEST(SetFieldTest, ClearsNonZeroPaddingContainingEndMarker)
+{
+    std::vector<uint8_t> area = {0x01, 0x02, 0x17, 0xc2, 'A',  'B',
+                                 0xc2, 'C',  'D',  0xc1, 0xaa, 0xc1,
+                                 0xbb, 0xcc, 0xdd, 0x00};
+    ASSERT_TRUE(updateAreaChecksum(area));
+
+    ASSERT_TRUE(
+        setField(fruAreas::fruAreaChassis, area, "CHASSIS_PART_NUMBER", "EF"));
+
+    ASSERT_EQ(area.size(), 16U);
+    EXPECT_EQ(area[4], 'E');
+    EXPECT_EQ(area[5], 'F');
+    EXPECT_EQ(area[7], 'C');
+    EXPECT_EQ(area[8], 'D');
+    EXPECT_EQ(area[9], 0xc1);
+    EXPECT_TRUE(std::all_of(area.begin() + 10, area.end() - 1,
+                            [](uint8_t byte) { return byte == 0; }));
+    EXPECT_EQ(calculateChecksum(area), 0);
+}
+
 TEST(ReassembleFruDataTest, UnalignedFails)
 {
     std::vector<uint8_t> areaOne{0, 35};
