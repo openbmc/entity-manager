@@ -84,6 +84,68 @@
                 ],
                 "RootHubPosition": 1,
                 "Type": "MCTPUSBDevice"
+            },
+            {
+                "FirmwareComponents": [
+                    {
+                        "ComponentIdentifier": 2,
+                        "Name": "SBIOS_FMC_0"
+                    },
+                    {
+                        "ComponentIdentifier": 513,
+                        "Name": "SBIOS_FW_0"
+                    }
+                ],
+                "Name": "VR_C2_MCTP_USB_CPU0",
+                "Type": "PLDMFirmwareComponents"
+            },
+            {
+                "FirmwareComponents": [
+                    {
+                        "ComponentIdentifier": 2,
+                        "Name": "SBIOS_FMC_1"
+                    },
+                    {
+                        "ComponentIdentifier": 513,
+                        "Name": "SBIOS_FW_1"
+                    }
+                ],
+                "Name": "VR_C2_MCTP_USB_CPU1",
+                "Type": "PLDMFirmwareComponents"
+            },
+            {
+                "FirmwareComponents": [
+                    {
+                        "ComponentIdentifier": 65282,
+                        "Name": "FW_ProcessorModule_SMA_0"
+                    },
+                    {
+                        "ComponentIdentifier": 65283,
+                        "Name": "FW_CPLD_0"
+                    }
+                ],
+                "Name": "P5035_C2_HPM_SMA",
+                "Type": "PLDMFirmwareComponents"
+            },
+            {
+                "FirmwareComponents": [
+                    {
+                        "ComponentIdentifier": 65282,
+                        "Name": "FW_GPU_SMA_0"
+                    }
+                ],
+                "Name": "GPU_SMA_0",
+                "Type": "PLDMFirmwareComponents"
+            },
+            {
+                "FirmwareComponents": [
+                    {
+                        "ComponentIdentifier": 65282,
+                        "Name": "FW_GPU_SMA_1"
+                    }
+                ],
+                "Name": "GPU_SMA_1",
+                "Type": "PLDMFirmwareComponents"
             }
         ],
         "Name": "Nvidia VR C2",
