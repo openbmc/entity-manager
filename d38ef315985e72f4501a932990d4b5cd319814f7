@@ -52,6 +52,24 @@
       "parentUuid": "75333673_6cc23aa3",
       "revId": "d38ef315985e72f4501a932990d4b5cd319814f7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da8ba82e_e41ae411",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2026-11-11T08:18:19Z",
+      "side": 1,
+      "message": "\u003e Unrelated to the specific tool used to generate, IMO we can only rely on the spec for which fields we can access.\n\nRight. And I just realized that we can omit Internal Use Area from the FRU length calculation. Let\u0027s see the check I added at line 918.\n\nIf Internal User area has zero length byte, the code can proceed to read the remaining areas based on the offset of the next areas, but the whole data can still be read sufficiently into buffer at the last loop of the function. There\u0027s a problem if Internal Use Area is the only area in the content as has a zero length byte, but I don\u0027t think that case should exist as there will be no way to know FRU size.\n\nAdded a test for a case of a zero-length-byte Internal Use Area and a valid board area.",
+      "parentUuid": "659eabd8_4cdb9b08",
+      "revId": "d38ef315985e72f4501a932990d4b5cd319814f7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
