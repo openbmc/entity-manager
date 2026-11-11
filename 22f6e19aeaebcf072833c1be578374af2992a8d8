@@ -52,6 +52,24 @@
       "parentUuid": "d086e9d2_2c5c2205",
       "revId": "22f6e19aeaebcf072833c1be578374af2992a8d8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00079c32_6069c5e3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002592
+      },
+      "writtenOn": "2026-11-11T07:02:33Z",
+      "side": 1,
+      "message": "Agreed. Both files target the same DC-SCM hardware, so we can share a single DC-SCM config and move the fan tables currently defined there onto the corresponding boards.\nHowever, this depends on yosemite5_scm_2700.json being cleaned up first: its non-SCM fan tables also need to move to their respective boards. Until then, the sensor sets in the two files will differ, which prevent us from sharing a single config.",
+      "parentUuid": "5e18008b_86102704",
+      "revId": "22f6e19aeaebcf072833c1be578374af2992a8d8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
