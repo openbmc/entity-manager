@@ -18,6 +18,7 @@ schemas = [
     'pid_zone.json',
     'platform/mctp.json',
     'platform/platform_exposes_record.json',
+    'pldm.json',
     'satellite_controller.json',
     'spdm_endpoint.json',
     'stepwise.json',
