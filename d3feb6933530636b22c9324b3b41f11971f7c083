@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63bc0053_5138f899",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-11T09:08:13Z",
+      "side": 1,
+      "message": "Tested: only the new test_parsed_config is listed, but this patch also rewrites the scan test in test_perform_scan and updates test_configuration. Please also state that the existing meson test suite passes with this change.",
+      "revId": "d3feb6933530636b22c9324b3b41f11971f7c083",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f362197_13d2dae8",
+        "filename": "src/entity_manager/configuration.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-11T09:08:13Z",
+      "side": 1,
+      "message": "nit: name is copied only so it can be logged after config is moved. Since\nEMConfig is moved into ParsedConfig::make(), consider logging the drop from\ninside make() (or taking the name by const ref before the move) to avoid the\nextra string copy.",
+      "revId": "d3feb6933530636b22c9324b3b41f11971f7c083",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8095829_9c161fba",
+        "filename": "src/entity_manager/parsed_config.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-11T09:08:13Z",
+      "side": 1,
+      "message": "ParsedConfig now calls scan::detail::parseProbeCommand, and this file includes\nperform_scan.hpp (line 4) just for that, while perform_scan.hpp includes\nparsed_config.hpp. That is a circular dependency between the two headers, and it\nreaches into another module\u0027s detail namespace.\n\nProbe parsing is no longer scan-specific, since Configuration and ParsedConfig\nboth use it. Could parseProbeCommand move next to lexProbe in probe_lexer, or\ninto parsed_config.cpp? That would let ParsedConfig depend only on the lexer, and\nperform_scan.hpp would then not need to be pulled in here.",
+      "revId": "d3feb6933530636b22c9324b3b41f11971f7c083",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45d89164_a8d29a5e",
+        "filename": "test/entity_manager/test_parsed_config.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-11T09:08:13Z",
+      "side": 1,
+      "message": "Please add a test for the failure path of ParsedConfig::make(): an empty\nprobeStmt, and an unparsable one such as\n\"xyz.openbmc_project.FruDevice({\u0027A\u0027: })\", should both return std::nullopt. This\nis the new contract that Configuration::addConfiguration relies on to drop a\nconfig. At the moment it is only covered indirectly through test_configuration.",
+      "revId": "d3feb6933530636b22c9324b3b41f11971f7c083",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
