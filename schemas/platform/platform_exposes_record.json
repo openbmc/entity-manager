@@ -5,6 +5,9 @@
             "oneOf": [
                 {
                     "$ref": "mctp.json#/$defs/MCTPUSBDevice"
+                },
+                {
+                    "$ref": "../pldm.json#/$defs/PLDMFirmwareComponents"
                 }
             ]
         },

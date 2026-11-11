@@ -1,0 +1,46 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "PLDMFirmwareComponent": {
+            "properties": {
+                "ComponentIdentifier": {
+                    "description": "The identifier the device reports for the component in its firmware parameters.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 65535
+                },
+                "Name": {
+                    "description": "The name of the component. A consumer may use it as a D-Bus object path element and as the component's update target, so it must be unique in the system. A configuration that is probed more than once can keep it unique with a template such as $bus.",
+                    "type": "string",
+                    "pattern": "^[A-Za-z]([A-Za-z0-9_]|\\$[A-Za-z]+)*$"
+                }
+            },
+            "required": ["ComponentIdentifier", "Name"],
+            "additionalProperties": false,
+            "type": "object"
+        },
+        "PLDMFirmwareComponents": {
+            "properties": {
+                "FirmwareComponents": {
+                    "description": "The firmware components of the device that have a name. Each ComponentIdentifier and each Name appears once.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/PLDMFirmwareComponent"
+                    },
+                    "minItems": 1
+                },
+                "Name": {
+                    "description": "The Name of the MCTP record of the PLDM firmware device, in the same configuration. Records of one configuration that share a Name are published on one object.",
+                    "type": "string"
+                },
+                "Type": {
+                    "type": "string",
+                    "enum": ["PLDMFirmwareComponents"]
+                }
+            },
+            "required": ["FirmwareComponents", "Name", "Type"],
+            "additionalProperties": false,
+            "type": "object"
+        }
+    }
+}
