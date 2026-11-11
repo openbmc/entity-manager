@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3f0e657_7509e71d",
+        "filename": "configurations/nvidia/vr_c2_cpu.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1002918
+      },
+      "writtenOn": "2026-11-11T19:47:04Z",
+      "side": 1,
+      "message": "MGX Vera C2 is designed exclusively for Vera CPUs, but yes, this probe is not ideal. The CPU inventory could be moved into the motherboard configuration once the required schema support is available. Marked as WIP for now. Thanks.",
+      "parentUuid": "b45ebfaf_7039e16d",
+      "revId": "1c9c2ab12fb013cbb2e5ffad05cf0cd0bda13465",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "86a00d8e_b3bc4ade",
@@ -31,6 +49,30 @@
       "writtenOn": "2026-11-09T02:54:14Z",
       "side": 1,
       "message": "Need to discuss",
+      "range": {
+        "startLine": 6,
+        "startChar": 17,
+        "endLine": 6,
+        "endChar": 20
+      },
+      "revId": "1c9c2ab12fb013cbb2e5ffad05cf0cd0bda13465",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6545e99e_a23c658d",
+        "filename": "configurations/nvidia/vr_c2_cpu.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1002918
+      },
+      "writtenOn": "2026-11-11T19:47:04Z",
+      "side": 1,
+      "message": "Marked as WIP pending CPU inventory schema support in Entity Manager.",
+      "parentUuid": "86a00d8e_b3bc4ade",
       "range": {
         "startLine": 6,
         "startChar": 17,
