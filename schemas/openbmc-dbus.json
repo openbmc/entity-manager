@@ -5,6 +5,12 @@
         "xyz": {
             "openbmc_project": {
                 "Inventory": {
+                    "Connector": {
+                        "Embedded": {
+                            "additionalProperties": false,
+                            "type": "object"
+                        }
+                    },
                     "Decorator": {
                         "Asset": {
                             "additionalProperties": false,
