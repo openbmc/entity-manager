@@ -33,9 +33,11 @@
                 "Board": "STRATA_HPM_1",
                 "BridgedEndpoints": [
                     {
+                        "Board": "STRATA_HPM_1 GPU 0",
                         "Name": "GPU_0_HPM_1"
                     },
                     {
+                        "Board": "STRATA_HPM_1 GPU 1",
                         "Name": "GPU_1_HPM_1"
                     }
                 ],
@@ -83,9 +85,11 @@
                 "Board": "STRATA_HPM_3",
                 "BridgedEndpoints": [
                     {
+                        "Board": "STRATA_HPM_3 GPU 0",
                         "Name": "GPU_0_HPM_3"
                     },
                     {
+                        "Board": "STRATA_HPM_3 GPU 1",
                         "Name": "GPU_1_HPM_3"
                     }
                 ],
@@ -256,7 +260,15 @@
             "AND",
             "FOUND('NVIDIA VR NVL72 IO Board 2')",
             "AND",
-            "FOUND('NVIDIA VR NVL72 IO Board 3')"
+            "FOUND('NVIDIA VR NVL72 IO Board 3')",
+            "AND",
+            "FOUND('STRATA_HPM_1 GPU 0')",
+            "AND",
+            "FOUND('STRATA_HPM_1 GPU 1')",
+            "AND",
+            "FOUND('STRATA_HPM_3 GPU 0')",
+            "AND",
+            "FOUND('STRATA_HPM_3 GPU 1')"
         ],
         "Type": "Platform"
     }
