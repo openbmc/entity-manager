@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "177bc3fa_a44c79c9",
+        "filename": "schemas/nvidia.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-11T15:14:44Z",
+      "side": 1,
+      "message": "`xyz.openbmc_project.Common.PhysicalContext` is not specific to nvidia hardware even if it may be currently the only user. So i am wondering if it would be better to declare this enum in another schema file.",
+      "revId": "025ceadc142ce791d0007cfea425b2ef8b74cfdc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
