@@ -664,34 +664,6 @@ void scan::PerformScan::updateSystemConfiguration(const EMConfig& recordRef,
     }
 }
 
-std::vector<probe::Token> scan::detail::parseProbeCommand(
-    const std::vector<std::string>& probeField)
-{
-    // Join the statements (array form) into a single string, then lex it.
-    std::string joined;
-    for (const auto& probe : probeField)
-    {
-        if (!joined.empty())
-        {
-            joined += ' ';
-        }
-        joined += probe;
-    }
-
-    std::optional<std::vector<probe::Token>> tokens = probe::lexProbe(joined);
-    if (!tokens)
-    {
-        lg2::error("Probe statement failed to parse: {PROBE}", "PROBE", joined);
-        return {};
-    }
-    if (tokens->empty())
-    {
-        lg2::error("Probe statement produced no tokens: {PROBE}", "PROBE",
-                   joined);
-    }
-    return *tokens;
-}
-
 // From a config's parsed probe statements, collect the D-Bus interface names
 // that need to be probed (discarding non-D-Bus probe types) and record that
 // this config's PerformProbe cares about each of them.
@@ -726,7 +698,7 @@ void scan::PerformScan::processConfigurations(
 
         EMConfig& recordRef = *it;
         std::vector<probe::Token> probeCommand =
-            detail::parseProbeCommand(it->probeStmt);
+            probe::parseProbeCommand(it->probeStmt);
         if (probeCommand.empty())
         {
             lg2::error("Skipping configuration {NAME}: invalid Probe statement",
