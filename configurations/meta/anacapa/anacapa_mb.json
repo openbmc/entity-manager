@@ -1555,7 +1555,7 @@
                 "NIC5_TEMP_C",
                 "NIC7_TEMP_C"
             ],
-            "Name": "PID_NIC_TEMP",
+            "Name": "PID_BE_NIC_TEMP",
             "OutLimitMax": 100.0,
             "OutLimitMin": 15.0,
             "PCoefficient": -1.9073,
@@ -1648,6 +1648,39 @@
             "OutLimitMin": 15.0,
             "PCoefficient": -1.9073,
             "SetPoint": 77.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "FFGainCoefficient": 0.39,
+            "FFOffCoefficient": 62.17,
+            "ICoefficient": -0.01192,
+            "ILimitMax": 100.0,
+            "ILimitMin": -5.0,
+            "Inputs": [
+                "AMC_FPGA_THERMAL_DIODE_TEMP_C",
+                "AMC_THERMAL_SENSOR1_TEMP_C",
+                "AMC_THERMAL_SENSOR2_TEMP_C",
+                "AMC_THERMAL_SENSOR3_TEMP_C",
+                "AMC_THERMAL_SENSOR4_TEMP_C"
+            ],
+            "MissingIsAcceptable": [
+                "AMC_FPGA_THERMAL_DIODE_TEMP_C",
+                "AMC_THERMAL_SENSOR1_TEMP_C",
+                "AMC_THERMAL_SENSOR2_TEMP_C",
+                "AMC_THERMAL_SENSOR3_TEMP_C",
+                "AMC_THERMAL_SENSOR4_TEMP_C"
+            ],
+            "Name": "PID_AMC_TEMP",
+            "OutLimitMax": 100.0,
+            "OutLimitMin": 15.0,
+            "PCoefficient": -1.9073,
+            "SetPoint": 90.0,
             "SlewNeg": 0.0,
             "SlewPos": 0.0,
             "Type": "Pid",
@@ -3189,27 +3222,31 @@
                 "NIC0_TEMP_C"
             ],
             "Name": "Stepwise_FE_NIC_TEMP",
-            "NegativeHysteresis": 2,
+            "NegativeHysteresis": 6.0,
             "Output": [
                 15.0,
                 18.0,
                 26.0,
+                28.0,
                 30.0,
-                50.0,
+                32.0,
+                35.0,
+                40.0,
                 55.0,
-                60.0,
                 70.0,
                 80.0,
                 100.0
             ],
-            "PositiveHysteresis": 0,
+            "PositiveHysteresis": 5.0,
             "Reading": [
                 52.0,
                 62.0,
                 72.0,
                 75.0,
+                79.0,
                 82.0,
-                87.0,
+                85.0,
+                88.0,
                 92.0,
                 97.0,
                 100.0,
@@ -3265,7 +3302,7 @@
                 "NIC5_VR_TEMP_C",
                 "NIC7_VR_TEMP_C"
             ],
-            "Name": "Stepwise_NIC_VR_TEMP",
+            "Name": "Stepwise_BE_NIC_VR_TEMP",
             "NegativeHysteresis": 2,
             "Output": [
                 15.0,
@@ -3307,14 +3344,14 @@
                 "NIC5_TEMP_C",
                 "NIC7_TEMP_C"
             ],
-            "Name": "Stepwise_NIC_TEMP",
+            "Name": "Stepwise_BE_NIC_TEMP",
             "NegativeHysteresis": 4,
             "Output": [
                 15.0,
                 20.0,
-                35.0,
-                36.0,
-                37.0,
+                30.0,
+                32.0,
+                34.0,
                 40.0,
                 45.0,
                 55.0,
@@ -3329,12 +3366,50 @@
                 45.0,
                 56.0,
                 61.0,
-                66.0,
                 69.0,
+                73.0,
                 77.0,
                 82.0,
                 84.0,
                 85.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "Inputs": [
+                "NIC1_OSFP_TEMP_C",
+                "NIC3_OSFP_TEMP_C",
+                "NIC5_OSFP_TEMP_C",
+                "NIC7_OSFP_TEMP_C"
+            ],
+            "Name": "Stepwise_NIC_OSFP_TEMP",
+            "NegativeHysteresis": 2,
+            "Output": [
+                15.0,
+                25.0,
+                35.0,
+                45.0,
+                55.0,
+                65.0,
+                75.0,
+                90.0,
+                100.0
+            ],
+            "PositiveHysteresis": 0,
+            "Reading": [
+                40.0,
+                45.0,
+                50.0,
+                55.0,
+                58.0,
+                61.0,
+                63.0,
+                65.0,
+                68.0
             ],
             "Type": "Stepwise",
             "Zones": [
@@ -3380,15 +3455,59 @@
         {
             "Class": "temp",
             "Inputs": [
+                "MB_INLET_TEMP_C",
+                "BRB_R_INLET_BE7_TEMP_C",
+                "BRB_L_INLET_BE3_TEMP_C"
+            ],
+            "MissingIsAcceptable": [
+                "MB_INLET_TEMP_C",
+                "BRB_R_INLET_BE7_TEMP_C",
+                "BRB_L_INLET_BE3_TEMP_C"
+            ],
+            "Name": "Stepwise_BOARD_INLET_TEMP",
+            "NegativeHysteresis": 3.0,
+            "Output": [
+                15.0,
+                19.0,
+                22.0,
+                24.0,
+                30.0,
+                35.0,
+                40.0,
+                45.0,
+                80.0,
+                100.0
+            ],
+            "PositiveHysteresis": 0,
+            "Reading": [
+                15.0,
+                25.0,
+                29.0,
+                32.0,
+                35.0,
+                38.0,
+                40.0,
+                43.0,
+                48.0,
+                50.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "Inputs": [
                 "INLET_SCM_TEMP_C"
             ],
-            "Name": "Stepwise_SCM_TEMP",
+            "Name": "Stepwise_SCM_INLET_TEMP",
             "NegativeHysteresis": 2,
             "Output": [
                 15.0,
                 18.0,
                 19.0,
-                22.0,
+                21.0,
                 40.0,
                 70.0,
                 100.0
@@ -3402,6 +3521,48 @@
                 34.0,
                 40.0,
                 45.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "Inputs": [
+                "AMC_FPGA_THERMAL_DIODE_TEMP_C",
+                "AMC_THERMAL_SENSOR1_TEMP_C",
+                "AMC_THERMAL_SENSOR2_TEMP_C",
+                "AMC_THERMAL_SENSOR3_TEMP_C",
+                "AMC_THERMAL_SENSOR4_TEMP_C"
+            ],
+            "MissingIsAcceptable": [
+                "AMC_FPGA_THERMAL_DIODE_TEMP_C",
+                "AMC_THERMAL_SENSOR1_TEMP_C",
+                "AMC_THERMAL_SENSOR2_TEMP_C",
+                "AMC_THERMAL_SENSOR3_TEMP_C",
+                "AMC_THERMAL_SENSOR4_TEMP_C"
+            ],
+            "Name": "Stepwise_AMC_TEMP",
+            "NegativeHysteresis": 3.0,
+            "Output": [
+                15.0,
+                15.0,
+                30.0,
+                45.0,
+                60.0,
+                80.0,
+                100.0
+            ],
+            "PositiveHysteresis": 0,
+            "Reading": [
+                50.0,
+                70.0,
+                80.0,
+                85.0,
+                90.0,
+                95.0,
+                100.0
             ],
             "Type": "Stepwise",
             "Zones": [
@@ -3470,8 +3631,8 @@
             "Output": [
                 15.0,
                 20.0,
-                30.0,
-                45.0,
+                28.0,
+                35.0,
                 60.0,
                 80.0,
                 100.0
@@ -3480,8 +3641,8 @@
             "Reading": [
                 38.0,
                 48.0,
-                58.0,
-                68.0,
+                62.0,
+                74.0,
                 78.0,
                 83.0,
                 85.0
