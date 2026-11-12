@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "932c025d_b1894b3a",
+        "filename": "configurations/platform/nvidia/vr_c2_platform.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-11-12T07:00:24Z",
+      "side": 1,
+      "message": "If a GPU slot is empty, this Probe also drops the CPU and HPM SMA records.\nCould it require only `NVIDIA_P5035_C2_HPM` and let each record wait for its Board once [96932](https://gerrit.openbmc.org/c/openbmc/entity-manager/+/96932) lands?",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 54
+      },
+      "revId": "809df16a5cc46b6404cf095fb9f442b0756e9d56",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
