@@ -21,8 +21,6 @@
 #include <gtest/gtest.h>
 
 using json = nlohmann::json;
-using probe::Token;
-using probe::TokenType;
 
 static json resolveExposes(EMConfig record)
 {
@@ -141,7 +139,7 @@ TEST(TemplateFields, PreservesProbeStatements)
             }
             const auto originalStatements = record->probeStmt;
             const auto originalTokens =
-                scan::detail::parseProbeCommand(originalStatements);
+                probe::parseProbeCommand(originalStatements);
             ASSERT_FALSE(originalTokens.empty());
             json configuration = json::object();
 
@@ -153,59 +151,13 @@ TEST(TemplateFields, PreservesProbeStatements)
             EXPECT_EQ(record->probeStmt, originalStatements);
             EXPECT_EQ(resolved.at("Probe"), probe);
             EXPECT_EQ(configuration.at(record->name).at("Probe"), probe);
-            EXPECT_EQ(scan::detail::parseProbeCommand(record->probeStmt),
+            EXPECT_EQ(probe::parseProbeCommand(record->probeStmt),
                       originalTokens);
             EXPECT_EQ(resolved.at("Type"), "Board");
             EXPECT_EQ(resolved.at("Exposes").at(0).at("Name"), "Sensor 2");
             EXPECT_EQ(resolved.at("Exposes").at(0).at("Bus"), 48);
         }
     }
-}
-
-// parseProbeCommand joins the array statements and lexes them into tokens.
-TEST(ParseProbeCommand, ParsesArrayOfStrings)
-{
-    auto probe = std::vector<std::string>{"FOUND('A')", "FOUND('B')"};
-    EXPECT_EQ(
-        scan::detail::parseProbeCommand(probe),
-        (std::vector<Token>{{TokenType::found, "A"}, {TokenType::found, "B"}}));
-}
-
-// A single-string "Probe" field is lexed directly.
-TEST(ParseProbeCommand, ParsesSingleString)
-{
-    auto probe = std::vector<std::string>{"TRUE"};
-    EXPECT_EQ(scan::detail::parseProbeCommand(probe),
-              (std::vector<Token>{{TokenType::boolTrue, ""}}));
-}
-
-TEST(ParseProbeCommand, ParsesDbusPropertiesBeforeEvaluation)
-{
-    auto probe = std::vector<std::string>{
-        R"(xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Riser\d+', 'ADDRESS': 80}))"};
-    auto tokens = scan::detail::parseProbeCommand(probe);
-    ASSERT_EQ(tokens.size(), 1);
-    const auto& token = tokens.at(0);
-
-    ASSERT_TRUE(token.dbus.has_value());
-
-    if (token.dbus.has_value())
-    {
-        EXPECT_EQ(token.dbus->interface, "xyz.openbmc_project.FruDevice");
-        EXPECT_EQ(token.dbus->properties.at("BOARD_PRODUCT_NAME"), "Riser\\d+");
-        EXPECT_EQ(token.dbus->properties.at("ADDRESS"), 80);
-    }
-}
-
-TEST(ParseProbeCommand, RejectsMalformedDbusProperties)
-{
-    EXPECT_TRUE(
-        scan::detail::parseProbeCommand({"xyz.Iface({'A': })"}).empty());
-    EXPECT_TRUE(scan::detail::parseProbeCommand({"xyz.Iface([1, 2])"}).empty());
-    EXPECT_TRUE(scan::detail::parseProbeCommand({"xyz.Iface(null)"}).empty());
-    EXPECT_TRUE(scan::detail::parseProbeCommand({"xyz.Iface({'A': 1}) OR "
-                                                 "xyz.Iface({'B': })"})
-                    .empty());
 }
 
 static void recordScanCompletion(size_t& completions)
