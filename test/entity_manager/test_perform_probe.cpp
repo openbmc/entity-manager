@@ -58,6 +58,15 @@ TEST(DoProbe, EvaluateFoundProbe)
     EXPECT_FALSE(runProbe({{TokenType::found, "B"}}, {}, {"A"}));
 }
 
+TEST(DoProbe, MatchesTemplatedConfigurationNameLiterally)
+{
+    const std::string name = "Clemente HDD Carrier $bus - 25 % 11";
+    const std::vector<Token> tokens = {{TokenType::found, name}};
+
+    EXPECT_TRUE(runProbe(tokens, {}, {name}));
+    EXPECT_FALSE(runProbe(tokens, {}, {"Clemente HDD Carrier 0"}));
+}
+
 TEST(DoProbe, EvaluateDbusProbe)
 {
     const DBusInterface properties = {

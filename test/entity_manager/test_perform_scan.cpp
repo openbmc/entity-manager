@@ -112,6 +112,47 @@ TEST(TemplateFields, PreservesTopLevelType)
     }
 }
 
+TEST(TemplateFields, PreservesProbeStatements)
+{
+    const json probes = json::array(
+        {"FOUND('Carrier $bus $index')", "AND",
+         "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': '^Board$'})",
+         "AND", "FOUND('Clemente HDD Carrier $bus - 25 % 11')"});
+    const DBusObject dbusObject = {
+        {"xyz.openbmc_project.FruDevice", {{"BUS", uint64_t{48}}}}};
+
+    for (const json& probe : {probes, probes.at(0)})
+    {
+        const json input = {{"Name", "Test Board"},
+                            {"Type", "Board"},
+                            {"Probe", probe},
+                            {"Exposes", json::array({{{"Name", "Sensor $index"},
+                                                      {"Type", "TMP75"},
+                                                      {"Bus", "$bus"}}})}};
+        auto record = EMConfig::fromJson(input);
+        ASSERT_TRUE(record.has_value());
+        const auto originalStatements = record->probeStmt;
+        const auto originalTokens =
+            scan::detail::parseProbeCommand(originalStatements);
+        ASSERT_FALSE(originalTokens.empty());
+        json configuration = json::object();
+        std::optional<std::string> replaceStr;
+
+        scan::detail::applyTemplatesAndExposeActions(
+            record->name, *record, dbusObject, 2, replaceStr, configuration);
+
+        const json resolved = record->toJson();
+        EXPECT_EQ(record->probeStmt, originalStatements);
+        EXPECT_EQ(resolved.at("Probe"), probe);
+        EXPECT_EQ(configuration.at(record->name).at("Probe"), probe);
+        EXPECT_EQ(scan::detail::parseProbeCommand(record->probeStmt),
+                  originalTokens);
+        EXPECT_EQ(resolved.at("Type"), "Board");
+        EXPECT_EQ(resolved.at("Exposes").at(0).at("Name"), "Sensor 2");
+        EXPECT_EQ(resolved.at("Exposes").at(0).at("Bus"), 48);
+    }
+}
+
 // parseProbeCommand joins the array statements and lexes them into tokens.
 TEST(ParseProbeCommand, ParsesArrayOfStrings)
 {
