@@ -32,7 +32,7 @@ Configuration::Configuration(
 // scans never see it.
 void Configuration::addConfiguration(EMConfig config)
 {
-    if (scan::detail::parseProbeCommand(config.probeStmt).empty())
+    if (probe::parseProbeCommand(config.probeStmt).empty())
     {
         lg2::error("Dropping configuration {NAME}: invalid Probe statement",
                    "NAME", config.name);
@@ -176,7 +176,7 @@ void Configuration::filterProbeInterfaces()
     for (auto it = configurations.begin(); it != configurations.end();)
     {
         std::vector<probe::Token> probeCommand =
-            scan::detail::parseProbeCommand(it->probeStmt);
+            probe::parseProbeCommand(it->probeStmt);
         for (const probe::Token& token : probeCommand)
         {
             // Only D-Bus probes name an interface to collect.
