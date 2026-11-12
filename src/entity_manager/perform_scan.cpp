@@ -517,12 +517,6 @@ static void replaceTemplateFields(
     EMConfig& record, const DBusObject& dbusObject, size_t foundDeviceIdx,
     std::optional<std::string>& replaceStr)
 {
-    for (auto& probe : record.probeStmt)
-    {
-        em_utils::templateCharReplaceStr(probe, dbusObject, foundDeviceIdx,
-                                         replaceStr, false);
-    }
-
     // Resolve all exposes before publishing the temporary configuration.
     // Leave unresolved variables for the later per-property pass.
     for (auto& expose : record.exposesRecords)
