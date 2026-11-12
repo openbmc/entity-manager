@@ -7,6 +7,7 @@
 
 using probe::DbusProbe;
 using probe::lexProbe;
+using probe::parseProbeCommand;
 using probe::Token;
 using probe::TokenType;
 
@@ -171,4 +172,29 @@ TEST(LexProbe, SyntaxErrors)
     // Unterminated quote (keeps the paren depth open to end of input).
     EXPECT_EQ(lexProbe("FOUND('unterminated"), std::nullopt);
     EXPECT_EQ(lexProbe("xyz.Iface({'A': 'unterminated})"), std::nullopt);
+}
+
+// parseProbeCommand joins the array statements and lexes them into tokens.
+TEST(ParseProbeCommand, ParsesArrayOfStrings)
+{
+    auto probe = std::vector<std::string>{"FOUND('A')", "FOUND('B')"};
+    EXPECT_EQ(
+        parseProbeCommand(probe),
+        (std::vector<Token>{{TokenType::found, "A"}, {TokenType::found, "B"}}));
+}
+
+// A single-string "Probe" field is lexed directly.
+TEST(ParseProbeCommand, ParsesSingleString)
+{
+    auto probe = std::vector<std::string>{"TRUE"};
+    EXPECT_EQ(parseProbeCommand(probe),
+              (std::vector<Token>{{TokenType::boolTrue, ""}}));
+}
+
+// A statement that does not lex makes the whole Probe empty, whichever
+// statement it is.
+TEST(ParseProbeCommand, RejectsMalformedStatementAmongValidOnes)
+{
+    EXPECT_TRUE(parseProbeCommand({"xyz.Iface({'A': 1}) OR xyz.Iface({'B': })"})
+                    .empty());
 }
