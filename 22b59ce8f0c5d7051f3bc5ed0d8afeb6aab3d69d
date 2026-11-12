@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "86102073_e0cb2611",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-12T19:02:52Z",
+      "side": 1,
+      "message": "Yes, integrated it as a test target.\n\nWithout multithreading (follow-up changes):\n\n`17/17 entity-manager:validate-configs                  OK              10.06s`",
+      "parentUuid": "4cbb13f4_83aacd88",
+      "revId": "22b59ce8f0c5d7051f3bc5ed0d8afeb6aab3d69d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db3230a7_49c31a28",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-11-10T22:48:29Z",
       "side": 1,
       "message": "what\u0027s the difference between this and line 116? (too lazy to go read valijson code)",
+      "revId": "22b59ce8f0c5d7051f3bc5ed0d8afeb6aab3d69d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c28f04b_8c916894",
+        "filename": "src/entity_manager/config_validation.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-12T19:02:52Z",
+      "side": 1,
+      "message": "The first branch collect detailed errors while the second one only checks if validation succeeds.\n\nThe difference is \n\n(adding nonexisting `Address3` property)\n\n```\nConfiguration /home/alexander/upstreaming/entity-manager/configurations/meta/anacapa/anacapa_mb.json failed validation\n```\n\nand\n\n```\nConfiguration /home/alexander/upstreaming/entity-manager/configurations/meta/anacapa/anacapa_mb.json failed validation\nValidation error in /home/alexander/upstreaming/entity-manager/configurations/meta/anacapa/anacapa_mb.json at : Value type not permitted by \u0027type\u0027 constraint.\nValidation error in /home/alexander/upstreaming/entity-manager/configurations/meta/anacapa/anacapa_mb.json at : Failed to validate against child schema #0.\nValidation error in /home/alexander/upstreaming/entity-manager/configurations/meta/anacapa/anacapa_mb.json at /Exposes/0/Type: Failed to match expected value set by \u0027const\u0027 constraint.\nValidation error in /home/alexander/upstreaming/entity-manager/configurations/meta/anacapa/anacapa_mb.json at /Exposes/0: Failed to validate against schema associated with property name \u0027Type\u0027.\nValidation error in /home/alexander/upstreaming/entity-manager/configurations/meta/anacapa/anacapa_mb.json at /Exposes/0: Object contains a property that could not be validated using \u0027properties\u0027 or \u0027additionalProperties\u0027 constraints: \u0027Address\u0027.\nValidation error in /home/alexander/upstreaming/entity-manager/configurations/meta/anacapa/anacapa_mb.json at /Exposes/0: Missing required property \u0027IdlePowerSaverEnabled\u0027.\nValidation error in /home/alexander/upstreaming/entity-manager/configurations/meta/anacapa/anacapa_mb.json at /Exposes/0: Missing required property \u0027PowerMode\u0027.\n...\n100\u0027s of lines follow\n```\n\nThe primary issue is that verbose validation takes around 3x as long due to the schema structure with `oneOf` and the validation errors can be large.\n\n\nIf you prefer i can collect errors always and discard later depending on `--verbose` but the tradeoff is validation performance.",
+      "parentUuid": "db3230a7_49c31a28",
       "revId": "22b59ce8f0c5d7051f3bc5ed0d8afeb6aab3d69d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

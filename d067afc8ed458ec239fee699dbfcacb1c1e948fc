@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bd34cc2b_a4192fe3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-12T19:02:52Z",
+      "side": 1,
+      "message": "For example if you delete `Probe` from any of the configs:\n\n```\n...\nValidation error in /home/alexander/upstreaming/entity-manager/configurations/meta/anacapa/anacapa_mb.json at /Exposes/49: Failed to validate against child schema #0.\nValidation error in /home/alexander/upstreaming/entity-manager/configurations/meta/anacapa/anacapa_mb.json at /Exposes: Failed to validate item #49 in array.\nValidation error in /home/alexander/upstreaming/entity-manager/configurations/meta/anacapa/anacapa_mb.json at : Failed to validate against schema associated with property name \u0027Exposes\u0027.\nValidation error in /home/alexander/upstreaming/entity-manager/configurations/meta/anacapa/anacapa_mb.json at /Type: Failed to match against any enum values.\nValidation error in /home/alexander/upstreaming/entity-manager/configurations/meta/anacapa/anacapa_mb.json at : Failed to validate against schema associated with property name \u0027Type\u0027.\nValidation error in /home/alexander/upstreaming/entity-manager/configurations/meta/anacapa/anacapa_mb.json at : Object contains a property that could not be validated using \u0027properties\u0027 or \u0027additionalProperties\u0027 constraints: \u0027xyz.openbmc_project.Inventory.Decorator.Asset\u0027.\nValidation error in /home/alexander/upstreaming/entity-manager/configurations/meta/anacapa/anacapa_mb.json at : Missing required property \u0027Probe\u0027.\nValidation error in /home/alexander/upstreaming/entity-manager/configurations/meta/anacapa/anacapa_mb.json at : Failed to validate against child schema #2.\nValidation error in /home/alexander/upstreaming/entity-manager/configurations/meta/anacapa/anacapa_mb.json at : Failed to validate against any child schemas allowed by oneOf constraint.\n```\n\nvs the python validator:\n\n```\n...\n{\u0027Class\u0027: \u0027temp\u0027, \u0027Inputs\u0027: [\u0027BRB_L_RETIMER_TEMP_C\u0027, \u0027BRB_R_RETIMER_TEMP_C\u0027], \u0027Name\u0027: \u0027Stepwise_BRB_RETIMER_TEMP\u0027, \u0027NegativeHysteresis\u0027: 4, \u0027Output\u0027: [15.0, 22.0, 30.0, 35.0, 38.0, 65.0, 70.0, 80.0, 100.0], \u0027PositiveHysteresis\u0027: 0, \u0027Reading\u0027: [42.0, 52.0, 62.0, 70.0, 72.0, 92.0, 97.0, 104.0, 105.0], \u0027Type\u0027: \u0027Stepwise\u0027, \u0027Zones\u0027: [\u0027Zone 0\u0027]} is not valid under any of the given schemas\n{\u0027Class\u0027: \u0027temp\u0027, \u0027Inputs\u0027: [\u0027INLET_SCM_TEMP_C\u0027], \u0027Name\u0027: \u0027Stepwise_SCM_TEMP\u0027, \u0027NegativeHysteresis\u0027: 2, \u0027Output\u0027: [15.0, 18.0, 19.0, 22.0, 40.0, 70.0, 100.0], \u0027PositiveHysteresis\u0027: 0, \u0027Reading\u0027: [15.0, 20.0, 25.0, 29.0, 34.0, 40.0, 45.0], \u0027Type\u0027: \u0027Stepwise\u0027, \u0027Zones\u0027: [\u0027Zone 0\u0027]} is not valid under any of the given schemas\n{\u0027Class\u0027: \u0027temp\u0027, \u0027Inputs\u0027: [\u0027MB_VR_CPU_PVDD18_S5_P0_TEMP_C\u0027, \u0027MB_VR_CPU_PVDD33_S5_P0_TEMP_C\u0027, \u0027MB_VR_CPU_PVDDCR_CPU0_P0_TEMP_C\u0027, \u0027MB_VR_CPU_PVDDCR_CPU1_P0_TEMP_C\u0027, \u0027MB_VR_CPU_PVDDCR_SOC_P0_TEMP_C\u0027, \u0027MB_VR_CPU_PVDDIO_MEM_S3_P0_TEMP_C\u0027, \u0027MB_VR_CPU_PVDDIO_P0_TEMP_C\u0027], \u0027Name\u0027: \u0027Stepwise_MB_VR_CPU_TEMP\u0027, \u0027NegativeHysteresis\u0027: 2, \u0027Output\u0027: [15.0, 16.0, 30.0, 50.0, 65.0, 85.0, 100.0], \u0027PositiveHysteresis\u0027: 0, \u0027Reading\u0027: [32.0, 47.0, 61.0, 76.0, 91.0, 101.0, 110.0], \u0027Type\u0027: \u0027Stepwise\u0027, \u0027Zones\u0027: [\u0027Zone 0\u0027]} is not valid under any of the given schemas\n{\u0027Class\u0027: \u0027temp\u0027, \u0027Inputs\u0027: [\u0027MB_DIMM_A0_TEMP_C\u0027, \u0027MB_DIMM_A1_TEMP_C\u0027, \u0027MB_DIMM_A2_TEMP_C\u0027, \u0027MB_DIMM_A3_TEMP_C\u0027, \u0027MB_DIMM_A4_TEMP_C\u0027, \u0027MB_DIMM_A5_TEMP_C\u0027, \u0027MB_DIMM_A6_TEMP_C\u0027, \u0027MB_DIMM_A7_TEMP_C\u0027, \u0027MB_DIMM_A8_TEMP_C\u0027, \u0027MB_DIMM_A9_TEMP_C\u0027, \u0027MB_DIMM_A10_TEMP_C\u0027, \u0027MB_DIMM_A11_TEMP_C\u0027, \u0027MB_DIMM_A12_TEMP_C\u0027, \u0027MB_DIMM_A13_TEMP_C\u0027, \u0027MB_DIMM_A14_TEMP_C\u0027, \u0027MB_DIMM_A15_TEMP_C\u0027], \u0027Name\u0027: \u0027Stepwise_MB_DIMM_TEMP\u0027, \u0027NegativeHysteresis\u0027: 2, \u0027Output\u0027: [15.0, 20.0, 30.0, 45.0, 60.0, 80.0, 100.0], \u0027PositiveHysteresis\u0027: 0, \u0027Reading\u0027: [38.0, 48.0, 58.0, 68.0, 78.0, 83.0, 85.0], \u0027Type\u0027: \u0027Stepwise\u0027, \u0027Zones\u0027: [\u0027Zone 0\u0027]} is not valid under any of the given schemas\n{\u0027Address\u0027: \u00270x48\u0027, \u0027Bus\u0027: 52, \u0027Name\u0027: \u0027MB_INLET_TEMP_C\u0027, \u0027Thresholds\u0027: [{\u0027Direction\u0027: \u0027less than\u0027, \u0027Hysteresis\u0027: 2, \u0027Name\u0027: \u0027lower critical\u0027, \u0027Severity\u0027: 1, \u0027Value\u0027: 0}, {\u0027Direction\u0027: \u0027greater than\u0027, \u0027Hysteresis\u0027: 2, \u0027Name\u0027: \u0027upper critical\u0027, \u0027Severity\u0027: 1, \u0027Value\u0027: 40}], \u0027Type\u0027: \u0027TMP75\u0027} is not valid under any of the given schemas\n{\u0027Address\u0027: \u00270x4a\u0027, \u0027Bus\u0027: 52, \u0027Name\u0027: \u0027MB_OUTLET_L_TEMP_C\u0027, \u0027Thresholds\u0027: [{\u0027Direction\u0027: \u0027less than\u0027, \u0027Hysteresis\u0027: 3.25, \u0027Name\u0027: \u0027lower critical\u0027, \u0027Severity\u0027: 1, \u0027Value\u0027: 0}, {\u0027Direction\u0027: \u0027greater than\u0027, \u0027Hysteresis\u0027: 3.25, \u0027Name\u0027: \u0027upper critical\u0027, \u0027Severity\u0027: 1, \u0027Value\u0027: 65}], \u0027Type\u0027: \u0027TMP75\u0027} is not valid under any of the given schemas\n{\u0027Address\u0027: \u00270x4b\u0027, \u0027Bus\u0027: 52, \u0027Name\u0027: \u0027MB_OUTLET_R_TEMP_C\u0027, \u0027Thresholds\u0027: [{\u0027Direction\u0027: \u0027less than\u0027, \u0027Hysteresis\u0027: 3.25, \u0027Name\u0027: \u0027lower critical\u0027, \u0027Severity\u0027: 1, \u0027Value\u0027: 0}, {\u0027Direction\u0027: \u0027greater than\u0027, \u0027Hysteresis\u0027: 3.25, \u0027Name\u0027: \u0027upper critical\u0027, \u0027Severity\u0027: 1, \u0027Value\u0027: 65}], \u0027Type\u0027: \u0027TMP75\u0027} is not valid under any of the given schemas\n{\u0027Address\u0027: \u00270x4d\u0027, \u0027Bus\u0027: 52, \u0027Name\u0027: \u0027MB_CPU_REAR_TEMP_C\u0027, \u0027Thresholds\u0027: [{\u0027Direction\u0027: \u0027less than\u0027, \u0027Hysteresis\u0027: 3.25, \u0027Name\u0027: \u0027lower critical\u0027, \u0027Severity\u0027: 1, \u0027Value\u0027: 0}, {\u0027Direction\u0027: \u0027greater than\u0027, \u0027Hysteresis\u0027: 3.25, \u0027Name\u0027: \u0027upper critical\u0027, \u0027Severity\u0027: 1, \u0027Value\u0027: 65}], \u0027Type\u0027: \u0027TMP75\u0027} is not valid under any of the given schemas\n\u0027Board\u0027 is not one of [\u0027Platform\u0027]\n\u0027Probe\u0027 is a required property\nresults:\n  \u0027/home/alexander/upstreaming/entity-manager/configurations/meta/anacapa/anacapa_mb.json\u0027 failed!\n```\n\nSo they are both quite verbose. The output contains what\u0027s the issue but it\u0027s not exactly readable.\n\ni did not post any of these error logs in the commit message since it\u0027s really long and would not fit entirely in any normal commit message.\n\nThe verbosity is shared between the python and C++ validator.\n\nIf we want to reduce verbosity i don\u0027t think it\u0027s a simple fix since we would have to scope validation to the applicable schema or some other trick.",
+      "parentUuid": "c0fd1c0c_5746ffa9",
+      "revId": "d067afc8ed458ec239fee699dbfcacb1c1e948fc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "aea570b4_7dff4922",
         "filename": "src/entity_manager/config_validation.cpp",
         "patchSetId": 4
@@ -31,6 +49,24 @@
       "writtenOn": "2026-11-10T22:48:29Z",
       "side": 1,
       "message": "is it really necessary to support both?",
+      "revId": "d067afc8ed458ec239fee699dbfcacb1c1e948fc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f03db49e_b9bc7c8b",
+        "filename": "src/entity_manager/config_validation.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-12T19:02:52Z",
+      "side": 1,
+      "message": "no, it\u0027s leftover slop. We can assume valijson \u003e\u003d `v1.1.3` in CI and yocto.\n\nRemoved it and using `error.jsonPointer` directly now. If the member is absent it will fail to compile on old valijson versions.",
+      "parentUuid": "aea570b4_7dff4922",
       "revId": "d067afc8ed458ec239fee699dbfcacb1c1e948fc",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
