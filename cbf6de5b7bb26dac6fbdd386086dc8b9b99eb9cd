@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b491f4db_6a8f241f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-12T14:53:30Z",
+      "side": 1,
+      "message": "How does this relate to `schemas/firmware.json` and how `phosphor-bmc-code-mgmt` matches component images to firmware devices?\n\nIs the existing mechanism there unusable for `pldmd` ?",
+      "revId": "cbf6de5b7bb26dac6fbdd386086dc8b9b99eb9cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a39dbffc_98176b8e",
+        "filename": "schemas/pldm.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-12T14:53:30Z",
+      "side": 1,
+      "message": "Can you specify `x-dbus-type` for the properties in this schema, similar to how it was done in `schemas/mctp.json` ?\n\nIt helps EM to publish the correct type for each property.",
+      "revId": "cbf6de5b7bb26dac6fbdd386086dc8b9b99eb9cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfd17023_6777393b",
+        "filename": "schemas/pldm.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-12T14:53:30Z",
+      "side": 1,
+      "message": "\u003e Records of one configuration that share a Name are published on one object\n\nThis is an EM behavior and not specific to this schema, do we need to document it here?",
+      "range": {
+        "startLine": 33,
+        "startChar": 120,
+        "endLine": 33,
+        "endChar": 196
+      },
+      "revId": "cbf6de5b7bb26dac6fbdd386086dc8b9b99eb9cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
