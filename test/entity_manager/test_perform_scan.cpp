@@ -77,6 +77,41 @@ TEST(ExposeActions, ResolvesPropertiesInsertedByBind)
     EXPECT_EQ(fan.at("Connector").at("PwmName"), "PWM 1 ");
 }
 
+TEST(TemplateFields, PreservesTopLevelType)
+{
+    const DBusObject dbusObject = {
+        {"xyz.openbmc_project.FruDevice",
+         {{"BUS", uint64_t{48}}, {"BOARD_TYPE", std::string("Board")}}}};
+    // Include invalid types to ensure scanning neither expands nor strips them.
+    const std::vector<std::string> types = {
+        "Board",    "Cable",       "Chassis",     "Cpu",
+        "Dimm",     "NVMe",        "PowerSupply", "Valve",
+        "Platform", "$BOARD_TYPE", "$index",      "Board $missing"};
+
+    for (const std::string& type : types)
+    {
+        SCOPED_TRACE(type);
+        EMConfig record;
+        record.name = "Test Board";
+        record.type = type;
+        record.probeStmt = {"TRUE"};
+        record.exposesRecords = {
+            {{"Name", "Sensor $index"}, {"Type", "TMP75"}, {"Bus", "$bus"}}};
+        json configuration = json::object();
+        std::optional<std::string> replaceStr;
+
+        scan::detail::applyTemplatesAndExposeActions(
+            record.name, record, dbusObject, 2, replaceStr, configuration);
+
+        const json resolved = record.toJson();
+        EXPECT_EQ(record.type, type);
+        EXPECT_EQ(resolved.at("Type"), type);
+        EXPECT_EQ(configuration.at(record.name).at("Type"), type);
+        EXPECT_EQ(resolved.at("Exposes").at(0).at("Name"), "Sensor 2");
+        EXPECT_EQ(resolved.at("Exposes").at(0).at("Bus"), 48);
+    }
+}
+
 // parseProbeCommand joins the array statements and lexes them into tokens.
 TEST(ParseProbeCommand, ParsesArrayOfStrings)
 {

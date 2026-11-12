@@ -517,9 +517,6 @@ static void replaceTemplateFields(
     EMConfig& record, const DBusObject& dbusObject, size_t foundDeviceIdx,
     std::optional<std::string>& replaceStr)
 {
-    em_utils::templateCharReplaceStr(record.type, dbusObject, foundDeviceIdx,
-                                     replaceStr, true);
-
     for (auto& probe : record.probeStmt)
     {
         em_utils::templateCharReplaceStr(probe, dbusObject, foundDeviceIdx,
