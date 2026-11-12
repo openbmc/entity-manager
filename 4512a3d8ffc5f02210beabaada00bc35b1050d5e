@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "137ea3fb_051e5e4a",
+        "filename": "src/entity_manager/parsed_config.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-12T16:47:53Z",
+      "side": 1,
+      "message": "i am not sure if EM trying to resolve template vars inside `Probe` statement is a pre-existing bug.\n\nOut of all upstream config files i only found `configurations/meta/clemente/clemente_hdd_nvme.json` which has template vars in a probe statement and even there i am not sure if it\u0027s actually intended that way or supposed to match the unresolved string.\n\nEither a probe evaluates true or false, and if it\u0027s not been evaluated yet, where would the values for replacement come from? From interfaces matched earlier in the probe statement? What if there\u0027s multiple?\n\nRaised a patch to remove that behavior and CC\u0027d you on it.\n\nLet\u0027s see where that review goes and if we need to have probes resolved at all, that will determine if we can leave the tokens on `EMConfig`",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 14
+      },
+      "revId": "4512a3d8ffc5f02210beabaada00bc35b1050d5e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
