@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60ccf0b9_59344eed",
+        "filename": "test/entity_manager/test_perform_scan.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-13T06:40:04Z",
+      "side": 1,
+      "message": "Nit, non-blocking: the removed loop also applied replaceStr (the duplicate-name path) to probe strings. This test only runs with an empty replaceStr. Could you add a case where replaceStr is set, to confirm Probe stays untouched there too?",
+      "revId": "f399b85402f4fc5f6cde66a533b6965243592711",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
