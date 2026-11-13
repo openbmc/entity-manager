@@ -36,6 +36,63 @@
                 "Name",
                 "Type"
             ]
+        },
+        "SpdmMctpEndpoint": {
+            "title": "SPDM MCTP responder configuration",
+            "description": "A Root of Trust that answers SPDM over MCTP, and the components it protects. The Protected arrays that are given must have the same length, with one entry for each protected component.",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Name": {
+                    "description": "Must match the Name of the MCTP record of the device.",
+                    "type": "string"
+                },
+                "Type": {
+                    "description": "The type of object",
+                    "type": "string",
+                    "enum": ["SpdmMctpResponder"]
+                },
+                "TrustedComponentType": {
+                    "description": "integrated when the Root of Trust is part of a device it protects, discrete when it is a device of its own. For an integrated Root of Trust, the first entry of the Protected arrays is the device it is built into.",
+                    "enum": ["discrete", "integrated"]
+                },
+                "TrustedComponentName": {
+                    "description": "Name of the Root of Trust. It becomes the name of the TrustedComponent and ComponentIntegrity, and their Redfish Id. Must be unique among the responders on the BMC.",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "ProtectedBoards": {
+                    "description": "Name of the board configuration that holds each protected component. When not given, or when an entry is an empty string, it is the board configuration that contains this record.",
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "ProtectedTargets": {
+                    "description": "Name of the record, in that board configuration, that describes each protected component. When not given, or when an entry is an empty string, the component is the device of the board configuration itself.",
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "ProtectedInventoryTypes": {
+                    "description": "Inventory interface that the protected component must have, such as xyz.openbmc_project.Inventory.Item.NetworkAdapter. Needed only when more than one inventory object is created from the selected record. Otherwise leave it out, or use an empty string for that entry.",
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "string",
+                        "pattern": "^(xyz\\.openbmc_project\\.Inventory\\.Item(\\.[A-Za-z_][A-Za-z0-9_]*)+)?$"
+                    }
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "TrustedComponentType",
+                "TrustedComponentName"
+            ]
         }
     }
 }
