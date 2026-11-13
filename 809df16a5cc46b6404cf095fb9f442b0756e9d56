@@ -22,6 +22,30 @@
       },
       "revId": "809df16a5cc46b6404cf095fb9f442b0756e9d56",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c117ed49_bf659dc8",
+        "filename": "configurations/platform/nvidia/vr_c2_platform.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1002918
+      },
+      "writtenOn": "2026-11-13T09:32:53Z",
+      "side": 1,
+      "message": "Yes, GPUs are optional on this platform. Since the current design doc requires two or more entities, I’ve kept the GPU conditions for now but changed them to OR.",
+      "parentUuid": "932c025d_b1894b3a",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 54
+      },
+      "revId": "809df16a5cc46b6404cf095fb9f442b0756e9d56",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
