@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e56dcd3c_cf08daa3",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1349,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-13T06:19:06Z",
+      "side": 1,
+      "message": "findEndOfFieldMarker() returns the last 0xC1 in the area, so if the non-zero padding this patch targets contains a 0xC1 byte, it returns that byte rather than the real EndOfFields marker. The fill then starts too late and leaves part of the padding uncleared. Would it be worth locating the marker by walking the fields forward (like formatIPMIFRU does), or at least noting this limitation?\n\nAlso, could you add a unit test for setField() on an area with non-zero padding after EndOfFields (ideally including a 0xC1 in the padding), checking that the padding is zeroed and the checksum is valid?",
+      "revId": "4fb591c56e63c6bcaaafbd53081217cc785acc9e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
