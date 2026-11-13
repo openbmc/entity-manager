@@ -28,6 +28,7 @@
                     },
                     {
                         "Id": 18,
+                        "Inventory": "GPU_VR_HPM_$bus",
                         "Name": "GPU_VR"
                     },
                     {
@@ -115,10 +116,12 @@
                 "PowerSensors": [
                     {
                         "Id": 128,
+                        "Inventory": "HSC_HPM_$bus",
                         "Name": "HSC"
                     },
                     {
                         "Id": 192,
+                        "Inventory": "HSCC_HPM_$bus",
                         "Name": "HSCC"
                     }
                 ],
@@ -129,10 +132,12 @@
                     },
                     {
                         "Id": 168,
+                        "Inventory": "HSCC_HPM_$bus",
                         "Name": "HSCC"
                     },
                     {
                         "Id": 192,
+                        "Inventory": "HSC_HPM_$bus",
                         "Name": "HSC"
                     }
                 ],
@@ -140,18 +145,22 @@
                 "VoltageSensors": [
                     {
                         "Id": 128,
+                        "Inventory": "HSC_HPM_$bus",
                         "Name": "HSC_Vout"
                     },
                     {
                         "Id": 192,
+                        "Inventory": "HSC_HPM_$bus",
                         "Name": "HSC_Vin"
                     },
                     {
                         "Id": 208,
+                        "Inventory": "HSCC_HPM_$bus",
                         "Name": "HSCC_Vout"
                     },
                     {
                         "Id": 224,
+                        "Inventory": "HSCC_HPM_$bus",
                         "Name": "HSCC_Vin"
                     }
                 ]
@@ -180,5 +189,23 @@
         "xyz.openbmc_project.Inventory.Item.Chassis": {
             "Type": "xyz.openbmc_project.Inventory.Item.Chassis.ChassisType.Module"
         }
+    },
+    {
+        "Exposes": [],
+        "Name": "HSC_HPM_$bus",
+        "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'PG558|E5580', 'BOARD_MANUFACTURER': 'NVIDIA'})",
+        "Type": "Vrm"
+    },
+    {
+        "Exposes": [],
+        "Name": "HSCC_HPM_$bus",
+        "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'PG558|E5580', 'BOARD_MANUFACTURER': 'NVIDIA'})",
+        "Type": "Vrm"
+    },
+    {
+        "Exposes": [],
+        "Name": "GPU_VR_HPM_$bus",
+        "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'PG558|E5580', 'BOARD_MANUFACTURER': 'NVIDIA'})",
+        "Type": "Vrm"
     }
 ]

@@ -35,6 +35,11 @@
                     "minimum": 0,
                     "maximum": 254
                 },
+                "Inventory": {
+                    "description": "Name of the entity manager configuration that represents the inventory item the sensor measures. The sensor is published on D-Bus with an inventory association to the object of that configuration, and without the association while that configuration is not present. Optional; if absent, the sensor has no inventory association.",
+                    "x-dbus-type": "string",
+                    "type": "string"
+                },
                 "Name": {
                     "description": "Name of the sensor, published on D-Bus as <device>_<Name>, where <device> is the name the device is given on D-Bus.",
                     "x-dbus-type": "string",
