@@ -188,6 +188,7 @@ configs = [
     'meta/minerva/minerva_pttv.json',
     'meta/minerva/minerva_sitv.json',
     'meta/minerva/minerva_tahan_smb.json',
+    'meta/rainier/rainier_hpm_vr_mps_v1p2vr_mps.json',
     'meta/rainier/rainier_hpm_vr_mps_v1p2vr_tic.json',
     'meta/rainier/rainier_hpm_vr_rtt_v1p2vr_mps.json',
     'meta/rainier/rainier_mb_ssd.json',
