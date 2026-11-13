@@ -207,6 +207,7 @@ void EntityManager::postBoardToDBus(
         {"NVMe", "xyz.openbmc_project.Inventory.Item.NVMe"},
         {"PowerSupply", "xyz.openbmc_project.Inventory.Item.PowerSupply"},
         {"Valve", "xyz.openbmc_project.Inventory.Item.Valve"},
+        {"Vrm", "xyz.openbmc_project.Inventory.Item.Vrm"},
         // A platform is not an inventory item, so it is named under the
         // Configuration namespace instead.
         {"Platform", "xyz.openbmc_project.Configuration.Platform"},
