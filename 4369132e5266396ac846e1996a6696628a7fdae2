@@ -33,6 +33,24 @@
       "message": "Can i ask why did the tests change?\n\nThe tests removed from `test/entity_manager/test_perform_scan.cpp` look different.",
       "revId": "4369132e5266396ac846e1996a6696628a7fdae2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e56210bb_1a5615a5",
+        "filename": "test/entity_manager/test_probe_lexer.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-11-13T10:42:06Z",
+      "side": 1,
+      "message": "I reworked them instead of moving them as they were, because three of the four old tests seemed to repeat tests already in `LexProbe`. The new tests cover what `parseProbeCommand` adds over the lexer, which is joining an array of statements and the empty result for a broken or empty `Probe`.\n\nI updated the commit message to say this. Does that look reasonable, or would you rather keep the old tests too?",
+      "parentUuid": "67c947ce_6a5328b5",
+      "revId": "4369132e5266396ac846e1996a6696628a7fdae2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
