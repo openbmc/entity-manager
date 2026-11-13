@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a8ea96b_ec629f58",
+        "filename": "docs/probe_grammar.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-13T08:43:18Z",
+      "side": 1,
+      "message": "Nit, non-blocking: \"cannot be parsed\" reads as if any violation of the grammar above is rejected, but only lexical errors are (unknown keyword, unbalanced parentheses or quotes, malformed match object). Grammar-level mistakes such as a trailing or leading operator are not checked and still evaluate (e.g. FOUND(\u0027x\u0027) AND behaves like FOUND(\u0027x\u0027)). Could the text say this, e.g. \"cannot be tokenized\", or note that operator placement is not validated?",
+      "revId": "6123d275a380801341e245752a5b889190749aee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
