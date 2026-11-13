@@ -16,6 +16,24 @@
       "message": "What is it that calls these methods? Where does it gets its information about the devices it\u0027s describing and managing?",
       "revId": "27ad285f34e3f57a0c48cf6e28e656a643256c9e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0767a66b_a4ba27c0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1001076
+      },
+      "writtenOn": "2026-11-13T07:49:12Z",
+      "side": 1,
+      "message": "virtual I2C bus numbers behind an SMBus mux or I3C hub are assigned dynamically by the kernel and are not same across reboots. Hence there is no mechanism to design an EM config for such use case as MCTPI2CTarget depends on static bus number.\n\nHence this would be used by a seperate or oem service/script to detect this bus and then add the EM config to add an MCTPI2CTarget.\n\nIf there is an alternate suggestion please let us know.",
+      "parentUuid": "4c1de18d_b12c3a8b",
+      "revId": "27ad285f34e3f57a0c48cf6e28e656a643256c9e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
