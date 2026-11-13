@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61c77343_6635e9ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003181
+      },
+      "writtenOn": "2026-11-13T18:47:32Z",
+      "side": 1,
+      "message": "Patchset 2 reworks the schema. It has no D-Bus object paths and no EID any more. A protected component is named by its board configuration and record and the SPDM daemon resolves the names, which I think is close to option 1 from Ender. An integrated RoT needs no Protected property, because its record sits in the configuration of its device.\n\nThe design with a full example is in https://gerrit.openbmc.org/c/openbmc/docs/+/97301\nIt also says why Ports are not used for this, under Alternatives Considered.",
+      "revId": "5527bf4a8902c5b71c9f4a41cfa073c0e88a21ba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
