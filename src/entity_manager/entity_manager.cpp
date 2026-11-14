@@ -593,7 +593,7 @@ void EntityManager::propertiesChangedCallbackDebounced(
     *missingConfigurations = systemConfiguration;
 
     auto perfScan = std::make_shared<scan::PerformScan>(
-        *this, *missingConfigurations, configuration.configurations, io,
+        *this, *missingConfigurations, configuration.configurations,
         [this, count, oldConfiguration, missingConfigurations]() {
             onScanComplete(count, oldConfiguration, *missingConfigurations);
         });

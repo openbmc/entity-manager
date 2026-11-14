@@ -39,7 +39,7 @@ struct PerformScan final : std::enable_shared_from_this<PerformScan>
 {
     PerformScan(EntityManager& em, nlohmann::json& missingConfigurations,
                 std::vector<EMConfig>& configurations,
-                boost::asio::io_context& io, std::function<void()>&& callback);
+                std::function<void()>&& callback);
 
     void updateSystemConfiguration(const EMConfig& recordRef,
                                    const std::string& probeName,
@@ -62,8 +62,6 @@ struct PerformScan final : std::enable_shared_from_this<PerformScan>
     std::vector<EMConfig> _configurations;
     std::function<void()> _callback;
     bool _passed = false;
-
-    boost::asio::io_context& io;
 };
 
 namespace detail
