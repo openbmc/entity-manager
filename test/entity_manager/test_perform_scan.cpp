@@ -164,7 +164,7 @@ TEST(PerformScan, SkipsMalformedProbeAndProcessesFollowingConfiguration)
 
     size_t completions = 0;
     auto scan = std::make_shared<scan::PerformScan>(
-        em, missing, configurations, io,
+        em, missing, configurations,
         std::bind_front(recordScanCompletion, std::ref(completions)));
 
     scan->run();

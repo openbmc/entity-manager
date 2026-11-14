@@ -573,7 +573,7 @@ void EntityManager::propertiesChangedCallbackDebounced(
     *missingConfigurations = systemConfiguration;
 
     auto perfScan = std::make_shared<scan::PerformScan>(
-        *this, *missingConfigurations, configuration.configurations, io,
+        *this, *missingConfigurations, configuration.configurations,
         [this, count, oldConfiguration, missingConfigurations]() {
             // this is something that since ac has been applied to the
             // bmc we saw, and we no longer see it
