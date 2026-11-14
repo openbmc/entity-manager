@@ -19,6 +19,16 @@ test_include_dir = include_directories('../src')
 subdir('entity_manager')
 
 test(
+    'test_inotify',
+    executable(
+        'test_inotify',
+        'test_inotify.cpp',
+        dependencies: [gtest, phosphor_logging_dep],
+        include_directories: test_include_dir,
+    ),
+)
+
+test(
     'test_fru_utils',
     executable(
         'test_fru_utils',
