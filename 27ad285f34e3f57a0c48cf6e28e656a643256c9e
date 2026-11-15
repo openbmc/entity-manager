@@ -34,6 +34,24 @@
       "parentUuid": "4c1de18d_b12c3a8b",
       "revId": "27ad285f34e3f57a0c48cf6e28e656a643256c9e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "518d5fe5_ce609177",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-11-15T23:28:42Z",
+      "side": 1,
+      "message": "\u003e Hence there is no mechanism to design an EM config for such use case\n\n\nThis problem is solved as a subproblem of [designs: Inventory associations for bridged MCTP endpoints](https://gerrit.openbmc.org/c/openbmc/docs/+/94137). By describing individual bus segments we can walk the configurations and sysfs together to construct bus paths and understand the topology underneath a virtual I2C bus number.\n\n\u003e Hence this would be used by a seperate or oem service/script to detect this bus\n\nYes, but where are these services or scripts? Can you provide a link to some? A precondition for accepting this proposal is at least having visibility into what\u0027s calling these interfaces.\n\nIf you can\u0027t open source the scripts or services then the interface has no business being merged in the open source project. There must be an open-source consumer of them.",
+      "parentUuid": "0767a66b_a4ba27c0",
+      "revId": "27ad285f34e3f57a0c48cf6e28e656a643256c9e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
