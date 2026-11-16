@@ -118,7 +118,8 @@ void Configuration::loadConfigurations()
                               .count();
 
     lg2::debug(
-        "Finished loading {NCONFIGS} json configuration(s) from {NFILES} file(s) in {MILLIS}ms",
+        "Finished loading {NCONFIGS} json configuration(s) from {NFILES} "
+        "file(s) in {MILLIS}ms",
         "NCONFIGS", configurations.size(), "NFILES", jsonPaths.size(), "MILLIS",
         duration);
 }

@@ -29,7 +29,8 @@ static nlohmann::json::object_t getSampleConfig()
     input["Name"] = "Santa Barbara SCM";
     input["Probe"] = nlohmann::json::array_t();
     input["Probe"].emplace_back(
-        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara SCM'})");
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara "
+        "SCM'})");
     input["Type"] = "Board";
     input["xyz.openbmc_project.Inventory.Item.System"] =
         nlohmann::json::object_t();
@@ -76,7 +77,8 @@ TEST(EMConfig, ParseProbeSingle)
 {
     nlohmann::json::object_t input = getSampleConfig();
     input["Probe"] =
-        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara SCM'})";
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara "
+        "SCM'})";
 
     std::optional<EMConfig> optConfig = EMConfig::fromJson(input);
 
@@ -103,7 +105,8 @@ TEST(EMConfig, ParseProbeArray)
         "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': '.*SBP1'})");
     input["Probe"].emplace_back("AND");
     input["Probe"].emplace_back(
-        "xyz.openbmc_project.Inventory.Item({'PrettyName': 'RSSD03', 'Present': true})");
+        "xyz.openbmc_project.Inventory.Item({'PrettyName': 'RSSD03', "
+        "'Present': true})");
     input["Probe"].emplace_back("MATCH_ONE");
 
     std::optional<EMConfig> optConfig = EMConfig::fromJson(input);

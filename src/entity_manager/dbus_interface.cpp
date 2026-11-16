@@ -46,7 +46,8 @@ void tryIfaceInitialize(std::shared_ptr<sdbusplus::asio::dbus_interface>& iface)
     catch (std::exception& e)
     {
         lg2::error(
-            "Unable to initialize dbus interface : {ERR} object Path : {PATH} interface name : {INTF}",
+            "Unable to initialize dbus interface : {ERR} object Path : {PATH} "
+            "interface name : {INTF}",
             "ERR", e, "PATH", iface->get_object_path(), "INTF",
             iface->get_interface_name());
     }
@@ -292,7 +293,8 @@ std::optional<EMDBusInterface::SchemaTypedValues>
         if (!dbusValue)
         {
             lg2::error(
-                "{TYPE} property {KEY} value {VALUE} cannot be published as {DBUS_TYPE}",
+                "{TYPE} property {KEY} value {VALUE} cannot be published as "
+                "{DBUS_TYPE}",
                 "TYPE", *recordType, "KEY", key, "VALUE", value.dump(),
                 "DBUS_TYPE", *dbusType);
             return std::nullopt;
@@ -495,7 +497,8 @@ void EMDBusInterface::addObjectJson(
     if (!convertSchemaTypes(newData))
     {
         throw std::invalid_argument(
-            "A property cannot be published as the D-Bus type its schema names");
+            "A property cannot be published as the D-Bus type its schema "
+            "names");
     }
 
     size_t lastIndex = 0;

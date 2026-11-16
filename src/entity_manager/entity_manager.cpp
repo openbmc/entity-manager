@@ -532,8 +532,9 @@ void EntityManager::publishNewConfiguration(
     boost::asio::steady_timer& timer, // Gerrit discussion:
     // https://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/52316/6
     //
-    // Discord discussion:
-    // https://discord.com/channels/775381525260664832/867820390406422538/958048437729910854
+    // Discord discussion (URL continued on the next line):
+    // https://discord.com/channels/775381525260664832/867820390406422538/
+    // 958048437729910854
     //
     // NOLINTNEXTLINE(performance-unnecessary-value-param)
     const nlohmann::json newConfiguration)

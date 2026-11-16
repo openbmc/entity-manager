@@ -147,7 +147,8 @@ struct MatchProbe<std::string>
             catch (const std::regex_error&)
             {
                 lg2::error(
-                    "Syntax error in regular expression: {PROBE} will never match",
+                    "Syntax error in regular expression: {PROBE} will never "
+                    "match",
                     "PROBE", probe);
             }
         }
