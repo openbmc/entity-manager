@@ -450,6 +450,11 @@ resCodes decodeField(
     return resCodes::resOK;
 }
 
+std::string sanitizeFruValue(const std::string& value)
+{
+    return std::regex_replace(value, nonAsciiRegex, "_");
+}
+
 resCodes formatIPMIFRU(
     std::span<const uint8_t> fruBytes,
     std::flat_map<std::string, std::string, std::less<>>& result)

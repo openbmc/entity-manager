@@ -934,8 +934,7 @@ void addFruObjectToDbus(std::vector<uint8_t>& device, FruDetails& fruDetails,
 
     for (auto property : formattedFRU)
     {
-        std::regex_replace(property.second.begin(), property.second.begin(),
-                           property.second.end(), nonAsciiRegex, "_");
+        property.second = sanitizeFruValue(property.second);
         if (property.second.empty())
         {
             continue;
