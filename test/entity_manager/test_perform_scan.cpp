@@ -80,10 +80,11 @@ TEST(ExposeActions, ResolvesPropertiesInsertedByBind)
 // parseProbeCommand joins the array statements and lexes them into tokens.
 TEST(ParseProbeCommand, ParsesArrayOfStrings)
 {
-    auto probe = std::vector<std::string>{"FOUND('A')", "FOUND('B')"};
-    EXPECT_EQ(
-        scan::detail::parseProbeCommand(probe),
-        (std::vector<Token>{{TokenType::found, "A"}, {TokenType::found, "B"}}));
+    auto probe = std::vector<std::string>{"FOUND('A')", "AND FOUND('B')"};
+    EXPECT_EQ(scan::detail::parseProbeCommand(probe),
+              (std::vector<Token>{{TokenType::found, "A"},
+                                  {TokenType::opAnd, ""},
+                                  {TokenType::found, "B"}}));
 }
 
 // A single-string "Probe" field is lexed directly.
@@ -142,6 +143,46 @@ TEST(ParseProbeCommand, ValidatesNotPlacement)
     EXPECT_TRUE(
         scan::detail::parseProbeCommand({"NOT MATCH_ONE TRUE"}).empty());
     EXPECT_TRUE(scan::detail::parseProbeCommand({"TRUE AND NOT"}).empty());
+}
+
+TEST(ParseProbeCommand, AcceptsOperatorsBetweenOperands)
+{
+    EXPECT_FALSE(
+        scan::detail::parseProbeCommand({"TRUE AND FALSE MATCH_ONE"}).empty());
+    EXPECT_FALSE(scan::detail::parseProbeCommand(
+                     {"FOUND('Mt.Jade') OR FOUND('Harma SCM') AND TRUE"})
+                     .empty());
+    EXPECT_FALSE(scan::detail::parseProbeCommand({"NOT NOT TRUE"}).empty());
+    EXPECT_FALSE(
+        scan::detail::parseProbeCommand({"NOT TRUE AND FOUND('Harma SCM')"})
+            .empty());
+}
+
+TEST(ParseProbeCommand, RejectsMisplacedAndOr)
+{
+    EXPECT_TRUE(scan::detail::parseProbeCommand({"AND TRUE"}).empty());
+    EXPECT_TRUE(scan::detail::parseProbeCommand({"TRUE AND"}).empty());
+    EXPECT_TRUE(scan::detail::parseProbeCommand({"TRUE AND OR FALSE"}).empty());
+    EXPECT_TRUE(scan::detail::parseProbeCommand({"TRUE FALSE"}).empty());
+    EXPECT_TRUE(
+        scan::detail::parseProbeCommand({"FOUND('Mt.Jade') FOUND('Harma SCM')"})
+            .empty());
+}
+
+TEST(ParseProbeCommand, RejectsMisplacedMatchOne)
+{
+    EXPECT_TRUE(
+        scan::detail::parseProbeCommand({"TRUE AND MATCH_ONE"}).empty());
+    // Nothing may follow MATCH_ONE: an operand, NOT, an operator or another
+    // MATCH_ONE.
+    EXPECT_TRUE(
+        scan::detail::parseProbeCommand({"TRUE MATCH_ONE TRUE"}).empty());
+    EXPECT_TRUE(
+        scan::detail::parseProbeCommand({"TRUE MATCH_ONE NOT"}).empty());
+    EXPECT_TRUE(
+        scan::detail::parseProbeCommand({"TRUE MATCH_ONE AND FALSE"}).empty());
+    EXPECT_TRUE(
+        scan::detail::parseProbeCommand({"TRUE MATCH_ONE MATCH_ONE"}).empty());
 }
 
 static void recordScanCompletion(size_t& completions)
