@@ -16,6 +16,24 @@
       "message": "I think this patch can be removed from the chain.",
       "revId": "4bdda7959c51efb5a4547aba4c8950ce2dadc520",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82998c91_f0b153b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002810
+      },
+      "writtenOn": "2026-11-16T07:06:37Z",
+      "side": 1,
+      "message": "95095, 96029 and 96030 need it: without it their configurations fail\nschema validation in CI. If it were based on master on its own, the\nrest of the chain would fail CI until it merges, so I\u0027d like to keep\nit here.",
+      "parentUuid": "13bd3f7d_748b9e4c",
+      "revId": "4bdda7959c51efb5a4547aba4c8950ce2dadc520",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
