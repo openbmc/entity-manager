@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c27673cc_02047bf5",
+        "filename": "configurations/platform/nvidia/vr_c2_platform.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-11-16T09:13:46Z",
+      "side": 1,
+      "message": "Since EM evaluates the Probe left to right, would the whole platform, including the HPM\u0027s own USB devices, go missing when neither GPU is installed, and could the Probe depend on the HPM alone instead?",
+      "range": {
+        "startLine": 92,
+        "startChar": 12,
+        "endLine": 93,
+        "endChar": 55
+      },
+      "revId": "c2a3f91137a6d5e6fc2a8fb069d16fc838ef64d1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
