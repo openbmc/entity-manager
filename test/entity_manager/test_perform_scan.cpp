@@ -132,7 +132,8 @@ TEST(ParseProbeCommand, ParsesSingleString)
 TEST(ParseProbeCommand, ParsesDbusPropertiesBeforeEvaluation)
 {
     auto probe = std::vector<std::string>{
-        R"(xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Riser\d+', 'ADDRESS': 80}))"};
+        R"(xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Riser\d+', )"
+        R"('ADDRESS': 80}))"};
     auto tokens = scan::detail::parseProbeCommand(probe);
     ASSERT_EQ(tokens.size(), 1);
     const auto& token = tokens.at(0);

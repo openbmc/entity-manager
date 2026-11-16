@@ -821,7 +821,8 @@ static void findI2CDevices(const std::vector<fs::path>& i2cBuses,
         if (ioctl(file, I2C_FUNCS, &funcs) < 0)
         {
             lg2::error(
-                "Error: Could not get the adapter functionality matrix bus {BUS}",
+                "Error: Could not get the adapter functionality matrix bus "
+                "{BUS}",
                 "BUS", bus);
             close(file);
             continue;

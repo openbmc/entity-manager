@@ -223,7 +223,8 @@ void SchemaDBusTypes::addSchema(const nlohmann::json& schema,
                 // Rejected here rather than when every value fails to
                 // convert, which would leave out every record of the type.
                 lg2::error(
-                    "Schema {SCHEMA} names unknown D-Bus type {DBUS_TYPE} for property {PROPERTY}, ignoring it",
+                    "Schema {SCHEMA} names unknown D-Bus type {DBUS_TYPE} "
+                    "for property {PROPERTY}, ignoring it",
                     "SCHEMA", schemaName, "DBUS_TYPE",
                     dbusType->get<std::string>(), "PROPERTY", name);
                 continue;

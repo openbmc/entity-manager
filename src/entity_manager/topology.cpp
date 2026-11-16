@@ -222,7 +222,8 @@ void Topology::fillAssocForPortId(
     if (!assocName.allowedOnBoardTypes.contains(boardTypes[upstream]))
     {
         lg2::error(
-            "Cannot create Association Definition {ASSOC} for {PATH} with board type {TYPE}",
+            "Cannot create Association Definition {ASSOC} for {PATH} with "
+            "board type {TYPE}",
             "ASSOC", assocName.name, "PATH", upstream, "TYPE",
             boardTypes[upstream]);
         return;

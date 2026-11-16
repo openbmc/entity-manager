@@ -456,9 +456,9 @@ static std::string generateDeviceName(
 
     if (replaceStr)
     {
-        lg2::error(
-            "Duplicates found, replacing {STR} with found device index. Consider fixing template to not have duplicates",
-            "STR", *replaceStr);
+        lg2::error("Duplicates found, replacing {STR} with found device index. "
+                   "Consider fixing template to not have duplicates",
+                   "STR", *replaceStr);
     }
     return copyForName;
 }

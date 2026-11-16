@@ -144,7 +144,8 @@ static bool handleLeftOverTemplateVarOnce(std::string& value)
     }
 
     lg2::error(
-        "There's still template variable {VAR} un-replaced. Removing it from the string.\n",
+        "There's still template variable {VAR} un-replaced. Removing it from "
+        "the string.\n",
         "VAR", tv.value());
     value.erase(tv.value().begin(), tv.value().end());
 

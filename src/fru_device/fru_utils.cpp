@@ -700,7 +700,8 @@ bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
     if (blockData[0] != fruVersion)
     {
         lg2::debug(
-            "FRU spec version {VERSION} not supported. Supported version is {SUPPORTED_VERSION}",
+            "FRU spec version {VERSION} not supported. Supported version is "
+            "{SUPPORTED_VERSION}",
             "VERSION", lg2::hex, blockData[0], "SUPPORTED_VERSION", lg2::hex,
             fruVersion);
         return false;
@@ -739,10 +740,10 @@ bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
 
     if (sum != blockData[7])
     {
-        lg2::debug(
-            "Checksum {CHECKSUM} is invalid. calculated checksum is {CALCULATED_CHECKSUM}",
-            "CHECKSUM", lg2::hex, blockData[7], "CALCULATED_CHECKSUM", lg2::hex,
-            sum);
+        lg2::debug("Checksum {CHECKSUM} is invalid. calculated checksum is "
+                   "{CALCULATED_CHECKSUM}",
+                   "CHECKSUM", lg2::hex, blockData[7], "CALCULATED_CHECKSUM",
+                   lg2::hex, sum);
         return false;
     }
     return true;
@@ -888,7 +889,8 @@ std::pair<std::vector<uint8_t>, bool> readFRUContents(
         if (areaOffset <= prevOffset)
         {
             lg2::error(
-                "Fru area offsets are not in required order as per Section 17 of Fru specification");
+                "Fru area offsets are not in required order as per Section 17 "
+                "of Fru specification");
             return {{}, true};
         }
         prevOffset = areaOffset;
@@ -1336,7 +1338,8 @@ bool setField(const fruAreas& fruAreaToUpdate, std::vector<uint8_t>& areaData,
     if (newSizePadded != oldSizePadded)
     {
         lg2::error(
-            "FRU area {AREA} resize is disabled, cannot increase size from {OLD_SIZE} to {NEW_SIZE}",
+            "FRU area {AREA} resize is disabled, cannot increase size from "
+            "{OLD_SIZE} to {NEW_SIZE}",
             "AREA", getFruAreaName(fruAreaToUpdate), "OLD_SIZE",
             static_cast<int>(oldSizePadded), "NEW_SIZE",
             static_cast<int>(newSizePadded));
@@ -1768,9 +1771,9 @@ bool updateAddProperty(const std::string& propertyValue,
     const size_t len = propertyValue.length();
     if (len == 1 || len > 63)
     {
-        lg2::error(
-            "FRU field data must be 0 or between 2 and 63 characters. Invalid Length: {LEN}",
-            "LEN", len);
+        lg2::error("FRU field data must be 0 or between 2 and 63 characters. "
+                   "Invalid Length: {LEN}",
+                   "LEN", len);
         return false;
     }
 
@@ -1808,7 +1811,8 @@ bool updateAddProperty(const std::string& propertyValue,
         // If ENABLE_FRU_AREA_RESIZE is not defined then return with failure
 #ifndef ENABLE_FRU_AREA_RESIZE
         lg2::error(
-            "FRU area {AREA} not present and ENABLE_FRU_AREA_RESIZE is not set. "
+            "FRU area {AREA} not present and ENABLE_FRU_AREA_RESIZE is not "
+            "set. "
             "Returning failure.",
             "AREA", areaName);
         return false;
