@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a49f3b4a_e48a03c2",
+        "filename": "src/fru_device/inotify.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-16T16:34:36Z",
+      "side": 1,
+      "message": "these functions are not templates, why do they need to go inside a header file?",
+      "revId": "89403002e7ac557fe5cbf306897dca87885c5624",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a912fefc_5af63059",
+        "filename": "src/fru_device/inotify.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-16T16:34:36Z",
+      "side": 1,
+      "message": "why does the implementation go under `src/fru_device/` but the test under `test/` (toplevel) ?\n\nLet\u0027s make it consistent such that the relevant codes can be found in the right directory in both src and test.\n\nOtherwise it could be hard to figure out for a reader which files have test coverage and where those tests are to be found.",
+      "revId": "89403002e7ac557fe5cbf306897dca87885c5624",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
