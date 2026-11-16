@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a89aa76_15bcb712",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-16T15:07:31Z",
+      "side": 1,
+      "message": "Thanks for your review 👍",
+      "parentUuid": "9d8f62ce_8909f469",
+      "revId": "01b4e5a48b8afc329d4a0cb4919cc04fe89e5b3f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5312a0c2_febf4831",
@@ -35,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5be46b13_15f649bc",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 676,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-16T15:07:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5312a0c2_febf4831",
+      "revId": "01b4e5a48b8afc329d4a0cb4919cc04fe89e5b3f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fbaac3a0_8d6e6965",
@@ -48,6 +84,30 @@
       "writtenOn": "2026-11-11T03:32:21Z",
       "side": 1,
       "message": "`lastJson` is no longer JSON, maybe rename it to `cachedConfiguration` or others?",
+      "range": {
+        "startLine": 44,
+        "startChar": 24,
+        "endLine": 44,
+        "endChar": 32
+      },
+      "revId": "01b4e5a48b8afc329d4a0cb4919cc04fe89e5b3f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76881da2_54b439b1",
+        "filename": "src/entity_manager/entity_manager.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-16T15:07:31Z",
+      "side": 1,
+      "message": "right, renamed it to `lastConfig`, since we are loading from `last.json` it might be easier for understanding if there is a shared word between the file and the variable.",
+      "parentUuid": "fbaac3a0_8d6e6965",
       "range": {
         "startLine": 44,
         "startChar": 24,
@@ -81,6 +141,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e28ce7c_c9a47087",
+        "filename": "src/entity_manager/perform_scan.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-16T15:07:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61c5bfc4_275df34e",
+      "range": {
+        "startLine": 89,
+        "startChar": 62,
+        "endLine": 89,
+        "endChar": 70
+      },
+      "revId": "01b4e5a48b8afc329d4a0cb4919cc04fe89e5b3f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5abda7d2_2fc7e547",
@@ -98,6 +182,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7ea3677_743e945d",
+        "filename": "src/entity_manager/system_configuration.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-16T15:07:31Z",
+      "side": 1,
+      "message": "right, added an error log here too 👍",
+      "parentUuid": "5abda7d2_2fc7e547",
+      "revId": "01b4e5a48b8afc329d4a0cb4919cc04fe89e5b3f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fcf99ff7_b14d3d67",
@@ -111,6 +213,30 @@
       "writtenOn": "2026-11-11T03:32:21Z",
       "side": 1,
       "message": "nit: could this use `std::move(*optEMConfig)` here?",
+      "range": {
+        "startLine": 51,
+        "startChar": 35,
+        "endLine": 51,
+        "endChar": 54
+      },
+      "revId": "01b4e5a48b8afc329d4a0cb4919cc04fe89e5b3f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d51a770f_f80dec6f",
+        "filename": "src/entity_manager/system_configuration.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-16T15:07:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fcf99ff7_b14d3d67",
       "range": {
         "startLine": 51,
         "startChar": 35,
