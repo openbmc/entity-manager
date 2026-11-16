@@ -115,6 +115,8 @@ resCodes formatIPMIFRU(
     std::span<const uint8_t> fruBytes,
     std::flat_map<std::string, std::string, std::less<>>& result);
 
+std::string sanitizeFruValue(const std::string& value);
+
 std::vector<uint8_t>& getFRUInfo(const uint16_t& bus, const uint8_t& address);
 
 uint8_t calculateChecksum(std::span<const uint8_t>::const_iterator iter,
