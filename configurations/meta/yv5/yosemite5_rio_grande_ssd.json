@@ -242,26 +242,6 @@
                 "Type": "GPIODeviceDetect"
             },
             {
-                "Name": "ssd24",
-                "PresencePinNames": [
-                    "IFDET_U2_1_N"
-                ],
-                "PresencePinValues": [
-                    0
-                ],
-                "Type": "GPIODeviceDetect"
-            },
-            {
-                "Name": "ssd25",
-                "PresencePinNames": [
-                    "IFDET_U2_2_N"
-                ],
-                "PresencePinValues": [
-                    0
-                ],
-                "Type": "GPIODeviceDetect"
-            },
-            {
                 "CheckHysteresisWithSetpoint": true,
                 "Class": "temp",
                 "DCoefficient": 0.0,
@@ -294,37 +274,7 @@
                     "RIO_GRANDE_SSD_20_TEMP_C",
                     "RIO_GRANDE_SSD_21_TEMP_C",
                     "RIO_GRANDE_SSD_22_TEMP_C",
-                    "RIO_GRANDE_SSD_23_TEMP_C",
-                    "RIO_GRANDE_SSD_24_TEMP_C",
-                    "RIO_GRANDE_SSD_25_TEMP_C"
-                ],
-                "MissingIsAcceptable": [
-                    "RIO_GRANDE_SSD_0_TEMP_C",
-                    "RIO_GRANDE_SSD_1_TEMP_C",
-                    "RIO_GRANDE_SSD_2_TEMP_C",
-                    "RIO_GRANDE_SSD_3_TEMP_C",
-                    "RIO_GRANDE_SSD_4_TEMP_C",
-                    "RIO_GRANDE_SSD_5_TEMP_C",
-                    "RIO_GRANDE_SSD_6_TEMP_C",
-                    "RIO_GRANDE_SSD_7_TEMP_C",
-                    "RIO_GRANDE_SSD_8_TEMP_C",
-                    "RIO_GRANDE_SSD_9_TEMP_C",
-                    "RIO_GRANDE_SSD_10_TEMP_C",
-                    "RIO_GRANDE_SSD_11_TEMP_C",
-                    "RIO_GRANDE_SSD_12_TEMP_C",
-                    "RIO_GRANDE_SSD_13_TEMP_C",
-                    "RIO_GRANDE_SSD_14_TEMP_C",
-                    "RIO_GRANDE_SSD_15_TEMP_C",
-                    "RIO_GRANDE_SSD_16_TEMP_C",
-                    "RIO_GRANDE_SSD_17_TEMP_C",
-                    "RIO_GRANDE_SSD_18_TEMP_C",
-                    "RIO_GRANDE_SSD_19_TEMP_C",
-                    "RIO_GRANDE_SSD_20_TEMP_C",
-                    "RIO_GRANDE_SSD_21_TEMP_C",
-                    "RIO_GRANDE_SSD_22_TEMP_C",
-                    "RIO_GRANDE_SSD_23_TEMP_C",
-                    "RIO_GRANDE_SSD_24_TEMP_C",
-                    "RIO_GRANDE_SSD_25_TEMP_C"
+                    "RIO_GRANDE_SSD_23_TEMP_C"
                 ],
                 "Name": "PID_RIO_GRANDE_SSD_TEMP",
                 "NegativeHysteresis": 2.0,
@@ -366,37 +316,7 @@
                     "RIO_GRANDE_SSD_20_TEMP_C",
                     "RIO_GRANDE_SSD_21_TEMP_C",
                     "RIO_GRANDE_SSD_22_TEMP_C",
-                    "RIO_GRANDE_SSD_23_TEMP_C",
-                    "RIO_GRANDE_SSD_24_TEMP_C",
-                    "RIO_GRANDE_SSD_25_TEMP_C"
-                ],
-                "MissingIsAcceptable": [
-                    "RIO_GRANDE_SSD_0_TEMP_C",
-                    "RIO_GRANDE_SSD_1_TEMP_C",
-                    "RIO_GRANDE_SSD_2_TEMP_C",
-                    "RIO_GRANDE_SSD_3_TEMP_C",
-                    "RIO_GRANDE_SSD_4_TEMP_C",
-                    "RIO_GRANDE_SSD_5_TEMP_C",
-                    "RIO_GRANDE_SSD_6_TEMP_C",
-                    "RIO_GRANDE_SSD_7_TEMP_C",
-                    "RIO_GRANDE_SSD_8_TEMP_C",
-                    "RIO_GRANDE_SSD_9_TEMP_C",
-                    "RIO_GRANDE_SSD_10_TEMP_C",
-                    "RIO_GRANDE_SSD_11_TEMP_C",
-                    "RIO_GRANDE_SSD_12_TEMP_C",
-                    "RIO_GRANDE_SSD_13_TEMP_C",
-                    "RIO_GRANDE_SSD_14_TEMP_C",
-                    "RIO_GRANDE_SSD_15_TEMP_C",
-                    "RIO_GRANDE_SSD_16_TEMP_C",
-                    "RIO_GRANDE_SSD_17_TEMP_C",
-                    "RIO_GRANDE_SSD_18_TEMP_C",
-                    "RIO_GRANDE_SSD_19_TEMP_C",
-                    "RIO_GRANDE_SSD_20_TEMP_C",
-                    "RIO_GRANDE_SSD_21_TEMP_C",
-                    "RIO_GRANDE_SSD_22_TEMP_C",
-                    "RIO_GRANDE_SSD_23_TEMP_C",
-                    "RIO_GRANDE_SSD_24_TEMP_C",
-                    "RIO_GRANDE_SSD_25_TEMP_C"
+                    "RIO_GRANDE_SSD_23_TEMP_C"
                 ],
                 "Name": "Stepwise_RIO_GRANDE_SSD_TEMP",
                 "NegativeHysteresis": 2,
@@ -1390,84 +1310,6 @@
         "Name": "ssd23",
         "Probe": [
             "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'ssd23$'})"
-        ],
-        "Type": "Board"
-    },
-    {
-        "Exposes": [
-            {
-                "Address": "0x53",
-                "Bus": 38,
-                "Name": "Rio Grande SSD 24 FRU",
-                "Type": "EEPROM_24C02"
-            },
-            {
-                "Address": "0x6a",
-                "Bus": 38,
-                "Name": "RIO_GRANDE_SSD_24_TEMP_C",
-                "PEC": "Required",
-                "PowerState": "On",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Hysteresis": 1.4,
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 70
-                    },
-                    {
-                        "Direction": "less than",
-                        "Hysteresis": 0.1,
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 5
-                    }
-                ],
-                "Type": "NVME1000"
-            }
-        ],
-        "Name": "ssd24",
-        "Probe": [
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'ssd24$'})"
-        ],
-        "Type": "Board"
-    },
-    {
-        "Exposes": [
-            {
-                "Address": "0x53",
-                "Bus": 39,
-                "Name": "Rio Grande SSD 25 FRU",
-                "Type": "EEPROM_24C02"
-            },
-            {
-                "Address": "0x6a",
-                "Bus": 39,
-                "Name": "RIO_GRANDE_SSD_25_TEMP_C",
-                "PEC": "Required",
-                "PowerState": "On",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Hysteresis": 1.4,
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 70
-                    },
-                    {
-                        "Direction": "less than",
-                        "Hysteresis": 0.1,
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 5
-                    }
-                ],
-                "Type": "NVME1000"
-            }
-        ],
-        "Name": "ssd25",
-        "Probe": [
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'ssd25$'})"
         ],
         "Type": "Board"
     }
