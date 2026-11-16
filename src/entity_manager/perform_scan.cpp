@@ -664,9 +664,20 @@ void scan::PerformScan::updateSystemConfiguration(const EMConfig& recordRef,
     }
 }
 
-// NOT must be followed by TRUE, FALSE, or a D-Bus probe
-static bool validateNotPlacement(const std::vector<probe::Token>& tokens)
+// doProbe evaluates the tokens left to right and does not notice a missing or
+// extra operator, so a malformed statement still produces a result. Rejecting
+// it here lets the rest of the code assume a well-formed Probe.
+static bool validateGrammar(const std::vector<probe::Token>& tokens)
 {
+    // Whether a token is valid depends on the one before it, so track what may
+    // come next instead of checking each token alone.
+    enum class State
+    {
+        wantOperand, // NOT keeps this state since an operand must follow it
+        wantOperator,
+        done, // MATCH_ONE applies to the whole result, so nothing follows it
+    };
+    State state = State::wantOperand;
     bool afterNot = false;
 
     for (const probe::Token& token : tokens)
@@ -674,27 +685,49 @@ static bool validateNotPlacement(const std::vector<probe::Token>& tokens)
         switch (token.type)
         {
             case probe::TokenType::opNot:
+                if (state != State::wantOperand)
+                {
+                    return false;
+                }
                 afterNot = true;
                 break;
             case probe::TokenType::boolTrue:
             case probe::TokenType::boolFalse:
             case probe::TokenType::dbusProbe:
-                afterNot = false;
-                break;
-            case probe::TokenType::found:
-            case probe::TokenType::opAnd:
-            case probe::TokenType::opOr:
-            case probe::TokenType::matchOne:
-                // cannot follow NOT
-                if (afterNot)
+                if (state != State::wantOperand)
                 {
                     return false;
                 }
+                afterNot = false;
+                state = State::wantOperator;
+                break;
+            case probe::TokenType::found:
+                // doProbe applies NOT only to TRUE, FALSE and D-Bus probes
+                if (state != State::wantOperand || afterNot)
+                {
+                    return false;
+                }
+                state = State::wantOperator;
+                break;
+            case probe::TokenType::opAnd:
+            case probe::TokenType::opOr:
+                if (state != State::wantOperator)
+                {
+                    return false;
+                }
+                state = State::wantOperand;
+                break;
+            case probe::TokenType::matchOne:
+                if (state != State::wantOperator)
+                {
+                    return false;
+                }
+                state = State::done;
                 break;
         }
     }
-    // NOT cannot be the last token
-    return !afterNot;
+    // AND, OR and NOT each need an operand after them
+    return state != State::wantOperand;
 }
 
 std::vector<probe::Token> scan::detail::parseProbeCommand(
@@ -723,10 +756,10 @@ std::vector<probe::Token> scan::detail::parseProbeCommand(
                    joined);
         return {};
     }
-    if (!validateNotPlacement(*tokens))
+    if (!validateGrammar(*tokens))
     {
-        lg2::error("Probe statement has a misplaced NOT: {PROBE}", "PROBE",
-                   joined);
+        lg2::error("Probe statement does not follow the grammar: {PROBE}",
+                   "PROBE", joined);
         return {};
     }
     return *tokens;
