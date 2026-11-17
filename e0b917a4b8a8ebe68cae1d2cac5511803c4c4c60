@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "c89837fe_550c008a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1003207
+      },
+      "writtenOn": "2026-11-17T07:29:44Z",
+      "side": 1,
+      "message": "I couldn’t find a separate prose style guide for this rule.\nThe project’s formatting configuration is in .clang-format(https://github.com/openbmc/entity-manager/blob/master/.clang-format).\n\nColumnLimit: 80 is present in the repository from its 2018 import (https://github.com/openbmc/entity-manager/commit/3cb5fece5e1c0ed68ac26766ca2ae7c4a8996be4).\n\nBreakStringLiterals: false was added in 2023 (https://github.com/openbmc/entity-manager/commit/df19061984becd834fdb324a41ae262920e73bbf). \nBoth predate clang-format 23.1.6, so this is not a new restriction introduced by that version.",
+      "parentUuid": "31f5e889_876f7f34",
+      "range": {
+        "startLine": 8,
+        "startChar": 1,
+        "endLine": 9,
+        "endChar": 56
+      },
+      "revId": "e0b917a4b8a8ebe68cae1d2cac5511803c4c4c60",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "e88685ae_a43844a1",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -37,6 +61,24 @@
       "writtenOn": "2026-11-16T16:34:22Z",
       "side": 1,
       "message": "This was done on purpose, and is done all over a lot of repos to make it easier to find strings through searching, etc.\n\nTake it up with the TOF if you don\u0027t think we should have string lines over 80 chars and it can be enforced project wide.",
+      "revId": "e0b917a4b8a8ebe68cae1d2cac5511803c4c4c60",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0c1a7bc_ef9fd162",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003207
+      },
+      "writtenOn": "2026-11-17T07:29:44Z",
+      "side": 1,
+      "message": "Understood. \nI’ll keep long string literals intact for searchability rather than split them just to meet the column limit. \nWith this project configuration, clang-format 23.1.6 preserves the long literal and wraps the surrounding call instead.\n\nhttps://github.com/openbmc/entity-manager/blob/master/.clang-format\n\nThe relevant settings are BreakStringLiterals: false and ColumnLimit: 80; the corresponding options are documented in the clang-format style options\n(https://clang.llvm.org/docs/ClangFormatStyleOptions.html#breakstringliterals)",
+      "parentUuid": "e88685ae_a43844a1",
       "revId": "e0b917a4b8a8ebe68cae1d2cac5511803c4c4c60",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -54,6 +96,30 @@
       "writtenOn": "2026-11-16T16:45:40Z",
       "side": 1,
       "message": "In my editor this link no longer works. It appears clickable but only the first line, leading to the wrong URL.\n\nThe reader would now have to manually piece the link together from the various parts, which is inconvenient.",
+      "range": {
+        "startLine": 535,
+        "startChar": 4,
+        "endLine": 537,
+        "endChar": 25
+      },
+      "revId": "e0b917a4b8a8ebe68cae1d2cac5511803c4c4c60",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a5a223d_37f048e4",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 1003207
+      },
+      "writtenOn": "2026-11-17T07:29:44Z",
+      "side": 1,
+      "message": "Agreed.\nThe Discord URL should remain on one uninterrupted line so editors can recognize it as a link. \nI reverted the URL split locally. That correction is not uploaded: restoring it, along with keeping the long string literals intact, leaves no diff against current master, so I haven’t uploaded a redundant patchset.",
+      "parentUuid": "98f3dac8_393ec5e7",
       "range": {
         "startLine": 535,
         "startChar": 4,
