@@ -6,6 +6,8 @@
 #include "../dbus_util.hpp"
 #include "gzip_utils.hpp"
 
+#include <unistd.h>
+
 #include <phosphor-logging/lg2.hpp>
 
 #include <array>
@@ -28,6 +30,11 @@ extern "C"
 }
 
 constexpr size_t fruVersion = 1; // Current FRU spec version number is 1
+
+bool seekEeprom(int fd, off_t offset)
+{
+    return offset >= 0 && lseek(fd, offset, SEEK_SET) == offset;
+}
 
 char sixBitToChar(uint8_t val)
 {
