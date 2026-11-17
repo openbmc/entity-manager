@@ -16,6 +16,98 @@
       "message": "looking for review from MCTP maintainer(s)",
       "revId": "2b8db5b8d526282eccc184357e2024825aa84e3c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "519162f1_6cc7a020",
+        "filename": "schemas/platform/mctp.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-17T12:51:15Z",
+      "side": 1,
+      "message": "```suggestion\n                    \"type\": \"integer\",\n```\n\notherwise values like `8.3` would pass the validator",
+      "range": {
+        "startLine": 63,
+        "startChar": 29,
+        "endLine": 63,
+        "endChar": 35
+      },
+      "revId": "2b8db5b8d526282eccc184357e2024825aa84e3c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ca40926_617100fe",
+        "filename": "schemas/platform/mctp.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-17T12:51:15Z",
+      "side": 1,
+      "message": "```suggestion\n                    \"type\": \"integer\",\n```",
+      "range": {
+        "startLine": 70,
+        "startChar": 29,
+        "endLine": 70,
+        "endChar": 35
+      },
+      "revId": "2b8db5b8d526282eccc184357e2024825aa84e3c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e060a173_b8d42d1c",
+        "filename": "schemas/platform/mctp.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-17T12:51:15Z",
+      "side": 1,
+      "message": "should we have `maximum` declared for this property so we do not end up with values that do not fit the intended D-Bus type?",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 2
+      },
+      "revId": "2b8db5b8d526282eccc184357e2024825aa84e3c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "078e3ac6_b78bb986",
+        "filename": "schemas/platform/mctp.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-17T12:51:15Z",
+      "side": 1,
+      "message": "```suggestion\n                    \"type\": \"integer\",\n```",
+      "range": {
+        "startLine": 84,
+        "startChar": 29,
+        "endLine": 84,
+        "endChar": 35
+      },
+      "revId": "2b8db5b8d526282eccc184357e2024825aa84e3c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
