@@ -6,7 +6,6 @@
 #include "object_mapper.hpp"
 #include "perform_probe.hpp"
 #include "probe_lexer.hpp"
-#include "probe_parser.hpp"
 #include "utils.hpp"
 
 #include <boost/asio/steady_timer.hpp>
@@ -689,26 +688,16 @@ void scan::PerformScan::processConfigurations(
         }
 
         EMConfig& recordRef = *it;
-        std::vector<probe::Token> probeCommand =
-            probe::parseProbeCommand(it->probeStmt);
-        if (probeCommand.empty())
-        {
-            lg2::error("Skipping configuration {NAME}: invalid Probe statement",
-                       "NAME", it->name);
-            it++;
-            continue;
-        }
-
         // store reference to this to children to makes sure we don't get
         // destroyed too early
         auto thisRef = shared_from_this();
-        auto probePointer = std::make_shared<probe::PerformProbe>(
-            recordRef, probeCommand, it->name, thisRef);
+        auto probePointer =
+            std::make_shared<probe::PerformProbe>(recordRef, it->name, thisRef);
 
         // parse out dbus probes by discarding other probe types, store in a
         // map
-        collectDbusProbes(probeCommand, probePointer, dbusProbeInterfaces,
-                          dbusProbePointers);
+        collectDbusProbes(recordRef.probeTokens, probePointer,
+                          dbusProbeInterfaces, dbusProbePointers);
         it++;
     }
 }
