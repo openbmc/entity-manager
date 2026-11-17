@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "327c590d_afb76abf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1002591
+      },
+      "writtenOn": "2026-11-17T03:22:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dfc4aeba_346b3b28",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 25
+      },
+      "revId": "ba1e2a491658e1d0ed78855ec31e15bb417fd47b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b7d7ff73_f9c180e2",
@@ -37,6 +61,24 @@
       "writtenOn": "2026-11-16T06:33:39Z",
       "side": 1,
       "message": "With this probe, `MB_PMON_E1S0` and `MB_E1S0_TEMP_C` in the same config are only published when the installed SSD is a Samsung PM9D3a with a readable FRU. `MB_E1S0_TEMP_C` is the only input of `PID_MB_E1S` and `Stepwise_MB_E1S` in the Bigbend SCM config, so fan control loses this input with a different SSD or one without a FRU. Is limiting this config to this SSD intended?",
+      "revId": "ba1e2a491658e1d0ed78855ec31e15bb417fd47b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "818e4e10_54ab033a",
+        "filename": "configurations/meta/yv5/yosemite5_bigbend_mb_ssd.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1002591
+      },
+      "writtenOn": "2026-11-17T03:22:40Z",
+      "side": 1,
+      "message": "Yes, it is intentional. We will update the probe to cover the other sources once samples are available and their FRU content is confirmed.",
+      "parentUuid": "b7d7ff73_f9c180e2",
       "revId": "ba1e2a491658e1d0ed78855ec31e15bb417fd47b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
