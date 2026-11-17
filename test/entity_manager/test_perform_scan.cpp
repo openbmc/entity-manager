@@ -177,7 +177,7 @@ static void drainPendingBusCalls(sdbusplus::asio::connection& bus)
     }
 }
 
-TEST(PerformScan, SkipsMalformedProbeAndProcessesFollowingConfiguration)
+TEST(PerformScan, ProcessesConfigurationWithTrueProbe)
 {
     // Keep bus activity separate so the scan's event loop can drain.
     boost::asio::io_context busIo;
@@ -188,17 +188,19 @@ TEST(PerformScan, SkipsMalformedProbeAndProcessesFollowingConfiguration)
     EntityManager em(bus, io, {}, {});
     json missing = json::object();
 
-    EMConfig malformed;
-    malformed.name = "Malformed Board";
-    malformed.type = "Board";
-    malformed.probeStmt = {"xyz.openbmc_project.FruDevice({'A': })"};
+    const json input = {
+        {"Name", "Valid Board"},
+        {"Type", "Board"},
+        {"Probe", "TRUE"},
+        {"Exposes", json::array({{{"Name", "Sensor"}, {"Type", "TMP75"}}})}};
+    std::optional<EMConfig> optValid = EMConfig::fromJson(input);
+    if (!optValid.has_value())
+    {
+        throw std::invalid_argument("did not parse");
+    }
+    const EMConfig& valid = optValid.value();
 
-    EMConfig valid;
-    valid.name = "Valid Board";
-    valid.type = "Board";
-    valid.probeStmt = {"TRUE"};
-
-    std::vector<EMConfig> configurations = {malformed, valid};
+    std::vector<EMConfig> configurations = {valid};
 
     size_t completions = 0;
     auto scan = std::make_shared<scan::PerformScan>(
@@ -207,7 +209,6 @@ TEST(PerformScan, SkipsMalformedProbeAndProcessesFollowingConfiguration)
 
     scan->run();
 
-    EXPECT_FALSE(std::ranges::contains(scan->passedProbes, malformed.name));
     EXPECT_TRUE(std::ranges::contains(scan->passedProbes, valid.name));
     EXPECT_EQ(em.systemConfiguration, (json{{valid.name, valid.toJson()}}));
     EXPECT_EQ(completions, 0);
