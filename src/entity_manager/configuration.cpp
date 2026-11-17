@@ -3,6 +3,7 @@
 #include "em_config.hpp"
 #include "perform_probe.hpp"
 #include "probe_lexer.hpp"
+#include "probe_parser.hpp"
 #include "utils.hpp"
 
 #include <nlohmann/json.hpp>

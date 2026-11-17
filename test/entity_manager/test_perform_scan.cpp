@@ -1,4 +1,5 @@
 #include "entity_manager/perform_scan.hpp"
+#include "entity_manager/probe_parser.hpp"
 #include "entity_manager/topology.hpp"
 #include "utils.hpp"
 

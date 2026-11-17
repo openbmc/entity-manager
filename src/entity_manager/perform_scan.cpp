@@ -6,6 +6,7 @@
 #include "object_mapper.hpp"
 #include "perform_probe.hpp"
 #include "probe_lexer.hpp"
+#include "probe_parser.hpp"
 #include "utils.hpp"
 
 #include <boost/asio/steady_timer.hpp>
