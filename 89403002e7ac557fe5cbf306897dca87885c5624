@@ -69,6 +69,42 @@
       "parentUuid": "a912fefc_5af63059",
       "revId": "89403002e7ac557fe5cbf306897dca87885c5624",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89e2ecae_3e5bcb0d",
+        "filename": "src/fru_device/inotify.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-17T10:24:33Z",
+      "side": 1,
+      "message": "\u003e I moved their implementations into the existing fru_utils.cpp \n\nyou are implementing helper functions for inotify ... how does that relate to IPMI FRU specification?\n\nIf you think of `inotify` helper functions, would you expect to find it in: `fru_utils.cpp` or `dbus_util.cpp` or `utils.cpp` or `inotify.cpp` ?\n\ni would not expect to find it in any of the first 2 on that list.",
+      "parentUuid": "161b3a28_9c6b8b76",
+      "revId": "89403002e7ac557fe5cbf306897dca87885c5624",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4dde289d_3997010a",
+        "filename": "src/fru_device/inotify.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-17T10:24:33Z",
+      "side": 1,
+      "message": "\u003e please let me know whether you’d prefer moving the existing FRU test file to a matching test directory, since that would also relocate its unrelated existing tests.\n\nLet\u0027s move these files in a separate patch (either before this patch in the relation chain or separately).",
+      "parentUuid": "7d625e02_7c88a70a",
+      "revId": "89403002e7ac557fe5cbf306897dca87885c5624",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
