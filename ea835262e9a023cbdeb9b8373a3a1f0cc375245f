@@ -168,6 +168,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "933bd295_c8f01404",
+        "filename": "src/entity_manager/perform_probe.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-11-17T11:11:46Z",
+      "side": 1,
+      "message": "Thanks for the suggestion and the example!\nI pushed the parser as change [97347]. It is stacked on change [97403], which only moves parseProbeCommand into its own file.\n\nThe parser builds the tree without NOT and is used to reject a Probe that is not one expression, such as \"AND TRUE\" or \"TRUE FALSE\". The evaluation is unchanged. This change would then be rebased on top of it, with NOT added to the parser.\n\n[97347]: https://gerrit.openbmc.org/c/openbmc/entity-manager/+/97347\n[97403]: https://gerrit.openbmc.org/c/openbmc/entity-manager/+/97403",
+      "parentUuid": "9ebf641f_794e34e6",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 27
+      },
+      "revId": "ea835262e9a023cbdeb9b8373a3a1f0cc375245f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a290f775_27e0232f",
         "filename": "test/entity_manager/test_perform_probe.cpp",
         "patchSetId": 10
