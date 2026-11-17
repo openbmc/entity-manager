@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fbdb861_337416b7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-17T10:44:12Z",
+      "side": 1,
+      "message": "please establish the failure case you are solving here can actually happen. Just because the offset is returned from `lseek` does not mean it can be different from the offset that was passed in.\n\n```\noff_t offset \u003d n;\nstatic_assert(n \u003e\u003d 0);\n\noff_t ret \u003d lseek(fd, offset, SEEK_SET);\n\nassert(ret !\u003d offset \u0026\u0026 ret \u003e\u003d 0);\n```\n\nTo establish the possibility of this failure case you could refer to kernel source code or sections of\n https://man7.org/linux/man-pages/man2/lseek.2.html",
+      "range": {
+        "startLine": 10,
+        "startChar": 21,
+        "endLine": 12,
+        "endChar": 22
+      },
+      "revId": "d26e12b7ebc76900ea5bb15c60c3992b53a4c8af",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cd11916_be7e1234",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-17T10:44:12Z",
+      "side": 1,
+      "message": "Let\u0027s remove this section as the CI result is archived as a gerrit comment. Thus it is possible to know the test result without noting it here.",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 44
+      },
+      "revId": "d26e12b7ebc76900ea5bb15c60c3992b53a4c8af",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
