@@ -50,9 +50,9 @@ struct PerformScan final : std::enable_shared_from_this<PerformScan>
     std::vector<std::string> passedProbes;
 
   private:
-    // Walk _configurations, skipping malformed and dropping already-probed
-    // entries. Start a PerformProbe for each remaining one. Collects the D-Bus
-    // interfaces to look up into dbusProbeInterfaces / dbusProbePointers.
+    // Walk _configurations, dropping already-probed entries. Start a
+    // PerformProbe for each remaining one. Collects the D-Bus interfaces to
+    // look up into dbusProbeInterfaces / dbusProbePointers.
     void processConfigurations(
         std::flat_set<std::string, std::less<>>& dbusProbeInterfaces,
         std::vector<std::shared_ptr<probe::PerformProbe>>& dbusProbePointers);

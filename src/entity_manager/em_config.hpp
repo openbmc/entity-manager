@@ -1,5 +1,7 @@
 #pragma once
 
+#include "probe_lexer.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <flat_map>
@@ -22,6 +24,9 @@ class EMConfig
 
     bool isArrayProbeStmt = true;
     std::vector<std::string> probeStmt;
+    // The tokens of probeStmt, set by fromJson, which rejects a configuration
+    // whose Probe does not parse.
+    std::vector<probe::Token> probeTokens;
 
     std::vector<nlohmann::json::object_t> exposesRecords;
 

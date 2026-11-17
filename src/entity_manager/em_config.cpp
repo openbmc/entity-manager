@@ -1,6 +1,8 @@
 
 #include "em_config.hpp"
 
+#include "probe_parser.hpp"
+
 #include <nlohmann/json.hpp>
 #include <phosphor-logging/lg2.hpp>
 
@@ -206,6 +208,12 @@ EMConfig::EMConfig(const nlohmann::json::object_t& config)
     if (!parseProbe(probeStmt, isArrayProbeStmt, config))
     {
         throw std::invalid_argument("could not parse Probe stmt");
+    }
+    probeTokens = probe::parseProbeCommand(probeStmt);
+    if (probeTokens.empty())
+    {
+        throw std::invalid_argument(
+            std::format("invalid Probe statement in configuration '{}'", name));
     }
     if (!parseExposes(exposesRecords, config))
     {
