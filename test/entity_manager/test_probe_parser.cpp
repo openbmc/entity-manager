@@ -1,12 +1,20 @@
 #include "entity_manager/probe_lexer.hpp"
 #include "entity_manager/probe_parser.hpp"
 
+#include <optional>
+#include <stdexcept>
 #include <string>
+#include <string_view>
+#include <utility>
 #include <vector>
 
 #include <gtest/gtest.h>
 
+using probe::Ast;
 using probe::DbusProbe;
+using probe::lexProbe;
+using probe::Node;
+using probe::parseProbe;
 using probe::parseProbeCommand;
 using probe::Token;
 using probe::TokenType;
@@ -29,6 +37,122 @@ static Token fruDevice(const std::string& board)
             DbusProbe{"xyz.openbmc_project.FruDevice",
                       {{"BOARD_PRODUCT_NAME", board},
                        {"PRODUCT_PRODUCT_NAME", "Yosemite V4"}}}};
+}
+
+static std::optional<Ast> parse(std::string_view probe)
+{
+    std::optional<std::vector<Token>> tokens = lexProbe(probe);
+
+    if (!tokens.has_value())
+    {
+        throw std::invalid_argument("did not lex");
+    }
+
+    return parseProbe(tokens.value());
+}
+
+// Unwraps the way test_em_config does, since the unchecked optional access
+// check of clang-tidy also reports an access that only follows an assertion.
+static Ast parseValid(std::string_view probe)
+{
+    std::optional<Ast> optAst = parse(probe);
+
+    if (!optAst.has_value())
+    {
+        throw std::invalid_argument("did not parse");
+    }
+
+    return std::move(optAst.value());
+}
+
+// Writes the tree as nested operators, for example AND(OR(TRUE,FALSE),TRUE),
+// so a test can state the structure it expects in one string.
+static std::string render(const Node& node)
+{
+    switch (node.token.type)
+    {
+        case TokenType::opAnd:
+            return "AND(" + render(*node.left) + "," + render(*node.right) +
+                   ")";
+        case TokenType::opOr:
+            return "OR(" + render(*node.left) + "," + render(*node.right) + ")";
+        case TokenType::boolTrue:
+            return "TRUE";
+        case TokenType::boolFalse:
+            return "FALSE";
+        case TokenType::found:
+            return "FOUND(" + node.token.value + ")";
+        case TokenType::dbusProbe:
+            if (!node.token.dbus.has_value())
+            {
+                throw std::invalid_argument("a D-Bus probe without its part");
+            }
+            return "DBUS(" + node.token.dbus.value().interface + ")";
+        case TokenType::matchOne:
+            break;
+    }
+    return "";
+}
+
+// A Probe with no operator is a tree of one operand.
+TEST(ParseProbe, SingleOperand)
+{
+    const Ast ast = parseValid("TRUE");
+
+    EXPECT_EQ(render(*ast.root), "TRUE");
+    EXPECT_FALSE(ast.matchOne);
+}
+
+// AND and OR have the same precedence and the left side of an operator is
+// everything before it, which is how Probes that mix them are read today.
+TEST(ParseProbe, OperatorsAssociateToTheLeft)
+{
+    const Ast mixed =
+        parseValid("TRUE OR FALSE AND FOUND('Yosemite 4 Management Board')");
+
+    EXPECT_EQ(render(*mixed.root),
+              "AND(OR(TRUE,FALSE),FOUND(Yosemite 4 Management Board))");
+}
+
+// A D-Bus probe is an operand like TRUE and FOUND.
+TEST(ParseProbe, DbusProbeIsAnOperand)
+{
+    const Ast ast = parseValid(mgmtBoardWBmc + " OR " + mgmtBoardWnBmc);
+
+    EXPECT_EQ(render(*ast.root), "OR(DBUS(xyz.openbmc_project.FruDevice),"
+                                 "DBUS(xyz.openbmc_project.FruDevice))");
+}
+
+// MATCH_ONE applies to the whole result, so it is a flag and not a node.
+TEST(ParseProbe, TrailingMatchOneIsAFlag)
+{
+    const Ast ast = parseValid("TRUE AND FALSE MATCH_ONE");
+
+    EXPECT_EQ(render(*ast.root), "AND(TRUE,FALSE)");
+    EXPECT_TRUE(ast.matchOne);
+}
+
+// AND and OR need an operand on both sides.
+TEST(ParseProbe, RejectsAnOperatorWithoutAnOperand)
+{
+    EXPECT_FALSE(parse("AND TRUE").has_value());
+    EXPECT_FALSE(parse("TRUE OR").has_value());
+    EXPECT_FALSE(parse("TRUE AND AND").has_value());
+    EXPECT_FALSE(parse("TRUE AND OR").has_value());
+}
+
+// Two operands in a row need an AND or an OR between them.
+TEST(ParseProbe, RejectsOperandsWithoutAnOperator)
+{
+    EXPECT_FALSE(parse("TRUE FALSE").has_value());
+}
+
+// MATCH_ONE may only be the last token, and only once.
+TEST(ParseProbe, RejectsMatchOneAnywhereElse)
+{
+    EXPECT_FALSE(parse("TRUE AND MATCH_ONE").has_value());
+    EXPECT_FALSE(parse("TRUE MATCH_ONE AND FALSE").has_value());
+    EXPECT_FALSE(parse("TRUE MATCH_ONE MATCH_ONE").has_value());
 }
 
 // The statements of the array form are joined and lexed as one Probe, so the
@@ -58,4 +182,11 @@ TEST(ParseProbeCommand, EmptyProbeHasNoTokens)
 {
     EXPECT_TRUE(parseProbeCommand({}).empty());
     EXPECT_TRUE(parseProbeCommand({""}).empty());
+}
+
+// Two statements that lex fine are not a Probe without an operator element
+// between them.
+TEST(ParseProbeCommand, MissingOperatorBetweenStatementsEmptiesTheProbe)
+{
+    EXPECT_TRUE(parseProbeCommand({mgmtBoardWBmc, mgmtBoardWnBmc}).empty());
 }
