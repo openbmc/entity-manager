@@ -48,6 +48,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "80739291_9f668c6c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-17T11:02:41Z",
+      "side": 1,
+      "message": "yes, but the `.clang-format` file should be automatically picked up and enforced during CI.\n\nSince repository CI is currently green, it means the code is formatted correctly as per that `.clang-format` file?\n\nhttps://gerrit.openbmc.org/q/project:openbmc/entity-manager\n\nBy that logic, no formatting changes would be needed and this patch could be abandoned.",
+      "parentUuid": "c89837fe_550c008a",
+      "range": {
+        "startLine": 8,
+        "startChar": 1,
+        "endLine": 9,
+        "endChar": 56
+      },
+      "revId": "e0b917a4b8a8ebe68cae1d2cac5511803c4c4c60",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "e88685ae_a43844a1",
