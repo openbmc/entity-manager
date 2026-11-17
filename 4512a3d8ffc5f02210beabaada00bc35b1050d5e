@@ -46,6 +46,30 @@
       },
       "revId": "4512a3d8ffc5f02210beabaada00bc35b1050d5e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f190e917_eaba455b",
+        "filename": "src/entity_manager/parsed_config.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-11-17T11:59:24Z",
+      "side": 1,
+      "message": "Thanks for change [97222]. It landed and nothing rewrites the Probe any more, so I dropped `ParsedConfig` as I said.\n\nThe tokens are now in `EMConfig`. `EMConfig::fromJson` parses the Probe once and rejects a configuration whose Probe is empty or does not parse.\n\n[97222]: https://gerrit.openbmc.org/c/openbmc/entity-manager/+/97222",
+      "parentUuid": "caa09909_ca5f4d53",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 14
+      },
+      "revId": "4512a3d8ffc5f02210beabaada00bc35b1050d5e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
