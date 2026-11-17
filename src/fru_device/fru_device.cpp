@@ -24,6 +24,7 @@
 #include <cerrno>
 #include <charconv>
 #include <chrono>
+#include <cstring>
 #include <ctime>
 #include <filesystem>
 #include <flat_map>
@@ -348,7 +349,9 @@ static std::vector<uint8_t> processEeprom(int bus, int address)
     int file = open(path.c_str(), O_RDONLY);
     if (file < 0)
     {
-        lg2::error("Unable to open eeprom file: {PATH}", "PATH", path);
+        const int error = errno;
+        lg2::error("Unable to open eeprom file: {PATH}: {ERROR}", "PATH", path,
+                   "ERROR", std::strerror(error));
         return {};
     }
 
