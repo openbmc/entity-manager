@@ -1100,7 +1100,7 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
             offset = sections->IpmiFruOffset;
         }
 
-        if (lseek(eeprom, offset, SEEK_SET) < 0)
+        if (!seekEeprom(eeprom, offset))
         {
             lg2::error("Unable to seek to offset {OFFSET} in device: {PATH}",
                        "OFFSET", offset, "PATH", path);

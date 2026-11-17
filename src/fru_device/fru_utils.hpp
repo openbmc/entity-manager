@@ -22,6 +22,8 @@ extern "C"
 
 constexpr size_t fruBlockSize = 8;
 
+bool seekEeprom(int fd, off_t offset);
+
 using DeviceMap = std::flat_map<int, std::vector<uint8_t>>;
 using BusMap = std::flat_map<int, std::shared_ptr<DeviceMap>>;
 // key type: {bus, address}

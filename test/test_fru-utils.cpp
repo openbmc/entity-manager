@@ -1,8 +1,13 @@
 #include "fru_device/fru_utils.hpp"
 
+#include <fcntl.h>
+#include <unistd.h>
+
 #include <algorithm>
 #include <array>
+#include <cstdio>
 #include <iterator>
+#include <memory>
 #include <vector>
 
 #include "gmock/gmock.h"
@@ -18,6 +23,27 @@ extern "C"
 }
 
 static constexpr size_t blockSize = I2C_SMBUS_BLOCK_MAX;
+
+TEST(SeekEepromTest, AcceptsZeroAndNonzeroOffsets)
+{
+    auto closeFile = [](FILE* file) { fclose(file); };
+    std::unique_ptr<FILE, decltype(closeFile)> file(std::tmpfile(), closeFile);
+    ASSERT_NE(file, nullptr);
+    int fd = fileno(file.get());
+    EXPECT_TRUE(seekEeprom(fd, 0));
+    EXPECT_TRUE(seekEeprom(fd, 32));
+}
+
+TEST(SeekEepromTest, RejectsFailedAndMismatchedSeeks)
+{
+    EXPECT_FALSE(seekEeprom(-1, 0));
+    EXPECT_FALSE(seekEeprom(-1, -1));
+
+    int fd = open("/dev/null", O_RDWR | O_CLOEXEC);
+    ASSERT_GE(fd, 0);
+    EXPECT_FALSE(seekEeprom(fd, 32));
+    EXPECT_EQ(close(fd), 0);
+}
 
 // Named OOB scenario for the new buffer-bound guards: a valid 17-byte FRU
 // (8-byte common header, one complete 8-byte board area block, one
