@@ -39,6 +39,10 @@ test(
         ],
         link_with: utils_lib,
         include_directories: test_include_dir,
+        link_args: [
+            '-Wl,--wrap=inotify_init',
+            '-Wl,--wrap=inotify_add_watch',
+        ],
     ),
 )
 

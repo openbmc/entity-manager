@@ -10,6 +10,7 @@
 #include <cstdio>
 #include <flat_map>
 #include <functional>
+#include <optional>
 #include <regex>
 #include <string>
 #include <utility>
@@ -21,6 +22,9 @@ extern "C"
 }
 
 constexpr size_t fruBlockSize = 8;
+
+std::optional<int> createInotify();
+std::optional<int> createInotifyWatch(const char* path, uint32_t mask);
 
 using DeviceMap = std::flat_map<int, std::vector<uint8_t>>;
 using BusMap = std::flat_map<int, std::shared_ptr<DeviceMap>>;
