@@ -49,10 +49,11 @@ a `json_boolean` inside a `match_object` is a JSON value and is lower-case
 
 ## Invalid statements
 
-A Probe that is empty or cannot be tokenized, for example because of an unknown
-keyword or an unbalanced parenthesis, is rejected when the configuration is
-loaded. An error naming the configuration is logged and the configuration is not
-used. Other grammar violations, such as a misplaced operator, are not detected.
+A Probe that is empty, cannot be tokenized, or does not follow the grammar above
+is rejected when the configuration is loaded, for example because of an unknown
+keyword, an unbalanced parenthesis, a missing operand or operator, or a
+`MATCH_ONE` that is not the last token. An error naming the configuration is
+logged and the configuration is not used.
 
 ## Evaluation semantics
 
