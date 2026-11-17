@@ -116,6 +116,23 @@ TEST(EMConfig, ParseProbeArray)
 
     EXPECT_EQ(config.probeStmt.size(), 4);
     EXPECT_EQ(config.probeStmt[1], "AND");
+    EXPECT_EQ(config.probeTokens.size(), 4);
+}
+
+TEST(EMConfig, RejectsEmptyProbe)
+{
+    nlohmann::json::object_t input = getSampleConfig();
+    input["Probe"] = nlohmann::json::array_t();
+
+    ASSERT_FALSE(EMConfig::fromJson(input).has_value());
+}
+
+TEST(EMConfig, RejectsProbeThatDoesNotParse)
+{
+    nlohmann::json::object_t input = getSampleConfig();
+    input["Probe"] = "xyz.openbmc_project.FruDevice({'A': })";
+
+    ASSERT_FALSE(EMConfig::fromJson(input).has_value());
 }
 
 TEST(EMConfig, ParseExposes)
