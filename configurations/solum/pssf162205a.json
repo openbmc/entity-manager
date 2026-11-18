@@ -34,6 +34,11 @@
                 ]
             },
             {
+                "Name": "GenericPowerPort",
+                "PortType": "powering",
+                "Type": "Port"
+            },
+            {
                 "Class": "Floor",
                 "Inputs": [
                     "PSU$ADDRESS % 4 + 1 Temperature"
