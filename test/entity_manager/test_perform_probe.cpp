@@ -1,6 +1,9 @@
 #include "entity_manager/perform_probe.hpp"
 
 #include <map>
+#include <memory>
+#include <optional>
+#include <stdexcept>
 #include <string>
 #include <utility>
 #include <vector>
@@ -18,8 +21,14 @@ bool runProbe(const std::vector<Token>& tokens,
               const std::vector<std::string>& passed = {},
               scan::FoundDevices* foundDevs = nullptr)
 {
+    std::optional<probe::Ast> ast = probe::parseProbe(tokens);
+    if (!ast.has_value())
+    {
+        throw std::invalid_argument("did not parse");
+    }
+
     scan::FoundDevices devices;
-    return probe::detail::doProbe(tokens, objects, passed,
+    return probe::detail::doProbe(ast.value(), objects, passed,
                                   foundDevs != nullptr ? *foundDevs : devices);
 }
 
@@ -33,6 +42,19 @@ Token dbusProbe(const std::string& interface,
 {
     return {TokenType::dbusProbe, "",
             probe::DbusProbe{interface, std::move(properties)}};
+}
+
+std::unique_ptr<probe::Node> leaf(Token token)
+{
+    return std::make_unique<probe::Node>(
+        probe::Node{std::move(token), nullptr, nullptr});
+}
+
+std::unique_ptr<probe::Node> join(Token op, std::unique_ptr<probe::Node> left,
+                                  std::unique_ptr<probe::Node> right)
+{
+    return std::make_unique<probe::Node>(
+        probe::Node{std::move(op), std::move(left), std::move(right)});
 }
 } // namespace
 
@@ -157,4 +179,58 @@ TEST(DoProbe, EvaluatesEveryOperandAndCollectsItsDevices)
         runProbe({falseToken, opAnd, fruProbe}, objects, {}, &andDevices));
     ASSERT_EQ(andDevices.size(), 1U);
     EXPECT_EQ(andDevices[0].path, "/xyz/openbmc_project/FruDevice/1");
+}
+
+TEST(DoProbe, EvaluatesAnAstAsItIsBuilt)
+{
+    // Read from the left, TRUE OR FALSE AND FALSE is false; this tree groups
+    // the AND first, and the evaluation follows the tree.
+    std::unique_ptr<probe::Node> andNode =
+        join(opAnd, leaf(falseToken), leaf(falseToken));
+    probe::Ast ast;
+    ast.root = join(opOr, leaf(trueToken), std::move(andNode));
+
+    scan::FoundDevices devices;
+    EXPECT_TRUE(probe::detail::doProbe(ast, {}, {}, devices));
+}
+
+TEST(DoProbe, EvaluatesTheLeftChildBeforeTheRightChild)
+{
+    // The two Management Board variants of a Yosemite 4 system.
+    const DBusInterface wBmc = {
+        {"BOARD_PRODUCT_NAME", std::string("Management Board wBMC")},
+        {"PRODUCT_PRODUCT_NAME", std::string("Yosemite V4")}};
+    const DBusInterface wnBmc = {
+        {"BOARD_PRODUCT_NAME", std::string("Management Board wN-BMC")},
+        {"PRODUCT_PRODUCT_NAME", std::string("Yosemite V4")}};
+    const DBusObject interfaces1 = {{"xyz.openbmc_project.FruDevice", wBmc}};
+    const DBusObject interfaces2 = {{"xyz.openbmc_project.FruDevice", wnBmc}};
+    MapperGetSubTreeResponse objects = {
+        {"/xyz/openbmc_project/FruDevice/1", interfaces1},
+        {"/xyz/openbmc_project/FruDevice/2", interfaces2}};
+
+    std::unique_ptr<probe::Node> left =
+        leaf(dbusProbe("xyz.openbmc_project.FruDevice",
+                       {{"BOARD_PRODUCT_NAME", "Management Board wN-BMC"},
+                        {"PRODUCT_PRODUCT_NAME", "Yosemite V4"}}));
+    std::unique_ptr<probe::Node> right =
+        leaf(dbusProbe("xyz.openbmc_project.FruDevice",
+                       {{"BOARD_PRODUCT_NAME", "Management Board wBMC"},
+                        {"PRODUCT_PRODUCT_NAME", "Yosemite V4"}}));
+    probe::Ast ast;
+    ast.root = join(opOr, std::move(left), std::move(right));
+
+    // Both boards are reported, the board of the left operand first.
+    scan::FoundDevices devices;
+    EXPECT_TRUE(probe::detail::doProbe(ast, objects, {}, devices));
+    ASSERT_EQ(devices.size(), 2U);
+    EXPECT_EQ(devices[0].path, "/xyz/openbmc_project/FruDevice/2");
+    EXPECT_EQ(devices[1].path, "/xyz/openbmc_project/FruDevice/1");
+}
+
+TEST(DoProbe, EmptyAstIsFalse)
+{
+    scan::FoundDevices devices;
+    EXPECT_FALSE(probe::detail::doProbe(probe::Ast{}, {}, {}, devices));
+    EXPECT_TRUE(devices.empty());
 }

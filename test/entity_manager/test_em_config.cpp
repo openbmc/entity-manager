@@ -117,6 +117,17 @@ TEST(EMConfig, ParseProbeArray)
     EXPECT_EQ(config.probeStmt.size(), 4);
     EXPECT_EQ(config.probeStmt[1], "AND");
     EXPECT_EQ(config.probeTokens.size(), 4);
+    ASSERT_NE(config.probeAst->root, nullptr);
+    EXPECT_EQ(config.probeAst->root->token.type, probe::TokenType::opAnd);
+    EXPECT_TRUE(config.probeAst->matchOne);
+}
+
+TEST(EMConfig, EmptyAstBeforeFromJson)
+{
+    EMConfig config;
+
+    ASSERT_NE(config.probeAst, nullptr);
+    EXPECT_EQ(config.probeAst->root, nullptr);
 }
 
 TEST(EMConfig, RejectsEmptyProbe)
