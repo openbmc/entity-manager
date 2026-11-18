@@ -105,6 +105,60 @@
       "parentUuid": "7d625e02_7c88a70a",
       "revId": "89403002e7ac557fe5cbf306897dca87885c5624",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b7729a0_6e3a9b80",
+        "filename": "src/fru_device/inotify.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003207
+      },
+      "writtenOn": "2026-11-18T05:56:06Z",
+      "side": 1,
+      "message": "You’re right that inotify setup is unrelated to IPMI FRU parsing. Patchset 6 moves the implementation to src/utils.cpp, keeps only its declaration in src/utils.hpp, and places the regression tests in test/test_utils.cpp.",
+      "parentUuid": "89e2ecae_3e5bcb0d",
+      "revId": "89403002e7ac557fe5cbf306897dca87885c5624",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d7f76a8_9fe2a60a",
+        "filename": "src/fru_device/inotify.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003207
+      },
+      "writtenOn": "2026-11-18T05:56:06Z",
+      "side": 1,
+      "message": "Done in a separate change: https://gerrit.openbmc.org/c/openbmc/entity-manager/+/97432\n\nIt relocates the tests to their matching component directories and updates the Meson source paths without changing test contents or target names.",
+      "parentUuid": "4dde289d_3997010a",
+      "revId": "89403002e7ac557fe5cbf306897dca87885c5624",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5b8c95c_8a7c4041",
+        "filename": "src/fru_device/inotify.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003207
+      },
+      "writtenOn": "2026-11-18T05:56:06Z",
+      "side": 1,
+      "message": "Done in a separate change: https://gerrit.openbmc.org/c/openbmc/entity-manager/+/97432\n\nIt relocates the tests to their matching component directories and updates the Meson source paths without changing test contents or target names. Patchset 6 of this change depends on that relocation.",
+      "parentUuid": "4dde289d_3997010a",
+      "revId": "89403002e7ac557fe5cbf306897dca87885c5624",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
