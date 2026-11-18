@@ -14,6 +14,7 @@ using probe::Ast;
 using probe::DbusProbe;
 using probe::lexProbe;
 using probe::Node;
+using probe::ParsedProbe;
 using probe::parseProbe;
 using probe::parseProbeCommand;
 using probe::Token;
@@ -159,34 +160,42 @@ TEST(ParseProbe, RejectsMatchOneAnywhereElse)
 // operator between two boards can be an element of its own.
 TEST(ParseProbeCommand, ArrayOfStatementsJoinedByOperator)
 {
-    EXPECT_EQ(parseProbeCommand({mgmtBoardWBmc, "OR", mgmtBoardWnBmc}),
+    std::optional<ParsedProbe> parsed =
+        parseProbeCommand({mgmtBoardWBmc, "OR", mgmtBoardWnBmc});
+
+    if (!parsed.has_value())
+    {
+        throw std::invalid_argument("did not parse");
+    }
+    EXPECT_EQ(parsed->tokens,
               (std::vector<Token>{fruDevice("Management Board wBMC"),
                                   {TokenType::opOr, ""},
                                   fruDevice("Management Board wN-BMC")}));
 }
 
-// A statement that does not lex makes the whole Probe empty, wherever it is,
-// so the valid statements around it are not used on their own.
-TEST(ParseProbeCommand, BrokenStatementEmptiesTheProbe)
+// A statement that does not lex rejects the whole Probe, wherever it is, so
+// the valid statements around it are not used on their own.
+TEST(ParseProbeCommand, BrokenStatementRejectsTheProbe)
 {
-    EXPECT_TRUE(
-        parseProbeCommand({brokenStatement, "OR", mgmtBoardWBmc}).empty());
-    EXPECT_TRUE(
-        parseProbeCommand({mgmtBoardWBmc, "OR", brokenStatement}).empty());
-    EXPECT_TRUE(
-        parseProbeCommand({mgmtBoardWBmc + " OR " + brokenStatement}).empty());
+    EXPECT_FALSE(
+        parseProbeCommand({brokenStatement, "OR", mgmtBoardWBmc}).has_value());
+    EXPECT_FALSE(
+        parseProbeCommand({mgmtBoardWBmc, "OR", brokenStatement}).has_value());
+    EXPECT_FALSE(parseProbeCommand({mgmtBoardWBmc + " OR " + brokenStatement})
+                     .has_value());
 }
 
-// A Probe with no statement, or an empty one, has no tokens.
-TEST(ParseProbeCommand, EmptyProbeHasNoTokens)
+// A Probe with no statement, or an empty one, is rejected.
+TEST(ParseProbeCommand, EmptyProbeIsRejected)
 {
-    EXPECT_TRUE(parseProbeCommand({}).empty());
-    EXPECT_TRUE(parseProbeCommand({""}).empty());
+    EXPECT_FALSE(parseProbeCommand({}).has_value());
+    EXPECT_FALSE(parseProbeCommand({""}).has_value());
 }
 
 // Two statements that lex fine are not a Probe without an operator element
 // between them.
-TEST(ParseProbeCommand, MissingOperatorBetweenStatementsEmptiesTheProbe)
+TEST(ParseProbeCommand, MissingOperatorBetweenStatementsRejectsTheProbe)
 {
-    EXPECT_TRUE(parseProbeCommand({mgmtBoardWBmc, mgmtBoardWnBmc}).empty());
+    EXPECT_FALSE(
+        parseProbeCommand({mgmtBoardWBmc, mgmtBoardWnBmc}).has_value());
 }
