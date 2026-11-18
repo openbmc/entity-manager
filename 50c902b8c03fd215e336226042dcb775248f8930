@@ -33,6 +33,24 @@
       "message": "nit:\n\nif we are to keep the class, can we forward-declare it here and implement the functions below the declaration, so the member functions do not gain an extra level of indentation?\n\nApologies if the proof-of-concept code i pasted had this issue.\nIt was somewhat optimized for brevity to fit into a gerrit comment.",
       "revId": "50c902b8c03fd215e336226042dcb775248f8930",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de944fab_4d8a28d3",
+        "filename": "src/entity_manager/probe_parser.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-11-18T06:32:35Z",
+      "side": 1,
+      "message": "Thanks for the suggestion, and no worries about the sample.\nThe member functions are now declared in the class and defined below it.",
+      "parentUuid": "a9755c1c_3d61cd17",
+      "revId": "50c902b8c03fd215e336226042dcb775248f8930",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
