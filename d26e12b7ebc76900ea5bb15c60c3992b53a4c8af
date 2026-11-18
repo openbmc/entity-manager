@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6e06007_8e39bae1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1003207
+      },
+      "writtenOn": "2026-11-18T06:06:48Z",
+      "side": 1,
+      "message": "Thanks for requesting evidence. The /dev/null test does not establish this failure case for an EEPROM sysfs file. \nI checked the at24/NVMEM path: the EEPROM attribute has no custom seek callback, so sysfs uses generic_file_llseek, which returns the requested offset on successful SEEK_SET. \nThe existing code already handles failed seeks. I cannot substantiate the claimed EEPROM failure, so this patch is not justified and I propose withdrawing it.\n\nReference: https://man7.org/linux/man-pages/man2/lseek.2.html",
+      "parentUuid": "7fbdb861_337416b7",
+      "range": {
+        "startLine": 10,
+        "startChar": 21,
+        "endLine": 12,
+        "endChar": 22
+      },
+      "revId": "d26e12b7ebc76900ea5bb15c60c3992b53a4c8af",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2cd11916_be7e1234",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-11-17T10:44:12Z",
       "side": 1,
       "message": "Let\u0027s remove this section as the CI result is archived as a gerrit comment. Thus it is possible to know the test result without noting it here.",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 44
+      },
+      "revId": "d26e12b7ebc76900ea5bb15c60c3992b53a4c8af",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af41ba11_32b2fa78",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1003207
+      },
+      "writtenOn": "2026-11-18T06:06:48Z",
+      "side": 1,
+      "message": "Agreed \nThe CI results are available in Gerrit. \nGiven the unsupported failure case discussed above, I propose withdrawing this change rather than uploading a commit-message-only revision.",
+      "parentUuid": "2cd11916_be7e1234",
       "range": {
         "startLine": 21,
         "startChar": 0,
