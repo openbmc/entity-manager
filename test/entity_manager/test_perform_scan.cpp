@@ -139,9 +139,12 @@ TEST(TemplateFields, PreservesProbeStatements)
                 throw std::invalid_argument("could not parse config");
             }
             const auto originalStatements = record->probeStmt;
-            const auto originalTokens =
+            const auto originalProbe =
                 probe::parseProbeCommand(originalStatements);
-            ASSERT_FALSE(originalTokens.empty());
+            if (!originalProbe.has_value())
+            {
+                throw std::invalid_argument("did not parse");
+            }
             json configuration = json::object();
 
             scan::detail::applyTemplatesAndExposeActions(
@@ -152,8 +155,13 @@ TEST(TemplateFields, PreservesProbeStatements)
             EXPECT_EQ(record->probeStmt, originalStatements);
             EXPECT_EQ(resolved.at("Probe"), probe);
             EXPECT_EQ(configuration.at(record->name).at("Probe"), probe);
-            EXPECT_EQ(probe::parseProbeCommand(record->probeStmt),
-                      originalTokens);
+            const auto resolvedProbe =
+                probe::parseProbeCommand(record->probeStmt);
+            if (!resolvedProbe.has_value())
+            {
+                throw std::invalid_argument("did not parse");
+            }
+            EXPECT_EQ(resolvedProbe->tokens, originalProbe->tokens);
             EXPECT_EQ(resolved.at("Type"), "Board");
             EXPECT_EQ(resolved.at("Exposes").at(0).at("Name"), "Sensor 2");
             EXPECT_EQ(resolved.at("Exposes").at(0).at("Bus"), 48);

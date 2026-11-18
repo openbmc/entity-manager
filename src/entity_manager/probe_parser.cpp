@@ -108,7 +108,8 @@ std::optional<Ast> parseProbe(const std::vector<Token>& tokens)
     return Parser(tokens).parse();
 }
 
-std::vector<Token> parseProbeCommand(const std::vector<std::string>& probeField)
+std::optional<ParsedProbe> parseProbeCommand(
+    const std::vector<std::string>& probeField)
 {
     // Join the statements (array form) into a single string, then lex it.
     std::string joined;
@@ -125,24 +126,24 @@ std::vector<Token> parseProbeCommand(const std::vector<std::string>& probeField)
     if (!tokens)
     {
         lg2::error("Probe statement failed to parse: {PROBE}", "PROBE", joined);
-        return {};
+        return std::nullopt;
     }
     if (tokens->empty())
     {
         lg2::error("Probe statement produced no tokens: {PROBE}", "PROBE",
                    joined);
-        return {};
+        return std::nullopt;
     }
-    // doProbe does not notice a missing or extra operator, so a statement that
-    // is not a Probe still gets a result. Rejecting it here lets the rest of
-    // the code assume a well-formed Probe.
-    if (!parseProbe(*tokens))
+    // A statement with a missing or extra operator has no tree. Rejecting it
+    // here lets the rest of the code assume a well-formed Probe.
+    std::optional<Ast> ast = parseProbe(*tokens);
+    if (!ast)
     {
         lg2::error("Probe statement does not follow the grammar: {PROBE}",
                    "PROBE", joined);
-        return {};
+        return std::nullopt;
     }
-    return *tokens;
+    return ParsedProbe{std::move(*tokens), std::move(*ast)};
 }
 
 } // namespace probe
