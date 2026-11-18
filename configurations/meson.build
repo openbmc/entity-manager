@@ -358,6 +358,7 @@ configs = [
     'nvidia/p4764-hmc.json',
     'nvidia/p5035-c2-hpm.json',
     'nvidia/rtx6000_pro.json',
+    'nvidia/vr_c2_fan_board.json',
     'ocp/cx7_ocp.json',
     'ocp/cx8_ocp.json',
     'platform/nvidia/mgx_connectx8_supernic_switch_server.json',
