@@ -117,3 +117,44 @@ TEST(DoProbe, MatchOneRetainsSingleDevice)
     ASSERT_EQ(matchOneDevices.size(), 1U);
     EXPECT_EQ(matchOneDevices[0].path, "/xyz/openbmc_project/FruDevice/2");
 }
+
+TEST(DoProbe, OperatorsAreLeftAssociativeWithEqualPrecedence)
+{
+    // AND does not bind tighter than OR: (TRUE OR FALSE) AND FALSE.
+    EXPECT_FALSE(runProbe({trueToken, opOr, falseToken, opAnd, falseToken}));
+
+    // The operators are not grouped from the right either:
+    // (FALSE AND TRUE) OR TRUE, not FALSE AND (TRUE OR TRUE).
+    EXPECT_TRUE(runProbe({falseToken, opAnd, trueToken, opOr, trueToken}));
+}
+
+TEST(DoProbe, EvaluatesEveryOperandAndCollectsItsDevices)
+{
+    // The wBMC variant of the Yosemite 4 Management Board.
+    const DBusInterface properties = {
+        {"BOARD_PRODUCT_NAME", std::string("Management Board wBMC")},
+        {"PRODUCT_PRODUCT_NAME", std::string("Yosemite V4")}};
+    const DBusObject interfaces = {
+        {"xyz.openbmc_project.FruDevice", properties}};
+    MapperGetSubTreeResponse objects = {
+        {"/xyz/openbmc_project/FruDevice/1", interfaces}};
+
+    const Token fruProbe =
+        dbusProbe("xyz.openbmc_project.FruDevice",
+                  {{"BOARD_PRODUCT_NAME", "Management Board wBMC"},
+                   {"PRODUCT_PRODUCT_NAME", "Yosemite V4"}});
+
+    // The result is known after TRUE OR, but the D-Bus probe is still
+    // evaluated and its device collected.
+    scan::FoundDevices orDevices;
+    EXPECT_TRUE(runProbe({trueToken, opOr, fruProbe}, objects, {}, &orDevices));
+    ASSERT_EQ(orDevices.size(), 1U);
+    EXPECT_EQ(orDevices[0].path, "/xyz/openbmc_project/FruDevice/1");
+
+    // The same after FALSE AND, which is false whatever follows.
+    scan::FoundDevices andDevices;
+    EXPECT_FALSE(
+        runProbe({falseToken, opAnd, fruProbe}, objects, {}, &andDevices));
+    ASSERT_EQ(andDevices.size(), 1U);
+    EXPECT_EQ(andDevices[0].path, "/xyz/openbmc_project/FruDevice/1");
+}
