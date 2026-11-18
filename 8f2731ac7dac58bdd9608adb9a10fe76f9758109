@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e51c6d60_1bd540ad",
+        "filename": "test/test_utils.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-18T10:23:38Z",
+      "side": 1,
+      "message": "can you put the tests into a follow-up patch?\n\nyour function is simple enough that it could probably go on it\u0027s own and the test to source ratio is `4.6` which is quite a lot of (nontrivial) test code for calling two functions.\n\nOverall it would be great if the code performing the testing would be simpler than the code being tested. This is not the case here.",
+      "revId": "8f2731ac7dac58bdd9608adb9a10fe76f9758109",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
