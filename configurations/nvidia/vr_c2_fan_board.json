@@ -1,0 +1,709 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x2c",
+            "Bus": 20,
+            "Connector": {
+                "Name": "FanBoard_0_Fan_1",
+                "Pwm": 0,
+                "PwmName": "FanBoard_0_Fan_1_PWM",
+                "Tachs": [
+                    0
+                ]
+            },
+            "Index": 0,
+            "MaxReading": 37400,
+            "Name": "FanBoard_0_Fan_1_Front",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2204
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2c",
+            "Bus": 20,
+            "Connector": {
+                "Name": "FanBoard_0_Fan_1",
+                "Pwm": 0,
+                "PwmName": "FanBoard_0_Fan_1_PWM",
+                "Tachs": [
+                    1
+                ]
+            },
+            "Index": 1,
+            "MaxReading": 37400,
+            "Name": "FanBoard_0_Fan_1_Rear",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2204
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2c",
+            "Bus": 20,
+            "Connector": {
+                "Name": "FanBoard_0_Fan_2",
+                "Pwm": 1,
+                "PwmName": "FanBoard_0_Fan_2_PWM",
+                "Tachs": [
+                    2
+                ]
+            },
+            "Index": 2,
+            "MaxReading": 37400,
+            "Name": "FanBoard_0_Fan_2_Front",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2204
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2c",
+            "Bus": 20,
+            "Connector": {
+                "Name": "FanBoard_0_Fan_2",
+                "Pwm": 1,
+                "PwmName": "FanBoard_0_Fan_2_PWM",
+                "Tachs": [
+                    3
+                ]
+            },
+            "Index": 3,
+            "MaxReading": 37400,
+            "Name": "FanBoard_0_Fan_2_Rear",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2204
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2c",
+            "Bus": 20,
+            "Connector": {
+                "Name": "FanBoard_0_Fan_3",
+                "Pwm": 2,
+                "PwmName": "FanBoard_0_Fan_3_PWM",
+                "Tachs": [
+                    4
+                ]
+            },
+            "Index": 4,
+            "MaxReading": 37400,
+            "Name": "FanBoard_0_Fan_3_Front",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2204
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2c",
+            "Bus": 20,
+            "Connector": {
+                "Name": "FanBoard_0_Fan_3",
+                "Pwm": 2,
+                "PwmName": "FanBoard_0_Fan_3_PWM",
+                "Tachs": [
+                    5
+                ]
+            },
+            "Index": 5,
+            "MaxReading": 37400,
+            "Name": "FanBoard_0_Fan_3_Rear",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2204
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2f",
+            "Bus": 21,
+            "Connector": {
+                "Name": "FanBoard_0_Fan_4",
+                "Pwm": 0,
+                "PwmName": "FanBoard_0_Fan_4_PWM",
+                "Tachs": [
+                    0
+                ]
+            },
+            "Index": 0,
+            "MaxReading": 37400,
+            "Name": "FanBoard_0_Fan_4_Front",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2204
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2f",
+            "Bus": 21,
+            "Connector": {
+                "Name": "FanBoard_0_Fan_4",
+                "Pwm": 0,
+                "PwmName": "FanBoard_0_Fan_4_PWM",
+                "Tachs": [
+                    1
+                ]
+            },
+            "Index": 1,
+            "MaxReading": 37400,
+            "Name": "FanBoard_0_Fan_4_Rear",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2204
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2f",
+            "Bus": 21,
+            "Connector": {
+                "Name": "FanBoard_0_Fan_5",
+                "Pwm": 1,
+                "PwmName": "FanBoard_0_Fan_5_PWM",
+                "Tachs": [
+                    2
+                ]
+            },
+            "Index": 2,
+            "MaxReading": 37400,
+            "Name": "FanBoard_0_Fan_5_Front",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2204
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2f",
+            "Bus": 21,
+            "Connector": {
+                "Name": "FanBoard_0_Fan_5",
+                "Pwm": 1,
+                "PwmName": "FanBoard_0_Fan_5_PWM",
+                "Tachs": [
+                    3
+                ]
+            },
+            "Index": 3,
+            "MaxReading": 37400,
+            "Name": "FanBoard_0_Fan_5_Rear",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2204
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2f",
+            "Bus": 21,
+            "Connector": {
+                "Name": "FanBoard_0_Fan_6",
+                "Pwm": 2,
+                "PwmName": "FanBoard_0_Fan_6_PWM",
+                "Tachs": [
+                    4
+                ]
+            },
+            "Index": 4,
+            "MaxReading": 37400,
+            "Name": "FanBoard_0_Fan_6_Front",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2204
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2f",
+            "Bus": 21,
+            "Connector": {
+                "Name": "FanBoard_0_Fan_6",
+                "Pwm": 2,
+                "PwmName": "FanBoard_0_Fan_6_PWM",
+                "Tachs": [
+                    5
+                ]
+            },
+            "Index": 5,
+            "MaxReading": 37400,
+            "Name": "FanBoard_0_Fan_6_Rear",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2204
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 1.0,
+            "FFOffCoefficient": 0.0,
+            "ICoefficient": 0.0,
+            "ILimitMax": 0.0,
+            "ILimitMin": 0.0,
+            "Inputs": [
+                "FanBoard_0_Fan_1_Front",
+                "FanBoard_0_Fan_1_Rear"
+            ],
+            "Name": "FanBoard_0_Fan_1",
+            "NegativeHysteresis": 0.0,
+            "OutLimitMax": 100.0,
+            "OutLimitMin": 20.0,
+            "Outputs": [
+                "FanBoard_0_Fan_1_PWM"
+            ],
+            "PCoefficient": 0.0,
+            "PositiveHysteresis": 0.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone0"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 1.0,
+            "FFOffCoefficient": 0.0,
+            "ICoefficient": 0.0,
+            "ILimitMax": 0.0,
+            "ILimitMin": 0.0,
+            "Inputs": [
+                "FanBoard_0_Fan_2_Front",
+                "FanBoard_0_Fan_2_Rear"
+            ],
+            "Name": "FanBoard_0_Fan_2",
+            "NegativeHysteresis": 0.0,
+            "OutLimitMax": 100.0,
+            "OutLimitMin": 20.0,
+            "Outputs": [
+                "FanBoard_0_Fan_2_PWM"
+            ],
+            "PCoefficient": 0.0,
+            "PositiveHysteresis": 0.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone0"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 1.0,
+            "FFOffCoefficient": 0.0,
+            "ICoefficient": 0.0,
+            "ILimitMax": 0.0,
+            "ILimitMin": 0.0,
+            "Inputs": [
+                "FanBoard_0_Fan_3_Front",
+                "FanBoard_0_Fan_3_Rear"
+            ],
+            "Name": "FanBoard_0_Fan_3",
+            "NegativeHysteresis": 0.0,
+            "OutLimitMax": 100.0,
+            "OutLimitMin": 20.0,
+            "Outputs": [
+                "FanBoard_0_Fan_3_PWM"
+            ],
+            "PCoefficient": 0.0,
+            "PositiveHysteresis": 0.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone0"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 1.0,
+            "FFOffCoefficient": 0.0,
+            "ICoefficient": 0.0,
+            "ILimitMax": 0.0,
+            "ILimitMin": 0.0,
+            "Inputs": [
+                "FanBoard_0_Fan_4_Front",
+                "FanBoard_0_Fan_4_Rear"
+            ],
+            "Name": "FanBoard_0_Fan_4",
+            "NegativeHysteresis": 0.0,
+            "OutLimitMax": 100.0,
+            "OutLimitMin": 20.0,
+            "Outputs": [
+                "FanBoard_0_Fan_4_PWM"
+            ],
+            "PCoefficient": 0.0,
+            "PositiveHysteresis": 0.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone0"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 1.0,
+            "FFOffCoefficient": 0.0,
+            "ICoefficient": 0.0,
+            "ILimitMax": 0.0,
+            "ILimitMin": 0.0,
+            "Inputs": [
+                "FanBoard_0_Fan_5_Front",
+                "FanBoard_0_Fan_5_Rear"
+            ],
+            "Name": "FanBoard_0_Fan_5",
+            "NegativeHysteresis": 0.0,
+            "OutLimitMax": 100.0,
+            "OutLimitMin": 20.0,
+            "Outputs": [
+                "FanBoard_0_Fan_5_PWM"
+            ],
+            "PCoefficient": 0.0,
+            "PositiveHysteresis": 0.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone0"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 1.0,
+            "FFOffCoefficient": 0.0,
+            "ICoefficient": 0.0,
+            "ILimitMax": 0.0,
+            "ILimitMin": 0.0,
+            "Inputs": [
+                "FanBoard_0_Fan_6_Front",
+                "FanBoard_0_Fan_6_Rear"
+            ],
+            "Name": "FanBoard_0_Fan_6",
+            "NegativeHysteresis": 0.0,
+            "OutLimitMax": 100.0,
+            "OutLimitMin": 20.0,
+            "Outputs": [
+                "FanBoard_0_Fan_6_PWM"
+            ],
+            "PCoefficient": 0.0,
+            "PositiveHysteresis": 0.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone0"
+            ]
+        },
+        {
+            "Class": "margin",
+            "DCoefficient": 0.0,
+            "FFGainCoefficient": 0.0,
+            "FFOffCoefficient": 0.0,
+            "FailSafePercent": 100.0,
+            "ICoefficient": 0.0,
+            "ILimitMax": 0.0,
+            "ILimitMin": 0.0,
+            "InputUnavailableAsFailed": true,
+            "Inputs": [
+                ".*_TempLimit_0"
+            ],
+            "Name": "CPU_TLIMIT_BASE",
+            "NegativeHysteresis": 0.0,
+            "OutLimitMax": 100.0,
+            "OutLimitMin": 30.0,
+            "PCoefficient": 1.25,
+            "PositiveHysteresis": 5.0,
+            "SetPoint": 63.0,
+            "SlewNeg": -1.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone0"
+            ]
+        },
+        {
+            "Class": "margin",
+            "DCoefficient": 0.0,
+            "FFGainCoefficient": 0.0,
+            "FFOffCoefficient": 0.0,
+            "FailSafePercent": 100.0,
+            "ICoefficient": 0.0,
+            "ILimitMax": 0.0,
+            "ILimitMin": 0.0,
+            "InputUnavailableAsFailed": true,
+            "Inputs": [
+                ".*_TempLimit_0"
+            ],
+            "Name": "CPU_TLIMIT_MID",
+            "NegativeHysteresis": 0.0,
+            "OutLimitMax": 100.0,
+            "OutLimitMin": 0.0,
+            "PCoefficient": 2.5,
+            "PositiveHysteresis": 5.0,
+            "SetPoint": 39.0,
+            "SlewNeg": -1.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone0"
+            ]
+        },
+        {
+            "Class": "margin",
+            "DCoefficient": 0.0,
+            "FFGainCoefficient": 0.0,
+            "FFOffCoefficient": 0.0,
+            "FailSafePercent": 100.0,
+            "ICoefficient": 0.0,
+            "ILimitMax": 0.0,
+            "ILimitMin": 0.0,
+            "InputUnavailableAsFailed": true,
+            "Inputs": [
+                ".*_TempLimit_0"
+            ],
+            "Name": "CPU_TLIMIT_HOT",
+            "NegativeHysteresis": 0.0,
+            "OutLimitMax": 100.0,
+            "OutLimitMin": 0.0,
+            "PCoefficient": 5.0,
+            "PositiveHysteresis": 5.0,
+            "SetPoint": 21.0,
+            "SlewNeg": -1.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone0"
+            ]
+        },
+        {
+            "CycleIntervalTimeMS": 100,
+            "FailSafePercent": 100.0,
+            "MinThermalOutput": 20.0,
+            "Name": "Zone0",
+            "Type": "Pid.Zone",
+            "UpdateThermalsTimeMS": 1000,
+            "ZoneIndex": 0
+        },
+        {
+            "Class": "Floor",
+            "InputUnavailableAsFailed": false,
+            "Inputs": [
+                "GPU_0_TEMP_1"
+            ],
+            "MissingIsAcceptable": [
+                "GPU_0_TEMP_1"
+            ],
+            "Name": "GPU_0_TLIMIT",
+            "NegativeHysteresis": 0.0,
+            "Output": [
+                97.0,
+                95.0,
+                90.0,
+                85.0,
+                76.0,
+                70.0,
+                64.0,
+                58.0,
+                54.0,
+                52.0,
+                50.0,
+                45.0,
+                40.0,
+                35.0,
+                30.0
+            ],
+            "PositiveHysteresis": 4.0,
+            "Reading": [
+                1.0,
+                3.0,
+                6.0,
+                8.0,
+                11.0,
+                14.0,
+                17.0,
+                19.0,
+                22.0,
+                25.0,
+                27.0,
+                30.0,
+                33.0,
+                35.0,
+                38.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone0"
+            ]
+        },
+        {
+            "Class": "Floor",
+            "InputUnavailableAsFailed": false,
+            "Inputs": [
+                "GPU_1_TEMP_1"
+            ],
+            "MissingIsAcceptable": [
+                "GPU_1_TEMP_1"
+            ],
+            "Name": "GPU_1_TLIMIT",
+            "NegativeHysteresis": 0.0,
+            "Output": [
+                97.0,
+                95.0,
+                90.0,
+                85.0,
+                76.0,
+                70.0,
+                64.0,
+                58.0,
+                54.0,
+                52.0,
+                50.0,
+                45.0,
+                40.0,
+                35.0,
+                30.0
+            ],
+            "PositiveHysteresis": 4.0,
+            "Reading": [
+                1.0,
+                3.0,
+                6.0,
+                8.0,
+                11.0,
+                14.0,
+                17.0,
+                19.0,
+                22.0,
+                25.0,
+                27.0,
+                30.0,
+                33.0,
+                35.0,
+                38.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone0"
+            ]
+        },
+        {
+            "Class": "Floor",
+            "InputUnavailableAsFailed": true,
+            "Inputs": [
+                "PDB_0_Ext_Ambient_Temp_1"
+            ],
+            "Name": "AMBIENT_EXTERNAL",
+            "NegativeHysteresis": 2.0,
+            "Output": [
+                30.0,
+                35.0,
+                40.0,
+                50.0,
+                53.0,
+                55.0,
+                60.0,
+                65.0,
+                70.0,
+                75.0,
+                80.0,
+                85.0,
+                90.0,
+                95.0,
+                100.0
+            ],
+            "PositiveHysteresis": 0.0,
+            "Reading": [
+                25.0,
+                30.0,
+                32.5,
+                35.0,
+                40.0,
+                40.5,
+                41.0,
+                41.5,
+                42.0,
+                42.5,
+                43.0,
+                43.5,
+                44.0,
+                44.5,
+                45.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone0"
+            ]
+        }
+    ],
+    "Name": "NVIDIA_VR_C2_Fan_Board",
+    "Probe": "FOUND('NVIDIA_P5035_C2_HPM')",
+    "Type": "Board"
+}
