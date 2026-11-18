@@ -22,7 +22,7 @@ test(
     'test_fru_utils',
     executable(
         'test_fru_utils',
-        'test_fru-utils.cpp',
+        'fru_device/test_fru-utils.cpp',
         'test_gzip-utils.cpp',
         '../src/fru_device/fru_utils.cpp',
         '../src/fru_device/fru_reader.cpp',
