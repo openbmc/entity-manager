@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b54c3167_9bbbf8ca",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 943,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-18T14:59:32Z",
+      "side": 1,
+      "message": "why did you use your new function on line 937 and not here also?\n\n`std::flat_map\u003cstd::string, std::string, std::less\u003c\u003e\u003e formattedFRU;`\n\nBoth key and value are string so the same function could apply to both?",
+      "range": {
+        "startLine": 941,
+        "startChar": 9,
+        "endLine": 943,
+        "endChar": 67
+      },
+      "revId": "8e2a0787ee823a8302f6350aad33803182fef8fb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
