@@ -3,12 +3,17 @@
 
 #include "utils.hpp"
 
+#include <sys/inotify.h>
+#include <unistd.h>
+
 #include <boost/lexical_cast.hpp>
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/bus/match.hpp>
 
 #include <algorithm>
 #include <cctype>
+#include <cerrno>
+#include <cstring>
 #include <filesystem>
 #include <flat_map>
 #include <map>
@@ -19,6 +24,31 @@
 #include <utility>
 
 namespace fs = std::filesystem;
+
+std::optional<int> createInotifyWatch(const char* path, uint32_t mask)
+{
+    int fd = inotify_init();
+    if (fd < 0)
+    {
+        lg2::error("Failed to initialize inotify: {ERROR}", "ERROR",
+                   std::strerror(errno));
+        return std::nullopt;
+    }
+
+    if (inotify_add_watch(fd, path, mask) < 0)
+    {
+        lg2::error("Failed to watch {PATH}: {ERROR}", "PATH", path, "ERROR",
+                   std::strerror(errno));
+        if (close(fd) < 0)
+        {
+            lg2::error("Failed to close inotify descriptor: {ERROR}", "ERROR",
+                       std::strerror(errno));
+        }
+        return std::nullopt;
+    }
+
+    return fd;
+}
 
 bool findFiles(const fs::path& dirPath, const std::string& matchString,
                std::vector<fs::path>& foundPaths)
