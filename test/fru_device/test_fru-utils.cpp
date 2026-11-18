@@ -1,8 +1,11 @@
 #include "fru_device/fru_utils.hpp"
 
+#include <unistd.h>
+
 #include <algorithm>
 #include <array>
 #include <iterator>
+#include <span>
 #include <vector>
 
 #include "gmock/gmock.h"
@@ -18,6 +21,72 @@ extern "C"
 }
 
 static constexpr size_t blockSize = I2C_SMBUS_BLOCK_MAX;
+
+namespace
+{
+constexpr int testEepromFd = -42;
+} // namespace
+
+class WriteFruDataTest : public testing::Test
+{
+  public:
+    static inline ssize_t writeResult = 0;
+    static inline size_t writeCalls = 0;
+    static inline std::vector<uint8_t> writtenData;
+
+  protected:
+    void SetUp() override
+    {
+        writeCalls = 0;
+        writtenData.clear();
+    }
+
+    static void checkWrite(ssize_t result, bool expected)
+    {
+        const std::vector<uint8_t> fru{0x01, 0x02, 0x03, 0x04};
+        writeResult = result;
+        EXPECT_EQ(writeFruData(testEepromFd, fru), expected);
+        EXPECT_EQ(writeCalls, 1);
+        EXPECT_EQ(writtenData, fru);
+    }
+};
+
+extern "C" ssize_t realWrite(int fd, const void* data,
+                             size_t count) asm("__real_write");
+extern "C" ssize_t wrapWrite(int fd, const void* data,
+                             size_t count) asm("__wrap_write");
+
+extern "C" ssize_t wrapWrite(int fd, const void* data, size_t count)
+{
+    if (fd != testEepromFd)
+    {
+        return realWrite(fd, data, count);
+    }
+    ++WriteFruDataTest::writeCalls;
+    const std::span bytes(static_cast<const uint8_t*>(data), count);
+    WriteFruDataTest::writtenData.assign(bytes.begin(), bytes.end());
+    return WriteFruDataTest::writeResult;
+}
+
+TEST_F(WriteFruDataTest, FullWriteSucceeds)
+{
+    checkWrite(4, true);
+}
+
+TEST_F(WriteFruDataTest, ShortWriteFailsWithoutRetry)
+{
+    checkWrite(3, false);
+}
+
+TEST_F(WriteFruDataTest, ZeroWriteFailsWithoutRetry)
+{
+    checkWrite(0, false);
+}
+
+TEST_F(WriteFruDataTest, WriteErrorFails)
+{
+    checkWrite(-1, false);
+}
 
 // Named OOB scenario for the new buffer-bound guards: a valid 17-byte FRU
 // (8-byte common header, one complete 8-byte board area block, one

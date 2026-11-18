@@ -39,6 +39,7 @@ test(
         ],
         link_with: utils_lib,
         include_directories: test_include_dir,
+        link_args: ['-Wl,--wrap=write'],
     ),
 )
 
