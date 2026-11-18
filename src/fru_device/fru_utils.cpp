@@ -6,6 +6,8 @@
 #include "../dbus_util.hpp"
 #include "gzip_utils.hpp"
 
+#include <unistd.h>
+
 #include <phosphor-logging/lg2.hpp>
 
 #include <array>
@@ -30,6 +32,18 @@ extern "C"
 constexpr size_t fruVersion = 1; // Current FRU spec version number is 1
 constexpr uint8_t validMultiRecordFormatVer =
     0x2; // Current FRU spec Multirecord Record Format Version
+
+bool writeFruData(int fd, const std::vector<uint8_t>& fru)
+{
+    const ssize_t written = write(fd, fru.data(), fru.size());
+    if (written < 0 || static_cast<size_t>(written) != fru.size())
+    {
+        lg2::error("FRU write incomplete: expected {EXPECTED}, wrote {ACTUAL}",
+                   "EXPECTED", fru.size(), "ACTUAL", written);
+        return false;
+    }
+    return true;
+}
 
 char sixBitToChar(uint8_t val)
 {

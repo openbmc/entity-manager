@@ -1109,8 +1109,7 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
                          "Failed to seek in EEPROM device");
         }
 
-        ssize_t writtenBytes = write(eeprom, fru.data(), fru.size());
-        if (writtenBytes < 0)
+        if (!writeFruData(eeprom, fru))
         {
             lg2::error("unable to write to i2c device {PATH}", "PATH", path);
             close(eeprom);
