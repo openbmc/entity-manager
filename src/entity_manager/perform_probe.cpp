@@ -5,6 +5,7 @@
 
 #include "perform_scan.hpp"
 #include "probe_lexer.hpp"
+#include "probe_parser.hpp"
 
 #include <phosphor-logging/lg2.hpp>
 
@@ -64,83 +65,68 @@ bool probeDbus(const std::string& interfaceName,
     return foundMatch;
 }
 
-// default probe entry point, iterates a list looking for specific types to
-// call specific probe functions
-bool probe::detail::doProbe(const std::vector<probe::Token>& probeCommand,
-                            const MapperGetSubTreeResponse& dbusProbeObjects,
-                            const std::vector<std::string>& passedProbes,
-                            scan::FoundDevices& foundDevs)
+// A D-Bus probe adds the devices it matches whatever the other operand gives,
+// so AND and OR always evaluate both children, from left to right.
+static bool evaluateNode(const probe::Node& node,
+                         const MapperGetSubTreeResponse& dbusProbeObjects,
+                         const std::vector<std::string>& passedProbes,
+                         scan::FoundDevices& foundDevs)
 {
-    bool ret = false;
-    bool matchOne = false;
-    bool cur = true;
-    probe::TokenType lastCommand = probe::TokenType::boolFalse;
-    bool first = true;
-
-    for (const probe::Token& token : probeCommand)
+    switch (node.token.type)
     {
-        switch (token.type)
+        case probe::TokenType::boolFalse:
         {
-            case probe::TokenType::boolFalse:
-            {
-                cur = false;
-                break;
-            }
-            case probe::TokenType::boolTrue:
-            {
-                cur = true;
-                break;
-            }
-            case probe::TokenType::matchOne:
-            {
-                // does not affect the outcome; carry the running result
-                cur = ret;
-                matchOne = true;
-                break;
-            }
-            case probe::TokenType::opAnd:
-            case probe::TokenType::opOr:
-            {
-                // no-ops here; applied via lastCommand on the next operand
-                break;
-            }
-            case probe::TokenType::found:
-            {
-                cur = std::ranges::contains(passedProbes, token.value);
-                break;
-            }
-            case probe::TokenType::dbusProbe:
-            {
-                if (token.dbus)
-                {
-                    // we can match any (string, variant) property. (string,
-                    // string) does a regex
-                    bool foundProbe = false;
-                    cur = probeDbus(token.dbus->interface,
-                                    token.dbus->properties, foundDevs,
-                                    dbusProbeObjects, foundProbe);
-                    break;
-                }
-            }
+            return false;
         }
-
-        // AND and OR only take effect on the operand that follows them
-        if (lastCommand == probe::TokenType::opAnd)
+        case probe::TokenType::boolTrue:
         {
-            ret = cur && ret;
+            return true;
         }
-        else if (lastCommand == probe::TokenType::opOr)
+        case probe::TokenType::found:
         {
-            ret = cur || ret;
+            return std::ranges::contains(passedProbes, node.token.value);
         }
-
-        if (first)
+        case probe::TokenType::dbusProbe:
         {
-            ret = cur;
-            first = false;
+            // the lexer sets it for every D-Bus probe
+            if (!node.token.dbus)
+            {
+                return false;
+            }
+            // we can match any (string, variant) property. (string, string)
+            // does a regex
+            bool foundProbe = false;
+            return probeDbus(node.token.dbus->interface,
+                             node.token.dbus->properties, foundDevs,
+                             dbusProbeObjects, foundProbe);
         }
-        lastCommand = token.type;
+        case probe::TokenType::opAnd:
+        case probe::TokenType::opOr:
+        {
+            const bool left = evaluateNode(*node.left, dbusProbeObjects,
+                                           passedProbes, foundDevs);
+            const bool right = evaluateNode(*node.right, dbusProbeObjects,
+                                            passedProbes, foundDevs);
+            return node.token.type == probe::TokenType::opAnd
+                       ? left && right
+                       : left || right;
+        }
+        case probe::TokenType::matchOne:
+        {
+            // a flag of the tree, never a node
+            break;
+        }
     }
+    return false;
+}
+
+// default probe entry point, evaluates the tree of a probe
+bool probe::detail::doProbe(
+    const probe::Ast& ast, const MapperGetSubTreeResponse& dbusProbeObjects,
+    const std::vector<std::string>& passedProbes, scan::FoundDevices& foundDevs)
+{
+    const bool ret =
+        evaluateNode(*ast.root, dbusProbeObjects, passedProbes, foundDevs);
 
     // probe passed, but empty device
     if (ret && foundDevs.empty())
@@ -149,7 +135,7 @@ bool probe::detail::doProbe(const std::vector<probe::Token>& probeCommand,
             std::flat_map<std::string, DBusValueVariant, std::less<>>{},
             std::string{});
     }
-    if (matchOne && ret)
+    if (ast.matchOne && ret)
     {
         // match the last one
         auto last = foundDevs.back();
@@ -171,7 +157,7 @@ PerformProbe::PerformProbe(EMConfig& recordRef, std::string probeName,
 PerformProbe::~PerformProbe()
 {
     scan::FoundDevices foundDevs;
-    if (detail::doProbe(recordRef.probeTokens, scan->dbusProbeObjects,
+    if (detail::doProbe(*recordRef.probeAst, scan->dbusProbeObjects,
                         scan->passedProbes, foundDevs))
     {
         scan->updateSystemConfiguration(recordRef, probeName, foundDevs);
