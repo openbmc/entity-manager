@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d59b922c_6fd47066",
+        "filename": "test/test_fru-utils.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 883,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-18T13:07:56Z",
+      "side": 1,
+      "message": "do we need to replicate this logic in test code?\n\nYou have this exact code in `static void makeProbeInterface(...)`,\n\ncan we extract it into a function, possibly in a commit preceding this one?\n\nThat would allow the code to be re-used across the implementation and tests.",
+      "range": {
+        "startLine": 872,
+        "startChar": 4,
+        "endLine": 883,
+        "endChar": 5
+      },
+      "revId": "ac7faa857a5b5038a9a851fccfbaf97fef8967be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
