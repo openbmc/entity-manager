@@ -1,71 +1,6 @@
 {
     "Exposes": [
         {
-            "Address": "0x2d",
-            "Bus": 69,
-            "Labels": [
-                "in0",
-                "in1"
-            ],
-            "Name": "RIO_GRANDE_ADC0",
-            "PowerState": "ChassisOn",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.269,
-                    "Label": "in0",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 13.46
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.259,
-                    "Label": "in0",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 12.95
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.216,
-                    "Label": "in0",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 10.8
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.206,
-                    "Label": "in0",
-                    "Name": "lower non recoverable",
-                    "Severity": 4,
-                    "Value": 10.3
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.0693,
-                    "Label": "in1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 3.465
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.0627,
-                    "Label": "in1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 3.135
-                }
-            ],
-            "Type": "ADC128D818",
-            "in0_Name": "RIO_GRANDE_ADC_P12V_AUX_VOLT_V",
-            "in0_Scale": 151.515,
-            "in1_Name": "RIO_GRANDE_ADC_P3V3_AUX_VOLT_V",
-            "in1_Scale": 500
-        },
-        {
             "Address": "0x2e",
             "Bus": 69,
             "Labels": [
@@ -553,6 +488,71 @@
             "in6_Scale": 500,
             "in7_Name": "RIO_GRANDE_ADC_P3V3_AUX_SSD_23_VOLT_V",
             "in7_Scale": 500
+        },
+        {
+            "Address": "0x4b",
+            "Bus": 69,
+            "Labels": [
+                "in_voltage0",
+                "in_voltage1"
+            ],
+            "Name": "RIO_GRANDE_ADC0",
+            "PowerState": "ChassisOn",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.269,
+                    "Label": "in_voltage0",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 13.46
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.259,
+                    "Label": "in_voltage0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 12.95
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.216,
+                    "Label": "in_voltage0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.206,
+                    "Label": "in_voltage0",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 10.3
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0693,
+                    "Label": "in_voltage1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.465
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0627,
+                    "Label": "in_voltage1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.135
+                }
+            ],
+            "Type": "ADS1015",
+            "in_voltage0_Name": "RIO_GRANDE_ADC_P12V_AUX_VOLT_V",
+            "in_voltage0_Scale": 151.515,
+            "in_voltage1_Name": "RIO_GRANDE_ADC_P3V3_AUX_VOLT_V",
+            "in_voltage1_Scale": 500
         },
         {
             "Address": "$address",
