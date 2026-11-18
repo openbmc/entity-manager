@@ -1,7 +1,7 @@
 #pragma once
 
 #include "perform_scan.hpp"
-#include "probe_lexer.hpp"
+#include "probe_parser.hpp"
 
 #include <flat_map>
 #include <memory>
@@ -26,10 +26,9 @@ struct PerformProbe final
 
 namespace detail
 {
-// evaluate a lexed probe against the given D-Bus objects and the names of
+// evaluate a parsed probe against the given D-Bus objects and the names of
 // passed probes. Matching devices are appended to foundDevs.
-bool doProbe(const std::vector<Token>& probeCommand,
-             const MapperGetSubTreeResponse& dbusProbeObjects,
+bool doProbe(const Ast& ast, const MapperGetSubTreeResponse& dbusProbeObjects,
              const std::vector<std::string>& passedProbes,
              scan::FoundDevices& foundDevs);
 } // namespace detail

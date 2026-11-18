@@ -209,12 +209,15 @@ EMConfig::EMConfig(const nlohmann::json::object_t& config)
     {
         throw std::invalid_argument("could not parse Probe stmt");
     }
-    probeTokens = probe::parseProbeCommand(probeStmt);
-    if (probeTokens.empty())
+    std::optional<probe::ParsedProbe> parsed =
+        probe::parseProbeCommand(probeStmt);
+    if (!parsed)
     {
         throw std::invalid_argument(
             std::format("invalid Probe statement in configuration '{}'", name));
     }
+    probeTokens = std::move(parsed->tokens);
+    probeAst = std::make_shared<const probe::Ast>(std::move(parsed->ast));
     if (!parseExposes(exposesRecords, config))
     {
         throw std::invalid_argument("could not parse Exposes array");
