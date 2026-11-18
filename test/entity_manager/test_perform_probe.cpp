@@ -117,3 +117,31 @@ TEST(DoProbe, MatchOneRetainsSingleDevice)
     ASSERT_EQ(matchOneDevices.size(), 1U);
     EXPECT_EQ(matchOneDevices[0].path, "/xyz/openbmc_project/FruDevice/2");
 }
+
+TEST(DoProbe, RecordsDevicesOfBothOperandsInOrder)
+{
+    // The two Management Board variants of a Yosemite 4 system.
+    const DBusInterface wBmc = {
+        {"BOARD_PRODUCT_NAME", std::string("Management Board wBMC")}};
+    const DBusInterface wnBmc = {
+        {"BOARD_PRODUCT_NAME", std::string("Management Board wN-BMC")}};
+    const DBusObject interfaces1 = {{"xyz.openbmc_project.FruDevice", wBmc}};
+    const DBusObject interfaces2 = {{"xyz.openbmc_project.FruDevice", wnBmc}};
+    MapperGetSubTreeResponse objects = {
+        {"/xyz/openbmc_project/FruDevice/1", interfaces1},
+        {"/xyz/openbmc_project/FruDevice/2", interfaces2}};
+
+    // The left operand decides the result, and the device of the right one
+    // is recorded after it all the same.
+    scan::FoundDevices devices;
+    EXPECT_TRUE(runProbe(
+        {dbusProbe("xyz.openbmc_project.FruDevice",
+                   {{"BOARD_PRODUCT_NAME", "Management Board wN-BMC"}}),
+         opOr,
+         dbusProbe("xyz.openbmc_project.FruDevice",
+                   {{"BOARD_PRODUCT_NAME", "Management Board wBMC"}})},
+        objects, {}, &devices));
+    ASSERT_EQ(devices.size(), 2U);
+    EXPECT_EQ(devices[0].path, "/xyz/openbmc_project/FruDevice/2");
+    EXPECT_EQ(devices[1].path, "/xyz/openbmc_project/FruDevice/1");
+}
