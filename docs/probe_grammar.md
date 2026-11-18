@@ -71,6 +71,9 @@ Combination and modifiers:
 - **Precedence:** none. Operators combine strictly left-to-right:
   `result := operand0`, then for each `op operand_i`,
   `result := operand_i op result` (`AND` = `&&`, `OR` = `||`).
+- **Every operand is evaluated**, including the ones after an operator whose
+  result is already decided, so a `dbus_probe` records its matched devices also
+  in `TRUE OR dbus_probe`. Devices are recorded in the order of the operands.
 - `MATCH_ONE`: if the overall result is true, keep only the last matched device.
 - **Empty-device fallback**: if the result is true but no device matched (e.g. a
   `TRUE`- or `FOUND`-only probe), one empty device record is emitted.
