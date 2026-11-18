@@ -1,6 +1,8 @@
 #include "entity_manager/perform_probe.hpp"
 
 #include <map>
+#include <optional>
+#include <stdexcept>
 #include <string>
 #include <utility>
 #include <vector>
@@ -18,8 +20,14 @@ bool runProbe(const std::vector<Token>& tokens,
               const std::vector<std::string>& passed = {},
               scan::FoundDevices* foundDevs = nullptr)
 {
+    std::optional<probe::Ast> ast = probe::parseProbe(tokens);
+    if (!ast.has_value())
+    {
+        throw std::invalid_argument("did not parse");
+    }
+
     scan::FoundDevices devices;
-    return probe::detail::doProbe(tokens, objects, passed,
+    return probe::detail::doProbe(ast.value(), objects, passed,
                                   foundDevs != nullptr ? *foundDevs : devices);
 }
 
