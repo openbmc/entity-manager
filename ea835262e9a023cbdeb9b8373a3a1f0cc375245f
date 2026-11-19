@@ -54,6 +54,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "83d755e2_a312c184",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2026-11-19T17:58:48Z",
+      "side": 1,
+      "message": "\u003e As mentioned in the other comments, some corner cases may also be difficult to handle robustly, such as a misplaced NOT condition or an object that appears after the initial scan.\n\nI think you\u0027re probably right about this. However, I\u0027m OK with letting it in and letting your usage of it be the pipe cleaner, as it isn\u0027t like it could break any existing configs.",
+      "parentUuid": "2e0b1d6c_f4f22017",
+      "revId": "ea835262e9a023cbdeb9b8373a3a1f0cc375245f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d259a285_3b93be59",
@@ -67,6 +85,24 @@
       "writtenOn": "2026-11-02T10:12:23Z",
       "side": 1,
       "message": "I\u0027m concerned about whether this case can actually happen. If the probed D-Bus object appears after EM\u0027s first scan, a config published because the object was absent would be pruned on the next rescan, which could emit an `InventoryAdded` followed by an `InventoryRemoved` event for something that should never have existed. If it can really happen, it seems we would need a way to resolve it, otherwise these events would be unexpected.",
+      "revId": "ea835262e9a023cbdeb9b8373a3a1f0cc375245f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12ed923a_6b0b5289",
+        "filename": "src/entity_manager/perform_probe.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2026-11-19T17:58:48Z",
+      "side": 1,
+      "message": "Yea, I think until people start using it it\u0027s going to be hard to know.",
+      "parentUuid": "d259a285_3b93be59",
       "revId": "ea835262e9a023cbdeb9b8373a3a1f0cc375245f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
