@@ -1880,7 +1880,15 @@ bool updateAddProperty(const std::string& propertyValue,
 
 bool parseHexAddress(const std::string& str, size_t& out)
 {
-    if (!(str.starts_with("0x") || str.starts_with("0X")))
+    size_t first = str.find_first_not_of(" \t");
+    if (first == std::string::npos)
+    {
+        return false;
+    }
+    size_t last = str.find_last_not_of(" \t");
+    std::string hex = str.substr(first, last - first + 1);
+
+    if (!(hex.starts_with("0x") || hex.starts_with("0X")))
     {
         return false;
     }
@@ -1890,7 +1898,24 @@ bool parseHexAddress(const std::string& str, size_t& out)
     // this pointer access is checked above by the calls to starts_with
     // NOLINTBEGIN(cppcoreguidelines-pro-bounds-pointer-arithmetic)
     auto [ptr, ec] =
-        std::from_chars(str.data() + 2, str.data() + str.length(), out, 16);
-    return ptr == (str.data() + str.length()) && ec == std::errc{};
+        std::from_chars(hex.data() + 2, hex.data() + hex.length(), out, 16);
+    return ptr == (hex.data() + hex.length()) && ec == std::errc{};
     // NOLINTEND(cppcoreguidelines-pro-bounds-pointer-arithmetic)
+}
+
+bool parseHexAddressRange(const std::string& str, size_t& start, size_t& end)
+{
+    size_t dash = str.find('-');
+    if (dash == std::string::npos)
+    {
+        if (!parseHexAddress(str, start))
+        {
+            return false;
+        }
+        end = start;
+        return true;
+    }
+
+    return parseHexAddress(str.substr(0, dash), start) &&
+           parseHexAddress(str.substr(dash + 1), end) && start <= end;
 }
