@@ -1881,7 +1881,15 @@ bool updateAddProperty(const std::string& propertyValue,
 
 bool parseI2CHexAddress(std::string_view str, size_t& out)
 {
-    if (!(str.starts_with("0x") || str.starts_with("0X")))
+    size_t first = str.find_first_not_of(" \t");
+    if (first == std::string::npos)
+    {
+        return false;
+    }
+    size_t last = str.find_last_not_of(" \t");
+    std::string_view hex = str.substr(first, last - first + 1);
+
+    if (!(hex.starts_with("0x") || hex.starts_with("0X")))
     {
         lg2::error("address must start with 0x or 0X\n");
         return false;
@@ -1892,9 +1900,9 @@ bool parseI2CHexAddress(std::string_view str, size_t& out)
     // this pointer access is checked above by the calls to starts_with
     // NOLINTBEGIN(cppcoreguidelines-pro-bounds-pointer-arithmetic)
     auto [ptr, ec] =
-        std::from_chars(str.data() + 2, str.data() + str.length(), out, 16);
+        std::from_chars(hex.data() + 2, hex.data() + hex.length(), out, 16);
     const auto erc = std::make_error_condition(ec);
-    if (ptr != (str.data() + str.length()) || erc)
+    if (ptr != (hex.data() + hex.length()) || erc)
     {
         lg2::error("Invalid address type: {ADDR} {MSG}\n", "ADDR",
                    std::string(str), "MSG", erc.message());
@@ -1904,6 +1912,33 @@ bool parseI2CHexAddress(std::string_view str, size_t& out)
     if (out > 0x77)
     {
         lg2::error("Invalid address {ADDR}\n", "ADDR", std::string(str));
+        return false;
+    }
+
+    return true;
+}
+
+bool parseI2CHexAddressRange(std::string_view str, size_t& start, size_t& end)
+{
+    size_t dash = str.find('-');
+    if (dash == std::string::npos)
+    {
+        if (!parseI2CHexAddress(str, start))
+        {
+            return false;
+        }
+        end = start;
+        return true;
+    }
+
+    if (!parseI2CHexAddress(str.substr(0, dash), start) ||
+        !parseI2CHexAddress(str.substr(dash + 1), end))
+    {
+        return false;
+    }
+    if (start > end)
+    {
+        lg2::error("Invalid address range: {ADDR}\n", "ADDR", std::string(str));
         return false;
     }
 
