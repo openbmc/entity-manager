@@ -7,8 +7,10 @@
 #include <sdbusplus/asio/connection.hpp>
 
 #include <charconv>
+#include <cstdint>
 #include <filesystem>
 #include <flat_map>
+#include <optional>
 
 using DBusValueVariant =
     std::variant<std::string, int64_t, uint64_t, double, int32_t, uint32_t,
@@ -23,6 +25,9 @@ using DBusManagedObjectsType =
              std::map<std::string, std::map<std::string, DBusValueVariant>>>;
 using FirstIndex = size_t;
 using LastIndex = size_t;
+
+// On success the caller owns the descriptor.
+std::optional<int> createInotifyWatch(const char* path, uint32_t mask);
 
 bool findFiles(const std::filesystem::path& dirPath,
                const std::string& matchString,
