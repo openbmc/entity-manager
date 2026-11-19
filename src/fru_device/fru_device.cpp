@@ -641,6 +641,31 @@ AddressBlocklistResult loadAddressBlocklist(const nlohmann::json& data)
         return {EINVAL, std::set<size_t>()};
     }
 
+    // Parse a "0x"/"0X" prefixed hex address, ignoring surrounding
+    // whitespace, return true on success
+    auto parseHexAddress = [](const std::string& str, size_t& out) {
+        size_t first = str.find_first_not_of(" \t");
+        if (first == std::string::npos)
+        {
+            return false;
+        }
+        size_t last = str.find_last_not_of(" \t");
+        std::string hex = str.substr(first, last - first + 1);
+
+        if (!(hex.starts_with("0x") || hex.starts_with("0X")))
+        {
+            return false;
+        }
+        // The alternative offered here relies on undefined behavior
+        // of dereferencing iterators given by .end()
+        // this pointer access is checked above by the calls to starts_with
+        // NOLINTBEGIN(cppcoreguidelines-pro-bounds-pointer-arithmetic)
+        auto [ptr, ec] =
+            std::from_chars(hex.data() + 2, hex.data() + hex.length(), out, 16);
+        return ptr == (hex.data() + hex.length()) && ec == std::errc{};
+        // NOLINTEND(cppcoreguidelines-pro-bounds-pointer-arithmetic)
+    };
+
     std::set<size_t> addressBlocklist = {};
 
     for (const auto& address : *addr)
@@ -652,35 +677,36 @@ AddressBlocklistResult loadAddressBlocklist(const nlohmann::json& data)
             return {EINVAL, std::set<size_t>()};
         }
 
-        if (!(addrS->starts_with("0x") || addrS->starts_with("0X")))
+        // Support the "0x11-0x15" (or "0x11 - 0x15") range syntax
+        // in addition to a single "0x11" address
+        size_t start = 0;
+        size_t end = 0;
+        if (size_t dash = addrS->find('-'); dash != std::string::npos)
         {
-            lg2::error("address must start with 0x or 0X\n");
+            if (!parseHexAddress(addrS->substr(0, dash), start) ||
+                !parseHexAddress(addrS->substr(dash + 1), end))
+            {
+                lg2::error("Invalid address range {ADDR}\n", "ADDR", *addrS);
+                return {EINVAL, std::set<size_t>()};
+            }
+        }
+        else if (!parseHexAddress(*addrS, start))
+        {
+            lg2::error("Invalid address type: {ADDR}\n", "ADDR", *addrS);
             return {EINVAL, std::set<size_t>()};
         }
-
-        // The alternative offered here relies on undefined behavior
-        // of dereferencing iterators given by .end()
-        // this pointer access is checked above by the calls to starts_with
-        // NOLINTBEGIN(cppcoreguidelines-pro-bounds-pointer-arithmetic)
-        size_t addressInt = 0;
-        auto [ptr, ec] = std::from_chars(
-            addrS->data() + 2, addrS->data() + addrS->length(), addressInt, 16);
-
-        const auto erc = std::make_error_condition(ec);
-        if (ptr != (addrS->data() + addrS->length()) || erc)
+        else
         {
-            lg2::error("Invalid address type: {ADDR} {MSG}\n", "ADDR", *addrS,
-                       "MSG", erc.message());
-            return {EINVAL, std::set<size_t>()};
+            end = start;
         }
-        // NOLINTEND(cppcoreguidelines-pro-bounds-pointer-arithmetic)
-        if (addressInt > 0x77)
+
+        if (start > 0x77 || end > 0x77 || start > end)
         {
             lg2::error("Invalid address {ADDR}\n", "ADDR", *addrS);
             return {EINVAL, std::set<size_t>()};
         }
 
-        addressBlocklist.insert(addressInt);
+        addressBlocklist.insert_range(std::views::iota(start, end + 1));
     }
 
     return {0, addressBlocklist};
