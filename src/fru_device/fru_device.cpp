@@ -654,13 +654,14 @@ AddressBlocklistResult loadAddressBlocklist(const nlohmann::json& data)
             return {EINVAL, std::set<size_t>()};
         }
 
-        size_t addressInt = 0;
-        if (!parseI2CHexAddress(*addrS, addressInt))
+        size_t start = 0;
+        size_t end = 0;
+        if (!parseI2CHexAddressRange(*addrS, start, end))
         {
             return {EINVAL, std::set<size_t>()};
         }
 
-        addressBlocklist.insert(addressInt);
+        addressBlocklist.insert_range(std::views::iota(start, end + 1));
     }
 
     return {0, addressBlocklist};
@@ -727,13 +728,14 @@ std::set<size_t> loadBlocklist(const char* path)
                     auto& block = busBlocklist[bus].emplace();
                     for (const auto& address : addresses)
                     {
-                        size_t addressInt = 0;
-                        if (!parseI2CHexAddress(address, addressInt))
+                        size_t start = 0;
+                        size_t end = 0;
+                        if (!parseI2CHexAddressRange(address, start, end))
                         {
                             std::exit(EXIT_FAILURE);
                         }
 
-                        block.insert(addressInt);
+                        block.insert_range(std::views::iota(start, end + 1));
                     }
                 }
                 else
