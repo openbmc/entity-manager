@@ -50,6 +50,18 @@ buses dynamically through the addition of an i2c-mux through a new_device node.
 
 This example will not query addresses 0x70 or 0x71 on any bus.
 
+## Address ranges
+
+Each entry in an "addresses" array can also be a range of the form "0x11-0x15",
+which expands to every address from 0x11 through 0x15, inclusive. Spaces around
+the dash are optional, and ranges can be mixed freely with single addresses:
+
+```json
+{
+  "addresses": ["0x0D", "0x11-0x15", "0x58 - 0x77"]
+}
+```
+
 ## For both
 
 ```json
