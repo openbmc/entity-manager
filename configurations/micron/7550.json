@@ -1,0 +1,26 @@
+{
+    "Exposes": [
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "NVMe $index FRU",
+            "Type": "EEPROM"
+        },
+        {
+            "Address": "0x6a",
+            "Bus": "$bus",
+            "Name": "NVMe $index Temp",
+            "Type": "NVME1000"
+        }
+    ],
+    "Name": "NVMe $index",
+    "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': '7550', 'PRODUCT_MANUFACTURER': 'MICRON'})",
+    "Type": "NVMe",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$PRODUCT_MANUFACTURER",
+        "Model": "$PRODUCT_PRODUCT_NAME",
+        "PartNumber": "$PRODUCT_PART_NUMBER",
+        "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+    },
+    "xyz.openbmc_project.Inventory.Item.Chassis": {}
+}
