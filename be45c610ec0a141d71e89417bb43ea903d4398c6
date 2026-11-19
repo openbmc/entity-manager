@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81badaeb_06183fa2",
+        "filename": "src/entity_manager/probe_parser.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-19T13:32:59Z",
+      "side": 1,
+      "message": "why does the parsing code for a D-Bus probe depend on the number of nots?\n\nThis again introduces state into the parser and make it more complicated as parsing is combined with (algebraic) simplification.\n\nCan we instead parse the AST as written so that the tree for `NOT NOT A` looks like\n\n`NOT(NOT(A))` and then perform the simplification as an AST rewriting rule?\n\nSuch that e.g.:\n\n- `NOT(NOT(A))` -\u003e `A`\n- `TRUE AND FALSE` -\u003e `FALSE`,\n\npreserving the result and the devices contributed by A.\n\nnote, the boolean expression simplifications more like an example to illustrate, there would be little benefit to implement it.\n\nAs a result we would have following phases:\n\nString - Lexer -\u003e Tokens - Parser -\u003e AST - Simplify -\u003e AST -\u003e Evaluate -\u003e result\n\nWhat do you think about this approach?",
+      "range": {
+        "startLine": 114,
+        "startChar": 11,
+        "endLine": 122,
+        "endChar": 75
+      },
+      "revId": "be45c610ec0a141d71e89417bb43ea903d4398c6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
