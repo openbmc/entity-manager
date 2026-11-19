@@ -960,6 +960,9 @@ TEST(ParseHexAddress, ValidAddress)
 
     EXPECT_TRUE(parseHexAddress("0x0", out));
     EXPECT_EQ(out, 0);
+
+    EXPECT_TRUE(parseHexAddress(" 0x2f ", out));
+    EXPECT_EQ(out, 0x2f);
 }
 
 TEST(ParseHexAddress, InvalidAddress)
@@ -971,4 +974,36 @@ TEST(ParseHexAddress, InvalidAddress)
     EXPECT_FALSE(parseHexAddress("0x12g", out));
     EXPECT_FALSE(parseHexAddress("", out));
     EXPECT_FALSE(parseHexAddress("   ", out));
+}
+
+TEST(ParseHexAddressRange, SingleAddress)
+{
+    size_t start = 0;
+    size_t end = 0;
+    EXPECT_TRUE(parseHexAddressRange("0x58", start, end));
+    EXPECT_EQ(start, 0x58);
+    EXPECT_EQ(end, 0x58);
+}
+
+TEST(ParseHexAddressRange, AddressRange)
+{
+    size_t start = 0;
+    size_t end = 0;
+    EXPECT_TRUE(parseHexAddressRange("0x12-0x15", start, end));
+    EXPECT_EQ(start, 0x12);
+    EXPECT_EQ(end, 0x15);
+
+    EXPECT_TRUE(parseHexAddressRange("0x12 - 0x15", start, end));
+    EXPECT_EQ(start, 0x12);
+    EXPECT_EQ(end, 0x15);
+}
+
+TEST(ParseHexAddressRange, InvalidAddress)
+{
+    size_t start = 0;
+    size_t end = 0;
+    EXPECT_FALSE(parseHexAddressRange("0x15-0x11", start, end));
+    EXPECT_FALSE(parseHexAddressRange("0x12 -", start, end));
+    EXPECT_FALSE(parseHexAddressRange("-0x12", start, end));
+    EXPECT_FALSE(parseHexAddressRange("0x12-0x15-0x20", start, end));
 }
