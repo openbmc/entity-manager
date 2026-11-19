@@ -29,6 +29,12 @@ using DBusIntfMap =
     std::flat_map<std::pair<size_t, size_t>,
                   std::shared_ptr<sdbusplus::asio::dbus_interface>>;
 
+/// \brief Publish the I2CDevice interface that marks a responding device at
+/// {bus, address}.
+/// \return the initialized interface; the caller owns its registration.
+std::shared_ptr<sdbusplus::asio::dbus_interface> createProbeInterface(
+    size_t bus, size_t address, sdbusplus::asio::object_server& objServer);
+
 // NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
 inline BusMap busMap;
 

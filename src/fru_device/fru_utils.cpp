@@ -1875,3 +1875,16 @@ bool updateAddProperty(const std::string& propertyValue,
 
     return true;
 }
+
+std::shared_ptr<sdbusplus::asio::dbus_interface> createProbeInterface(
+    size_t bus, size_t address, sdbusplus::asio::object_server& objServer)
+{
+    auto iface = objServer.add_interface(
+        "/xyz/openbmc_project/FruDevice/" + std::to_string(bus) + "_" +
+            std::to_string(address),
+        "xyz.openbmc_project.Inventory.Item.I2CDevice");
+    iface->register_property("Bus", bus);
+    iface->register_property("Address", address);
+    iface->initialize();
+    return iface;
+}

@@ -168,19 +168,12 @@ static void makeProbeInterface(size_t bus, size_t address,
     {
         return; // the mux buses are random, no need to publish
     }
-    auto [it, success] = foundDevices.emplace(
-        std::make_pair(bus, address),
-        objServer.add_interface(
-            "/xyz/openbmc_project/FruDevice/" + std::to_string(bus) + "_" +
-                std::to_string(address),
-            "xyz.openbmc_project.Inventory.Item.I2CDevice"));
-    if (!success)
+    if (foundDevices.contains(std::make_pair(bus, address)))
     {
         return; // already added
     }
-    it->second->register_property("Bus", bus);
-    it->second->register_property("Address", address);
-    it->second->initialize();
+    foundDevices.emplace(std::make_pair(bus, address),
+                         createProbeInterface(bus, address, objServer));
 }
 
 // Issue an I2C transaction to first write to_target_buf_len bytes,then read
