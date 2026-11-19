@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96d82d97_d7306969",
+        "filename": "test/fru_device/test_fru-utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 952,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-19T09:58:39Z",
+      "side": 1,
+      "message": "since you implemented in `fru_device.cpp`, should the new tests go into `test/fru_device/test_fru_device.cpp` instead?\n\nThe above tests look like they deal with things implemented in `fru_utils.cpp` such as offsets, checksums and fru areas.\n\nWhile your implementation and test deal with application logic which cannot be derived from the ipmi fru spec.\n\nYour test is also written at a higher level, involving the object server and io context.\n\nPlease let me know if we can separate it like this.",
+      "revId": "7ad4b18e03b693ac3639b66a68b543440b07cb2d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
