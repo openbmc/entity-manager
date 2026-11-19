@@ -43,6 +43,28 @@ test(
 )
 
 test(
+    'test_fru_device',
+    executable(
+        'test_fru_device',
+        'fru_device/test_fru_device.cpp',
+        '../src/fru_device/fru_utils.cpp',
+        '../src/fru_device/fru_reader.cpp',
+        '../src/fru_device/gzip_utils.cpp',
+        cpp_args: test_boost_args,
+        dependencies: [
+            boost,
+            gtest,
+            libxml2_dep,
+            phosphor_logging_dep,
+            sdbusplus,
+            zlib_dep,
+        ],
+        link_with: utils_lib,
+        include_directories: test_include_dir,
+    ),
+)
+
+test(
     'test_topology',
     executable(
         'test_topology',

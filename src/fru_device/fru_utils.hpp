@@ -10,7 +10,9 @@
 #include <cstdio>
 #include <flat_map>
 #include <functional>
+#include <optional>
 #include <regex>
+#include <set>
 #include <string>
 #include <utility>
 #include <vector>
@@ -34,6 +36,52 @@ using DBusIntfMap =
 /// \return the initialized interface; the caller owns its registration.
 std::shared_ptr<sdbusplus::asio::dbus_interface> createProbeInterface(
     size_t bus, size_t address, sdbusplus::asio::object_server& objServer);
+
+struct ScanResult
+{
+    std::set<std::pair<size_t, size_t>> probedDevices;
+    std::set<size_t> failedBuses;
+};
+
+template <typename Predicate>
+void pruneFoundDevices(DBusIntfMap& foundDevices,
+                       sdbusplus::asio::object_server& objServer,
+                       Predicate&& shouldRemove)
+{
+    for (auto it = foundDevices.begin(); it != foundDevices.end();)
+    {
+        if (shouldRemove(it->first))
+        {
+            objServer.remove_interface(it->second);
+            it = foundDevices.erase(it);
+        }
+        else
+        {
+            ++it;
+        }
+    }
+}
+
+template <typename ScanFn>
+void runRescan(DBusIntfMap& foundDevices,
+               sdbusplus::asio::object_server& objServer, ScanFn&& scanFn,
+               std::optional<size_t> targetBus = std::nullopt)
+{
+    ScanResult result;
+    scanFn(result);
+    pruneFoundDevices(foundDevices, objServer,
+                      [&result, targetBus](const auto& dev) {
+                          if (targetBus && dev.first != *targetBus)
+                          {
+                              return false;
+                          }
+                          if (result.failedBuses.contains(dev.first))
+                          {
+                              return false;
+                          }
+                          return !result.probedDevices.contains(dev);
+                      });
+}
 
 // NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
 inline BusMap busMap;
