@@ -35,6 +35,25 @@ using DBusIntfMap =
 std::shared_ptr<sdbusplus::asio::dbus_interface> createProbeInterface(
     size_t bus, size_t address, sdbusplus::asio::object_server& objServer);
 
+template <typename Predicate>
+void pruneFoundDevices(DBusIntfMap& foundDevices,
+                       sdbusplus::asio::object_server& objServer,
+                       Predicate&& shouldRemove)
+{
+    for (auto it = foundDevices.begin(); it != foundDevices.end();)
+    {
+        if (shouldRemove(it->first))
+        {
+            objServer.remove_interface(it->second);
+            it = foundDevices.erase(it);
+        }
+        else
+        {
+            ++it;
+        }
+    }
+}
+
 // NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
 inline BusMap busMap;
 
