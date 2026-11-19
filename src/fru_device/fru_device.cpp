@@ -652,20 +652,21 @@ AddressBlocklistResult loadAddressBlocklist(const nlohmann::json& data)
             return {EINVAL, std::set<size_t>()};
         }
 
-        size_t addressInt = 0;
-        if (!parseHexAddress(*addrS, addressInt))
+        size_t start = 0;
+        size_t end = 0;
+        if (!parseHexAddressRange(*addrS, start, end))
         {
             lg2::error("Invalid address type: {ADDR}\n", "ADDR", *addrS);
             return {EINVAL, std::set<size_t>()};
         }
 
-        if (addressInt > 0x77)
+        if (start > 0x77 || end > 0x77)
         {
             lg2::error("Invalid address {ADDR}\n", "ADDR", *addrS);
             return {EINVAL, std::set<size_t>()};
         }
 
-        addressBlocklist.insert(addressInt);
+        addressBlocklist.insert_range(std::views::iota(start, end + 1));
     }
 
     return {0, addressBlocklist};
@@ -733,22 +734,23 @@ std::set<size_t> loadBlocklist(const char* path)
                     for (const auto& address : addresses)
                     {
                         std::string entry(address);
-                        size_t addressInt = 0;
-                        if (!parseHexAddress(entry, addressInt))
+                        size_t start = 0;
+                        size_t end = 0;
+                        if (!parseHexAddressRange(entry, start, end))
                         {
                             lg2::error("Invalid address type: {ADDR}\n",
                                        "ADDR", entry);
                             continue;
                         }
 
-                        if (addressInt > 0x77)
+                        if (start > 0x77 || end > 0x77)
                         {
                             lg2::error("Invalid address {ADDR}\n", "ADDR",
                                        entry);
                             continue;
                         }
 
-                        block.insert(addressInt);
+                        block.insert_range(std::views::iota(start, end + 1));
                     }
                 }
                 else
