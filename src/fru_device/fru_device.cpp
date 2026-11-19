@@ -934,14 +934,12 @@ void addFruObjectToDbus(std::vector<uint8_t>& device, FruDetails& fruDetails,
 
     for (auto property : formattedFRU)
     {
-        std::regex_replace(property.second.begin(), property.second.begin(),
-                           property.second.end(), nonAsciiRegex, "_");
+        property.second = sanitizeFruString(property.second);
         if (property.second.empty())
         {
             continue;
         }
-        std::string key =
-            std::regex_replace(property.first, nonAsciiRegex, "_");
+        std::string key = sanitizeFruString(property.first);
 
         // Allow FRU field update if ENABLE_FRU_UPDATE_PROPERTY is set.
         if (isFieldEditable(property.first))

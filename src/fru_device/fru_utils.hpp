@@ -10,7 +10,6 @@
 #include <cstdio>
 #include <flat_map>
 #include <functional>
-#include <regex>
 #include <string>
 #include <utility>
 #include <vector>
@@ -67,8 +66,6 @@ struct FruArea
 
 const std::vector<std::string> fruAreaNames = {"INTERNAL", "CHASSIS", "BOARD",
                                                "PRODUCT", "MULTIRECORD"};
-const std::regex nonAsciiRegex("[^\x01-\x7f]");
-
 const std::vector<std::string> chassisFruAreas = {"PART_NUMBER",
                                                   "SERIAL_NUMBER"};
 
@@ -114,6 +111,8 @@ bool checkLangEng(uint8_t lang);
 resCodes formatIPMIFRU(
     std::span<const uint8_t> fruBytes,
     std::flat_map<std::string, std::string, std::less<>>& result);
+
+std::string sanitizeFruString(const std::string& value);
 
 std::vector<uint8_t>& getFRUInfo(const uint16_t& bus, const uint8_t& address);
 

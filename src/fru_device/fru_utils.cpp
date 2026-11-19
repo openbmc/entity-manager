@@ -16,6 +16,7 @@
 #include <format>
 #include <iomanip>
 #include <numeric>
+#include <regex>
 #include <set>
 #include <sstream>
 #include <string>
@@ -450,6 +451,12 @@ resCodes decodeField(
         }
     }
     return resCodes::resOK;
+}
+
+std::string sanitizeFruString(const std::string& value)
+{
+    static const std::regex nonAsciiRegex("[^\x01-\x7f]");
+    return std::regex_replace(value, nonAsciiRegex, "_");
 }
 
 resCodes formatIPMIFRU(

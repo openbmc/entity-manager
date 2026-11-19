@@ -43,6 +43,30 @@ static constexpr auto areaAtLastFullBlockFru = std::to_array<uint8_t>({
     0x00, // trailing padding byte past the last full block
 });
 
+TEST(SanitizeFruStringTest, ReplacesNonAsciiBytes)
+{
+    const std::string value = "FRU-\xc3\xa9";
+
+    EXPECT_EQ(sanitizeFruString(value), "FRU-__");
+}
+
+TEST(SanitizeFruStringTest, PreservesAscii)
+{
+    EXPECT_EQ(sanitizeFruString("Board 12-A/3"), "Board 12-A/3");
+}
+
+TEST(SanitizeFruStringTest, PreservesEmptyValue)
+{
+    EXPECT_TRUE(sanitizeFruString("").empty());
+}
+
+TEST(SanitizeFruStringTest, ReplacesEmbeddedNul)
+{
+    const std::string value("A\0B", 3);
+
+    EXPECT_EQ(sanitizeFruString(value), "A_B");
+}
+
 TEST(FormatIPMIFRUTest, AreaLengthBeyondBufferReturnsErr)
 {
     // 32-byte FRU buffer whose chassis area-length byte claims 0xFF
