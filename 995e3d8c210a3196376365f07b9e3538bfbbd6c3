@@ -16,6 +16,24 @@
       "message": "Is there a consumer of this that would care?  Same question for the accelerator one.  Hopefully bmcweb already expected the full enum, though maybe it\u0027s doing some globbing.",
       "revId": "995e3d8c210a3196376365f07b9e3538bfbbd6c3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01527bcb_70b2817f",
+        "filename": "configurations/meta/yv4/yosemite4_chassis.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-19T12:33:05Z",
+      "side": 1,
+      "message": "bmcweb has a function to convert it here:\n\nhttps://github.com/openbmc/bmcweb/blob/2cdeb921bd9f869a67a45c00eeb8a16bed13da08/redfish-core/lib/chassis.hpp#L60\n\nThe code looks like it can deal with unexpected values.\n\nLooked through https://github.com/search?q\u003dorg%3Aopenbmc+Inventory.Item.Chassis\u0026type\u003dcode and did not find anything that would depend on it.",
+      "parentUuid": "99c0fe70_624481cf",
+      "revId": "995e3d8c210a3196376365f07b9e3538bfbbd6c3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
