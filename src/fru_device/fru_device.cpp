@@ -1616,11 +1616,16 @@ int main()
     setupNfcMonitor(systemBus, fruDetails, objServer, nfcTagAddedMatch,
                     nfcTagRemovedMatch);
 
-    int fd = inotify_init();
-    inotify_add_watch(fd, i2CDevLocation, IN_CREATE | IN_MOVED_TO | IN_DELETE);
+    std::optional<int> fd =
+        createInotifyWatch(i2CDevLocation, IN_CREATE | IN_MOVED_TO | IN_DELETE);
+    if (!fd)
+    {
+        return 1;
+    }
+
     std::array<char, 4096> readBuffer{};
     // monitor for new i2c devices
-    boost::asio::posix::stream_descriptor dirWatch(io, fd);
+    boost::asio::posix::stream_descriptor dirWatch(io, *fd);
     std::function<void(const boost::system::error_code, std::size_t)>
         watchI2cBusses = [&](const boost::system::error_code& ec,
                              std::size_t bytesTransferred) {
