@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "317a3fc4_e0eba8ec",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 1478,
+      "author": {
+        "id": 1002889
+      },
+      "writtenOn": "2026-11-20T03:20:14Z",
+      "side": 1,
+      "message": "Added ScanResult::failedBuses to track buses where open(), ioctl(I2C_FUNCS), SMBus capability check, or getBusFRUs() timeout fails, and preserved existing probe interfaces for those buses in runRescan(). Covered by FailedBusScanPreservesExistingInterfaces in test_fru_device.cpp.",
+      "parentUuid": "58e62abc_0417543f",
+      "revId": "b8d2f00433dc865d84628efb32916da226c36f41",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "264f0057_758eb13e",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-11-20T02:23:09Z",
       "side": 1,
       "message": "Could this test exercise the actual rescan path and check the published D-Bus interfaces or removal signals?\n\nCurrently it populates a local map and calls the pruning helper directly,so it may pass even if the rescan removes interfaces before scanning or fails to invoke pruning afterward.",
+      "revId": "b8d2f00433dc865d84628efb32916da226c36f41",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed0eaad4_f7b678db",
+        "filename": "test/fru_device/test_fru_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1002889
+      },
+      "writtenOn": "2026-11-20T03:20:14Z",
+      "side": 1,
+      "message": "Extracted the scan-and-prune flow into runRescan() (used by both rescanOneBus() and rescanBussesCallback()) with an injectable scanner function. FruDeviceRescanTest now executes runRescan() directly, verifies inside the in-progress scan callback that existing interfaces remain live in object_server (via weak_ptr::expired()), and verifies that unprobed interfaces are unregistered after completion.",
+      "parentUuid": "264f0057_758eb13e",
       "revId": "b8d2f00433dc865d84628efb32916da226c36f41",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
