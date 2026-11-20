@@ -652,28 +652,13 @@ AddressBlocklistResult loadAddressBlocklist(const nlohmann::json& data)
             return {EINVAL, std::set<size_t>()};
         }
 
-        if (!(addrS->starts_with("0x") || addrS->starts_with("0X")))
-        {
-            lg2::error("address must start with 0x or 0X\n");
-            return {EINVAL, std::set<size_t>()};
-        }
-
-        // The alternative offered here relies on undefined behavior
-        // of dereferencing iterators given by .end()
-        // this pointer access is checked above by the calls to starts_with
-        // NOLINTBEGIN(cppcoreguidelines-pro-bounds-pointer-arithmetic)
         size_t addressInt = 0;
-        auto [ptr, ec] = std::from_chars(
-            addrS->data() + 2, addrS->data() + addrS->length(), addressInt, 16);
-
-        const auto erc = std::make_error_condition(ec);
-        if (ptr != (addrS->data() + addrS->length()) || erc)
+        if (!parseHexAddress(*addrS, addressInt))
         {
-            lg2::error("Invalid address type: {ADDR} {MSG}\n", "ADDR", *addrS,
-                       "MSG", erc.message());
+            lg2::error("Invalid address type: {ADDR}\n", "ADDR", *addrS);
             return {EINVAL, std::set<size_t>()};
         }
-        // NOLINTEND(cppcoreguidelines-pro-bounds-pointer-arithmetic)
+
         if (addressInt > 0x77)
         {
             lg2::error("Invalid address {ADDR}\n", "ADDR", *addrS);
@@ -747,10 +732,22 @@ std::set<size_t> loadBlocklist(const char* path)
                     auto& block = busBlocklist[bus].emplace();
                     for (const auto& address : addresses)
                     {
+                        std::string entry(address);
                         size_t addressInt = 0;
-                        bool fullMatch = false;
-                        fromCharsWrapper(address.substr(2), addressInt,
-                                         fullMatch, 16);
+                        if (!parseHexAddress(entry, addressInt))
+                        {
+                            lg2::error("Invalid address type: {ADDR}\n", "ADDR",
+                                       entry);
+                            continue;
+                        }
+
+                        if (addressInt > 0x77)
+                        {
+                            lg2::error("Invalid address {ADDR}\n", "ADDR",
+                                       entry);
+                            continue;
+                        }
+
                         block.insert(addressInt);
                     }
                 }
