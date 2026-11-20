@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "76ddf0cd_374ea138",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 1000216
+      },
+      "writtenOn": "2026-11-20T06:32:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e60d406e_c63e9539",
+      "revId": "a3219f18a462d07d61fbf035e743c135c618b6cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29b94761_502ec3cf",
@@ -35,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a09f54f_5e1bc2e9",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 735,
+      "author": {
+        "id": 1000216
+      },
+      "writtenOn": "2026-11-20T06:32:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29b94761_502ec3cf",
+      "revId": "a3219f18a462d07d61fbf035e743c135c618b6cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c471484_6db663ce",
@@ -48,6 +84,24 @@
       "writtenOn": "2026-11-20T05:35:04Z",
       "side": 1,
       "message": "Nit: taking std::string_view would avoid the temporary std::string entry(address) copy per entry in loadBlocklist() (fru_device.cpp:729). The body only uses starts_with(), data() and length(), so it works unchanged.",
+      "revId": "a3219f18a462d07d61fbf035e743c135c618b6cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16fd353b_31d99667",
+        "filename": "src/fru_device/fru_utils.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1000216
+      },
+      "writtenOn": "2026-11-20T06:32:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c471484_6db663ce",
       "revId": "a3219f18a462d07d61fbf035e743c135c618b6cf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
