@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e60d406e_c63e9539",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-20T05:35:04Z",
+      "side": 1,
+      "message": "loadAddressBlocklist() used to report three different failures: missing 0x/0X prefix, parse error (with the error message), and address \u003e 0x77. With a bool-only helper they all collapse into \"Invalid address type: {ADDR}\", so a user who writes \"0x80\" is told the type is invalid.\n\nCould parseI2CHexAddress() (fru_utils.cpp, 1881-1897) log the specific reason, or return it (e.g. an enum or std::from_chars_result), so the messages stay as precise as before?",
+      "revId": "a3219f18a462d07d61fbf035e743c135c618b6cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29b94761_502ec3cf",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 735,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-20T05:35:04Z",
+      "side": 1,
+      "message": "The same helper now has two different failure policies: in loadAddressBlocklist() an invalid entry returns EINVAL and fru-device exits, but here it logs and continues. Since the blocklist exists to keep fru-device from probing devices that can hang the bus, skipping a mistyped entry means that address is probed anyway.\n\nBefore this change an invalid entry here was inserted as a wrong address (e.g. \"11\" -\u003e 0), so this is not a regression, but is the log-and-skip intentional? If not, could this exit like the other blocklist validation errors in this function? Either way, please mention it in the commit message, since it says only, \"Valid single addresses behave as before\".",
+      "revId": "a3219f18a462d07d61fbf035e743c135c618b6cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c471484_6db663ce",
+        "filename": "src/fru_device/fru_utils.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-20T05:35:04Z",
+      "side": 1,
+      "message": "Nit: taking std::string_view would avoid the temporary std::string entry(address) copy per entry in loadBlocklist() (fru_device.cpp:729). The body only uses starts_with(), data() and length(), so it works unchanged.",
+      "revId": "a3219f18a462d07d61fbf035e743c135c618b6cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
