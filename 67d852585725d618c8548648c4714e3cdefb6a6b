@@ -16,6 +16,24 @@
       "message": "Could the schema require `ProtectedBoards` and `ProtectedTargets` together, for example with dependencies, so that every protected component is always a board and target pair and the arrays are less likely to fall out of step?",
       "revId": "67d852585725d618c8548648c4714e3cdefb6a6b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28b47cb3_6cc43540",
+        "filename": "schemas/spdm_endpoint.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1003181
+      },
+      "writtenOn": "2026-11-20T04:35:20Z",
+      "side": 1,
+      "message": "I kept the three `Protected` properties independently optional so each record only specifies what differs from the defaults. For ex, `ProtectedTargets: [\"NIC_0\"]` selects `NIC_0` on the same board. Requiring the pair would add `ProtectedBoards: [\"\"]` just to specify the default and `spdmd` would still need to check that the arrays have the same length. What do you think?",
+      "parentUuid": "923c79c7_eac749eb",
+      "revId": "67d852585725d618c8548648c4714e3cdefb6a6b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
