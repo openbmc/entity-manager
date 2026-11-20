@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58e62abc_0417543f",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 1478,
+      "author": {
+        "id": 1003207
+      },
+      "writtenOn": "2026-11-20T02:23:09Z",
+      "side": 1,
+      "message": "If opening a bus or querying its capabilities fails,its devices won’t be added to probedDevices and will be pruned here,even though their removal wasn’t confirmed. Should failed scans preserve those interfaces? \nCould that case be tested?",
+      "revId": "b8d2f00433dc865d84628efb32916da226c36f41",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "264f0057_758eb13e",
+        "filename": "test/fru_device/test_fru_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1003207
+      },
+      "writtenOn": "2026-11-20T02:23:09Z",
+      "side": 1,
+      "message": "Could this test exercise the actual rescan path and check the published D-Bus interfaces or removal signals?\n\nCurrently it populates a local map and calls the pruning helper directly,so it may pass even if the rescan removes interfaces before scanning or fails to invoke pruning afterward.",
+      "revId": "b8d2f00433dc865d84628efb32916da226c36f41",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
