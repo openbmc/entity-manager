@@ -248,3 +248,5 @@ bool updateAddProperty(const std::string& propertyValue,
                        std::vector<uint8_t>& fruData);
 
 std::string parseMacFromGzipXmlHeader(FRUReader& reader, off_t offset);
+
+bool parseI2CHexAddress(const std::string& str, size_t& out);

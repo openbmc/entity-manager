@@ -9,6 +9,7 @@
 #include <phosphor-logging/lg2.hpp>
 
 #include <array>
+#include <charconv>
 #include <chrono>
 #include <cstddef>
 #include <cstdint>
@@ -19,6 +20,7 @@
 #include <set>
 #include <sstream>
 #include <string>
+#include <system_error>
 #include <vector>
 
 extern "C"
@@ -1874,4 +1876,22 @@ bool updateAddProperty(const std::string& propertyValue,
     }
 
     return true;
+}
+
+bool parseI2CHexAddress(const std::string& str, size_t& out)
+{
+    if (!(str.starts_with("0x") || str.starts_with("0X")))
+    {
+        return false;
+    }
+
+    // The alternative offered here relies on undefined behavior
+    // of dereferencing iterators given by .end()
+    // this pointer access is checked above by the calls to starts_with
+    // NOLINTBEGIN(cppcoreguidelines-pro-bounds-pointer-arithmetic)
+    auto [ptr, ec] =
+        std::from_chars(str.data() + 2, str.data() + str.length(), out, 16);
+    return ptr == (str.data() + str.length()) && ec == std::errc{} &&
+           out <= 0x77;
+    // NOLINTEND(cppcoreguidelines-pro-bounds-pointer-arithmetic)
 }
