@@ -6,19 +6,26 @@
 #include "../dbus_util.hpp"
 #include "gzip_utils.hpp"
 
+#include <sys/stat.h>
+#include <unistd.h>
+
 #include <phosphor-logging/lg2.hpp>
 
 #include <array>
+#include <cerrno>
 #include <chrono>
 #include <cstddef>
 #include <cstdint>
+#include <cstring>
 #include <filesystem>
 #include <format>
 #include <iomanip>
 #include <numeric>
 #include <set>
+#include <span>
 #include <sstream>
 #include <string>
+#include <utility>
 #include <vector>
 
 extern "C"
@@ -30,6 +37,45 @@ extern "C"
 constexpr size_t fruVersion = 1; // Current FRU spec version number is 1
 constexpr uint8_t validMultiRecordFormatVer =
     0x2; // Current FRU spec Multirecord Record Format Version
+
+bool writeEepromFile(int fd, off_t offset, std::span<const uint8_t> fru)
+{
+    struct stat info{};
+    if (fstat(fd, &info) < 0)
+    {
+        const int error = errno;
+        lg2::error("Unable to get EEPROM size: {ERROR}", "ERROR",
+                   std::strerror(error));
+        return false;
+    }
+
+    // A sysfs binary attribute can report zero when its size is unspecified.
+    if (offset < 0 || (info.st_size > 0 &&
+                       (offset > info.st_size ||
+                        std::cmp_greater(fru.size(), info.st_size - offset))))
+    {
+        lg2::error(
+            "FRU size {SIZE} at offset {OFFSET} exceeds EEPROM size {CAPACITY}",
+            "SIZE", fru.size(), "OFFSET", offset, "CAPACITY", info.st_size);
+        return false;
+    }
+
+    const ssize_t written = write(fd, fru.data(), fru.size());
+    if (written < 0)
+    {
+        const int error = errno;
+        lg2::error("EEPROM write failed: {ERROR}", "ERROR",
+                   std::strerror(error));
+        return false;
+    }
+    if (static_cast<size_t>(written) != fru.size())
+    {
+        lg2::error("FRU write incomplete: expected {EXPECTED}, wrote {ACTUAL}",
+                   "EXPECTED", fru.size(), "ACTUAL", written);
+        return false;
+    }
+    return true;
+}
 
 char sixBitToChar(uint8_t val)
 {

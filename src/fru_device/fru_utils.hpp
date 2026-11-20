@@ -4,6 +4,8 @@
 #pragma once
 #include "fru_reader.hpp"
 
+#include <sys/types.h>
+
 #include <sdbusplus/asio/object_server.hpp>
 
 #include <cstdint>
@@ -11,6 +13,7 @@
 #include <flat_map>
 #include <functional>
 #include <regex>
+#include <span>
 #include <string>
 #include <utility>
 #include <vector>
@@ -21,6 +24,9 @@ extern "C"
 }
 
 constexpr size_t fruBlockSize = 8;
+
+// The descriptor must already be positioned at offset.
+bool writeEepromFile(int fd, off_t offset, std::span<const uint8_t> fru);
 
 using DeviceMap = std::flat_map<int, std::vector<uint8_t>>;
 using BusMap = std::flat_map<int, std::shared_ptr<DeviceMap>>;
