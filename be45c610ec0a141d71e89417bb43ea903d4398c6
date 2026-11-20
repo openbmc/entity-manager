@@ -46,6 +46,30 @@
       },
       "revId": "be45c610ec0a141d71e89417bb43ea903d4398c6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eebaa2f8_012b1313",
+        "filename": "src/entity_manager/probe_parser.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-20T17:34:36Z",
+      "side": 1,
+      "message": "\u003e Instead of adding a Simplify phase, I\u0027d prefer to reject chained NOTs\n\nWorks for me, your solution is simpler and avoids adding an extra step 👍",
+      "parentUuid": "8eecc135_970d7e38",
+      "range": {
+        "startLine": 114,
+        "startChar": 11,
+        "endLine": 122,
+        "endChar": 75
+      },
+      "revId": "be45c610ec0a141d71e89417bb43ea903d4398c6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
