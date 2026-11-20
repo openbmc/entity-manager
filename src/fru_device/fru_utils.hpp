@@ -12,6 +12,7 @@
 #include <functional>
 #include <regex>
 #include <string>
+#include <string_view>
 #include <utility>
 #include <vector>
 extern "C"
@@ -248,3 +249,5 @@ bool updateAddProperty(const std::string& propertyValue,
                        std::vector<uint8_t>& fruData);
 
 std::string parseMacFromGzipXmlHeader(FRUReader& reader, off_t offset);
+
+bool parseI2CHexAddress(std::string_view str, size_t& out);
