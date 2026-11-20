@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83379a27_8ba5a306",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-20T09:16:51Z",
+      "side": 1,
+      "message": "postDescribesAssocs() only walks newConfiguration, and deriveNewConfiguration() removes every configuration that was already in the previous run. If the platform configuration is published in one scan and the board its records name is found in a later scan (the board is new, the platform is not), the platform is not in newConfiguration, so those records never get the association and nothing retries it until the platform is published again. The existing topology associations avoid this because topology.getAssocs() works from all known boards.\n\nCould this also re-evaluate platform records whose Board matches a newly added board (or reuse Topology), so the result does not depend on which scan finds each side first?",
+      "revId": "47c4f2a6aec95ce12321f479c98b2e969c85c61f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be4a629d_1f7de1f8",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-20T09:16:51Z",
+      "side": 1,
+      "message": "The existing association docs say a missing counterpart is not an error (\"it simply means the component we want to associate to is not present\"), and the commit message says such a record just gets no association. This is logged with lg2::error, and with the ordering above it can also fire for a board that simply has not been found yet. Could this be debug or info?",
+      "revId": "47c4f2a6aec95ce12321f479c98b2e969c85c61f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fb5500f_73849ead",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-20T09:16:51Z",
+      "side": 1,
+      "message": "findBoardEntry() returns std::nullopt as soon as it reaches a configuration whose Name equals boardName (here, and again in the early return when Type or Exposes is missing), so if another configuration shares that Name (for example a Chassis and a Board with the same Name) the one that actually has the entry may never be checked. The platform property is called Board, so should this only consider configurations of Type Board, or continue to the next match instead of returning?",
+      "revId": "47c4f2a6aec95ce12321f479c98b2e969c85c61f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
