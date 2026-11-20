@@ -1,8 +1,14 @@
 #include "fru_device/fru_utils.hpp"
 
+#include <unistd.h>
+
 #include <algorithm>
 #include <array>
+#include <cerrno>
+#include <cstdio>
 #include <iterator>
+#include <memory>
+#include <span>
 #include <vector>
 
 #include "gmock/gmock.h"
@@ -18,6 +24,121 @@ extern "C"
 }
 
 static constexpr size_t blockSize = I2C_SMBUS_BLOCK_MAX;
+
+namespace
+{
+constexpr int invalidEepromFd = -42;
+} // namespace
+
+class WriteEepromFileTest : public testing::Test
+{
+  public:
+    static inline int eepromFd = -1;
+    static inline ssize_t writeResult = 0;
+    static inline size_t writeCalls = 0;
+    static inline std::vector<uint8_t> writtenData;
+
+  protected:
+    void SetUp() override
+    {
+        file.reset(std::tmpfile());
+        ASSERT_NE(file, nullptr);
+        eepromFd = fileno(file.get());
+        ASSERT_GE(eepromFd, 0);
+        ASSERT_EQ(ftruncate(eepromFd, 8), 0);
+        writeCalls = 0;
+        writtenData.clear();
+    }
+
+    void TearDown() override
+    {
+        eepromFd = -1;
+    }
+
+    static void checkWrite(ssize_t result, bool expected, off_t offset = 0)
+    {
+        const std::vector<uint8_t> fru{0x01, 0x02, 0x03, 0x04};
+        writeResult = result;
+        ASSERT_EQ(lseek(eepromFd, offset, SEEK_SET), offset);
+        EXPECT_EQ(writeEepromFile(eepromFd, offset, fru), expected);
+        EXPECT_EQ(writeCalls, 1);
+        EXPECT_EQ(writtenData, fru);
+    }
+
+  private:
+    struct CloseFile
+    {
+        void operator()(std::FILE* stream) const
+        {
+            std::fclose(stream);
+        }
+    };
+    std::unique_ptr<std::FILE, CloseFile> file;
+};
+
+extern "C" ssize_t realWrite(int fd, const void* data,
+                             size_t count) asm("__real_write");
+extern "C" ssize_t wrapWrite(int fd, const void* data,
+                             size_t count) asm("__wrap_write");
+
+extern "C" ssize_t wrapWrite(int fd, const void* data, size_t count)
+{
+    if (fd != WriteEepromFileTest::eepromFd && fd != invalidEepromFd)
+    {
+        return realWrite(fd, data, count);
+    }
+    ++WriteEepromFileTest::writeCalls;
+    const std::span bytes(static_cast<const uint8_t*>(data), count);
+    WriteEepromFileTest::writtenData.assign(bytes.begin(), bytes.end());
+    if (WriteEepromFileTest::writeResult < 0)
+    {
+        errno = EIO;
+    }
+    return WriteEepromFileTest::writeResult;
+}
+
+TEST_F(WriteEepromFileTest, FullWriteAtCapacitySucceeds)
+{
+    checkWrite(4, true, 4);
+}
+
+TEST_F(WriteEepromFileTest, WriteExceedingCapacityIsNotAttempted)
+{
+    const std::array<uint8_t, 4> fru{1, 2, 3, 4};
+    ASSERT_EQ(lseek(eepromFd, 5, SEEK_SET), 5);
+    EXPECT_FALSE(writeEepromFile(eepromFd, 5, fru));
+    ASSERT_EQ(lseek(eepromFd, 9, SEEK_SET), 9);
+    EXPECT_FALSE(writeEepromFile(eepromFd, 9, fru));
+    EXPECT_EQ(writeCalls, 0);
+}
+
+TEST_F(WriteEepromFileTest, UnknownCapacityAllowsWrite)
+{
+    ASSERT_EQ(ftruncate(eepromFd, 0), 0);
+    checkWrite(4, true, 4);
+}
+
+TEST_F(WriteEepromFileTest, StatErrorPreventsWrite)
+{
+    const std::array<uint8_t, 4> fru{1, 2, 3, 4};
+    EXPECT_FALSE(writeEepromFile(invalidEepromFd, 0, fru));
+    EXPECT_EQ(writeCalls, 0);
+}
+
+TEST_F(WriteEepromFileTest, ShortWriteFailsWithoutRetry)
+{
+    checkWrite(3, false);
+}
+
+TEST_F(WriteEepromFileTest, ZeroWriteFailsWithoutRetry)
+{
+    checkWrite(0, false);
+}
+
+TEST_F(WriteEepromFileTest, WriteErrorFails)
+{
+    checkWrite(-1, false);
+}
 
 // Named OOB scenario for the new buffer-bound guards: a valid 17-byte FRU
 // (8-byte common header, one complete 8-byte board area block, one
