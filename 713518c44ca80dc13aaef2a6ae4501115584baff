@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1d0eaa3_75552c9d",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1112,
+      "author": {
+        "id": 1003207
+      },
+      "writtenOn": "2026-11-20T13:11:29Z",
+      "side": 1,
+      "message": "Addressed the predictable boundary case by checking the EEPROM capacity at the discovered offset before writing. \nIf the FRU does not fit, the write is rejected before any bytes are written. Added tests for an exact fit and writes exceeding capacity. \nIf an unexpected short write still occurs, it is detected and reported; this cannot undo bytes already written, so a rescan is not treated as rollback",
+      "parentUuid": "f0215600_c411aa02",
+      "revId": "713518c44ca80dc13aaef2a6ae4501115584baff",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d8dc3d37_15c32ee3",
@@ -35,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c511007_8fcd8563",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1003207
+      },
+      "writtenOn": "2026-11-20T13:11:29Z",
+      "side": 1,
+      "message": "Addressed. The helper now saves errno immediately when write() fails and logs the corresponding system error. \nShort writes use a separate diagnostic with expected and actual byte counts.",
+      "parentUuid": "d8dc3d37_15c32ee3",
+      "revId": "713518c44ca80dc13aaef2a6ae4501115584baff",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "527d720b_6d15307d",
@@ -48,6 +84,24 @@
       "writtenOn": "2026-11-20T08:53:22Z",
       "side": 1,
       "message": "Nit: writeFruData() now sits alongside writeFRU() and writeFruByteData(), which are easy to confuse. A name that says what it does (e.g. writeAllBytes / writeEepromFile) would make the call sites clearer.",
+      "revId": "713518c44ca80dc13aaef2a6ae4501115584baff",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d889bbd2_4ed308d2",
+        "filename": "src/fru_device/fru_utils.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1003207
+      },
+      "writtenOn": "2026-11-20T13:11:29Z",
+      "side": 1,
+      "message": "Addressed. Renamed writeFruData() to writeEepromFile() to distinguish the sysfs EEPROM operation from writeFRU() and the raw I²C byte-write helper.",
+      "parentUuid": "527d720b_6d15307d",
       "revId": "713518c44ca80dc13aaef2a6ae4501115584baff",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
