@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0215600_c411aa02",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1112,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-20T08:53:22Z",
+      "side": 1,
+      "message": "This catches the short write, but only after the data has been written. In the boundary case from the commit message (offset + fru.size() past the end of the EEPROM) the first bytes have already been overwritten, so the device is left with a truncated FRU while the error is reported. writeFRU() also throws here, so no rescan runs and the published FRU keeps showing the old contents.\n\nCould we reject up front when offset + fru.size() exceeds the EEPROM size (e.g. via fstat on the sysfs file) so a too-large FRU never touches the device? If that isn\u0027t feasible, is a rescan after a short write worth doing so the published data matches the device?",
+      "revId": "713518c44ca80dc13aaef2a6ae4501115584baff",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8dc3d37_15c32ee3",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-20T08:53:22Z",
+      "side": 1,
+      "message": "When write() fails (written \u003c 0) this logs \"wrote -1\" with no errno, so a genuine write error and a short write look alike, and the failure reason is lost. The byte-write path in writeFRU() already logs strerror(errno).\n\nCould the written \u003c 0 case log strerror(errno) (captured before the lg2 call), and keep the expected/actual form only for short writes?",
+      "revId": "713518c44ca80dc13aaef2a6ae4501115584baff",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "527d720b_6d15307d",
+        "filename": "src/fru_device/fru_utils.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-20T08:53:22Z",
+      "side": 1,
+      "message": "Nit: writeFruData() now sits alongside writeFRU() and writeFruByteData(), which are easy to confuse. A name that says what it does (e.g. writeAllBytes / writeEepromFile) would make the call sites clearer.",
+      "revId": "713518c44ca80dc13aaef2a6ae4501115584baff",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
