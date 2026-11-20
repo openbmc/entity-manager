@@ -74,6 +74,10 @@ test(
         include_directories: test_include_dir,
         link_with: utils_lib,
         dependencies: [gtest, phosphor_logging_dep, sdbusplus],
+        link_args: [
+            '-Wl,--wrap=inotify_init',
+            '-Wl,--wrap=inotify_add_watch',
+        ],
     ),
 )
 
