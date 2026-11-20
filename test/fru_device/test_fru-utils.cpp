@@ -948,3 +948,27 @@ TEST(GetEepromByteLocation, SixteenBitKeepsDeviceAddress)
     EXPECT_EQ(last.address, 0x56);
     EXPECT_EQ(last.offset, 404);
 }
+
+TEST(ParseHexAddress, ValidAddress)
+{
+    size_t out = 0;
+    EXPECT_TRUE(parseHexAddress("0x11", out));
+    EXPECT_EQ(out, 0x11);
+
+    EXPECT_TRUE(parseHexAddress("0X1A", out));
+    EXPECT_EQ(out, 0x1A);
+
+    EXPECT_TRUE(parseHexAddress("0x0", out));
+    EXPECT_EQ(out, 0);
+}
+
+TEST(ParseHexAddress, InvalidAddress)
+{
+    size_t out = 0;
+    EXPECT_FALSE(parseHexAddress("11", out));
+    EXPECT_FALSE(parseHexAddress("0x", out));
+    EXPECT_FALSE(parseHexAddress("0xg", out));
+    EXPECT_FALSE(parseHexAddress("0x12g", out));
+    EXPECT_FALSE(parseHexAddress("", out));
+    EXPECT_FALSE(parseHexAddress("   ", out));
+}
