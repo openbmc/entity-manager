@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd8bf082_7da40f3f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-22T11:47:49Z",
+      "side": 1,
+      "message": "please exercise the failure paths in qemu and paste the logs here.\n\nplease also document your setup (which qemu, which eeprom, how you created the failure conditions)",
+      "revId": "cf62230e34d86620d7ac07edb1cbf404172701fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef1e2ba8_03b63f03",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-22T11:47:49Z",
+      "side": 1,
+      "message": "could this go into an `eeprom_utils.cpp` or similar file? To separate IPMI fru related features and generic eeprom file utils.\n\nThis source file is already quite large as is.",
+      "revId": "cf62230e34d86620d7ac07edb1cbf404172701fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4639bdc9_b3d4f4ea",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-22T11:47:49Z",
+      "side": 1,
+      "message": "The caller does an `lseek` already which should fail on a negative offset ?\n\nWhich code could possibly pass a negative offset here?\n\nLet\u0027s not introduce any code paths that cannot actually run.\n\nWhat if you combined this function with previous `lseek` in the caller then you could get this offset check indirectly and need not check it again.\n\nmeaning one function doing both the seeking and writing.",
+      "range": {
+        "startLine": 52,
+        "startChar": 4,
+        "endLine": 61,
+        "endChar": 5
+      },
+      "revId": "cf62230e34d86620d7ac07edb1cbf404172701fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
