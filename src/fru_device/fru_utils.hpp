@@ -10,6 +10,7 @@
 #include <cstdio>
 #include <flat_map>
 #include <functional>
+#include <optional>
 #include <regex>
 #include <string>
 #include <utility>
@@ -21,6 +22,31 @@ extern "C"
 }
 
 constexpr size_t fruBlockSize = 8;
+
+class ScopedFileDescriptor
+{
+  public:
+    explicit ScopedFileDescriptor(int fd) noexcept;
+    ~ScopedFileDescriptor();
+
+    ScopedFileDescriptor(const ScopedFileDescriptor&) = delete;
+    ScopedFileDescriptor& operator=(const ScopedFileDescriptor&) = delete;
+    ScopedFileDescriptor(ScopedFileDescriptor&& other) noexcept;
+    ScopedFileDescriptor& operator=(ScopedFileDescriptor&& other) = delete;
+
+    void reset() noexcept;
+
+  private:
+    std::optional<int> fd;
+};
+
+template <typename Launcher>
+auto launchWithScopedFileDescriptor(int fd, Launcher&& launcher)
+{
+    ScopedFileDescriptor owner(fd);
+    auto result = std::forward<Launcher>(launcher)(fd);
+    return std::pair{std::move(owner), std::move(result)};
+}
 
 using DeviceMap = std::flat_map<int, std::vector<uint8_t>>;
 using BusMap = std::flat_map<int, std::shared_ptr<DeviceMap>>;

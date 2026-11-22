@@ -6,6 +6,8 @@
 #include "../dbus_util.hpp"
 #include "gzip_utils.hpp"
 
+#include <unistd.h>
+
 #include <phosphor-logging/lg2.hpp>
 
 #include <array>
@@ -19,6 +21,7 @@
 #include <set>
 #include <sstream>
 #include <string>
+#include <utility>
 #include <vector>
 
 extern "C"
@@ -30,6 +33,29 @@ extern "C"
 constexpr size_t fruVersion = 1; // Current FRU spec version number is 1
 constexpr uint8_t validMultiRecordFormatVer =
     0x2; // Current FRU spec Multirecord Record Format Version
+
+ScopedFileDescriptor::ScopedFileDescriptor(int fd) noexcept :
+    fd(fd >= 0 ? std::optional<int>(fd) : std::nullopt)
+{}
+
+ScopedFileDescriptor::~ScopedFileDescriptor()
+{
+    reset();
+}
+
+ScopedFileDescriptor::ScopedFileDescriptor(
+    ScopedFileDescriptor&& other) noexcept :
+    fd(std::exchange(other.fd, std::nullopt))
+{}
+
+void ScopedFileDescriptor::reset() noexcept
+{
+    if (fd.has_value())
+    {
+        close(*fd);
+        fd.reset();
+    }
+}
 
 char sixBitToChar(uint8_t val)
 {

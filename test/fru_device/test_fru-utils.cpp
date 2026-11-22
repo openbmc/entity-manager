@@ -1,8 +1,14 @@
 #include "fru_device/fru_utils.hpp"
 
+#include <fcntl.h>
+#include <unistd.h>
+
 #include <algorithm>
 #include <array>
+#include <cerrno>
+#include <future>
 #include <iterator>
+#include <stdexcept>
 #include <vector>
 
 #include "gmock/gmock.h"
@@ -18,6 +24,42 @@ extern "C"
 }
 
 static constexpr size_t blockSize = I2C_SMBUS_BLOCK_MAX;
+
+TEST(ScopedFileDescriptorTest, LaunchFailureClosesDescriptor)
+{
+    int fd = open("/dev/null", O_RDONLY | O_CLOEXEC);
+    ASSERT_GE(fd, 0);
+
+    EXPECT_THROW(launchWithScopedFileDescriptor(fd,
+                                                [](int) -> std::future<int> {
+                                                    throw std::runtime_error(
+                                                        "launch failed");
+                                                }),
+                 std::runtime_error);
+
+    errno = 0;
+    EXPECT_EQ(fcntl(fd, F_GETFD), -1);
+    EXPECT_EQ(errno, EBADF);
+}
+
+TEST(ScopedFileDescriptorTest, ResetDoesNotCloseReusedDescriptor)
+{
+    std::array<int, 2> fds{};
+    ASSERT_EQ(pipe(fds.data()), 0);
+
+    int reused = -1;
+    {
+        ScopedFileDescriptor owner(fds[0]);
+        owner.reset();
+        reused = fcntl(fds[1], F_DUPFD, fds[0]);
+        ASSERT_EQ(reused, fds[0]);
+        owner.reset();
+    }
+
+    EXPECT_NE(fcntl(reused, F_GETFD), -1);
+    close(reused);
+    close(fds[1]);
+}
 
 // Named OOB scenario for the new buffer-bound guards: a valid 17-byte FRU
 // (8-byte common header, one complete 8-byte board area block, one

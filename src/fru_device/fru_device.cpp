@@ -599,9 +599,12 @@ int getBusFRUs(int file, int first, int last, int bus,
                const std::set<size_t>& addressBlocklist,
                sdbusplus::asio::object_server& objServer)
 {
-    std::future<int> future = std::async(std::launch::async, [&]() {
-        return getBusFRUsCallback(file, first, last, bus, devices, powerIsOn,
-                                  addressBlocklist, objServer);
+    auto [fileOwner,
+          future] = launchWithScopedFileDescriptor(file, [&](int fd) {
+        return std::async(std::launch::async, [&, fd]() {
+            return getBusFRUsCallback(fd, first, last, bus, devices, powerIsOn,
+                                      addressBlocklist, objServer);
+        });
     });
     std::future_status status =
         future.wait_for(std::chrono::seconds(busTimeoutSeconds));
@@ -612,11 +615,11 @@ int getBusFRUs(int file, int first, int last, int bus,
         {
             busBlocklist[bus] = std::nullopt;
         }
-        close(file);
+        fileOwner.reset();
         return -1;
     }
 
-    close(file);
+    fileOwner.reset();
     return future.get();
 }
 
