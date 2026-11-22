@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7049ea50_a0ec8ad7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-11-22T14:47:56Z",
+      "side": 1,
+      "message": "A PLDM firmware device reports its own descriptors, so it needs no FirmwareInfo or any other firmware.json field. The only thing it can\u0027t report is the names of its components.\n\nI created pldm.json because schemas are split by class or protocol, and this record doesn\u0027t use any of the definitions in firmware.json, so it can stay separate.",
+      "parentUuid": "b491f4db_6a8f241f",
+      "revId": "cbf6de5b7bb26dac6fbdd386086dc8b9b99eb9cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a39dbffc_98176b8e",
@@ -35,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "209b4c99_046e7fd4",
+        "filename": "schemas/pldm.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-11-22T14:47:56Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a39dbffc_98176b8e",
+      "revId": "cbf6de5b7bb26dac6fbdd386086dc8b9b99eb9cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bfd17023_6777393b",
@@ -48,6 +84,30 @@
       "writtenOn": "2026-11-12T14:53:30Z",
       "side": 1,
       "message": "\u003e Records of one configuration that share a Name are published on one object\n\nThis is an EM behavior and not specific to this schema, do we need to document it here?",
+      "range": {
+        "startLine": 33,
+        "startChar": 120,
+        "endLine": 33,
+        "endChar": 196
+      },
+      "revId": "cbf6de5b7bb26dac6fbdd386086dc8b9b99eb9cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7f0aa7d_95c5d500",
+        "filename": "schemas/pldm.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-11-22T14:47:56Z",
+      "side": 1,
+      "message": "Ack, removed the line",
+      "parentUuid": "bfd17023_6777393b",
       "range": {
         "startLine": 33,
         "startChar": 120,
