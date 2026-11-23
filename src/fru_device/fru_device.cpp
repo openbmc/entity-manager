@@ -4,6 +4,7 @@
 #include "fru_device.hpp"
 
 #include "../utils.hpp"
+#include "eeprom_utils.hpp"
 #include "fru_utils.hpp"
 #include "neard_dbus.hpp"
 #include "nfc.hpp"
@@ -1102,7 +1103,8 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
             offset = sections->IpmiFruOffset;
         }
 
-        if (lseek(eeprom, offset, SEEK_SET) < 0)
+        const EepromWriteResult result = writeEepromFile(eeprom, offset, fru);
+        if (result == EepromWriteResult::seekError)
         {
             lg2::error("Unable to seek to offset {OFFSET} in device: {PATH}",
                        "OFFSET", offset, "PATH", path);
@@ -1111,8 +1113,7 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
                          "Failed to seek in EEPROM device");
         }
 
-        ssize_t writtenBytes = write(eeprom, fru.data(), fru.size());
-        if (writtenBytes < 0)
+        if (result == EepromWriteResult::writeError)
         {
             lg2::error("unable to write to i2c device {PATH}", "PATH", path);
             close(eeprom);
