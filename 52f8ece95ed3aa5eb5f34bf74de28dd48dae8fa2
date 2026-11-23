@@ -70,6 +70,30 @@
       },
       "revId": "52f8ece95ed3aa5eb5f34bf74de28dd48dae8fa2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a1ac62e_2141447c",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-23T13:39:15Z",
+      "side": 1,
+      "message": "from my understanding (others may disagree) you could already drop these checks if you wanted. For example if the config has no `Exposes`, or that member is not an array, the bug is in some other piece of code.\n\nIncluding these checks is defensive programming but it means one of two things:\n\n- (persisted) configuration loading has a bug\n  which does not check these members, removes them, or overwrites them with an \n  unexpected type.\n\n- a dead code path that can never run\n\n\nBoth of these are not ideal. Unit tests exercising impossible error paths at runtime can confuse people about the actual contents of these data structures.\n\nYou might get some comments from AI-powered reviewers that these checks should be done, but consider what we accept with those checks:\n\n- redundant check for existence (which should have been done during configuration loading)\n- redundant check for type (which should have been done during configuration loading)\n- extra error log (which will never print)\n- extra code path (which will never run)\n\nIt\u0027s a tough call between defensive programming and leaving out dead code.\nWhich is why i would prioritize 95876 or similar changes which migrate us away from `nlohmann::json` for the live configuration structure so that we do not have these problems anymore.\n\ni will try to take a look at this change and make some comments to avoid stalling the entire review on a data structure migration effort.",
+      "parentUuid": "4dbf28a0_1a77564b",
+      "range": {
+        "startLine": 606,
+        "startChar": 4,
+        "endLine": 619,
+        "endChar": 9
+      },
+      "revId": "52f8ece95ed3aa5eb5f34bf74de28dd48dae8fa2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
