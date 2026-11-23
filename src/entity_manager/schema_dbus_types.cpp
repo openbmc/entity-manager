@@ -6,6 +6,7 @@
 
 #include <cmath>
 #include <fstream>
+#include <functional>
 #include <limits>
 #include <system_error>
 #include <type_traits>
@@ -13,6 +14,11 @@
 
 namespace schema_dbus_types
 {
+
+std::string recordInterface(std::string_view recordType)
+{
+    return std::string("xyz.openbmc_project.Configuration.").append(recordType);
+}
 
 // The most "$ref"s followed for one property, which also stops references
 // that lead back to themselves.
@@ -73,32 +79,33 @@ static std::optional<Definition> resolveRef(
     }
 }
 
-// The definition giving a property's "x-dbus-type", following a chain of
-// "$ref"s up to maxRefDepth long.
-static const nlohmann::json* findDBusTypeDefinition(
+// The first definition along a chain of "$ref"s up to maxRefDepth long,
+// starting at the property itself, that matches.
+static std::optional<Definition> followRefs(
     const nlohmann::json& property, const std::filesystem::path& schemaName,
-    const Schemas& schemas)
+    const Schemas& schemas,
+    const std::function<bool(const nlohmann::json&)>& matches)
 {
     Definition definition{&property, schemaName};
     for (int depth = 0;; depth++)
     {
         if (!definition.node->is_object())
         {
-            return nullptr;
+            return std::nullopt;
         }
-        if (definition.node->contains("x-dbus-type"))
+        if (matches(*definition.node))
         {
-            return definition.node;
+            return definition;
         }
         if (depth == maxRefDepth)
         {
-            return nullptr;
+            return std::nullopt;
         }
         std::optional<Definition> next =
             resolveRef(*definition.node, definition.schemaName, schemas);
         if (!next)
         {
-            return nullptr;
+            return std::nullopt;
         }
         definition = std::move(*next);
     }
@@ -177,6 +184,59 @@ SchemaDBusTypes::SchemaDBusTypes(const std::filesystem::path& schemaDirectory)
     }
 }
 
+// The properties of a definition whose schema names their D-Bus type.
+static SchemaDBusTypes::PropertyTypes propertyTypes(
+    const nlohmann::json& properties, const std::filesystem::path& schemaName,
+    const Schemas& schemas)
+{
+    SchemaDBusTypes::PropertyTypes typed;
+    for (const auto& [name, property] : properties.items())
+    {
+        std::optional<Definition> resolved = followRefs(
+            property, schemaName, schemas, [](const nlohmann::json& node) {
+                return node.contains("x-dbus-type");
+            });
+        if (!resolved)
+        {
+            continue;
+        }
+        const nlohmann::json& dbusType = resolved->node->at("x-dbus-type");
+        if (!dbusType.is_string())
+        {
+            continue;
+        }
+        if (!isKnownDBusType(dbusType.get_ref<const std::string&>()))
+        {
+            // Rejected here rather than when every value fails to convert,
+            // which would leave out every interface of the definition.
+            lg2::error(
+                "Schema {SCHEMA} names unknown D-Bus type {DBUS_TYPE} for property {PROPERTY}, ignoring it",
+                "SCHEMA", schemaName, "DBUS_TYPE", dbusType.get<std::string>(),
+                "PROPERTY", name);
+            continue;
+        }
+        typed.insert_or_assign(name, dbusType.get<std::string>());
+    }
+    return typed;
+}
+
+// The definition of a board property named after the D-Bus interface it is
+// published as, such as xyz.openbmc_project.Inventory.Item.Drive.
+static std::optional<Definition> interfaceDefinition(
+    const std::string& name, const nlohmann::json& property,
+    const std::filesystem::path& schemaName, const Schemas& schemas)
+{
+    if (!name.starts_with("xyz.openbmc_project."))
+    {
+        return std::nullopt;
+    }
+    return followRefs(
+        property, schemaName, schemas, [](const nlohmann::json& node) {
+            auto properties = node.find("properties");
+            return properties != node.end() && properties->is_object();
+        });
+}
+
 void SchemaDBusTypes::addSchema(const nlohmann::json& schema,
                                 const std::filesystem::path& schemaName,
                                 const Schemas& schemas)
@@ -198,55 +258,64 @@ void SchemaDBusTypes::addSchema(const nlohmann::json& schema,
         {
             continue;
         }
+
         const std::vector<std::string> recordTypeNames =
             recordTypes(*properties);
-        if (recordTypeNames.empty())
+        if (!recordTypeNames.empty())
         {
-            continue;
+            const PropertyTypes recordProperties =
+                propertyTypes(*properties, schemaName, schemas);
+            for (const std::string& type : recordTypeNames)
+            {
+                add(recordInterface(type), recordProperties);
+            }
         }
 
         for (const auto& [name, property] : properties->items())
         {
-            const nlohmann::json* resolved =
-                findDBusTypeDefinition(property, schemaName, schemas);
-            if (resolved == nullptr)
+            std::optional<Definition> interface =
+                interfaceDefinition(name, property, schemaName, schemas);
+            if (!interface)
             {
                 continue;
             }
-            auto dbusType = resolved->find("x-dbus-type");
-            if (dbusType == resolved->end() || !dbusType->is_string())
-            {
-                continue;
-            }
-            if (!isKnownDBusType(dbusType->get_ref<const std::string&>()))
-            {
-                // Rejected here rather than when every value fails to
-                // convert, which would leave out every record of the type.
-                lg2::error(
-                    "Schema {SCHEMA} names unknown D-Bus type {DBUS_TYPE} for property {PROPERTY}, ignoring it",
-                    "SCHEMA", schemaName, "DBUS_TYPE",
-                    dbusType->get<std::string>(), "PROPERTY", name);
-                continue;
-            }
-            for (const std::string& type : recordTypeNames)
-            {
-                types[type].insert_or_assign(name,
-                                             dbusType->get<std::string>());
-            }
+            add(name, propertyTypes(interface->node->at("properties"),
+                                    interface->schemaName, schemas));
+        }
+    }
+}
+
+void SchemaDBusTypes::add(const std::string& interface,
+                          const PropertyTypes& properties)
+{
+    if (properties.empty())
+    {
+        return;
+    }
+    PropertyTypes& known = types[interface];
+    for (const auto& [property, dbusType] : properties)
+    {
+        auto [it, inserted] = known.try_emplace(property, dbusType);
+        if (!inserted && it->second != dbusType)
+        {
+            lg2::error(
+                "Schemas name both {FIRST} and {SECOND} as the D-Bus type of {INTF} property {PROPERTY}, using {FIRST}",
+                "FIRST", it->second, "SECOND", dbusType, "INTF", interface,
+                "PROPERTY", property);
         }
     }
 }
 
 std::optional<std::string_view> SchemaDBusTypes::find(
-    std::string_view recordType, std::string_view property) const
+    std::string_view interface, std::string_view property) const
 {
-    auto record = types.find(recordType);
-    if (record == types.end())
+    auto properties = types.find(interface);
+    if (properties == types.end())
     {
         return std::nullopt;
     }
-    auto dbusType = record->second.find(property);
-    if (dbusType == record->second.end())
+    auto dbusType = properties->second.find(property);
+    if (dbusType == properties->second.end())
     {
         return std::nullopt;
     }

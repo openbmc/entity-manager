@@ -262,27 +262,15 @@ static void populateInterfacePropertyFromJson(
 
 std::optional<EMDBusInterface::SchemaTypedValues>
     EMDBusInterface::convertSchemaTypes(
-        const nlohmann::json::object_t& record) const
+        std::string_view interface, const nlohmann::json::object_t& dict) const
 {
-    // A record's schema can name the D-Bus type a property is published as,
-    // which its type in the configuration does not always say.
+    // A schema can name the D-Bus type a property is published as, which its
+    // type in the configuration does not always say.
     SchemaTypedValues values;
-    auto typeIt = record.find("Type");
-    if (typeIt == record.end())
-    {
-        return values;
-    }
-    const std::string* recordType =
-        typeIt->second.get_ptr<const std::string*>();
-    if (recordType == nullptr)
-    {
-        return values;
-    }
-
-    for (const auto& [key, value] : record)
+    for (const auto& [key, value] : dict)
     {
         std::optional<std::string_view> dbusType =
-            schemaDBusTypes.find(*recordType, key);
+            schemaDBusTypes.find(interface, key);
         if (!dbusType)
         {
             continue;
@@ -292,8 +280,8 @@ std::optional<EMDBusInterface::SchemaTypedValues>
         if (!dbusValue)
         {
             lg2::error(
-                "{TYPE} property {KEY} value {VALUE} cannot be published as {DBUS_TYPE}",
-                "TYPE", *recordType, "KEY", key, "VALUE", value.dump(),
+                "{INTF} property {KEY} value {VALUE} cannot be published as {DBUS_TYPE}",
+                "INTF", interface, "KEY", key, "VALUE", value.dump(),
                 "DBUS_TYPE", *dbusType);
             return std::nullopt;
         }
@@ -307,12 +295,15 @@ void EMDBusInterface::populateInterfaceFromJson(
     nlohmann::json& systemConfiguration, const ConfigPointer& configPtr,
     std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
     const nlohmann::json::object_t& dict,
+    std::optional<std::string_view> schemaInterface,
     sdbusplus::asio::PropertyPermission permission)
 {
     // Leave out the whole interface if a property cannot be published as the
     // type its schema names, so that consumers never see the interface with a
     // property missing or of the wrong type.
-    std::optional<SchemaTypedValues> dbusValues = convertSchemaTypes(dict);
+    std::optional<SchemaTypedValues> dbusValues =
+        schemaInterface ? convertSchemaTypes(*schemaInterface, dict)
+                        : SchemaTypedValues{};
     if (!dbusValues)
     {
         lg2::error("Leaving out {INTF} at {PATH}", "INTF",
@@ -490,9 +481,11 @@ void EMDBusInterface::addObjectJson(
         throw std::invalid_argument("Type and Name must be a string.");
     }
 
+    const std::string recordIface = schema_dbus_types::recordInterface(*type);
+
     // Checked before the record is stored, so that a record that could not
     // be published is rejected rather than saved and then left out.
-    if (!convertSchemaTypes(newData))
+    if (!convertSchemaTypes(recordIface, newData))
     {
         throw std::invalid_argument(
             "A property cannot be published as the D-Bus type its schema names");
@@ -519,14 +512,12 @@ void EMDBusInterface::addObjectJson(
     std::string dbusName = dbus_util::sanitizeForDBusPathSegment(*name);
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> interface =
-        createInterface(path / dbusName,
-                        "xyz.openbmc_project.Configuration." + *type, board,
-                        true);
+        createInterface(path / dbusName, recordIface, board, true);
     // permission is read-write, as since we just created it, must be
     // runtime modifiable
     populateInterfaceFromJson(
         systemConfiguration, ConfigPointer(boardId, lastIndex), interface,
-        newData, sdbusplus::asio::PropertyPermission::readWrite);
+        newData, recordIface, sdbusplus::asio::PropertyPermission::readWrite);
 
     if (interface->is_initialized())
     {
