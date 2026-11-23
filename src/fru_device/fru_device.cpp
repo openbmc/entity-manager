@@ -58,7 +58,8 @@ namespace fs = std::filesystem;
 constexpr size_t maxFruSize = 512;
 constexpr size_t busTimeoutSeconds = 10;
 
-constexpr const char* blocklistPath = PACKAGE_DIR "blacklist.json";
+constexpr const char* blockListPath = PACKAGE_DIR "block-list.json";
+constexpr const char* legacyBlocklistPath = PACKAGE_DIR "blacklist.json";
 
 const static constexpr uint32_t baseboardFruBus = 0;
 const static constexpr uint8_t baseboardFruAddress = 0;
@@ -690,13 +691,15 @@ AddressBlocklistResult loadAddressBlocklist(const nlohmann::json& data)
 
 // once the bus blocklist is made non global,
 // return it here too.
+// Loads a single block-list file, merging its contents into the global
+// busBlocklist and returning the global addresses to skip.
 std::set<size_t> loadBlocklist(const char* path)
 {
     std::ifstream blocklistStream(path);
     if (!blocklistStream.good())
     {
         // File is optional.
-        lg2::error("Cannot open blocklist file.\n");
+        lg2::error("Cannot open blocklist file {PATH}.\n", "PATH", path);
         return {};
     }
 
@@ -705,7 +708,8 @@ std::set<size_t> loadBlocklist(const char* path)
     if (data.is_discarded())
     {
         lg2::error(
-            "Illegal blocklist file detected, cannot validate JSON, exiting");
+            "Illegal blocklist file {PATH} detected, cannot validate JSON, exiting",
+            "PATH", path);
         std::exit(EXIT_FAILURE);
     }
 
@@ -714,7 +718,8 @@ std::set<size_t> loadBlocklist(const char* path)
     // such as specific addresses or ranges.
     if (data.type() != nlohmann::json::value_t::object)
     {
-        lg2::error("Illegal blocklist, expected to read dictionary");
+        lg2::error("Illegal blocklist {PATH}, expected to read dictionary",
+                   "PATH", path);
         std::exit(EXIT_FAILURE);
     }
 
@@ -726,7 +731,8 @@ std::set<size_t> loadBlocklist(const char* path)
         if (buses.type() != nlohmann::json::value_t::array)
         {
             // Buses field present but invalid, therefore this is an error.
-            lg2::error("Invalid contents for blocklist buses field");
+            lg2::error("Invalid contents for blocklist buses field in {PATH}",
+                       "PATH", path);
             std::exit(EXIT_FAILURE);
         }
 
@@ -777,6 +783,20 @@ std::set<size_t> loadBlocklist(const char* path)
     }
 
     return addressBlocklist;
+}
+
+// Load the block-list, preferring the modern "block-list.json" by default.
+// The legacy "blacklist.json" is only used as a fallback when the modern
+// file is absent, preserving backward compatibility with existing
+// deployments and downstream overlays.
+std::set<size_t> loadBlocklists(const char* modernPath, const char* legacyPath)
+{
+    std::error_code ec;
+    if (fs::exists(modernPath, ec) && !ec)
+    {
+        return loadBlocklist(modernPath);
+    }
+    return loadBlocklist(legacyPath);
 }
 
 static void findI2CDevices(const std::vector<fs::path>& i2cBuses,
@@ -1549,9 +1569,12 @@ int main()
     }
 
     // check for and load blocklist with initial buses.
+    // The modern "block-list.json" is used by default, falling back to
+    // the legacy "blacklist.json" only when the modern file is absent.
     // once busBlocklist is moved to be non global,
     // add it here
-    fruDetails.addressBlocklist = loadBlocklist(blocklistPath);
+    fruDetails.addressBlocklist =
+        loadBlocklists(blockListPath, legacyBlocklistPath);
 
     systemBus->request_name("xyz.openbmc_project.FruDevice");
 

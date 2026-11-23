@@ -76,7 +76,7 @@ else
     valijson = valijson.as_system('system')
 endif
 
-install_data('blacklist.json')
+install_data('block-list.json')
 
 # this creates the 'configs' variable
 subdir('configurations')
