@@ -14,6 +14,7 @@ cpp_args_fd += [
 executable(
     'fru-device',
     'fru_device.cpp',
+    'eeprom_utils.cpp',
     'fru_reader.cpp',
     'fru_utils.cpp',
     'gzip_utils.cpp',

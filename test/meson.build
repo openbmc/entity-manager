@@ -24,6 +24,7 @@ test(
         'test_fru_utils',
         'fru_device/test_fru-utils.cpp',
         'fru_device/test_gzip-utils.cpp',
+        '../src/fru_device/eeprom_utils.cpp',
         '../src/fru_device/fru_utils.cpp',
         '../src/fru_device/fru_reader.cpp',
         '../src/fru_device/gzip_utils.cpp',
@@ -39,6 +40,7 @@ test(
         ],
         link_with: utils_lib,
         include_directories: test_include_dir,
+        link_args: ['-Wl,--wrap=write', '-Wl,--wrap=fstat64'],
     ),
 )
 

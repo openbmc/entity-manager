@@ -17,8 +17,10 @@
 #include <iomanip>
 #include <numeric>
 #include <set>
+#include <span>
 #include <sstream>
 #include <string>
+#include <utility>
 #include <vector>
 
 extern "C"
