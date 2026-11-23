@@ -34,6 +34,24 @@
       "parentUuid": "d704b63f_5e9722c9",
       "revId": "828e651b7bd13f7f69ab69d91f59400f27b1069b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bd0f52c_e27415f1",
+        "filename": "configurations/meta/ventura2/ventura2_valve.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-11-23T23:56:08Z",
+      "side": 1,
+      "message": "For current use case, profiles seems like a better option to define this as timeout value is a property of a particular model. So, lets define this there instead of EM.\n\nPS: In future we can revisit if use case changes depending on platform deployment.",
+      "parentUuid": "c99c1169_d9295e35",
+      "revId": "828e651b7bd13f7f69ab69d91f59400f27b1069b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
