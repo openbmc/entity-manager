@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e82b7e6a_626700b5",
+        "filename": "schemas/platform/mctp.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-23T09:58:31Z",
+      "side": 1,
+      "message": "`type` field is defined by json-schema and used to validate configuration.\n\n`x-dbus-type` is loaded by entity-manager at runtime to know which type to publish on D-Bus.\n\nFor example if we have field `Address` it may be type `\"type\": \"string\"` and `\"x-dbus-type\": \"uint64\"`\n\nsuch that we can use template vars like `\"Address\": \"$bus + 1\"`\n\neven though the address is an unsigned integer at runtime.\n\nsee\nhttps://json-schema.org/draft/2020-12/json-schema-validation#name-type\n\nhttps://dbus.freedesktop.org/doc/dbus-specification.html#basic-types\n\nfor further information on this topic.",
+      "parentUuid": "2bd53a2c_49a88eaa",
+      "revId": "e5f6e51b72dfb1cbfa53dd6353750f05697f291c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e577f3c8_76a5a185",
         "filename": "schemas/platform/mctp.json",
         "patchSetId": 5
