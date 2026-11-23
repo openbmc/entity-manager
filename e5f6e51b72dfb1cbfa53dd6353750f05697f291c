@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f82fd84_d02d2cc3",
+        "filename": "schemas/platform/mctp.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1003195
+      },
+      "writtenOn": "2026-11-23T06:14:08Z",
+      "side": 1,
+      "message": "Could the configuration or consumer validate the pool range as a whole? For example, StaticEid: 254, BridgePoolStartEid: 0, and BridgePoolSize: 1 pass the build validator, but automatic selection starts the pool at reserved EID 255.",
+      "revId": "e5f6e51b72dfb1cbfa53dd6353750f05697f291c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a384e736_e83ff730",
+        "filename": "schemas/platform/mctp.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1003195
+      },
+      "writtenOn": "2026-11-23T06:14:08Z",
+      "side": 1,
+      "message": "Could we express this requirement using constructs supported by both validators? The build validator rejects a partial set, but the schema declares draft 7, where dependentRequired is not supported. I also checked the schema fragment with Valijson’s draft-7 parser, and it accepts a partial set.",
+      "revId": "e5f6e51b72dfb1cbfa53dd6353750f05697f291c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
