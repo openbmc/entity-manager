@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "38cb5754_8a773366",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002522
+      },
+      "writtenOn": "2026-11-23T08:51:37Z",
+      "side": 1,
+      "message": "Done. I updated the commit message to describe the Cedar Falls and Ruby Falls boards and what the configs are based on.",
+      "parentUuid": "91de0992_306aee6e",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 0
+      },
+      "revId": "d4970f6339b9c1d540d7d03b174f6e0d3c5700e0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "881cce29_4f8bcf9f",
@@ -41,6 +65,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "542b9474_f291e01f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002522
+      },
+      "writtenOn": "2026-11-23T08:51:37Z",
+      "side": 1,
+      "message": "Yes, this is intentional. There is no fan table for these boards yet. Reusing the YV5 T2 values could lower the fan speed, so I left the fan control config out for now and did not add a temporary one. I will add it once the fan table is available.",
+      "parentUuid": "881cce29_4f8bcf9f",
+      "revId": "d4970f6339b9c1d540d7d03b174f6e0d3c5700e0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3cb99ad_7b824f75",
@@ -54,6 +96,30 @@
       "writtenOn": "2026-11-23T08:30:42Z",
       "side": 1,
       "message": "The `Probe` only uses `FruDevice`, so I want to check whether anything in this config can change depending on where the board is installed.",
+      "range": {
+        "startLine": 438,
+        "startChar": 0,
+        "endLine": 438,
+        "endChar": 188
+      },
+      "revId": "d4970f6339b9c1d540d7d03b174f6e0d3c5700e0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62ee145c_ccf9a06f",
+        "filename": "configurations/meta/yv5/yosemite5_rubyfalls_cxl_ddr5_board_vr_mps.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1002522
+      },
+      "writtenOn": "2026-11-23T08:51:37Z",
+      "side": 1,
+      "message": "On this platform, the CXL board has only one installation location, so the buses in this config are fixed and do not depend on where the board is installed. The CXL present pin is not finalized yet, so the probe only uses FruDevice for now. I will add a DevicePresence probe once the present pin is finalized.",
+      "parentUuid": "e3cb99ad_7b824f75",
       "range": {
         "startLine": 438,
         "startChar": 0,
