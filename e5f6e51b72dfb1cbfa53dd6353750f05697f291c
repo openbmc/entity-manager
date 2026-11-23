@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d87ad4a8_32f3b4b0",
+        "filename": "schemas/platform/mctp.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-23T09:24:51Z",
+      "side": 1,
+      "message": "@mayank.metha@intel.com can you explain further?\n\nIf there is no type annotation, how is entity-manager supposed to know which type it should publish on D-Bus?\n\nA value like `8` can be represented by various types.\n\n`x-dbus-type` was specifically created to solve this issue.",
+      "parentUuid": "8c85ff14_537c7978",
+      "revId": "e5f6e51b72dfb1cbfa53dd6353750f05697f291c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e577f3c8_76a5a185",
         "filename": "schemas/platform/mctp.json",
         "patchSetId": 5
