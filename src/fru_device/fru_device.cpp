@@ -4,6 +4,7 @@
 #include "fru_device.hpp"
 
 #include "../utils.hpp"
+#include "eeprom_utils.hpp"
 #include "fru_utils.hpp"
 #include "neard_dbus.hpp"
 #include "nfc.hpp"
@@ -1073,13 +1074,14 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
 
     if (hasEepromFile(bus, address))
     {
-        auto path = getEepromPath(bus, address);
+        const std::filesystem::path path = getEepromPath(bus, address);
         off_t offset = 0;
 
         int eeprom = open(path.c_str(), O_RDWR | O_CLOEXEC);
         if (eeprom < 0)
         {
-            lg2::error("unable to open i2c device {PATH}", "PATH", path);
+            lg2::error("unable to open i2c device {PATH}", "PATH",
+                       path.string());
             throw Failed("METHOD", "WriteFru", "DETAILS",
                          "Failed to open EEPROM device");
             return false;
@@ -1102,19 +1104,17 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
             offset = sections->IpmiFruOffset;
         }
 
-        if (lseek(eeprom, offset, SEEK_SET) < 0)
+        const EepromWriteResult result =
+            writeEepromFile(eeprom, path, offset, fru);
+        if (result == EepromWriteResult::seekError)
         {
-            lg2::error("Unable to seek to offset {OFFSET} in device: {PATH}",
-                       "OFFSET", offset, "PATH", path);
             close(eeprom);
             throw Failed("METHOD", "WriteFru", "DETAILS",
                          "Failed to seek in EEPROM device");
         }
 
-        ssize_t writtenBytes = write(eeprom, fru.data(), fru.size());
-        if (writtenBytes < 0)
+        if (result == EepromWriteResult::writeError)
         {
-            lg2::error("unable to write to i2c device {PATH}", "PATH", path);
             close(eeprom);
             throw Failed("METHOD", "WriteFru", "DETAILS",
                          "Failed to write to EEPROM device");
