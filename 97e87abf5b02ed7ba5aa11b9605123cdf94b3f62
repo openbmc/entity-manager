@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c188a559_341449d5",
+        "filename": "configurations/micron/7550.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1002711
+      },
+      "writtenOn": "2026-11-23T07:42:39Z",
+      "side": 1,
+      "message": "@alexander.hansen@9elements.com I will change to following. If you have suggestion. Please let me know. \n```\n    \"Name\": \"SSD 7550 $index\",\n```",
+      "parentUuid": "9494a25f_9cd54a55",
+      "revId": "97e87abf5b02ed7ba5aa11b9605123cdf94b3f62",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "77ab12fb_dbe76f21",
@@ -31,6 +49,30 @@
       "writtenOn": "2026-11-20T15:44:52Z",
       "side": 1,
       "message": "PDI specifies a `Type` property here, can you provide it ?",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 2
+      },
+      "revId": "97e87abf5b02ed7ba5aa11b9605123cdf94b3f62",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25d9fd92_f9d01475",
+        "filename": "configurations/micron/7550.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1002711
+      },
+      "writtenOn": "2026-11-23T07:42:39Z",
+      "side": 1,
+      "message": "Hi @alexander.hansen@9elements.com  I will modify like this.\n```suggestion\n    \"xyz.openbmc_project.Inventory.Item.Chassis\": {\n        \"Type\": \"Module\"\n    }\n```",
+      "parentUuid": "77ab12fb_dbe76f21",
       "range": {
         "startLine": 25,
         "startChar": 0,
