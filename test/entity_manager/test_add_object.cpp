@@ -3,6 +3,7 @@
 
 #include "entity_manager/config_pointer.hpp"
 #include "entity_manager/dbus_interface.hpp"
+#include "entity_manager/schema_dbus_types.hpp"
 #include "entity_manager/utils.hpp"
 
 #include <boost/asio/io_context.hpp>
@@ -16,7 +17,9 @@
 #include <filesystem>
 #include <fstream>
 #include <memory>
+#include <optional>
 #include <string>
+#include <string_view>
 #include <variant>
 #include <vector>
 
@@ -304,15 +307,15 @@ class PublishRecordTest : public AddObjectTest
         sysConfig[kBoardId] = {{"Name", kBoardId},
                                {"Type", "Board"},
                                {"Exposes", nlohmann::json::array({record})}};
-        auto recordIface = iface->createInterface(
+        const std::string recordIface = schema_dbus_types::recordInterface(
+            record.at("Type").get<std::string>());
+        auto published = iface->createInterface(
             sdbusplus::object_path(
                 "/xyz/openbmc_project/inventory/system/board/TestBoard/Mcu"),
-            "xyz.openbmc_project.Configuration." +
-                record.at("Type").get<std::string>(),
-            kBoardId);
+            recordIface, kBoardId);
         iface->populateInterfaceFromJson(sysConfig, ConfigPointer(kBoardId, 0),
-                                         recordIface, record);
-        return recordIface;
+                                         published, record, recordIface);
+        return published;
     }
 };
 
@@ -374,4 +377,97 @@ TEST_F(PublishRecordTest, AddObjectRejectsUnconvertibleRecord)
 
     EXPECT_TRUE(sysConfig[kBoardId]["Exposes"].empty());
     EXPECT_FALSE(std::filesystem::exists(tmpDir / "system.json"));
+}
+
+// Publishes with schemas written for the test rather than the ones installed.
+class SchemaInterfaceTest : public AddObjectTest
+{
+  protected:
+    nlohmann::json sysConfig;
+    std::unique_ptr<TestableEMDBusInterface> typed;
+
+    void SetUp() override
+    {
+        AddObjectTest::SetUp();
+        const std::filesystem::path schemaDir = tmpDir / "schemas";
+        std::filesystem::create_directories(schemaDir);
+        std::ofstream(schemaDir / "global.json") << R"({
+            "$defs": {
+                "Board": {
+                    "properties": {
+                        "xyz.openbmc_project.Inventory.Item.Drive": {
+                            "properties": {
+                                "Life": {"type": "number", "x-dbus-type": "byte"}
+                            }
+                        },
+                        "Type": {"enum": ["Board"]}
+                    }
+                },
+                "Target": {
+                    "properties": {
+                        "Address": {"type": "string", "x-dbus-type": "uint64"},
+                        "Type": {"const": "BMC"}
+                    }
+                }
+            }
+        })";
+        typed = std::make_unique<TestableEMDBusInterface>(
+            io, *objServer, schemaDir, *configCache);
+        sysConfig[kBoardId] = {{"Name", kBoardId}, {"Type", "Board"}};
+    }
+
+    std::shared_ptr<sdbusplus::asio::dbus_interface> publish(
+        const std::string& name, const nlohmann::json::object_t& dict,
+        std::optional<std::string_view> schemaInterface)
+    {
+        auto published = typed->createInterface(
+            sdbusplus::object_path(
+                "/xyz/openbmc_project/inventory/system/board/TestBoard"),
+            name, kBoardId);
+        typed->populateInterfaceFromJson(sysConfig, ConfigPointer(kBoardId, 0),
+                                         published, dict, schemaInterface);
+        return published;
+    }
+};
+
+TEST_F(SchemaInterfaceTest, PublishesBoardInterfaceWithItsTypes)
+{
+    const std::string drive = "xyz.openbmc_project.Inventory.Item.Drive";
+    // The Type of the interface is one of its own properties, and is not
+    // taken as the Type of a record.
+    auto published = publish(drive, {{"Life", 99}, {"Type", "BMC"}}, drive);
+
+    ASSERT_TRUE(published->is_initialized());
+    EXPECT_FALSE((published->set_property<uint8_t, true>("Life", 99)));
+}
+
+TEST_F(SchemaInterfaceTest, LeavesOutBoardInterfaceThatCannotBeConverted)
+{
+    const std::string drive = "xyz.openbmc_project.Inventory.Item.Drive";
+    auto published = publish(drive, {{"Life", 300}}, drive);
+
+    EXPECT_FALSE(published->is_initialized());
+}
+
+TEST_F(SchemaInterfaceTest, PublishesRecordTypesOnAnotherInterface)
+{
+    // A BMC record is also published on Inventory.Item.Bmc, with the types
+    // of its own record.
+    auto published =
+        publish("xyz.openbmc_project.Inventory.Item.Bmc",
+                {{"Name", "Bmc"}, {"Type", "BMC"}, {"Address", "0x10"}},
+                schema_dbus_types::recordInterface("BMC"));
+
+    ASSERT_TRUE(published->is_initialized());
+    EXPECT_FALSE((published->set_property<uint64_t, true>("Address", 16)));
+}
+
+TEST_F(SchemaInterfaceTest, LeavesNestedObjectsUnconverted)
+{
+    auto published = publish("xyz.openbmc_project.Configuration.BMC.Nested",
+                             {{"Address", "0x10"}}, std::nullopt);
+
+    ASSERT_TRUE(published->is_initialized());
+    EXPECT_FALSE(
+        (published->set_property<std::string, true>("Address", "0x10")));
 }

@@ -18,6 +18,7 @@
 #include <memory>
 #include <optional>
 #include <string>
+#include <string_view>
 #include <vector>
 
 namespace dbus_interface
@@ -48,21 +49,24 @@ class EMDBusInterface
                                nlohmann::json& systemConfiguration,
                                const std::string& board);
 
+    // schemaInterface names the interface whose schema types the properties
+    // of dict are published as, or is std::nullopt for none.
     void populateInterfaceFromJson(
         nlohmann::json& systemConfiguration, const ConfigPointer& configPtr,
         std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
         const nlohmann::json::object_t& dict,
+        std::optional<std::string_view> schemaInterface,
         sdbusplus::asio::PropertyPermission permission =
             sdbusplus::asio::PropertyPermission::readOnly);
 
     using SchemaTypedValues =
         std::flat_map<std::string, schema_dbus_types::DBusValue, std::less<>>;
 
-    // The properties of a record whose schema names their D-Bus type,
-    // converted to it, or std::nullopt with an error logged if one of them
-    // cannot be.
+    // The properties of dict, to be published on interface, whose schema
+    // names their D-Bus type, converted to it, or std::nullopt with an error
+    // logged if one of them cannot be.
     std::optional<SchemaTypedValues> convertSchemaTypes(
-        const nlohmann::json::object_t& record) const;
+        std::string_view interface, const nlohmann::json::object_t& dict) const;
 
     void createDeleteObjectMethod(
         const ConfigPointer& configPtr,

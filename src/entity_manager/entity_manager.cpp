@@ -239,8 +239,17 @@ void EntityManager::postBoardToDBus(
 
             dbus_interface.populateInterfaceFromJson(
                 systemConfiguration, ConfigPointer(configId, propName), iface,
-                *propValueObj);
+                *propValueObj, propName);
         }
+    }
+
+    // The type interface is what consumers find the configuration by, so it
+    // is still published, without properties, if its own were left out.
+    if (typeIface != nullptr && !typeIface->is_initialized())
+    {
+        lg2::error("Publishing {INTF} of {NAME} without its properties", "INTF",
+                   invItemIntf, "NAME", configNameOrig);
+        dbus_interface::tryIfaceInitialize(typeIface);
     }
 
     if (typeIface == nullptr && !invItemIntf.empty())
@@ -328,7 +337,9 @@ std::optional<sdbusplus::object_path> EntityManager::postExposesRecordsToDBus(
     // The interfaces of the record's nested objects are published before the
     // record's own, so check the record first and leave out all of them if it
     // cannot be published.
-    if (!dbus_interface.convertSchemaTypes(item))
+    const std::string recordIface =
+        schema_dbus_types::recordInterface(itemType);
+    if (!dbus_interface.convertSchemaTypes(recordIface, item))
     {
         lg2::error("Leaving out {NAME} of {BOARD}", "NAME", itemName, "BOARD",
                    configNameOrig);
@@ -344,7 +355,7 @@ std::optional<sdbusplus::object_path> EntityManager::postExposesRecordsToDBus(
                     interface,
                 configNameOrig);
         dbus_interface.populateInterfaceFromJson(
-            systemConfiguration, configPointerPath, bmcIface, item,
+            systemConfiguration, configPointerPath, bmcIface, item, recordIface,
             getPermission(itemType));
     }
     else if (itemType == "System")
@@ -357,7 +368,7 @@ std::optional<sdbusplus::object_path> EntityManager::postExposesRecordsToDBus(
                 configNameOrig);
         dbus_interface.populateInterfaceFromJson(
             systemConfiguration, configPointerPath, systemIface, item,
-            getPermission(itemType));
+            recordIface, getPermission(itemType));
     }
 
     for (const auto& [name, config] : item)
@@ -372,12 +383,10 @@ std::optional<sdbusplus::object_path> EntityManager::postExposesRecordsToDBus(
     }
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> itemIface =
-        dbus_interface.createInterface(
-            ifacePath, "xyz.openbmc_project.Configuration." + itemType,
-            configNameOrig);
+        dbus_interface.createInterface(ifacePath, recordIface, configNameOrig);
 
     dbus_interface.populateInterfaceFromJson(
-        systemConfiguration, configPointerPath, itemIface, item,
+        systemConfiguration, configPointerPath, itemIface, item, recordIface,
         getPermission(itemType));
 
     topology.addBoard(objectPath, configType, item);
@@ -406,7 +415,7 @@ bool EntityManager::postConfigurationRecord(
 
         dbus_interface.populateInterfaceFromJson(
             systemConfiguration, configPtr, objectIface, *configObj,
-            getPermission(name));
+            std::nullopt, getPermission(name));
     }
     else if (config.type() == nlohmann::json::value_t::array)
     {
@@ -452,7 +461,7 @@ bool EntityManager::postConfigurationRecord(
 
             dbus_interface.populateInterfaceFromJson(
                 systemConfiguration, configPtr.withArrayIndex(index),
-                objectIface, *arrayItemObj, getPermission(name));
+                objectIface, *arrayItemObj, std::nullopt, getPermission(name));
             index++;
         }
     }

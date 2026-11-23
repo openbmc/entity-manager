@@ -26,11 +26,16 @@ using DBusValue =
 using Schemas =
     std::flat_map<std::filesystem::path, nlohmann::json, std::less<>>;
 
-// The D-Bus types the schemas name for record properties with
-// "x-dbus-type". The type a value has in a configuration file is not always
-// the type it is published as: a number is often written as a string so that
-// it can hold a template, and only the schema can say it is meant to be a
-// number.
+// The D-Bus interface a record of recordType is published on.
+std::string recordInterface(std::string_view recordType);
+
+// The D-Bus types the schemas name with "x-dbus-type" for the properties of
+// each D-Bus interface: the interface of a record, and an interface such as
+// xyz.openbmc_project.Inventory.Item.Drive that a board configuration
+// publishes from a property of that name. The type a value has in a
+// configuration file is not always the type it is published as: a number is
+// often written as a string so that it can hold a template, and only the
+// schema can say it is meant to be a number.
 class SchemaDBusTypes
 {
   public:
@@ -40,22 +45,24 @@ class SchemaDBusTypes
     // contributes nothing, so its records are published as before.
     explicit SchemaDBusTypes(const std::filesystem::path& schemaDirectory);
 
-    // Adds the record definitions of one schema. schemas is used to resolve
-    // a property that refers to another definition.
+    // Adds the record and interface definitions of one schema. schemas is
+    // used to resolve a property that refers to another definition.
     void addSchema(const nlohmann::json& schema,
                    const std::filesystem::path& schemaName,
                    const Schemas& schemas);
 
-    // The D-Bus type a property of a record of recordType is published as,
-    // if its schema names one.
-    std::optional<std::string_view> find(std::string_view recordType,
+    // The D-Bus type a property of interface is published as, if its schema
+    // names one.
+    std::optional<std::string_view> find(std::string_view interface,
                                          std::string_view property) const;
 
+    // The D-Bus type of each property that names one.
+    using PropertyTypes = std::flat_map<std::string, std::string, std::less<>>;
+
   private:
-    std::flat_map<std::string,
-                  std::flat_map<std::string, std::string, std::less<>>,
-                  std::less<>>
-        types;
+    void add(const std::string& interface, const PropertyTypes& properties);
+
+    std::flat_map<std::string, PropertyTypes, std::less<>> types;
 };
 
 // Whether dbusType is a type x-dbus-type can name, such as "uint64" or

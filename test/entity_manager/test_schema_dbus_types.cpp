@@ -13,6 +13,7 @@
 #include <gtest/gtest.h>
 
 using schema_dbus_types::DBusValue;
+using schema_dbus_types::recordInterface;
 using schema_dbus_types::SchemaDBusTypes;
 using schema_dbus_types::Schemas;
 using schema_dbus_types::toDBusValue;
@@ -121,11 +122,11 @@ TEST(SchemaDBusTypes, FindsTypesForEveryRecordTypeOfADefinition)
     SchemaDBusTypes types;
     types.addSchema(schema, "target.json", noSchemas);
 
-    EXPECT_EQ(types.find("TargetA", "Address"), "uint64");
-    EXPECT_EQ(types.find("TargetB", "Address"), "uint64");
-    EXPECT_EQ(types.find("TargetA", "Name"), std::nullopt);
-    EXPECT_EQ(types.find("Other", "Address"), std::nullopt);
-    EXPECT_EQ(types.find("Unknown", "Address"), std::nullopt);
+    EXPECT_EQ(types.find(recordInterface("TargetA"), "Address"), "uint64");
+    EXPECT_EQ(types.find(recordInterface("TargetB"), "Address"), "uint64");
+    EXPECT_EQ(types.find(recordInterface("TargetA"), "Name"), std::nullopt);
+    EXPECT_EQ(types.find(recordInterface("Other"), "Address"), std::nullopt);
+    EXPECT_EQ(types.find(recordInterface("Unknown"), "Address"), std::nullopt);
 }
 
 TEST(SchemaDBusTypes, IgnoresUnknownDBusTypes)
@@ -146,9 +147,9 @@ TEST(SchemaDBusTypes, IgnoresUnknownDBusTypes)
     SchemaDBusTypes types;
     types.addSchema(schema, "target.json", noSchemas);
 
-    EXPECT_EQ(types.find("Target", "Address"), std::nullopt);
-    EXPECT_EQ(types.find("Target", "Flags"), std::nullopt);
-    EXPECT_EQ(types.find("Target", "Bus"), "uint64");
+    EXPECT_EQ(types.find(recordInterface("Target"), "Address"), std::nullopt);
+    EXPECT_EQ(types.find(recordInterface("Target"), "Flags"), std::nullopt);
+    EXPECT_EQ(types.find(recordInterface("Target"), "Bus"), "uint64");
 }
 
 TEST(SchemaDBusTypes, FollowsReferencesToOtherSchemas)
@@ -185,11 +186,11 @@ TEST(SchemaDBusTypes, FollowsReferencesToOtherSchemas)
 
     const SchemaDBusTypes types(dir);
 
-    EXPECT_EQ(types.find("Target", "Address"), "array[byte]");
-    EXPECT_EQ(types.find("Target", "Bus"), "uint64");
+    EXPECT_EQ(types.find(recordInterface("Target"), "Address"), "array[byte]");
+    EXPECT_EQ(types.find(recordInterface("Target"), "Bus"), "uint64");
     // The schema next to the referring one wins over one of the same name in
     // the schema directory.
-    EXPECT_EQ(types.find("Target", "Eid"), "byte");
+    EXPECT_EQ(types.find(recordInterface("Target"), "Eid"), "byte");
 
     std::filesystem::remove_all(dir);
 }
@@ -227,10 +228,10 @@ TEST(SchemaDBusTypes, FollowsChainsOfReferences)
 
     const SchemaDBusTypes types(dir);
 
-    EXPECT_EQ(types.find("Target", "Address"), "array[byte]");
-    EXPECT_EQ(types.find("Target", "Bus"), "uint64");
+    EXPECT_EQ(types.find(recordInterface("Target"), "Address"), "array[byte]");
+    EXPECT_EQ(types.find(recordInterface("Target"), "Bus"), "uint64");
     // A reference back to itself is given up on rather than followed forever.
-    EXPECT_EQ(types.find("Target", "Loop"), std::nullopt);
+    EXPECT_EQ(types.find(recordInterface("Target"), "Loop"), std::nullopt);
 
     std::filesystem::remove_all(dir);
 }
@@ -239,5 +240,84 @@ TEST(SchemaDBusTypes, MissingDirectoryNamesNoTypes)
 {
     const SchemaDBusTypes types("/nonexistent/schemas");
 
+    EXPECT_EQ(types.find(recordInterface("Target"), "Address"), std::nullopt);
+}
+
+TEST(SchemaDBusTypes, FindsTypesForBoardInterfaces)
+{
+    const std::filesystem::path dir =
+        std::filesystem::temp_directory_path() / "test_schema_dbus_types_board";
+    std::filesystem::remove_all(dir);
+    std::filesystem::create_directories(dir);
+
+    // As in global.json and openbmc-dbus.json, a board property named after
+    // an interface refers to a definition nested below $defs.
+    std::ofstream(dir / "dbus.json") << R"({
+        "$defs": {
+            "xyz": {
+                "Drive": {
+                    "properties": {
+                        "Capacity": {"type": "number", "x-dbus-type": "uint64"},
+                        "Life": {"$ref": "#/$defs/Percent"},
+                        "Type": {"enum": ["HDD", "SSD"]}
+                    }
+                }
+            },
+            "Percent": {"type": "number", "x-dbus-type": "byte"}
+        }
+    })";
+    std::ofstream(dir / "global.json") << R"({
+        "$defs": {
+            "Board": {
+                "properties": {
+                    "xyz.openbmc_project.Inventory.Item.Drive": {
+                        "$ref": "dbus.json#/$defs/xyz/Drive"
+                    },
+                    "xyz.openbmc_project.Inventory.Item.Inline": {
+                        "properties": {
+                            "Count": {"type": "number", "x-dbus-type": "int64"}
+                        }
+                    },
+                    "Type": {"enum": ["Board"]}
+                }
+            }
+        }
+    })";
+
+    const SchemaDBusTypes types(dir);
+
+    const std::string drive = "xyz.openbmc_project.Inventory.Item.Drive";
+    EXPECT_EQ(types.find(drive, "Capacity"), "uint64");
+    EXPECT_EQ(types.find(drive, "Life"), "byte");
+    EXPECT_EQ(types.find(drive, "Type"), std::nullopt);
+    EXPECT_EQ(types.find("xyz.openbmc_project.Inventory.Item.Inline", "Count"),
+              "int64");
+    // The Type of a board property is a property like any other, not the
+    // Type of a record.
+    EXPECT_EQ(types.find(recordInterface("SSD"), "Life"), std::nullopt);
+    EXPECT_EQ(types.find(recordInterface("Board"), "Capacity"), std::nullopt);
+
+    std::filesystem::remove_all(dir);
+}
+
+TEST(SchemaDBusTypes, KeepsRecordAndInterfaceTypesApart)
+{
+    const nlohmann::json schema = nlohmann::json::parse(R"({
+        "$defs": {
+            "Target": {
+                "properties": {
+                    "Address": {"type": "string", "x-dbus-type": "uint64"},
+                    "Type": {"const": "Target"}
+                }
+            }
+        }
+    })");
+
+    SchemaDBusTypes types;
+    types.addSchema(schema, "target.json", noSchemas);
+
+    EXPECT_EQ(types.find(recordInterface("Target"), "Address"), "uint64");
+    // A record is looked up by the interface it is published on, so the
+    // bare Type names nothing.
     EXPECT_EQ(types.find("Target", "Address"), std::nullopt);
 }
