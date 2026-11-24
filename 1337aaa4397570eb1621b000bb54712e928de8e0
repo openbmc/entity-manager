@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2456ba24_a5e2bc63",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-11-24T07:28:26Z",
+      "side": 1,
+      "message": "Split it into `refreshPlatformRecord`, `withdrawPlatformRecord` and `updatePlatformRecord`.",
+      "parentUuid": "405c9053_22126982",
+      "revId": "1337aaa4397570eb1621b000bb54712e928de8e0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "10e852ba_5ebb55a3",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-11-23T13:39:15Z",
       "side": 1,
       "message": "please consider https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#f3-keep-functions-short-and-simple\n\nlet us try to keep complicated functions with triple-nested inline lambdas \u003c\u003d 60 lines.\n\nWe could attempt to extract the pre-existing inline lambda here in a preceding change to make some room.",
+      "revId": "1337aaa4397570eb1621b000bb54712e928de8e0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "719a1ef0_92f8f3c3",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 820,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-11-24T07:28:26Z",
+      "side": 1,
+      "message": "Moved the existing lambda into `onScanComplete` in https://gerrit.openbmc.org/c/openbmc/entity-manager/+/97657, so this callback is back to one lambda.",
+      "parentUuid": "10e852ba_5ebb55a3",
       "revId": "1337aaa4397570eb1621b000bb54712e928de8e0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

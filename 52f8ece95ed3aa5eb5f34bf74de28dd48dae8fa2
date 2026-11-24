@@ -94,6 +94,30 @@
       },
       "revId": "52f8ece95ed3aa5eb5f34bf74de28dd48dae8fa2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7f976c8_529aebc5",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-11-24T07:28:26Z",
+      "side": 1,
+      "message": "Dropped the `Name`, `Type` and `Exposes` checks, but kept the null slot, Type segment and Board checks since loading does not guarantee those.",
+      "parentUuid": "6a1ac62e_2141447c",
+      "range": {
+        "startLine": 606,
+        "startChar": 4,
+        "endLine": 619,
+        "endChar": 9
+      },
+      "revId": "52f8ece95ed3aa5eb5f34bf74de28dd48dae8fa2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
