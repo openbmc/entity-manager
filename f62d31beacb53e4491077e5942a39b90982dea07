@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f9bb51e_b7c4dfcd",
+        "filename": "src/entity_manager/config_pointer.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-24T17:57:52Z",
+      "side": 1,
+      "message": "There is no production use-case for it. Removed that slop alongside `TEST(ConfigPointer, writesBoardIdentity)`.\n\n`Type` cannot change at all and `Name` determines the object path and only undergoes template var replacement so there is no use-case i know of to modify these via a config pointer.\n\nThanks for finding this 👍",
+      "parentUuid": "e7f05229_943e0708",
+      "revId": "f62d31beacb53e4491077e5942a39b90982dea07",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "566a02b4_d27154cd",
@@ -31,6 +49,30 @@
       "writtenOn": "2026-11-24T07:04:47Z",
       "side": 1,
       "message": "Could `postProbeConfig` take a `std::vector\u003cstd::string\u003e` now that `probeStmt` is already one?",
+      "range": {
+        "startLine": 200,
+        "startChar": 33,
+        "endLine": 200,
+        "endChar": 42
+      },
+      "revId": "f62d31beacb53e4491077e5942a39b90982dea07",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02ae09f4_c140e820",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-24T17:57:52Z",
+      "side": 1,
+      "message": "Yes, internally it already relies on `std::vector\u003cstd::string\u003e` so we can pass a reference instead of converting back and forth with json.\n\nMade the change, thanks for finding this 👍",
+      "parentUuid": "566a02b4_d27154cd",
       "range": {
         "startLine": 200,
         "startChar": 33,
@@ -58,6 +100,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f96ca3e1_3e44f4a8",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-24T17:57:52Z",
+      "side": 1,
+      "message": "yes, thanks for catching it.\nMade the change to pass it as `const nlohmann::json::object_t\u0026 `.",
+      "parentUuid": "73b75975_1b2f4d0e",
+      "revId": "f62d31beacb53e4491077e5942a39b90982dea07",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "468fd0a5_128ad1c2",
@@ -71,6 +131,30 @@
       "writtenOn": "2026-11-24T07:04:47Z",
       "side": 1,
       "message": "Should this loop use `auto\u0026\u0026`, since `applyConfigExposeActions` modifies config.",
+      "range": {
+        "startLine": 377,
+        "startChar": 15,
+        "endLine": 377,
+        "endChar": 20
+      },
+      "revId": "f62d31beacb53e4491077e5942a39b90982dea07",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccf9915e_7b8eff67",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-24T17:57:52Z",
+      "side": 1,
+      "message": "yes, writing it like that would make it clearer.\n\nChanged it here and thanks for this finding 👍",
+      "parentUuid": "468fd0a5_128ad1c2",
       "range": {
         "startLine": 377,
         "startChar": 15,
