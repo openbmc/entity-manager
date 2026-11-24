@@ -43,6 +43,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "73b75975_1b2f4d0e",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-11-24T10:19:07Z",
+      "side": 1,
+      "message": "Since `exposedObject` is now an `object_t`, passing it to `findExposeActionRecord` builds a temporary JSON copy of the record on each call. Would changing the parameter of `findExposeActionRecord` to `const nlohmann::json::object_t\u0026` avoid that?",
+      "revId": "f62d31beacb53e4491077e5942a39b90982dea07",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "468fd0a5_128ad1c2",
         "filename": "src/entity_manager/perform_scan.cpp",
         "patchSetId": 14
