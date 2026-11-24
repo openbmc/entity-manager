@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f34a046_177e1261",
+        "filename": "src/fru_device/eeprom_utils.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-24T13:12:54Z",
+      "side": 1,
+      "message": "why do the other error cases have a log and this one does not?\n\nIMO either a function should log its errors or pass the result on, this function does a mix of both, do we need to make it this complicated?",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 2
+      },
+      "revId": "888660b06b293a6880663bd31672f2cf72271628",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92309f07_64faf5e3",
+        "filename": "src/fru_device/eeprom_utils.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-24T13:12:54Z",
+      "side": 1,
+      "message": "what happened to `\u003e` and `\u003e\u003d` ? Why do we need `std::cmp_greater` ?\n\nThis conditional looks inconsistent with regards to the comparisons.\n\nIt\u0027s confusing to compare like this. If the types are wrong or mismatched to require https://en.cppreference.com/cpp/utility/intcmp\nthen IMO the types are what needs to be fixed.\n\nIf we start using functions to compare two numbers then why does the rest of this function use regular `\u003e` style operators ? What about the rest of fru-device?",
+      "range": {
+        "startLine": 36,
+        "startChar": 9,
+        "endLine": 36,
+        "endChar": 25
+      },
+      "revId": "888660b06b293a6880663bd31672f2cf72271628",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c21c801d_d0108e2d",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 1118,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-24T13:12:54Z",
+      "side": 1,
+      "message": "now this error log misses the reason and the other error log is missing the path.\n\nNothing connects the two besides being next to each other in the journal, defeating the purpose of structured logging.",
+      "range": {
+        "startLine": 1118,
+        "startChar": 0,
+        "endLine": 1118,
+        "endChar": 2
+      },
+      "revId": "888660b06b293a6880663bd31672f2cf72271628",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
