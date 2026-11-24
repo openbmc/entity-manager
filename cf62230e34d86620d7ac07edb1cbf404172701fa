@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9b8f8e4_adb48616",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1003207
+      },
+      "writtenOn": "2026-11-24T07:11:21Z",
+      "side": 1,
+      "message": "An earlier patch was tested on AST2600 QEMU with a file-backed simulated EEPROM and injected short, zero and failed writes.\n\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/97653",
+      "parentUuid": "cd8bf082_7da40f3f",
+      "revId": "cf62230e34d86620d7ac07edb1cbf404172701fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef1e2ba8_03b63f03",
@@ -35,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7eebd6ff_d85e56f7",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1003207
+      },
+      "writtenOn": "2026-11-24T07:11:21Z",
+      "side": 1,
+      "message": "Moved the EEPROM file operation to eeprom_utils.cpp and its declaration to eeprom_utils.hpp.",
+      "parentUuid": "ef1e2ba8_03b63f03",
+      "revId": "cf62230e34d86620d7ac07edb1cbf404172701fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4639bdc9_b3d4f4ea",
@@ -48,6 +84,30 @@
       "writtenOn": "2026-11-22T11:47:49Z",
       "side": 1,
       "message": "The caller does an `lseek` already which should fail on a negative offset ?\n\nWhich code could possibly pass a negative offset here?\n\nLet\u0027s not introduce any code paths that cannot actually run.\n\nWhat if you combined this function with previous `lseek` in the caller then you could get this offset check indirectly and need not check it again.\n\nmeaning one function doing both the seeking and writing.",
+      "range": {
+        "startLine": 52,
+        "startChar": 4,
+        "endLine": 61,
+        "endChar": 5
+      },
+      "revId": "cf62230e34d86620d7ac07edb1cbf404172701fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8469f40_ae161cda",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1003207
+      },
+      "writtenOn": "2026-11-24T07:11:21Z",
+      "side": 1,
+      "message": "Combined seeking and writing in the EEPROM helper.\nIt uses the successful lseek() result for the capacity check and preserves the existing D-Bus seek and write failure responses.",
+      "parentUuid": "4639bdc9_b3d4f4ea",
       "range": {
         "startLine": 52,
         "startChar": 4,
