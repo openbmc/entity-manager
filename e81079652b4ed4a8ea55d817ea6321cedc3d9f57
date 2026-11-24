@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42bd02dc_81dd3bac",
+        "filename": "docs/eeprom_write_qemu_test.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-24T12:51:03Z",
+      "side": 1,
+      "message": "overall this is an impressive test setup but i don\u0027t think people will go through a 200 line process set this up.\n\nOverall it sounds good to have some kind of integration testing with qemu,\nto prevent any regressions, but it should be an automated process rather than something people setup themselves.\n\nWe also have to consider the time it will take in CI and on which changes it should run.\n\nLooking for input from @spinler@us.ibm.com if this qemu direction is worth pursuing.",
+      "revId": "e81079652b4ed4a8ea55d817ea6321cedc3d9f57",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbcfd48a_47d017c6",
+        "filename": "docs/eeprom_write_qemu_test.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-24T12:51:03Z",
+      "side": 1,
+      "message": "you are injecting errors into fru-device. Of course if you inject errors there is going to be errors.\n\nSuch an error injection cannot establish that the corresponding error handling code can actually run in qemu or on a real hardware where the error is not injected like this.\n\nCan we inject the error instead at a boundary where it can actually occur ?\n\nIf the linux kernel is truly capable of generating the errors you are testing for then it should be possible to setup without injecting errors into userspace or drivers.",
+      "range": {
+        "startLine": 154,
+        "startChar": 0,
+        "endLine": 154,
+        "endChar": 2
+      },
+      "revId": "e81079652b4ed4a8ea55d817ea6321cedc3d9f57",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
