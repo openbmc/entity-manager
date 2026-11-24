@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e228c87_4e8fd10a",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-11-24T08:08:26Z",
+      "side": 1,
+      "message": "Moved it into the record\u0027s publication on top of https://gerrit.openbmc.org/c/openbmc/entity-manager/+/96932, so the association follows the board when it is found or lost later.",
+      "parentUuid": "83379a27_8ba5a306",
+      "revId": "47c4f2a6aec95ce12321f479c98b2e969c85c61f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "be4a629d_1f7de1f8",
@@ -35,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "548c5d45_d8543c74",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-11-24T08:08:26Z",
+      "side": 1,
+      "message": "Changed to `lg2::debug`.",
+      "parentUuid": "be4a629d_1f7de1f8",
+      "revId": "47c4f2a6aec95ce12321f479c98b2e969c85c61f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4fb5500f_73849ead",
@@ -48,6 +84,24 @@
       "writtenOn": "2026-11-20T09:16:51Z",
       "side": 1,
       "message": "findBoardEntry() returns std::nullopt as soon as it reaches a configuration whose Name equals boardName (here, and again in the early return when Type or Exposes is missing), so if another configuration shares that Name (for example a Chassis and a Board with the same Name) the one that actually has the entry may never be checked. The platform property is called Board, so should this only consider configurations of Type Board, or continue to the next match instead of returning?",
+      "revId": "47c4f2a6aec95ce12321f479c98b2e969c85c61f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69722c87_3a38ae17",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-11-24T08:08:26Z",
+      "side": 1,
+      "message": "It now continues to the next configuration with that Name and skips Platform configurations.",
+      "parentUuid": "4fb5500f_73849ead",
       "revId": "47c4f2a6aec95ce12321f479c98b2e969c85c61f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
