@@ -586,33 +586,40 @@ void EntityManager::propertiesChangedCallbackDebounced(
     auto perfScan = std::make_shared<scan::PerformScan>(
         *this, *missingConfigurations, configuration.configurations, io,
         [this, count, oldConfiguration, missingConfigurations]() {
-            // this is something that since ac has been applied to the
-            // bmc we saw, and we no longer see it
-            for (const auto& [name, device] : missingConfigurations->items())
-            {
-                pruneConfiguration(name, device);
-            }
-            nlohmann::json newConfiguration = systemConfiguration;
-
-            deriveNewConfiguration(oldConfiguration, newConfiguration);
-
-            for (const auto& [key, device] : newConfiguration.items())
-            {
-                if (!cachedBaseline.contains(key))
-                {
-                    logDeviceAdded(device);
-                }
-            }
-
-            propertiesChangedInProgress = false;
-
-            boost::asio::post(io, [this, newConfiguration, count] {
-                publishNewConfiguration(std::ref(propertiesChangedInstance),
-                                        count, std::ref(propertiesChangedTimer),
-                                        newConfiguration);
-            });
+            onScanComplete(count, oldConfiguration, *missingConfigurations);
         });
     perfScan->run();
+}
+
+void EntityManager::onScanComplete(size_t count,
+                                   const nlohmann::json& oldConfiguration,
+                                   const nlohmann::json& missingConfigurations)
+{
+    // this is something that since ac has been applied to the
+    // bmc we saw, and we no longer see it
+    for (const auto& [name, device] : missingConfigurations.items())
+    {
+        pruneConfiguration(name, device);
+    }
+    nlohmann::json newConfiguration = systemConfiguration;
+
+    deriveNewConfiguration(oldConfiguration, newConfiguration);
+
+    for (const auto& [key, device] : newConfiguration.items())
+    {
+        if (!cachedBaseline.contains(key))
+        {
+            logDeviceAdded(device);
+        }
+    }
+
+    propertiesChangedInProgress = false;
+
+    boost::asio::post(io, [this, newConfiguration, count] {
+        publishNewConfiguration(std::ref(propertiesChangedInstance), count,
+                                std::ref(propertiesChangedTimer),
+                                newConfiguration);
+    });
 }
 
 // main properties changed entry

@@ -60,6 +60,8 @@ class EntityManager
     void propertiesChangedCallback();
     void propertiesChangedCallbackDebounced(
         size_t count, const boost::system::error_code& ec);
+    void onScanComplete(size_t count, const nlohmann::json& oldConfiguration,
+                        const nlohmann::json& missingConfigurations);
 
     void registerCallback(const sdbusplus::object_path& path);
     void publishNewConfiguration(const size_t& instance, size_t count,
