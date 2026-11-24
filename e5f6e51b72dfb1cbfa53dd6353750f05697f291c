@@ -162,6 +162,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "221e5dd4_97c8ac85",
+        "filename": "schemas/platform/mctp.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-24T14:16:56Z",
+      "side": 1,
+      "message": "There is a patch for a C++ based config validator available which could support extended validation rules like the case you mentioned using hooks for individual configuration types.\n\nThat\u0027s not merged yet and could use some testing and review from your side if you are interested in expanding validation.\n\n(Disclaimer: From my side) the idea is that we do not require schema authors to implement new forms of validation beyond what json-schema and our validators support.\n\nCan we close this with above reasoning and rely on the consumer to perform the pool range validation for now?",
+      "parentUuid": "8f82fd84_d02d2cc3",
+      "revId": "e5f6e51b72dfb1cbfa53dd6353750f05697f291c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "49646551_58078c4f",
         "filename": "schemas/platform/mctp.json",
         "patchSetId": 5
@@ -208,6 +226,24 @@
       "writtenOn": "2026-11-23T06:14:08Z",
       "side": 1,
       "message": "Could we express this requirement using constructs supported by both validators? The build validator rejects a partial set, but the schema declares draft 7, where dependentRequired is not supported. I also checked the schema fragment with Valijson’s draft-7 parser, and it accepts a partial set.",
+      "revId": "e5f6e51b72dfb1cbfa53dd6353750f05697f291c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a912dad_e20e419b",
+        "filename": "schemas/platform/mctp.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-24T14:16:56Z",
+      "side": 1,
+      "message": "\u003e Could we express this requirement using constructs supported by both validators? \n\nCan you expand here how this could be expressed?\n\ni had a look at the pipeline on valijson side but it seems like supporting later versions is not going to manifest in the short term.\n\nhttps://github.com/tristanpenman/valijson/issues/97\nhttps://github.com/tristanpenman/valijson/pull/234\n\nIf our validators cannot properly support the requirement and we have no way to otherwise express it, then we could just document it and rely on config authors to get it right.",
+      "parentUuid": "a384e736_e83ff730",
       "revId": "e5f6e51b72dfb1cbfa53dd6353750f05697f291c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
