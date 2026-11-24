@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7f05229_943e0708",
+        "filename": "src/entity_manager/config_pointer.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-11-24T07:04:47Z",
+      "side": 1,
+      "message": "Which caller writes `Name` or `Type` through a board-level pointer?",
+      "revId": "f62d31beacb53e4491077e5942a39b90982dea07",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "566a02b4_d27154cd",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-11-24T07:04:47Z",
+      "side": 1,
+      "message": "Could `postProbeConfig` take a `std::vector\u003cstd::string\u003e` now that `probeStmt` is already one?",
+      "range": {
+        "startLine": 200,
+        "startChar": 33,
+        "endLine": 200,
+        "endChar": 42
+      },
+      "revId": "f62d31beacb53e4491077e5942a39b90982dea07",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "468fd0a5_128ad1c2",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-11-24T07:04:47Z",
+      "side": 1,
+      "message": "Should this loop use `auto\u0026\u0026`, since `applyConfigExposeActions` modifies config.",
+      "range": {
+        "startLine": 377,
+        "startChar": 15,
+        "endLine": 377,
+        "endChar": 20
+      },
+      "revId": "f62d31beacb53e4491077e5942a39b90982dea07",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
