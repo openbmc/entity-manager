@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a446bbd_184d0dc0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-11-25T10:30:04Z",
+      "side": 1,
+      "message": "It would make the purpose clearer to add what the `Marmot Dome` board is and what the configuration is based on.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 11
+      },
+      "revId": "3dfbbfe95649ea4a82bbb546baacb5fdf1754e52",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1483c856_b0d24d46",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-11-25T10:30:04Z",
+      "side": 1,
+      "message": "The message says the TPS544B28 rails use the generic `pmbus` driver, while the dbus-sensors change [96868] that adds `TPS544B28` expects a dedicated kernel driver that is not upstream yet. Which driver do these sensors use on this board?\n\nThe `Type` and the links in the message could then follow the driver that is used.\n\n[96868]: https://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/96868",
+      "range": {
+        "startLine": 14,
+        "startChar": 4,
+        "endLine": 14,
+        "endChar": 24
+      },
+      "revId": "3dfbbfe95649ea4a82bbb546baacb5fdf1754e52",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0acc4a6_e2783572",
+        "filename": "configurations/meta/yv5/yosemite5_marmotdome_mb_vr_rns_pvdd18vr_sni_socamm-tic_adc_tic_i2chub_rtt.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 906,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-11-25T10:30:04Z",
+      "side": 1,
+      "message": "The `TDA38640` sensor and its firmware entry both use `0x76`, while the other YV5 configurations with this part use `0x69` for the sensor and `0x30` for the firmware. Is `0x76` the actual address on this board?",
+      "range": {
+        "startLine": 906,
+        "startChar": 0,
+        "endLine": 906,
+        "endChar": 30
+      },
+      "revId": "3dfbbfe95649ea4a82bbb546baacb5fdf1754e52",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09a7a8ce_5bc1462c",
+        "filename": "configurations/meta/yv5/yosemite5_marmotdome_mb_vr_rns_pvdd18vr_sni_socamm-tic_adc_tic_i2chub_rtt.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 984,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-11-25T10:30:04Z",
+      "side": 1,
+      "message": "`TDA38640A_pvdd18_s5` already exists under `Yosemite5.VR`. Does the `Marmot Dome` image need to be kept apart from the existing one, so that it cannot be flashed to the existing devices?\n\nThe same question applies to the host BIOS, CPLD and `RAA229639`/`RAA229640` values. Images that can be shared keep `Yosemite5.*`. A separate string needs to be registered in PDI and the commit message could give the reason.",
+      "range": {
+        "startLine": 984,
+        "startChar": 0,
+        "endLine": 984,
+        "endChar": 102
+      },
+      "revId": "3dfbbfe95649ea4a82bbb546baacb5fdf1754e52",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
