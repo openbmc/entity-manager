@@ -41,6 +41,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0526c384_93fd31c7",
+        "filename": "src/entity_manager/config_cache.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-25T11:52:59Z",
+      "side": 1,
+      "message": "yes, thanks for finding this. Fixed the code to use the move constructor instead.",
+      "parentUuid": "297d7319_01335b51",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 54
+      },
+      "revId": "a3d7ba36a948336dcd22cc9a56fd58ef8ae36f42",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0275566c_abe3af5d",
@@ -54,6 +78,30 @@
       "writtenOn": "2026-11-25T07:27:06Z",
       "side": 1,
       "message": "`contains()` followed by `at()` looks up `recordName` twice, and `lastConfig` the same way. Would using the iterator from `find()` as before this change avoid the second lookup?",
+      "range": {
+        "startLine": 453,
+        "startChar": 0,
+        "endLine": 453,
+        "endChar": 54
+      },
+      "revId": "a3d7ba36a948336dcd22cc9a56fd58ef8ae36f42",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7c87c68_b19e523f",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 453,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-25T11:52:59Z",
+      "side": 1,
+      "message": "Yes, changed it to use iterators.\n\nThere is still one code path in the fixed code which does lookup twice which is the `systemConfiguration.try_emplace` following the `systemConfiguration.find` earlier.\n\nWe could avoid that too by using `lower_bound` instead of `find` but that introduces a function to the codebase here that\u0027s not used anywhere else in this repo.\n\nIn case you would prefer it that way i will change it too.",
+      "parentUuid": "0275566c_abe3af5d",
       "range": {
         "startLine": 453,
         "startChar": 0,
