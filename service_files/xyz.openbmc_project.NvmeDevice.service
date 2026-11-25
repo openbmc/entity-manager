@@ -1,0 +1,13 @@
+[Unit]
+Description=NVMe Device Inventory
+After=dbus.service
+
+[Service]
+ExecStart=/usr/libexec/entity-manager/nvme-device
+Restart=always
+RestartSec=5
+Type=dbus
+BusName=xyz.openbmc_project.NvmeDevice
+
+[Install]
+WantedBy=multi-user.target
