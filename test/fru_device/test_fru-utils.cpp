@@ -1,8 +1,13 @@
 #include "fru_device/fru_utils.hpp"
 
+#include <fcntl.h>
+#include <unistd.h>
+
 #include <algorithm>
 #include <array>
+#include <cerrno>
 #include <iterator>
+#include <stdexcept>
 #include <vector>
 
 #include "gmock/gmock.h"
@@ -18,6 +23,42 @@ extern "C"
 }
 
 static constexpr size_t blockSize = I2C_SMBUS_BLOCK_MAX;
+
+TEST(ManagedFdLaunchTest, ClosesDescriptorWhenLauncherThrows)
+{
+    int fd = open("/dev/null", O_RDONLY | O_CLOEXEC);
+    ASSERT_GE(fd, 0);
+    const int openedFd = fd;
+
+    EXPECT_THROW(
+        launchWithManagedFd(
+            fd, [](int) -> int { throw std::runtime_error("launch failed"); }),
+        std::runtime_error);
+
+    EXPECT_EQ(fd, -1);
+    errno = 0;
+    EXPECT_EQ(fcntl(openedFd, F_GETFD), -1);
+    EXPECT_EQ(errno, EBADF);
+}
+
+TEST(ManagedFdLaunchTest, TransfersDescriptorToReturnedOwner)
+{
+    int fd = open("/dev/null", O_RDONLY | O_CLOEXEC);
+    ASSERT_GE(fd, 0);
+    const int openedFd = fd;
+
+    {
+        auto [owner, result] =
+            launchWithManagedFd(fd, [](int ownedFd) { return ownedFd; });
+        EXPECT_EQ(fd, -1);
+        EXPECT_EQ(result, openedFd);
+        EXPECT_EQ(owner.get(), openedFd);
+    }
+
+    errno = 0;
+    EXPECT_EQ(fcntl(openedFd, F_GETFD), -1);
+    EXPECT_EQ(errno, EBADF);
+}
 
 // Named OOB scenario for the new buffer-bound guards: a valid 17-byte FRU
 // (8-byte common header, one complete 8-byte board area block, one

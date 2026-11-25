@@ -5,6 +5,7 @@
 #include "fru_reader.hpp"
 
 #include <sdbusplus/asio/object_server.hpp>
+#include <stdplus/fd/managed.hpp>
 
 #include <cstdint>
 #include <cstdio>
@@ -21,6 +22,14 @@ extern "C"
 }
 
 constexpr size_t fruBlockSize = 8;
+
+template <typename Launcher>
+auto launchWithManagedFd(int& fd, Launcher&& launcher)
+{
+    stdplus::ManagedFd owner(std::exchange(fd, -1));
+    auto result = std::forward<Launcher>(launcher)(owner.get());
+    return std::pair{std::move(owner), std::move(result)};
+}
 
 using DeviceMap = std::flat_map<int, std::vector<uint8_t>>;
 using BusMap = std::flat_map<int, std::shared_ptr<DeviceMap>>;

@@ -27,6 +27,7 @@ executable(
         nlohmann_json_dep,
         phosphor_logging_dep,
         sdbusplus,
+        stdplus_dep,
         threads,
         valijson,
         zlib_dep,

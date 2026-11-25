@@ -19,6 +19,7 @@
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
+#include <stdplus/fd/managed.hpp>
 
 #include <array>
 #include <cerrno>
@@ -599,9 +600,11 @@ int getBusFRUs(int file, int first, int last, int bus,
                const std::set<size_t>& addressBlocklist,
                sdbusplus::asio::object_server& objServer)
 {
-    std::future<int> future = std::async(std::launch::async, [&]() {
-        return getBusFRUsCallback(file, first, last, bus, devices, powerIsOn,
-                                  addressBlocklist, objServer);
+    auto [fileOwner, future] = launchWithManagedFd(file, [&](int fd) {
+        return std::async(std::launch::async, [&, fd]() {
+            return getBusFRUsCallback(fd, first, last, bus, devices, powerIsOn,
+                                      addressBlocklist, objServer);
+        });
     });
     std::future_status status =
         future.wait_for(std::chrono::seconds(busTimeoutSeconds));
@@ -612,11 +615,11 @@ int getBusFRUs(int file, int first, int last, int bus,
         {
             busBlocklist[bus] = std::nullopt;
         }
-        close(file);
+        // Close before the future destructor waits for the worker.
+        fileOwner = stdplus::ManagedFd();
         return -1;
     }
 
-    close(file);
     return future.get();
 }
 

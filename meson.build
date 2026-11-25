@@ -30,6 +30,9 @@ endif
 if get_option('fru-device')
     i2c = cpp.find_library('i2c')
 endif
+if get_option('fru-device') or get_option('tests').allowed()
+    stdplus_dep = dependency('stdplus')
+endif
 
 phosphor_dbus_interfaces_dep = dependency(
     'phosphor-dbus-interfaces',

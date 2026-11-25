@@ -35,6 +35,7 @@ test(
             libxml2_dep,
             phosphor_logging_dep,
             sdbusplus,
+            stdplus_dep,
             zlib_dep,
         ],
         link_with: utils_lib,
