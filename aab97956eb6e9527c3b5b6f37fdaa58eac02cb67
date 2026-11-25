@@ -3,6 +3,29 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "42352ce1_1749736a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-25T16:26:02Z",
+      "side": 1,
+      "message": "supporting nested objects could be a possible extension of this work. Even if e.g. indexed interfaces cannot be represented in in PDI, consumers can still benefit from being able to rely on a known type.\n\nJust wanted to mention it here, probably out of scope for this patch to implement it.",
+      "range": {
+        "startLine": 22,
+        "startChar": 42,
+        "endLine": 23,
+        "endChar": 36
+      },
+      "revId": "aab97956eb6e9527c3b5b6f37fdaa58eac02cb67",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "8546f4d8_d273a9da",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -31,6 +54,23 @@
       "writtenOn": "2026-11-24T17:06:07Z",
       "side": 1,
       "message": "Thank you 👍",
+      "revId": "aab97956eb6e9527c3b5b6f37fdaa58eac02cb67",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b5fab6a_28d14143",
+        "filename": "src/entity_manager/schema_dbus_types.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-25T16:26:02Z",
+      "side": 1,
+      "message": "not sure if this is the right, place for this, but it would be cool if we had some kind of debug log for the `x-dbus-type` feature.\n\nNot a bug with this patch, just an idea that came up during testing as there\nis currently no way to confirm the presence of the feature unless one has configuration published which is making use of it.\n\nSomething like `\"Parsed 7 \u0027x-dbus-type\u0027s for xyz.openbmc_project.Inventory.Item.Drive\"`\n\nWill mark this as resolved as it\u0027s just an idea and related to the overall feature rather than the patch here.\n\n```\nNov 25 07:43:34 anacapa systemd[1]: Started Entity Manager.\nNov 25 07:43:34 anacapa systemd[1]: xyz.openbmc_project.EntityManager.service: Failed to send unit change signal for xyz.openbmc_project.EntityManager.service: Connection reset by peer\nNov 25 07:43:41 anacapa entity-manager[1643]: Finished loading 583 json configuration(s) from 377 file(s) in 6978ms\nNov 25 07:43:41 anacapa entity-manager[1643]: Done filtering 9 probe interfaces from configurations\nNov 25 07:43:41 anacapa entity-manager[1643]: Loaded x-dbus-type for xyz.openbmc_project.Configuration.MCTPI2CTarget with 4 properties\nNov 25 07:43:41 anacapa entity-manager[1643]: Loaded x-dbus-type for xyz.openbmc_project.Configuration.MCTPI3CTarget with 4 properties\nNov 25 07:43:41 anacapa entity-manager[1643]: querying initial power state\n```\n\nwith\n```\n\ndiff --git a/src/entity_manager/schema_dbus_types.cpp b/src/entity_manager/schema_dbus_types.cpp\nindex 8d8ecb2..55b08f6 100644\n--- a/src/entity_manager/schema_dbus_types.cpp\n+++ b/src/entity_manager/schema_dbus_types.cpp\n@@ -304,6 +304,7 @@ void SchemaDBusTypes::add(const std::string\u0026 interface,\n                 \"PROPERTY\", property);\n         }\n     }\n+    lg2::debug(\"Loaded x-dbus-type for {INTF} with {N} properties\", \"INTF\", interface, \"N\", properties.size());\n }\n \n std::optional\u003cstd::string_view\u003e SchemaDBusTypes::find(\n```",
       "revId": "aab97956eb6e9527c3b5b6f37fdaa58eac02cb67",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
