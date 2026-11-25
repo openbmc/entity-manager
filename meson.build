@@ -27,7 +27,7 @@ if not boost.found()
     boost = declare_dependency(include_directories: 'subprojects/boost_1_88_0')
     boost = boost.as_system('system')
 endif
-if get_option('fru-device')
+if get_option('fru-device') or get_option('nvme-device')
     i2c = cpp.find_library('i2c')
 endif
 

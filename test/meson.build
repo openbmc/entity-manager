@@ -99,3 +99,17 @@ test(
         link_with: gpio_presence_lib,
     ),
 )
+
+if get_option('nvme-device')
+    test(
+        'test_nvme_device_utils',
+        executable(
+            'test_nvme_device_utils',
+            'test_nvme_device_utils.cpp',
+            '../src/nvme_device/nvme_device_utils.cpp',
+            cpp_args: test_boost_args,
+            include_directories: test_include_dir,
+            dependencies: [gtest, nlohmann_json_dep],
+        ),
+    )
+endif

@@ -25,6 +25,12 @@ option(
     description: 'Different modes to detect 16-bit address EEPROM devices. MODE_1 is current and default mode.',
 )
 option(
+    'nvme-device',
+    type: 'boolean',
+    value: false,
+    description: 'Build NVMe-MI inventory daemon (nvme-device).',
+)
+option(
     'devicetree-vpd',
     type: 'boolean',
     description: 'Build device-tree VPD parser',

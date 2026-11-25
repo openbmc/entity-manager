@@ -15,6 +15,10 @@ if get_option('fru-device')
     subdir('fru_device')
 endif
 
+if get_option('nvme-device')
+    subdir('nvme_device')
+endif
+
 if get_option('devicetree-vpd')
     subdir('devicetree_vpd_parser')
 endif
