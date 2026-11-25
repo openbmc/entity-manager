@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "33848735_0346445a",
+        "filename": "src/fru_device/eeprom_utils.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1003207
+      },
+      "writtenOn": "2026-11-25T13:10:50Z",
+      "side": 1,
+      "message": "Thanks for pointing this out. writeEepromFile() now logs every failure, including seek failures, with the EEPROM path and specific cause. \nThe caller retains the existing D-Bus error mapping without emitting duplicate generic logs.",
+      "parentUuid": "0f34a046_177e1261",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 2
+      },
+      "revId": "888660b06b293a6880663bd31672f2cf72271628",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "92309f07_64faf5e3",
@@ -47,6 +71,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5499f5fd_96ec137c",
+        "filename": "src/fru_device/eeprom_utils.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1003207
+      },
+      "writtenOn": "2026-11-25T13:10:50Z",
+      "side": 1,
+      "message": "Agreed. I removed std::cmp_greater and made the capacity comparison explicit: after validating the seek position and available size, the nonnegative lengths are converted to std::uintmax_t before comparison.",
+      "parentUuid": "92309f07_64faf5e3",
+      "range": {
+        "startLine": 36,
+        "startChar": 9,
+        "endLine": 36,
+        "endChar": 25
+      },
+      "revId": "888660b06b293a6880663bd31672f2cf72271628",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c21c801d_d0108e2d",
@@ -60,6 +108,30 @@
       "writtenOn": "2026-11-24T13:12:54Z",
       "side": 1,
       "message": "now this error log misses the reason and the other error log is missing the path.\n\nNothing connects the two besides being next to each other in the journal, defeating the purpose of structured logging.",
+      "range": {
+        "startLine": 1118,
+        "startChar": 0,
+        "endLine": 1118,
+        "endChar": 2
+      },
+      "revId": "888660b06b293a6880663bd31672f2cf72271628",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60b04a50_f6a14831",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 1118,
+      "author": {
+        "id": 1003207
+      },
+      "writtenOn": "2026-11-25T13:10:50Z",
+      "side": 1,
+      "message": "Fixed. EEPROM failure logs now include both the device path and the specific reason in the same log entry.",
+      "parentUuid": "c21c801d_d0108e2d",
       "range": {
         "startLine": 1118,
         "startChar": 0,
