@@ -16,6 +16,24 @@
       "message": "This doesn\u0027t exist in PDI.\n\nPlease update yaml/com/meta/Hardware/Yosemite5.interface.yaml",
       "revId": "b9f56acffcdf3e8c0fc3a3d2f237c1e6a0fa6760",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fdba9c4_9ed9e5fc",
+        "filename": "configurations/meta/yv5/yosemite5_1kw_paddle_board_hsc_mpsb.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1002589
+      },
+      "writtenOn": "2026-11-25T08:42:22Z",
+      "side": 1,
+      "message": "Thanks for catching this. I\u0027ve added MP5998B_p12v_aux to the HSC\ncompatible hardware strings in PDI: https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/97677",
+      "parentUuid": "82894e95_cbf5ae3d",
+      "revId": "b9f56acffcdf3e8c0fc3a3d2f237c1e6a0fa6760",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
