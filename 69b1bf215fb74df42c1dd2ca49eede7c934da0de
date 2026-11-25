@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9baf24c7_ea083c13",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 1003207
+      },
+      "writtenOn": "2026-11-25T06:12:45Z",
+      "side": 1,
+      "message": "updated using managedFd class",
+      "parentUuid": "a0b05e23_08c67a6f",
+      "range": {
+        "startLine": 622,
+        "startChar": 0,
+        "endLine": 622,
+        "endChar": 2
+      },
+      "revId": "69b1bf215fb74df42c1dd2ca49eede7c934da0de",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "490f967c_d595e8c9",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-11-22T11:06:00Z",
       "side": 1,
       "message": "This looks more like a generic file descriptor utility rather than something related to IPMI fru specification. Wondering why it must go into `src/fru_device` to begin with since this is not a problem specific to `fru-device`.\n\nCould you check if https://github.com/openbmc/stdplus/blob/master/include-fd/stdplus/fd/managed.hpp\n\nalready implements this?\n\n```\n/** @class ManagedFd\n *  @brief Holds references to unique, non-dupable file descriptors\n *  @details Provides RAII semantics for file descriptors\n */\n```",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 2
+      },
+      "revId": "69b1bf215fb74df42c1dd2ca49eede7c934da0de",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "519ab468_3ef1940d",
+        "filename": "src/fru_device/fru_utils.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1003207
+      },
+      "writtenOn": "2026-11-25T06:12:45Z",
+      "side": 1,
+      "message": "i reused the managedFd insteadof scope file descriptor",
+      "parentUuid": "490f967c_d595e8c9",
       "range": {
         "startLine": 26,
         "startChar": 0,
