@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "287ba089_4b535e5a",
+        "filename": "docs/eeprom_write_qemu_test.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003207
+      },
+      "writtenOn": "2026-11-25T14:02:52Z",
+      "side": 1,
+      "message": "Agreed. \nThis guide describes a manual, application-level diagnostic procedure, not an automated CI integration test.\nThe setup is too involved to be a practical repeatable test. Before expanding this into automation, we should agree on the QEMU test scope, CI runtime, and which changes should trigger it. \nCould we get Matt’s input on whether this QEMU direction is worth pursuing?\nI can simplify or defer this guide based on that direction.",
+      "parentUuid": "42bd02dc_81dd3bac",
+      "revId": "e81079652b4ed4a8ea55d817ea6321cedc3d9f57",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fbcfd48a_47d017c6",
         "filename": "docs/eeprom_write_qemu_test.md",
         "patchSetId": 1
@@ -31,6 +49,30 @@
       "writtenOn": "2026-11-24T12:51:03Z",
       "side": 1,
       "message": "you are injecting errors into fru-device. Of course if you inject errors there is going to be errors.\n\nSuch an error injection cannot establish that the corresponding error handling code can actually run in qemu or on a real hardware where the error is not injected like this.\n\nCan we inject the error instead at a boundary where it can actually occur ?\n\nIf the linux kernel is truly capable of generating the errors you are testing for then it should be possible to setup without injecting errors into userspace or drivers.",
+      "range": {
+        "startLine": 154,
+        "startChar": 0,
+        "endLine": 154,
+        "endChar": 2
+      },
+      "revId": "e81079652b4ed4a8ea55d817ea6321cedc3d9f57",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4bde267_11c4725f",
+        "filename": "docs/eeprom_write_qemu_test.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1003207
+      },
+      "writtenOn": "2026-11-25T14:02:52Z",
+      "side": 1,
+      "message": "Agreed that LD_PRELOAD injection cannot demonstrate that the kernel or EEPROM driver can naturally produce these errors. \nIt only verifies how FruDevice handles simulated write() return values.\nI’ll make that limitation explicit and avoid presenting these cases as kernel-, driver-, or hardware-level validation. \nIf the goal is to verify naturally occurring failures, we need an injection point at the kernel/device boundary.",
+      "parentUuid": "fbcfd48a_47d017c6",
       "range": {
         "startLine": 154,
         "startChar": 0,
