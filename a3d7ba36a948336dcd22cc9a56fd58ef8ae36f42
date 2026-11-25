@@ -16,6 +16,52 @@
       "message": "Thanks for your review 🙏",
       "revId": "a3d7ba36a948336dcd22cc9a56fd58ef8ae36f42",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "297d7319_01335b51",
+        "filename": "src/entity_manager/config_cache.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-11-25T07:27:06Z",
+      "side": 1,
+      "message": "`nlohmann::json(out)` copies the whole object before `dump`, on top of the copy `toJson()` makes for each board. Would `nlohmann::json(std::move(out))` avoid the extra copy?",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 54
+      },
+      "revId": "a3d7ba36a948336dcd22cc9a56fd58ef8ae36f42",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0275566c_abe3af5d",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 453,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-11-25T07:27:06Z",
+      "side": 1,
+      "message": "`contains()` followed by `at()` looks up `recordName` twice, and `lastConfig` the same way. Would using the iterator from `find()` as before this change avoid the second lookup?",
+      "range": {
+        "startLine": 453,
+        "startChar": 0,
+        "endLine": 453,
+        "endChar": 54
+      },
+      "revId": "a3d7ba36a948336dcd22cc9a56fd58ef8ae36f42",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
