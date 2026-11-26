@@ -13,6 +13,7 @@ cpp_args_fd += [
 
 executable(
     'fru-device',
+    'blocklist.cpp',
     'fru_device.cpp',
     'fru_reader.cpp',
     'fru_utils.cpp',
@@ -35,5 +36,4 @@ executable(
     install: true,
     install_dir: installdir,
 )
-
 
