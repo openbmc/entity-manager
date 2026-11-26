@@ -225,6 +225,32 @@ TEST_F(SchemaDefaultsDBusTest, WritesDefaultedArrayAtRecordPath)
     EXPECT_EQ(std::get<std::vector<double>>(properties.at("Values")), values);
 }
 
+TEST_F(SchemaDefaultsDBusTest, PublishesPidSlewPosFromRepositorySchema)
+{
+    manager.reset();
+    manager = std::make_unique<EntityManager>(
+        server, io, std::vector<std::filesystem::path>{directory / "configs"},
+        SCHEMA_DIR, directory / "cache");
+    const auto configured = Json::parse(R"({"board": {
+        "Name": "Board", "Type": "Board", "Probe": "TRUE",
+        "Exposes": [
+            {"Name": "Default", "Type": "Pid"},
+            {"Name": "Override", "Type": "Pid", "SlewPos": 5}
+        ]
+    }})");
+    manager->systemConfiguration = configured;
+    manager->postToDbus(configured);
+
+    getProperties(boardPath + "/Default", pid);
+    ASSERT_FALSE(lastError) << lastError.message();
+    EXPECT_EQ(std::get<double>(properties.at("SlewPos")), 0);
+
+    getProperties(boardPath + "/Override", pid);
+    ASSERT_FALSE(lastError) << lastError.message();
+    EXPECT_EQ(std::get<double>(properties.at("SlewPos")), 5);
+    EXPECT_EQ(manager->systemConfiguration, configured);
+}
+
 TEST_F(SchemaDefaultsDBusTest, AddObjectUsesSameDefaultsAndSupportsOverrides)
 {
     manager->postToDbus(manager->systemConfiguration);

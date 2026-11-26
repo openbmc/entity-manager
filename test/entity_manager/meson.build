@@ -14,7 +14,9 @@ if dbus_run_session.found()
     schema_defaults_dbus_test = executable(
         'test_schema_defaults_dbus',
         'test_schema_defaults_dbus.cpp',
-        cpp_args: test_boost_args,
+        cpp_args: test_boost_args + [
+            '-DSCHEMA_DIR="' + meson.project_source_root() / 'schemas' + '"',
+        ],
         dependencies: em_deps + [gtest],
         link_with: [entity_manager_lib, utils_lib],
         include_directories: test_include_dir,

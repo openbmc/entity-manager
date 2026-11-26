@@ -81,7 +81,8 @@
                     "type": "number"
                 },
                 "SlewPos": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0
                 },
                 "TempToMargin": {
                     "type": "array",
@@ -127,7 +128,6 @@
                 "OutLimitMin",
                 "PCoefficient",
                 "SlewNeg",
-                "SlewPos",
                 "Type",
                 "Zones"
             ]
