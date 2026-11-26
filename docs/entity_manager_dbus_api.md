@@ -137,6 +137,43 @@ Interface: xyz.openbmc_project.Device.threshold.0
     int value = 55
 ```
 
+## Schema property defaults
+
+Schema owners can opt in to publishing a missing optional Exposes property by
+declaring a JSON Schema `default` directly in its property definition:
+
+```json
+"SlewPos": {
+    "type": "number",
+    "default": 0
+}
+```
+
+EM reads record definitions listed in `schemas/exposes_record.json`, following
+one local `$ref` per record if needed. Records must declare their `Type` directly
+as a `const` or `enum`. Defaults in property references, composed or conditional
+record definitions, and property subschemas are not supported. When multiple
+supported records declare the same `Type`, EM does not apply defaults for it.
+
+Schema authors should ensure defaults satisfy their property constraints; EM
+does not check those constraints on defaults. Defaults must be publishable using
+EM's existing D-Bus conversion: booleans, strings, numbers, or nonempty arrays of
+one scalar JSON type. Object, null, empty-array, and mixed-type-array defaults are
+not supported. Required properties are never filled from defaults; a schema owner
+must deliberately make a property optional to enable fallback.
+
+An explicitly configured value always wins, including `false`, `0`, an empty
+string, or `null`. Invalid configured values are not repaired by defaults.
+Defaults apply only to the Exposes Configuration interface, including records
+created with `AddObject`. They do not apply to board or nested interfaces.
+This feature works independently of runtime JSON validation.
+
+Defaults are cached from schemas at startup and are not inserted into configuration
+files or the persistent configuration cache. An explicit write to a writable
+defaulted D-Bus property updates the stored configuration in the usual way and
+becomes an override. D-Bus property permissions remain unchanged. Schema defaults
+are literal values; configuration template substitutions are not applied to them.
+
 ## JSON Requirements
 
 ### JSON syntax requirements
