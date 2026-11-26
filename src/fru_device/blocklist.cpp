@@ -10,14 +10,11 @@
 
 #include <cerrno>
 #include <charconv>
-#include <cstdlib>
 #include <fstream>
 #include <string>
 #include <string_view>
 #include <system_error>
-
-// NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
-std::flat_map<size_t, std::optional<std::flat_set<size_t>>> busBlocklist;
+#include <utility>
 
 struct AddressBlocklistResult
 {
@@ -87,25 +84,22 @@ AddressBlocklistResult loadAddressBlocklist(const nlohmann::json& data)
     return {0, addressBlocklist};
 }
 
-// once the bus blocklist is made non global,
-// return it here too.
-std::set<size_t> loadBlocklist(const char* path)
+std::optional<Blocklist> loadBlocklist(const char* path)
 {
     std::ifstream blocklistStream(path);
     if (!blocklistStream.good())
     {
         // File is optional.
         lg2::error("Cannot open blocklist file.\n");
-        return {};
+        return Blocklist{};
     }
 
     nlohmann::json data =
         nlohmann::json::parse(blocklistStream, nullptr, false);
     if (data.is_discarded())
     {
-        lg2::error(
-            "Illegal blocklist file detected, cannot validate JSON, exiting");
-        std::exit(EXIT_FAILURE);
+        lg2::error("Illegal blocklist file detected, cannot validate JSON");
+        return std::nullopt;
     }
 
     // It's expected to have at least one field, "buses" that is an array of the
@@ -114,8 +108,10 @@ std::set<size_t> loadBlocklist(const char* path)
     if (data.type() != nlohmann::json::value_t::object)
     {
         lg2::error("Illegal blocklist, expected to read dictionary");
-        std::exit(EXIT_FAILURE);
+        return std::nullopt;
     }
+
+    Blocklist blocklist;
 
     // If buses field is missing, that's fine.
     if (data.count("buses") == 1)
@@ -126,7 +122,7 @@ std::set<size_t> loadBlocklist(const char* path)
         {
             // Buses field present but invalid, therefore this is an error.
             lg2::error("Invalid contents for blocklist buses field");
-            std::exit(EXIT_FAILURE);
+            return std::nullopt;
         }
 
         // Catch exception here for type mismatch.
@@ -145,7 +141,7 @@ std::set<size_t> loadBlocklist(const char* path)
                     auto addresses =
                         addressData.get<std::set<std::string_view>>();
 
-                    auto& block = busBlocklist[bus].emplace();
+                    auto& block = blocklist.buses[bus].emplace();
                     for (const auto& address : addresses)
                     {
                         size_t addressInt = 0;
@@ -157,7 +153,7 @@ std::set<size_t> loadBlocklist(const char* path)
                 }
                 else
                 {
-                    busBlocklist[busIterator.get<size_t>()] = std::nullopt;
+                    blocklist.buses[busIterator.get<size_t>()] = std::nullopt;
                 }
             }
         }
@@ -165,15 +161,16 @@ std::set<size_t> loadBlocklist(const char* path)
         {
             // Type mismatch is a critical error.
             lg2::error("Invalid bus type: {ERR}", "ERR", e.what());
-            std::exit(EXIT_FAILURE);
+            return std::nullopt;
         }
     }
 
-    const auto [rc, addressBlocklist] = loadAddressBlocklist(data);
+    auto [rc, addressBlocklist] = loadAddressBlocklist(data);
     if (rc != 0)
     {
-        std::exit(EXIT_FAILURE);
+        return std::nullopt;
     }
 
-    return addressBlocklist;
+    blocklist.addresses = std::move(addressBlocklist);
+    return blocklist;
 }

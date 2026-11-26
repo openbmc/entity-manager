@@ -8,7 +8,15 @@
 #include <optional>
 #include <set>
 
-// NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
-extern std::flat_map<size_t, std::optional<std::flat_set<size_t>>> busBlocklist;
+using BusBlocklist =
+    std::flat_map<size_t, std::optional<std::flat_set<size_t>>>;
 
-std::set<size_t> loadBlocklist(const char* path);
+struct Blocklist
+{
+    BusBlocklist buses;
+    std::set<size_t> addresses;
+};
+
+// An unavailable optional file yields an empty blocklist; invalid contents
+// yield std::nullopt.
+std::optional<Blocklist> loadBlocklist(const char* path);

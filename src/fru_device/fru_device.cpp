@@ -24,6 +24,7 @@
 #include <cerrno>
 #include <charconv>
 #include <chrono>
+#include <cstdlib>
 #include <cstring>
 #include <ctime>
 #include <filesystem>
@@ -71,6 +72,7 @@ constexpr const char* fruDevice16BitDetectMode = FRU_DEVICE_16BITDETECTMODE;
 
 // TODO Refactor these to not be globals
 // NOLINTBEGIN(cppcoreguidelines-avoid-non-const-global-variables)
+static BusBlocklist busBlocklist;
 struct FindDevicesWithCallback;
 
 static DBusIntfMap foundDevices;
@@ -1388,10 +1390,13 @@ int main()
         return 1;
     }
 
-    // check for and load blocklist with initial buses.
-    // once busBlocklist is moved to be non global,
-    // add it here
-    fruDetails.addressBlocklist = loadBlocklist(blocklistPath);
+    auto blocklist = loadBlocklist(blocklistPath);
+    if (!blocklist)
+    {
+        return EXIT_FAILURE;
+    }
+    busBlocklist = std::move(blocklist->buses);
+    fruDetails.addressBlocklist = std::move(blocklist->addresses);
 
     systemBus->request_name("xyz.openbmc_project.FruDevice");
 

@@ -19,6 +19,23 @@ test_include_dir = include_directories('../src')
 subdir('entity_manager')
 
 test(
+    'test_fru_blocklist',
+    executable(
+        'test_fru_blocklist',
+        'fru_device/test_blocklist.cpp',
+        '../src/fru_device/blocklist.cpp',
+        dependencies: [
+            boost,
+            gtest,
+            nlohmann_json_dep,
+            phosphor_logging_dep,
+            sdbusplus,
+        ],
+        include_directories: test_include_dir,
+    ),
+)
+
+test(
     'test_fru_utils',
     executable(
         'test_fru_utils',
