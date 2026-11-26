@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5730ca3_6ee27eed",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-26T13:41:14Z",
+      "side": 1,
+      "message": "in the relation chain i saw no upstream config which uses this feature.\n\nWould it help to have such a change (work-in-progress works as well) raised to show that it is needed by upstream configurations ?",
+      "revId": "c4767d7893f5ad5e36ca33abcd39cb87996e339f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fecac2b_6f34ef35",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-26T13:41:14Z",
+      "side": 1,
+      "message": "would it make sense to rename the subject to `support platform variants` ?\n\nI am wondering what is the primary use-case here, i am assuming it is to support platform variants, with missing device fallback as secondary use-case, but could be wrong here.",
+      "range": {
+        "startLine": 13,
+        "startChar": 55,
+        "endLine": 15,
+        "endChar": 17
+      },
+      "revId": "c4767d7893f5ad5e36ca33abcd39cb87996e339f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "595bab43_8a33930b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-26T13:41:14Z",
+      "side": 1,
+      "message": "so this is effectively the `Probe` feature but limited to `FOUND`?\n\nWhat if a given config record has more complicated dependencies that cannot be expressed by power-state or the presence of another config?\n\nMeaning, why is the feature based on `Board` property rather than `Probe` ?\n\nAnother query: Do you think non-platform configs have a similar issue?\n\nFor example for `configurations/meta/yv4/medusaboard/` they have a concept of board variants where there is a common part and some  config records that are specific to each variant.\n\nWith nested `Probe` support, could such a feature support both your platform config needs (essentiall platform variants) and board variants (both actual variants where e.g. one variant has an extra 10Gbit network interface and second-source component based variants)",
+      "range": {
+        "startLine": 20,
+        "startChar": 26,
+        "endLine": 22,
+        "endChar": 42
+      },
+      "revId": "c4767d7893f5ad5e36ca33abcd39cb87996e339f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4acded9_142cbf12",
+        "filename": "test/entity_manager/test_board_presence.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-26T13:41:14Z",
+      "side": 1,
+      "message": "could we represent this as `SystemConfiguration` and call a helper to convert it to json for passing it to the function to be tested?\n\nFor a valid systemConfiguration, each board would have `Probe` and `Exposes` as well?\n\nIf we keep it like this, it means the function to be tested (in this case `foundNames`) has to handle input shaped differently from what it would encounter at runtime.",
+      "range": {
+        "startLine": 18,
+        "startChar": 4,
+        "endLine": 21,
+        "endChar": 9
+      },
+      "revId": "c4767d7893f5ad5e36ca33abcd39cb87996e339f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
