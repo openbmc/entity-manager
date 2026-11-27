@@ -4,7 +4,11 @@ executable(
     'machine_context.cpp',
     'devicetree_vpd_parser.cpp',
     cpp_args: cpp_args_fd,
-    dependencies: [sdbusplus, phosphor_dbus_interfaces_dep],
+    dependencies: [
+        phosphor_dbus_interfaces_dep,
+        phosphor_logging_dep,
+        sdbusplus,
+    ],
     install: true,
     install_dir: installdir,
 )

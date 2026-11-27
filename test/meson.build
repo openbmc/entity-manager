@@ -78,6 +78,26 @@ test(
 )
 
 test(
+    'test_devicetree_vpd',
+    find_program('dbus-run-session'),
+    args: [
+        '--',
+        executable(
+            'test_devicetree_vpd',
+            'test_devicetree_vpd.cpp',
+            '../src/devicetree_vpd_parser/machine_context.cpp',
+            include_directories: test_include_dir,
+            dependencies: [
+                gtest,
+                phosphor_dbus_interfaces_dep,
+                phosphor_logging_dep,
+                sdbusplus,
+            ],
+        ),
+    ],
+)
+
+test(
     'test_dbus_util',
     executable(
         'test_dbus_util',
