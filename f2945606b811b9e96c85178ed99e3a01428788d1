@@ -1,0 +1,147 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e6f7957_2e4ea295",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-27T14:47:49Z",
+      "side": 1,
+      "message": "Hi, kindly requesting some further details about this solution..\n\nHow does this relate to the presently used `fru-device` + `nvmesensor` solution?\n\nWhich limitations does it solve?\n\nWhen adopting this new solution, how are folks expected to migrate?\n\nCan this be used alongside fru-device and nvmesensor?\n\nIs there any duplicated functionality when using all 3?\n\nWas there an alternative to implement these features in existing services (e.g. nvmesensor) ?",
+      "revId": "f2945606b811b9e96c85178ed99e3a01428788d1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aab09f18_ae207551",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-27T14:47:49Z",
+      "side": 1,
+      "message": "i could not find this interface in `phosphor-dbus-interfaces`, is there a patch to add it there?",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 31
+      },
+      "revId": "f2945606b811b9e96c85178ed99e3a01428788d1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a06e63bd_9310fcd4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-27T14:47:49Z",
+      "side": 1,
+      "message": "it looks like some of these properties are also provided by `xyz.openbmc_project.FruDevice` interface, why do they have to be part of the new interface?\n\nWould it be possible to have `xyz.openbmc_project.FruDevice` interface separately to provide the properties already defined by it?",
+      "revId": "f2945606b811b9e96c85178ed99e3a01428788d1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68e39cb7_d004a472",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-27T14:47:49Z",
+      "side": 1,
+      "message": "should this be under `References:` section?",
+      "revId": "f2945606b811b9e96c85178ed99e3a01428788d1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afd0a111_3aa0a25b",
+        "filename": "meson.options",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-27T14:47:49Z",
+      "side": 1,
+      "message": "```suggestion\n    value: true,\n```\n\nfrom my limited understanding, the idea is that we enable all services via meson option and then enable/disable separately in the bitbake recipe.\n\nOtherwise the code will not be compiled in CI.",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 2
+      },
+      "revId": "f2945606b811b9e96c85178ed99e3a01428788d1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "684db855_38e0c54a",
+        "filename": "src/nvme_device/nvme_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-27T14:47:49Z",
+      "side": 1,
+      "message": "this looks like a managed fd rather than a nvme-specific class.\n\ni am somewhat worried about possible (future?) duplicate implementations of generic utilities.\n\nWould it be easier to find generic utilities like this at the toplevel of `src/`?\n\nThat way another service could easily pull it in rather than having to include something from `nvme_device`.",
+      "range": {
+        "startLine": 54,
+        "startChar": 1,
+        "endLine": 75,
+        "endChar": 2
+      },
+      "revId": "f2945606b811b9e96c85178ed99e3a01428788d1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67159711_331e0dee",
+        "filename": "src/nvme_device/nvme_device_utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-27T14:47:49Z",
+      "side": 1,
+      "message": "this looks like a D-Bus utility function,\nwould it make sense to put it in `src/dbus_util.cpp` ?",
+      "range": {
+        "startLine": 16,
+        "startChar": 1,
+        "endLine": 22,
+        "endChar": 1
+      },
+      "revId": "f2945606b811b9e96c85178ed99e3a01428788d1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
