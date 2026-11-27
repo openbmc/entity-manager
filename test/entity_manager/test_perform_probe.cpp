@@ -1,7 +1,11 @@
 #include "entity_manager/perform_probe.hpp"
 
+#include <sys/uio.h>
+
+#include <algorithm>
 #include <map>
 #include <optional>
+#include <span>
 #include <stdexcept>
 #include <string>
 #include <utility>
@@ -15,10 +19,23 @@ using probe::TokenType;
 namespace
 {
 
+struct JournalCapture
+{
+    bool enabled = false;
+    std::vector<std::string> fields;
+};
+
+JournalCapture& journalCapture()
+{
+    static JournalCapture capture;
+    return capture;
+}
+
 bool runProbe(const std::vector<Token>& tokens,
               const MapperGetSubTreeResponse& objects = {},
               const std::vector<std::string>& passed = {},
-              scan::FoundDevices* foundDevs = nullptr)
+              scan::FoundDevices* foundDevs = nullptr,
+              const std::string& probeName = {})
 {
     std::optional<probe::Ast> ast = probe::parseProbe(tokens);
     if (!ast.has_value())
@@ -28,7 +45,8 @@ bool runProbe(const std::vector<Token>& tokens,
 
     scan::FoundDevices devices;
     return probe::detail::doProbe(ast.value(), objects, passed,
-                                  foundDevs != nullptr ? *foundDevs : devices);
+                                  foundDevs != nullptr ? *foundDevs : devices,
+                                  probeName);
 }
 
 const Token trueToken{TokenType::boolTrue, ""};
@@ -44,6 +62,21 @@ Token dbusProbe(const std::string& interface,
             probe::DbusProbe{interface, std::move(properties)}};
 }
 } // namespace
+
+// Intercept lg2's journal backend to check the emitted structured fields.
+#undef sd_journal_sendv
+extern "C" int sd_journal_sendv(const struct iovec* iov, int n)
+{
+    if (journalCapture().enabled)
+    {
+        for (const auto& entry : std::span(iov, static_cast<size_t>(n)))
+        {
+            journalCapture().fields.emplace_back(
+                static_cast<const char*>(entry.iov_base), entry.iov_len);
+        }
+    }
+    return 0;
+}
 
 TEST(DoProbe, EvaluateAndOperator)
 {
@@ -103,6 +136,77 @@ TEST(DoProbe, EvaluateDbusProbe)
     EXPECT_FALSE(runProbe({dbusProbe("xyz.openbmc_project.FruDevice",
                                      {{"PRODUCT_PRODUCT_NAME", "Other"}})},
                           objects));
+}
+
+TEST(DoProbe, ReportsInvalidRegexWithDeviceAndConfigurationContext)
+{
+    const DBusObject interfaces = {
+        {"xyz.openbmc_project.FruDevice", {{"Product", std::string("Board")}}}};
+    const MapperGetSubTreeResponse objects = {{"/test/device", interfaces}};
+    const Token invalid =
+        dbusProbe("xyz.openbmc_project.FruDevice", {{"Product", "["}});
+
+    auto& capture = journalCapture();
+    capture.fields.clear();
+    capture.enabled = true;
+    EXPECT_FALSE(runProbe({invalid}, objects, {}, nullptr, "Test Board"));
+    capture.enabled = false;
+
+    EXPECT_NE(std::ranges::find(capture.fields, "NAME=Test Board"),
+              capture.fields.end());
+    EXPECT_NE(std::ranges::find(capture.fields,
+                                "IFACE=xyz.openbmc_project.FruDevice"),
+              capture.fields.end());
+    EXPECT_NE(std::ranges::find(capture.fields, "PROPERTY=Product"),
+              capture.fields.end());
+    EXPECT_NE(std::ranges::find(capture.fields, "PATH=/test/device"),
+              capture.fields.end());
+    EXPECT_TRUE(std::ranges::any_of(capture.fields, [](const auto& field) {
+        return field.starts_with("ERROR=") && field.size() > 6;
+    }));
+    EXPECT_TRUE(std::ranges::any_of(capture.fields, [](const auto& field) {
+        return field.starts_with("PROBE=") && field.find('[') != field.npos;
+    }));
+}
+
+TEST(DoProbe, InvalidRegexRetainsBooleanAndDeviceBehavior)
+{
+    const DBusObject interfaces = {
+        {"xyz.openbmc_project.FruDevice", {{"Product", std::string("Board")}}}};
+    const MapperGetSubTreeResponse objects = {{"/test/device", interfaces}};
+    const Token invalid =
+        dbusProbe("xyz.openbmc_project.FruDevice", {{"Product", "["}});
+    const Token valid =
+        dbusProbe("xyz.openbmc_project.FruDevice", {{"Product", "Board"}});
+
+    scan::FoundDevices devices;
+    EXPECT_TRUE(runProbe({invalid, opOr, valid}, objects, {}, &devices));
+    ASSERT_EQ(devices.size(), 1U);
+    EXPECT_EQ(devices.front().path, "/test/device");
+    EXPECT_TRUE(runProbe({opNot, invalid}, objects));
+}
+
+TEST(DoProbe, OrdinaryMismatchDoesNotLogError)
+{
+    const DBusObject interfaces = {
+        {"xyz.openbmc_project.FruDevice",
+         {{"Name", std::string("Board")}, {"Product", std::string("Board")}}}};
+    const MapperGetSubTreeResponse objects = {{"/test/device", interfaces}};
+    const Token mismatch =
+        dbusProbe("xyz.openbmc_project.MissingDevice", {{"Product", "Other"}});
+    const Token wrongValue =
+        dbusProbe("xyz.openbmc_project.FruDevice", {{"Product", "Other"}});
+    const Token skippedRegex = dbusProbe("xyz.openbmc_project.FruDevice",
+                                         {{"Name", "Other"}, {"Product", "["}});
+
+    auto& capture = journalCapture();
+    capture.fields.clear();
+    capture.enabled = true;
+    EXPECT_FALSE(runProbe({mismatch}, objects));
+    EXPECT_FALSE(runProbe({wrongValue}, objects));
+    EXPECT_FALSE(runProbe({skippedRegex}, objects));
+    capture.enabled = false;
+    EXPECT_TRUE(capture.fields.empty());
 }
 
 TEST(DoProbe, NegatedDbusProbeDoesNotReportDevices)

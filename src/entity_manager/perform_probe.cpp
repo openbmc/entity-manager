@@ -21,7 +21,7 @@ bool probeDbus(const std::string& interfaceName,
                const std::map<std::string, nlohmann::json>& matches,
                scan::FoundDevices& devices,
                const MapperGetSubTreeResponse& dbusProbeObjects,
-               bool& foundProbe)
+               bool& foundProbe, const std::string& probeName)
 {
     bool foundMatch = false;
     foundProbe = false;
@@ -44,8 +44,25 @@ bool probeDbus(const std::string& interfaceName,
             auto deviceValue = interface.find(matchProp);
             if (deviceValue != interface.end())
             {
-                deviceMatches = deviceMatches &&
-                                matchProbe(matchJSON, deviceValue->second);
+                if (deviceMatches)
+                {
+                    auto result =
+                        matchProbeWithError(matchJSON, deviceValue->second);
+                    if (!result)
+                    {
+                        lg2::error(
+                            "Probe {NAME} invalid regex {PROBE} for {IFACE} "
+                            "{PROPERTY} at {PATH}: {ERROR}",
+                            "NAME", probeName, "PROBE", matchJSON, "IFACE",
+                            interfaceName, "PROPERTY", matchProp, "PATH", path,
+                            "ERROR", result.error());
+                        deviceMatches = false;
+                    }
+                    else
+                    {
+                        deviceMatches = *result;
+                    }
+                }
             }
             else
             {
@@ -67,10 +84,10 @@ bool probeDbus(const std::string& interfaceName,
 
 // AND and OR always evaluate both children, from left to right, so a D-Bus
 // probe adds the devices it matches whatever the other operand gives.
-static bool evaluateNode(const probe::Node& node,
-                         const MapperGetSubTreeResponse& dbusProbeObjects,
-                         const std::vector<std::string>& passedProbes,
-                         scan::FoundDevices& foundDevs)
+static bool evaluateNode(
+    const probe::Node& node, const MapperGetSubTreeResponse& dbusProbeObjects,
+    const std::vector<std::string>& passedProbes, scan::FoundDevices& foundDevs,
+    const std::string& probeName)
 {
     switch (node.token.type)
     {
@@ -98,15 +115,15 @@ static bool evaluateNode(const probe::Node& node,
             bool foundProbe = false;
             return probeDbus(node.token.dbus->interface,
                              node.token.dbus->properties, foundDevs,
-                             dbusProbeObjects, foundProbe);
+                             dbusProbeObjects, foundProbe, probeName);
         }
         case probe::TokenType::opAnd:
         case probe::TokenType::opOr:
         {
             const bool left = evaluateNode(*node.left, dbusProbeObjects,
-                                           passedProbes, foundDevs);
+                                           passedProbes, foundDevs, probeName);
             const bool right = evaluateNode(*node.right, dbusProbeObjects,
-                                            passedProbes, foundDevs);
+                                            passedProbes, foundDevs, probeName);
             return node.token.type == probe::TokenType::opAnd
                        ? left && right
                        : left || right;
@@ -117,7 +134,7 @@ static bool evaluateNode(const probe::Node& node,
             // devices its operand matches are not devices of the probe.
             scan::FoundDevices negatedDevs;
             return !evaluateNode(*node.left, dbusProbeObjects, passedProbes,
-                                 negatedDevs);
+                                 negatedDevs, probeName);
         }
         case probe::TokenType::matchOne:
         {
@@ -131,10 +148,11 @@ static bool evaluateNode(const probe::Node& node,
 // default probe entry point, evaluates the tree of a probe
 bool probe::detail::doProbe(
     const probe::Ast& ast, const MapperGetSubTreeResponse& dbusProbeObjects,
-    const std::vector<std::string>& passedProbes, scan::FoundDevices& foundDevs)
+    const std::vector<std::string>& passedProbes, scan::FoundDevices& foundDevs,
+    const std::string& probeName)
 {
-    const bool ret =
-        evaluateNode(*ast.root, dbusProbeObjects, passedProbes, foundDevs);
+    const bool ret = evaluateNode(*ast.root, dbusProbeObjects, passedProbes,
+                                  foundDevs, probeName);
 
     // probe passed, but empty device
     if (ret && foundDevs.empty())
@@ -166,7 +184,7 @@ PerformProbe::~PerformProbe()
 {
     scan::FoundDevices foundDevs;
     if (detail::doProbe(*recordRef.probeAst, scan->dbusProbeObjects,
-                        scan->passedProbes, foundDevs))
+                        scan->passedProbes, foundDevs, probeName))
     {
         scan->updateSystemConfiguration(recordRef, probeName, foundDevs);
     }

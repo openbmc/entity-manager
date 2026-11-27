@@ -70,9 +70,10 @@ void getInterfaces(
                     return;
                 }
 
-                lg2::error("error calling getall on {BUSNAME} {PATH} {INTF}",
+                lg2::error("error calling getall on {BUSNAME} {PATH} {INTF}: "
+                           "{ERROR}",
                            "BUSNAME", instance.busName, "PATH", instance.path,
-                           "INTF", instance.interface);
+                           "INTF", instance.interface, "ERROR", errc.message());
 
                 auto timer =
                     std::make_shared<boost::asio::steady_timer>(scan->_em.io);
@@ -138,7 +139,8 @@ static void afterFindDBusObjects(
         {
             return; // wasn't found by mapper
         }
-        lg2::error("Error communicating to mapper");
+        lg2::error("Error communicating to mapper: {ERROR}", "ERROR",
+                   ec.message());
 
         if (retries == 0U)
         {

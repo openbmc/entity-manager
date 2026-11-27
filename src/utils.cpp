@@ -149,7 +149,8 @@ struct MatchProbe
     /// \param probe the probe statement to match against
     /// \param value the property value being matched to a probe
     /// \return true if the dbusValue matched the probe otherwise false
-    static bool match(const nlohmann::json& probe, const T& value)
+    static std::expected<bool, std::string> match(const nlohmann::json& probe,
+                                                  const T& value)
     {
         return probe == value;
     }
@@ -164,7 +165,8 @@ struct MatchProbe<std::string>
     /// \param probe the probe statement to match against
     /// \param value the string value being matched to a probe
     /// \return true if the dbusValue matched the probe otherwise false
-    static bool match(const nlohmann::json& probe, const std::string& value)
+    static std::expected<bool, std::string> match(const nlohmann::json& probe,
+                                                  const std::string& value)
     {
         if (probe.is_string())
         {
@@ -174,11 +176,9 @@ struct MatchProbe<std::string>
                 std::smatch regMatch;
                 return std::regex_search(value, regMatch, search);
             }
-            catch (const std::regex_error&)
+            catch (const std::regex_error& error)
             {
-                lg2::error(
-                    "Syntax error in regular expression: {PROBE} will never match",
-                    "PROBE", probe);
+                return std::unexpected(error.what());
             }
         }
 
@@ -198,15 +198,28 @@ struct MatchProbeForwarder
     const nlohmann::json& probeRef;
 
     template <typename T>
-    bool operator()(const T& dbusValue) const
+    std::expected<bool, std::string> operator()(const T& dbusValue) const
     {
         return MatchProbe<T>::match(probeRef, dbusValue);
     }
 };
 
-bool matchProbe(const nlohmann::json& probe, const DBusValueVariant& dbusValue)
+std::expected<bool, std::string> matchProbeWithError(
+    const nlohmann::json& probe, const DBusValueVariant& dbusValue)
 {
     return std::visit(MatchProbeForwarder(probe), dbusValue);
+}
+
+bool matchProbe(const nlohmann::json& probe, const DBusValueVariant& dbusValue)
+{
+    auto result = matchProbeWithError(probe, dbusValue);
+    if (!result)
+    {
+        lg2::error("Syntax error in regular expression {PROBE}: {ERROR}",
+                   "PROBE", probe, "ERROR", result.error());
+        return false;
+    }
+    return *result;
 }
 
 std::vector<std::string> split(std::string_view str, char delim)

@@ -56,6 +56,11 @@ keyword, an unbalanced parenthesis, a missing operand or operator, or a
 `MATCH_ONE` that is not the last token. An error naming the configuration is
 logged and the configuration is not used.
 
+When a string property is evaluated against an invalid regular expression, the
+property does not match. The error log identifies the configuration, pattern,
+interface, property, D-Bus path, and regex error. Ordinary non-matches are not
+errors.
+
 ## Evaluation semantics
 
 Each operand evaluates to a boolean:

@@ -30,7 +30,7 @@ namespace detail
 // passed probes. Matching devices are appended to foundDevs.
 bool doProbe(const Ast& ast, const MapperGetSubTreeResponse& dbusProbeObjects,
              const std::vector<std::string>& passedProbes,
-             scan::FoundDevices& foundDevs);
+             scan::FoundDevices& foundDevs, const std::string& probeName = {});
 } // namespace detail
 
 } // namespace probe

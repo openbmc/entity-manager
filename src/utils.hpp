@@ -8,6 +8,7 @@
 
 #include <charconv>
 #include <cstdint>
+#include <expected>
 #include <filesystem>
 #include <flat_map>
 #include <optional>
@@ -44,6 +45,9 @@ bool getI2cDevicePaths(const std::filesystem::path& dirPath,
 /// \param dbusValue the property value being matched to a probe.
 /// \return true if the dbusValue matched the probe otherwise false.
 bool matchProbe(const nlohmann::json& probe, const DBusValueVariant& dbusValue);
+
+std::expected<bool, std::string> matchProbeWithError(
+    const nlohmann::json& probe, const DBusValueVariant& dbusValue);
 
 inline char asciiToLower(char c)
 {
