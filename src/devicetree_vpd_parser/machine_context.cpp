@@ -3,38 +3,68 @@
 
 #include "machine_context.hpp"
 
+#include <phosphor-logging/lg2.hpp>
+
+#include <cerrno>
+#include <cstring>
 #include <filesystem>
 #include <fstream>
+#include <optional>
 
-void MachineContext::populateFromDeviceTree()
+namespace
 {
-    std::string nodeVal;
-    std::ifstream vpdStream(nodeBasePath + std::string("model"));
-    if (vpdStream && std::getline(vpdStream, nodeVal))
+std::optional<std::string> readDeviceTreeNode(const std::filesystem::path& path)
+{
+    errno = 0;
+    std::ifstream stream(path);
+    if (!stream.is_open())
     {
-        MachineContext::Asset::model(nodeVal);
-        vpdStream.close();
+        int error = errno;
+        if (error != ENOENT)
+        {
+            lg2::warning("Failed to open device-tree node {PATH}: {ERROR}",
+                         "PATH", path.string(), "ERROR",
+                         (error != 0) ? std::strerror(error) : "unknown error");
+        }
+        return std::nullopt;
     }
 
-    vpdStream.open(nodeBasePath + std::string("serial-number"));
-    if (vpdStream && std::getline(vpdStream, nodeVal))
+    std::string value;
+    if (!std::getline(stream, value))
     {
-        MachineContext::Asset::serial_number(nodeVal);
-        vpdStream.close();
+        if (stream.bad())
+        {
+            lg2::warning("Failed to read device-tree node {PATH}", "PATH",
+                         path.string());
+        }
+        return std::nullopt;
     }
 
-    vpdStream.open(nodeBasePath + std::string("part-number"));
-    if (vpdStream && std::getline(vpdStream, nodeVal))
+    return value;
+}
+} // namespace
+
+void MachineContext::populateFromDeviceTree(
+    const std::filesystem::path& nodeBase)
+{
+    if (auto value = readDeviceTreeNode(nodeBase / "model"))
     {
-        MachineContext::Asset::part_number(nodeVal);
-        vpdStream.close();
+        MachineContext::Asset::model(*value);
     }
 
-    vpdStream.open(nodeBasePath + std::string("manufacturer"));
-    if (vpdStream && std::getline(vpdStream, nodeVal))
+    if (auto value = readDeviceTreeNode(nodeBase / "serial-number"))
     {
-        MachineContext::Asset::manufacturer(nodeVal);
-        vpdStream.close();
+        MachineContext::Asset::serial_number(*value);
+    }
+
+    if (auto value = readDeviceTreeNode(nodeBase / "part-number"))
+    {
+        MachineContext::Asset::part_number(*value);
+    }
+
+    if (auto value = readDeviceTreeNode(nodeBase / "manufacturer"))
+    {
+        MachineContext::Asset::manufacturer(*value);
     }
 };
 
