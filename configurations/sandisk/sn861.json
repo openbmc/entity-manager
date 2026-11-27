@@ -1,0 +1,22 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x6a",
+            "Bus": "$bus",
+            "Name": "NVMe $index Temp",
+            "Type": "NVME1000"
+        }
+    ],
+    "Name": "SN861 $index",
+    "Probe": "xyz.openbmc_project.NvmeDevice({'VendorID': 7062, 'ModelNumber': '(WUS6A7676PJP8X7|WUL6BA176O9P8X7|WUS6A762TP9P8X7)'})",
+    "Type": "NVMe",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "SanDisk",
+        "Model": "DC SN861",
+        "PartNumber": "$ModelNumber",
+        "SerialNumber": "$SerialNumber"
+    },
+    "xyz.openbmc_project.Inventory.Item.Chassis": {
+        "Type": "xyz.openbmc_project.Inventory.Item.Chassis.ChassisType.Module"
+    }
+}

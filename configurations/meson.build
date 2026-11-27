@@ -362,6 +362,7 @@ configs = [
     'ocp/cx8_ocp.json',
     'platform/nvidia/mgx_connectx8_supernic_switch_server.json',
     'samsung/pm9d3a.json',
+    'sandisk/sn861.json',
     'sandisk/sn862.json',
     'solum/pssf132202a.json',
     'solum/pssf162202_psu.json',
