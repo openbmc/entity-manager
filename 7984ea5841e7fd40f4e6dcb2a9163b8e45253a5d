@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8408bc4_593f37f9",
+        "filename": "test/test_devicetree_vpd.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-27T09:04:50Z",
+      "side": 1,
+      "message": "since the test is specific to devicetree vpd parser, should it go into a subdirectory like `test/devicetree_vpd_parser/` ?\n\nThe current test directory structure follows this pattern of each service having\nit\u0027s own subdirectory for its tests:\n\n```\n[alexander@alexanderarchlinux entity-manager]$ tree test/\ntest/\n├── entity_manager\n│   ├── log_device_inventory.cpp\n│   ├── meson.build\n│   ├── test_add_object.cpp\n│   ├── test_config_pointer.cpp\n│   ├── test_configuration.cpp\n│   ├── test_em_config.cpp\n│   ├── test_entity-manager.cpp\n│   ├── test_expression.cpp\n│   ├── test_perform_probe.cpp\n│   ├── test_perform_scan.cpp\n│   ├── test_probe_lexer.cpp\n│   ├── test_probe_parser.cpp\n│   ├── test_schema_dbus_types.cpp\n│   ├── test_system_configuration.cpp\n│   └── test_topology.cpp\n├── expected-schema-errors.txt\n├── fru_device\n│   ├── test_fru-utils.cpp\n│   └── test_gzip-utils.cpp\n├── gpio-presence\n│   ├── test_gpio_presence.cpp\n│   └── test_gpio_presence_state.cpp\n├── meson.build\n├── test_dbus_util.cpp\n└── test_utils.cpp\n\n4 directories, 23 files\n```",
+      "revId": "7984ea5841e7fd40f4e6dcb2a9163b8e45253a5d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
